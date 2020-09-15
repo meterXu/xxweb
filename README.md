@@ -25,10 +25,10 @@ npm i -g @dpark/s2 --registry http://58.210.9.131:5088/npm
 ### 2、配置s2.config.json
 ```json
 {
-  "sso": {// 业务系统命名空间
-    "immediately": true,// 脚本立即集成
+  "sso": { //业务系统命名空间
+    "immediately": true, //脚本立即集成
     "js":[
-      "http://localhost:8081/sso.js"//业务系统启动后的地址
+      "http://localhost:8081/sso.js" //业务系统启动后的地址
     ]
   }
 }
