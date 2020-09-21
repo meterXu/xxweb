@@ -11,11 +11,11 @@ s2 -h  # 查看帮助文档
 | -v, --version | 查看版本         | -- |
 | -h, --help    | 查看帮助         | -- |
 | -c, --create           | 创建新项目     | -- |
-| -r, --run           | 启动业务系统     | -- |
-| -b, --build         | 打包业务系统     | -- |
+| -r, --run           | 启动项目     | -- |
+| -b, --build         | 打包项目     | -- |
 | -i, --install       | 安装包依赖        | 与npm i 相同 |
 | -u, --update        | 更新npm包        | 与npm u 相同 |
-| -m, --merge       | 集成业务系统至s2 | 生产环境使用             |
+| -m, --merge       | 集成项目至s2 | 生产环境使用             |
 | -ui,--showui       | s2初始界面 | 打开s2开发框架初始界面             |
 
 
@@ -24,15 +24,10 @@ s2 -h  # 查看帮助文档
 ```bash
 npm i -g @dpark/s2 --registry http://58.210.9.131:5088/npm
 ```
-2. 创建项目
+2. 创建并启动项目
 ```bash
-s2 create hello-world
+s2 c
 
-```
-
-3. 启动项目
-```bash
-s2 r
 ```
 
 ## 帮助文档
