@@ -18,16 +18,32 @@ s2 -h  # 查看帮助文档
 | -m, --merge       | 集成项目至s2 | 生产环境使用             |
 | -ui,--showui       | s2初始界面 | 打开s2开发框架初始界面             |
 
+## 前提条件
+### 1. 安装node
+```
+node >= 12
+```
+
+下载地址：[node](https://nodejs.org/en/)
+
+### 2. 安装git
+
+下载地址：[git](https://git-scm.com/download/win)
+
+### 3. 安装Vue CLI
+```
+npm i -g @vue/cli
+```
+
 
 ## 快速开始
-1. 全局安装s2
+### 1. 全局安装s2
 ```bash
 npm i -g @dpark/s2 --registry http://58.210.9.131:5088/npm
 ```
-2. 创建并启动项目
+### 2. 创建并启动项目
 ```bash
 s2 c
-
 ```
 
 ## 帮助文档
