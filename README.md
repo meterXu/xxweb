@@ -37,7 +37,7 @@ npm i -g @vue/cli
 ## 快速开始
 ### 1. 全局安装s2
 ```bash
-npm i -g @dpark/s2 --registry http://192.168.126.25/npm
+npm i -g @dpark/s2 --registry http://dev.dpark.com.cn/npm
 ```
 ### 2. 创建并启动项目
 ```bash
@@ -45,5 +45,7 @@ s2 c
 ```
 
 ## 帮助文档
-若更加想了解s2如何使用，请访问在线帮助文档：[帮助文档](http://192.168.126.25/pldoc/)
+
+若更加想了解s2如何使用，请访问在线帮助文档：[帮助文档](http://dev.dpark.com.cn/pldoc/)
+
 
