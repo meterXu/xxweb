@@ -1,0 +1,8 @@
+pages:
+  stage: deploy
+  artifacts:
+    expire_in: 3 days
+    paths:
+      - public
+  only:
+    - master
