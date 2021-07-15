@@ -1,8 +1,10 @@
 pages:
   stage: deploy
+  script:
+    - test
   artifacts:
     expire_in: 3 days
     paths:
       - public
   only:
-    - master
+    - dev
