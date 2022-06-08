@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <S2Frame :appConfig="project" :permission="permission"></S2Frame>
+    <XXWebBox :appConfig="project" :permission="permission"></XXWebBox>
   </div>
 </template>
 

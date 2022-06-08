@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
-import S2Frame from './packages/s2-frame/index'
+import XXWebBox from './packages/xxWeb-box/index'
 import router from './router';
 
 Vue.config.productionTip = false
-Vue.use(S2Frame)
+Vue.use(XXWebBox)
 
 new Vue({
   router,

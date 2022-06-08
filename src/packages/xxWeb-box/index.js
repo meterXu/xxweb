@@ -1,6 +1,6 @@
-import S2Frame from './components/XXWebBox.vue'
+import XXWebBox from './components/XXWebBox.vue'
 const install = function (Vue,config) {
-    Vue.component(S2Frame.name,S2Frame)
+    Vue.component(XXWebBox.name,XXWebBox)
 }
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)
