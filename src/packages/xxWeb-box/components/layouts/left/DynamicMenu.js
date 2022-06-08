@@ -8,41 +8,52 @@ export default {
     MenuItem
   },
   methods:{
+      renderIcon(icon){
+          if(typeof(icon)==='object'){
+              return icon
+          }else {
+              return (<i class={icon}></i>)
+          }
+      },
+      renderSubMenu(){
+          let sMenu= []
+          this.permission.forEach(menu=>{
+              if(menu.children instanceof Array){
+                  let xx = []
+                  menu.children.forEach(c=>{
+                      xx.push(
+                          <MenuItem index={c.path}>
+                              {this.renderIcon(c.meta.icon)}
+                              {c.meta.title}
+                          </MenuItem>)
+                  })
+                  sMenu.push(
+                      <Submenu index={menu.path}>
+                          <template slot="title">
+                              {this.renderIcon(menu.meta.icon)}
+                              <span>{menu.meta.title}</span>
+                          </template>
+                          {xx}
+                      </Submenu>)
+              }else{
+                  sMenu.push(
+                      <MenuItem index={menu.path}>
+                          {this.renderIcon(menu.meta.icon)}
+                          {menu.meta.title}
+                      </MenuItem>
+                  )
+              }
+          })
+          return sMenu
+      }
   },
   render() {
-
-      let sMenu= null
-      this.permission.forEach(menu=>{
-          if(typeof menu === 'Array'){
-              let xx = null
-              menu.forEach(c=>{
-                  xx +=(<MenuItem index={c.path}><i class="el-icon-s-data"></i>{c.meta.title}</MenuItem>)
-              })
-              sMenu+=(<Submenu index="1">{xx}</Submenu>)
-          }
-      })
-
-    return (
+      const sMenu = this.renderSubMenu()
+      return (
         <div class="dynamic-menu">
           <Menu
           collapse={this.isCollapse}>
-          <Submenu index="1">
-            <template slot="title">
-              <i class="el-icon-menu"></i>
-              <span>导航一</span>
-            </template>
-            <MenuItem index="1-4-1"><i class="el-icon-s-data"></i>选项1</MenuItem>
-            <MenuItem index="1-4-2"><i class="el-icon-s-data"></i>选项2</MenuItem>
-          </Submenu>
-          <MenuItem index="2">
-            <i class="el-icon-s-platform"></i>
-            <span slot="title">导航二</span>
-          </MenuItem>
-          <MenuItem index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
-          </MenuItem>
-
+              {sMenu}
         </Menu>
       </div>
     )

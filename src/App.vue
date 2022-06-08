@@ -26,15 +26,15 @@ export default {
         },
         config: {
           "logo": "./static/imgs/logo-white.png",
-          "title": "沃壤赋能平台",
+          "title": "web-box",
           "login": {
-            "title": "沃壤赋能平台",
+            "title": "web-box",
             "desc": ""
           },
           "head": {
             "title": {
-              "desktop": "欢迎进入沃壤赋能平台",
-              "mobile": "沃壤赋能"
+              "desktop": "",
+              "mobile": ""
             },
             "searchMenu": {
               "show": true
@@ -46,7 +46,7 @@ export default {
             }
           },
           "sideMenu": {
-            "title": "沃壤赋能",
+            "title": "web-box",
             "width": '200px'
           },
           "footer": {
@@ -68,14 +68,14 @@ export default {
       permission:[{
         path: '/page/',
         name: 'page',
-        meta: { title: '系统页面', icon: 'appstore' },
+        meta: { title: '系统页面', icon: 'el-icon-s-platform' },
         children: [
           {
             path: '/page/1',
             name: 'page_1',
             meta: {
               title: '页面1',
-              icon: 'project'
+              icon: 'el-icon-s-platform'
             }
           },
           {
@@ -83,7 +83,7 @@ export default {
             name: 'page_2',
             meta: {
               title: '页面2',
-              icon: 'project'
+              icon: 'el-icon-s-platform'
             }
           },
           {
@@ -91,7 +91,7 @@ export default {
             name: 'page_3',
             meta: {
               title: '页面3',
-              icon: 'project'
+              icon: 'el-icon-s-platform'
             }
           },
           {
@@ -99,7 +99,7 @@ export default {
             name: 'page_4',
             meta: {
               title: '页面4',
-              icon: 'project'
+              icon: 'el-icon-s-platform'
             }
           }
         ]
