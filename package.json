@@ -1,0 +1,59 @@
+{
+  "name": "@dpark/s2-frame",
+  "version": "1.1.0",
+  "license": "MIT",
+  "private": false,
+  "author": "框架技术研发部",
+  "contributors": [
+    "isaac"
+  ],
+  "homepage": "http://58.210.9.133/iplatform/geekdoc/docs/wow/wow-1delpeiiudksc",
+  "bugs": {
+    "url": "http://issues.dpark.com.cn/git/issues/s2",
+    "email": "xuhg@dpark.com.cn"
+  },
+  "description": "前端开发平台",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "analyz": "set npm_config_report=true && npm run build"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-router": "^3.0.2",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack-bundle-analyzer": "^4.5.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
