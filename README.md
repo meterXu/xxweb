@@ -1,3 +1,1 @@
-# @dpark/s2-frame
-
-## 说明
+# xxWeb-permission

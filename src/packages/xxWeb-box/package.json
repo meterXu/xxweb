@@ -1,19 +1,16 @@
 {
-  "name": "@dpark/s2-frame",
+  "name": "xxWeb-box",
   "version": "1.0.1",
-  "description": "沃壤平台工作流引擎执行器",
+  "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "flowable",
-    "view",
-    "vue"
   ],
   "private": false,
-  "author": "框架技术研发部",
+  "author": "isaac",
   "contributors": [
     "isaac"
   ],

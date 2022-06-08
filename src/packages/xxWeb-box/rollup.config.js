@@ -74,8 +74,8 @@ export default [
     {
         input: './index.js',
         output: {
-            name: 's2-frame',
-            file: `dist/s2-frame.umd.js`,
+            name: 'xxWeb-box',
+            file: `dist/xxWeb-box.umd.js`,
             format: 'umd'
         },
         plugins: pgl()
