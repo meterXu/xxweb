@@ -1,4 +1,4 @@
-import S2Frame from './components/S2Frame.vue'
+import S2Frame from './components/XXWebBox.vue'
 const install = function (Vue,config) {
     Vue.component(S2Frame.name,S2Frame)
 }

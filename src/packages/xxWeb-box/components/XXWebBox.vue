@@ -1,5 +1,5 @@
 <template>
-  <div class="s2">
+  <div class="xxWeb-box">
     <Container class="main-container">
       <SideMenu :isCollapse="isCollapse" :permission="permission"></SideMenu>
       <Container class="content-container">
@@ -19,7 +19,7 @@ import {Container,Aside,Main,Footer,Header} from 'element-ui'
 import SideMenu from "./layouts/left/SideMenu.vue";
 import MainLayout from "./layouts/main/MainLayout";
 export default {
-  name: "S2Frame",
+  name: "XXWebBox",
   props:['appConfig','permission'],
   components:{
     MainLayout,
