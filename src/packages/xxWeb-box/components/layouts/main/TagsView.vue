@@ -6,9 +6,9 @@
         @tab-click="tabClick"
         @contextmenu.native="openMenu">
       <TabPane
-          v-for="(item, index) in visitedViews"
+          v-for="item in visitedViews"
           :key="item.path"
-          :label="item.title"
+          :label="item.meta.title"
           :name="item.path"
       >
       </TabPane>
@@ -42,7 +42,7 @@ export default {
       top: 0,
       left: 0,
       visitedViews:[],
-      selectedTag: '/',
+      selectedTag: null,
     }
   },
   watch: {
@@ -53,10 +53,24 @@ export default {
         document.body.removeEventListener('click', this.closeMenu);
       }
     },
+    '$route':function (to) {
+      let flag = false;
+      for (let i = 0;i < this.visitedViews.length;i++) {
+        if (this.visitedViews[i].path === to.path) {
+          flag = true;
+          this.selectedTag=to.path
+          break;
+        }
+      }
+      if (!flag) {
+        this.visitedViews.push(to);
+        this.selectedTag = to.path;
+      }
+    }
   },
   methods:{
     isAffix(tag){
-      return tag.meta && tag.meta.affix;
+      return true;
     },
     isActive(route){
       return route.path === this.$route.path;
@@ -65,7 +79,7 @@ export default {
 
     },
     tabClick(tab){
-      debugger
+
     },
     openMenu(tab){
       const path = tab.srcElement.id.replace('tab-','')
