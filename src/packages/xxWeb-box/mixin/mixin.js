@@ -1,3 +1,3 @@
 export default {
-    inject: ['appConfig'],
+    inject: ['appConfig','permission'],
 }

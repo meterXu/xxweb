@@ -2,14 +2,14 @@
   <div class="tags-view-container">
     <Tabs
         v-model="selectedTag"
-        closable
         @tab-click="tabClick"
         @contextmenu.native="openMenu">
       <TabPane
           v-for="item in visitedViews"
           :key="item.path"
-          :label="item.meta.title"
+          :label="item.meta&&item.meta.title"
           :name="item.path"
+          :closable="item.meta&&!item.meta.permanent"
       >
       </TabPane>
     </Tabs>
@@ -19,7 +19,7 @@
         class="contextmenu"
     >
       <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li v-if="!isAffix(selectedTag)" @click="closeSelectedTag(selectedTag)">
+      <li v-if="!isCanClose(selectedTag)" @click="closeSelectedTag(selectedTag)">
         关闭
       </li>
       <li @click="closeOthersTags">关闭其他</li>
@@ -30,12 +30,14 @@
 
 <script>
 import {Tabs,TabPane} from 'element-ui'
+import mixin from "../../../mixin/mixin";
 export default {
   name: "TagsView",
   components:{
     Tabs,
     TabPane
   },
+  mixins:[mixin],
   data(){
     return {
       visible: false,
@@ -63,13 +65,16 @@ export default {
         }
       }
       if (!flag) {
-        this.visitedViews.push(to);
-        this.selectedTag = to.path;
+        let view = this.searchMenuByPath(this.permission,to.path)
+        if(view){
+          this.visitedViews.push(view);
+          this.selectedTag = view.path;
+        }
       }
     }
   },
   methods:{
-    isAffix(tag){
+    isCanClose(tag){
       return true;
     },
     isActive(route){
@@ -101,9 +106,39 @@ export default {
     },
     closeMenu(){
       this.visible = false
+    },
+    searchMenuByPath(data,path){
+      let res =null
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].path === path) {
+          res = data[i]
+          break
+        } else if (data[i].hasOwnProperty('children') && data[i].children instanceof Array) {
+          res = this.searchMenuByPath(data[i].children, path)
+          if(res){
+            break
+          }
+        }
+      }
+      return res
     }
   },
-  mounted() {
+  created() {
+    if(this.$route.path===this.appConfig.redirect.index){
+      let indexMenu = this.searchMenuByPath(this.permission,this.appConfig.redirect.index)
+      indexMenu.meta=Object.assign(indexMenu.meta,{
+        permanent:true,
+      })
+      indexMenu&&this.visitedViews.push(indexMenu)
+    }else{
+      let indexMenu = this.searchMenuByPath(this.permission,this.appConfig.redirect.index)
+      indexMenu.meta=Object.assign(indexMenu.meta,{
+        permanent:true,
+      })
+      indexMenu&&this.visitedViews.push(indexMenu)
+      let menu = this.searchMenuByPath(this.permission,this.$route.path)
+      indexMenu&&this.visitedViews.push(menu)
+    }
   }
 }
 </script>

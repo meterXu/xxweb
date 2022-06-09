@@ -6,7 +6,7 @@ import ItemLink from './ItemLink'
 
 export default {
   name: 'DynamicMenu',
-  props: ['isCollapse', 'permission'],
+  props: ['isCollapse', 'permission','defaultActive'],
   functional: true,
   mixins: [mixin],
   components: {
@@ -16,24 +16,24 @@ export default {
     DyMenuItem
   },
   render(h, context) {
-    const {isCollapse, permission} = context.props;
-    const {appConfig} = context.injections
-
+    const {isCollapse, permission, defaultActive} = context.props;
     function renderSubMenu() {
       let sMenu = []
       permission.forEach(m => {
         if (m.children instanceof Array) {
           let vcs = []
           m.children.forEach(c => {
-            vcs.push(
-                <ItemLink v-if={c.meta} to={c.path}>
-                  <MenuItem index={c.path}>
-                    <template slot="title">
-                      <DyMenuItem meta={c.meta}/>
-                    </template>
-                  </MenuItem>
-                </ItemLink>
-            )
+            if(c.meta){
+              vcs.push(
+                  <ItemLink to={c.path}>
+                    <MenuItem index={c.path}>
+                      <template slot="title">
+                        <DyMenuItem meta={c.meta}/>
+                      </template>
+                    </MenuItem>
+                  </ItemLink>
+              )
+            }
           })
           sMenu.push(
               <Submenu index={m.path}>
@@ -43,15 +43,17 @@ export default {
                 {vcs}
               </Submenu>)
         } else {
-          sMenu.push(
-              <ItemLink v-if={c.meta} to={c.path}>
-                <MenuItem index={m.path}>
-                  <template slot="title">
-                    <DyMenuItem meta={m.meta}/>
-                  </template>
-                </MenuItem>
-              </ItemLink>
-          )
+          if(m.meta){
+            sMenu.push(
+                <ItemLink to={m.path}>
+                  <MenuItem index={m.path}>
+                    <template slot="title">
+                      <DyMenuItem meta={m.meta}/>
+                    </template>
+                  </MenuItem>
+                </ItemLink>
+            )
+          }
         }
       })
       return sMenu
@@ -61,7 +63,7 @@ export default {
         <div class="dynamic-menu">
           <Menu
               collapse={isCollapse}
-              default-active={appConfig.redirect.index}>
+              default-active={defaultActive}>
             {renderSubMenu()}
           </Menu>
         </div>

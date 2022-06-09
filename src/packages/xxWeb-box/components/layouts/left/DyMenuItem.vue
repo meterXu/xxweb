@@ -8,13 +8,15 @@ export default {
     const vnodes = [];
     if(meta){
       if (meta.icon) {
-        if (typeof (meta.icon) === 'object') vnodes.push(meta.icon);
+        if (typeof (meta.icon) === 'object'){
+          vnodes.push(meta.icon)
+        }
         else {
-          vnodes.push(<i class={'el-icon-' + meta.icon} />);
+          vnodes.push(<i class={meta.icon} />);
         }
       }
       if (meta.title) {
-        vnodes.push(<span slot="title">{meta.title}</span>);
+        vnodes.push(<span>{meta.title}</span>);
       }
     }
     return vnodes;

@@ -1,17 +1,18 @@
 <template>
   <Scrollbar wrap-class="side-scrollbar">
-  <Aside class="side-menu" :width="width">
-    <div class="logo">
-      <img :src="imgSrc" alt="logo">
-      <transition name="title">
-        <h1 v-if="!isCollapse" class="title">{{title}}</h1>
-      </transition>
-    </div>
-    <DynamicMenu
-        :isCollapse="isCollapse"
-        :permission="permission">
-    </DynamicMenu>
-  </Aside>
+    <Aside class="side-menu" :width="width">
+      <div class="logo">
+        <img :src="imgSrc" alt="logo">
+        <transition name="title">
+          <h1 v-if="!isCollapse" class="title">{{title}}</h1>
+        </transition>
+      </div>
+      <DynamicMenu
+          :isCollapse="isCollapse"
+          :permission="permission"
+          :defaultActive="defaultActive">
+      </DynamicMenu>
+    </Aside>
   </Scrollbar>
 </template>
 
@@ -41,9 +42,14 @@ export default {
     },
     imgSrc(){
       return this.appConfig.config.logo
+    },
+    defaultActive(){
+      return this.$route.path
     }
   },
   methods:{
+  },
+  created() {
   }
 }
 </script>

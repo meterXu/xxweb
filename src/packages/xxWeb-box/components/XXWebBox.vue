@@ -38,7 +38,8 @@ export default {
   },
   provide () {
     return {
-      appConfig: this.appConfig
+      appConfig: this.appConfig,
+      permission:this.permission
     }
   },
   methods:{
