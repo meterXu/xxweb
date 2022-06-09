@@ -3,6 +3,7 @@
     <Tabs
         v-model="selectedPath"
         @tab-click="tabClick"
+        @tab-remove="removeTab"
         @contextmenu.native="openMenu">
       <TabPane
           v-for="item in visitedViews"
@@ -29,21 +30,22 @@
 </template>
 
 <script>
-import {Tabs,TabPane} from 'element-ui'
+import {Tabs, TabPane} from 'element-ui'
 import mixin from "../../../mixin/mixin";
+
 export default {
   name: "TagsView",
-  components:{
+  components: {
     Tabs,
     TabPane
   },
-  mixins:[mixin],
-  data(){
+  mixins: [mixin],
+  data() {
     return {
       visible: false,
       top: 0,
       left: 0,
-      visitedViews:[],
+      visitedViews: [],
       selectedPath: null,
     }
   },
@@ -55,90 +57,111 @@ export default {
         document.body.removeEventListener('click', this.closeMenu);
       }
     },
-    '$route':function (to) {
+    '$route': function (to) {
       let flag = false;
-      for (let i = 0;i < this.visitedViews.length;i++) {
+      for (let i = 0; i < this.visitedViews.length; i++) {
         if (this.visitedViews[i].path === to.path) {
           flag = true;
-          this.selectedPath=to.path
+          this.selectedPath = to.path
           break;
         }
       }
       if (!flag) {
-        let view = this.searchMenuByPath(this.permission,to.path)
-        if(view){
+        let view = this.searchMenuByPath(this.permission, to.path)
+        if (view) {
           this.visitedViews.push(view);
           this.selectedPath = view.path;
         }
       }
     }
   },
-  methods:{
-    isCanClose(tag){
-      return true;
-    },
-    isActive(route){
-      return route.path === this.$route.path;
-    },
-    closeSelectedTag(){
-
-    },
-    tabClick(tab){
+  methods: {
+    tabClick(tab) {
       this.selectedPath = tab.name;
       this.$router.push({path: this.selectedPath});
     },
-    openMenu(tab){
-      const path = tab.srcElement.id.replace('tab-','')
+    removeTab(tabName) {
+      let indexPath = this.appConfig.redirect.index
+      if (tabName === indexPath) {
+        return;
+      }
+      let tabs = this.visitedViews
+      let activePath = this.selectedPath;
+      if (activePath === tabName) {
+        tabs.forEach((tab, index) => {
+          if (tab.path === tabName) {
+            let nextTab = tabs[index + 1];
+            let preTab = tabs[index - 1];
+
+            if (nextTab) {
+              activePath = nextTab.path;
+            } else if (preTab) {
+              activePath = preTab.path;
+            } else {
+              activePath = indexPath;
+            }
+          }
+        });
+      }
+      this.visitedViews = tabs.filter(tab => tab.path !== tabName)
+      this.$router.push({path: activePath})
+    },
+    openMenu(tab) {
+      const path = tab.srcElement.id.replace('tab-', '')
       event.stopPropagation()
       event.preventDefault()
-      this.left = event.srcElement.offsetLeft+15+event.offsetX;
-      this.top = event.srcElement.offsetTop+event.offsetY;
+      this.left = event.srcElement.offsetLeft + 15 + event.offsetX;
+      this.top = event.srcElement.offsetTop + event.offsetY;
       this.visible = true;
       this.selectedPath = path;
     },
-    refreshSelectedTag(){
+    isCanClose() {
 
     },
-    closeOthersTags(){
+    refreshSelectedTag() {
 
     },
-    closeAllTags(){
+    closeOthersTags() {
 
     },
-    closeMenu(){
+    closeAllTags() {
+
+    },
+    closeMenu() {
       this.visible = false
     },
-    searchMenuByPath(data,path){
-      let res =null
+    searchMenuByPath(data, path) {
+      let res = null
       for (let i = 0; i < data.length; i++) {
         if (data[i].path === path) {
           res = data[i]
           break
         } else if (data[i].hasOwnProperty('children') && data[i].children instanceof Array) {
           res = this.searchMenuByPath(data[i].children, path)
-          if(res){
+          if (res) {
             break
           }
         }
       }
       return res
     }
-  },
+  }
+  ,
   created() {
-    if(this.$route.path===this.appConfig.redirect.index){
-      let indexMenu = this.searchMenuByPath(this.permission,this.appConfig.redirect.index)
-      indexMenu.meta=Object.assign(indexMenu.meta,{
-        permanent:true,
+    if (this.$route.path === this.appConfig.redirect.index) {
+      let indexMenu = this.searchMenuByPath(this.permission, this.appConfig.redirect.index)
+      indexMenu.meta = Object.assign(indexMenu.meta, {
+        permanent: true,
       })
-      indexMenu&&this.visitedViews.push(indexMenu)
-    }else{
-      let indexMenu = this.searchMenuByPath(this.permission,this.appConfig.redirect.index)
-      indexMenu.meta=Object.assign(indexMenu.meta,{
-        permanent:true,
+      indexMenu && this.visitedViews.push(indexMenu)
+    } else {
+      let indexMenu = this.searchMenuByPath(this.permission, this.appConfig.redirect.index)
+      indexMenu.meta = Object.assign(indexMenu.meta, {
+        permanent: true,
       })
-      indexMenu&&this.visitedViews.push(indexMenu)
-      let menu = this.searchMenuByPath(this.permission,this.$route.path)
-      indexMenu&&this.visitedViews.push(menu)
+      indexMenu && this.visitedViews.push(indexMenu)
+      let menu = this.searchMenuByPath(this.permission, this.$route.path)
+      indexMenu && this.visitedViews.push(menu)
     }
   }
 }
