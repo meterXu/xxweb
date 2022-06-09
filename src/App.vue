@@ -14,6 +14,10 @@ export default {
         namespace: "newsso",
         mainSys:true,
         index:10,
+        redirect: {
+          index: '/page/1',
+          login:'/login'
+        },
         style: {
           theme: 'vue-admin',
           color: '#1890FF',

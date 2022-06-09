@@ -7,7 +7,9 @@
         <h1 v-if="!isCollapse" class="title">{{title}}</h1>
       </transition>
     </div>
-    <DynamicMenu :isCollapse="isCollapse" :permission="permission">
+    <DynamicMenu
+        :isCollapse="isCollapse"
+        :permission="permission">
     </DynamicMenu>
   </Aside>
   </Scrollbar>
@@ -17,7 +19,7 @@
 import {Aside,Menu,MenuItem,Submenu} from 'element-ui'
 import Scrollbar from 'element-ui/lib/scrollbar'
 import mixin from "../../../mixin/mixin";
-import DynamicMenu from './DynamicMenu.js'
+import DynamicMenu from './DynamicMenu'
 export default {
   name: "SideMenu",
   props:["isCollapse","permission"],

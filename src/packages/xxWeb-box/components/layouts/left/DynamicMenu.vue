@@ -1,50 +1,70 @@
-<template>
-  <div class="dynamic-menu">
-    <Menu
-        :collapse="isCollapse">
-      <Submenu index="1">
-        <template slot="title">
-          <i class="el-icon-menu"></i>
-          <span>导航一</span>
-        </template>
-        <MenuItem index="1-4-1"><i class="el-icon-s-data"></i>选项1</MenuItem>
-        <MenuItem index="1-4-2"><i class="el-icon-s-data"></i>选项2</MenuItem>
-      </Submenu>
-      <MenuItem index="2">
-        <i class="el-icon-s-platform"></i>
-        <span slot="title">导航二</span>
-      </MenuItem>
-      <MenuItem index="4">
-        <i class="el-icon-setting"></i>
-        <span slot="title">导航四</span>
-      </MenuItem>
-
-    </Menu>
-  </div>
-</template>
 <script>
-import {Menu,Submenu,MenuItem} from 'element-ui'
+import {Menu, Submenu, MenuItem} from 'element-ui'
+import mixin from "../../../mixin/mixin";
+import DyMenuItem from './DyMenuItem'
+import ItemLink from './ItemLink'
+
 export default {
-  name:'DynamicMenu',
-  props:['isCollapse','permission'],
-  components:{
+  name: 'DynamicMenu',
+  props: ['isCollapse', 'permission'],
+  functional: true,
+  mixins: [mixin],
+  components: {
     Menu,
     Submenu,
-    MenuItem
+    MenuItem,
+    DyMenuItem
   },
-  methods:{
-  },
-  created() {
-  }
-}
-</script>
+  render(h, context) {
+    const {isCollapse, permission} = context.props;
+    const {appConfig} = context.injections
 
-<script>
-export default {
-  name:'SMenu',
-  render() {
+    function renderSubMenu() {
+      let sMenu = []
+      permission.forEach(m => {
+        if (m.children instanceof Array) {
+          let vcs = []
+          m.children.forEach(c => {
+            vcs.push(
+                <ItemLink v-if={c.meta} to={c.path}>
+                  <MenuItem index={c.path}>
+                    <template slot="title">
+                      <DyMenuItem meta={c.meta}/>
+                    </template>
+                  </MenuItem>
+                </ItemLink>
+            )
+          })
+          sMenu.push(
+              <Submenu index={m.path}>
+                <template slot="title">
+                  <DyMenuItem meta={m.meta}/>
+                </template>
+                {vcs}
+              </Submenu>)
+        } else {
+          sMenu.push(
+              <ItemLink v-if={c.meta} to={c.path}>
+                <MenuItem index={m.path}>
+                  <template slot="title">
+                    <DyMenuItem meta={m.meta}/>
+                  </template>
+                </MenuItem>
+              </ItemLink>
+          )
+        }
+      })
+      return sMenu
+    }
+
     return (
-        <div>1111</div>
+        <div class="dynamic-menu">
+          <Menu
+              collapse={isCollapse}
+              default-active={appConfig.redirect.index}>
+            {renderSubMenu()}
+          </Menu>
+        </div>
     )
   }
 }
