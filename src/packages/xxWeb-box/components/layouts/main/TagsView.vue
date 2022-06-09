@@ -19,12 +19,12 @@
         :style="{ left: left + 'px', top: top + 'px' }"
         class="contextmenu"
     >
-      <li @click="refreshSelectedTag(selectedPath)">刷新</li>
-      <li v-if="!isCanClose(selectedPath)" @click="closeSelectedTag(selectedPath)">
+      <li @click="refreshSelectedTag">刷新</li>
+      <li v-if="!isCanClose()" @click="closeSelectedTag">
         关闭
       </li>
       <li @click="closeOthersTags">关闭其他</li>
-      <li @click="closeAllTags(selectedPath)">关闭全部</li>
+      <li @click="closeAllTags">关闭全部</li>
     </ul>
   </div>
 </template>
@@ -47,6 +47,7 @@ export default {
       left: 0,
       visitedViews: [],
       selectedPath: null,
+      menuPath:null,
     }
   },
   watch: {
@@ -78,7 +79,9 @@ export default {
   methods: {
     tabClick(tab) {
       this.selectedPath = tab.name;
-      this.$router.push({path: this.selectedPath});
+      if(this.$route.path!==tab.name){
+        this.$router.push({path: this.selectedPath});
+      }
     },
     removeTab(tabName) {
       let indexPath = this.appConfig.redirect.index
@@ -107,25 +110,46 @@ export default {
       this.$router.push({path: activePath})
     },
     openMenu(tab) {
-      const path = tab.srcElement.id.replace('tab-', '')
+      this.menuPath = tab.srcElement.id.replace('tab-', '')
       event.stopPropagation()
       event.preventDefault()
       this.left = event.srcElement.offsetLeft + 15 + event.offsetX;
       this.top = event.srcElement.offsetTop + event.offsetY;
       this.visible = true;
-      this.selectedPath = path;
     },
     isCanClose() {
+      let menu = this.searchMenuByPath(this.permission, this.menuPath)
+      return  menu && menu.meta && menu.meta.permanent
 
     },
     refreshSelectedTag() {
 
     },
     closeOthersTags() {
-
+      let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
+      if(this.menuPath===this.appConfig.redirect.index){
+        if(indexMenu){
+          this.visitedViews=[indexMenu]
+        }
+      }else{
+        let menu = this.visitedViews.find(c=>c.path===this.menuPath)
+        this.visitedViews = []
+        indexMenu&&this.visitedViews.push(indexMenu)
+        menu&&this.visitedViews.push(menu)
+      }
+      this.$router.push({path:this.menuPath})
+    },
+    closeSelectedTag(){
+      this.removeTab(this.menuPath)
     },
     closeAllTags() {
-
+      let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
+      if(indexMenu){
+        this.visitedViews = [indexMenu]
+      }else{
+        this.visitedViews = []
+      }
+      this.$router.push({path:this.appConfig.redirect.index})
     },
     closeMenu() {
       this.visible = false
@@ -154,6 +178,7 @@ export default {
         permanent: true,
       })
       indexMenu && this.visitedViews.push(indexMenu)
+      this.selectedPath = indexMenu.path
     } else {
       let indexMenu = this.searchMenuByPath(this.permission, this.appConfig.redirect.index)
       indexMenu.meta = Object.assign(indexMenu.meta, {
@@ -161,7 +186,8 @@ export default {
       })
       indexMenu && this.visitedViews.push(indexMenu)
       let menu = this.searchMenuByPath(this.permission, this.$route.path)
-      indexMenu && this.visitedViews.push(menu)
+      menu && this.visitedViews.push(menu)
+      this.selectedPath = menu.path
     }
   }
 }
