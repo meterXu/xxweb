@@ -1,7 +1,7 @@
 <template>
   <div class="tags-view-container">
     <Tabs
-        v-model="selectedTag"
+        v-model="selectedPath"
         @tab-click="tabClick"
         @contextmenu.native="openMenu">
       <TabPane
@@ -18,12 +18,12 @@
         :style="{ left: left + 'px', top: top + 'px' }"
         class="contextmenu"
     >
-      <li @click="refreshSelectedTag(selectedTag)">刷新</li>
-      <li v-if="!isCanClose(selectedTag)" @click="closeSelectedTag(selectedTag)">
+      <li @click="refreshSelectedTag(selectedPath)">刷新</li>
+      <li v-if="!isCanClose(selectedPath)" @click="closeSelectedTag(selectedPath)">
         关闭
       </li>
       <li @click="closeOthersTags">关闭其他</li>
-      <li @click="closeAllTags(selectedTag)">关闭全部</li>
+      <li @click="closeAllTags(selectedPath)">关闭全部</li>
     </ul>
   </div>
 </template>
@@ -44,7 +44,7 @@ export default {
       top: 0,
       left: 0,
       visitedViews:[],
-      selectedTag: null,
+      selectedPath: null,
     }
   },
   watch: {
@@ -60,7 +60,7 @@ export default {
       for (let i = 0;i < this.visitedViews.length;i++) {
         if (this.visitedViews[i].path === to.path) {
           flag = true;
-          this.selectedTag=to.path
+          this.selectedPath=to.path
           break;
         }
       }
@@ -68,7 +68,7 @@ export default {
         let view = this.searchMenuByPath(this.permission,to.path)
         if(view){
           this.visitedViews.push(view);
-          this.selectedTag = view.path;
+          this.selectedPath = view.path;
         }
       }
     }
@@ -84,7 +84,8 @@ export default {
 
     },
     tabClick(tab){
-
+      this.selectedPath = tab.name;
+      this.$router.push({path: this.selectedPath});
     },
     openMenu(tab){
       const path = tab.srcElement.id.replace('tab-','')
@@ -93,7 +94,7 @@ export default {
       this.left = event.srcElement.offsetLeft+15+event.offsetX;
       this.top = event.srcElement.offsetTop+event.offsetY;
       this.visible = true;
-      this.selectedTag = path;
+      this.selectedPath = path;
     },
     refreshSelectedTag(){
 
