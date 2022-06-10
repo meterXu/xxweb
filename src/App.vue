@@ -54,7 +54,7 @@ export default {
             width: '200px'
           },
           footer: {
-            show:false,
+            show:true,
             links: [],
             copyright: {
               content: "苏州工业园园区测绘地理信息有限公司",
