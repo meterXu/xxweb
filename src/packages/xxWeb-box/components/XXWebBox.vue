@@ -5,7 +5,7 @@
       <Container class="content-container">
         <HeaderLayout @menuToggle="menuToggle"/>
         <MainLayout/>
-        <Footer>Footer</Footer>
+        <Footer v-if="appConfig.config.footer.show">Footer</Footer>
       </Container>
     </Container>
   </div>

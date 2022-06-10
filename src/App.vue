@@ -29,43 +29,41 @@ export default {
           autoHideHeader: false,
         },
         config: {
-          "logo": "./static/imgs/logo-white.png",
-          "title": "web-box",
-          "login": {
-            "title": "web-box",
-            "desc": ""
+          logo: "./static/imgs/logo-white.png",
+          title: "web-box",
+          login: {
+            title: "web-box",
+            desc: ""
           },
-          "head": {
-            "title": {
-              "desktop": "",
-              "mobile": ""
+          head: {
+            title: {
+              desktop: "",
+              mobile: ""
             },
-            "searchMenu": {
-              "show": true
+            searchMenu: {
+              show: true
             },
-            "helper": {
-              "show": false,
-              "href": "javascript:;",
-              "target": "_blank"
+            helper: {
+              show: false,
+              href: "javascript:;",
+              target: "_blank"
             }
           },
-          "sideMenu": {
-            "title": "web-box",
-            "width": '200px'
+          sideMenu: {
+            title: "web-box",
+            width: '200px'
           },
-          "footer": {
-            "links": [],
-            "copyright": {
-              "content": "苏州工业园园区测绘地理信息有限公司",
-              "year": "2021",
-              "href": "http://www.dpark.com.cn",
-              "target": "_blank"
+          footer: {
+            show:false,
+            links: [],
+            copyright: {
+              content: "苏州工业园园区测绘地理信息有限公司",
+              year: "2021",
+              href: "http://www.dpark.com.cn",
+              target: "_blank"
             }
           },
-          "plugins": {
-            "changeSystem": {
-              "enable": true
-            }
+          plugins: {
           }
         }
       },
