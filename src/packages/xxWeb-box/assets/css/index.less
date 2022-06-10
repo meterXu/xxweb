@@ -56,7 +56,23 @@
   .user-wrapper{
     text-align: right;
   }
-  .el-icon-full-screen + .user-wrapper{
+  .menu-search-box{
+    width: 180px;
+    display: inline-flex;
+    justify-content: left;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width .5s;
+  }
+  .menu-search{
+    width: 150px;
+    margin-left: 12px;
+  }
+  .el-icon-search{
+    cursor: pointer;
+  }
+  .user-menu-item + .user-menu-item{
     margin-left: 12px;
   }
   .el-icon-user{
