@@ -19,7 +19,10 @@
                           @select="handleSelect"
                           clearable>
               <template slot-scope="{ item }">
-                <div class="name">{{ item.title }}</div>
+                <div class="name">
+                  <component v-bind:is="createIcon(item.icon)"></component>
+                  {{ item.title }}
+                </div>
               </template>
             </Autocomplete>
           </div>
@@ -81,7 +84,7 @@ export default {
     treeDataFilter(data,queryString,results){
       data.forEach(p=>{
         if(p.hasOwnProperty('meta')&&p.meta.title.includes(queryString)){
-          results.push({ path: p.path, title: p.meta.title })
+          results.push({ path: p.path, title: p.meta.title,icon:p.meta.icon })
         }
         if(p.hasOwnProperty('children')){
           this.treeDataFilter(p.children,queryString,results)
@@ -96,6 +99,16 @@ export default {
     handleSelect(item){
       this.text = item.title
       this.$router.push({path:item.path})
+    },
+    createIcon(icon){
+      if (icon) {
+        if (typeof (icon) === 'object'){
+          return (icon)
+        }
+        else {
+          return (<i class={icon} />)
+        }
+      }
     }
   }
 }

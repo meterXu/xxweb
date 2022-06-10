@@ -4,16 +4,21 @@ export default {
   functional: true,
   props:['meta'],
   render(h, context) {
+    function createIcon(icon){
+      if (icon) {
+        if (typeof (icon) === 'object'){
+          return (icon)
+        }
+        else {
+          return (<i class={icon} />)
+        }
+      }
+    }
     const { meta } = context.props;
     const vnodes = [];
     if(meta){
       if (meta.icon) {
-        if (typeof (meta.icon) === 'object'){
-          vnodes.push(meta.icon)
-        }
-        else {
-          vnodes.push(<i class={meta.icon} />);
-        }
+        vnodes.push(createIcon(meta.icon))
       }
       if (meta.title) {
         vnodes.push(<span>{meta.title}</span>);
