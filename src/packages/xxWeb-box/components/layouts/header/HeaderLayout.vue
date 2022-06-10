@@ -11,7 +11,17 @@
         <div class="col-user-menu">
           <div v-if="appConfig.config.head.searchMenu.show" class="user-menu-item menu-search-box" :style="{width:(expandSearch?'180px':'18px')}">
             <i class="el-icon-search" @click="handleShowSearch"></i>
-            <Input class="menu-search" size="small" placeholder="请输入菜单" clearable/>
+            <Autocomplete class="menu-search"
+                          size="small"
+                          placeholder="请输入菜单"
+                          v-model="text"
+                          :fetch-suggestions="querySearch"
+                          @select="handleSelect"
+                          clearable>
+              <template slot-scope="{ item }">
+                <div class="name">{{ item.title }}</div>
+              </template>
+            </Autocomplete>
           </div>
           <i v-if="appConfig.config.head.fullscreen.show" class="user-menu-item el-icon-full-screen" @click="handleFullScreen"></i>
           <UserMenu class="user-menu-item" v-if="appConfig.config.head.user.show"/>
@@ -22,7 +32,7 @@
 </template>
 
 <script>
-import {Row,Col,Icon,Header,Input} from 'element-ui'
+import {Row,Col,Icon,Header,Autocomplete} from 'element-ui'
 import UserMenu from "./UserMenu.vue";
 import mixin from "../../../mixin/mixin";
 import Hamburger from "./Hamburger";
@@ -37,13 +47,14 @@ export default {
     Icon,
     UserMenu,
     Header,
-    Input
+    Autocomplete
   },
   data(){
     return {
       isCollapse:false,
       expandSearch:false,
       device:'desktop',
+      text:null
     }
   },
   computed:{
@@ -66,6 +77,25 @@ export default {
     },
     handleShowSearch(){
       this.expandSearch=!this.expandSearch
+    },
+    treeDataFilter(data,queryString,results){
+      data.forEach(p=>{
+        if(p.hasOwnProperty('meta')&&p.meta.title.includes(queryString)){
+          results.push({ path: p.path, title: p.meta.title })
+        }
+        if(p.hasOwnProperty('children')){
+          this.treeDataFilter(p.children,queryString,results)
+        }
+      })
+    },
+    querySearch(queryString, cb){
+      let results = []
+      this.treeDataFilter(this.permission,queryString,results)
+      cb(results);
+    },
+    handleSelect(item){
+      this.text = item.title
+      this.$router.push({path:item.path})
     }
   }
 }
