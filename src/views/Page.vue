@@ -1,6 +1,6 @@
 <template>
   <div>
-    业务页面{{index}}
+    业务页面{{index}} {{new Date().toLocaleString()}}
   </div>
 </template>
 

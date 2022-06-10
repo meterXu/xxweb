@@ -47,6 +47,19 @@ export default {
               show: false,
               href: "javascript:;",
               target: "_blank"
+            },
+            fullscreen:{
+              show: true,
+            },
+            user:{
+              show: true,
+              username:true,
+              menu:{
+                show:true,
+                cache:true,
+                password:true,
+                exit:true
+              }
             }
           },
           sideMenu: {

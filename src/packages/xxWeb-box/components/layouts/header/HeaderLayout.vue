@@ -9,8 +9,8 @@
           </div>
         </div>
         <div class="col-user-menu">
-          <i class="el-icon-full-screen"></i>
-          <UserMenu/>
+          <i v-if="appConfig.config.head.fullscreen.show" class="el-icon-full-screen" @click="handleFullScreen"></i>
+          <UserMenu v-if="appConfig.config.head.user.show"/>
         </div>
       </div>
     </div>
@@ -22,6 +22,7 @@ import {Row,Col,Icon,Header} from 'element-ui'
 import UserMenu from "./UserMenu.vue";
 import mixin from "../../../mixin/mixin";
 import Hamburger from "./Hamburger";
+import screenfull from 'screenfull';
 export default {
   name: "HeaderLayout",
   mixins:[mixin],
@@ -52,6 +53,10 @@ export default {
     toggle(){
       this.isCollapse = !this.isCollapse
       this.$emit('menuToggle',this.isCollapse)
+    },
+    handleFullScreen(){
+      const element = document.getElementById('app');
+      if (element) screenfull.toggle(element);
     }
   }
 }

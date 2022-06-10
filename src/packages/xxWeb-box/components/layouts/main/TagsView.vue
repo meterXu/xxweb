@@ -19,12 +19,10 @@
         :style="{ left: left + 'px', top: top + 'px' }"
         class="contextmenu"
     >
-      <li @click="refreshSelectedTag">刷新</li>
-      <li v-if="!isCanClose()" @click="closeSelectedTag">
-        关闭
-      </li>
-      <li @click="closeOthersTags">关闭其他</li>
-      <li @click="closeAllTags">关闭全部</li>
+      <li @click="refreshSelectedTag"><i class="el-icon-refresh" ></i> 刷新页面</li>
+      <li v-if="!isCanClose()" @click="closeSelectedTag"><i class="el-icon-close"></i> 关闭页面</li>
+      <li @click="closeOthersTags"><i class="el-icon-remove-outline"></i> 关闭其他</li>
+      <li @click="closeAllTags"><i class="el-icon-circle-close"></i> 关闭全部</li>
     </ul>
   </div>
 </template>
@@ -123,7 +121,9 @@ export default {
 
     },
     refreshSelectedTag() {
-
+      this.$router.replace({
+        path: this.menuPath,
+      });
     },
     closeOthersTags() {
       let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
