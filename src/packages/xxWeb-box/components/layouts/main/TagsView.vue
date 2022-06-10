@@ -56,22 +56,9 @@ export default {
         document.body.removeEventListener('click', this.closeMenu);
       }
     },
-    '$route': function (to) {
-      let flag = false;
-      for (let i = 0; i < this.visitedViews.length; i++) {
-        if (this.visitedViews[i].path === to.path) {
-          flag = true;
-          this.selectedPath = to.path
-          break;
-        }
-      }
-      if (!flag) {
-        let view = this.searchMenuByPath(this.permission, to.path)
-        if (view) {
-          this.visitedViews.push(view);
-          this.selectedPath = view.path;
-        }
-      }
+    '$route'(to){
+      this.addVisitedViews(to)
+      this.selectedPath = to.path;
     }
   },
   methods: {
@@ -116,14 +103,11 @@ export default {
       this.visible = true;
     },
     isCanClose() {
-      let menu = this.searchMenuByPath(this.permission, this.menuPath)
+      let menu = this.visitedViews.find(c=>c.path===this.menuPath)
       return  menu && menu.meta && menu.meta.permanent
-
     },
     refreshSelectedTag() {
-      this.$router.replace({
-        path: this.menuPath,
-      });
+      this.$emit('refresh')
     },
     closeOthersTags() {
       let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
@@ -154,41 +138,38 @@ export default {
     closeMenu() {
       this.visible = false
     },
-    searchMenuByPath(data, path) {
-      let res = null
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].path === path) {
-          res = data[i]
-          break
-        } else if (data[i].hasOwnProperty('children') && data[i].children instanceof Array) {
-          res = this.searchMenuByPath(data[i].children, path)
-          if (res) {
-            break
-          }
+    addVisitedViews(route,permanent=false){
+      let view = this.visitedViews.find(c=>c.path === route.path)
+      if(!view){
+        view = this.searchMenuByPath(this.permission, route.path)
+        if(view){
+          view = JSON.parse(JSON.stringify(view))
+          view.meta = Object.assign(view.meta,route.meta, {
+            permanent
+          })
+        }else{
+          let {name,path,meta} = route
+          view = {name, path, meta}
         }
+        this.visitedViews.push(view)
+        this.saveCachedView(view.meta.keepAlive,route.name||view.name)
       }
-      return res
+    },
+    saveCachedView(keepAlive,name){
+      if(keepAlive&&!this.cachedViews.includes(name)){
+        this.cachedViews.push(name)
+      }
     }
   }
   ,
   created() {
     if (this.$route.path === this.appConfig.redirect.index) {
-      let indexMenu = this.searchMenuByPath(this.permission, this.appConfig.redirect.index)
-      indexMenu.meta = Object.assign(indexMenu.meta, {
-        permanent: true,
-      })
-      indexMenu && this.visitedViews.push(indexMenu)
-      this.selectedPath = indexMenu.path
+      this.addVisitedViews(this.$route,true)
     } else {
-      let indexMenu = this.searchMenuByPath(this.permission, this.appConfig.redirect.index)
-      indexMenu.meta = Object.assign(indexMenu.meta, {
-        permanent: true,
-      })
-      indexMenu && this.visitedViews.push(indexMenu)
-      let menu = this.searchMenuByPath(this.permission, this.$route.path)
-      menu && this.visitedViews.push(menu)
-      this.selectedPath = menu.path
+      this.addVisitedViews({path:this.appConfig.redirect.index},true)
+      this.addVisitedViews(this.$route)
     }
+    this.selectedPath = this.$route.path
   }
 }
 </script>

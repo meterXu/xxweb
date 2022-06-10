@@ -1,7 +1,7 @@
 <template>
   <Main class="layout-main">
-    <TagsView></TagsView>
-    <AppMain></AppMain>
+    <TagsView @refresh="refresh"></TagsView>
+    <AppMain ref="appMain"></AppMain>
   </Main>
 </template>
 
@@ -22,6 +22,9 @@ export default {
     Col
   },
   methods: {
+    refresh(){
+      this.$refs.appMain.refresh()
+    }
   }
 }
 </script>

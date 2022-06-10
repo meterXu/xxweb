@@ -35,13 +35,15 @@ export default {
   },
   data(){
     return {
-      isCollapse:false
+      isCollapse:false,
+      cachedViews:[],
     }
   },
   provide () {
     return {
       appConfig: this.appConfig,
-      permission:this.permission
+      permission:this.permission,
+      cachedViews:this.cachedViews
     }
   },
   methods:{

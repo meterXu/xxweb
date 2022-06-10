@@ -3,7 +3,7 @@
     <transition name="fade-transform" mode="out-in">
       <div class="transition-container">
         <keep-alive :include="cachedViews">
-          <router-view :key="key" />
+          <router-view ref="pageView" :key="key"/>
         </keep-alive>
       </div>
     </transition>
@@ -11,16 +11,26 @@
 </template>
 
 <script>
+import mixin from "../../../mixin/mixin";
 export default {
   name: "AppMain",
   data(){
     return {
-      cachedViews:[]
+      refreshStamp:null
     }
   },
+  mixins:[mixin],
   computed: {
     key(){
-      return this.$route.path;
+      return this.$route.path+(this.refreshStamp||'');
+    }
+  },
+  watch:{
+
+  },
+  methods:{
+    refresh(){
+     this.refreshStamp = new Date().valueOf()
     }
   }
 }
