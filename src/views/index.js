@@ -9,6 +9,6 @@ export default [{
     component: Page,
     props:true,
     meta:{
-        keepAlive:true
+        keepAlive:false
     }
 }]
