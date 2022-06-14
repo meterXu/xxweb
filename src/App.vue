@@ -37,8 +37,12 @@ export default {
           },
           head: {
             title: {
-              desktop: "",
+              show:false,
+              desktop: "欢迎使用xxWeb",
               mobile: ""
+            },
+            breadcrumb:{
+              show:true,
             },
             searchMenu: {
               show: true
@@ -118,7 +122,17 @@ export default {
             meta: {
               title: '页面4',
               icon: 'el-icon-s-platform'
-            }
+            },
+            children:[
+              {
+                path: '/page/4/xxx',
+                name: 'page_4_xxx',
+                meta: {
+                  title: 'hello',
+                  icon: 'el-icon-s-platform'
+                },
+              }
+            ]
           }
         ]
       }]

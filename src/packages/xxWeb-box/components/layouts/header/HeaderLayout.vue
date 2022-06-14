@@ -3,10 +3,9 @@
     <div class="side-header" v-if="appConfig.style.layout==='sidemenu'">
       <div class="row-head">
         <div class="left-con">
-          <Hamburger v-if="!appConfig.style.fixSide" :isCollapse="isCollapse" @toggleClick="toggle"></Hamburger>
-          <div class="head-title">
-            <span> {{headTitle}} </span>
-          </div>
+          <Hamburger v-if="!appConfig.style.fixSide" :isCollapse="isCollapse" @toggleClick="toggle"/>
+          <HeadTitle  v-if="appConfig.config.head.title.show"/>
+          <HeadBreadcrumb v-if="appConfig.config.head.breadcrumb.show"/>
         </div>
         <div class="col-user-menu">
           <SearchMenu v-if="appConfig.config.head.searchMenu.show" class="user-menu-item"/>
@@ -25,10 +24,14 @@ import mixin from "../../../mixin/mixin";
 import Hamburger from "./Hamburger";
 import SearchMenu from "@/packages/xxWeb-box/components/layouts/header/SearchMenu";
 import FullScreen from "@/packages/xxWeb-box/components/layouts/header/FullScreen";
+import HeadTitle from "@/packages/xxWeb-box/components/layouts/header/HeadTitle";
+import HeadBreadcrumb from "@/packages/xxWeb-box/components/layouts/header/HeadBreadcrumb";
 export default {
   name: "HeaderLayout",
   mixins:[mixin],
   components:{
+    HeadBreadcrumb,
+    HeadTitle,
     FullScreen,
     SearchMenu,
     Hamburger,
@@ -41,17 +44,7 @@ export default {
   data(){
     return {
       isCollapse:false,
-      expandSearch:false,
-      device:'desktop',
-    }
-  },
-  computed:{
-    headTitle(){
-      if(this.device==='desktop'){
-        return this.appConfig.config.head.title.desktop
-      }else{
-        return this.appConfig.config.head.title.mobile
-      }
+      expandSearch:false
     }
   },
   methods:{
