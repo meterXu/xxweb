@@ -19,7 +19,7 @@ export default {
           login:'/login'
         },
         style: {
-          theme: 'vue-admin',
+          theme: 'default',
           color: '#1890FF',
           layout: 'sidemenu',
           multipage: true,

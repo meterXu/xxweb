@@ -1,4 +1,5 @@
 .xxWeb-box{
+  @import "theme-default";
   .main-container{
     height: 100vh;
   }
@@ -7,16 +8,12 @@
     flex-direction: column;
   }
   .header{
-    color: #000;
-    background: #fff;
     z-index: 2;
     height: 52px !important;
     transition: background .3s;
-    box-shadow: 0 1px 4px rgba(0,21,41,0.08) !important;
   }
   .side-header{
     height: 100%;
-    color: #303133;
   }
   .row-head{
     display: flex;
@@ -82,31 +79,15 @@
     cursor: pointer;
   }
   .side-scrollbar{
-    background: #304156;
     overflow-x: hidden;
   }
   .side-menu{
-    background: #304156;
     text-align: left;
     transition: width ease .5s;
     overflow-x: hidden;
   }
   .dynamic-menu{
     overflow: hidden;
-    .el-menu{
-      border-right-color: #304156;
-    }
-    .el-submenu__title,.el-menu-item{
-      color: #fff;
-      background: #304156;
-    }
-    .is-active{
-      color: #409EFF
-    }
-    .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
-      background: #263445;
-    }
-
   }
   .menu-obj:not(.el-menu--collapse) {
     width: 100%;
@@ -123,7 +104,6 @@
     height: 24px;
   }
   .title{
-    color: #fff;
     font-size: 18px;
     margin: 0 15px;
   }
@@ -143,7 +123,6 @@
     flex:1;
     display: inline-flex;
     flex-flow: column;
-    background: #fff;
   }
   .tags-view-container{
     position: relative;
@@ -169,7 +148,6 @@
     }
     .contextmenu {
       margin: 0;
-      background: #fff;
       z-index: 3000;
       position: absolute;
       list-style-type: none;
@@ -177,23 +155,17 @@
       border-radius: 4px;
       font-size: 12px;
       font-weight: 400;
-      color: #333;
-      box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
       text-align: left;
       li {
         margin: 0;
         padding: 7px 16px;
         cursor: pointer;
-        &:hover {
-          background: #eee;
-        }
       }
     }
   }
   .app-main{
     flex: 1;
     padding: 12px;
-    background: #eaecef;
   }
   .item-link{
     text-decoration-line: none;
@@ -203,9 +175,7 @@
     text-align: left;
     line-height: 24px;
     font-size: 12px;
-    background: #fff;
     a{
-      color: #1890ff;
       text-decoration-line: none;
     }
   }
