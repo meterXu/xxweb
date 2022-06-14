@@ -66,6 +66,9 @@ export default {
             title: "web-box",
             width: '200px'
           },
+          tabs:{
+            icon:false,
+          },
           footer: {
             show:true,
             links: [],

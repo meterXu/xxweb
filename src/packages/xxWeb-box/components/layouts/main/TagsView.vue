@@ -4,14 +4,16 @@
         v-model="selectedPath"
         @tab-click="tabClick"
         @tab-remove="removeTab"
-        @contextmenu.native="openMenu">
+        @contextmenu.native="openMenu($event.target)">
       <TabPane
+          style=""
           v-for="item in visitedViews"
           :key="item.path"
-          :label="item.meta&&item.meta.title"
           :name="item.path"
           :closable="item.meta&&!item.meta.permanent"
       >
+        <span slot="label" @contextmenu="openMenu($event.target.parentNode)">
+          <DynamicIcon v-if="appConfig.config.tabs.icon&&item.meta" :icon="item.meta.icon"/> {{item.meta&&item.meta.title}}</span>
       </TabPane>
     </Tabs>
     <ul
@@ -30,10 +32,12 @@
 <script>
 import {Tabs, TabPane} from 'element-ui'
 import mixin from "../../../mixin/mixin";
+import DynamicIcon from "@/packages/xxWeb-box/components/common/DynamicIcon";
 
 export default {
   name: "TagsView",
   components: {
+    DynamicIcon,
     Tabs,
     TabPane
   },
@@ -95,12 +99,15 @@ export default {
       this.$router.push({path: activePath})
     },
     openMenu(tab) {
-      this.menuPath = tab.srcElement.id.replace('tab-', '')
       event.stopPropagation()
       event.preventDefault()
-      this.left = event.srcElement.offsetLeft + 15 + event.offsetX;
-      this.top = event.srcElement.offsetTop + event.offsetY;
-      this.visible = true;
+      if(tab&&tab.id){
+        this.menuPath = tab.id.replace('tab-', '')
+        tab.blur()
+        this.left = tab.offsetLeft + 15 + event.offsetX;
+        this.top = tab.offsetTop + event.offsetY;
+        this.visible = true;
+      }
     },
     isCanClose() {
       let menu = this.visitedViews.find(c=>c.path===this.menuPath)
