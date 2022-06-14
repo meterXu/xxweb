@@ -1,5 +1,5 @@
 <template>
-  <div class="xxWeb-box">
+  <div class="xxWeb-box" theme='default'>
     <Container class="main-container">
       <SideMenu :isCollapse="isCollapse" :permission="permission"></SideMenu>
       <Container class="content-container">

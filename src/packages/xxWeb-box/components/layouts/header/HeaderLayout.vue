@@ -3,14 +3,14 @@
     <div class="side-header" v-if="appConfig.style.layout==='sidemenu'">
       <div class="row-head">
         <div class="left-con">
-          <Hamburger :isCollapse="isCollapse" @toggleClick="toggle" v-if="!appConfig.style.fixSide"></Hamburger>
+          <Hamburger v-if="!appConfig.style.fixSide" :isCollapse="isCollapse" @toggleClick="toggle"></Hamburger>
           <div class="head-title">
             <span> {{headTitle}} </span>
           </div>
         </div>
         <div class="col-user-menu">
-          <SearchMenu v-if="appConfig.config.head.searchMenu.show"></SearchMenu>
-          <i v-if="appConfig.config.head.fullscreen.show" class="user-menu-item el-icon-full-screen" @click="handleFullScreen"></i>
+          <SearchMenu v-if="appConfig.config.head.searchMenu.show" class="user-menu-item"/>
+          <FullScreen v-if="appConfig.config.head.fullscreen.show" class="user-menu-item"/>
           <UserMenu v-if="appConfig.config.head.user.show" class="user-menu-item"/>
         </div>
       </div>
@@ -23,12 +23,13 @@ import {Row,Col,Icon,Header} from 'element-ui'
 import UserMenu from "./UserMenu.vue";
 import mixin from "../../../mixin/mixin";
 import Hamburger from "./Hamburger";
-import screenfull from 'screenfull';
 import SearchMenu from "@/packages/xxWeb-box/components/layouts/header/SearchMenu";
+import FullScreen from "@/packages/xxWeb-box/components/layouts/header/FullScreen";
 export default {
   name: "HeaderLayout",
   mixins:[mixin],
   components:{
+    FullScreen,
     SearchMenu,
     Hamburger,
     Row,
@@ -57,10 +58,6 @@ export default {
     toggle(){
       this.isCollapse = !this.isCollapse
       this.$emit('menuToggle',this.isCollapse)
-    },
-    handleFullScreen(){
-      const element = document.getElementById('app');
-      if (element) screenfull.toggle(element);
     }
   }
 }

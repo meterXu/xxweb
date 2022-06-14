@@ -1,5 +1,5 @@
 <template>
-  <div class="user-menu-item menu-search-box" :style="{width:(expandSearch?'180px':'18px')}">
+  <div class="menu-search-box" :style="{width:(expandSearch?'180px':'18px')}">
     <i class="el-icon-search" @click="handleShowSearch"></i>
     <Autocomplete class="menu-search"
                   size="small"
