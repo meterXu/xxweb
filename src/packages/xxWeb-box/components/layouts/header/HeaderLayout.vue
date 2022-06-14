@@ -20,7 +20,7 @@
                           clearable>
               <template slot-scope="{ item }">
                 <div class="name">
-                  <component v-bind:is="createIcon(item.icon)"></component>
+
                   {{ item.title }}
                 </div>
               </template>
