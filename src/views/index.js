@@ -2,7 +2,7 @@ import Index from './Index.vue'
 import Page from './Page.vue'
 export default [{
     path: '/',
-    component: Index,
+    direct:'/page/1'
 },{
     path: '/page/:index',
     name:Page.name,
