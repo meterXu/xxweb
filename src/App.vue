@@ -89,7 +89,7 @@ export default {
         }
       },
       permission:[{
-        path: '/page/',
+        path: '/page',
         name: 'page',
         meta: { title: '系统页面', icon: 'el-icon-s-platform' },
         children: [
