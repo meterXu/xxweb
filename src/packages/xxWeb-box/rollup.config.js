@@ -8,6 +8,7 @@ import postcss from 'rollup-plugin-postcss'
 import postcssUrl from 'postcss-url'
 import px2rem from 'postcss-pxtorem'
 import less from 'rollup-plugin-less';
+import jsx from 'rollup-plugin-jsx'
 
 function processLess(context, payload) {
     return new Promise(( resolve, reject ) => {
@@ -65,6 +66,9 @@ function pgl() {
                 })
             ],
             extensions: [ '.css' ],
+        }),
+        jsx({
+            factory: "vueJsxCompat",
         }),
         terser()
     ];

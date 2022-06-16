@@ -32,7 +32,7 @@
 <script>
 import {Tabs, TabPane} from 'element-ui'
 import mixin from "../../../mixin/mixin";
-import DynamicIcon from "@/packages/xxWeb-box/components/common/DynamicIcon";
+import DynamicIcon from "../../common/DynamicIcon.vue";
 
 export default {
   name: "TagsView",

@@ -7,8 +7,8 @@
 
 <script>
 import {Tabs,TabPane,Card,Button,Row,Col} from 'element-ui'
-import TagsView from "./TagsView";
-import AppMain from "./AppMain";
+import TagsView from "./TagsView.vue";
+import AppMain from "./AppMain.vue";
 export default {
   name: "TabLayout",
   components:{

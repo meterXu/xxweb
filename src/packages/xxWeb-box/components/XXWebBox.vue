@@ -19,7 +19,7 @@ import '../assets/css/index.less'
 import HeaderLayout from "./layouts/header/HeaderLayout.vue";
 import {Container,Aside,Main,Footer,Header} from 'element-ui'
 import SideMenu from "./layouts/left/SideMenu.vue";
-import MainLayout from "./layouts/main/MainLayout";
+import MainLayout from "./layouts/main/MainLayout.vue";
 export default {
   name: "XXWebBox",
   props:['appConfig','permission'],

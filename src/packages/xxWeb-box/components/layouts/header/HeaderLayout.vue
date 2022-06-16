@@ -21,11 +21,11 @@
 import {Row,Col,Icon,Header} from 'element-ui'
 import UserMenu from "./UserMenu.vue";
 import mixin from "../../../mixin/mixin";
-import Hamburger from "./Hamburger";
-import SearchMenu from "@/packages/xxWeb-box/components/layouts/header/SearchMenu";
-import FullScreen from "@/packages/xxWeb-box/components/layouts/header/FullScreen";
-import HeadTitle from "@/packages/xxWeb-box/components/layouts/header/HeadTitle";
-import HeadBreadcrumb from "@/packages/xxWeb-box/components/layouts/header/HeadBreadcrumb";
+import Hamburger from "./Hamburger.vue";
+import SearchMenu from "./SearchMenu.vue";
+import FullScreen from "./FullScreen.vue";
+import HeadTitle from "./HeadTitle.vue";
+import HeadBreadcrumb from "./HeadBreadcrumb.vue";
 export default {
   name: "HeaderLayout",
   mixins:[mixin],

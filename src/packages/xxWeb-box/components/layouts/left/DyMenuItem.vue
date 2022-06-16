@@ -1,5 +1,5 @@
 <script>
-import DynamicIcon from "../../common/DynamicIcon";
+import DynamicIcon from "../../common/DynamicIcon.vue";
 export default {
   name: 'DyMenuItem',
   functional: true,

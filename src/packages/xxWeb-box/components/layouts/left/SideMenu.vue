@@ -20,7 +20,7 @@
 import {Aside,Menu,MenuItem,Submenu} from 'element-ui'
 import Scrollbar from 'element-ui/lib/scrollbar'
 import mixin from "../../../mixin/mixin";
-import DynamicMenu from './DynamicMenu'
+import DynamicMenu from './DynamicMenu.vue'
 export default {
   name: "SideMenu",
   props:["isCollapse","permission"],

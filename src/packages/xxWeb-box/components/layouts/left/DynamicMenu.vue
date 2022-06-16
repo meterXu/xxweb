@@ -1,8 +1,8 @@
 <script>
 import {Menu, Submenu, MenuItem} from 'element-ui'
 import mixin from "../../../mixin/mixin";
-import DyMenuItem from './DyMenuItem'
-import ItemLink from './ItemLink'
+import DyMenuItem from './DyMenuItem.vue'
+import ItemLink from './ItemLink.vue'
 
 export default {
   name: 'DynamicMenu',
