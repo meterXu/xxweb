@@ -80,6 +80,7 @@ function pgl() {
 export default [
     {
         input: './index.js',
+        external: (id) => pkg.dependencies && pkg.dependencies[id],
         output: {
             name: 'xxWeb-box',
             file: `dist/xxWeb-box.umd.js`,
