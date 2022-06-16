@@ -16,7 +16,8 @@ export default {
         index:10,
         redirect: {
           index: '/page/1',
-          login:'/login'
+          login:'/login',
+          "404":'/404'
         },
         style: {
           theme: 'default',

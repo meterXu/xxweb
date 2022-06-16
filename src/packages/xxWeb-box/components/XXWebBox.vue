@@ -36,6 +36,7 @@ export default {
   data(){
     return {
       isCollapse:false,
+      visitedViews:[],
       cachedViews:[],
     }
   },
@@ -43,7 +44,8 @@ export default {
     return {
       appConfig: this.appConfig,
       permission:this.permission,
-      cachedViews:this.cachedViews
+      cachedViews:this.cachedViews,
+      visitedViews:this.visitedViews
     }
   },
   methods:{

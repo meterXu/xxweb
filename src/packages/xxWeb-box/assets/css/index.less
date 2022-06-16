@@ -174,6 +174,17 @@
   .item-link{
     text-decoration-line: none;
   }
+  .app-breadcrumb .el-breadcrumb {
+    display: inline-block;
+    font-size: 14px;
+    line-height: 50px;
+    margin-left: 8px;
+
+    .no-redirect {
+      color: #97a8be;
+      cursor: text;
+    }
+  }
   .footer{
     height: 24px !important;
     text-align: left;
@@ -182,5 +193,25 @@
     a{
       text-decoration-line: none;
     }
+  }
+
+  /* breadcrumb transition */
+  .breadcrumb-enter-active,
+  .breadcrumb-leave-active {
+    transition: all .5s;
+  }
+
+  .breadcrumb-enter,
+  .breadcrumb-leave-active {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  .breadcrumb-move {
+    transition: all .5s;
+  }
+
+  .breadcrumb-leave-active {
+    position: absolute;
   }
 }

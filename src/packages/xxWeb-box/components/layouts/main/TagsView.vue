@@ -47,8 +47,7 @@ export default {
       visible: false,
       top: 0,
       left: 0,
-      visitedViews: [],
-      selectedPath: null,
+      selectedPath:null,
       menuPath:null,
     }
   },

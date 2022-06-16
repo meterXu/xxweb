@@ -1,5 +1,5 @@
 export default {
-    inject: ['appConfig','permission','cachedViews'],
+    inject: ['appConfig','permission','cachedViews','visitedViews'],
     methods:{
         searchMenuByPath(data, path) {
             let res = null
