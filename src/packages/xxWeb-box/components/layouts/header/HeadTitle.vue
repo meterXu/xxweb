@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import mixin from "@/packages/xxWeb-box/mixin/mixin";
+import mixin from "../../../mixin/mixin";
 export default {
   name: "HeadTitle",
   mixins:[mixin],

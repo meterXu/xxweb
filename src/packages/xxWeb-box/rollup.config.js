@@ -8,7 +8,8 @@ import postcss from 'rollup-plugin-postcss'
 import postcssUrl from 'postcss-url'
 import px2rem from 'postcss-pxtorem'
 import less from 'rollup-plugin-less';
-import jsx from 'rollup-plugin-jsx'
+import resolve from '@rollup/plugin-node-resolve'
+import babel from 'rollup-plugin-babel';
 
 function processLess(context, payload) {
     return new Promise(( resolve, reject ) => {
@@ -39,12 +40,17 @@ function processLess(context, payload) {
 
 function pgl() {
     return [
-        cjs(),
-        vue({
-            target: 'browser',
-            css: true,
-            compileTemplate: true
+        vue({compileTemplate: true, css: true}),
+        babel({
+            runtimeHelpers: true,
+            exclude: 'node_modules/**',
         }),
+        resolve({
+            browser: true,
+            preferBuiltins: false,
+            extensions: ['.js', '.json', '.jsx', '.vue'],
+        }),
+        cjs(),
         url({
             include: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.gif', '**/*.woff', '**/*.woff2'],
             limit: Infinity,
@@ -66,9 +72,6 @@ function pgl() {
                 })
             ],
             extensions: [ '.css' ],
-        }),
-        jsx({
-            factory: "vueJsxCompat",
         }),
         terser()
     ];
