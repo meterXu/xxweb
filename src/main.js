@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import XXWebBox from './packages/xxWeb-box/index'
+// import XXWebBox from "xxWeb-box";
 import router from './router';
 
 Vue.config.productionTip = false
