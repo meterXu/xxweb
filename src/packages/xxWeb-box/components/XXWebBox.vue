@@ -45,7 +45,8 @@ export default {
       appConfig: this.appConfig,
       permission:this.permission,
       cachedViews:this.cachedViews,
-      visitedViews:this.visitedViews
+      visitedViews:this.visitedViews,
+      slots:this.$slots
     }
   },
   methods:{

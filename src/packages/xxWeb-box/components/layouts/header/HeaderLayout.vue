@@ -10,7 +10,11 @@
         <div class="col-user-menu">
           <SearchMenu v-if="appConfig.config.head.searchMenu.show" class="user-menu-item"/>
           <FullScreen v-if="appConfig.config.head.fullscreen.show" class="user-menu-item"/>
-          <UserMenu v-if="appConfig.config.head.user.show" class="user-menu-item"/>
+          <div class="user-menu-item">
+            <slot name="userMenu" v-if="appConfig.config.head.user.show">
+              <UserMenu />
+            </slot>
+          </div>
         </div>
       </div>
     </div>
@@ -51,7 +55,7 @@ export default {
     toggle(){
       this.isCollapse = !this.isCollapse
       this.$emit('menuToggle',this.isCollapse)
-    }
+    },
   }
 }
 </script>
