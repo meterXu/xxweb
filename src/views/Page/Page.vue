@@ -1,0 +1,17 @@
+<template>
+  <div>
+    业务页面首页
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Page",
+  data(){
+  }
+}
+</script>
+
+<style scoped>
+
+</style>

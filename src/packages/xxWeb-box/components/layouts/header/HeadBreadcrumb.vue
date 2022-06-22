@@ -29,9 +29,13 @@ export default {
   },
   methods:{
     pathCompile(path) {
-      const { params } = this.$route;
-      let toPath = pathToRegexp.compile(path);
-      return toPath(params);
+      try{
+        const { params } = this.$route;
+        let compileObj = pathToRegexp.compile(path);
+        return compileObj(params);
+      }catch (err){
+        return null
+      }
     },
     handleLink(item){
       const { redirect, path } = item;
@@ -39,7 +43,8 @@ export default {
         this.$router.push(redirect);
         return;
       }
-      this.$router.push(this.pathCompile(path));
+      let route = this.pathCompile(path||'/')
+      this.$router.push(route);
     },
     getBreadcrumb(){
       let that = this
@@ -48,7 +53,7 @@ export default {
         if(m.meta&&m.meta.title){
           this.levelList.push(m)
         }else{
-          let path = that.pathCompile(m.path)
+          let path = that.pathCompile(m.path||'/')
           let menu = that.searchMenuByPath(that.permission,path)
           if(menu&&menu.meta&&menu.meta.title){
             that.levelList.push(Object.assign({},m,{meta:menu.meta}))

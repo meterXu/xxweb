@@ -1,15 +1,9 @@
 <template>
   <Scrollbar wrap-class="side-scrollbar">
     <Aside class="side-menu" :width="width">
-      <div class="logo">
-        <img :src="imgSrc" alt="logo">
-        <transition name="title">
-          <h1 v-if="!isCollapse" class="title">{{title}}</h1>
-        </transition>
-      </div>
+      <Logo :isCollapse="isCollapse"/>
       <DynamicMenu
           :isCollapse="isCollapse"
-          :permission="permission"
           :defaultActive="defaultActive">
       </DynamicMenu>
     </Aside>
@@ -21,11 +15,13 @@ import {Aside,Menu,MenuItem,Submenu} from 'element-ui'
 import Scrollbar from 'element-ui/lib/scrollbar'
 import mixin from "../../../mixin/mixin";
 import DynamicMenu from './DynamicMenu.vue'
+import Logo from "../../../components/common/Logo";
 export default {
   name: "SideMenu",
-  props:["isCollapse","permission"],
+  props:["isCollapse"],
   mixins:[mixin],
   components:{
+    Logo,
     Aside,
     Menu,
     MenuItem,
@@ -39,9 +35,6 @@ export default {
     },
     title(){
       return this.appConfig.config.sideMenu.title
-    },
-    imgSrc(){
-      return this.appConfig.config.logo
     },
     defaultActive(){
       return this.$route.path

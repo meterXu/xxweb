@@ -1,7 +1,7 @@
 <template>
   <div class="xxWeb-box" theme='default'>
     <Container class="main-container">
-      <SideMenu :isCollapse="isCollapse" :permission="permission"></SideMenu>
+      <SideMenu v-if="appConfig.style.layout==='sidemenu'" :isCollapse="isCollapse"></SideMenu>
       <Container class="content-container">
         <HeaderLayout @menuToggle="menuToggle"/>
         <MainLayout/>

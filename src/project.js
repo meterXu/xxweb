@@ -1,78 +1,77 @@
 export default {
     namespace: "newsso",
-        mainSys:true,
-        index:10,
-        redirect: {
-        index: '/page/1',
-            login:'/login',
-            "404":'/404'
+    mainSys: true,
+    index: 10,
+    redirect: {
+        index: '/',
+        login: '/login',
+        "404": '/404'
     },
     style: {
         theme: 'default',
-            color: '#1890FF',
-            layout: 'sidemenu',
-            multipage: true,
-            colorWeak: false,
-            fixedHeader: false,
-            fixSiderbar: false,
-            autoHideHeader: false,
+        color: '#1890FF',
+        layout: 'topmenu',
+        multipage: true,
+        colorWeak: false,
+        fixedHeader: false,
+        fixSiderbar: false,
+        autoHideHeader: false,
     },
     config: {
         logo: "./static/imgs/logo-white.png",
+        title: "web-box",
+        login: {
             title: "web-box",
-            login: {
-            title: "web-box",
-                desc: ""
+            desc: ""
         },
         head: {
             title: {
-                show:false,
-                    desktop: "欢迎使用xxWeb",
-                    mobile: ""
+                show: true,
+                desktop: "欢迎使用xxWeb",
+                mobile: ""
             },
-            breadcrumb:{
-                show:true,
+            breadcrumb: {
+                show: true,
             },
             searchMenu: {
                 show: true
             },
             helper: {
                 show: false,
-                    href: "javascript:;",
-                    target: "_blank"
+                href: "javascript:;",
+                target: "_blank"
             },
-            fullscreen:{
+            fullscreen: {
                 show: true,
             },
-            user:{
+            user: {
                 show: true,
-                    username:true,
-                    menu:{
-                    show:true,
-                        cache:true,
-                        password:true,
-                        exit:true
+                username: true,
+                menu: {
+                    show: true,
+                    cache: true,
+                    password: true,
+                    exit: true
                 }
             }
         },
         sideMenu: {
             title: "web-box",
-                width: '200px'
+            width: '200px'
         },
-        tabs:{
-            icon:false,
+        tabs: {
+            icon: false,
         },
         footer: {
-            show:true,
-                links: [],
-                copyright: {
+            show: true,
+            links: [],
+            copyright: {
                 content: "苏州工业园园区测绘地理信息有限公司",
-                    year: "2021",
-                    href: "http://www.dpark.com.cn",
-                    target: "_blank"
+                year: "2021",
+                href: "http://www.dpark.com.cn",
+                target: "_blank"
             }
         },
-        plugins: {
-        }
+        plugins: {}
     }
 }

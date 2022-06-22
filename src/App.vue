@@ -4,12 +4,12 @@
     @clearCache="clearCache"
     @changePwd="changePwd"
     @exitSystem="exitSystem">
-      <template v-slot:head>
-        xxxx
-      </template>
-      <template v-slot:userMenu>
-        xxxx
-      </template>
+<!--      <template v-slot:head>-->
+<!--        xxxx-->
+<!--      </template>-->
+<!--      <template v-slot:userMenu>-->
+<!--        xxxx-->
+<!--      </template>-->
     </XXWebBox>
   </div>
 </template>
