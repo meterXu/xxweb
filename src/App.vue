@@ -1,148 +1,32 @@
 <template>
   <div id="app">
     <XXWebBox :appConfig="project" :permission="permission"
-    @clearCache="clearCache"></XXWebBox>
+    @clearCache="clearCache"
+    @changePwd="changePwd"
+    @exitSystem="exitSystem"></XXWebBox>
   </div>
 </template>
 
 <script>
-
+import project from "./project";
+import permission from "./permission";
 export default {
   name: 'App',
   data(){
     return {
-      project:{
-        namespace: "newsso",
-        mainSys:true,
-        index:10,
-        redirect: {
-          index: '/page/1',
-          login:'/login',
-          "404":'/404'
-        },
-        style: {
-          theme: 'default',
-          color: '#1890FF',
-          layout: 'sidemenu',
-          multipage: true,
-          colorWeak: false,
-          fixedHeader: false,
-          fixSiderbar: false,
-          autoHideHeader: false,
-        },
-        config: {
-          logo: "./static/imgs/logo-white.png",
-          title: "web-box",
-          login: {
-            title: "web-box",
-            desc: ""
-          },
-          head: {
-            title: {
-              show:false,
-              desktop: "欢迎使用xxWeb",
-              mobile: ""
-            },
-            breadcrumb:{
-              show:true,
-            },
-            searchMenu: {
-              show: true
-            },
-            helper: {
-              show: false,
-              href: "javascript:;",
-              target: "_blank"
-            },
-            fullscreen:{
-              show: true,
-            },
-            user:{
-              show: true,
-              username:true,
-              menu:{
-                show:true,
-                cache:true,
-                password:true,
-                exit:true
-              }
-            }
-          },
-          sideMenu: {
-            title: "web-box",
-            width: '200px'
-          },
-          tabs:{
-            icon:false,
-          },
-          footer: {
-            show:true,
-            links: [],
-            copyright: {
-              content: "苏州工业园园区测绘地理信息有限公司",
-              year: "2021",
-              href: "http://www.dpark.com.cn",
-              target: "_blank"
-            }
-          },
-          plugins: {
-          }
-        }
-      },
-      permission:[{
-        path: '/page',
-        name: 'page',
-        meta: { title: '系统页面', icon: 'el-icon-s-platform' },
-        children: [
-          {
-            path: '/page/1',
-            name: 'page_1',
-            meta: {
-              title: '页面1',
-              icon: 'el-icon-s-platform'
-            }
-          },
-          {
-            path: '/page/2',
-            name: 'page_2',
-            meta: {
-              title: '页面2',
-              icon: 'el-icon-s-platform'
-            }
-          },
-          {
-            path: '/page/3',
-            name: 'page_3',
-            meta: {
-              title: '页面3',
-              icon: 'el-icon-s-platform'
-            }
-          },
-          {
-            path: '/page/4',
-            name: 'page_4',
-            meta: {
-              title: '页面4',
-              icon: 'el-icon-s-platform'
-            },
-            children:[
-              {
-                path: '/page/4/xxx',
-                name: 'page_4_xxx',
-                meta: {
-                  title: 'hello',
-                  icon: 'el-icon-s-platform'
-                },
-              }
-            ]
-          }
-        ]
-      }]
+      project:project,
+      permission:permission
     }
   },
   methods:{
     clearCache(){
       console.log('clearCache')
+    },
+    changePwd(){
+      console.log('changePwd')
+    },
+    exitSystem(){
+      console.log('exitSystem')
     }
   }
 }
