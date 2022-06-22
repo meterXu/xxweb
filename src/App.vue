@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <XXWebBox :appConfig="project" :permission="permission"></XXWebBox>
+    <XXWebBox :appConfig="project" :permission="permission"
+    @clearCache="clearCache"></XXWebBox>
   </div>
 </template>
 
@@ -137,6 +138,11 @@ export default {
           }
         ]
       }]
+    }
+  },
+  methods:{
+    clearCache(){
+      console.log('clearCache')
     }
   }
 }

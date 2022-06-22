@@ -1,7 +1,7 @@
 <template>
   <Breadcrumb class="app-breadcrumb" separator-class="el-icon-arrow-right">
     <transition-group name="breadcrumb">
-      <BreadcrumbItem v-for="item in levelList" :key="item.path">
+      <BreadcrumbItem v-for="(item,index) in levelList" :key="item.path">
         <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
         <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
       </BreadcrumbItem>

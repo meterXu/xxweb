@@ -51,9 +51,21 @@ export default {
   methods:{
     menuToggle(isCollapse){
       this.isCollapse = isCollapse
-    }
+    },
   },
   created() {
+    this.$bus.$on('clearCache',($event) => {
+      this.$emit('clearCache')
+    })
+    this.$bus.$on('changePwd',($event) => {
+      this.$emit('changePwd')
+    })
+    this.$bus.$on('exitSystem',($event) => {
+      this.$emit('exitSystem')
+    })
+  },
+  destroyed() {
+    this.$bus.$off()
   }
 }
 </script>
