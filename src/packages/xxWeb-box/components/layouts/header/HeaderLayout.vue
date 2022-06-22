@@ -4,18 +4,26 @@
       <div class="header-content" v-if="sidemenu">
         <div class="row-head">
           <div class="left-con">
-            <Hamburger v-if="!appConfig.style.fixSide" :isCollapse="isCollapse" @toggleClick="toggle"/>
-            <HeadTitle class="head-title" v-if="appConfig.config.head.title.show"/>
-            <HeadBreadcrumb v-if="appConfig.config.head.breadcrumb.show"/>
+            <slot name="hamburger" v-if="!appConfig.style.fixSide">
+              <Hamburger :isCollapse="isCollapse" @toggleClick="toggle"/>
+            </slot>
+            <slot name="headTitle" v-if="appConfig.config.head.title.show">
+              <HeadTitle/>
+            </slot>
+            <slot name="breadcrumb" v-if="appConfig.config.head.breadcrumb.show">
+              <HeadBreadcrumb/>
+            </slot>
           </div>
           <div class="col-user-menu">
-            <SearchMenu v-if="appConfig.config.head.searchMenu.show" class="user-menu-item"/>
-            <FullScreen v-if="appConfig.config.head.fullscreen.show" class="user-menu-item"/>
-            <div class="user-menu-item">
-              <slot name="userMenu" v-if="appConfig.config.head.user.show">
-                <UserMenu/>
-              </slot>
-            </div>
+            <slot name="searchMenu" v-if="appConfig.config.head.searchMenu.show">
+              <SearchMenu class="user-menu-item"/>
+            </slot>
+            <slot name="fullScreen" v-if="appConfig.config.head.fullscreen.show">
+              <FullScreen class="user-menu-item"/>
+            </slot>
+            <slot name="userMenu" v-if="appConfig.config.head.user.show">
+              <UserMenu class="user-menu-item"/>
+            </slot>
           </div>
         </div>
       </div>
@@ -87,6 +95,10 @@ export default {
       this.isCollapse = !this.isCollapse
       this.$emit('menuToggle', this.isCollapse)
     },
+  },
+  created() {
+    debugger
+    this.$slots = this.slots
   }
 }
 </script>

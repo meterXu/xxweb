@@ -17,7 +17,5 @@ export default {
             return res
         }
     },
-    created() {
-        this.$slots = this.slots
-    }
+
 }
