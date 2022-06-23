@@ -38,6 +38,7 @@ export default {
       isCollapse:false,
       visitedViews:[],
       cachedViews:[],
+      xxx:null
     }
   },
   provide () {
@@ -46,7 +47,8 @@ export default {
       permission:this.permission,
       cachedViews:this.cachedViews,
       visitedViews:this.visitedViews,
-      slots:this.$slots
+      slots:this.$slots,
+      scopedSlots:this.$scopedSlots
     }
   },
   methods:{

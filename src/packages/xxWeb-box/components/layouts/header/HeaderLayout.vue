@@ -4,26 +4,38 @@
       <div class="header-content" v-if="sidemenu">
         <div class="row-head">
           <div class="left-con">
-            <slot name="hamburger" v-if="!appConfig.style.fixSide">
-              <Hamburger :isCollapse="isCollapse" @toggleClick="toggle"/>
-            </slot>
-            <slot name="headTitle" v-if="appConfig.config.head.title.show">
-              <HeadTitle/>
-            </slot>
-            <slot name="breadcrumb" v-if="appConfig.config.head.breadcrumb.show">
-              <HeadBreadcrumb/>
-            </slot>
+            <div class="user-menu-item">
+              <slot name="hamburger" :data="{isCollapse:isCollapse}" v-if="!appConfig.style.fixSide">
+                <Hamburger :isCollapse="isCollapse" @toggleClick="toggle"/>
+              </slot>
+            </div>
+            <div class="user-menu-item">
+              <slot name="headTitle" v-if="appConfig.config.head.title.show">
+                <HeadTitle/>
+              </slot>
+            </div>
+            <div class="user-menu-item">
+              <slot name="breadcrumb" v-if="appConfig.config.head.breadcrumb.show">
+                <HeadBreadcrumb/>
+              </slot>
+            </div>
           </div>
-          <div class="col-user-menu">
-            <slot name="searchMenu" v-if="appConfig.config.head.searchMenu.show">
-              <SearchMenu class="user-menu-item"/>
-            </slot>
-            <slot name="fullScreen" v-if="appConfig.config.head.fullscreen.show">
-              <FullScreen class="user-menu-item"/>
-            </slot>
-            <slot name="userMenu" v-if="appConfig.config.head.user.show">
-              <UserMenu class="user-menu-item"/>
-            </slot>
+          <div class="right-con">
+           <div class="user-menu-item">
+             <slot name="searchMenu" v-if="appConfig.config.head.searchMenu.show">
+               <SearchMenu/>
+             </slot>
+           </div>
+            <div class="user-menu-item">
+              <slot name="fullScreen" v-if="appConfig.config.head.fullscreen.show">
+                <FullScreen/>
+              </slot>
+            </div>
+            <div class="user-menu-item">
+              <slot name="userMenu" v-if="appConfig.config.head.user.show">
+                <UserMenu/>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
@@ -34,7 +46,7 @@
             <HeadTitle class="head-title" v-if="appConfig.config.head.title.show"/>
             <HeadBreadcrumb v-if="appConfig.config.head.breadcrumb.show"/>
           </div>
-          <div class="col-user-menu">
+          <div class="right-con">
             <SearchMenu v-if="appConfig.config.head.searchMenu.show" class="user-menu-item"/>
             <FullScreen v-if="appConfig.config.head.fullscreen.show" class="user-menu-item"/>
             <div class="user-menu-item">
@@ -79,7 +91,8 @@ export default {
   data() {
     return {
       isCollapse: false,
-      expandSearch: false
+      expandSearch: false,
+      xxx:null
     }
   },
   computed:{
@@ -94,11 +107,7 @@ export default {
     toggle() {
       this.isCollapse = !this.isCollapse
       this.$emit('menuToggle', this.isCollapse)
-    },
-  },
-  created() {
-    debugger
-    this.$slots = this.slots
+    }
   }
 }
 </script>

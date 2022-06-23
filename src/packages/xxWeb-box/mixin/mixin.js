@@ -1,5 +1,7 @@
+import de from "element-ui/src/locale/lang/de";
+
 export default {
-    inject: ['appConfig','permission','cachedViews','visitedViews','slots'],
+    inject: ['appConfig','permission','cachedViews','visitedViews','slots','scopedSlots'],
     methods:{
         searchMenuByPath(data, path) {
             let res = null
@@ -17,5 +19,8 @@ export default {
             return res
         }
     },
-
+    created(){
+        this.$slots = this.slots
+        this.$scopedSlots = this.scopedSlots
+    }
 }
