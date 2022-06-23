@@ -2,7 +2,10 @@
   <div class="user-wrapper">
     <Dropdown @command="handleCommand">
       <span class="el-dropdown-link">
-        <i v-if="appConfig.config.head.user.username" class="el-icon-user"></i> <span>管理员</span>
+        <i v-if="appConfig.config.head.user.username" class="el-icon-user"></i>
+        <slot name="userName">
+          <span>管理员</span>
+        </slot>
       </span>
       <DropdownMenu v-if="appConfig.config.head.user.menu.show" slot="dropdown">
         <DropdownItem command="clearCache" v-if="appConfig.config.head.user.menu.cache" icon="el-icon-delete">清除缓存</DropdownItem>
