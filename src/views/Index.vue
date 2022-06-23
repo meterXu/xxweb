@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "Demo.vue"
+  name: "Index"
 }
 </script>
 

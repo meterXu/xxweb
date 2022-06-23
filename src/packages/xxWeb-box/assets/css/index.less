@@ -75,6 +75,17 @@
     border-right:none;
     background:none;
   }
+  .el-menu--horizontal>.s2-item-link{
+    float: left;
+  }
+  .el-menu.el-menu--horizontal{
+    border-bottom: none;
+  }
+  .el-menu--horizontal>.el-submenu .el-submenu__title,
+  .el-menu--horizontal>.s2-item-link>.el-menu-item{
+    height:52px;
+    line-height: 52px;
+  }
   .user-menu-item+.user-menu-item{
     margin-left: 15px;
   }
@@ -216,4 +227,7 @@
   .breadcrumb-leave-active {
     position: absolute;
   }
+}
+.s2-item-link{
+  text-decoration: none !important;
 }

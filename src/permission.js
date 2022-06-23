@@ -48,6 +48,14 @@ export default [
                 title: '详情页面4',
                 icon: 'el-icon-s-platform'
             }
+        },
+        {
+            path: 'http://www.baidu.com',
+            name: 'page_5',
+            meta: {
+                title: '百度',
+                icon: 'el-icon-s-platform'
+            }
         }
     ]
 }]

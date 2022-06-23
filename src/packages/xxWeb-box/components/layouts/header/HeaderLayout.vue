@@ -76,6 +76,7 @@ export default {
   },
   data() {
     return {
+      isCollapse:false
     }
   },
   computed:{
