@@ -4,6 +4,7 @@
       <Logo :isCollapse="isCollapse"/>
       <DynamicMenu
           :isCollapse="isCollapse"
+          :mode="mode"
           :defaultActive="defaultActive">
       </DynamicMenu>
     </Aside>
@@ -14,11 +15,11 @@
 import {Aside,Menu,MenuItem,Submenu} from 'element-ui'
 import Scrollbar from 'element-ui/lib/scrollbar'
 import mixin from "../../../mixin/mixin";
-import DynamicMenu from './DynamicMenu.vue'
-import Logo from "../../../components/common/Logo";
+import DynamicMenu from '../../common/DynamicMenu.vue'
+import Logo from "../../common/Logo";
 export default {
   name: "SideMenu",
-  props:["isCollapse"],
+  props:["isCollapse",'mode'],
   mixins:[mixin],
   components:{
     Logo,

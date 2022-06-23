@@ -22,6 +22,9 @@
                 <HeadBreadcrumb/>
               </slot>
             </div>
+            <div v-if="topmenu" class="user-menu-item">
+              <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
+            </div>
           </div>
           <div class="right-con">
             <div class="user-menu-item">
@@ -49,13 +52,14 @@
 <script>
 import {Header} from 'element-ui'
 import mixin from "../../../mixin/mixin";
-import Logo from "../../../components/common/Logo";
+import Logo from "../../../components/common/Logo.vue";
 import Hamburger from "./Hamburger.vue";
 import HeadTitle from "./HeadTitle.vue";
 import HeadBreadcrumb from "./HeadBreadcrumb.vue";
 import SearchMenu from "./SearchMenu.vue";
 import FullScreen from "./FullScreen.vue";
 import UserMenu from "./UserMenu.vue";
+import DynamicMenu from '../../common/DynamicMenu.vue'
 export default {
   name: "HeaderLayout",
   mixins: [mixin],
@@ -67,7 +71,8 @@ export default {
     SearchMenu,
     FullScreen,
     UserMenu,
-    Header
+    Header,
+    DynamicMenu
   },
   data() {
     return {
@@ -79,6 +84,9 @@ export default {
     },
     topmenu(){
       return this.appConfig.style.layout==='topmenu'
+    },
+    defaultActive(){
+      return this.$route.path
     }
   },
   methods: {

@@ -1,12 +1,12 @@
 <script>
 import {Menu, Submenu, MenuItem} from 'element-ui'
-import mixin from "../../../mixin/mixin";
+import mixin from "../../mixin/mixin";
 import DyMenuItem from './DyMenuItem.vue'
 import ItemLink from './ItemLink.vue'
 
 export default {
   name: 'DynamicMenu',
-  props: ['isCollapse','defaultActive'],
+  props: ['isCollapse','defaultActive','mode'],
   functional: true,
   mixins: [mixin],
   components: {
@@ -16,7 +16,7 @@ export default {
     DyMenuItem
   },
   render(h, context) {
-    const {isCollapse, defaultActive} = context.props;
+    const {isCollapse, defaultActive,mode} = context.props;
     const permission = context.injections.permission
     function renderSubMenu() {
       let sMenu = []
@@ -64,7 +64,8 @@ export default {
         <div class="dynamic-menu">
           <Menu
               collapse={isCollapse}
-              default-active={defaultActive}>
+              default-active={defaultActive}
+              mode={mode}>
             {renderSubMenu()}
           </Menu>
         </div>

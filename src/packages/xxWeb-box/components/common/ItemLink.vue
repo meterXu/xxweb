@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { isExternal } from '../../../utils/index';
+import { isExternal } from '../../utils';
 
 export default {
   name:'ItemLink',
