@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <XXWebBox :appConfig="project" :permission="permission"
-              @clearCache="clearCache"
-              @changePwd="changePwd"
-              @exitSystem="exitSystem">
+              @dropdownMenuClick="dropdownMenuClick">
 <!--            <template v-slot:hamburger>-->
 <!--              ddd-->
 <!--            </template>-->
@@ -28,6 +26,12 @@
 <!--      <template v-slot:userMenu>-->
 <!--        userMenu-->
 <!--      </template>-->
+<!--      <template v-slot:dropdownMenuItem="{menu}">-->
+<!--        <DropdownItem command="clearCache" icon="el-icon-delete" v-if="menu.clearCache">clearCache</DropdownItem>-->
+<!--        <DropdownItem command="changePwd" icon="el-icon-delete" v-if="menu.changePwd">changePwd</DropdownItem>-->
+<!--        <DropdownItem command="exitSystem" icon="el-icon-delete" v-if="menu.exitSystem">exitSystem</DropdownItem>-->
+<!--        <DropdownItem command="hello" icon="el-icon-delete" >hello</DropdownItem>-->
+<!--      </template>-->
     </XXWebBox>
   </div>
 </template>
@@ -35,7 +39,7 @@
 <script>
 import project from "./project";
 import permission from "./permission";
-
+import {DropdownItem} from 'element-ui'
 export default {
   name: 'App',
   data() {
@@ -44,15 +48,12 @@ export default {
       permission: permission
     }
   },
+  components:{
+    DropdownItem
+  },
   methods: {
-    clearCache() {
-      console.log('clearCache')
-    },
-    changePwd() {
-      console.log('changePwd')
-    },
-    exitSystem() {
-      console.log('exitSystem')
+    dropdownMenuClick(command) {
+      console.log(command)
     }
   }
 }

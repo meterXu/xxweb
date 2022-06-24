@@ -49,9 +49,9 @@ export default {
                 username: true,
                 menu: {
                     show: true,
-                    cache: true,
-                    password: true,
-                    exit: true
+                    clearCache: true,
+                    changePwd: true,
+                    exitSystem: true
                 }
             }
         },

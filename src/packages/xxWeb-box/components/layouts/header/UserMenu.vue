@@ -8,9 +8,11 @@
         </slot>
       </span>
       <DropdownMenu v-if="appConfig.config.head.user.menu.show" slot="dropdown">
-        <DropdownItem command="clearCache" v-if="appConfig.config.head.user.menu.cache" icon="el-icon-delete">清除缓存</DropdownItem>
-        <DropdownItem command="changePwd" v-if="appConfig.config.head.user.menu.password" icon="el-icon-edit">修改密码</DropdownItem>
-        <DropdownItem command="exitSystem" v-if="appConfig.config.head.user.menu.exit" icon="el-icon-close">退出系统</DropdownItem>
+        <slot name="dropdownMenuItem" :menu="appConfig.config.head.user.menu">
+          <DropdownItem command="clearCache" v-if="appConfig.config.head.user.menu.clearCache" icon="el-icon-delete">清除缓存</DropdownItem>
+          <DropdownItem command="changePwd" v-if="appConfig.config.head.user.menu.changePwd" icon="el-icon-edit">修改密码</DropdownItem>
+          <DropdownItem command="exitSystem" v-if="appConfig.config.head.user.menu.exitSystem" icon="el-icon-close">退出系统</DropdownItem>
+        </slot>
       </DropdownMenu>
     </Dropdown>
   </div>
@@ -29,17 +31,7 @@ export default {
   mixins:[mixin],
   methods:{
     handleCommand(command){
-      switch (command){
-        case 'clearCache':{
-          this.$bus.$emit('clearCache')
-        }break;
-        case 'changePwd':{
-          this.$bus.$emit('changePwd')
-        }break;
-        case 'exitSystem':{
-          this.$bus.$emit('exitSystem')
-        }break;
-      }
+      this.$bus.$emit('dropdownMenuClick',command)
     }
   }
 }

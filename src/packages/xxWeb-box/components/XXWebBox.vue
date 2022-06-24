@@ -3,7 +3,11 @@
     <Container class="main-container">
       <SideMenu v-if="appConfig.style.layout==='sidemenu'" :isCollapse="isCollapse" mode="vertical"></SideMenu>
       <Container class="content-container">
-        <HeaderLayout @menuToggle="menuToggle"/>
+        <HeaderLayout @menuToggle="menuToggle">
+          <template v-slot:dropdownMenuItem="{menu}">
+            <slot name="dropdownMenuItem" :menu="menu"></slot>
+          </template>
+        </HeaderLayout>
         <MainLayout/>
         <Footer class="footer" v-if="appConfig.config.footer.show">
           Copyright © {{appConfig.config.footer.copyright.year}} <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">苏州工业园园区测绘地理信息有限公司</a>
@@ -57,14 +61,8 @@ export default {
     },
   },
   created() {
-    this.$bus.$on('clearCache',($event) => {
-      this.$emit('clearCache')
-    })
-    this.$bus.$on('changePwd',($event) => {
-      this.$emit('changePwd')
-    })
-    this.$bus.$on('exitSystem',($event) => {
-      this.$emit('exitSystem')
+    this.$bus.$on('dropdownMenuClick',(command) => {
+      this.$emit('dropdownMenuClick',command)
     })
   },
   destroyed() {
