@@ -13,9 +13,13 @@
           </template>
         </HeaderLayout>
         <MainLayout/>
-        <Footer class="footer" v-if="appConfig.config.footer.show">
-          Copyright © {{appConfig.config.footer.copyright.year}} <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">苏州工业园园区测绘地理信息有限公司</a>
-        </Footer>
+        <template v-if="appConfig.config.footer.show">
+          <slot name="footer">
+            <Footer class="footer">
+              Copyright © {{appConfig.config.footer.copyright.year}} <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">苏州工业园园区测绘地理信息有限公司</a>
+            </Footer>
+          </slot>
+        </template>
       </Container>
     </Container>
   </div>

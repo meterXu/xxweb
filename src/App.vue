@@ -32,9 +32,14 @@
 <!--        <DropdownItem command="exitSystem" icon="el-icon-delete" v-if="menu.exitSystem">exitSystem</DropdownItem>-->
 <!--        <DropdownItem command="hello" icon="el-icon-delete" >hello</DropdownItem>-->
 <!--      </template>-->
-      <template v-slot:leftSide="{data}">
-        {{data.isCollapse}}
-      </template>
+<!--      <template v-slot:leftSide="{data}">-->
+<!--        {{data.isCollapse}}-->
+<!--      </template>-->
+<!--      <template v-slot:footer>-->
+<!--        <div>-->
+<!--          footer-->
+<!--        </div>-->
+<!--      </template>-->
     </XXWebBox>
   </div>
 </template>
