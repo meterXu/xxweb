@@ -78,11 +78,6 @@ export default {
     Header,
     DynamicMenu
   },
-  data() {
-    return {
-      isCollapse:false
-    }
-  },
   computed:{
     sidemenu(){
       return this.appConfig.style.layout==='sidemenu'
@@ -96,8 +91,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.isCollapse = !this.isCollapse
-      this.$emit('collapseToggle', this.isCollapse)
+      this.$emit('collapseToggle', !this.isCollapse)
     }
   }
 }

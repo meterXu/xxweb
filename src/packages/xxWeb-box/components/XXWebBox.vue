@@ -2,9 +2,17 @@
   <div class="xxWeb-box" theme='default'>
     <Container class="main-container">
       <template v-if="appConfig.style.layout==='sidemenu'">
-        <slot name="leftSide" :data="{isCollapse,permission}">
-          <SideMenu :isCollapse="isCollapse" mode="vertical"></SideMenu>
-        </slot>
+        <template v-if="device==='desktop'">
+          <slot name="leftSide" :data="{isCollapse,permission}">
+            <SideMenu mode="vertical"></SideMenu>
+          </slot>
+        </template>
+        <DrawerMenu v-else v-model="isCollapse">
+          <template v-slot:leftSide="{data}">
+            <slot name="leftSide" :data="data">
+            </slot>
+          </template>
+        </DrawerMenu>
       </template>
       <Container class="content-container">
         <HeaderLayout @collapseToggle="collapseToggle">
@@ -31,6 +39,7 @@ import '../assets/css/index.less'
 import HeaderLayout from "./layouts/header/HeaderLayout.vue";
 import {Container,Aside,Main,Footer,Header} from 'element-ui'
 import SideMenu from "./layouts/left/SideMenu.vue";
+import DrawerMenu from "./layouts/left/DrawerMenu"
 import MainLayout from "./layouts/main/MainLayout.vue";
 export default {
   name: "XXWebBox",
@@ -43,14 +52,16 @@ export default {
     Main,
     Footer,
     Header,
-    HeaderLayout
+    HeaderLayout,
+    DrawerMenu
   },
   data(){
     return {
       isCollapse:false,
       visitedViews:[],
       cachedViews:[],
-      xxx:null
+      device:'desktop',
+      WIDTH:992
     }
   },
   provide () {
@@ -59,6 +70,7 @@ export default {
       permission:this.permission,
       cachedViews:this.cachedViews,
       visitedViews:this.visitedViews,
+      isCollapse:this.isCollapse,
       slots:this.$slots,
       scopedSlots:this.$scopedSlots
     }
@@ -68,14 +80,31 @@ export default {
       this.isCollapse = isCollapse
       this.$emit('collapseToggle',isCollapse)
     },
+    isMobile() {
+      const rect = document.body.getBoundingClientRect();
+      return rect.width - 1 < this.WIDTH;
+    },
+    resizeHandler(){
+      if (!document.hidden) {
+        const isMobile = this.isMobile();
+        this.device = isMobile ? 'mobile' : 'desktop'
+      }
+    }
   },
   created() {
     this.$bus.$on('dropdownMenuClick',(command) => {
       this.$emit('dropdownMenuClick',command)
     })
   },
-  destroyed() {
+  mounted() {
+    this.resizeHandler()
+  },
+  beforeMount() {
+    window.addEventListener('resize', this.resizeHandler);
+  },
+  beforeDestroy() {
     this.$bus.$off()
+    window.removeEventListener('resize', this.resizeHandler);
   }
 }
 </script>

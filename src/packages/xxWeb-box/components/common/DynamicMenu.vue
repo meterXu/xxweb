@@ -6,7 +6,7 @@ import ItemLink from './ItemLink.vue'
 
 export default {
   name: 'DynamicMenu',
-  props: ['isCollapse','defaultActive','mode'],
+  props: ['defaultActive','mode'],
   functional: true,
   mixins: [mixin],
   components: {
@@ -16,7 +16,8 @@ export default {
     DyMenuItem
   },
   render(h, context) {
-    const {isCollapse, defaultActive,mode} = context.props;
+    const {defaultActive,mode} = context.props;
+    const isCollapse = context.injections.isCollapse
     const permission = context.injections.permission
     function renderSubMenu() {
       let sMenu = []

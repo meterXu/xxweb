@@ -3,7 +3,6 @@
     <Aside class="side-menu" :width="width">
       <Logo :isCollapse="isCollapse"/>
       <DynamicMenu
-          :isCollapse="isCollapse"
           :mode="mode"
           :defaultActive="defaultActive">
       </DynamicMenu>
@@ -19,7 +18,7 @@ import DynamicMenu from '../../common/DynamicMenu.vue'
 import Logo from "../../common/Logo";
 export default {
   name: "SideMenu",
-  props:["isCollapse",'mode'],
+  props:['mode'],
   mixins:[mixin],
   components:{
     Logo,
