@@ -1,9 +1,13 @@
 <template>
   <div class="xxWeb-box" theme='default'>
     <Container class="main-container">
-      <SideMenu v-if="appConfig.style.layout==='sidemenu'" :isCollapse="isCollapse" mode="vertical"></SideMenu>
+      <template v-if="appConfig.style.layout==='sidemenu'">
+        <slot name="leftSide" :data="{isCollapse,permission}">
+          <SideMenu :isCollapse="isCollapse" mode="vertical"></SideMenu>
+        </slot>
+      </template>
       <Container class="content-container">
-        <HeaderLayout @menuToggle="menuToggle">
+        <HeaderLayout @collapseToggle="collapseToggle">
           <template v-slot:dropdownMenuItem="{menu}">
             <slot name="dropdownMenuItem" :menu="menu"></slot>
           </template>
@@ -56,8 +60,9 @@ export default {
     }
   },
   methods:{
-    menuToggle(isCollapse){
+    collapseToggle(isCollapse){
       this.isCollapse = isCollapse
+      this.$emit('collapseToggle',isCollapse)
     },
   },
   created() {

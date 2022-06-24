@@ -97,7 +97,7 @@ export default {
   methods: {
     toggle() {
       this.isCollapse = !this.isCollapse
-      this.$emit('menuToggle', this.isCollapse)
+      this.$emit('collapseToggle', this.isCollapse)
     }
   }
 }
