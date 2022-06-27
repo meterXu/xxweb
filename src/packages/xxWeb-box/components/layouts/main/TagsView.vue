@@ -62,14 +62,12 @@ export default {
     '$route'(to){
       this.addVisitedViews(to)
       this.selectedPath = to.path;
+      this.$bus.$emit('tabViewChange',to.path)
     }
   },
   methods: {
     tabClick(tab) {
-      this.selectedPath = tab.name;
-      if(this.$route.path!==tab.name){
-        this.$router.push({path: this.selectedPath});
-      }
+      this.visitRoute(tab.name)
     },
     removeTab(tabName) {
       let indexPath = this.appConfig.redirect.index
@@ -94,8 +92,15 @@ export default {
           }
         });
       }
-      this.visitedViews = tabs.filter(tab => tab.path !== tabName)
-      this.$router.push({path: activePath})
+      let delViewIndex = tabs.findIndex(tab => tab.path === tabName)
+      delViewIndex>-1&&tabs.splice(delViewIndex,1)
+      this.visitRoute(activePath)
+    },
+    visitRoute(path){
+      if(this.$route.path!==path){
+        this.selectedPath = path;
+        this.$router.push({path: path});
+      }
     },
     openMenu(tab) {
       event.stopPropagation()

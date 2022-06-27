@@ -25,9 +25,6 @@ export default {
       return this.$route.path+(this.refreshStamp||'');
     }
   },
-  watch:{
-
-  },
   methods:{
     refresh(){
      this.refreshStamp = new Date().valueOf()

@@ -5,7 +5,7 @@
       <DynamicMenu
           :mode="mode"
           :isCollapse="isCollapse"
-          :defaultActive="defaultActive">
+          :defaultActive="activeIndex">
       </DynamicMenu>
     </Aside>
   </Scrollbar>
@@ -19,7 +19,7 @@ import DynamicMenu from '../../common/DynamicMenu.vue'
 import Logo from "../../common/Logo";
 export default {
   name: "SideMenu",
-  props:['mode','isCollapse'],
+  props:['mode','isCollapse','activeIndex'],
   mixins:[mixin],
   components:{
     Logo,
@@ -36,9 +36,6 @@ export default {
     },
     title(){
       return this.appConfig.config.sideMenu.title
-    },
-    defaultActive(){
-      return this.$route.path
     }
   },
   methods:{

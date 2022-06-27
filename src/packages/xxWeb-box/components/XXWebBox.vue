@@ -4,7 +4,7 @@
       <template v-if="appConfig.style.layout==='sidemenu'">
         <template v-if="device==='desktop'">
           <slot name="leftSide" :data="{isCollapse,permission}">
-            <SideMenu mode="vertical" :isCollapse="isCollapse"></SideMenu>
+            <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex"></SideMenu>
           </slot>
         </template>
         <DrawerMenu v-else v-model="isCollapse">
@@ -61,6 +61,7 @@ export default {
       visitedViews:[],
       cachedViews:[],
       device:'desktop',
+      activeIndex:null,
       WIDTH:992
     }
   },
@@ -93,6 +94,12 @@ export default {
     this.$bus.$on('collapseToggle',() => {
       this.isCollapse = !this.isCollapse
       this.$emit('collapseToggle',this.isCollapse)
+    })
+    this.$bus.$on('searchMenuItemSelect',(activeIndex) => {
+      this.activeIndex = activeIndex
+    })
+    this.$bus.$on('tabViewChange',(activeIndex) => {
+      this.activeIndex = activeIndex
     })
   },
   mounted() {
