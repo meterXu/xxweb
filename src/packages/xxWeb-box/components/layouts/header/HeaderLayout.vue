@@ -6,7 +6,7 @@
           <div class="left-con">
             <div v-if="sidemenu" class="user-menu-item">
               <slot name="hamburger" v-if="!appConfig.style.fixSide">
-                <Hamburger :isCollapse="isCollapse" @toggleClick="toggle"/>
+                <Hamburger :isCollapse="isCollapse"/>
               </slot>
             </div>
             <div v-if="topmenu" class="user-menu-item">
@@ -67,6 +67,7 @@ import DynamicMenu from '../../common/DynamicMenu.vue'
 export default {
   name: "HeaderLayout",
   mixins: [mixin],
+  props:['isCollapse'],
   components: {
     Logo,
     Hamburger,
@@ -91,7 +92,7 @@ export default {
   },
   methods: {
     toggle() {
-      this.$emit('collapseToggle', !this.isCollapse)
+      this.$emit('collapseToggle')
     }
   }
 }

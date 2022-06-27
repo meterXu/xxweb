@@ -1,15 +1,16 @@
 <script>
 export default {
   name: "DynamicIcon",
-  props:['icon'],
+  props:['meta'],
   functional:true,
   render(createElement, context) {
-    if (context.props.icon) {
-      if (typeof (context.props.icon) === 'object'){
-        return (context.props.icon)
+    const { meta } = context.props;
+    if (meta.icon) {
+      if (typeof (meta.icon) === 'object'){
+        return (meta.icon)
       }
       else {
-        return (<i class={context.props.icon} />)
+        return (<i class={meta.icon} />)
       }
     }else{
       return null;

@@ -2,22 +2,23 @@
 import {Menu, Submenu, MenuItem} from 'element-ui'
 import mixin from "../../mixin/mixin";
 import DyMenuItem from './DyMenuItem.vue'
+import DynamicIcon from './DynamicIcon.vue'
 import ItemLink from './ItemLink.vue'
 
 export default {
   name: 'DynamicMenu',
-  props: ['defaultActive','mode'],
+  props: ['defaultActive','mode','isCollapse'],
   functional: true,
   mixins: [mixin],
   components: {
     Menu,
     Submenu,
     MenuItem,
-    DyMenuItem
+    DyMenuItem,
+    DynamicIcon
   },
   render(h, context) {
-    const {defaultActive,mode} = context.props;
-    const isCollapse = context.injections.isCollapse
+    const {defaultActive,mode,isCollapse} = context.props;
     const permission = context.injections.permission
     function renderSubMenu() {
       let sMenu = []
@@ -29,6 +30,7 @@ export default {
               vcs.push(
                   <ItemLink to={c.path}>
                     <MenuItem index={c.path}>
+                      <DynamicIcon meta={c.meta}/>
                       <template slot="title">
                         <DyMenuItem meta={c.meta}/>
                       </template>
@@ -40,6 +42,7 @@ export default {
           sMenu.push(
               <Submenu index={m.path}>
                 <template slot="title">
+                  <DynamicIcon meta={m.meta}/>
                   <DyMenuItem meta={m.meta}/>
                 </template>
                 {vcs}
@@ -49,6 +52,7 @@ export default {
             sMenu.push(
                 <ItemLink to={m.path}>
                   <MenuItem index={m.path}>
+                    <DynamicIcon meta={m.meta}/>
                     <template slot="title">
                       <DyMenuItem meta={m.meta}/>
                     </template>

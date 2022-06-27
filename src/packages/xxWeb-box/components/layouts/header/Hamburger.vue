@@ -19,7 +19,7 @@ export default {
   props: ['isCollapse'],
   methods: {
     toggleClick() {
-      this.$emit('toggleClick');
+      this.$bus.$emit('collapseToggle');
     }
   }
 };

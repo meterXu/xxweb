@@ -1,7 +1,5 @@
-import de from "element-ui/src/locale/lang/de";
-
 export default {
-    inject: ['appConfig','permission','cachedViews','visitedViews','isCollapse','slots','scopedSlots'],
+    inject: ['appConfig','permission','cachedViews','visitedViews','slots','scopedSlots'],
     methods:{
         searchMenuByPath(data, path) {
             let res = null

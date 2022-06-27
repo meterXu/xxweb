@@ -13,7 +13,7 @@
           :closable="item.meta&&!item.meta.permanent"
       >
         <span slot="label" @contextmenu="openMenu($event.target.parentNode)">
-          <DynamicIcon v-if="appConfig.config.tabs.icon&&item.meta" :icon="item.meta.icon"/> {{item.meta&&item.meta.title}}</span>
+          <DynamicIcon v-if="appConfig.config.tabs.icon" :meta="item.meta"/> {{item.meta&&item.meta.title}}</span>
       </TabPane>
     </Tabs>
     <ul

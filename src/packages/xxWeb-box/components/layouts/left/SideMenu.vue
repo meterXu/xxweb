@@ -4,6 +4,7 @@
       <Logo :isCollapse="isCollapse"/>
       <DynamicMenu
           :mode="mode"
+          :isCollapse="isCollapse"
           :defaultActive="defaultActive">
       </DynamicMenu>
     </Aside>
@@ -18,7 +19,7 @@ import DynamicMenu from '../../common/DynamicMenu.vue'
 import Logo from "../../common/Logo";
 export default {
   name: "SideMenu",
-  props:['mode'],
+  props:['mode','isCollapse'],
   mixins:[mixin],
   components:{
     Logo,

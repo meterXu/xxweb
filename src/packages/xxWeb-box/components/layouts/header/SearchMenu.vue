@@ -10,7 +10,7 @@
                   clearable>
       <template slot-scope="{ item }">
         <div>
-          <DynamicIcon :icon="item.icon"/>
+          <DynamicIcon :meta="item"/>
           {{ item.title }}
         </div>
       </template>

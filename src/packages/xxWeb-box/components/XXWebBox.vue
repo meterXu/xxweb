@@ -4,7 +4,7 @@
       <template v-if="appConfig.style.layout==='sidemenu'">
         <template v-if="device==='desktop'">
           <slot name="leftSide" :data="{isCollapse,permission}">
-            <SideMenu mode="vertical"></SideMenu>
+            <SideMenu mode="vertical" :isCollapse="isCollapse"></SideMenu>
           </slot>
         </template>
         <DrawerMenu v-else v-model="isCollapse">
@@ -15,7 +15,7 @@
         </DrawerMenu>
       </template>
       <Container class="content-container">
-        <HeaderLayout @collapseToggle="collapseToggle">
+        <HeaderLayout :isCollapse="isCollapse">
           <template v-slot:dropdownMenuItem="{menu}">
             <slot name="dropdownMenuItem" :menu="menu"></slot>
           </template>
@@ -70,16 +70,11 @@ export default {
       permission:this.permission,
       cachedViews:this.cachedViews,
       visitedViews:this.visitedViews,
-      isCollapse:this.isCollapse,
       slots:this.$slots,
       scopedSlots:this.$scopedSlots
     }
   },
   methods:{
-    collapseToggle(isCollapse){
-      this.isCollapse = isCollapse
-      this.$emit('collapseToggle',isCollapse)
-    },
     isMobile() {
       const rect = document.body.getBoundingClientRect();
       return rect.width - 1 < this.WIDTH;
@@ -94,6 +89,10 @@ export default {
   created() {
     this.$bus.$on('dropdownMenuClick',(command) => {
       this.$emit('dropdownMenuClick',command)
+    })
+    this.$bus.$on('collapseToggle',() => {
+      this.isCollapse = !this.isCollapse
+      this.$emit('collapseToggle',this.isCollapse)
     })
   },
   mounted() {
