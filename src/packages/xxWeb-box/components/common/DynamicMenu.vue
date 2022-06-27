@@ -1,7 +1,7 @@
 <script>
 import {Menu, Submenu, MenuItem} from 'element-ui'
 import mixin from "../../mixin/mixin";
-import DyMenuItem from './DyMenuItem.vue'
+import DyMenuTitle from './DyMenuTitle.vue'
 import DynamicIcon from './DynamicIcon.vue'
 import ItemLink from './ItemLink.vue'
 
@@ -14,7 +14,7 @@ export default {
     Menu,
     Submenu,
     MenuItem,
-    DyMenuItem,
+    DyMenuTitle,
     DynamicIcon
   },
   render(h, context) {
@@ -32,7 +32,7 @@ export default {
                     <MenuItem index={c.path}>
                       <DynamicIcon meta={c.meta}/>
                       <template slot="title">
-                        <DyMenuItem meta={c.meta}/>
+                        <DyMenuTitle meta={c.meta}/>
                       </template>
                     </MenuItem>
                   </ItemLink>
@@ -43,7 +43,7 @@ export default {
               <Submenu index={m.path}>
                 <template slot="title">
                   <DynamicIcon meta={m.meta}/>
-                  <DyMenuItem meta={m.meta}/>
+                  <DyMenuTitle meta={m.meta}/>
                 </template>
                 {vcs}
               </Submenu>)
@@ -54,7 +54,7 @@ export default {
                   <MenuItem index={m.path}>
                     <DynamicIcon meta={m.meta}/>
                     <template slot="title">
-                      <DyMenuItem meta={m.meta}/>
+                      <DyMenuTitle meta={m.meta}/>
                     </template>
                   </MenuItem>
                 </ItemLink>
