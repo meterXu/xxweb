@@ -99,6 +99,7 @@
     overflow-x: hidden;
   }
   .side-menu{
+    width: 100%;
     text-align: left;
     transition: width ease .5s;
     overflow-x: hidden;
@@ -226,6 +227,13 @@
 
   .breadcrumb-leave-active {
     position: absolute;
+  }
+  .mobile-drawer{
+    overflow-x: hidden;
+    width: unset!important;
+    .el-drawer__header{
+      display: none;
+    }
   }
 }
 .s2-item-link{
