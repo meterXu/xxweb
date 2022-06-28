@@ -87,6 +87,16 @@ export default {
       }
     }
   },
+  watch:{
+    activeIndex:{
+      immediate:true,
+      handler(nv){
+        if(this.device==='mobile'){
+          this.isCollapse = false
+        }
+      }
+    }
+  },
   created() {
     this.$bus.$on('dropdownMenuClick',(command) => {
       this.$emit('dropdownMenuClick',command)
