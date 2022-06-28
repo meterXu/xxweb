@@ -28,7 +28,7 @@ export default {
           m.children.forEach(c => {
             if(c.meta){
               vcs.push(
-                  <ItemLink to={c.path} onTap_native={menuItemClick}>
+                  <ItemLink to={c.path} v-on:tap={menuItemClick}>
                     <MenuItem index={c.path}>
                       <DynamicIcon meta={c.meta}/>
                       <template slot="title">
@@ -50,7 +50,7 @@ export default {
         } else {
           if(m.meta){
             sMenu.push(
-                <ItemLink to={m.path} onTap_native={menuItemClick}>
+                <ItemLink to={m.path} v-on:tap={menuItemClick}>
                   <MenuItem index={m.path}>
                     <DynamicIcon meta={m.meta}/>
                     <template slot="title">
