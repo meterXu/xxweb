@@ -8,6 +8,9 @@ module.exports = {
           .plugin('webpack-bundle-analyzer')
           .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
     }
+  },
+  devServer: {
+    disableHostCheck: true,
   }
 }
 
