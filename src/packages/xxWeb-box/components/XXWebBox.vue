@@ -1,5 +1,5 @@
 <template>
-  <div class="xxWeb-box" theme='default'>
+  <div class="xxWeb-box" :theme='appConfig.style.theme'>
     <Container class="main-container">
       <template v-if="appConfig.style.layout==='sidemenu'">
         <template v-if="device==='desktop'">

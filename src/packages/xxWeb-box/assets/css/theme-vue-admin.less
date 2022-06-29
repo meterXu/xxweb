@@ -1,12 +1,13 @@
-.xxWeb-box[theme='default']{
+.xxWeb-box[theme='vue-admin']{
   @--main-bg-color: #304156;
   @--text-color: #fff;
   @--active-color:#409EFF;
-  @--menu-hover-color:#ffffffa6;
-  @--menu-hover-bg-color:#001528FF;
   @--sideMenu-header-color:#303133;
   @--sideMenu-header-bg-color:#fff;
-  @--menu-item-text-color:#ffffffa6;
+  @--menu-item-text-color:#bfcbd9;
+  @--menu-item-active-text-color:#f4f4f5;
+  @--menu-text-hover-color:#bfcbd9;
+  @--menu-item-hover-bg-color:#263445;
   @--submenu-item-bg-color:#1f2d3d;
   @--logo-bg-color:#304156;
   @--header-shadow-color:#00000033;
@@ -50,26 +51,29 @@
     background: @--logo-bg-color;
   }
   .dynamic-menu{
-    .el-submenu__title,.el-menu-item{
+    .el-submenu__title,.el-menu-item,.el-submenu__title:focus,.el-menu-item:focus{
       color: @--menu-item-text-color;
-      background: @--main-bg-color;
-    }
-    .el-submenu.is-active.is-opened,.el-submenu:hover{
-      .el-submenu__title,.el-submenu__title i{
-        color:@--menu-item-text-color;
-      }
-    }
-    .is-active{
-      color: @--active-color
-    }
-    .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover,.el-submenu .el-menu-item:hover{
-      color: @--menu-hover-color !important;
-      background: @--menu-hover-bg-color !important;
+      background-color: @--main-bg-color;
     }
     .el-submenu {
       .el-menu-item{
-        background: @--submenu-item-bg-color;
+        background-color: @--submenu-item-bg-color;
+        &:hover{
+          background-color: #001528FF !important;
+        }
       }
+    }
+    .el-submenu__title:hover,.el-menu-item:hover{
+      color: @--menu-text-hover-color;
+      background-color: @--menu-item-hover-bg-color;
+    }
+    .el-submenu.is-active{
+      .el-submenu__title{
+        color:@--menu-item-active-text-color!important;
+      }
+    }
+    .el-menu-item.is-active{
+      color: @--active-color !important;
     }
   }
   .title{
@@ -101,24 +105,24 @@
     background-color: @--main-bg-color;
   }
 }
-.xxWeb-box-default{
+.xxWeb-box-vue-admin{
   @--main-bg-color: #304156;
-  @--text-color: #fff;
+  @--menu-item-text-color:#bfcbd9;
   @--active-color:#409EFF;
-  @--menu-hover-color:263445;
+  @--menu-item-hover-bg-color:#263445;
   .el-menu--popup{
     background-color: @--main-bg-color;
   }
   .s2-item-link{
     .el-submenu__title,.el-menu-item{
-      color: @--text-color !important;
+      color: @--menu-item-text-color !important;
       background-color: @--main-bg-color !important;
     }
     .is-active{
       color: @--active-color !important;
     }
     .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
-      background: @--menu-hover-color !important;
+      background-color: @--menu-item-hover-bg-color !important;
     }
   }
 }

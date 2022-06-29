@@ -8,7 +8,7 @@ export default {
         "404": '/404'
     },
     style: {
-        theme: 'default',
+        theme: 'vue-admin',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
