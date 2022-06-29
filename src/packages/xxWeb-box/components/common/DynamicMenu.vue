@@ -28,7 +28,7 @@ export default {
           m.children.forEach(c => {
             if(c.meta){
               vcs.push(
-                  <ItemLink to={c.path} v-on:tap={menuItemClick}>
+                  <ItemLink to={c.path}>
                     <MenuItem index={c.path}>
                       <DynamicIcon meta={c.meta}/>
                       <template slot="title">
@@ -50,7 +50,7 @@ export default {
         } else {
           if(m.meta){
             sMenu.push(
-                <ItemLink to={m.path} v-on:tap={menuItemClick}>
+                <ItemLink to={m.path}>
                   <MenuItem index={m.path}>
                     <DynamicIcon meta={m.meta}/>
                     <template slot="title">
@@ -65,7 +65,7 @@ export default {
       return sMenu
     }
     function menuItemClick(){
-      alert('xxx')
+      window.location.href='http://www.baidu.com'
     }
     return (
         <div class="dynamic-menu">
