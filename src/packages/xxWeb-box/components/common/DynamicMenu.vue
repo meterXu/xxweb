@@ -20,6 +20,7 @@ export default {
   render(h, context) {
     const {defaultActive,mode,isCollapse} = context.props;
     const permission = context.injections.permission
+    const appConfig = context.injections.appConfig
     function renderSubMenu() {
       let sMenu = []
       permission.forEach(m => {
@@ -40,7 +41,7 @@ export default {
             }
           })
           sMenu.push(
-              <Submenu index={m.path}>
+              <Submenu index={m.path} popper-class={'xxWeb-box-'+appConfig.style.theme}>
                 <template slot="title">
                   <DynamicIcon meta={m.meta}/>
                   <DyMenuTitle meta={m.meta}/>
