@@ -48,7 +48,7 @@ export default {
       top: 0,
       left: 0,
       selectedPath:null,
-      menuPath:null,
+      contextMenuPath:null,
     }
   },
   watch: {
@@ -106,7 +106,7 @@ export default {
       event.stopPropagation()
       event.preventDefault()
       if(tab&&tab.id){
-        this.menuPath = tab.id.replace('tab-', '')
+        this.contextMenuPath = tab.id.replace('tab-', '')
         tab.blur()
         this.left = tab.offsetLeft + 15 + event.offsetX;
         this.top = tab.offsetTop + event.offsetY;
@@ -114,37 +114,35 @@ export default {
       }
     },
     isCanClose() {
-      let menu = this.visitedViews.find(c=>c.path===this.menuPath)
+      let menu = this.visitedViews.find(c=>c.path===this.contextMenuPath)
       return  menu && menu.meta && menu.meta.permanent
     },
     refreshSelectedTag() {
-      this.$emit('refresh')
+      if(this.selectedPath===this.contextMenuPath){
+        this.$emit('refresh')
+      }
     },
     closeOthersTags() {
       let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
-      if(this.menuPath===this.appConfig.redirect.index){
-        if(indexMenu){
-          this.visitedViews=[indexMenu]
-        }
+      if(this.contextMenuPath===this.appConfig.redirect.index){
+        this.visitedViews.splice(0,this.visitedViews.length)
+        indexMenu&&this.visitedViews.push(indexMenu)
       }else{
-        let menu = this.visitedViews.find(c=>c.path===this.menuPath)
-        this.visitedViews = []
+        let menu = this.visitedViews.find(c=>c.path===this.contextMenuPath)
+        this.visitedViews.splice(0,this.visitedViews.length)
         indexMenu&&this.visitedViews.push(indexMenu)
         menu&&this.visitedViews.push(menu)
       }
-      this.$router.push({path:this.menuPath})
+      this.visitRoute(this.contextMenuPath)
     },
     closeSelectedTag(){
-      this.removeTab(this.menuPath)
+      this.removeTab(this.contextMenuPath)
     },
     closeAllTags() {
       let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
-      if(indexMenu){
-        this.visitedViews = [indexMenu]
-      }else{
-        this.visitedViews = []
-      }
-      this.$router.push({path:this.appConfig.redirect.index})
+      this.visitedViews.splice(0,this.visitedViews.length)
+      indexMenu&&this.visitedViews.push(indexMenu)
+      this.visitRoute(this.appConfig.redirect.index)
     },
     closeMenu() {
       this.visible = false
