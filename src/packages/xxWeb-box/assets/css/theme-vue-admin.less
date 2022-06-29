@@ -18,7 +18,7 @@
   @--contextmenu-bg-color:#eee;
   @--footer-bg-color:#fff;
   @--footer-text-color:#409EFF;
-  @--app-main-bg-color:#eaecef;
+  @--app-main-bg-color:#fff;
   .header{
     color: @--sideMenu-header-color;
     background: @--sideMenu-header-bg-color;
@@ -107,6 +107,45 @@
   }
   .mobile-drawer{
     background-color: @--main-bg-color;
+  }
+  .tags-view-container{
+    height: 32px;
+    border-bottom: 1px solid #d8dce5;
+    box-shadow: 0 1px 3px 0 #0000001f, 0 0 3px 0 #0000000a
+  }
+  .el-tabs__item{
+    font-size: 12px;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 8px !important;
+    border: 1px solid #d8dce5;
+  }
+  .el-tabs__nav-wrap::after{
+    background: none;
+  }
+  .el-tabs__item+.el-tabs__item{
+    margin: 0 5px;
+  }
+  .el-tabs__item.is-active{
+    background-color: #42b983;
+    border-color: #42b983;
+    color: #fff;
+    &:before{
+      content: "";
+      background: #fff;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      position: relative;
+      margin-right: 2px;
+    }
+  }
+  .el-tabs__active-bar{
+    display: none;
+  }
+  .el-tabs__header{
+    margin-top: 4px !important;
   }
 }
 .xxWeb-box-vue-admin{
