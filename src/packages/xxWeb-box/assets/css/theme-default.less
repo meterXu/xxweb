@@ -1,10 +1,13 @@
 .xxWeb-box[theme='default']{
-  @--main-bg-color: #304156;
+  @--main-bg-color: #001529;
   @--text-color: #fff;
   @--active-color:#409EFF;
   @--menu-hover-color:263445;
   @--sideMenu-header-color:#303133;
   @--sideMenu-header-bg-color:#fff;
+  @--menu-item-text-color:#ffffffa6;
+  @--submenu-item-bg-color:#000c17;
+  @--logo-bg-color:#002140;
   @--header-shadow-color:#00000033;
   @--topMenu-header-color:#fff;
   @--topMenu-header-bg-color:@--main-bg-color;
@@ -42,17 +45,29 @@
   .side-menu{
     background: @--main-bg-color;
   }
+  .logo{
+    background: @--logo-bg-color;
+  }
   .dynamic-menu{
     .el-submenu__title,.el-menu-item{
-      color: @--text-color;
+      color: @--menu-item-text-color;
       background: @--main-bg-color;
     }
-
+    .el-submenu.is-active.is-opened,.el-submenu:hover{
+      .el-submenu__title,.el-submenu__title i{
+        color:@--text-color;
+      }
+    }
     .is-active{
       color: @--active-color
     }
     .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
       background: @--menu-hover-color;
+    }
+    .el-submenu {
+      .el-menu-item{
+        background: @--submenu-item-bg-color;
+      }
     }
   }
   .title{
