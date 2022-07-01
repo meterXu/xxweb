@@ -17,6 +17,9 @@
 <!--      <template v-slot:header>-->
 <!--        header-->
 <!--      </template>-->
+<!--            <template v-slot:headerExpand>-->
+<!--              header-->
+<!--            </template>-->
 <!--      <template v-slot:searchMenu>-->
 <!--        searchMenu-->
 <!--      </template>-->

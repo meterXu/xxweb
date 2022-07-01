@@ -25,6 +25,7 @@
             <div v-if="topmenu" class="user-menu-item">
               <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
             </div>
+            <slot name="headerExpand"></slot>
           </div>
           <div class="right-con">
             <div class="user-menu-item">
