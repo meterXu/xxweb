@@ -10,7 +10,7 @@ export default {
     style: {
         theme: 'v2board',
         color: '#1890FF',
-        layout: 'topmenu',
+        layout: 'sidemenu',
         multipage: true,
         colorWeak: false,
         fixedHeader: false,
