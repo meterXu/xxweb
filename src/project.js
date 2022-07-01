@@ -11,7 +11,7 @@ export default {
         theme: 'thunder',
         color: '#1890FF',
         layout: 'sidemenu',
-        multipage: false,
+        multipage: true,
         colorWeak: false,
         fixedHeader: false,
         fixSiderbar: false,
@@ -25,6 +25,9 @@ export default {
             desc: ""
         },
         head: {
+            logo:{
+                show: true,
+            },
             title: {
                 show: true,
                 desktop: "欢迎使用xxWeb",
@@ -45,7 +48,7 @@ export default {
                 show: true,
             },
             user: {
-                show: true,
+                show: false,
                 username: true,
                 menu: {
                     show: true,
@@ -57,7 +60,20 @@ export default {
         },
         sideMenu: {
             title: "web-box",
-            width: '200px'
+            width: '200px',
+            logo:{
+                show: false,
+            },
+            user: {
+                show: true,
+                username: true,
+                menu: {
+                    show: true,
+                    clearCache: true,
+                    changePwd: true,
+                    exitSystem: true
+                }
+            }
         },
         tabs: {
             icon: false,

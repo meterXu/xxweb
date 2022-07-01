@@ -10,7 +10,9 @@
               </slot>
             </div>
             <div v-if="topmenu" class="user-menu-item">
-              <Logo :isCollapse="false"/>
+              <slot  name="headLog" v-if="appConfig.config.head.logo.show">
+                <Logo :isCollapse="false"/>
+              </slot>
             </div>
             <div class="user-menu-item">
               <slot name="headTitle" v-if="appConfig.config.head.title.show">

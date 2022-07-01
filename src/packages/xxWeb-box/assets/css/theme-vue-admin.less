@@ -63,7 +63,7 @@
       .el-menu-item{
         background-color: @--submenu-item-bg-color;
         &:hover{
-          background-color: @--menu-sub-item-hover-bg-color !important;
+          background-color: @--menu-sub-item-hover-bg-color;
         }
       }
     }
@@ -73,11 +73,11 @@
     }
     .el-submenu.is-active{
       .el-submenu__title{
-        color:@--menu-item-active-text-color!important;
+        color:@--menu-item-active-text-color;
       }
     }
     .el-menu-item.is-active{
-      color: @--active-color !important;
+      color: @--active-color;
     }
   }
   .title{
@@ -158,14 +158,15 @@
   }
   .s2-item-link{
     .el-submenu__title,.el-menu-item{
-      color: @--menu-item-text-color !important;
-      background-color: @--main-bg-color !important;
+      color: @--menu-item-text-color;
+      background-color: @--main-bg-color;
     }
-    .is-active{
-      color: @--active-color !important;
+    .el-menu-item.is-active{
+      color: @--active-color;
     }
     .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
-      background-color: @--menu-item-hover-bg-color !important;
+      color: @--menu-item-text-color;
+      background-color: @--menu-item-hover-bg-color;
     }
   }
 }

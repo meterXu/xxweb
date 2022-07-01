@@ -73,7 +73,7 @@
         height: 40px;
         background-color: @--submenu-item-bg-color;
         &:hover{
-          background-color: @--submenu-item-active-bg-color !important;
+          background-color: @--submenu-item-active-bg-color;
           border-radius: 5px;
         }
       }
@@ -84,11 +84,11 @@
     }
     .el-submenu.is-active{
       .el-submenu__title{
-        color:@--menu-item-active-text-color!important;
+        color:@--menu-item-active-text-color;
       }
     }
     .el-menu-item.is-active{
-      color: @--menu-item-active-text-color !important;
+      color: @--menu-item-active-text-color;
       background-color: @--submenu-item-active-bg-color;
       border-radius: 5px;
     }
@@ -140,13 +140,15 @@
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
+    .el-menu-item i,.el-submenu__title i{
+      color: inherit;
+    }
     .el-menu-item{
       margin: 8px 0;
       &:hover,&.is-active{
         color: @--menu-item-active-text-color;
         background-color: @--submenu-item-active-bg-color;
         border-radius: 5px;
-
       }
     }
   }

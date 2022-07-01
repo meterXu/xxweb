@@ -1,7 +1,16 @@
 <template>
   <Scrollbar wrap-class="side-scrollbar">
     <Aside class="side-menu" :width="width">
-      <Logo :isCollapse="isCollapse"/>
+      <slot  name="sideLog" v-if="appConfig.config.sideMenu.logo.show">
+        <Logo :isCollapse="isCollapse"/>
+      </slot>
+      <slot name="sideUserMenu" v-if="appConfig.config.sideMenu.user.show">
+        <UserMenu>
+          <template v-slot:dropdownMenuItem="{menu}">
+            <slot name="dropdownMenuItem" :menu="menu"></slot>
+          </template>
+        </UserMenu>
+      </slot>
       <DynamicMenu
           :mode="mode"
           :isCollapse="isCollapse"
@@ -16,7 +25,8 @@ import {Aside,Menu,MenuItem,Submenu} from 'element-ui'
 import Scrollbar from 'element-ui/lib/scrollbar'
 import mixin from "../../../mixin/mixin";
 import DynamicMenu from '../../common/DynamicMenu.vue'
-import Logo from "../../common/Logo";
+import Logo from "../../common/Logo.vue";
+import UserMenu from "../header/UserMenu.vue";
 export default {
   name: "SideMenu",
   props:['mode','isCollapse','activeIndex'],
@@ -28,7 +38,8 @@ export default {
     MenuItem,
     Submenu,
     Scrollbar,
-    DynamicMenu
+    DynamicMenu,
+    UserMenu
   },
   computed:{
     width(){
