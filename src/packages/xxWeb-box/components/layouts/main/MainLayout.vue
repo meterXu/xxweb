@@ -1,6 +1,6 @@
 <template>
   <Main class="layout-main">
-    <TagsView @refresh="refresh"></TagsView>
+    <TagsView v-if="appConfig.style.multipage" @refresh="refresh"></TagsView>
     <AppMain ref="appMain"></AppMain>
   </Main>
 </template>
@@ -9,8 +9,10 @@
 import {Tabs,TabPane,Card,Button,Row,Col} from 'element-ui'
 import TagsView from "./TagsView.vue";
 import AppMain from "./AppMain.vue";
+import mixin from "../../../mixin/mixin";
 export default {
   name: "TabLayout",
+   mixins:[mixin],
   components:{
     AppMain,
     TagsView,

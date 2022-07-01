@@ -11,7 +11,7 @@ export default {
         theme: 'v2board',
         color: '#1890FF',
         layout: 'sidemenu',
-        multipage: true,
+        multipage: false,
         colorWeak: false,
         fixedHeader: false,
         fixSiderbar: false,
