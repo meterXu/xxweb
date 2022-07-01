@@ -65,6 +65,8 @@
       .el-menu-item{
         min-width: unset;
         margin: 8px 0;
+        line-height: 40px;
+        height: 40px;
         background-color: @--submenu-item-bg-color;
         &:hover{
           background-color: @--submenu-item-active-bg-color !important;
@@ -116,24 +118,32 @@
     background-color: @--main-bg-color;
   }
 }
-.xxWeb-box-default{
-  @--main-bg-color: #304156;
-  @--menu-item-text-color:#bfcbd9;
+.xxWeb-box-v2board{
+  @--main-bg-color: #343a40;
+  @--menu-item-text-color:#ffffffa6;
   @--active-color:#409EFF;
-  @--menu-item-hover-bg-color:#263445;
+  @--menu-item-active-text-color:#ffffff;
+  @--menu-item-hover-bg-color:@--main-bg-color;
+  @--submenu-item-active-bg-color:#2a2f33;
   .el-menu--popup{
     background-color: @--main-bg-color;
   }
+  .el-menu{
+    padding: 0 14px;
+  }
   .s2-item-link{
     .el-submenu__title,.el-menu-item{
-      color: @--menu-item-text-color !important;
-      background-color: @--main-bg-color !important;
+      color: @--menu-item-text-color;
+      background-color: @--main-bg-color;
     }
-    .is-active{
-      color: @--active-color !important;
-    }
-    .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
-      background-color: @--menu-item-hover-bg-color !important;
+    .el-menu-item{
+      margin: 8px 0;
+      &:hover,&.is-active{
+        color: @--menu-item-active-text-color;
+        background-color: @--submenu-item-active-bg-color;
+        border-radius: 5px;
+
+      }
     }
   }
 }
