@@ -42,7 +42,7 @@
             </div>
             <div class="user-menu-item">
               <slot name="userMenu" v-if="appConfig.config.head.user.show">
-                <UserMenu>
+                <UserMenu type="text">
                   <template v-slot:dropdownMenuItem="{menu}">
                     <slot name="dropdownMenuItem" :menu="menu"></slot>
                   </template>

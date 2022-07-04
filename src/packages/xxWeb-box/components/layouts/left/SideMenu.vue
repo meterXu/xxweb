@@ -5,7 +5,7 @@
         <Logo :isCollapse="isCollapse"/>
       </slot>
       <slot name="sideUserMenu" v-if="appConfig.config.sideMenu.user.show">
-        <UserMenu>
+        <UserMenu type='avatar'>
           <template v-slot:dropdownMenuItem="{menu}">
             <slot name="dropdownMenuItem" :menu="menu"></slot>
           </template>
