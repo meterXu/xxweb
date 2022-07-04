@@ -1,13 +1,69 @@
 <template>
-  <div>
-    Index
-  </div>
+  <XXWebBox :appConfig="project" :permission="permission"
+            @dropdownMenuClick="dropdownMenuClick">
+    <!--            <template v-slot:hamburger>-->
+    <!--              ddd-->
+    <!--            </template>-->
+    <!--            <template v-slot:headTitle>-->
+    <!--              HeadTitle-->
+    <!--            </template>-->
+    <!--            <template v-slot:breadcrumb>-->
+    <!--              Breadcrumb-->
+    <!--            </template>-->
+    <!--            <template v-slot:searchMenu>-->
+    <!--              SearchMenu-->
+    <!--            </template>-->
+    <!--      <template v-slot:header>-->
+    <!--        header-->
+    <!--      </template>-->
+    <!--            <template v-slot:headerExpand>-->
+    <!--              header-->
+    <!--            </template>-->
+    <!--      <template v-slot:searchMenu>-->
+    <!--        searchMenu-->
+    <!--      </template>-->
+    <!--      <template v-slot:fullScreen>-->
+    <!--        fullScreen-->
+    <!--      </template>-->
+    <!--      <template v-slot:userMenu>-->
+    <!--        userMenu-->
+    <!--      </template>-->
+    <!--      <template v-slot:dropdownMenuItem="{menu}">-->
+    <!--        <DropdownItem command="clearCache" icon="el-icon-delete" v-if="menu.clearCache">clearCache</DropdownItem>-->
+    <!--        <DropdownItem command="changePwd" icon="el-icon-delete" v-if="menu.changePwd">changePwd</DropdownItem>-->
+    <!--        <DropdownItem command="exitSystem" icon="el-icon-delete" v-if="menu.exitSystem">exitSystem</DropdownItem>-->
+    <!--        <DropdownItem command="hello" icon="el-icon-delete" >hello</DropdownItem>-->
+    <!--      </template>-->
+    <!--      <template v-slot:leftSide="{data}">-->
+    <!--        {{data.isCollapse}}-->
+    <!--      </template>-->
+    <!--      <template v-slot:footer>-->
+    <!--        <div>-->
+    <!--          footer-->
+    <!--        </div>-->
+    <!--      </template>-->
+  </XXWebBox>
 </template>
 
 <script>
+import project from "../project";
+import permission from "../permission";
+
 export default {
-  name: "Index",
-  methods:{
+  name: 'Index',
+  data() {
+    return {
+      project: project,
+      permission: permission
+    }
+  },
+  methods: {
+    dropdownMenuClick(command) {
+      console.log(command)
+    },
+    collapseToggle(isCollapse){
+      console.log(isCollapse)
+    }
   }
 }
 </script>
