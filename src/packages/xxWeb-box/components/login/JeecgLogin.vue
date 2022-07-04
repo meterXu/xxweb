@@ -12,7 +12,15 @@
           {{ config.login.desc }}
         </div>
       </div>
-
+      <div class="main">
+        <Form>
+          <Tabs v-model="activeName">
+            <TabPane label="系统登录" name="first">
+              xxx
+            </TabPane>
+          </Tabs>
+        </Form>
+      </div>
       <template v-if="config.footer">
         <div class="footer">
           <template v-if="config.footer.links">
@@ -35,9 +43,21 @@
 
 <script>
 import '../../assets/css/jeecg-login.less'
+import {Form,FormItem,Tabs,TabPane} from 'element-ui'
 export default {
   name: "JeecgLogin",
-  props:['config']
+  props:['config'],
+  components:{
+    Form,
+    FormItem,
+    Tabs,
+    TabPane
+  },
+  data(){
+    return {
+      activeName:'first'
+    }
+  }
 }
 </script>
 
