@@ -1,5 +1,5 @@
 <template>
-  <div id="userLayout" class="jeecg-user-login">
+  <div class="jeecg-user-login">
     <div class="container">
       <div class="top">
         <div class="header">
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import '../../assets/css/jeecg-login.less'
 export default {
   name: "JeecgLogin",
   props:['config']
