@@ -2,15 +2,26 @@
   <div class="user-wrapper">
     <div class="user-wrapper-container">
       <div class="user-wrapper-avatar" v-if="type==='avatar'">
-        <Avatar :size="55" :src="circleUrl"></Avatar>
+        <Dropdown  v-if="isCollapse" @command="handleCommand">
+          <Avatar class="avatar-img" :size="55" :src="circleUrl"></Avatar>
+          <DropdownMenu v-if="appConfig.config.head.user.menu.show" slot="dropdown">
+            <slot name="dropdownMenuItem" :menu="appConfig.config.head.user.menu">
+              <DropdownItem command="clearCache" v-if="appConfig.config.head.user.menu.clearCache" icon="el-icon-delete">清除缓存</DropdownItem>
+              <DropdownItem command="changePwd" v-if="appConfig.config.head.user.menu.changePwd" icon="el-icon-edit">修改密码</DropdownItem>
+              <DropdownItem command="exitSystem" v-if="appConfig.config.head.user.menu.exitSystem" icon="el-icon-close">退出系统</DropdownItem>
+            </slot>
+          </DropdownMenu>
+        </Dropdown>
+        <Avatar v-if="!isCollapse" class="avatar-img" :size="55" :src="circleUrl"></Avatar>
       </div>
-      <div class="user-wrapper-username">
+      <div class="user-wrapper-username" v-if="!isCollapse">
         <Dropdown @command="handleCommand">
         <span class="el-dropdown-link">
           <i v-if="type==='text'" class="el-icon-user"></i>
           <slot name="userName" v-if="appConfig.config.head.user.username">
             <span>管理员</span>
           </slot>
+          <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
           <DropdownMenu v-if="appConfig.config.head.user.menu.show" slot="dropdown">
             <slot name="dropdownMenuItem" :menu="appConfig.config.head.user.menu">
@@ -34,7 +45,7 @@ import {Dropdown,DropdownMenu,DropdownItem,Avatar} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 export default {
   name: "UserMenu",
-  props:['type'],
+  props:['type','isCollapse'],
   components:{
     Dropdown,
     DropdownMenu,
@@ -43,7 +54,7 @@ export default {
   },
   data(){
     return {
-      circleUrl:require('../../../assets/imgs/sharpicons_Monkey.png')
+      circleUrl:require('../../../assets/imgs/user.png')
     }
   },
   mixins:[mixin],
