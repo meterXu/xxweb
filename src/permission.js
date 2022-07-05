@@ -1,59 +1,44 @@
 export default [
     {
         path: '/',
-        name: 'index',
         meta: { title: '首页', icon: 'el-icon-s-platform' },
     },
     {
     path: '/page',
-    name: 'page',
-    meta: { title: '系统页面', icon: 'el-icon-s-platform' },
+    meta: { title: '组件库', icon: 'el-icon-s-platform' },
     children: [
         {
-            path: '/page/list',
-            name: 'page_list',
+            path: '/page/xxWebBox',
             meta: {
-                title: '列表',
+                title: 'xxWeb-box',
                 icon: 'el-icon-s-platform'
             }
         },
         {
-            path: '/page/PageDetail/1',
-            name: 'page_1',
+            path: '/page/login',
             meta: {
-                title: '详情页面1',
+                title: 'login',
                 icon: 'el-icon-s-platform'
             }
         },
         {
-            path: '/page/PageDetail/2',
-            name: 'page_2',
+            path: '/page/404',
             meta: {
-                title: '详情页面2',
+                title: '404',
                 icon: 'el-icon-s-platform'
             }
         },
         {
-            path: '/page/PageDetail/3',
-            name: 'page_3',
+            path: '/page/500',
             meta: {
-                title: '详情页面3',
+                title: '500',
                 icon: 'el-icon-s-platform'
             }
         },
         {
-            path: '/page/PageDetail/4',
-            name: 'page_4',
+            path: '/page/403',
             meta: {
-                title: '详情页面4',
-                icon: 'el-icon-s-platform'
-            }
-        },
-        {
-            path: 'http://www.baidu.com',
-            name: 'page_5',
-            meta: {
-                title: '百度',
+                title: '403',
                 icon: 'el-icon-s-platform'
             }
         }

@@ -1,54 +1,16 @@
 <template>
   <XXWebBox :appConfig="project" :permission="permission"
             @dropdownMenuClick="dropdownMenuClick">
-    <!--            <template v-slot:hamburger>-->
-    <!--              ddd-->
-    <!--            </template>-->
-    <!--            <template v-slot:headTitle>-->
-    <!--              HeadTitle-->
-    <!--            </template>-->
-    <!--            <template v-slot:breadcrumb>-->
-    <!--              Breadcrumb-->
-    <!--            </template>-->
-    <!--            <template v-slot:searchMenu>-->
-    <!--              SearchMenu-->
-    <!--            </template>-->
-    <!--      <template v-slot:header>-->
-    <!--        header-->
-    <!--      </template>-->
-    <!--            <template v-slot:headerExpand>-->
-    <!--              header-->
-    <!--            </template>-->
-    <!--      <template v-slot:searchMenu>-->
-    <!--        searchMenu-->
-    <!--      </template>-->
-    <!--      <template v-slot:fullScreen>-->
-    <!--        fullScreen-->
-    <!--      </template>-->
-    <!--      <template v-slot:userMenu>-->
-    <!--        userMenu-->
-    <!--      </template>-->
-    <!--      <template v-slot:dropdownMenuItem="{menu}">-->
-    <!--        <DropdownItem command="clearCache" icon="el-icon-delete" v-if="menu.clearCache">clearCache</DropdownItem>-->
-    <!--        <DropdownItem command="changePwd" icon="el-icon-delete" v-if="menu.changePwd">changePwd</DropdownItem>-->
-    <!--        <DropdownItem command="exitSystem" icon="el-icon-delete" v-if="menu.exitSystem">exitSystem</DropdownItem>-->
-    <!--        <DropdownItem command="hello" icon="el-icon-delete" >hello</DropdownItem>-->
-    <!--      </template>-->
-    <!--      <template v-slot:leftSide="{data}">-->
-    <!--        {{data.isCollapse}}-->
-    <!--      </template>-->
-    <!--      <template v-slot:footer>-->
-    <!--        <div>-->
-    <!--          footer-->
-    <!--        </div>-->
-    <!--      </template>-->
+    <template v-slot:side-user-tag>
+      <Tag class="version" size="mini" effect="light">version:1.0</Tag>
+    </template>
   </XXWebBox>
 </template>
 
 <script>
 import project from "../project";
 import permission from "../permission";
-
+import {Tag} from 'element-ui'
 export default {
   name: 'Index',
   data() {
@@ -56,6 +18,9 @@ export default {
       project: project,
       permission: permission
     }
+  },
+  components:{
+    Tag
   },
   methods: {
     dropdownMenuClick(command) {
@@ -69,5 +34,8 @@ export default {
 </script>
 
 <style scoped>
-
+.version{
+  background-color: transparent;
+  border-color: #40A9FF;
+}
 </style>

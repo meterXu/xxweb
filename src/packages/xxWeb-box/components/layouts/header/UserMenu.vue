@@ -31,9 +31,15 @@
             </slot>
           </DropdownMenu>
         </Dropdown>
-        <div class="user-vip" v-if="type==='avatar'">
-          <div class="user-vip-img">&nbsp;</div>
-          <div class="user-vip-text">vip6</div>
+        <div class="user-vip" v-if="type==='avatar'&&appConfig.config.sideMenu.user.tag">
+          <slot name="side-user-tag">
+            <div class="user-vip-img">&nbsp;</div>
+            <div class="user-vip-text">
+              <slot name="side-user-tag-text">
+                vip6
+              </slot>
+            </div>
+          </slot>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <JeecgLogin :config="project.config"/>
+  <JeecgLogin :config="config"/>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
   },
   data(){
     return {
-      project:project
+      config:project.config
     }
   }
 }

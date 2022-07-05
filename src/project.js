@@ -8,7 +8,7 @@ export default {
         "404": '/404'
     },
     style: {
-        theme: 'vue-admin',
+        theme: 'thunder',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
@@ -48,7 +48,7 @@ export default {
                 show: true,
             },
             user: {
-                show: true,
+                show: false,
                 username: true,
                 menu: {
                     show: true,
@@ -62,11 +62,12 @@ export default {
             title: "web-box",
             width: '200px',
             logo:{
-                show: true,
+                show: false,
             },
             user: {
-                show: false,
+                show: true,
                 username: true,
+                tag:true,
                 menu: {
                     show: true,
                     clearCache: true,

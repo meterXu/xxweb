@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "PageDetail",
+  name: "PageLogin",
   props:['index'],
   data(){
     return {
