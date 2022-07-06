@@ -10,7 +10,7 @@ export default [
         {
             path: '/page/xxWebBox',
             meta: {
-                title: 'xxWeb-box',
+                title: 'xxWebBox',
                 icon: 'el-icon-s-platform'
             }
         },

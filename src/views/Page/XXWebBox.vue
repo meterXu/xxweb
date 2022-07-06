@@ -1,38 +1,10 @@
 <template>
   <ul class="box-list">
-    <li>
-      <Card class="box-card">
-        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+    <li v-for="(item,index) in xxWebBoxList" :key="item.index">
+      <Card class="box-card" style="padding: 0">
+        <div class="image" :style="{'backgroundImage':'url('+item.cover+')'} "/>
         <div style="padding: 14px;">
-          <span>好吃的汉堡</span>
-          <div class="bottom clearfix">
-            <time class="time"></time>
-            <Button type="text" class="button">操作按钮</Button>
-          </div>
-        </div>
-      </Card>
-    </li>
-    <li>
-      <Card class="box-card">
-        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-        <div style="padding: 14px;">
-          <span>好吃的汉堡</span>
-          <div class="bottom clearfix">
-            <time class="time"></time>
-            <Button type="text" class="button">操作按钮</Button>
-          </div>
-        </div>
-      </Card>
-    </li>
-    <li>
-      <Card class="box-card">
-        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-        <div style="padding: 14px;">
-          <span>好吃的汉堡</span>
-          <div class="bottom clearfix">
-            <time class="time"></time>
-            <Button type="text" class="button">操作按钮</Button>
-          </div>
+          <span>{{item.title}}</span>
         </div>
       </Card>
     </li>
@@ -46,7 +18,16 @@ export default {
   components:{Card,Button},
   data(){
     return {
-
+      xxWebBoxList:[
+        {title:"default",cover:require('../../assets/imgs/xxWebBox/thunder.png')},
+        {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/thunder.png')},
+        {title:"v2board",cover:require('../../assets/imgs/xxWebBox/thunder.png')},
+        {title:"thunder",cover:require('../../assets/imgs/xxWebBox/thunder.png')},
+        {title:"Lux",cover:require('../../assets/imgs/xxWebBox/Lux.png')},
+        {title:"Lux_dark",cover:require('../../assets/imgs/xxWebBox/Lux_dark.png')},
+        {title:"Nitro",cover:require('../../assets/imgs/xxWebBox/Nitro.png')},
+        {title:"Octavia",cover:require('../../assets/imgs/xxWebBox/Octavia.png')}
+      ]
     }
   }
 }
@@ -56,7 +37,7 @@ export default {
 .box-list{
   list-style-type: none;
   margin: 0 auto;
-  width: 80%;
+  width: 100%;
   padding: 0;
   vertical-align: middle;
   text-align: center;
@@ -64,8 +45,16 @@ export default {
   padding-bottom: 90px;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 215px);
+  grid-template-columns: repeat(auto-fill, 392px);
   grid-gap: 20px 30px;
   justify-content: center;
 }
+.image{
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 248px;
+}
+
 </style>

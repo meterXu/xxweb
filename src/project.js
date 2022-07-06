@@ -8,7 +8,7 @@ export default {
         "404": '/404'
     },
     style: {
-        theme: 'thunder',
+        theme: 'v2board',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
@@ -19,9 +19,9 @@ export default {
     },
     config: {
         logo: "./static/imgs/logo-white.png",
-        title: "web-box",
+        title: "web-xxWebBox",
         login: {
-            title: "web-box",
+            title: "web-xxWebBox",
             desc: ""
         },
         head: {
@@ -48,7 +48,7 @@ export default {
                 show: true,
             },
             user: {
-                show: false,
+                show: true,
                 username: true,
                 menu: {
                     show: true,
@@ -59,13 +59,13 @@ export default {
             }
         },
         sideMenu: {
-            title: "web-box",
+            title: "web-xxWebBox",
             width: '200px',
             logo:{
-                show: false,
+                show: true,
             },
             user: {
-                show: true,
+                show: false,
                 username: true,
                 tag:true,
                 menu: {

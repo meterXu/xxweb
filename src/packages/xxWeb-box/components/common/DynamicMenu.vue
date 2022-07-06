@@ -41,7 +41,7 @@ export default {
             }
           })
           sMenu.push(
-              <Submenu index={m.path} popper-class={'xxWeb-box-'+appConfig.style.theme}>
+              <Submenu index={m.path} popper-class={'xxWeb-xxWebBox-'+appConfig.style.theme}>
                 <template slot="title">
                   <DynamicIcon meta={m.meta}/>
                   <DyMenuTitle meta={m.meta}/>
