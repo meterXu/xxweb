@@ -1,6 +1,6 @@
 export default [
     {
-        path: '/',
+        path: '/page/dashboard',
         meta: { title: '首页', icon: 'el-icon-s-platform' },
     },
     {

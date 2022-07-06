@@ -3,7 +3,7 @@ export default {
     mainSys: true,
     index: 10,
     redirect: {
-        index: '/',
+        index: '/page/dashboard',
         login: '/login',
         "404": '/404'
     },

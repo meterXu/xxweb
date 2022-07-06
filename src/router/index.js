@@ -2,9 +2,9 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
+import Dashboard from '../views/Page/Dashboard.vue'
 import XXWebBox from '../views/Page/XXWebBox.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
-
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -17,7 +17,13 @@ const normalRoutes =  [
         path: '/',
         name: Index.name,
         component: Index,
+        redirect:'/page/dashboard',
         children:[
+            {
+                path:'/page/dashboard',
+                name: Dashboard.name,
+                component: Dashboard,
+            },
             {
                 path: '/page/xxWebBox',
                 name: XXWebBox.name,
