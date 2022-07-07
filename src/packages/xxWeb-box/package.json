@@ -19,7 +19,9 @@
     "element-ui": "^2.15.8",
     "path-to-regexp": "2.4.0",
     "screenfull": "4.2.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "less": "^3.11.1",
+    "less-loader": "^5.0.0"
   },
   "devDependencies": {
   }
