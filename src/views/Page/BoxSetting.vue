@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "BoxSetting.vue"
+  name: "BoxSetting"
 }
 </script>
 
