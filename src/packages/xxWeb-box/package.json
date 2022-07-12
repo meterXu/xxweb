@@ -1,6 +1,6 @@
 {
   "name": "xxweb-box",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "开箱即用的盒子",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,6 @@
   "contributors": [
     "isaac"
   ],
-  "files": ["assets","components","mixin","utils","index.js","package.json","README.md"],
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
@@ -21,7 +20,8 @@
     "screenfull": "4.2.0",
     "vue": "^2.6.11",
     "less": "^3.11.1",
-    "less-loader": "^5.0.0"
+    "less-loader": "^5.0.0",
+    "vue-router": "^3.0.2"
   },
   "devDependencies": {
   }
