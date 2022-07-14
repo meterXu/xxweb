@@ -1,7 +1,5 @@
 <template>
-  <JeecgLogin :config="config">
-
-  </JeecgLogin>
+  <JeecgLogin :config="config" @login="login"></JeecgLogin>
 </template>
 
 <script>
@@ -15,6 +13,11 @@ export default {
   data(){
     return {
       config:project.config
+    }
+  },
+  methods:{
+    login(form){
+      console.log(form)
     }
   }
 }

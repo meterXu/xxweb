@@ -1,7 +1,7 @@
 <template>
   <div class="jeecg-user-login">
     <div class="container">
-      <slot>
+      <slot v-bind:config="config">
         <div class="top">
           <div class="header">
             <img v-if="config.logo" :src="config.logo" class="logo" alt="logo">
@@ -20,9 +20,11 @@
             <FormItem prop="password">
               <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" placeholder="请输入密码"/>
             </FormItem>
-            <FormItem></FormItem>
+            <FormItem>
+              <Checkbox v-model="form.remember">记住密码</Checkbox>
+            </FormItem>
           </Form>
-          <Button class="login-btn" type="primary">登 录</Button>
+          <Button class="login-btn" type="primary" @click="login">登 录</Button>
         </div>
         <template v-if="config.footer">
           <div class="footer">
@@ -47,7 +49,7 @@
 
 <script>
 import '../../assets/css/jeecg-login.less'
-import {Form,FormItem,Input,Button} from 'element-ui'
+import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
 export default {
   name: "JeecgLogin",
   props:['config'],
@@ -55,7 +57,8 @@ export default {
     Form,
     FormItem,
     Input,
-    Button
+    Button,
+    Checkbox
   },
   data(){
     return {
@@ -72,6 +75,11 @@ export default {
           { required: true, message: '密码不能为空'},
         ]
       }
+    }
+  },
+  methods:{
+    login(){
+      this.$emit('login',this.form)
     }
   }
 }
