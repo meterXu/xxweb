@@ -14,17 +14,21 @@
         <div class="main">
           <div class="login-title">系统登录</div>
           <Form :model="form" :rules="rules">
+            <slot name="form-item-prefix"></slot>
             <FormItem prop="username">
               <Input prefix-icon="el-icon-user" v-model="form.username" placeholder="请输入用户名/邮箱/手机号"/>
             </FormItem>
             <FormItem prop="password">
               <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" placeholder="请输入密码"/>
             </FormItem>
+            <slot name="form-item-suffix"></slot>
             <FormItem>
               <Checkbox v-model="form.remember">记住密码</Checkbox>
             </FormItem>
           </Form>
-          <Button class="login-btn" type="primary" @click="login">登 录</Button>
+          <slot name="form-login-btn">
+            <Button class="login-btn" type="primary" @click="login">登 录</Button>
+          </slot>
         </div>
         <template v-if="config.footer">
           <div class="footer">

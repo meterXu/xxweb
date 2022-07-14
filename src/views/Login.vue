@@ -1,14 +1,17 @@
 <template>
-  <JeecgLogin :config="config" @login="login"></JeecgLogin>
+  <jeecg-login :config="config" @login="login">
+  </jeecg-login>
+  <PigLogin :config="config" @login="login"></PigLogin>
 </template>
 
 <script>
 import project from "../project";
-import {JeecgLogin} from '../packages/xxWeb-box'
+import {JeecgLogin,PigLogin} from '../packages/xxWeb-box'
 export default {
   name: "Login",
   components:{
-    JeecgLogin
+    JeecgLogin,
+    PigLogin
   },
   data(){
     return {
