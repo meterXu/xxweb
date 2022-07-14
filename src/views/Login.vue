@@ -1,6 +1,5 @@
 <template>
-  <jeecg-login :config="config" @login="login">
-  </jeecg-login>
+  <jeecg-login :config="config" @login="login"></jeecg-login>
   <PigLogin :config="config" @login="login"></PigLogin>
 </template>
 
