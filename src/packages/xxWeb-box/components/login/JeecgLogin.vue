@@ -1,61 +1,77 @@
 <template>
   <div class="jeecg-user-login">
     <div class="container">
-      <div class="top">
-        <div class="header">
-          <a href="/">
+      <slot>
+        <div class="top">
+          <div class="header">
             <img v-if="config.logo" :src="config.logo" class="logo" alt="logo">
-            <span class="title">{{ this.$route.query.title?this.$route.query.title:config.login.title }}</span>
-          </a>
+            <span class="title">{{config.login.title }}</span>
+          </div>
+          <div class="desc">
+            {{ config.login.desc }}
+          </div>
         </div>
-        <div class="desc">
-          {{ config.login.desc }}
+        <div class="main">
+          <div class="login-title">系统登录</div>
+          <Form :model="form" :rules="rules">
+            <FormItem prop="username">
+              <Input prefix-icon="el-icon-user" v-model="form.username" placeholder="请输入用户名/邮箱/手机号"/>
+            </FormItem>
+            <FormItem prop="password">
+              <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" placeholder="请输入密码"/>
+            </FormItem>
+            <FormItem></FormItem>
+          </Form>
+          <Button class="login-btn" type="primary">登 录</Button>
         </div>
-      </div>
-      <div class="main">
-        <Form>
-          <Tabs v-model="activeName">
-            <TabPane label="系统登录" name="first">
-              xxx
-            </TabPane>
-          </Tabs>
-        </Form>
-      </div>
-      <template v-if="config.footer">
-        <div class="footer">
-          <template v-if="config.footer.links">
-            <div class="links">
-              <template v-for="link in config.footer.links">
-                <a :key="link.name" :href="link.href" :target="link.target">{{ link.name }}</a>
-              </template>
-            </div>
-          </template>
-          <template v-if="config.footer.copyright">
-            <div class="copyright" v-if="config.footer.copyright">
-              Copyright &copy; {{ config.footer.copyright.year }} <a :href="config.footer.copyright.href" :target="config.footer.copyright.target">{{ config.footer.copyright.content }}</a>
-            </div>
-          </template>
-        </div>
-      </template>
+        <template v-if="config.footer">
+          <div class="footer">
+            <template v-if="config.footer.links">
+              <div class="links">
+                <template v-for="link in config.footer.links">
+                  <a :key="link.name" :href="link.href" :target="link.target">{{ link.name }}</a>
+                </template>
+              </div>
+            </template>
+            <template v-if="config.footer.copyright">
+              <div class="copyright" v-if="config.footer.copyright">
+                Copyright &copy; {{ config.footer.copyright.year }} <a :href="config.footer.copyright.href" :target="config.footer.copyright.target">{{ config.footer.copyright.content }}</a>
+              </div>
+            </template>
+          </div>
+        </template>
+      </slot>
     </div>
   </div>
 </template>
 
 <script>
 import '../../assets/css/jeecg-login.less'
-import {Form,FormItem,Tabs,TabPane} from 'element-ui'
+import {Form,FormItem,Input,Button} from 'element-ui'
 export default {
   name: "JeecgLogin",
   props:['config'],
   components:{
     Form,
     FormItem,
-    Tabs,
-    TabPane
+    Input,
+    Button
   },
   data(){
     return {
-      activeName:'first'
+      form:{
+        username:null,
+        password:null,
+        remember:false
+      },
+      rules:{
+        username:[
+          { required: true, message: '用户名不能为空'},
+        ],
+        password:[
+          { required: true, message: '密码不能为空'},
+        ]
+      }
     }
   }
 }

@@ -24,7 +24,10 @@
         <template v-if="appConfig.config.footer.show">
           <slot name="footer">
             <Footer class="footer">
-              Copyright © {{appConfig.config.footer.copyright.year}} <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">苏州工业园园区测绘地理信息有限公司</a>
+              Copyright © {{appConfig.config.footer.copyright.year}}
+              <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">
+                {{appConfig.config.footer.copyright.content}}
+              </a>
             </Footer>
           </slot>
         </template>

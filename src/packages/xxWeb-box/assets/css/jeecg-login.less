@@ -66,6 +66,40 @@
       min-width: 260px;
       width: 368px;
       margin: 0 auto;
+      .login-btn{
+        width: 100%;
+        font-size: 16px
+      }
+      .login-title{
+        font-size: 14px;
+        display: inline-block;
+        height: 45px;
+        width: 88px;
+        text-align: center;
+        line-height: 45px;
+        color: #fff;
+        margin: 0 auto;
+        border-bottom: 2px solid #1890ff;
+        box-sizing: border-box;
+        margin-bottom: 16px
+      }
+      .el-input__inner {
+        background-color: #283443;
+        border-color: #696969;
+        color: #fff;
+
+        &:focus {
+          border-color: #409EFF;
+        }
+
+        &:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 32px #283443 inset;
+          -webkit-text-fill-color: #fff;
+        }
+      }
+      .is-error .el-input__inner{
+        border-color: #F56C6C;
+      }
     }
 
     .footer {

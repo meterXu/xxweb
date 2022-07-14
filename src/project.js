@@ -84,7 +84,7 @@ export default {
             links: [],
             copyright: {
                 content: "苏州工业园园区测绘地理信息有限公司",
-                year: "2021",
+                year: "2022",
                 href: "http://www.dpark.com.cn",
                 target: "_blank"
             }

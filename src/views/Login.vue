@@ -1,5 +1,7 @@
 <template>
-  <JeecgLogin :config="config"/>
+  <JeecgLogin :config="config">
+
+  </JeecgLogin>
 </template>
 
 <script>
