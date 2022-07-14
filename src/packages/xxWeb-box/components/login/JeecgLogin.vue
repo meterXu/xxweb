@@ -12,17 +12,17 @@
           </div>
         </div>
         <div class="main">
-          <div class="login-title">系统登录</div>
+          <div v-if="tips" class="login-title">系统登录</div>
           <Form :model="form" :rules="rules">
             <slot name="form-item-prefix"></slot>
             <FormItem prop="username">
-              <Input prefix-icon="el-icon-user" v-model="form.username" placeholder="请输入用户名/邮箱/手机号"/>
+              <Input prefix-icon="el-icon-user" v-model="form.username" :placeholder="placeholder.username"/>
             </FormItem>
             <FormItem prop="password">
-              <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" placeholder="请输入密码"/>
+              <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" :placeholder="placeholder.password"/>
             </FormItem>
             <slot name="form-item-suffix"></slot>
-            <FormItem>
+            <FormItem v-if="remember">
               <Checkbox v-model="form.remember">记住密码</Checkbox>
             </FormItem>
           </Form>
@@ -30,7 +30,7 @@
             <Button class="login-btn" type="primary" @click="login">登 录</Button>
           </slot>
         </div>
-        <template v-if="config.footer">
+        <template v-if="config.footer.show">
           <div class="footer">
             <template v-if="config.footer.links">
               <div class="links">
@@ -56,7 +56,12 @@ import '../../assets/css/jeecg-login.less'
 import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
 export default {
   name: "JeecgLogin",
-  props:['config'],
+  props:{
+    config:{default(){return {}}},
+    tips:{default:true},
+    remember:{default:true},
+    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号','password':"请输入密码"}}}
+  },
   components:{
     Form,
     FormItem,
