@@ -1,5 +1,7 @@
 # xxweb-box
 
+![xxweb-box](http://7u.isaacxu.com/QQ%E6%88%AA%E5%9B%BE20220712174214.jpg)
+
 ## 依赖组件
 * vue-router
 
