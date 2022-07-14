@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <jeecg-login :config="config" @login="login"></jeecg-login>
-    <PigLogin :config="config" @login="login"></PigLogin>
+<!--    <PigLogin :config="config" @login="login"></PigLogin>-->
   </div>
 </template>
 
