@@ -1,5 +1,5 @@
 <template>
-  <div class="jeecg-user-login">
+  <div class="jeecg-login">
     <div class="container">
       <slot v-bind:config="config">
         <div class="top">

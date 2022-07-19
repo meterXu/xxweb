@@ -1,7 +1,7 @@
 <template>
   <div style="height: 100%">
-    <jeecg-login :config="config" @login="login"></jeecg-login>
-<!--    <PigLogin :config="config" @login="login"></PigLogin>-->
+    <jeecg-login v-if="type==1" :config="config" @login="login"></jeecg-login>
+    <PigLogin v-if="type==2" :config="config" @login="login"></PigLogin>
   </div>
 </template>
 
@@ -14,6 +14,7 @@ export default {
     JeecgLogin,
     PigLogin
   },
+  props:['type'],
   data(){
     return {
       config:project.config

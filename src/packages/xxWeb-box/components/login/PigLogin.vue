@@ -1,27 +1,25 @@
 <template>
-  <div class="login-container">
+  <div class="pig-login">
     <div class="login-div">
       <div class="box">
         <h3>
           Mapmost云渲染平台
           <br/>
         </h3>
-        <Form ref="loginForm" :model="loginForm" :rules="rules" class="login-form" status-icon label-width="0">
+        <Form ref="loginForm" :model="form" :rules="rules" class="login-form" status-icon label-width="0">
           <br>
           <p>账户</p>
           <FormItem prop="username">
-            <el-input size="small" auto-complete="off" v-model="loginForm.username" placeholder="请输入用户姓名" class="username-passwd-div" @keyup.enter.native="login">
-            </el-input>
+            <Input prefix-icon="el-icon-user" v-model="form.username" :placeholder="placeholder.username"/>
           </FormItem>
           <p>密码</p>
           <FormItem prop="password">
-            <el-input type="password" size="small" v-model="loginForm.password" auto-complete="off" placeholder="请输入密码" class="username-passwd-div" @keyup.enter.native="login">
-            </el-input>
+            <Input prefix-icon="el-icon-lock" v-model="form.password" :placeholder="placeholder.username"/>
           </FormItem>
-          <el-form-item>
-            <el-button size="small" class="login-submit login-btn" @click="login"><span style="font-weight:bold;">登录</span>
-            </el-button>
-          </el-form-item>
+          <FormItem>
+            <Button size="small" class="login-submit login-btn" @click="login"><span style="font-weight:bold;">登录</span>
+            </Button>
+          </FormItem>
         </Form>
       </div>
     </div>
@@ -29,16 +27,44 @@
 </template>
 
 <script>
+import '../../assets/css/pig-login.less'
 import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
 export default {
   name: "PigLogin",
-  props:['config','remember'],
+  props:{
+    config:{default(){return {}}},
+    tips:{default:true},
+    remember:{default:true},
+    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号','password':"请输入密码"}}}
+  },
   components:{
     Form,
     FormItem,
     Input,
     Button,
     Checkbox
+  },
+  data(){
+    return {
+      form:{
+        username:null,
+        password:null,
+        remember:false
+      },
+      rules:{
+        username:[
+          { required: true, message: '用户名不能为空'},
+        ],
+        password:[
+          { required: true, message: '密码不能为空'},
+        ]
+      }
+    }
+  },
+  methods:{
+    login(){
+      this.$emit('login',this.form)
+    }
   }
 }
 </script>

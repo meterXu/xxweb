@@ -9,9 +9,10 @@ Vue.use(Router);
 
 const normalRoutes =  [
     {
-        path: '/login',
+        path: '/login/:type',
         name: Login.name,
         component: Login,
+        props:true
     },
     {
         path: '/',
