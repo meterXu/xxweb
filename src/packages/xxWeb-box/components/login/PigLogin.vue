@@ -8,15 +8,19 @@
         </h3>
         <Form ref="loginForm" :model="form" :rules="rules" class="login-form" status-icon label-width="0">
           <br>
-          <slot name="form-label-username">
-            <p>账户</p>
-          </slot>
+          <p>
+            <slot name="form-label-username">
+              账户
+            </slot>
+          </p>
           <FormItem prop="username">
             <Input prefix-icon="el-icon-user" v-model="form.username" :placeholder="placeholder.username"/>
           </FormItem>
-          <slot name="form-label-password">
-            <p>密码</p>
-          </slot>
+          <p>
+            <slot name="form-label-password">
+             密码
+            </slot>
+          </p>
           <FormItem prop="password">
             <Input prefix-icon="el-icon-lock" v-model="form.password" :placeholder="placeholder.username"/>
           </FormItem>
