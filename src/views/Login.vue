@@ -1,7 +1,8 @@
 <template>
   <div style="height: 100%">
     <jeecg-login v-if="type==1" :config="config" @login="login"></jeecg-login>
-    <PigLogin v-if="type==2" :config="config" @login="login"></PigLogin>
+    <PigLogin v-if="type==2" :config="config" @login="login">
+    </PigLogin>
   </div>
 </template>
 

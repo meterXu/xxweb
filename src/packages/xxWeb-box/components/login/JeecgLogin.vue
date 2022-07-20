@@ -5,7 +5,7 @@
         <div class="top">
           <div class="header">
             <img v-if="config.logo" :src="config.logo" class="logo" alt="logo">
-            <span class="title">{{config.login.title }}</span>
+            <span v-if="config.login" class="title">{{config.login.title }}</span>
           </div>
           <div class="desc">
             {{ config.login.desc }}

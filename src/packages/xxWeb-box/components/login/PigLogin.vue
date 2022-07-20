@@ -2,23 +2,33 @@
   <div class="pig-login">
     <div class="login-div">
       <div class="box">
-        <h3>
-          Mapmost云渲染平台
+        <h3 v-if="config.login">
+          {{config.login.title}}
           <br/>
         </h3>
         <Form ref="loginForm" :model="form" :rules="rules" class="login-form" status-icon label-width="0">
           <br>
-          <p>账户</p>
+          <slot name="form-label-username">
+            <p>账户</p>
+          </slot>
           <FormItem prop="username">
             <Input prefix-icon="el-icon-user" v-model="form.username" :placeholder="placeholder.username"/>
           </FormItem>
-          <p>密码</p>
+          <slot name="form-label-password">
+            <p>密码</p>
+          </slot>
           <FormItem prop="password">
             <Input prefix-icon="el-icon-lock" v-model="form.password" :placeholder="placeholder.username"/>
           </FormItem>
+          <FormItem v-if="remember">
+            <Checkbox v-model="form.remember">记住密码</Checkbox>
+          </FormItem>
           <FormItem>
-            <Button size="small" class="login-submit login-btn" @click="login"><span style="font-weight:bold;">登录</span>
-            </Button>
+            <slot name="form-login-btn">
+              <Button size="small" class="login-submit login-btn" @click="login">
+                登录
+              </Button>
+            </slot>
           </FormItem>
         </Form>
       </div>
