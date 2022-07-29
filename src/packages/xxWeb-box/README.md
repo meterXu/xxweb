@@ -7,7 +7,7 @@ xxxxxx
 
 ## 使用
 ```js
-import router from "./router/index.js"
+import router from "./router/filter.js"
 import XXWebBox from 'xxweb-box'
 Vue.use(XXWebBox)
 new Vue({
@@ -17,7 +17,7 @@ new Vue({
 ```
 
 ```js
-// ./router/index.js
+// ./router/filter.js
 import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from '../components/HelloWorld.vue'

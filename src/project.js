@@ -4,7 +4,7 @@ export default {
     index: 10,
     redirect: {
         index: '/page/dashboard',
-        login: '/login',
+        login: '/login/1',
         "404": '/404'
     },
     style: {

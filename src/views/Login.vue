@@ -9,6 +9,8 @@
 <script>
 import project from "../project";
 import {JeecgLogin,PigLogin} from '../packages/xxWeb-box'
+import {ACCESS_TOKEN} from "../packages/xxWeb-utils/src/mutation-types";
+
 export default {
   name: "Login",
   components:{
@@ -23,7 +25,8 @@ export default {
   },
   methods:{
     login(form){
-      console.log(form)
+      localStorage.setItem(ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
+      this.$router.replace({path:project.redirect.index})
     }
   }
 }
