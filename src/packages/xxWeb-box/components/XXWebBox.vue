@@ -1,38 +1,40 @@
 <template>
-  <div class="xxWeb-box" :theme='appConfig.style.theme'>
-    <Container class="main-container">
-      <template v-if="appConfig.style.layout==='sidemenu'">
-        <template v-if="device==='desktop'">
-          <slot name="leftSide" :data="{isCollapse,permission}">
-            <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex"></SideMenu>
-          </slot>
-        </template>
-        <DrawerMenu v-else v-model="isCollapse">
-          <template v-slot:leftSide="{data}">
-            <slot name="leftSide" :data="data">
+  <div class="xxWeb">
+    <div class="xxWeb-box" :theme='appConfig.style.theme'>
+      <Container class="main-container">
+        <template v-if="appConfig.style.layout==='sidemenu'">
+          <template v-if="device==='desktop'">
+            <slot name="leftSide" :data="{isCollapse,permission}">
+              <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex"></SideMenu>
             </slot>
           </template>
-        </DrawerMenu>
-      </template>
-      <Container class="content-container">
-        <HeaderLayout :isCollapse="isCollapse">
-          <template v-slot:dropdownMenuItem="{menu}">
-            <slot name="dropdownMenuItem" :menu="menu"></slot>
-          </template>
-        </HeaderLayout>
-        <MainLayout/>
-        <template v-if="appConfig.config.footer.show">
-          <slot name="footer">
-            <Footer class="footer">
-              Copyright © {{appConfig.config.footer.copyright.year}}
-              <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">
-                {{appConfig.config.footer.copyright.content}}
-              </a>
-            </Footer>
-          </slot>
+          <DrawerMenu v-else v-model="isCollapse">
+            <template v-slot:leftSide="{data}">
+              <slot name="leftSide" :data="data">
+              </slot>
+            </template>
+          </DrawerMenu>
         </template>
+        <Container class="content-container">
+          <HeaderLayout :isCollapse="isCollapse">
+            <template v-slot:dropdownMenuItem="{menu}">
+              <slot name="dropdownMenuItem" :menu="menu"></slot>
+            </template>
+          </HeaderLayout>
+          <MainLayout/>
+          <template v-if="appConfig.config.footer.show">
+            <slot name="footer">
+              <Footer class="footer">
+                Copyright © {{appConfig.config.footer.copyright.year}}
+                <a :href="appConfig.config.footer.copyright.href" :target="appConfig.config.footer.copyright.target">
+                  {{appConfig.config.footer.copyright.content}}
+                </a>
+              </Footer>
+            </slot>
+          </template>
+        </Container>
       </Container>
-    </Container>
+    </div>
   </div>
 </template>
 

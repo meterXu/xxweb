@@ -8,7 +8,13 @@ function filter(router,project) {
 
     router.beforeEach((to, from,next) => {
         NProgress.start()
-        if (whiteList.indexOf(to.path) >=0) {
+        if(!to.matched.length){
+            next({
+                path: project.redirect['404']
+            })
+            NProgress.done()
+        }
+        else if (whiteList.indexOf(to.path) >=0) {
             next()
         }
         else{

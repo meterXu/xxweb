@@ -8,15 +8,10 @@
 
 <script>
 import project from "../project";
-import {JeecgLogin,PigLogin} from '../packages/xxWeb-box'
 import {ACCESS_TOKEN} from "../packages/xxWeb-utils/src/mutation-types";
 
 export default {
   name: "Login",
-  components:{
-    JeecgLogin,
-    PigLogin
-  },
   props:['type'],
   data(){
     return {

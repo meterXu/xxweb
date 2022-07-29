@@ -11,6 +11,7 @@
 import project from "../project";
 import permission from "../permission";
 import {Tag} from 'element-ui'
+import {types} from '../packages/xxWeb-utils/index'
 export default {
   name: 'Index',
   data() {
@@ -24,7 +25,12 @@ export default {
   },
   methods: {
     dropdownMenuClick(command) {
-      console.log(command)
+      switch (command){
+        case 'exitSystem':{
+          localStorage.setItem(types.ACCESS_TOKEN,null)
+          this.$router.replace({path:project.redirect.login})
+        }
+      }
     },
     collapseToggle(isCollapse){
       console.log(isCollapse)

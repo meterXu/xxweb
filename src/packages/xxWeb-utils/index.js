@@ -1,2 +1,3 @@
 import filter from './src/filter'
-export {filter}
+import * as types from './src/mutation-types'
+export {filter,types}

@@ -8,7 +8,7 @@ export default {
         "404": '/404'
     },
     style: {
-        theme: 'thunder',
+        theme: 'default',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
@@ -80,7 +80,7 @@ export default {
             icon: false,
         },
         footer: {
-            show: false,
+            show: true,
             links: [],
             copyright: {
                 content: "苏州工业园园区测绘地理信息有限公司",

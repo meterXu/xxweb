@@ -21,14 +21,14 @@ export default {
       if (isExternal(to)) {
         return {
           is: 'a',
-          class:"s2-item-link",
+          class:"box-item-link",
           href: to,
           target: '_blank'
         };
       }
       return {
         is: 'router-link',
-        class:'s2-item-link',
+        class:'box-item-link',
         to: to
       };
     }

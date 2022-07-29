@@ -5,6 +5,7 @@ import Index from '../views/Index.vue'
 import Dashboard from '../views/Page/Dashboard.vue'
 import XXWebBox from '../views/Page/XXWebBox.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
+import {NotFound} from '../packages/xxWeb-box/index'
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -13,6 +14,11 @@ const normalRoutes =  [
         name: Login.name,
         component: Login,
         props:true
+    },
+    {
+        path: '/404',
+        name: NotFound.name,
+        component: NotFound,
     },
     {
         path: '/',
