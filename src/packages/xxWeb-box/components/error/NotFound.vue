@@ -1,7 +1,12 @@
 <template>
-  <div class="xxWeb-box">
+  <div class="xxWeb">
     <div class="not-found">
-      404
+      <div class="code">404</div>
+      <div class="info">OPPS，<br/>WE HAVE AN ERROR</div>
+      <ul class="goHome">
+        <li v-for="(item,index) in 8" :key="index" class="cloud">
+        </li>
+      </ul>
     </div>
   </div>
 </template>
