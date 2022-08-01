@@ -1,7 +1,12 @@
 <template>
   <div style="height: 100%">
-    <jeecg-login v-if="type==1" :config="config" @login="login"></jeecg-login>
+    <jeecg-login v-if="type==1" :config="config" @login="login">
+      <template v-slot:form-item-prefix>xxx</template>
+      <template v-slot:form-item-suffix>xxx</template>
+    </jeecg-login>
     <PigLogin v-if="type==2" :config="config" @login="login">
+      <template v-slot:form-item-prefix>xxx</template>
+      <template v-slot:form-item-suffix>xxx</template>
     </PigLogin>
   </div>
 </template>
