@@ -36,6 +36,24 @@
         </div>
       </Card>
     </li>
+    <li>
+      <Card class="box-card">
+        <div class="image">
+          <Login1 :config="config"></Login1>
+        </div>
+        <div class="box-item-text">
+          <div>
+            <div class="box-item-title"></div>
+            <div class="box-item-desc"></div>
+          </div>
+          <div>
+            <Button type="primary" plain size="mini">
+              <i class="el-icon-set-up" style="font-size: 18px"></i>
+            </Button>
+          </div>
+        </div>
+      </Card>
+    </li>
   </ul>
 </template>
 
