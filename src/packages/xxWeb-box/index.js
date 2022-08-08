@@ -5,8 +5,9 @@ import TreeLogin from './components/login/TreeLogin'
 import WatermelonLogin from './components/login/WatermelonLogin'
 import Router from 'vue-router';
 import NotFound from "./components/error/NotFound";
+import NotFoundDark from "./components/error/NotFoundDark";
 
-let components = [XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin]
+let components = [XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin,NotFoundDark]
 const install = function (Vue,config) {
     let EventBus = new Vue();
     Object.defineProperties(Vue.prototype, {
@@ -24,6 +25,6 @@ const install = function (Vue,config) {
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)
 }
-export {XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin}
+export {XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin,NotFoundDark}
 export default install
 

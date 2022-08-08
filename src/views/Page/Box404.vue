@@ -1,13 +1,13 @@
 <template>
   <ul class="box-list">
-    <li v-for="(item,index) in LoginList" :key="item.index">
+    <li v-for="(item,index) in Box404List" :key="item.index">
       <Card class="box-card">
         <div class="image" :style="{'backgroundImage':'url('+item.cover+')'} "/>
         <div class="box-item-text">
-          <div>
-            <div class="box-item-title">{{item.title}}</div>
-            <div class="box-item-desc" v-html="item.desc"></div>
-          </div>
+         <div>
+           <div class="box-item-title">{{item.title}}</div>
+           <div class="box-item-desc" v-html="item.desc"></div>
+         </div>
           <div>
             <Button type="primary" plain size="mini">
               <i class="el-icon-set-up" style="font-size: 18px"></i>
@@ -26,11 +26,9 @@ export default {
   components:{Card,Button},
   data(){
     return {
-      LoginList:[
-        {title:"default",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>'},
-        {title:"vue-admin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>'},
-        {title:"vue-admin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>'},
-        {title:"vue-admin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>'},
+      Box404List:[
+        {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>'},
+        {title:"vue-admin",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>'},
       ]
     }
   }
@@ -40,7 +38,6 @@ export default {
 <style lang="less" scoped>
 .box-card{
   border-radius: 6px;
-  width: 450px;
 }
 .box-list{
   list-style-type: none;
@@ -62,7 +59,6 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  width: 450px;
   height: 240px;
 }
 .box-item-text{
@@ -83,6 +79,20 @@ export default {
     font-size:13px;
     font-weight:400;
     color:#00000099;
+  }
+}
+
+</style>
+<style lang="less">
+.box-card{
+  .el-card__body{
+    padding: 0;
+    border-radius: 6px;
+  }
+  a{
+    text-decoration: none;
+    color: #0096c7;
+    font-weight: 600;
   }
 }
 </style>

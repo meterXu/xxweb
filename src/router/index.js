@@ -4,8 +4,9 @@ import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
 import Dashboard from '../views/Page/Dashboard.vue'
 import XXWebBox from '../views/Page/XXWebBox.vue'
+import Box404 from '../views/Page/Box404.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
-import {NotFound} from '../packages/xxWeb-box/index'
+import {NotFound,NotFoundDark} from '../packages/xxWeb-box/index'
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -19,6 +20,11 @@ const normalRoutes =  [
         path: '/404',
         name: NotFound.name,
         component: NotFound,
+    },
+    {
+        path: '/404dark',
+        name: NotFoundDark.name,
+        component: NotFoundDark,
     },
     {
         path: '/',
@@ -40,6 +46,13 @@ const normalRoutes =  [
                 path: '/page/login',
                 name: PageLogin.name,
                 component: PageLogin,
+                props: true
+            }
+            ,
+            {
+                path: '/page/404',
+                name: Box404.name,
+                component: Box404,
                 props: true
             }
         ]
