@@ -28,7 +28,7 @@ export default {
     return {
       Box404List:[
         {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>'},
-        {title:"vue-admin",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>'},
+        {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>'},
       ]
     }
   }
