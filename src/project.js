@@ -1,7 +1,10 @@
-export default {
+const project = {
     namespace: "newsso",
     mainSys: true,
     index: 10,
+    variable: {
+        baseApi:process.env.VUE_APP_baseApi
+    },
     redirect: {
         index: '/page/dashboard',
         login: '/login/1',
@@ -92,3 +95,9 @@ export default {
         plugins: {}
     }
 }
+
+if (!window.project) {
+    window.project = project
+}
+
+export default project

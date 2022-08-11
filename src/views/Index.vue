@@ -35,6 +35,10 @@ export default {
     collapseToggle(isCollapse){
       console.log(isCollapse)
     }
+  },
+  mounted() {
+    console.log(process.env)
+    console.log(project)
   }
 }
 </script>

@@ -15,6 +15,7 @@
   "description": "isaac",
   "scripts": {
     "serve": "vue-cli-service serve",
+    "serve:proxy": "vue-cli-service serve --mode proxy",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "analyz": "set npm_config_report=true && npm run build"
@@ -42,7 +43,8 @@
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.11",
-    "webpack-bundle-analyzer": "^4.5.0"
+    "webpack-bundle-analyzer": "^4.5.0",
+    "copy-webpack-plugin": "^6.1.0"
   },
   "eslintConfig": {
     "root": true,
