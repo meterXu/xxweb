@@ -20,7 +20,6 @@
     "analyz": "set npm_config_report=true && npm run build"
   },
   "dependencies": {
-    "ant-design-vue": "1.7.8",
     "axios": "^0.18.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.15.8",
