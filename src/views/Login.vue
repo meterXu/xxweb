@@ -8,6 +8,12 @@
       <template v-slot:form-item-prefix>xxx</template>
       <template v-slot:form-item-suffix>xxx</template>
     </PigLogin>
+    <TreeLogin v-if="type==3" :config="config" @login="login">
+<!--      <template v-slot:form-item-prefix>xxx</template>-->
+<!--      <template v-slot:form-item-suffix>xxx</template>-->
+    </TreeLogin>
+    <WatermelonLogin v-if="type==4" :config="config" @login="login">
+    </WatermelonLogin>
   </div>
 </template>
 
