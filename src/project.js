@@ -1,9 +1,7 @@
 const project = {
-    namespace: "newsso",
-    mainSys: true,
-    index: 10,
     variable: {
-        baseApi:process.env.VUE_APP_baseApi
+        baseApi:process.env.VUE_APP_baseApi,
+        ssoApi:process.env.VUE_APP_ssoApi
     },
     redirect: {
         index: '/page/dashboard',

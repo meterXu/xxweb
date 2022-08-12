@@ -26,6 +26,8 @@ module.exports = {
               [{
                 from: './src/project.js', to: `js/project.[contenthash:4].js`,
                 transform:(res,p)=>{
+                  let a = env.process.VUE_APP_baseApi
+                  debugger
                   res = res.toString().replace(`export default project`,'')
                   return res
                 }

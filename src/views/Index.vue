@@ -37,8 +37,8 @@ export default {
     }
   },
   mounted() {
-    console.log(process.env)
-    console.log(project)
+    let a = process.env.VUE_APP_ssoApi
+    console.log(a)
   }
 }
 </script>
