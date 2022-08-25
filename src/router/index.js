@@ -47,8 +47,7 @@ const normalRoutes =  [
                 name: PageLogin.name,
                 component: PageLogin,
                 props: true
-            }
-            ,
+            },
             {
                 path: '/page/404',
                 name: Box404.name,

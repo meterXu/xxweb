@@ -4,7 +4,7 @@ export default [
         meta: { title: '首页', icon: 'el-icon-s-platform' },
     },
     {
-    path: '/page',
+    path: '/dashboard',
     meta: { title: '组件库', icon: 'el-icon-s-platform' },
     children: [
         {
@@ -25,6 +25,13 @@ export default [
             path: '/page/404',
             meta: {
                 title: '404',
+                icon: 'el-icon-s-platform'
+            }
+        },
+        {
+            path: 'http://www.baidu.com',
+            meta: {
+                title: 'baidu',
                 icon: 'el-icon-s-platform'
             }
         }
