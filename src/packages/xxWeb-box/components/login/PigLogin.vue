@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import '../../assets/css/pig-login.less'
+import '../../assets/css/login/pig-login.less'
 import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
 export default {
   name: "PigLogin",

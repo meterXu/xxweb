@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import '../../assets/css/jeecg-login.less'
+import '../../assets/css/login/jeecg-login.less'
 import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
 export default {
   name: "JeecgLogin",

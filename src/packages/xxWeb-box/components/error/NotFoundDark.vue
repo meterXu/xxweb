@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import '../../assets/css/404dark.less'
+import '../../assets/css/404/404dark.less'
 export default {
   name: "NotFoundDark"
 }

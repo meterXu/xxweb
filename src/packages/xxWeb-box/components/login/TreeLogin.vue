@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import '../../assets/css/tree-login.less'
+import '../../assets/css/login/tree-login.less'
 import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
 export default {
   name: "TreeLogin",
