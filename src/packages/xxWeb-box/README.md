@@ -1,7 +1,7 @@
 # xxweb-box
 
 ![xxweb-box](http://img.xdo.icu/QQ%E6%88%AA%E5%9B%BE20220712174214.jpg)
-xxxxxx
+
 ## 依赖组件
 * vue-router
 
@@ -164,3 +164,19 @@ export default {
 
 ```
 
+## 插槽
+
+
+### side
+布局左边内容
+
+|参数|内容|
+|---|---|
+|data|{isCollapse,permission}|
+
+### side-logo
+### side-userMenu
+### side-user-userName
+### side-user-dropdownMenuItem
+### side-user-tag
+### side-user-tag-text

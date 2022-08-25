@@ -6,7 +6,26 @@
           :size="appConfig.config.sideMenu.width"
           :before-close="handleClose">
     <slot name="leftSide" :data="{isCollapse:false,permission:this.permission}">
-      <SideMenu :isCollapse="false" mode="vertical"></SideMenu>
+      <SideMenu :isCollapse="false" mode="vertical">
+        <template v-slot:side-logo>
+          <slot name="side-logo"></slot>
+        </template>
+        <template v-slot:side-userMenu>
+          <slot name="side-userMenu"></slot>
+        </template>
+        <template v-slot:side-user-userName>
+          <slot name="side-user-userName"></slot>
+        </template>
+        <template v-slot:side-user-dropdownMenuItem="{menu}">
+          <slot name="side-user-dropdownMenuItem" menu="{menu}"></slot>
+        </template>
+        <template v-slot:side-user-tag>
+          <slot name="side-user-tag"></slot>
+        </template>
+        <template v-slot:side-user-tag-text>
+          <slot name="side-user-tag-text"></slot>
+        </template>
+      </SideMenu>
     </slot>
   </Drawer>
 </template>

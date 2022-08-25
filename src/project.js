@@ -11,7 +11,7 @@ const project = {
     style: {
         theme: 'thunder',
         color: '#1890FF',
-        layout: 'sidemenu',
+        layout: 'topmenu',
         multipage: true,
         colorWeak: false,
         fixedHeader: false,

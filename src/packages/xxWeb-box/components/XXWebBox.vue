@@ -4,14 +4,47 @@
       <Container class="main-container">
         <template v-if="appConfig.style.layout==='sidemenu'">
           <template v-if="device==='desktop'">
-            <slot name="leftSide" :data="{isCollapse,permission}">
-              <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex"></SideMenu>
+            <slot name="side" :data="{isCollapse,permission}">
+              <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex">
+                <template v-slot:side-logo>
+                  <slot name="side-logo"></slot>
+                </template>
+                <template v-slot:side-userMenu>
+                  <slot name="side-userMenu"></slot>
+                </template>
+                <template v-slot:side-user-userName>
+                  <slot name="side-user-userName"></slot>
+                </template>
+                <template v-slot:side-user-dropdownMenuItem="{menu}">
+                  <slot name="side-user-dropdownMenuItem" menu="{menu}"></slot>
+                </template>
+                <template v-slot:side-user-tag>
+                  <slot name="side-user-tag"></slot>
+                </template>
+                <template v-slot:side-user-tag-text>
+                  <slot name="side-user-tag-text"></slot>
+                </template>
+              </SideMenu>
             </slot>
           </template>
           <DrawerMenu v-else v-model="isCollapse">
-            <template v-slot:leftSide="{data}">
-              <slot name="leftSide" :data="data">
-              </slot>
+            <template v-slot:side-logo>
+              <slot name="side-logo"></slot>
+            </template>
+            <template v-slot:side-userMenu>
+              <slot name="side-userMenu"></slot>
+            </template>
+            <template v-slot:side-user-userName>
+              <slot name="side-user-userName"></slot>
+            </template>
+            <template v-slot:side-user-dropdownMenuItem="{menu}">
+              <slot name="side-user-dropdownMenuItem" menu="{menu}"></slot>
+            </template>
+            <template v-slot:side-user-tag>
+              <slot name="side-user-tag"></slot>
+            </template>
+            <template v-slot:side-user-tag-text>
+              <slot name="side-user-tag-text"></slot>
             </template>
           </DrawerMenu>
         </template>
@@ -58,7 +91,7 @@ export default {
     Footer,
     Header,
     HeaderLayout,
-    DrawerMenu
+    DrawerMenu,
   },
   data(){
     return {
@@ -76,8 +109,8 @@ export default {
       permission:this.permission,
       cachedViews:this.cachedViews,
       visitedViews:this.visitedViews,
-      slots:this.$slots,
-      scopedSlots:this.$scopedSlots
+      // slots:this.$slots,
+      // scopedSlots:this.$scopedSlots
     }
   },
   methods:{

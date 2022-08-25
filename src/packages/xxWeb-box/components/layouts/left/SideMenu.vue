@@ -1,13 +1,22 @@
 <template>
   <Scrollbar wrap-class="side-scrollbar">
     <Aside class="side-menu" :width="width">
-      <slot  name="sideLog" v-if="appConfig.config.sideMenu.logo.show">
+      <slot name="side-logo" v-if="appConfig.config.sideMenu.logo.show">
         <Logo :isCollapse="isCollapse"/>
       </slot>
-      <slot name="sideUserMenu" v-if="appConfig.config.sideMenu.user.show">
+      <slot name="side-userMenu" v-if="appConfig.config.sideMenu.user.show">
         <UserMenu type='avatar' :isCollapse="isCollapse">
+          <template v-slot:userName>
+            <slot name="side-user-userName"></slot>
+          </template>
           <template v-slot:dropdownMenuItem="{menu}">
-            <slot name="dropdownMenuItem" :menu="menu"></slot>
+            <slot name="side-user-dropdownMenuItem" :menu="menu"></slot>
+          </template>
+          <template v-slot:side-user-tag>
+            <slot name="side-user-tag"></slot>
+          </template>
+          <template v-slot:side-user-tag-text>
+            <slot name="side-user-tag-text"></slot>
           </template>
         </UserMenu>
       </slot>

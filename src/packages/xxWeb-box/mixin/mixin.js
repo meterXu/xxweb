@@ -1,5 +1,5 @@
 export default {
-    inject: ['appConfig','permission','cachedViews','visitedViews','slots','scopedSlots'],
+    inject: ['appConfig','permission','cachedViews','visitedViews'],
     methods:{
         searchMenuByPath(data, path) {
             let res = null
@@ -18,7 +18,7 @@ export default {
         }
     },
     created(){
-        this.$slots = this.slots
-        this.$scopedSlots = this.scopedSlots
+        // this.$slots = this.slots
+        // this.$scopedSlots = this.scopedSlots
     }
 }

@@ -27,20 +27,6 @@ export default [
                 title: '404',
                 icon: 'el-icon-s-platform'
             }
-        },
-        {
-            path: '/page/500',
-            meta: {
-                title: '500',
-                icon: 'el-icon-s-platform'
-            }
-        },
-        {
-            path: '/page/403',
-            meta: {
-                title: '403',
-                icon: 'el-icon-s-platform'
-            }
         }
     ]
 }]
