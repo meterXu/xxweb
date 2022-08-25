@@ -11,6 +11,10 @@ module.exports = {
     }
   },
   configureWebpack: config => {
+    config.entry = {
+      project:["./src/project.js"],
+      main: ["./src/main.js"]
+    }
     if (process.env.NODE_ENV === 'production') {
       config.optimization.runtimeChunk = false
       config.optimization.splitChunks = {
@@ -24,11 +28,14 @@ module.exports = {
         new CopyPlugin({
           patterns:
               [{
-                from: './src/project.js', to: `js/project.[contenthash:4].js`,
+                from: './src/project.js', to: `./js/project.[contenthash:4].js`,
                 transform:(res,p)=>{
-                  let a = env.process.VUE_APP_baseApi
-                  debugger
                   res = res.toString().replace(`export default project`,'')
+                  let regex = new RegExp('(?<=process.env\\.)\\w*','gi')
+                  let ms = res.match(regex)
+                  ms.forEach(m=>{
+                    res = res.replaceAll(`process.env.${m}`,`"${process.env[m]}"`)
+                  })
                   return res
                 }
               }]

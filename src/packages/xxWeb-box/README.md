@@ -41,13 +41,12 @@ export default new Router({
     <XXWebBox :appConfig="project" :permission="permission"></XXWebBox>
   </div>
 <script>
-import project from "./project";
 import permission from "./permission";
 export default {
   name: 'App',
   data(){
     return {
-      project:project,
+      project:this.$project,
       permission:permission
     }
   }

@@ -9,8 +9,6 @@
       <template v-slot:form-item-suffix>xxx</template>
     </PigLogin>
     <TreeLogin v-if="type==3" :config="config" @login="login">
-<!--      <template v-slot:form-item-prefix>xxx</template>-->
-<!--      <template v-slot:form-item-suffix>xxx</template>-->
     </TreeLogin>
     <WatermelonLogin v-if="type==4" :config="config" @login="login">
     </WatermelonLogin>
@@ -18,7 +16,6 @@
 </template>
 
 <script>
-import project from "../project";
 import {ACCESS_TOKEN} from "../packages/xxWeb-utils/src/mutation-types";
 
 export default {
@@ -26,7 +23,7 @@ export default {
   props:['type'],
   data(){
     return {
-      config:project.config
+      config:this.$project.config
     }
   },
   methods:{

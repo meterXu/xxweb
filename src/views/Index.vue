@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import project from "../project";
 import permission from "../permission";
 import {Tag} from 'element-ui'
 import {types} from '../packages/xxWeb-utils/index'
@@ -16,7 +15,7 @@ export default {
   name: 'Index',
   data() {
     return {
-      project: project,
+      project: this.$project,
       permission: permission
     }
   },
@@ -28,7 +27,7 @@ export default {
       switch (command){
         case 'exitSystem':{
           localStorage.setItem(types.ACCESS_TOKEN,null)
-          this.$router.replace({path:project.redirect.login})
+          this.$router.replace({path:this.project.redirect.login})
         }
       }
     },

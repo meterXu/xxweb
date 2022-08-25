@@ -3,7 +3,7 @@
     <div class="user-wrapper-container">
       <div class="user-wrapper-avatar" v-if="type==='avatar'">
         <Dropdown  v-if="isCollapse" @command="handleCommand">
-          <Avatar class="avatar-img" :size="55" :src="circleUrl"></Avatar>
+          <Avatar class="avatar-img" :size="50" :src="circleUrl"></Avatar>
           <DropdownMenu v-if="appConfig.config.head.user.menu.show" slot="dropdown">
             <slot name="dropdownMenuItem" :menu="appConfig.config.head.user.menu">
               <DropdownItem command="clearCache" v-if="appConfig.config.head.user.menu.clearCache" icon="el-icon-delete">清除缓存</DropdownItem>
@@ -12,7 +12,7 @@
             </slot>
           </DropdownMenu>
         </Dropdown>
-        <Avatar v-if="!isCollapse" class="avatar-img" :size="55" :src="circleUrl"></Avatar>
+        <Avatar v-if="!isCollapse" class="avatar-img" :size="50" :src="circleUrl"></Avatar>
       </div>
       <div class="user-wrapper-username" v-if="!isCollapse">
         <Dropdown @command="handleCommand">
