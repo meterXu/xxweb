@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {type} from "../packages/xxWeb-utils/index";
+import {types} from "../packages/xxWeb-utils/index";
 
 export default {
   name: "Login",
@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     login(form){
-      localStorage.setItem(type.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
+      localStorage.setItem(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
       this.$router.replace({path:project.redirect.index})
     }
   }

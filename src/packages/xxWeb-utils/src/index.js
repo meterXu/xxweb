@@ -1,5 +1,5 @@
 import Vue from "vue";
-import {ACCESS_TOKEN} from "@/mutation-types";
+import {ACCESS_TOKEN} from "./mutation-types";
 
 export function Logout(project){
     Vue.ls.remove(ACCESS_TOKEN);
