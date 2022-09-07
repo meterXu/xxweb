@@ -1,6 +1,6 @@
 {
-  "name": "xxweb-box",
-  "version": "0.0.3",
+  "name": "s2-xxweb-box",
+  "version": "0.0.1",
   "description": "开箱即用的盒子",
   "main": "index.js",
   "scripts": {

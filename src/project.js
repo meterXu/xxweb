@@ -9,9 +9,9 @@ const project = {
         "404": '/404'
     },
     style: {
-        theme: 'thunder',
+        theme: 'default',
         color: '#1890FF',
-        layout: 'topmenu',
+        layout: 'sidemenu',
         multipage: true,
         colorWeak: false,
         fixedHeader: false,
@@ -49,7 +49,7 @@ const project = {
                 show: true,
             },
             user: {
-                show: false,
+                show: true,
                 username: true,
                 menu: {
                     show: true,
@@ -66,7 +66,7 @@ const project = {
                 show: true,
             },
             user: {
-                show: true,
+                show: false,
                 username: true,
                 tag:true,
                 menu: {
