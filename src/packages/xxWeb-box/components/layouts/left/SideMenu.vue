@@ -6,10 +6,10 @@
       </slot>
       <slot name="side-userMenu" v-if="appConfig.config.sideMenu.user.show">
         <UserMenu type='avatar' :isCollapse="isCollapse">
-          <template v-slot:userName>
+          <template v-slot:side-user-userName>
             <slot name="side-user-userName"></slot>
           </template>
-          <template v-slot:dropdownMenuItem="{menu}">
+          <template v-slot:side-user-dropdownMenuItem="{menu}">
             <slot name="side-user-dropdownMenuItem" :menu="menu"></slot>
           </template>
           <template v-slot:side-user-tag>

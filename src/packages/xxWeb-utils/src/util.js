@@ -575,3 +575,18 @@ export function aes_decrypt_ecb_256(base64) {
     });
     return decrypt.toString(CryptoJS.enc.Utf8);
 }
+
+export function ls(project){
+    this.project = project
+    this.get=function (key){
+        return localStorage.getItem(`${this.project.namespace}__`+key)
+    }
+
+    this.set=function (key,value){
+        localStorage.setItem(`${this.project.namespace}__`+key,value)
+    }
+
+    this.remove=function (key){
+        localStorage.removeItem(`${this.project.namespace}__`+key)
+    }
+}

@@ -1,10 +1,13 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import {ACCESS_TOKEN} from './mutation-types'
+import {ACCESS_TOKEN,USER_INFO} from './mutation-types'
+import * as util from './util'
+
 function filter(router,project) {
     let defaultLogin = project.redirect.login
     let defaultIndex = project.redirect.index
     const whiteList = [defaultLogin, project.redirect['404']]
+    const _ls = new util.ls(project)
 
     router.beforeEach((to, from,next) => {
         NProgress.start()
@@ -18,7 +21,25 @@ function filter(router,project) {
             next()
         }
         else{
-            let accessToken =  localStorage.getItem(ACCESS_TOKEN)
+            if(to.query){
+                if (to.query.action === 'logout') {
+                    _ls.remove(ACCESS_TOKEN)
+                  }else{
+                    const accessToken = util.getQueryVariable(project.variable.tokenKey)||to.query[project.variable.tokenKey]
+                    const realname = util.getQueryVariable('realname') || to.query['realname']
+                    const username = util.getQueryVariable('username') || to.query['username']
+                    if (accessToken) {
+                        _ls.set(ACCESS_TOKEN, accessToken)
+                    }
+                    if (realname) {
+                        _ls.set(USER_INFO, JSON.stringify({
+                        'realname': realname,
+                        'username': username
+                      }))
+                    }
+                  }
+            }
+            let accessToken =  _ls.get(ACCESS_TOKEN)
             if (to.meta.requireAuth === false || to.params.requireAuth == 0) {
                 next()
             } else if (accessToken) {

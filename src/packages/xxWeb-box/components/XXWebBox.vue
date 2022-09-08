@@ -50,8 +50,41 @@
         </template>
         <Container class="content-container">
           <HeaderLayout :isCollapse="isCollapse">
-            <template v-slot:dropdownMenuItem="{menu}">
-              <slot name="dropdownMenuItem" :menu="menu"></slot>
+            <template v-slot:head-hamburger>
+              <slot name="head-hamburger"></slot>
+            </template>
+            <template v-slot:head-logo>
+              <slot name="head-logo"></slot>
+            </template>
+            <template v-slot:head-title>
+              <slot name="head-title"></slot>
+            </template>
+            <template v-slot:head-breadcrumb>
+              <slot name="head-breadcrumb"></slot>
+            </template>
+            <template v-slot:heade-expand>
+              <slot name="heade-expand"></slot>
+            </template>
+            <template v-slot:head-searchMenu>
+              <slot name="head-searchMenu"></slot>
+            </template>
+            <template v-slot:head-fullScreen>
+              <slot name="head-fullScreen"></slot>
+            </template>
+            <template v-slot:head-userMenu>
+              <slot name="head-userMenu"></slot>
+            </template>
+            <template v-slot:head-user-userName>
+              <slot name="head-user-userName"></slot>
+            </template>
+            <template v-slot:head-user-dropdownMenuItem="{menu}">
+              <slot name="head-user-dropdownMenuItem" :menu="menu"></slot>
+            </template>
+            <template v-slot:head-user-tag>
+              <slot name="head-user-tag"></slot>
+            </template>
+            <template v-slot:head-user-tag-text>
+              <slot name="head-user-tag-text"></slot>
             </template>
           </HeaderLayout>
           <MainLayout/>

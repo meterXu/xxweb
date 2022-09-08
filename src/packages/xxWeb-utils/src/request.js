@@ -1,7 +1,8 @@
-import Vue from 'vue'
 import axios from 'axios'
 import {ACCESS_TOKEN} from "./mutation-types"
+import {ls} from "./util"
 function createService(project,withCredentials,baseApiKey,isToken){
+    const _ls = new ls(project)
     let baseUrl = project.variable[baseApiKey];
     const service = axios.create({
         baseURL: baseUrl,
@@ -9,7 +10,7 @@ function createService(project,withCredentials,baseApiKey,isToken){
         withCredentials:withCredentials||false
     })
     service.interceptors.request.use(config => {
-        const token = decodeURIComponent(Vue.ls.get(ACCESS_TOKEN))
+        const token = _ls.get(ACCESS_TOKEN)
         const tokenKey = project.variable.tokenKey || 'X-Access-Token'
         if (token&&isToken) {
             if(config.headers&&!config.headers[tokenKey]){
@@ -20,31 +21,47 @@ function createService(project,withCredentials,baseApiKey,isToken){
                 }
             }
         }
-        if (config.method == 'get') {
-            if (config.url&&config.url.indexOf("sys/dict/getDictItems") < 0) {
-                config.params = Object.assign({
-                    _t: new Date().valueOf()
-                },config.params)
-            }
-        }
         return config
-    }, (error) => {
-        return Promise.reject(error)
     })
-    service.interceptors.response.use((response) => {
-        return response.data
-    }, (err) => {
-        return Error(err)
-    })
+
     return service
 }
 
-export function getService(project,withCredentials=false,baseApiKey='baseApi') {
-    return createService(project,withCredentials,baseApiKey,true)
+export function getService(project,withCredentials=false,baseApiKey='baseApi',isToken=true) {
+    return createService(project,withCredentials,baseApiKey,isToken)
 }
-export function getServiceSSO(project,withCredentials=false,baseApiKey='ssoApi') {
-    return createService(project,withCredentials,baseApiKey,true)
+export function getServiceSSO(project,withCredentials=false,baseApiKey='ssoApi',isToken=true) {
+    return createService(project,withCredentials,baseApiKey,isToken)
 }
-export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi') {
-    return createService(project,withCredentials,baseApiKey,false)
+export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi',isToken=false) {
+    return createService(project,withCredentials,baseApiKey,isToken)
+}
+
+
+export function onResponseError(service,callback){
+    service.interceptors.response.use((response) => {
+        return response
+    }, (error) => {
+        callback&&callback(error)
+    })
+}
+
+
+export function getErrorText(status){
+    switch (status) {
+        case 403:
+            return '拒绝访问'
+        case 500:
+            return '后端异常'
+        case 404:
+           return '很抱歉，资源未找到'
+        case 504:
+           return '网络超时'
+        case 401:
+            return '授权过期'
+        case 426:
+            return '服务器拒绝使用当前协议执行请求'
+        default:
+            return '未知'
+    }
 }

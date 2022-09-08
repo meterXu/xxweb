@@ -158,7 +158,7 @@ export default {
           })
         }else{
           let {name,path,meta} = route
-          view = {name, path, meta}
+          view = {name, path, meta:meta||{}}
         }
         this.visitedViews.push(view)
         this.saveCachedView(view.meta.keepAlive,route.name||view.name)

@@ -5,46 +5,55 @@
         <div class="row-head">
           <div class="left-con">
             <div v-if="sidemenu" class="user-menu-item">
-              <slot name="hamburger" v-if="!appConfig.style.fixSide">
+              <slot name="head-hamburger" v-if="!appConfig.style.fixSide">
                 <Hamburger :isCollapse="isCollapse"/>
               </slot>
             </div>
             <div v-if="topmenu" class="user-menu-item">
-              <slot  name="headLog" v-if="appConfig.config.head.logo.show">
+              <slot  name="head-logo" v-if="appConfig.config.head.logo.show">
                 <Logo :isCollapse="false"/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="headTitle" v-if="appConfig.config.head.title.show">
+              <slot name="head-title" v-if="appConfig.config.head.title.show">
                 <HeadTitle/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="breadcrumb" v-if="appConfig.config.head.breadcrumb.show">
+              <slot name="head-breadcrumb" v-if="appConfig.config.head.breadcrumb.show">
                 <HeadBreadcrumb/>
               </slot>
             </div>
             <div v-if="topmenu" class="user-menu-item">
               <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
             </div>
-            <slot name="headerExpand"></slot>
+            <slot name="heade-expand"></slot>
           </div>
           <div class="right-con">
             <div class="user-menu-item">
-              <slot name="searchMenu" v-if="appConfig.config.head.searchMenu.show">
+              <slot name="head-searchMenu" v-if="appConfig.config.head.searchMenu.show">
                 <SearchMenu/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="fullScreen" v-if="appConfig.config.head.fullscreen.show">
+              <slot name="head-fullScreen" v-if="appConfig.config.head.fullscreen.show">
                 <FullScreen/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="userMenu" v-if="appConfig.config.head.user.show">
+              <slot name="head-userMenu" v-if="appConfig.config.head.user.show">
                 <UserMenu type="text">
-                  <template v-slot:dropdownMenuItem="{menu}">
-                    <slot name="dropdownMenuItem" :menu="menu"></slot>
+                  <template v-slot:side-user-userName>
+                    <slot name="head-user-userName"></slot>
+                  </template>
+                  <template v-slot:side-user-dropdownMenuItem="{menu}">
+                    <slot name="head-user-dropdownMenuItem" :menu="menu"></slot>
+                  </template>
+                  <template v-slot:side-user-tag>
+                    <slot name="head-user-tag"></slot>
+                  </template>
+                  <template v-slot:side-user-tag-text>
+                    <slot name="head-user-tag-text"></slot>
                   </template>
                 </UserMenu>
               </slot>
