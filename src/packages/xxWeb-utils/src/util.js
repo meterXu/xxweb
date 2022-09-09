@@ -431,14 +431,18 @@ export function redirectSsoLogin(project,vue){
 }
 
 
-export function oAuthMenu2S2(data) {
+export function oAuthMenu2S2(data,customIcon) {
     let menusArr = []
     data.forEach((e)=>{
         let menus = {}
         let meta = {}
         let regx = /^(http:)|(https:)/mg
         meta.title = e.name
-        meta.icon = e.icon
+        if(customIcon){
+            customIcon(meta,e.icon)
+        }else{
+            meta.icon = e.icon
+        }
         meta.keepAlive = e.keepAlive=="1"?true: false
         if(e.children.length) {
             menus.children=oAuthMenu2S2(e.children)
