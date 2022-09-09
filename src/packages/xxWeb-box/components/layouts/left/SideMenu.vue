@@ -1,10 +1,10 @@
 <template>
   <Scrollbar wrap-class="side-scrollbar">
     <Aside class="side-menu" :width="width">
-      <slot name="side-logo" v-if="appConfig.config.sideMenu.logo.show">
+      <slot name="side-logo" v-if="app.appConfig.config.sideMenu.logo.show">
         <Logo :isCollapse="isCollapse"/>
       </slot>
-      <slot name="side-userMenu" v-if="appConfig.config.sideMenu.user.show">
+      <slot name="side-userMenu" v-if="app.appConfig.config.sideMenu.user.show">
         <UserMenu type='avatar' :isCollapse="isCollapse">
           <template v-slot:side-user-userName>
             <slot name="side-user-userName"></slot>
@@ -52,10 +52,10 @@ export default {
   },
   computed:{
     width(){
-      return this.isCollapse?'65px': this.appConfig.config.sideMenu.width
+      return this.isCollapse?'65px': this.app.appConfig.config.sideMenu.width
     },
     title(){
-      return this.appConfig.config.sideMenu.title
+      return this.app.appConfig.config.sideMenu.title
     }
   },
   methods:{

@@ -13,7 +13,7 @@
           :closable="item.meta&&!item.meta.permanent"
       >
         <span slot="label" @contextmenu="openMenu($event.target.parentNode)">
-          <DynamicIcon v-if="appConfig.config.tabs.icon" :meta="item.meta"/> {{item.meta&&item.meta.title}}</span>
+          <DynamicIcon v-if="app.appConfig.config.tabs.icon" :meta="item.meta"/> {{item.meta&&item.meta.title}}</span>
       </TabPane>
     </Tabs>
     <ul
@@ -70,7 +70,7 @@ export default {
       this.visitRoute(tab.name)
     },
     removeTab(tabName) {
-      let indexPath = this.appConfig.redirect.index
+      let indexPath = this.app.appConfig.redirect.index
       if (tabName === indexPath) {
         return;
       }
@@ -123,8 +123,8 @@ export default {
       }
     },
     closeOthersTags() {
-      let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
-      if(this.contextMenuPath===this.appConfig.redirect.index){
+      let indexMenu = this.visitedViews.find(c=>c.path===this.app.appConfig.redirect.index)
+      if(this.contextMenuPath===this.app.appConfig.redirect.index){
         this.visitedViews.splice(0,this.visitedViews.length)
         indexMenu&&this.visitedViews.push(indexMenu)
       }else{
@@ -139,10 +139,10 @@ export default {
       this.removeTab(this.contextMenuPath)
     },
     closeAllTags() {
-      let indexMenu = this.visitedViews.find(c=>c.path===this.appConfig.redirect.index)
+      let indexMenu = this.visitedViews.find(c=>c.path===this.app.appConfig.redirect.index)
       this.visitedViews.splice(0,this.visitedViews.length)
       indexMenu&&this.visitedViews.push(indexMenu)
-      this.visitRoute(this.appConfig.redirect.index)
+      this.visitRoute(this.app.appConfig.redirect.index)
     },
     closeMenu() {
       this.visible = false
@@ -150,7 +150,7 @@ export default {
     addVisitedViews(route,permanent=false){
       let view = this.visitedViews.find(c=>c.path === route.path)
       if(!view){
-        view = this.searchMenuByPath(this.permission, route.path)
+        view = this.searchMenuByPath(this.app.permission, route.path)
         if(view){
           view = JSON.parse(JSON.stringify(view))
           view.meta = Object.assign(view.meta,route.meta, {
@@ -172,10 +172,10 @@ export default {
   }
   ,
   created() {
-    if (this.$route.path === this.appConfig.redirect.index) {
+    if (this.$route.path === this.app.appConfig.redirect.index) {
       this.addVisitedViews(this.$route,true)
     } else {
-      this.addVisitedViews({path:this.appConfig.redirect.index},true)
+      this.addVisitedViews({path:this.app.appConfig.redirect.index},true)
       this.addVisitedViews(this.$route)
     }
     this.selectedPath = this.$route.path

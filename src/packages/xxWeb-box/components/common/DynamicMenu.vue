@@ -19,8 +19,8 @@ export default {
   },
   render(h, context) {
     const {defaultActive,mode,isCollapse} = context.props;
-    const permission = context.injections.permission
-    const appConfig = context.injections.appConfig
+    const permission = context.injections.app.permission
+    const appConfig = context.injections.app.appConfig
     function renderSubMenu() {
       let sMenu = []
       permission.forEach(m => {

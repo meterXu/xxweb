@@ -1,6 +1,6 @@
 <template>
   <Main class="layout-main">
-    <TagsView v-if="appConfig.style.multipage" @refresh="refresh"></TagsView>
+    <TagsView v-if="app.appConfig.style.multipage" @refresh="refresh"></TagsView>
     <AppMain ref="appMain"></AppMain>
   </Main>
 </template>

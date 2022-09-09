@@ -138,8 +138,7 @@ export default {
   },
   provide () {
     return {
-      appConfig: this.appConfig,
-      permission:this.permission,
+      app:this,
       cachedViews:this.cachedViews,
       visitedViews:this.visitedViews,
       // slots:this.$slots,

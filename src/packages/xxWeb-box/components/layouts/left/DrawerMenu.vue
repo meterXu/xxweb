@@ -3,9 +3,9 @@
           direction="ltr"
           :show-close="false"
           custom-class="mobile-drawer"
-          :size="appConfig.config.sideMenu.width"
+          :size="app.appConfig.config.sideMenu.width"
           :before-close="handleClose">
-    <slot name="leftSide" :data="{isCollapse:false,permission:this.permission}">
+    <slot name="leftSide" :data="{isCollapse:false,permission:this.app.permission}">
       <SideMenu :isCollapse="false" mode="vertical">
         <template v-slot:side-logo>
           <slot name="side-logo"></slot>

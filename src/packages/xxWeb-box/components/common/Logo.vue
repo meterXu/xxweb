@@ -15,10 +15,10 @@ export default {
   props:['isCollapse'],
   computed:{
     imgSrc(){
-      return this.appConfig.config.logo
+      return this.app.appConfig.config.logo
     },
     title(){
-      return this.appConfig.config.sideMenu.title
+      return this.app.appConfig.config.sideMenu.title
     }
   }
 }

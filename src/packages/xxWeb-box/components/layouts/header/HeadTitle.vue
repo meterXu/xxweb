@@ -17,9 +17,9 @@ export default {
   computed:{
     headTitle(){
       if(this.device==='desktop'){
-        return this.appConfig.config.head.title.desktop
+        return this.app.appConfig.config.head.title.desktop
       }else{
-        return this.appConfig.config.head.title.mobile
+        return this.app.appConfig.config.head.title.mobile
       }
     }
   },

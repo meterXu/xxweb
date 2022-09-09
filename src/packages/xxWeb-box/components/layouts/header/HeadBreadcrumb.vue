@@ -54,7 +54,7 @@ export default {
           this.levelList.push(m)
         }else{
           let path = that.pathCompile(m.path||'/')
-          let menu = that.searchMenuByPath(that.permission,path)
+          let menu = that.searchMenuByPath(that.app.permission,path)
           if(menu&&menu.meta&&menu.meta.title){
             that.levelList.push(Object.assign({},m,{meta:menu.meta}))
           }

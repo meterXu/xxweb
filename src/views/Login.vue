@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     login(form){
-      localStorage.setItem(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
+      this.$ls.set(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
       this.$router.replace({path:project.redirect.index})
     }
   }

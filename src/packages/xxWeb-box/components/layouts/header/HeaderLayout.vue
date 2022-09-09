@@ -5,22 +5,22 @@
         <div class="row-head">
           <div class="left-con">
             <div v-if="sidemenu" class="user-menu-item">
-              <slot name="head-hamburger" v-if="!appConfig.style.fixSide">
+              <slot name="head-hamburger" v-if="!app.appConfig.style.fixSide">
                 <Hamburger :isCollapse="isCollapse"/>
               </slot>
             </div>
             <div v-if="topmenu" class="user-menu-item">
-              <slot  name="head-logo" v-if="appConfig.config.head.logo.show">
+              <slot  name="head-logo" v-if="app.appConfig.config.head.logo.show">
                 <Logo :isCollapse="false"/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="head-title" v-if="appConfig.config.head.title.show">
+              <slot name="head-title" v-if="app.appConfig.config.head.title.show">
                 <HeadTitle/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="head-breadcrumb" v-if="appConfig.config.head.breadcrumb.show">
+              <slot name="head-breadcrumb" v-if="app.appConfig.config.head.breadcrumb.show">
                 <HeadBreadcrumb/>
               </slot>
             </div>
@@ -31,17 +31,17 @@
           </div>
           <div class="right-con">
             <div class="user-menu-item">
-              <slot name="head-searchMenu" v-if="appConfig.config.head.searchMenu.show">
+              <slot name="head-searchMenu" v-if="app.appConfig.config.head.searchMenu.show">
                 <SearchMenu/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="head-fullScreen" v-if="appConfig.config.head.fullscreen.show">
+              <slot name="head-fullScreen" v-if="app.appConfig.config.head.fullscreen.show">
                 <FullScreen/>
               </slot>
             </div>
             <div class="user-menu-item">
-              <slot name="head-userMenu" v-if="appConfig.config.head.user.show">
+              <slot name="head-userMenu" v-if="app.appConfig.config.head.user.show">
                 <UserMenu type="text">
                   <template v-slot:side-user-userName>
                     <slot name="head-user-userName"></slot>
@@ -93,10 +93,10 @@ export default {
   },
   computed:{
     sidemenu(){
-      return this.appConfig.style.layout==='sidemenu'
+      return this.app.appConfig.style.layout==='sidemenu'
     },
     topmenu(){
-      return this.appConfig.style.layout==='topmenu'
+      return this.app.appConfig.style.layout==='topmenu'
     },
     defaultActive(){
       return this.$route.path

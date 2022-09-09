@@ -42,7 +42,7 @@ export default {
     },
     querySearch(queryString, cb){
       let results = []
-      this.treeDataFilter(this.permission,queryString,results)
+      this.treeDataFilter(this.app.permission,queryString,results)
       cb(results);
     },
     handleSelect(item){
