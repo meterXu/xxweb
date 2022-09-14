@@ -9,7 +9,7 @@ export default {
   name: "FullScreen",
   methods:{
     handleFullScreen(){
-      const element = document.getElementById('app');
+      const element = document.querySelector("body");
       if (element) screenfull.toggle(element);
     }
   }
