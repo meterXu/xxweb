@@ -399,7 +399,7 @@ export function generateRealUrl(url,params){
  * @returns {String}
  */
 export function ssoLoginOutUrl(ssoBackUrl,query){
-    let params = {"redirect_url":`${window.location.href}`};
+    let params = {"redirect_url":`${window.location.origin}${window.location.pathname}#${query.path}`};
     if(query&&query.action==="logout"){
         if(ssoBackUrl.lastIndexOf('/login?')>-1){
             ssoBackUrl+='&action=logout'
@@ -422,7 +422,9 @@ export function ssoLoginOutUrl(ssoBackUrl,query){
  * @param {Object} vue
  */
 export function redirectSsoLogin(project,vue){
-    if(vue.$ls.get(ACCESS_TOKEN)){
+    let _ls = new ls(project)
+    let xx = _ls.get(ACCESS_TOKEN)
+    if(xx){
         vue.$router.push({ path: project.redirect.index})
     }else{
         const redirectUrl = ssoLoginOutUrl(project.variable.ssoAuth,vue.$route.query)
