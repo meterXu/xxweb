@@ -447,7 +447,7 @@ export function oAuthMenu2S2(data,customIcon) {
         }
         meta.keepAlive = e.keepAlive=="1"?true: false
         if(e.children.length) {
-            menus.children=oAuthMenu2S2(e.children)
+            menus.children=oAuthMenu2S2(e.children,customIcon)
         }
         menus.meta = meta
         menus.path = e.path

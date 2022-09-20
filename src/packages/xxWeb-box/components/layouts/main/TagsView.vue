@@ -13,7 +13,7 @@
           :closable="item.meta&&!item.meta.permanent"
       >
         <span slot="label" @contextmenu="openMenu($event.target.parentNode)">
-          <DynamicIcon v-if="app.appConfig.config.tabs.icon" :meta="item.meta"/> {{item.meta&&item.meta.title}}</span>
+          <DynamicIcon v-if="app.appConfig.config.tabs.icon" type="tab" :meta="item.meta"/> {{item.meta&&item.meta.title}}</span>
       </TabPane>
     </Tabs>
     <ul
@@ -152,8 +152,9 @@ export default {
       if(!view){
         view = this.searchMenuByPath(this.app.permission, route.path)
         if(view){
+          let _meta= Object.assign({},view.meta)
           view = JSON.parse(JSON.stringify(view))
-          view.meta = Object.assign(view.meta,route.meta, {
+          view.meta = Object.assign(_meta,route.meta, {
             permanent
           })
         }else{

@@ -78,7 +78,7 @@ const project = {
             }
         },
         tabs: {
-            icon: false,
+            icon: true,
         },
         footer: {
             show: true,

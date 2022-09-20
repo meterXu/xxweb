@@ -31,7 +31,7 @@ export default {
               vcs.push(
                   <ItemLink to={c.path}>
                     <MenuItem index={c.path}>
-                      <DynamicIcon meta={c.meta}/>
+                      <DynamicIcon type="menu" meta={c.meta}/>
                       <template slot="title">
                         <DyMenuTitle meta={c.meta}/>
                       </template>
@@ -43,7 +43,7 @@ export default {
           sMenu.push(
               <Submenu index={m.path} popper-class={'xxWeb-xxWebBox-'+appConfig.style.theme}>
                 <template slot="title">
-                  <DynamicIcon meta={m.meta}/>
+                  <DynamicIcon type="menu" meta={m.meta}/>
                   <DyMenuTitle meta={m.meta}/>
                 </template>
                 {vcs}
@@ -53,7 +53,7 @@ export default {
             sMenu.push(
                 <ItemLink to={m.path}>
                   <MenuItem index={m.path}>
-                    <DynamicIcon meta={m.meta}/>
+                    <DynamicIcon type="menu" meta={m.meta}/>
                     <template slot="title">
                       <DyMenuTitle meta={m.meta}/>
                     </template>

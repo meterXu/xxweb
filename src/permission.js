@@ -5,28 +5,39 @@ export default [
         meta: {
             title: '首页',
             icon: {
-                render(){
-                    return (<DoExcel></DoExcel>)
+                icon:'DoDWork',
+                conf:{
+                    theme:'two-tone',
+                    fill:['currentColor','green']
                 }
             }
         },
     },
     {
     path: '/dashboard',
-    meta: { title: '组件库', icon: 'el-icon-s-platform' },
+    meta: { title: '组件库', icon: {
+            icon:'DoDBasis'
+        } },
     children: [
         {
             path: '/page/xxWebBox',
             meta: {
                 title: 'xxWebBox',
-                icon: 'el-icon-s-platform'
+                icon: {
+                    render(){
+                        return (<DoExcel/>)
+                    }
+                }
             }
         },
         {
             path: '/page/login',
             meta: {
                 title: 'login',
-                icon: 'el-icon-s-platform'
+                icon: {
+                    icon:'DoExcel',
+                    conf:{}
+                }
             }
         },
         {
