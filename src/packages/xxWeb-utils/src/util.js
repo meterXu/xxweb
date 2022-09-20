@@ -399,7 +399,7 @@ export function generateRealUrl(url,params){
  * @returns {String}
  */
 export function ssoLoginOutUrl(ssoBackUrl,query){
-    let params = {"redirect_url":`${window.location.origin}${window.location.pathname}#${query.path}`};
+    let params = {"redirect_url":`${window.location.origin}${window.location.pathname}#${query.path||''}`};
     if(query&&query.action==="logout"){
         if(ssoBackUrl.lastIndexOf('/login?')>-1){
             ssoBackUrl+='&action=logout'
@@ -432,6 +432,17 @@ export function redirectSsoLogin(project,vue){
     }
 }
 
+/**
+ * 通用退出登录
+ * @param {Object} vue
+ */
+export function logOut(vue){
+    if(vue.$router&&vue.$route){
+        vue.$router.replace({
+            path:vue.$route.path+'?action=logout'
+        })
+    }
+}
 
 export function oAuthMenu2S2(data,customIcon) {
     let menusArr = []
