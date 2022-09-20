@@ -7,7 +7,9 @@ export default {
     const { meta } = context.props;
     if (meta.icon) {
       if (typeof (meta.icon) === 'object'){
-        return (meta.icon)
+        return createElement(meta.icon.render,{
+          class:'el-icon-dog-icon'
+        })
       }
       else {
         return (<i class={meta.icon} />)

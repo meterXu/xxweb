@@ -21,6 +21,7 @@
     "analyz": "set npm_config_report=true && npm run build"
   },
   "dependencies": {
+    "@dpark/icon": "^1.0.22",
     "axios": "^0.18.0",
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",

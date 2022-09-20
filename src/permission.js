@@ -1,7 +1,15 @@
+import {DoExcel} from '@dpark/icon'
 export default [
     {
         path: '/page/dashboard',
-        meta: { title: '首页', icon: 'el-icon-s-platform' },
+        meta: {
+            title: '首页',
+            icon: {
+                render(){
+                    return (<DoExcel></DoExcel>)
+                }
+            }
+        },
     },
     {
     path: '/dashboard',
