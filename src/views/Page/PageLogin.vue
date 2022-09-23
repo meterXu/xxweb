@@ -22,7 +22,7 @@
 <script>
 import {Card,Button} from 'element-ui'
 export default {
-  name: "Box404",
+  name: "PageLogin",
   components:{Card,Button},
   data(){
     return {

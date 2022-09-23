@@ -18,7 +18,7 @@
               </div>
               <div class="main-right-box-input">
                 <slot name="form-item-prefix"></slot>
-                <Form :model="form" :rules="rules" class="login_from">
+                <Form ref="loginForm" :model="form" :rules="rules" class="login_from">
                   <FormItem prop="username">
                     <Input
                         v-model="form.username"
@@ -64,7 +64,20 @@ export default {
     config:{default(){return {}}},
     tips:{default:true},
     remember:{default:true},
-    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号','password':"请输入密码"}}}
+    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号','password':"请输入密码"}}},
+    rules:{
+      type:Object
+    },
+    form:{
+      type:Object,
+      default(){
+        return {}
+      }
+    }
+  },
+  model:{
+    prop:'form',
+    event:'change'
   },
   components:{
     Form,
@@ -73,26 +86,11 @@ export default {
     Button,
     Checkbox
   },
-  data() {
-    return {
-      form:{
-        username:null,
-        password:null,
-        remember:false
-      },
-      rules:{
-        username:[
-          { required: true, message: '用户名不能为空'},
-        ],
-        password:[
-          { required: true, message: '密码不能为空'},
-        ]
-      }
-    };
-  },
   methods:{
     login(){
-      this.$emit('login',this.form)
+      this.$refs.loginForm.validate(valid=>{
+        this.$emit('login',valid)
+      })
     }
   }
 }
