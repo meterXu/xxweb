@@ -399,19 +399,16 @@ export function generateRealUrl(url,params){
  * @returns {String}
  */
 export function ssoLoginOutUrl(ssoBackUrl,query){
-    let params = {"redirect_url":`${window.location.origin}${window.location.pathname}#${query.path||''}`};
-    if(query&&query.action==="logout"){
-        if(ssoBackUrl.lastIndexOf('/login?')>-1){
-            ssoBackUrl+='&action=logout'
-        }else{
-            ssoBackUrl+='/login?action=logout'
-        }
+    let queryArray= []
+    Object.keys(query).filter(c=>c!=='path').forEach(c=>{
+        queryArray.push(`${c}=${query[c]}`)
+    })
+    let params = {"redirect_url":encodeURIComponent(`${window.location.origin}${window.location.pathname}#${query.path||''}${queryArray.length>0?'?='+queryArray.join('&'):''}`)};
+    if(ssoBackUrl.lastIndexOf('?')>-1){
+        ssoBackUrl+='&action=logout'
     }else{
-        if(ssoBackUrl.lastIndexOf('/login')===0){
-            ssoBackUrl+='/login'
-        }
+        ssoBackUrl+='?action=logout'
     }
-    params["redirect_url"]= encodeURIComponent(params["redirect_url"]);
     const redirectUrl = generateRealUrl(ssoBackUrl,params);
     return redirectUrl;
 }
