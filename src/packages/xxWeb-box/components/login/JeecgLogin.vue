@@ -62,7 +62,17 @@ export default {
     remember:{default:true},
     placeholder:{default(){return{username:'请输入用户名/邮箱/手机号','password':"请输入密码"}}},
     rules:{
-      type:Object
+      type:Object,
+      default(){
+        return {
+          username:[
+            { required: true, message: '用户名不能为空',trigger: 'blur'},
+          ],
+          password:[
+            { required: true, message: '密码不能为空',trigger: 'blur'},
+          ]
+        }
+      }
     },
     form:{
       type:Object,

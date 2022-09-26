@@ -1,6 +1,6 @@
 <template>
   <div style="height: 100%">
-    <jeecg-login v-if="type==1" :config="config" :rules="rules" v-model="form" @login="login">
+    <jeecg-login v-if="type==1" :config="config" v-model="form" @login="login">
     </jeecg-login>
     <PigLogin v-if="type==2" :config="config" :rules="rules" v-model="form" @login="login">
     </PigLogin>
