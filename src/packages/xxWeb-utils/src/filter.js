@@ -24,6 +24,7 @@ function filter(router,project) {
             if(to.query){
                 if (to.query.action === 'logout') {
                     _ls.remove(ACCESS_TOKEN)
+                    _ls.remove(USER_INFO)
                   }else{
                     const accessToken = util.getQueryVariable(project.variable.tokenKey)||to.query[project.variable.tokenKey]
                     const realname = util.getQueryVariable('realname') || to.query['realname']
