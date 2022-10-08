@@ -29,13 +29,15 @@ function filter(router,project) {
                     const accessToken = util.getQueryVariable(project.variable.tokenKey)||to.query[project.variable.tokenKey]
                     const realname = util.getQueryVariable('realname') || to.query['realname']
                     const username = util.getQueryVariable('username') || to.query['username']
+                    const tenantId = util.getQueryVariable('tenantId') || to.query['tenantId']
                     if (accessToken) {
                         _ls.set(ACCESS_TOKEN, accessToken)
                     }
                     if (realname) {
                         _ls.set(USER_INFO, JSON.stringify({
                         'realname': realname,
-                        'username': username
+                        'username': username,
+                        'tenantId': tenantId
                       }))
                     }
                   }
