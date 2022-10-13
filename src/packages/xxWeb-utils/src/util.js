@@ -434,10 +434,18 @@ export function redirectSsoLogin(project,vue){
  * @param {Object} vue
  */
 export function logOut(vue){
+    let _ls = new ls(project)
+    _ls.remove(ACCESS_TOKEN)
+    _ls.remove(USER_INFO)
     if(vue.$router&&vue.$route){
         vue.$router.replace({
-            path:vue.$route.path+'?action=logout'
+            path:vue.project.redirect.login||vue.prototype.$project.redirect.login,
+            query:{
+                path:vue.$route.path
+            }
         })
+    }else{
+        window.location.reload()
     }
 }
 
