@@ -1,6 +1,6 @@
 <template>
   <div class="tags-view-container">
-    <Tabs
+    <Tabs class="xx-web-tab"
         v-model="selectedPath"
         @tab-click="tabClick"
         @tab-remove="removeTab"
