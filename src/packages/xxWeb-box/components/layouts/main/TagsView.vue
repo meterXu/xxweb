@@ -160,7 +160,7 @@ export default {
         }else{
           view = this.searchMenuByPath(this.$router.getRoutes(), route.path)
           if(!view){
-            view = {name:'未定义meta中的title', path, meta:{}}
+            view = {name:'未找到该路由', path:route.path, meta:{title:'未找到该路由'}}
           }
         }
         this.visitedViews.push(view)
