@@ -158,8 +158,10 @@ export default {
             permanent
           })
         }else{
-          let {name,path,meta} = route
-          view = {name, path, meta:meta||{}}
+          view = this.searchMenuByPath(this.$router.getRoutes(), route.path)
+          if(!view){
+            view = {name:'未定义meta中的title', path, meta:{}}
+          }
         }
         this.visitedViews.push(view)
         this.saveCachedView(view.meta.keepAlive,route.name||view.name)
