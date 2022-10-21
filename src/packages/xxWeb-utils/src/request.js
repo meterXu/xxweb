@@ -6,7 +6,7 @@ function createService(project,withCredentials,baseApiKey,isToken){
     let baseUrl = project.variable[baseApiKey];
     const service = axios.create({
         baseURL: baseUrl,
-        timeout: 15000, // 请求超时时间
+        timeout: 6000, // 请求超时时间
         withCredentials:withCredentials||false
     })
     service.interceptors.request.use(config => {
