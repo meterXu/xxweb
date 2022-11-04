@@ -4,12 +4,12 @@ const project = {
         ssoApi:process.env.VUE_APP_ssoApi
     },
     redirect: {
-        index: '/page/dashboard',
+        index: '/page/xxWebBox',
         login: '/login/1',
         "404": '/404'
     },
     style: {
-        theme: 'default',
+        theme: 'thunder',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
@@ -20,9 +20,9 @@ const project = {
     },
     config: {
         logo: "./static/imgs/logo-white.png",
-        title: "web-xxWebBox",
+        title: "s2-xxWebBox",
         login: {
-            title: "web-xxWebBox",
+            title: "s2-xxWebBox",
             desc: ""
         },
         head: {
@@ -31,7 +31,7 @@ const project = {
             },
             title: {
                 show: true,
-                desktop: "欢迎使用xxWeb",
+                desktop: "欢迎使用s2-xxWebBox",
                 mobile: ""
             },
             breadcrumb: {
@@ -49,7 +49,7 @@ const project = {
                 show: true,
             },
             user: {
-                show: true,
+                show: false,
                 username: true,
                 menu: {
                     show: true,
@@ -60,13 +60,13 @@ const project = {
             }
         },
         sideMenu: {
-            title: "web-xxWebBox",
+            title: "s2-xxWebBox",
             width: '200px',
             logo:{
                 show: true,
             },
             user: {
-                show: false,
+                show: true,
                 username: true,
                 tag:true,
                 menu: {

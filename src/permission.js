@@ -1,20 +1,7 @@
 import {DoExcel} from '@dpark/icon'
 export default [
     {
-        path: '/page/dashboard',
-        meta: {
-            title: '首页',
-            icon: {
-                icon:'DoDWork',
-                conf:{
-                    theme:'two-tone',
-                    fill:['currentColor','green']
-                }
-            }
-        },
-    },
-    {
-    path: '/dashboard',
+    path: '/page',
     meta: { title: '组件库', icon: {
             icon:'DoDBasis'
         } },
