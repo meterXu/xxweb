@@ -13,6 +13,7 @@ Vue.prototype.$ls = new util.ls(window.project)
 console.log('xxx')
 console.log('xxx')
 console.log('xxx')
+console.log('xxx')
 new Vue({
   router,
   render: h => h(App),
