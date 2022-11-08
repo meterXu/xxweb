@@ -7,6 +7,7 @@ import router from './router';
 Vue.config.productionTip = false
 Vue.use(XXWebBox)
 Vue.use(DoIcon)
+console.log("test")
 Vue.prototype.$project = window.project
 filter(router,Vue.prototype.$project)
 Vue.prototype.$ls = new util.ls(window.project)
