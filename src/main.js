@@ -10,6 +10,7 @@ Vue.use(DoIcon)
 console.log("test")
 console.log("test")
 console.log("test")
+console.log("test")
 Vue.prototype.$project = window.project
 filter(router,Vue.prototype.$project)
 Vue.prototype.$ls = new util.ls(window.project)
