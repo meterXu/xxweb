@@ -1,12 +1,12 @@
 import axios from 'axios'
 import {ACCESS_TOKEN} from "./mutation-types"
 import {ls} from "./util"
-function createService(project,withCredentials,baseApiKey,isToken){
+function createService(project,withCredentials,baseApiKey,isToken,timeout){
     const _ls = new ls(project)
     let baseUrl = project.variable[baseApiKey];
     const service = axios.create({
         baseURL: baseUrl,
-        timeout: 6000, // 请求超时时间
+        timeout: timeout, // 请求超时时间
         withCredentials:withCredentials||false
     })
     service.interceptors.request.use(config => {
@@ -27,14 +27,14 @@ function createService(project,withCredentials,baseApiKey,isToken){
     return service
 }
 
-export function getService(project,withCredentials=false,baseApiKey='baseApi',isToken=true) {
-    return createService(project,withCredentials,baseApiKey,isToken)
+export function getService(project,withCredentials=false,baseApiKey='baseApi',isToken=true,timeout=6000) {
+    return createService(project,withCredentials,baseApiKey,isToken,timeout)
 }
-export function getServiceSSO(project,withCredentials=false,baseApiKey='ssoApi',isToken=true) {
-    return createService(project,withCredentials,baseApiKey,isToken)
+export function getServiceSSO(project,withCredentials=false,baseApiKey='ssoApi',isToken=true,timeout=6000) {
+    return createService(project,withCredentials,baseApiKey,isToken,timeout)
 }
-export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi',isToken=false) {
-    return createService(project,withCredentials,baseApiKey,isToken)
+export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi',isToken=false,timeout=6000) {
+    return createService(project,withCredentials,baseApiKey,isToken,timeout)
 }
 
 
