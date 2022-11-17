@@ -1,5 +1,5 @@
 # xxweb-box
-> 可复用web常用页面
+> 可复用的web常用页面
 
 ![xxweb-box](http://img.xdo.icu/QQ%E6%88%AA%E5%9B%BE20220712174214.jpg)
 
