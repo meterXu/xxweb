@@ -1,5 +1,5 @@
 {
-  "name": "@dpark/s2-xxweb-box",
+  "name": "xxweb-box",
   "version": "0.0.5",
   "description": "开箱即用的web页面盒",
   "main": "index.js",

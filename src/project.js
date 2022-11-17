@@ -86,7 +86,7 @@ const project = {
             copyright: {
                 content: "xxWebBox",
                 year: "2022",
-                href: "http://www.dpark.com.cn",
+                href: "http://www.baidu.con",
                 target: "_blank"
             }
         },
