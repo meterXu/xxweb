@@ -1,30 +1,22 @@
-import {DoExcel} from '@dpark/icon'
 export default [
     {
     path: '/page',
     meta: { title: '组件库', icon: {
-            icon:'DoDBasis'
+            icon: 'el-icon-s-platform'
         } },
     children: [
         {
             path: '/page/xxWebBox',
             meta: {
                 title: 'xxWebBox',
-                icon: {
-                    render(){
-                        return (<DoExcel/>)
-                    }
-                }
+                icon: 'el-icon-s-platform'
             }
         },
         {
             path: '/page/login',
             meta: {
                 title: 'login',
-                icon: {
-                    icon:'DoExcel',
-                    conf:{}
-                }
+                icon: 'el-icon-s-platform'
             }
         },
         {
