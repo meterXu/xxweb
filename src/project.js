@@ -20,9 +20,9 @@ const project = {
     },
     config: {
         logo: "./static/imgs/logo-white.png",
-        title: "s2-xxWebBox",
+        title: "xxWebBox",
         login: {
-            title: "s2-xxWebBox",
+            title: "xxWebBox",
             desc: ""
         },
         head: {
@@ -31,7 +31,7 @@ const project = {
             },
             title: {
                 show: true,
-                desktop: "欢迎使用s2-xxWebBox",
+                desktop: "",
                 mobile: ""
             },
             breadcrumb: {
@@ -60,7 +60,7 @@ const project = {
             }
         },
         sideMenu: {
-            title: "s2-xxWebBox",
+            title: "xxWebBox",
             width: '200px',
             logo:{
                 show: true,
@@ -84,9 +84,9 @@ const project = {
             show: true,
             links: [],
             copyright: {
-                content: "苏州工业园园区测绘地理信息有限公司",
+                content: "xxWebBox",
                 year: "2022",
-                href: "http://www.dpark.com.cn",
+                href: "http://www.baidu.con",
                 target: "_blank"
             }
         },

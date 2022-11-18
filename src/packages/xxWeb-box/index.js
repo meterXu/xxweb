@@ -3,7 +3,6 @@ import JeecgLogin from './components/login/JeecgLogin'
 import PigLogin from './components/login/PigLogin'
 import TreeLogin from './components/login/TreeLogin'
 import WatermelonLogin from './components/login/WatermelonLogin'
-import Router from 'vue-router';
 import NotFound from "./components/error/NotFound";
 import NotFoundDark from "./components/error/NotFoundDark";
 
@@ -17,7 +16,6 @@ const install = function (Vue,config) {
             }
         }
     })
-    Vue.use(Router)
     components.forEach(c=>{
         Vue.component(c.name,c)
     })

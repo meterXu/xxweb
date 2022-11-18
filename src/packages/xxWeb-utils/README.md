@@ -1,43 +1,30 @@
-# s2前端框架工具类
+# xxweb-utils 
+>xxweb工具库
 
-## 安装
-```bash=
-npm i @dpark/s2-xxweb-utils
-```
-或
-```bash
-yarn add @dpark/s2-xxweb-utils
-```
-## 使用
-
-```javascript=
-
-import {potal,mutationTypes,util,request,validate} from '@dpark/s2-utils'
-```
-
-## 工具列表
-
-### portal类
+## filter
 
 |成员|类型|   说明 |
 |:---|:---:|-----:|
-|logout|属性| 退出系统 |
+|filter|方法| 路由鉴权 |
 
-### type类
+## types
 
 |成员|类型|说明|
 |:---|:---:|---:|
 |ACCESS_TOKEN|属性|用户token|
+|USER_INFO|属性|用户信息|
 
-### request类
+## request
 |成员|类型|说明|
 |:---|:---:|---:|
-|getService(project)|函数|获取ajax请求对象|
-|getServiceSSO(project)|函数|获取sso的ajax请求对象|
+|getService(project,withCredentials=false,baseApiKey='baseApi',isToken=true,timeout=6000)|函数|获取请求对象|
+|onResponseError|函数|请求异常处理|
+|getErrorText|函数|根据http状态码获取错误内容|
 
-### util类
+## util
 |成员|类型|说明|
 |:---|:---:|---:|
+|timeFix|函数|获取问候语|
 |triggerWindowResizeEvent|函数|触发 window.resize|
 |filterObj|函数|过滤对象中为空的属性|
 |cloneObject|函数|深度克隆对象、数组|
@@ -48,7 +35,7 @@ import {potal,mutationTypes,util,request,validate} from '@dpark/s2-utils'
 |cssExpand|函数|增强CSS，可以在页面上输出全局css|
 |jsExpand|函数|用于js增强事件，运行JS代码，可以传参|
 
-### validate类
+## validate
 |成员|类型|说明|
 |:---|:---:|---:|
 |isEmail(s)|函数|邮箱|

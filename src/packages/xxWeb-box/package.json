@@ -1,7 +1,7 @@
 {
-  "name": "@dpark/s2-xxweb-box",
+  "name": "xxweb-box",
   "version": "0.0.5",
-  "description": "开箱即用的web页面盒",
+  "description": "可复用的web常用页面",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,8 +16,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.15.8",
-    "path-to-regexp": "2.4.0",
-    "screenfull": "4.2.0",
+    "path-to-regexp": "^2.4.0",
+    "screenfull": "^4.2.0",
     "vue": "^2.6.11",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
