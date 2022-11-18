@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {ACCESS_TOKEN} from "./mutation-types"
 import {ls} from "./util"
-function createService(project,withCredentials,baseApiKey,isToken,timeout){
+function createService(project,mapmostProtocol,withCredentials,baseApiKey,isToken,timeout){
     const _ls = new ls(project)
     let baseUrl = project.variable[baseApiKey];
     const service = axios.create({
@@ -21,17 +21,21 @@ function createService(project,withCredentials,baseApiKey,isToken,timeout){
                 }
             }
         }
+        if(mapmostProtocol) {
+            let protocol = location.protocol.slice(0,-1)
+            config.headers['Mapmost-Protocol'] = protocol
+        }
         return config
     })
 
     return service
 }
 
-export function getService(project,withCredentials=false,baseApiKey='baseApi',isToken=true,timeout=6000) {
-    return createService(project,withCredentials,baseApiKey,isToken,timeout)
+export function getService(project,mapmostProtocol,withCredentials=false,baseApiKey='baseApi',isToken=true,timeout=6000) {
+    return createService(project,mapmostProtocol,withCredentials,baseApiKey,isToken,timeout)
 }
-export function getServiceSSO(project,withCredentials=false,baseApiKey='ssoApi',isToken=true,timeout=6000) {
-    return createService(project,withCredentials,baseApiKey,isToken,timeout)
+export function getServiceSSO(project,mapmostProtocol,withCredentials=false,baseApiKey='ssoApi',isToken=true,timeout=6000) {
+    return createService(project,mapmostProtocol,withCredentials,baseApiKey,isToken,timeout)
 }
 export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi',isToken=false,timeout=6000) {
     return createService(project,withCredentials,baseApiKey,isToken,timeout)
