@@ -37,8 +37,8 @@ export function getService(project,mapmostProtocol,withCredentials=false,baseApi
 export function getServiceSSO(project,mapmostProtocol,withCredentials=false,baseApiKey='ssoApi',isToken=true,timeout=6000) {
     return createService(project,mapmostProtocol,withCredentials,baseApiKey,isToken,timeout)
 }
-export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi',isToken=false,timeout=6000) {
-    return createService(project,withCredentials,baseApiKey,isToken,timeout)
+export function getServiceLogin(project,mapmostProtocol,withCredentials=false,baseApiKey='baseApi',isToken=false,timeout=6000) {
+    return createService(project,mapmostProtocol,withCredentials,baseApiKey,isToken,timeout)
 }
 
 
