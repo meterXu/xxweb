@@ -31,6 +31,7 @@ export default {
         {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>'},
         {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>'},
         {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>'},
+        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>'},
       ]
     }
   }

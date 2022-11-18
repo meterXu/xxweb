@@ -8,16 +8,20 @@
     </TreeLogin>
     <WatermelonLogin v-if="type==4" :config="config" :rules="rules" v-model="form" @login="login">
     </WatermelonLogin>
+    <PhylumLogin v-if="type==5" :config="config" :rules="rules" v-model="form" @login="login">
+    </PhylumLogin>
   </div>
 </template>
 
 <script>
 import {types} from "../packages/xxWeb-utils/index";
 import {FormItem} from 'element-ui'
+import Phylum from "@/packages/xxWeb-box/components/login/PhylumLogin";
 export default {
   name: "Login",
   props:['type'],
   components:{
+    Phylum,
     FormItem
   },
   data(){

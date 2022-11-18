@@ -3,10 +3,20 @@ import JeecgLogin from './components/login/JeecgLogin'
 import PigLogin from './components/login/PigLogin'
 import TreeLogin from './components/login/TreeLogin'
 import WatermelonLogin from './components/login/WatermelonLogin'
+import PhylumLogin from "./components/login/PhylumLogin";
 import NotFound from "./components/error/NotFound";
 import NotFoundDark from "./components/error/NotFoundDark";
-
-let components = [XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin,NotFoundDark]
+let login = [
+    XXWebBox,
+    JeecgLogin,
+    PigLogin,
+    WatermelonLogin,
+    PhylumLogin
+]
+let notFound = [NotFound,
+    NotFoundDark
+]
+let components = [...login,...notFound]
 const install = function (Vue,config) {
     let EventBus = new Vue();
     Object.defineProperties(Vue.prototype, {
