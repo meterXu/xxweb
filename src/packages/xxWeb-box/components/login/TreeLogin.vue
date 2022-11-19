@@ -17,6 +17,7 @@
                     <Input
                         v-model="form.username"
                         prefix-icon="el-icon-user-solid"
+                        @keyup.enter.native="login"
                         :placeholder="placeholder.username"
                     ></Input>
                   </FormItem>
@@ -24,6 +25,7 @@
                     <Input
                         v-model="form.password"
                         prefix-icon="el-icon-key"
+                        @keyup.enter.native="login"
                         :placeholder="placeholder.password"
                         show-password
                     ></Input>

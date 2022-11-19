@@ -17,10 +17,10 @@
             <Form ref="loginForm" :model="form" :rules="rules">
               <slot name="form-item-prefix"></slot>
               <FormItem prop="username">
-                <Input prefix-icon="el-icon-user" v-model="form.username" :placeholder="placeholder.username"/>
+                <Input prefix-icon="el-icon-user" v-model="form.username"  @keyup.enter.native="login" :placeholder="placeholder.username"/>
               </FormItem>
               <FormItem prop="password">
-                <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" :placeholder="placeholder.password"/>
+                <Input prefix-icon="el-icon-lock" type="password" v-model="form.password" @keyup.enter.native="login" :placeholder="placeholder.password"/>
               </FormItem>
               <slot name="form-item-suffix"></slot>
               <FormItem v-if="remember">

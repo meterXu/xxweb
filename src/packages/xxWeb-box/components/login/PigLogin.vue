@@ -17,7 +17,7 @@
                   </slot>
                 </p>
                 <FormItem prop="username">
-                  <Input prefix-icon="el-icon-user" v-model="form.username" :placeholder="placeholder.username"/>
+                  <Input prefix-icon="el-icon-user" v-model="form.username" @keyup.enter.native="login" :placeholder="placeholder.username"/>
                 </FormItem>
                 <p>
                   <slot name="form-label-password">
@@ -25,7 +25,7 @@
                   </slot>
                 </p>
                 <FormItem prop="password">
-                  <Input type="password" prefix-icon="el-icon-lock" v-model="form.password" :placeholder="placeholder.password"/>
+                  <Input type="password" prefix-icon="el-icon-lock" v-model="form.password" @keyup.enter.native="login" :placeholder="placeholder.password"/>
                 </FormItem>
                 <slot name="form-item-suffix"></slot>
                 <FormItem v-if="remember">

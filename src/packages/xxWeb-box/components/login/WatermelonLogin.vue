@@ -22,12 +22,14 @@
                   <FormItem prop="username">
                     <Input
                         v-model="form.username"
+                        @keyup.enter.native="login"
                         :placeholder="placeholder.username"
                     ></Input>
                   </FormItem>
                   <FormItem prop="password">
                     <Input
                         v-model="form.password"
+                        @keyup.enter.native="login"
                         :placeholder="placeholder.password"
                         show-password
                     ></Input>
