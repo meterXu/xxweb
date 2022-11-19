@@ -23,7 +23,7 @@ const project = {
         title: "xxWebBox",
         login: {
             title: "xxWebBox",
-            desc: ""
+            desc: "请输入你的账号"
         },
         head: {
             logo:{

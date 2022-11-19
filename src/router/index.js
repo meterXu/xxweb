@@ -30,7 +30,7 @@ const normalRoutes =  [
         path: '/',
         name: Index.name,
         component: Index,
-        redirect:'/page/dashboard',
+        redirect:'/page/xxWebBox',
         children:[
             {
                 path:'/page/dashboard',

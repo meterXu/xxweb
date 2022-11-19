@@ -15,7 +15,7 @@
           <div class="form">
             <div class="title">
               <h3>登 录</h3>
-              <div class="desc">请输入您的账号</div>
+              <div class="desc">{{config.login.desc}}</div>
             </div>
             <Form ref="loginForm" :model="form" :rules="rules" class="login-form" status-icon label-width="0">
               <slot name="form-item-prefix"></slot>
@@ -34,6 +34,7 @@
                   <Button type="primary" size="normal" class="login-submit login-btn" @click="login">
                     登录
                   </Button>
+                  <slot name="form-login-btn-other"></slot>
                 </slot>
               </FormItem>
             </Form>

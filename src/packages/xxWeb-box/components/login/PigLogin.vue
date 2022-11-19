@@ -36,6 +36,7 @@
                     <Button size="small" class="login-submit login-btn" @click="login">
                       登录
                     </Button>
+                    <slot name="form-login-btn-other"></slot>
                   </slot>
                 </FormItem>
               </Form>

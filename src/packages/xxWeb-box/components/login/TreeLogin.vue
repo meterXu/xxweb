@@ -37,6 +37,7 @@
                       <Button type="primary" size="small" class="el-login-but" @click="login">
                         登录
                       </Button>
+                      <slot name="form-login-btn-other"></slot>
                     </slot>
                   </FormItem>
                 </Form>

@@ -29,6 +29,7 @@
             </Form>
             <slot name="form-login-btn">
               <Button class="login-btn" type="primary" @click="login">登 录</Button>
+              <slot name="form-login-btn-other"></slot>
             </slot>
           </div>
         </slot>
