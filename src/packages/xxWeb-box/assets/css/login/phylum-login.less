@@ -19,26 +19,27 @@ html,body{
   .phylum-login{
     width: 100%;
     height: 100%;
-    background-image: url("../../imgs/bg2.png");
+    //background-image: url("../../imgs/bg2.png");
     background-position: top;
     background-repeat: no-repeat;
-    background-color: #222a39;
+    //background-color: #222a39;
+    background:linear-gradient(90deg,rgba(220,137,255,1) 0%,rgba(162,152,255,1) 52%,rgba(83,160,253,1) 100%);
+    //opacity:0.2969;
     background-size: contain;
     display: flex;
     justify-content: center;
     align-items: center;
     .container{
-      width: 1000px;
-      border-radius: 50px;
-      //background: linear-gradient(241deg, rgba(0, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%), linear-gradient(89deg, #004145, rgba(0, 255, 0, 0) 70.71%), linear-gradient(321deg, #005364, rgba(0, 0, 255, 0) 70.71%);
-      background-color: #3c4852;
+      width: 800px;
+      border-radius: 5px;
+      background: #fff;
+      //background-color: #3c4852;
       margin: 0 auto;
-      height: 600px;
+      height: 450px;
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow:
-              inset 0 -3em 3em rgba(0,0,0,0.1),
+      box-shadow: 0 -3em 3em rgba(0,0,0,0.1),
               0.3em 0.3em 1em rgba(0,0,0,0.3);
     }
     .pic{
@@ -46,19 +47,19 @@ html,body{
       flex: 0.6;
       .pic-icon{
         background: url("../../imgs/pic2.png") center center no-repeat;
-        background-size: cover;
-        width: 380px;
-        height: 380px;
-        border-radius: 190px;
+        background-size: contain;
+        width: 260px;
+        height: 260px;
         margin: 0 auto;
-        margin-top: 30px;
-        box-shadow:0 0  0 2px #bdbdbd;
+        margin-top: 10px;
+        position: relative;
+        left: -25px;
       }
       .title{
         text-align: left;
         height: 90px;
         line-height: 75px;
-        color: #fff;
+        //color: #fff;
         display: flex;
         justify-content: left;
         align-items: center;
@@ -82,7 +83,7 @@ html,body{
       text-align: left;
       padding-right: 100px;
       .el-checkbox__label,.el-input__prefix{
-        color: #fff;
+        //color: #fff;
       }
       .el-input__suffix{
         color:#0069f2;
@@ -95,21 +96,21 @@ html,body{
       }
       .el-input__inner{
         background: transparent;
-        border-color: rgba(255,255,255,0.5);
-        color: #fff;
+        //border-color: rgba(255,255,255,0.5);
+        //color: #fff;
       }
       .el-input__inner:focus{
         border-color: #0069f2;
       }
       .el-input__inner::-ms-input-placeholder,.el-input__inner::-webkit-input-placeholder{
-        color: #fff !important;
+        //color: #fff !important;
       }
       .title{
         margin: 20px 0px;
       }
       h3{
         margin: 10px 0;
-        color: #fff;
+        //color: #fff;
       }
       .desc{
         font-size: 12px;
@@ -130,7 +131,7 @@ html,body{
         margin-bottom: 8px;
         font-size: 14px;
         a {
-          color: rgba(255, 255, 255, 0.85);
+          //color: rgba(255, 255, 255, 0.85);
           transition: all 0.3s;
           &:not(:last-child) {
             margin-right: 40px;
