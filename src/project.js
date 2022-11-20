@@ -19,7 +19,7 @@ const project = {
         autoHideHeader: false,
     },
     config: {
-        logo: "./static/imgs/logo.png",
+        logo: "./static/imgs/logo-white.png",
         title: "xxWebBox",
         login: {
             title: "xxWebBox",
