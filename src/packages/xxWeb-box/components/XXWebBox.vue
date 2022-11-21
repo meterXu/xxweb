@@ -59,11 +59,14 @@
             <template v-slot:head-title>
               <slot name="head-title"></slot>
             </template>
+            <template v-slot:heade-expand-left>
+              <slot name="heade-expand-left"></slot>
+            </template>
             <template v-slot:head-breadcrumb>
               <slot name="head-breadcrumb"></slot>
             </template>
-            <template v-slot:heade-expand>
-              <slot name="head-expand"></slot>
+            <template v-slot:heade-expand-right>
+              <slot name="head-expand-right"></slot>
             </template>
             <template v-slot:head-searchMenu>
               <slot name="head-searchMenu"></slot>

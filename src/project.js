@@ -31,8 +31,8 @@ const project = {
             },
             title: {
                 show: true,
-                desktop: "",
-                mobile: ""
+                desktop: "欢迎使用xxWebBox",
+                mobile: "xxWebBox"
             },
             breadcrumb: {
                 show: true,

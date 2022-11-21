@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleClick">
+  <div @click="toggleClick" class="hamburger-div">
     <svg
         :class="{'is-Collapse':isCollapse}"
         class="hamburger"
@@ -26,5 +26,9 @@ export default {
 </script>
 
 <style scoped>
-
+.hamburger-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>

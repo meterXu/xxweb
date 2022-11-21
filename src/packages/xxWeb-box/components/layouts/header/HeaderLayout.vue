@@ -9,39 +9,46 @@
                 <Hamburger :isCollapse="isCollapse"/>
               </slot>
             </div>
-            <div v-if="topmenu" class="user-menu-item">
-              <slot  name="head-logo" v-if="app.appConfig.config.head.logo.show">
-                <Logo :isCollapse="false"/>
-              </slot>
-            </div>
-            <div class="user-menu-item">
-              <slot name="head-title" v-if="app.appConfig.config.head.title.show">
+            <div class="user-menu-item" v-if="topmenu" >
+                <slot name="head-logo" v-if="app.appConfig.config.head.logo.show">
+                  <Logo :isCollapse="false"/>
+                </slot>
+              </div>
+            <template v-if="app.appConfig.config.head.title.show">
+              <Divider direction="vertical" v-if="!topmenu"></Divider>
+              <div :class="{'user-menu-item':true,'topmenu':topmenu}">
+              <slot name="head-title">
                 <HeadTitle/>
               </slot>
             </div>
-            <div class="user-menu-item">
-              <slot name="head-breadcrumb" v-if="app.appConfig.config.head.breadcrumb.show">
-                <HeadBreadcrumb/>
-              </slot>
-            </div>
-            <div v-if="topmenu" class="user-menu-item">
+            </template>
+            <slot name="heade-expand-left"></slot>
+            <template v-if="app.appConfig.config.head.breadcrumb.show">
+              <Divider direction="vertical" v-if="!topmenu"></Divider>
+              <div :class="{'user-menu-item':true,'topmenu':topmenu}">
+                <slot name="head-breadcrumb">
+                  <HeadBreadcrumb/>
+                </slot>
+              </div>
+            </template>
+            <div :class="{'user-menu-item':true,'topmenu':topmenu}" v-if="topmenu">
               <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
             </div>
-            <slot name="heade-expand"></slot>
+            <slot name="heade-expand-right"></slot>
           </div>
           <div class="right-con">
-            <div class="user-menu-item">
-              <slot name="head-searchMenu" v-if="app.appConfig.config.head.searchMenu.show">
+            <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.searchMenu.show">
+              <slot name="head-searchMenu">
                 <SearchMenu/>
               </slot>
             </div>
-            <div class="user-menu-item">
-              <slot name="head-fullScreen" v-if="app.appConfig.config.head.fullscreen.show">
+            <div class="user-menu-itemm topmenu" v-if="app.appConfig.config.head.fullscreen.show">
+              <slot name="head-fullScreen">
                 <FullScreen/>
               </slot>
             </div>
-            <div class="user-menu-item">
-              <slot name="head-userMenu" v-if="app.appConfig.config.head.user.show">
+            <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.user.show">
+              <slot name="head-userMenu">
                 <UserMenu type="text">
                   <template v-slot:side-user-userName>
                     <slot name="head-user-userName"></slot>
@@ -66,7 +73,7 @@
 </template>
 
 <script>
-import {Header} from 'element-ui'
+import {Divider, Header} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 import Logo from "../../../components/common/Logo.vue";
 import Hamburger from "./Hamburger.vue";
@@ -89,8 +96,9 @@ export default {
     FullScreen,
     UserMenu,
     Header,
-    DynamicMenu
-  },
+    DynamicMenu,
+    Divider
+},
   computed:{
     sidemenu(){
       return this.app.appConfig.style.layout==='sidemenu'

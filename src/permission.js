@@ -1,9 +1,10 @@
 export default [
     {
     path: '/page',
-    meta: { title: '组件库', icon: {
-            icon: 'el-icon-s-platform'
-        } },
+    meta: { 
+        title: '组件库', 
+        icon: 'el-icon-s-platform'
+        },
     children: [
         {
             path: '/page/xxWebBox',
