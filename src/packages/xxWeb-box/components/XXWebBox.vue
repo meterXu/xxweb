@@ -63,7 +63,7 @@
               <slot name="head-breadcrumb"></slot>
             </template>
             <template v-slot:heade-expand>
-              <slot name="heade-expand"></slot>
+              <slot name="head-expand"></slot>
             </template>
             <template v-slot:head-searchMenu>
               <slot name="head-searchMenu"></slot>
