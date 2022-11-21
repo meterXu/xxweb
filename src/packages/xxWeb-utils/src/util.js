@@ -433,13 +433,13 @@ export function redirectSsoLogin(project,vue){
  * 通用退出登录
  * @param {Object} vue
  */
-export function logOut(vue){
+export function logOut(vue,project){
     let _ls = new ls(project)
     _ls.remove(ACCESS_TOKEN)
     _ls.remove(USER_INFO)
     if(vue.$router&&vue.$route){
         vue.$router.replace({
-            path:vue.project.redirect.login||vue.prototype.$project.redirect.login,
+            path:project.redirect.login,
             query:{
                 path:vue.$route.path
             }
