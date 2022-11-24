@@ -1,6 +1,6 @@
 {
   "name": "@dpark/s2-xxweb-box",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "可复用的web常用页面",
   "main": "index.js",
   "scripts": {
