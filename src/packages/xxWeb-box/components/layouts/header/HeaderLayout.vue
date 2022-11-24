@@ -4,8 +4,9 @@
       <div class="header-content">
         <div class="row-head">
           <div class="left-con">
+            <slot name="head-expand-left-start"></slot>
             <div v-if="sidemenu" class="user-menu-item">
-              <slot name="head-hamburger" v-if="!app.appConfig.style.fixSide">
+              <slot name="head-hamburger" v-if="hamburgerShow">
                 <Hamburger :isCollapse="isCollapse"/>
               </slot>
             </div>
@@ -15,14 +16,13 @@
                 </slot>
               </div>
             <template v-if="app.appConfig.config.head.title.show">
-              <Divider direction="vertical" v-if="!topmenu"></Divider>
+              <Divider direction="vertical" v-if="!topmenu&&hamburgerShow"></Divider>
               <div :class="{'user-menu-item':true,'topmenu':topmenu}">
               <slot name="head-title">
                 <HeadTitle/>
               </slot>
             </div>
             </template>
-            <slot name="heade-expand-left"></slot>
             <template v-if="app.appConfig.config.head.breadcrumb.show">
               <Divider direction="vertical" v-if="!topmenu"></Divider>
               <div :class="{'user-menu-item':true,'topmenu':topmenu}">
@@ -34,9 +34,13 @@
             <div :class="{'user-menu-item':true,'topmenu':topmenu}" v-if="topmenu">
               <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
             </div>
-            <slot name="heade-expand-right"></slot>
+            <slot name="head-expand-left-end"></slot>
+          </div>
+          <div class="center-con">
+            <slot name="head-expand-center"></slot>
           </div>
           <div class="right-con">
+            <slot name="head-expand-right-start"></slot>
             <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.searchMenu.show">
               <slot name="head-searchMenu">
                 <SearchMenu/>
@@ -65,6 +69,7 @@
                 </UserMenu>
               </slot>
             </div>
+            <slot name="head-expand-right-end"></slot>
           </div>
         </div>
       </div>
@@ -108,6 +113,9 @@ export default {
     },
     defaultActive(){
       return this.$route.path
+    },
+    hamburgerShow(){
+      return !this.app.appConfig.style.fixSideMenu&&this.app.appConfig.config.head.hamburger
     }
   },
   methods: {

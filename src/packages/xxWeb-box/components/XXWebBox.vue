@@ -50,6 +50,9 @@
         </template>
         <Container class="content-container">
           <HeaderLayout :isCollapse="isCollapse">
+            <template v-slot:head-expand-left-start>
+              <slot name="head-expand-left-start"></slot>
+            </template>
             <template v-slot:head-hamburger>
               <slot name="head-hamburger"></slot>
             </template>
@@ -59,14 +62,17 @@
             <template v-slot:head-title>
               <slot name="head-title"></slot>
             </template>
-            <template v-slot:heade-expand-left>
-              <slot name="heade-expand-left"></slot>
-            </template>
             <template v-slot:head-breadcrumb>
               <slot name="head-breadcrumb"></slot>
             </template>
-            <template v-slot:heade-expand-right>
-              <slot name="head-expand-right"></slot>
+            <template v-slot:head-expand-left-end>
+              <slot name="head-expand-left-end"></slot>
+            </template>
+            <template v-slot:head-expand-center>
+              <slot name="head-expand-center"></slot>
+            </template>
+            <template v-slot:head-expand-right-start>
+              <slot name="head-expand-right-start"></slot>
             </template>
             <template v-slot:head-searchMenu>
               <slot name="head-searchMenu"></slot>
@@ -88,6 +94,9 @@
             </template>
             <template v-slot:head-user-tag-text>
               <slot name="head-user-tag-text"></slot>
+            </template>
+            <template v-slot:head-expand-right-end>
+              <slot name="head-expand-right-end"></slot>
             </template>
           </HeaderLayout>
           <MainLayout/>
@@ -117,7 +126,7 @@ import DrawerMenu from "./layouts/left/DrawerMenu"
 import MainLayout from "./layouts/main/MainLayout.vue";
 export default {
   name: "XXWebBox",
-  props:['appConfig','permission'],
+  props:['appConfig','permission','initCollapse'],
   components:{
     MainLayout,
     SideMenu,
@@ -131,7 +140,7 @@ export default {
   },
   data(){
     return {
-      isCollapse:false,
+      isCollapse:this.initCollapse?true:false,
       visitedViews:[],
       cachedViews:[],
       device:'desktop',
@@ -177,6 +186,9 @@ export default {
     this.$bus.$on('collapseToggle',() => {
       this.isCollapse = !this.isCollapse
       this.$emit('collapseToggle',this.isCollapse)
+    })
+    this.$bus.$on('menuClick',(path) => {
+      this.$emit('menuClick',path)
     })
     this.$bus.$on('searchMenuItemSelect',(activeIndex) => {
       this.activeIndex = activeIndex

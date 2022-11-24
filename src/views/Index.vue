@@ -1,6 +1,7 @@
 <template>
   <XXWebBox :appConfig="project" :permission="permission"
-            @dropdownMenuClick="dropdownMenuClick">
+            @dropdownMenuClick="dropdownMenuClick"
+            @menuClick="menuClick">
     <template v-slot:side-user-tag>
       <Tag class="version" size="mini" effect="light">version:1.0</Tag>
     </template>
@@ -33,6 +34,10 @@ export default {
     },
     collapseToggle(isCollapse){
       console.log(isCollapse)
+    },
+    menuClick(path){
+      console.log(path)
+      this.$router.push({path:path})
     }
   },
   mounted() {

@@ -13,19 +13,21 @@ const project = {
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
-        colorWeak: false,
-        fixedHeader: false,
-        fixSiderbar: false,
-        autoHideHeader: false,
+        fixedTabs: false,
+        fixSideMenu: false
     },
     config: {
         logo: "./static/imgs/logo-white.png",
         title: "xxWebBox",
         login: {
             title: "xxWebBox",
-            desc: "请输入你的账号"
+            desc: "请输入你的账号",
+        },
+        menu:{
+            // mode:'event'
         },
         head: {
+            hamburger:true,
             logo:{
                 show: true,
             },
@@ -61,10 +63,11 @@ const project = {
         },
         sideMenu: {
             title: "xxWebBox",
-            width: '200px',
+            width: '250px',
             logo:{
                 show: true,
             },
+            hamburger:false,
             user: {
                 show: true,
                 username: true,

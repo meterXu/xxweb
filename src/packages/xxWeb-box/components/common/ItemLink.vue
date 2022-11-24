@@ -1,6 +1,6 @@
 
 <template>
-  <component v-bind="linkProps(to)">
+  <component v-bind="linkProps(to,mode)" @click="handleClick">
     <slot />
   </component>
 </template>
@@ -14,23 +14,46 @@ export default {
     to: {
       type: String,
       required: true
+    },
+    mode:{
+      type: String,
+      default:'router'
     }
   },
   methods: {
-    linkProps(to) {
-      if (isExternal(to)) {
-        return {
-          is: 'a',
-          class:"box-item-link",
-          href: to,
-          target: '_blank'
-        };
+    linkProps(to,mode) {
+      switch (mode){
+        case 'event':{
+          return {
+            is: 'a',
+            class:"box-item-link",
+            href: 'javascript:;'
+          };
+          break
+        }
+        case 'router':
+        default:
+          {
+          if (isExternal(to)) {
+            return {
+              is: 'a',
+              class:"box-item-link",
+              href: to,
+              target: '_blank'
+            };
+          }
+          return {
+            is: 'router-link',
+            class:'box-item-link',
+            to: to
+          };
+        }
       }
-      return {
-        is: 'router-link',
-        class:'box-item-link',
-        to: to
-      };
+    },
+    handleClick(){
+      if(this.mode==='event'){
+        this.$bus.$emit('menuClick',this.to);
+      }
     }
   }
 }

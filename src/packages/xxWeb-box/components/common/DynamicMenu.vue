@@ -29,7 +29,7 @@ export default {
           m.children.forEach(c => {
             if(c.meta){
               vcs.push(
-                  <ItemLink to={c.path}>
+                  <ItemLink to={c.path} mode={appConfig.config.menu.mode}>
                     <MenuItem index={c.path}>
                       <DynamicIcon type="menu" meta={c.meta}/>
                       <template slot="title">
@@ -51,7 +51,7 @@ export default {
         } else {
           if(m.meta){
             sMenu.push(
-                <ItemLink to={m.path}>
+                <ItemLink to={m.path} mode={appConfig.config.menu.mode}>
                   <MenuItem index={m.path}>
                     <DynamicIcon type="menu" meta={m.meta}/>
                     <template slot="title">

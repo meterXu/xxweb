@@ -1,9 +1,12 @@
 <template>
   <Scrollbar wrap-class="side-scrollbar">
     <Aside class="side-menu" :width="width">
-      <slot name="side-logo" v-if="app.appConfig.config.sideMenu.logo.show">
-        <Logo :isCollapse="isCollapse"/>
-      </slot>
+      <div :class="{'side-menu-header':true,'side-menu-header-center':!hamburgerShow||isCollapse}">
+        <slot name="side-logo" v-if="logoShow">
+          <Logo :isCollapse="isCollapse"/>
+        </slot>
+        <Hamburger v-if="hamburgerShow" :isCollapse="isCollapse"/>
+      </div>
       <slot name="side-userMenu" v-if="app.appConfig.config.sideMenu.user.show">
         <UserMenu type='avatar' :isCollapse="isCollapse">
           <template v-slot:side-user-userName>
@@ -36,6 +39,7 @@ import mixin from "../../../mixin/mixin";
 import DynamicMenu from '../../common/DynamicMenu.vue'
 import Logo from "../../common/Logo.vue";
 import UserMenu from "../header/UserMenu.vue";
+import Hamburger from "../header/Hamburger.vue";
 export default {
   name: "SideMenu",
   props:['mode','isCollapse','activeIndex'],
@@ -48,7 +52,8 @@ export default {
     Submenu,
     Scrollbar,
     DynamicMenu,
-    UserMenu
+    UserMenu,
+    Hamburger
   },
   computed:{
     width(){
@@ -56,6 +61,16 @@ export default {
     },
     title(){
       return this.app.appConfig.config.sideMenu.title
+    },
+    hamburgerShow(){
+      return !this.app.appConfig.style.fixSideMenu&&this.app.appConfig.config.sideMenu.hamburger
+    },
+    logoShow(){
+      if(this.hamburgerShow){
+        return this.app.appConfig.config.sideMenu.logo.show&&!this.isCollapse
+      }else{
+        return this.app.appConfig.config.sideMenu.logo.show
+      }
     }
   },
   methods:{
