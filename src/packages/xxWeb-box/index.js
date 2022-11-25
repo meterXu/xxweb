@@ -7,16 +7,17 @@ import PhylumLogin from "./components/login/PhylumLogin";
 import NotFound from "./components/error/NotFound";
 import NotFoundDark from "./components/error/NotFoundDark";
 let login = [
-    XXWebBox,
     JeecgLogin,
     PigLogin,
+    TreeLogin,
     WatermelonLogin,
     PhylumLogin
 ]
-let notFound = [NotFound,
+let notFound = [
+    NotFound,
     NotFoundDark
 ]
-let components = [...login,...notFound]
+let components = [XXWebBox,...login,...notFound]
 const install = function (Vue,config) {
     let EventBus = new Vue();
     Object.defineProperties(Vue.prototype, {
@@ -33,6 +34,6 @@ const install = function (Vue,config) {
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)
 }
-export {XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin,NotFoundDark}
+export {XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin,NotFoundDark,PhylumLogin}
 export default install
 
