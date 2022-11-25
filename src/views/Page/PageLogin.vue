@@ -1,6 +1,6 @@
 <template>
   <ul class="box-list">
-    <li v-for="(item,index) in LoginList" :key="item.index">
+    <li v-for="item in loginList" :key="item.index">
       <Card class="box-card">
         <div class="image" :style="{'backgroundImage':'url('+item.cover+')'} "/>
         <div class="box-item-text">
@@ -9,8 +9,8 @@
             <div class="box-item-desc" v-html="item.desc"></div>
           </div>
           <div>
-            <Button type="primary" plain size="mini">
-              <i class="el-icon-set-up" style="font-size: 18px" @click="gotoCode"></i>
+            <Button type="primary" plain size="mini" @click="gotoCode(item)">
+              <i class="el-icon-set-up" style="font-size: 18px"></i>
             </Button>
           </div>
         </div>
@@ -26,13 +26,20 @@ export default {
   components:{Card,Button},
   data(){
     return {
-      LoginList:[
-        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',link:''},
-        {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>'},
-        {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>'},
-        {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>'},
-        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>'},
+      loginList:[
+        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',path:'/login/1'},
+        {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>',path:'/login/2'},
+        {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>',path:'/login/3'},
+        {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>',path:'/login/4'},
+        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>',path:'/login/5'},
       ]
+    }
+  },
+  methods:{
+    gotoCode(item){
+      this.$router.push({
+        path:item.path
+      })
     }
   }
 }
