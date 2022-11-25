@@ -10,7 +10,7 @@
           </div>
           <div>
             <Button type="primary" plain size="mini">
-              <i class="el-icon-set-up" style="font-size: 18px"></i>
+              <i class="el-icon-set-up" style="font-size: 18px" @click="gotoCode"></i>
             </Button>
           </div>
         </div>
@@ -27,7 +27,7 @@ export default {
   data(){
     return {
       LoginList:[
-        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>'},
+        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',link:''},
         {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>'},
         {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>'},
         {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>'},
