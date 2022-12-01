@@ -28,7 +28,7 @@
               </FormItem>
             </Form>
             <slot name="form-login-btn">
-              <Button class="login-btn" type="primary" @click="login">登 录</Button>
+              <Button :loading="loginState.loading" :disabled="loginState.loading"  class="login-btn" type="primary" @click="login">登 录</Button>
               <slot name="form-login-btn-other"></slot>
             </slot>
           </div>
@@ -82,6 +82,13 @@ export default {
       }
     }
   },
+  data(){
+    return {
+      loginState:{
+        loading:false
+      }
+    }
+  },
   model:{
     prop:'form',
     event:'change'
@@ -96,7 +103,7 @@ export default {
   methods:{
     login(){
       this.$refs.loginForm.validate(valid=>{
-        this.$emit('login',valid)
+        this.$emit('login',valid,this.loginState)
       })
     }
   }

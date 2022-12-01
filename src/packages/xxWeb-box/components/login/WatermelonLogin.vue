@@ -40,7 +40,7 @@
                   </FormItem>
                   <FormItem>
                     <slot name="form-login-btn">
-                      <Button type="primary" @click="login">登录</Button>
+                      <Button :loading="loginState.loading" :disabled="loginState.loading" type="primary" @click="login">登录</Button>
                       <slot name="form-login-btn-other"></slot>
                     </slot>
                   </FormItem>
@@ -88,6 +88,13 @@ export default {
       }
     }
   },
+  data(){
+    return {
+      loginState:{
+        loading:false
+      }
+    }
+  },
   model:{
     prop:'form',
     event:'change'
@@ -102,7 +109,7 @@ export default {
   methods:{
     login(){
       this.$refs.loginForm.validate(valid=>{
-        this.$emit('login',valid)
+        this.$emit('login',valid,this.loginState)
       })
     }
   }
