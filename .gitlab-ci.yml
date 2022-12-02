@@ -1,1 +1,2 @@
-yarn install && yarn run build
+job1:
+  script: "yarn install && yarn run build"
