@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import '../../assets/css/404/404.less'
+import '../../../assets/css/404/404.less'
 export default {
   name: "NotFound",
   props:{

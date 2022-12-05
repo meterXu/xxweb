@@ -11,7 +11,7 @@
       </div>
       <div class="mark">
         <slot name="img">
-          <img src="../../assets/imgs/mark.png"/>
+          <img src="../../../assets/imgs/mark.png"/>
         </slot>
       </div>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import '../../assets/css/404/404dark.less'
+import '../../../assets/css/404/404dark.less'
 export default {
   name: "NotFoundDark",
   props:{

@@ -4,8 +4,8 @@ import PigLogin from './components/login/PigLogin'
 import TreeLogin from './components/login/TreeLogin'
 import WatermelonLogin from './components/login/WatermelonLogin'
 import PhylumLogin from "./components/login/PhylumLogin";
-import NotFound from "./components/error/NotFound";
-import NotFoundDark from "./components/error/NotFoundDark";
+import NotFound from "./components/error/404/NotFound";
+import NotFoundDark from "./components/error/404/NotFoundDark";
 let login = [
     JeecgLogin,
     PigLogin,
