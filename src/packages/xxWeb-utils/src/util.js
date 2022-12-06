@@ -445,7 +445,7 @@ export function logOut(vue,project){
             }
         })
     }else{
-        window.location.reload()
+        window.location.href = window.location.origin+window.location.pathname
     }
 }
 

@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import {XXWebBox} from '../packages/xxWeb-box/index'
 import permission from "../permission";
 import {Tag} from 'element-ui'
 import {types} from '../packages/xxWeb-utils/index'
@@ -21,7 +22,8 @@ export default {
     }
   },
   components:{
-    Tag
+    Tag,
+    XXWebBox
   },
   methods: {
     dropdownMenuClick(command) {
