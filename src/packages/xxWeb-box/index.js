@@ -1,6 +1,7 @@
 import XXWebBox from './components/index'
 import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin} from './components/login'
 import {NotFound, NotFoundDark, NoAuthority, Error} from './components/error'
+import {DarkMode1} from './components/darmode'
 
 let components = [
     XXWebBox,
@@ -12,7 +13,8 @@ let components = [
     NotFound,
     NotFoundDark,
     NoAuthority,
-    Error
+    Error,
+    DarkMode1
 ]
 
 const install = function (Vue) {
@@ -34,7 +36,8 @@ export {
     NotFound,
     NotFoundDark,
     NoAuthority,
-    Error
+    Error,
+    DarkMode1
 }
 export default install
 

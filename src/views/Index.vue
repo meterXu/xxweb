@@ -6,7 +6,7 @@
       <Tag class="version" size="mini" effect="light">version:1.0</Tag>
     </template>
     <template v-slot:head-expand-right-start>
-
+      <DarkMode1 style="margin-right: 12px"/>
     </template>
   </XXWebBox>
 </template>
@@ -16,6 +16,7 @@
 import permission from "../permission";
 import {Tag} from 'element-ui'
 import {types} from '../packages/xxWeb-utils/index'
+import {DarkMode1} from '../packages/xxWeb-box'
 export default {
   name: 'Index',
   data() {
@@ -25,7 +26,8 @@ export default {
     }
   },
   components:{
-    Tag
+    Tag,
+    DarkMode1
   },
   methods: {
     dropdownMenuClick(command) {
