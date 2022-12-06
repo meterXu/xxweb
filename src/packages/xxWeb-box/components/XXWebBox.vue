@@ -124,6 +124,8 @@ import {Container,Aside,Main,Footer,Header} from 'element-ui'
 import SideMenu from "./layouts/left/SideMenu.vue";
 import DrawerMenu from "./layouts/left/DrawerMenu"
 import MainLayout from "./layouts/main/MainLayout.vue";
+
+
 export default {
   name: "XXWebBox",
   props:['appConfig','permission','initCollapse'],
@@ -152,9 +154,7 @@ export default {
     return {
       app:this,
       cachedViews:this.cachedViews,
-      visitedViews:this.visitedViews,
-      // slots:this.$slots,
-      // scopedSlots:this.$scopedSlots
+      visitedViews:this.visitedViews
     }
   },
   methods:{

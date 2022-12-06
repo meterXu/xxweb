@@ -1,39 +1,40 @@
-import XXWebBox from './components/XXWebBox.vue'
-import JeecgLogin from './components/login/JeecgLogin'
-import PigLogin from './components/login/PigLogin'
-import TreeLogin from './components/login/TreeLogin'
-import WatermelonLogin from './components/login/WatermelonLogin'
-import PhylumLogin from "./components/login/PhylumLogin";
-import NotFound from "./components/error/404/NotFound";
-import NotFoundDark from "./components/error/404/NotFoundDark";
-let login = [
+import XXWebBox from './components/index'
+import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin} from './components/login'
+import {NotFound, NotFoundDark, NoAuthority, Error} from './components/error'
+
+let components = [
+    XXWebBox,
     JeecgLogin,
     PigLogin,
     TreeLogin,
     WatermelonLogin,
-    PhylumLogin
-]
-let notFound = [
+    PhylumLogin,
     NotFound,
-    NotFoundDark
+    NotFoundDark,
+    NoAuthority,
+    Error
 ]
-let components = [XXWebBox,...login,...notFound]
-const install = function (Vue,config) {
-    let EventBus = new Vue();
-    Object.defineProperties(Vue.prototype, {
-        $bus: {
-            get: function () {
-                return EventBus
-            }
-        }
-    })
+
+const install = function (Vue) {
     components.forEach(c=>{
-        Vue.component(c.name,c)
+        c.install(Vue)
     })
 }
 if (typeof window !== 'undefined' && window.Vue) {
     install(window.Vue)
 }
-export {XXWebBox,JeecgLogin,PigLogin,NotFound,TreeLogin,WatermelonLogin,NotFoundDark,PhylumLogin}
+
+export {
+    XXWebBox,
+    JeecgLogin,
+    PigLogin,
+    TreeLogin,
+    WatermelonLogin,
+    PhylumLogin,
+    NotFound,
+    NotFoundDark,
+    NoAuthority,
+    Error
+}
 export default install
 

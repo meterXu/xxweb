@@ -5,11 +5,14 @@
     <template v-slot:side-user-tag>
       <Tag class="version" size="mini" effect="light">version:1.0</Tag>
     </template>
+    <template v-slot:head-expand-right-start>
+
+    </template>
   </XXWebBox>
 </template>
 
 <script>
-import {XXWebBox} from '../packages/xxWeb-box/index'
+
 import permission from "../permission";
 import {Tag} from 'element-ui'
 import {types} from '../packages/xxWeb-utils/index'
@@ -22,8 +25,7 @@ export default {
     }
   },
   components:{
-    Tag,
-    XXWebBox
+    Tag
   },
   methods: {
     dropdownMenuClick(command) {

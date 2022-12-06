@@ -14,15 +14,17 @@
 </template>
 
 <script>
+import {JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin} from '../packages/xxWeb-box/index'
 import {types} from "../packages/xxWeb-utils/index";
-import {FormItem} from 'element-ui'
-import Phylum from "@/packages/xxWeb-box/components/login/PhylumLogin";
 export default {
   name: "Login",
   props:['type'],
   components:{
-    Phylum,
-    FormItem
+    JeecgLogin,
+    PigLogin,
+    TreeLogin,
+    WatermelonLogin,
+    PhylumLogin
   },
   data(){
     return {

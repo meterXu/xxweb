@@ -1,10 +1,12 @@
 <template>
-
+  <div>
+    500
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Error.vue"
+  name: "Error"
 }
 </script>
 

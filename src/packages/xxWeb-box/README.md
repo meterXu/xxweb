@@ -10,7 +10,7 @@
 ```js
 // main.js
 import router from "./router/index.js"
-import XXWebBox from 'xxweb-box'
+import {XXWebBox} from 'xxweb-box'
 Vue.use(XXWebBox)
 new Vue({
     router,
