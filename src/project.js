@@ -9,7 +9,7 @@ const project = {
         "404": '/404'
     },
     style: {
-        theme: 'thunder',
+        theme: 'default',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,

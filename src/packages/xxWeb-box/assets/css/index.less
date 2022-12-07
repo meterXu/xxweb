@@ -24,6 +24,7 @@ html,body{
       height: 100vh;
     }
     .content-container{
+      overflow: hidden;
       display: inline-flex;
       flex-direction: column;
     }
@@ -237,11 +238,22 @@ html,body{
     .layout-main{
       flex:1;
       display: inline-flex;
+      overflow: hidden;
       flex-flow: column;
-      overflow: auto;
+      position: relative;
+    }
+    .tab-padding{
+      padding-top: 52px;
     }
     .tags-view-container{
-      position: relative;
+      top: 0px;
+      left: 0;
+      position: absolute;
+      z-index: 9999;
+      background: #fff;
+      width: 100%;
+      border-top: 1px solid #eeee;
+      box-sizing: border-box;
       .el-tabs__header{
         margin: 0;
         .el-tabs__nav{
@@ -282,7 +294,25 @@ html,body{
     .app-main{
       flex: 1;
       padding: 12px;
+      overflow-y: auto;
     }
+
+    .app-main::-webkit-scrollbar{
+      width:8px;
+      height:10px;
+    }
+    .app-main::-webkit-scrollbar-track{
+      background: rgb(239, 239, 239);
+      border-radius:2px;
+    }
+    .app-main::-webkit-scrollbar-thumb{
+      background: #bfbfbf;
+      border-radius:10px;
+    }
+    .app-main::-webkit-scrollbar-thumb:hover{
+      background: rgb(114,114,114);
+    }
+
     .item-link{
       text-decoration-line: none;
     }
@@ -302,7 +332,7 @@ html,body{
       text-align: left;
       line-height: 24px;
       font-size: 12px;
-      box-shadow: 0 0px 4px #00000033 !important;
+      border-top: 1px solid #eeee;
       a{
         text-decoration-line: none;
       }

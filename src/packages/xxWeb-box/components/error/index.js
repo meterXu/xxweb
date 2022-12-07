@@ -8,7 +8,7 @@ let errors = [NoAuthority,Error,NotFoundDark,NotFound]
 
 errors.forEach(login=>{
     login.install = function (Vue){
-        Vue.components(login.name,login)
+        Vue.component(login.name,login)
     }
 })
 

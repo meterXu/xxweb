@@ -86,6 +86,9 @@
   .layout-main{
     background: @--text-color;
   }
+  .tab-padding{
+    padding-top: 32px !important;
+  }
   .contextmenu {
     background: @--text-color;
     color: @--sideMenu-header-color;
@@ -112,6 +115,10 @@
     height: 32px;
     border-bottom: 1px solid #d8dce5;
     box-shadow: 0 1px 3px 0 #0000001f, 0 0 3px 0 #0000000a
+  }
+  .xx-web-tab.el-tabs{
+    display: flex;
+    align-items: center;
   }
   .xx-web-tab{
     .el-tabs__item{
@@ -146,7 +153,6 @@
       display: none;
     }
     .el-tabs__header{
-      margin-top: 4px !important;
     }
   }
 }

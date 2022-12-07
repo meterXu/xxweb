@@ -9,7 +9,7 @@ let logins = [JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin]
 
 logins.forEach(login=>{
     login.install = function (Vue){
-        Vue.components(login.name,login)
+        Vue.component(login.name,login)
     }
 })
 

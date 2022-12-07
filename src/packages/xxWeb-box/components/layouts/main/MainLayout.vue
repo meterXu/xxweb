@@ -1,5 +1,5 @@
 <template>
-  <Main class="layout-main">
+  <Main :class="{'layout-main':true,'tab-padding':app.appConfig.style.multipage}">
     <TagsView v-if="app.appConfig.style.multipage" @refresh="refresh"></TagsView>
     <AppMain ref="appMain"></AppMain>
   </Main>

@@ -5,7 +5,7 @@ let dms = [DarkMode1]
 
 dms.forEach(dm=>{
     dm.install = function (Vue){
-        Vue.components(dm.name,dm)
+        Vue.component(dm.name,dm)
     }
 })
 
