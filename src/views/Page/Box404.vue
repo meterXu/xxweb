@@ -29,6 +29,7 @@ export default {
       Box404List:[
         {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>'},
         {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>'},
+        {title:"jeecg-404",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">jeecg</a>'},
       ]
     }
   }
