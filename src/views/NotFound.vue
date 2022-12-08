@@ -4,7 +4,7 @@
     </NotFound>
     <NotFoundDark v-if="type==2" >
     </NotFoundDark>
-    <NotFound2 v-if="type==3">
+    <NotFound2 v-if="type==3" :link="link">
     </NotFound2>
   </div>
 </template>
@@ -18,6 +18,13 @@ export default {
     NotFound,
     NotFoundDark,
     NotFound2
+  },
+  data(){
+    return {
+      link:{
+        home:window.location.pathname
+      }
+    }
   }
 }
 </script>

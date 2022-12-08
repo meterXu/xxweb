@@ -6,7 +6,7 @@ const project = {
     redirect: {
         index: '/page/xxWebBox',
         login: '/login/1',
-        "404": '/404'
+        "404": '/404/1'
     },
     style: {
         theme: 'thunder',
