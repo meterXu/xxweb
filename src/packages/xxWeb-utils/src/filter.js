@@ -15,7 +15,8 @@ function filter(router, project) {
             next({
                 path: project.redirect['404']
             })
-        } else if (whiteList.indexOf(to.path) >= 0) {
+            NProgress.done()
+        }else if (whiteList.indexOf(to.path) >= 0) {
             next()
         } else {
             if (to.query.action === 'logout') {

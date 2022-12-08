@@ -30,7 +30,7 @@ export default {
     },
     text: {
       type: String,
-      default: '你无权访问次页面，请联系管理员！'
+      default: '你无权访问此页面，请联系管理员！'
     },
     show: {
       type: Object,
