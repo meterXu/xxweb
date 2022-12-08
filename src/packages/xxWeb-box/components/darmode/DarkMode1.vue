@@ -13,7 +13,6 @@
 
 <script>
 import '../../assets/css/darkmode/index.less'
-import {Switch as ElSwitch} from 'element-ui'
 import {
   enable as enableDarkMode,
   disable as disableDarkMode
@@ -22,7 +21,6 @@ import {
 export default {
   name: "DarkMode1",
   components:{
-    ElSwitch
   },
   data(){
     return {
