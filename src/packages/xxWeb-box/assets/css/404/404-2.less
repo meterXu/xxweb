@@ -11,14 +11,15 @@ html,body{
   padding:0;
   justify-content: center;
   .not-found-2{
-    display: inline-flex;
-    align-items: unset;
-    margin: 0 auto;
-    margin-top: 150px;
+    margin: 0px auto;
+    display: flex;
+    width: 900px;
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
     .img,.content{
       display: inline-block;
     }
-
     .img{
       background: url("../../imgs/404-2.svg") no-repeat center center;
       width: 430px;
@@ -26,11 +27,16 @@ html,body{
       padding-right: 52px;
     }
     .content{
+      text-align: center;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       h1{
         color: #434e59;
         font-size: 72px;
         font-weight: 600;
-        line-height: 72px;
+        margin: 0;
         margin-bottom: 24px;
       }
       .desc{
