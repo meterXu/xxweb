@@ -27,9 +27,10 @@ export default {
   data(){
     return {
       Box404List:[
-        {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>',path:'/404/1'},
-        {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>',path:'/404/2'},
-        {title:"jeecg-404",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">jeecg</a>',path:'/404/3'},
+        {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>',path:'/error/1'},
+        {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>',path:'/error/2'},
+        {title:"jeecg-404",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">jeecg</a>',path:'/error/3'},
+        {title:"jeecg-403",cover:require('../../assets/imgs/403/403-1.png'),desc:'design by <a href="">jeecg</a>',path:'/error/4'},
       ]
     }
   },

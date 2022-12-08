@@ -1,7 +1,7 @@
 import NotFound from './404/NotFound'
 import NotFoundDark from './404/NotFoundDark'
 import Error from './500/Error'
-import NoAuthority from "./403/NoAuthority";
+import NoAuthority from "./403/NoAuthority1";
 import NotFound2 from "./404/NotFound2";
 
 

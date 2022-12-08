@@ -6,7 +6,7 @@ import Dashboard from '../views/Page/Dashboard.vue'
 import XXWebBox from '../views/Page/XXWebBox.vue'
 import BoxError from '../views/Page/BoxError.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
-import NotFoundBox from '../views/NotFoundBox'
+import error from '../views/Error'
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -17,9 +17,9 @@ const normalRoutes =  [
         props:true
     },
     {
-        path: '/404/:type',
-        name: NotFoundBox.name,
-        component: NotFoundBox,
+        path: '/error/:type',
+        name: error.name,
+        component: error,
         props:true
     },
     {
