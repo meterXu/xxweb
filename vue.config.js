@@ -1,7 +1,9 @@
-const CopyPlugin = require('copy-webpack-plugin');
+const fs = require('fs')
+const project = require('./src/project')
+fs.writeFileSync('./public/project.js','window.project='+JSON.stringify(project,null,2),{'flag':'w'})
 module.exports = {
   lintOnSave: undefined,
-  productionSourceMap: true,
+  productionSourceMap: false,
   publicPath: './',
   chainWebpack: (config) => {
     if (process.env.npm_config_report) {
@@ -10,11 +12,7 @@ module.exports = {
           .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin)
     }
   },
-  configureWebpack: config => {
-    config.entry = {
-      project:["./src/project.js"],
-      main: ["./src/main.js"]
-    }
+  configureWebpack:  config => {
     if (process.env.NODE_ENV === 'production') {
       config.optimization.runtimeChunk = false
       config.optimization.splitChunks = {
@@ -22,25 +20,6 @@ module.exports = {
           default: false
         }
       }
-    }
-    return {
-      plugins: [
-        new CopyPlugin({
-          patterns:
-              [{
-                from: './src/project.js', to: `./js/project.[contenthash:4].js`,
-                transform:(res,p)=>{
-                  res = res.toString().replace(`export default project`,'')
-                  let regex = new RegExp('(?<=process.env\\.)\\w*','gi')
-                  let ms = res.match(regex)
-                  ms.forEach(m=>{
-                    res = res.replace(`process.env.${m}`,`"${process.env[m]}"`)
-                  })
-                  return res
-                }
-              }]
-        })
-      ]
     }
   },
   devServer: {

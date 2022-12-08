@@ -97,8 +97,4 @@ const project = {
     }
 }
 
-if (!window.project) {
-    window.project = project
-}
-
-export default project
+module.exports=project

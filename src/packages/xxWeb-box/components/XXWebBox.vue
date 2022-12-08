@@ -48,7 +48,7 @@
             </template>
           </DrawerMenu>
         </template>
-        <Container class="content-container">
+        <Container class="content-container" :style="contentWidth">
           <HeaderLayout :isCollapse="isCollapse">
             <template v-slot:head-expand-left-start>
               <slot name="head-expand-left-start"></slot>
@@ -176,6 +176,13 @@ export default {
         if(this.device==='mobile'){
           this.isCollapse = false
         }
+      }
+    }
+  },
+  computed:{
+    contentWidth(){
+      return {
+        width:`calc(100vw - ${this.appConfig.config.sideMenu.width})`
       }
     }
   },
