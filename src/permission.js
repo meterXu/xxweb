@@ -21,16 +21,9 @@ export default [
             }
         },
         {
-            path: '/page/404',
+            path: '/page/error',
             meta: {
-                title: '404',
-                icon: 'el-icon-s-platform'
-            }
-        },
-        {
-            path: 'http://www.baidu.com',
-            meta: {
-                title: 'baidu',
+                title: 'error',
                 icon: 'el-icon-s-platform'
             }
         }

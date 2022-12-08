@@ -6,7 +6,7 @@
           <div class="code-dark">{{code}}</div>
           <div class="info-dark">{{text}}</div>
           <a class="help-button" v-if="show.help" :href="link.help">帮助</a>
-          <a class="home-button" v-if="show.home" :herf="link.home">首页</a>
+          <a class="home-button" v-if="show.home" :href="link.home">首页</a>
         </slot>
       </div>
       <div class="mark">
