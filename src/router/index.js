@@ -7,6 +7,7 @@ import XXWebBox from '../views/Page/XXWebBox.vue'
 import ErrorList from '../views/Page/ErrorList.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
 import error from '../views/Error'
+import Test from "../views/Test";
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -49,6 +50,14 @@ const normalRoutes =  [
                 name: ErrorList.name,
                 component: ErrorList,
                 props: true
+            },
+            {
+                path: '/page/test',
+                name: Test.name,
+                component: Test,
+                meta:{
+                    title:'test'
+                }
             }
         ]
     }

@@ -6,7 +6,7 @@ import * as util from './util'
 function filter(router, project) {
     let defaultLogin = project.redirect.login
     let defaultIndex = project.redirect.index
-    const whiteList = [defaultLogin, project.redirect['404']]
+    const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
     const _ls = new util.ls(project)
 
     router.beforeEach((to, from, next) => {
@@ -15,7 +15,6 @@ function filter(router, project) {
             next({
                 path: project.redirect['404']
             })
-            NProgress.done()
         } else if (whiteList.indexOf(to.path) >= 0) {
             next()
         } else {
