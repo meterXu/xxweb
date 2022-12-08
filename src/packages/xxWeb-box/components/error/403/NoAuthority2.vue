@@ -2,7 +2,7 @@
   <div class="xxWeb">
     <div class="no-authority-2">
       <slot>
-
+        <div class="img"></div>
       </slot>
     </div>
   </div>
@@ -13,7 +13,7 @@ import {Button} from 'element-ui'
 import '../../../assets/css/403/403-2.less'
 
 export default {
-  name: "NoAuthority1",
+  name: "NoAuthority2",
   props: {
     code: {
       type: String,

@@ -6,12 +6,13 @@
     </NotFoundDark>
     <NotFound2 v-if="type==3" :link="link">
     </NotFound2>
-    <NoAuthority v-if="type==4" :link="link"></NoAuthority>
+    <NoAuthority1 v-if="type==4" :link="link"></NoAuthority1>
+    <NoAuthority2 v-if="type==5" :link="link"></NoAuthority2>
   </div>
 </template>
 
 <script>
-import {NotFound,NotFoundDark,NotFound2,NoAuthority} from '../packages/xxWeb-box/index'
+import {NotFound,NotFoundDark,NotFound2,NoAuthority1,NoAuthority2} from '../packages/xxWeb-box/index'
 export default {
   name: "NotFoundBox",
   props:["type"],
@@ -19,7 +20,8 @@ export default {
     NotFound,
     NotFoundDark,
     NotFound2,
-    NoAuthority
+    NoAuthority1,
+    NoAuthority2
   },
   data(){
     return {

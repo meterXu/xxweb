@@ -4,7 +4,7 @@ import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
 import Dashboard from '../views/Page/Dashboard.vue'
 import XXWebBox from '../views/Page/XXWebBox.vue'
-import BoxError from '../views/Page/BoxError.vue'
+import ErrorList from '../views/Page/ErrorList.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
 import error from '../views/Error'
 Vue.use(Router);
@@ -46,8 +46,8 @@ const normalRoutes =  [
             },
             {
                 path: '/page/error',
-                name: BoxError.name,
-                component: BoxError,
+                name: ErrorList.name,
+                component: ErrorList,
                 props: true
             }
         ]
