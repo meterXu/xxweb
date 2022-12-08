@@ -1,8 +1,8 @@
 <template>
   <div style="height: 100%">
-    <NotFound v-if="type==1">
+    <NotFound v-if="type==1" :link="link">
     </NotFound>
-    <NotFoundDark v-if="type==2" >
+    <NotFoundDark v-if="type==2" :link="link">
     </NotFoundDark>
     <NotFound2 v-if="type==3" :link="link">
     </NotFound2>
@@ -12,7 +12,7 @@
 <script>
 import {NotFound,NotFoundDark,NotFound2} from '../packages/xxWeb-box/index'
 export default {
-  name: "NotFound",
+  name: "NotFoundBox",
   props:["type"],
   components:{
     NotFound,

@@ -6,7 +6,7 @@ import Dashboard from '../views/Page/Dashboard.vue'
 import XXWebBox from '../views/Page/XXWebBox.vue'
 import Box404 from '../views/Page/Box404.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
-import NotFound from '../views/NotFound'
+import NotFoundBox from '../views/NotFoundBox'
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -18,8 +18,8 @@ const normalRoutes =  [
     },
     {
         path: '/404/:type',
-        name: NotFound.name,
-        component: NotFound,
+        name: NotFoundBox.name,
+        component: NotFoundBox,
         props:true
     },
     {
