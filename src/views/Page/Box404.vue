@@ -9,7 +9,7 @@
            <div class="box-item-desc" v-html="item.desc"></div>
          </div>
           <div>
-            <Button type="primary" plain size="mini">
+            <Button type="primary" plain size="mini" @click="gotoCode(item)">
               <i class="el-icon-set-up" style="font-size: 18px"></i>
             </Button>
           </div>
@@ -27,10 +27,17 @@ export default {
   data(){
     return {
       Box404List:[
-        {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>'},
-        {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>'},
-        {title:"jeecg-404",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">jeecg</a>'},
+        {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>',path:'/404/1'},
+        {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>',path:'/404/2'},
+        {title:"jeecg-404",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">jeecg</a>',path:'/404/3'},
       ]
+    }
+  },
+  methods:{
+    gotoCode(item){
+      this.$router.push({
+        path:item.path
+      })
     }
   }
 }
