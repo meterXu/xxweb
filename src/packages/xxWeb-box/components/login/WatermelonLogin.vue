@@ -67,7 +67,7 @@ export default {
     config:{default(){return {}}},
     tips:{default:true},
     remember:{default:true},
-    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号','password':"请输入密码"}}},
+    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号',password:"请输入密码"}}},
     rules:{
       type:Object,
       default(){

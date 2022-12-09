@@ -1,16 +1,24 @@
 # xxweb-box
 > 可复用的web常用页面
 
-![xxweb-box](http://img.xdo.icu/QQ%E6%88%AA%E5%9B%BE20220712174214.jpg)
+![xxweb-box](https://img.xdo.icu/xxwebbox-1.png)
+![xxweb-box](https://img.xdo.icu/xxwebbox-2.png)
+![xxweb-box](https://img.xdo.icu/xxwebbox.png)
 
 ## 依赖组件
 * vue-router
+
+## 内置组件
+* 系统骨架(4种，含左右，上下布局)
+* 登录页(5种)
+* 404页面(3种)
+* 403页面(2种)
 
 ## 使用
 ```js
 // main.js
 import router from "./router/index.js"
-import {XXWebBox} from 'xxweb-box'
+import XXWebBox from '@dpark/s2-xxweb-box'
 Vue.use(XXWebBox)
 new Vue({
     router,
@@ -61,7 +69,6 @@ export default {
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
-        fixedTabs: false,
         fixSideMenu: false,
     },
     config: {
@@ -128,6 +135,7 @@ export default {
             }
         },
         tabs: {
+            show:true,
             icon: false,
         },
         footer: {
@@ -225,3 +233,7 @@ export default {
 |slotName|slotProps|remark|
 |---|---|---|
 |footer|---|整个底部|
+
+
+## 登录页面
+[点我跳转](components/login/README.md)
