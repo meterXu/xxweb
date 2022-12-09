@@ -6,14 +6,14 @@ const project = {
     redirect: {
         index: '/page/xxWebBox',
         login: '/login/1',
-        "404": '/error/1'
+        "404": '/error/1',
+        '403':'/error/5'
     },
     style: {
         theme: 'thunder',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
-        fixedTabs: false,
         fixSideMenu: false
     },
     config: {
@@ -24,7 +24,7 @@ const project = {
             desc: "请输入你的账号",
         },
         menu:{
-            // mode:'event'
+            mode:'router'
         },
         head: {
             hamburger:true,
@@ -81,6 +81,7 @@ const project = {
             }
         },
         tabs: {
+            show: true,
             icon: true,
         },
         footer: {

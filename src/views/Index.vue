@@ -49,6 +49,9 @@ export default {
   mounted() {
     let a = process.env.VUE_APP_ssoApi
     console.log(a)
+  },
+  created() {
+    window.permission = permission
   }
 }
 </script>

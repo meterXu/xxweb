@@ -16,8 +16,14 @@ function filter(router, project) {
                 path: project.redirect['404']
             })
             NProgress.done()
-        }else if (whiteList.indexOf(to.path) >= 0) {
+        }
+        else if (whiteList.indexOf(to.path) >= 0) {
             next()
+        } else if (!validatePermission(to.path,window.permission)){
+            next({
+                path: project.redirect['403']||project.redirect['404']
+            })
+            NProgress.done()
         } else {
             if (to.query.action === 'logout') {
                 _ls.remove(ACCESS_TOKEN)
@@ -59,6 +65,25 @@ function filter(router, project) {
     router.afterEach(() => {
         NProgress.done()
     })
+}
+
+function validatePermission(path,permission){
+    let res = false
+    if(!permission){
+        res = true
+    }else {
+        for (let i=0;i<permission.length;i++){
+            if(permission[i].children){
+                res = validatePermission(path,permission[i].children)
+                break
+            }else if(permission[i].path === path){
+                res = true
+                break
+            }
+        }
+    }
+    return res
+
 }
 
 export default filter
