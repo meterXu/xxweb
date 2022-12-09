@@ -374,6 +374,32 @@ export function getQueryVariable(variable) {
     return null
 }
 
+
+/**
+ * 获取url中的参数
+ * @param variable
+ * @param name
+ * @returns {String | null|string}
+ */
+export function getQuery() {
+    let query = ''
+    let res = {}
+    if (window.location.search) {
+        query = window.location.search.substring(1)
+    } else {
+        const urlSection = window.location.href.split('?')
+        query = urlSection.length >= 2 ? urlSection[1] : null
+    }
+    if (query) {
+        let vars = query.split('&')
+        for (let i = 0; i < vars.length; i++) {
+            let pair = vars[i].split('=')
+            res[pair[0]] = decodeURIComponent(pair[1])
+        }
+    }
+    return res
+}
+
 /**
  * 拼接url及参数
  * @param params
@@ -420,11 +446,21 @@ export function ssoLoginOutUrl(ssoBackUrl,query){
  */
 export function redirectSsoLogin(project,vue){
     let _ls = new ls(project)
-    let xx = _ls.get(ACCESS_TOKEN)
-    if(xx){
-        vue.$router.push({ path: project.redirect.index})
+    let accessToken = _ls.get(ACCESS_TOKEN)
+    if(accessToken&&vue){
+        if(vue&&vue.$router){
+            vue.$router.push({ path: project.redirect.index})
+        }else{
+            window.open(project.redirect.index,"_self")
+        }
     }else{
-        const redirectUrl = ssoLoginOutUrl(project.variable.ssoAuth,vue.$route.query)
+        let query = {}
+        if(vue){
+            query=vue.$route.query
+        }else{
+            query = getQuery()
+        }
+        const redirectUrl = ssoLoginOutUrl(project.variable.ssoAuth,query)
         window.open(redirectUrl,"_self")
     }
 }
@@ -437,7 +473,7 @@ export function logOut(vue,project){
     let _ls = new ls(project)
     _ls.remove(ACCESS_TOKEN)
     _ls.remove(USER_INFO)
-    if(vue.$router&&vue.$route){
+    if(vue&&vue.$router&&vue.$route){
         vue.$router.replace({
             path:project.redirect.login,
             query:{
