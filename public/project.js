@@ -81,7 +81,7 @@ window.project={
       }
     },
     "tabs": {
-      "show": true,
+      "show": false,
       "icon": true
     },
     "footer": {
