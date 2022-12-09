@@ -20,25 +20,39 @@ import {
 
 export default {
   name: "DarkMode1",
+  props: {
+    dark:{
+      type:Boolean,
+      default(){
+        return false
+      }
+    }
+  },
+  model:{
+    prop:'dark',
+    event:'change'
+  },
   components:{
   },
-  data(){
-    return {
-      dark:false
+  watch:{
+    dark:{
+      handler(nv){
+        if(nv){
+          enableDarkMode({
+            brightness: 100,
+            contrast: 90,
+            sepia: 10,
+          });
+        }else{
+          disableDarkMode()
+        }
+      },
+      immediate:true
     }
   },
   methods:{
     toggle(){
-      this.dark = !this.dark
-      if(this.dark){
-        enableDarkMode({
-          brightness: 100,
-          contrast: 90,
-          sepia: 10,
-        });
-      }else{
-        disableDarkMode()
-      }
+      this.$emit('change',!this.dark)
     }
   }
 }

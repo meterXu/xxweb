@@ -6,7 +6,7 @@
       <Tag class="version" size="mini" effect="light">version:1.0</Tag>
     </template>
     <template v-slot:head-expand-right-start>
-      <DarkMode1 style="margin-right: 12px"/>
+      <DarkMode1 v-model="dark" style="margin-right: 12px"/>
     </template>
   </XXWebBox>
 </template>
@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       project: this.$project,
-      permission: permission
+      permission: permission,
+      dark:false
     }
   },
   components:{
@@ -50,7 +51,13 @@ export default {
     let a = process.env.VUE_APP_ssoApi
     console.log(a)
   },
+  watch:{
+    dark(nv){
+      this.$ls.set('dark',nv)
+    }
+  },
   created() {
+    this.dark = eval(this.$ls.get('dark'))
     window.permission = permission
   }
 }
