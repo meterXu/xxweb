@@ -237,3 +237,6 @@ export default {
 
 ## 登录页面
 [点我跳转](components/login/README.md)
+
+## 错误页面
+[点我跳转](components/error/README.md)

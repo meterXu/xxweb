@@ -57,6 +57,13 @@ export default {
 </script>
 ```
 
+## 组件列表
+* JeecgLogin
+* PhylumLogin
+* PigLogin
+* TreeLogin
+* WatermelonLogin
+
 ## 属性
 
 |prop| remark           |
