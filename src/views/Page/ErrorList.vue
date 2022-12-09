@@ -68,7 +68,7 @@ export default {
   object-fit: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
   height: 240px;
 }
 .box-item-text{

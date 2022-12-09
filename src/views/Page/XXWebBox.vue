@@ -27,9 +27,9 @@ export default {
   data(){
     return {
       xxWebBoxList:[
-        {title:"default",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">jeecg</a>'},
-        {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">vue-admin</a>'},
-        {title:"v2board",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">v2board</a>'},
+        {title:"default",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">jeecg</a>'},
+        {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">vue-admin</a>'},
+        {title:"v2board",cover:require('../../assets/imgs/xxWebBox/v2board.png'),desc:'design by <a href="">v2board</a>'},
         {title:"thunder",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">thunder</a>'},
         {title:"Lux",cover:require('../../assets/imgs/xxWebBox/Lux.png'),desc:'design by <a href="">Lux</a>'},
         {title:"Lux_dark",cover:require('../../assets/imgs/xxWebBox/Lux_dark.png'),desc:'design by <a href="">Lux_dark</a>'},
