@@ -4,7 +4,7 @@
       <div class="container">
         <slot v-bind:config="config">
           <div class="top">
-            <div class="header">
+            <div class="login-header">
               <img v-if="config.logo" :src="config.logo" class="logo" alt="logo">
               <span v-if="config.login" class="title">{{config.login.title }}</span>
             </div>

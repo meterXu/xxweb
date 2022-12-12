@@ -1,4 +1,6 @@
-```vue
+:::demo
+
+```html
 <div style="height: 100%">
     <JeecgLogin :config="config" v-model="form" @login="login">
     </JeecgLogin>
@@ -44,3 +46,5 @@ export default {
 }
 </script>
 ```
+
+:::
