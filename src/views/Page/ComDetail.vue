@@ -1,12 +1,13 @@
 <template>
   <div>
-    BoxSetting
+    ComDetail,{{title}}
   </div>
 </template>
 
 <script>
 export default {
-  name: "BoxSetting"
+  name: "ComDetail",
+  props:['title']
 }
 </script>
 

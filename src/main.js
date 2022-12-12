@@ -8,7 +8,7 @@ Vue.prototype.$project = window.project
 filter(router,Vue.prototype.$project)
 Vue.prototype.$ls = new util.ls(window.project)
 Vue.use(XXWebBox)
-new Vue({
+window.vue = new Vue({
   router,
   render: h => h(App),
 }).$mount('#app')
