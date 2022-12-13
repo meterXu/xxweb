@@ -1,8 +1,8 @@
 export default [
     {
     path: '/page',
-    meta: { 
-        title: '组件库', 
+    meta: {
+        title: '组件库',
         icon: 'el-icon-s-platform'
         },
     children: [

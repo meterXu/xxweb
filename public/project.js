@@ -10,14 +10,14 @@ window.project={
     "login": "/login/1"
   },
   "style": {
-    "theme": "thunder",
+    "theme": "default-light",
     "color": "#1890FF",
     "layout": "sidemenu",
     "multipage": true,
     "fixSideMenu": false
   },
   "config": {
-    "logo": "./static/imgs/logo-white.png",
+    "logo": "./static/imgs/logo.png",
     "title": "xxWebBox",
     "login": {
       "title": "xxWebBox",
@@ -51,7 +51,7 @@ window.project={
         "show": true
       },
       "user": {
-        "show": false,
+        "show": true,
         "username": true,
         "menu": {
           "show": true,
@@ -69,7 +69,7 @@ window.project={
       },
       "hamburger": false,
       "user": {
-        "show": true,
+        "show": false,
         "username": true,
         "tag": true,
         "menu": {

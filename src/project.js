@@ -10,14 +10,14 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'thunder',
+        theme: 'nitro',
         color: '#1890FF',
-        layout: 'sidemenu',
+        layout: 'topmenu',
         multipage: true,
         fixSideMenu: false
     },
     config: {
-        logo: "./static/imgs/logo-white.png",
+        logo: "./static/imgs/logo.png",
         title: "xxWebBox",
         login: {
             title: "xxWebBox",
@@ -51,7 +51,7 @@ const project = {
                 show: true,
             },
             user: {
-                show: false,
+                show: true,
                 username: true,
                 menu: {
                     show: true,
@@ -69,7 +69,7 @@ const project = {
             },
             hamburger:false,
             user: {
-                show: true,
+                show: false,
                 username: true,
                 tag:true,
                 menu: {
