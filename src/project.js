@@ -10,10 +10,10 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'nitro',
+        theme: 'thunder',
         color: '#1890FF',
         layout: 'sidemenu',
-        multipage: false,
+        multipage: true,
         fixSideMenu: false
     },
     config: {

@@ -146,8 +146,8 @@ export default {
       visitedViews:[],
       cachedViews:[],
       device:'desktop',
-      activeIndex:null,
-      WIDTH:992
+      activeIndex:this.$route.path,
+      width:992
     }
   },
   provide () {
@@ -160,7 +160,7 @@ export default {
   methods:{
     isMobile() {
       const rect = document.body.getBoundingClientRect();
-      return rect.width - 1 < this.WIDTH;
+      return rect.width - 1 < this.width;
     },
     resizeHandler(){
       if (!document.hidden) {

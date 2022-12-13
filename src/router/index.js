@@ -69,6 +69,11 @@ const normalRoutes =  [
                 meta:{
                     title:'test'
                 }
+            },
+            {
+                path:'/demo/dashboard',
+                name:"Dashboard",
+                component:()=>import('../views/demo/Dashboard')
             }
         ]
     }
