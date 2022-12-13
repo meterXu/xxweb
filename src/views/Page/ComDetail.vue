@@ -1,5 +1,5 @@
 <template>
- <div id="comDetail" class="comDetail" style="width: 868px;margin: 0 auto">
+ <div id="comDetail" class="comDetail">
    <DynamicComponent :template="template" :js="js"></DynamicComponent>
  </div>
 </template>
@@ -37,17 +37,6 @@ export default {
   },
   data(){
     return {
-      config:{
-        logo: "./static/imgs/logo-white.png",
-        title: "xxWebBox",
-        login: {
-          title: "xxWebBox",
-          desc: "请输入你的账号",
-        },
-        footer: {
-          show: false
-        }
-      },
       template:null,
       js:null
     }
@@ -55,7 +44,7 @@ export default {
   created() {
     const md = new md_it()
     containers({})(md)
-    axios.get("./static/doc/JeecgLogin.md").then(res=>{
+    axios.get(`./static/doc/login/${this.title}.md`).then(res=>{
       this.template = `<div>${md.render(res.data)}</div>`
       this.js = safeStringToObj(stripScript(res.data))
       Vue.nextTick(() => {
@@ -71,6 +60,9 @@ export default {
 <style scoped>
 .comDetail{
   text-align: left;
+  minx-width: 868px;
+  max-width: 1000px;
+  margin: 0 auto
 }
 </style>
 <style lang="less">
@@ -106,7 +98,7 @@ export default {
     padding-left: 10px;
     padding-right: 10px;
   }
-  tbody tr:nth-child(even){
+  tbody tr:hover,tbody tr:nth-child(even){
     background: #f6f8fa;
   }
 }
