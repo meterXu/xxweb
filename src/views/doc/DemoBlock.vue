@@ -5,14 +5,14 @@
       @mouseenter="hovering = true"
       @mouseleave="hovering = false">
     <div class="source">
-      <slot name="source"></slot>
+      <slot name="demo"></slot>
     </div>
     <div class="meta" ref="meta">
       <div class="description" v-if="$slots.default">
-        <slot></slot>
+        <slot name="description"></slot>
       </div>
       <div class="highlight language-html">
-        <slot name="highlight"></slot>
+        <slot name="source"></slot>
       </div>
     </div>
     <div
@@ -40,6 +40,7 @@
 <script>
 import {Tooltip,Button } from 'element-ui';
 export default {
+  name:'DemoBlock',
   data() {
     return {
       hovering: false,
@@ -53,8 +54,7 @@ export default {
   methods: {
     scrollHandler() {
       const { top, bottom, left } = this.$refs.meta.getBoundingClientRect();
-      this.fixedControl = bottom > document.documentElement.clientHeight &&
-          top + 44 <= document.documentElement.clientHeight;
+      this.fixedControl = bottom > document.documentElement.clientHeight && top + 44 <= document.documentElement.clientHeight;
       this.$refs.control.style.left = this.fixedControl ? `${ left }px` : '0';
     },
     removeScrollHandler() {
@@ -119,7 +119,7 @@ export default {
         return;
       }
       setTimeout(() => {
-        this.scrollParent = document.querySelector('.page-component__scroll > .el-scrollbar__wrap');
+        this.scrollParent = document.querySelector('.app-main');
         this.scrollParent && this.scrollParent.addEventListener('scroll', this.scrollHandler);
         this.scrollHandler();
       }, 200);

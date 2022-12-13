@@ -1,30 +1,39 @@
 <template>
- <div style="width: 868px;margin: 0 auto">
-   <DemoBlock>
-     <template v-slot:source>
-       <div style="width: 800px;height: 500px">
-         <JeecgLogin :config="config"></JeecgLogin>
-       </div>
-     </template>
-     <template v-slot:highlight>
-       <pre><code class="language-html">{{code}}</code></pre>
-     </template>
-   </DemoBlock>
+ <div id="comDetail" class="comDetail" style="width: 868px;margin: 0 auto">
+   <DynamicComponent :template="template" :js="js"></DynamicComponent>
  </div>
 </template>
 
 <script>
-import DemoBlock from '../doc/DemoBlock'
-import {JeecgLogin} from "@/packages/xxWeb-box";
 import axios from 'axios'
 import Vue from "vue";
 import hljs from "highlight.js";
+import md_it from 'markdown-it'
+import containers from '../../md-loader/containers'
+import {stripScript,safeStringToObj} from '../../md-loader/util'
+const DynamicComponent={
+  props:['template','js'],
+  computed:{
+    myComponent(){
+      let res = {
+        template:this.template,
+        render:undefined
+      }
+      Object.assign(res,this.js)
+      return res
+    }
+  },
+  render(){
+    const {myComponent} = this
+    return (<myComponent/>)
+  }
+}
+
 export default {
   name: "ComDetail",
   props:['title'],
   components:{
-    JeecgLogin,
-    DemoBlock
+    DynamicComponent
   },
   data(){
     return {
@@ -39,12 +48,16 @@ export default {
           show: false
         }
       },
-      code:null
+      template:null,
+      js:null
     }
   },
-  async created() {
-    axios.get("./static/doc/JeecgLogin.data").then(res=>{
-      this.code = res.data
+  created() {
+    const md = new md_it()
+    containers({})(md)
+    axios.get("./static/doc/JeecgLogin.md").then(res=>{
+      this.template = `<div>${md.render(res.data)}</div>`
+      this.js = safeStringToObj(stripScript(res.data))
       Vue.nextTick(() => {
         const blocks = document.querySelectorAll('pre code:not(.hljs)');
         Array.prototype.forEach.call(blocks, hljs.highlightBlock);
@@ -56,5 +69,45 @@ export default {
 </script>
 
 <style scoped>
-
+.comDetail{
+  text-align: left;
+}
+</style>
+<style lang="less">
+.demo-table{
+  width: 100%;
+  font-size: 14px;
+  color: #606266;
+  border-collapse: collapse;
+  thead{
+    color: #909399;
+    font-weight: 500;
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+  }
+  th{
+    font-weight: 700;
+  }
+  th,td{
+    padding: 12px 0;
+    min-width: 0;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    position: relative;
+    text-align: left;
+    border-bottom: 1px solid #ebeef5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-all;
+    line-height: 23px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  tbody tr:nth-child(even){
+    background: #f6f8fa;
+  }
+}
 </style>
