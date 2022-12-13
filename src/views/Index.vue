@@ -57,6 +57,7 @@ export default {
     }
   },
   created() {
+    console.log(this.$project)
     this.dark = eval(this.$ls.get('dark'))
     window.permission = permission
   }
