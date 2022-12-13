@@ -25,6 +25,7 @@
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
     "darkreader": "^4.9.58",
+    "echarts": "^5.4.1",
     "element-ui": "^2.15.8",
     "highlight.js": "^11.7.0",
     "less": "^3.11.1",

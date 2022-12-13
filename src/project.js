@@ -89,9 +89,9 @@ const project = {
             links: [],
             copyright: {
                 content: "xxWebBox",
-                year: "2022",
-                href: "http://www.baidu.con",
-                target: "_blank"
+                year: new Date().getFullYear(),
+                href: "javascript:;",
+                target: "_self"
             }
         },
         plugins: {}

@@ -13,7 +13,7 @@
         data(){
             return {
                 config:{
-                    logo: "https://dev.dpark.com.cn/files/s2-logo/logo-white.png",
+                    logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo-white.png",
                     title: "xxWebBox",
                     login: {
                         title: "xxWebBox",
