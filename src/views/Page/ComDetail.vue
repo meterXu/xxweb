@@ -7,7 +7,7 @@
        </div>
      </template>
      <template v-slot:highlight>
-       <pre><code class="language-html">{{xxxx}}</code></pre>
+       <pre><code class="language-html">{{code}}</code></pre>
      </template>
    </DemoBlock>
  </div>
@@ -16,6 +16,9 @@
 <script>
 import DemoBlock from '../doc/DemoBlock'
 import {JeecgLogin} from "@/packages/xxWeb-box";
+import axios from 'axios'
+import Vue from "vue";
+import hljs from "highlight.js";
 export default {
   name: "ComDetail",
   props:['title'],
@@ -36,12 +39,17 @@ export default {
           show: false
         }
       },
-      xxxx:'<template style="height: 100%">\n' +
-          '  <JeecgLogin :config="config"></JeecgLogin>\n' +
-          '</template>'
+      code:null
     }
   },
-  mounted() {
+  async created() {
+    axios.get("./static/doc/JeecgLogin.md").then(res=>{
+      this.code = res.data
+      Vue.nextTick(() => {
+        const blocks = document.querySelectorAll('pre code:not(.hljs)');
+        Array.prototype.forEach.call(blocks, hljs.highlightBlock);
+      });
+    })
 
   }
 }

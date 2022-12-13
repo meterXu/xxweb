@@ -9,8 +9,6 @@ import PageLogin from '../views/Page/PageLogin.vue'
 import error from '../views/Error'
 import Test from "../views/Test";
 import ComDetail from '../views/Page/ComDetail'
-import hljs from 'highlight.js';
-
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -91,13 +89,6 @@ export function resetRouter() {
     const newRouter = createRouter();
     router.matcher = newRouter.matcher;
 }
-
-router.afterEach(route => {
-    Vue.nextTick(() => {
-        const blocks = document.querySelectorAll('pre code:not(.hljs)');
-        Array.prototype.forEach.call(blocks, hljs.highlightBlock);
-    });
-});
 
 
 export default router;

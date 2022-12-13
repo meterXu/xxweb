@@ -253,7 +253,7 @@ export default {
 
     &.is-fixed {
       position: fixed;
-      bottom: 0;
+      bottom: 24px;
       width: 868px;
     }
     i {

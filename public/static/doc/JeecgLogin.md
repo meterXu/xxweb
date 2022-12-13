@@ -1,10 +1,11 @@
-:::demo
-
+::: data
 ```html
+<template>
 <div style="height: 100%">
     <JeecgLogin :config="config" v-model="form" @login="login">
     </JeecgLogin>
 </div>
+</template>
 <script>
 import {JeecgLogin} from '@dpark/s2-xxWeb-box'
 export default {
@@ -36,15 +37,14 @@ export default {
         remember:false
       }
     }
-    
-  },
-  methods:{
-    login(){
-      
+
+},
+methods:{
+login(){
+
     }
-  }
+}
 }
 </script>
 ```
-
 :::
