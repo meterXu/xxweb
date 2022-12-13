@@ -1,5 +1,3 @@
-::: data
-```html
 <template>
 <div style="height: 100%">
     <JeecgLogin :config="config" v-model="form" @login="login">
@@ -46,5 +44,3 @@ login(){
 }
 }
 </script>
-```
-:::

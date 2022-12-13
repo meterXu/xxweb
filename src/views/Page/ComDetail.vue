@@ -43,7 +43,7 @@ export default {
     }
   },
   async created() {
-    axios.get("./static/doc/JeecgLogin.md").then(res=>{
+    axios.get("./static/doc/JeecgLogin.data").then(res=>{
       this.code = res.data
       Vue.nextTick(() => {
         const blocks = document.querySelectorAll('pre code:not(.hljs)');
