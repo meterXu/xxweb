@@ -104,10 +104,9 @@ export default {
     },
     codeAreaHeight() {
       if (this.$el.getElementsByClassName('description').length > 0) {
-        return this.$el.getElementsByClassName('description')[0].clientHeight +
-            this.$el.getElementsByClassName('highlight')[0].clientHeight + 20;
+        return this.$el.getElementsByClassName('description')[0].clientHeight + this.$el.getElementsByClassName('highlight')[0].clientHeight + 44;
       }
-      return this.$el.getElementsByClassName('highlight')[0].clientHeight;
+      return this.$el.getElementsByClassName('highlight')[0].clientHeight+24;
     }
   },
   watch: {
@@ -202,6 +201,7 @@ export default {
     word-break: break-word;
     margin: 10px;
     background-color: #fff;
+    text-align: left;
     p {
       margin: 0;
       line-height: 26px;
@@ -224,8 +224,9 @@ export default {
       margin: 0;
       padding: 12px;
       background: transparent;
-      line-height: 1.4;
-      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 400;
+      font-size: 12px;
     }
     code.hljs {
       background: transparent;
