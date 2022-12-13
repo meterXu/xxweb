@@ -4,6 +4,7 @@ fs.writeFileSync('./public/project.js','window.project='+JSON.stringify(project,
 module.exports = {
   lintOnSave: undefined,
   productionSourceMap: false,
+  runtimeCompiler:true,
   publicPath: './',
   chainWebpack: (config) => {
     if (process.env.npm_config_report) {

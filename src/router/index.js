@@ -8,6 +8,7 @@ import ErrorList from '../views/Page/ErrorList.vue'
 import PageLogin from '../views/Page/PageLogin.vue'
 import error from '../views/Error'
 import Test from "../views/Test";
+import ComDetail from '../views/Page/ComDetail'
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -43,13 +44,23 @@ const normalRoutes =  [
                 path: '/page/login',
                 name: PageLogin.name,
                 component: PageLogin,
-                props: true
+            },
+            {
+                path: '/page/comDetail/:title',
+                name: ComDetail.name,
+                component: ComDetail,
+                props:true,
+                meta:{
+                    title(vue){
+                        return `查看详情-${vue.$route.params.title}`
+                    },
+                    icon:'el-icon-tickets'
+                }
             },
             {
                 path: '/page/error',
                 name: ErrorList.name,
                 component: ErrorList,
-                props: true
             },
             {
                 path: '/page/test',
@@ -78,5 +89,6 @@ export function resetRouter() {
     const newRouter = createRouter();
     router.matcher = newRouter.matcher;
 }
+
 
 export default router;

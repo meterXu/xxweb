@@ -13,7 +13,7 @@
           :closable="item.meta&&!item.meta.permanent"
       >
         <span slot="label" @contextmenu="openMenu($event.target.parentNode)">
-          <DynamicIcon v-if="app.appConfig.config.tabs.icon" type="tab" :meta="item.meta"/> {{item.meta&&item.meta.title}}</span>
+          <DynamicIcon v-if="app.appConfig.config.tabs.icon" type="tab" :meta="item.meta"/> {{myTitle(item)}}</span>
       </TabPane>
     </Tabs>
     <ul
@@ -160,7 +160,9 @@ export default {
         }else{
           view = this.searchMenuByPath(this.$router.getRoutes(), route.path)
           if(!view){
-            view = {name:'未找到该路由', path:route.path, meta:{title:'未找到该路由'}}
+            view = {name:'notfound', path:route.path, meta:{title:''}}
+          }else{
+            view = route
           }
         }
         this.visitedViews.push(view)

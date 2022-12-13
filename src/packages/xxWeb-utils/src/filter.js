@@ -68,21 +68,22 @@ function filter(router, project) {
 }
 
 function validatePermission(path,permission){
-    let res = false
-    if(!permission){
-        res = true
-    }else {
-        for (let i=0;i<permission.length;i++){
-            if(permission[i].children){
-                res = validatePermission(path,permission[i].children)
-                break
-            }else if(permission[i].path === path){
-                res = true
-                break
-            }
-        }
-    }
-    return res
+    // let res = false
+    // if(!permission){
+    //     res = true
+    // }else {
+    //     for (let i=0;i<permission.length;i++){
+    //         if(permission[i].children){
+    //             res = validatePermission(path,permission[i].children)
+    //             break
+    //         }else if(permission[i].path === path){
+    //             res = true
+    //             break
+    //         }
+    //     }
+    // }
+    // return res
+    return true
 
 }
 

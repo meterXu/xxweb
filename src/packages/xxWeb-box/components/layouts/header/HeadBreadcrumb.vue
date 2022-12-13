@@ -2,15 +2,15 @@
   <Breadcrumb class="app-breadcrumb" separator-class="el-icon-arrow-right">
     <transition-group name="breadcrumb">
       <BreadcrumbItem v-for="(item,index) in levelList" :key="item.path">
-        <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ item.meta.title }}</span>
-        <a v-else @click.prevent="handleLink(item)">{{ item.meta.title }}</a>
+        <span v-if="item.redirect==='noRedirect'||index==levelList.length-1" class="no-redirect">{{ myTitle(item) }}</span>
+        <a v-else @click.prevent="handleLink(item)">{{myTitle(item)}}</a>
       </BreadcrumbItem>
     </transition-group>
   </Breadcrumb>
 </template>
 
 <script>
-import pathToRegexp from 'path-to-regexp';
+import {compile} from 'path-to-regexp';
 import {Breadcrumb,BreadcrumbItem} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 export default {
@@ -31,7 +31,7 @@ export default {
     pathCompile(path) {
       try{
         const { params } = this.$route;
-        let compileObj = pathToRegexp.compile(path);
+        let compileObj = compile(path);
         return compileObj(params);
       }catch (err){
         return null

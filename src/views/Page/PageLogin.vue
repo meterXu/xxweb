@@ -27,11 +27,11 @@ export default {
   data(){
     return {
       loginList:[
-        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',path:'/login/1'},
-        {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>',path:'/login/2'},
-        {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>',path:'/login/3'},
-        {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>',path:'/login/4'},
-        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>',path:'/login/5'},
+        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',path:'/page/comDetail/JeecgLogin'},
+        {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>',path:'/page/comDetail/PigLogin'},
+        {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>',path:'/page/comDetail/TreeLogin'},
+        {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>',path:'/page/comDetail/WatermelonLogin'},
+        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>',path:'/page/comDetail/PhylumLogin'},
       ]
     }
   },

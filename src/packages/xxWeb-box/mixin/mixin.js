@@ -1,10 +1,12 @@
+import {match} from 'path-to-regexp';
 export default {
     inject: ['app','cachedViews','visitedViews'],
     methods:{
         searchMenuByPath(data, path) {
             let res = null
             for (let i = 0; i < data.length; i++) {
-                if (data[i].path === path) {
+                const fn = match(data[i].path);
+                if (data[i].path === path||fn(path)) {
                     res = data[i]
                     break
                 } else if (data[i].hasOwnProperty('children') && data[i].children instanceof Array) {
@@ -15,6 +17,17 @@ export default {
                 }
             }
             return res
+        },
+        myTitle(item){
+            if(item.meta){
+                if(typeof(item.meta.title)==='string'){
+                    return item.meta.title
+                }else{
+                    return item.meta.title(this)
+                }
+            }else{
+                return null
+            }
         }
     },
     created(){
