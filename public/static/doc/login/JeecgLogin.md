@@ -5,7 +5,7 @@
 ```html
 <template>
     <div style="width: 100%;height: 600px">
-        <JeecgLogin :config="config"></JeecgLogin>
+        <JeecgLogin :config="config" @login="login"></JeecgLogin>
     </div>
 </template>
 <script>
@@ -29,6 +29,14 @@
                             target: "_blank"
                         }
                     }
+                }
+            }
+        },
+        methods:{
+            login(valid,loginState){
+                if(valid){
+                    console.log(valid)
+                    console.log(loginState)
                 }
             }
         }

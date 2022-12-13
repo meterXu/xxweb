@@ -52,7 +52,7 @@ const normalRoutes =  [
                 props:true,
                 meta:{
                     title(vue){
-                        return `查看详情-${vue.$route.params.title}`
+                        return `查看详情-${vue.$route.params.title||''}`
                     },
                     icon:'el-icon-tickets'
                 }

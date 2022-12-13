@@ -10,7 +10,7 @@ window.project={
     "login": "/login/1"
   },
   "style": {
-    "theme": "default-light",
+    "theme": "nitro",
     "color": "#1890FF",
     "layout": "sidemenu",
     "multipage": true,

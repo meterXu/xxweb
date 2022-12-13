@@ -5,7 +5,7 @@
 ```html
 <template>
     <div style="width: 100%;height: 600px">
-        <WatermelonLogin :config="config"></WatermelonLogin>
+        <WatermelonLogin :config="config" @login="login"></WatermelonLogin>
     </div>
 </template>
 <script>
@@ -13,7 +13,7 @@
         data(){
             return {
                 config:{
-                    logo: "./static/imgs/logo-white.png",
+                    logo: "https://dev.dpark.com.cn/files/s2-logo/logo.png",
                     title: "xxWebBox",
                     login: {
                         title: "xxWebBox",
@@ -29,6 +29,14 @@
                             target: "_blank"
                         }
                     }
+                }
+            }
+        },
+        methods:{
+            login(valid,loginState){
+                if(valid){
+                    console.log(valid)
+                    console.log(loginState)
                 }
             }
         }

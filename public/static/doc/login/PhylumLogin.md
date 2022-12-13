@@ -5,7 +5,7 @@
 ```html
 <template>
     <div style="width: 100%;height: 600px">
-        <PhylumLogin :config="config">
+        <PhylumLogin :config="config" @login="login">
         </PhylumLogin>
     </div>
 </template>
@@ -30,6 +30,14 @@
                             target: "_blank"
                         }
                     }
+                }
+            }
+        },
+        methods:{
+            login(valid,loginState){
+                if(valid){
+                    console.log(valid)
+                    console.log(loginState)
                 }
             }
         }

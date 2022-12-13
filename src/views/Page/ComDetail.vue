@@ -60,7 +60,7 @@ export default {
 <style scoped>
 .comDetail{
   text-align: left;
-  mix-width: 868px;
+  min-width: 868px;
   max-width: 1366px;
   margin: 0 auto
 }
@@ -71,6 +71,8 @@ export default {
   font-size: 14px;
   color: #606266;
   border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #ebeef5;
   thead{
     color: #909399;
     font-weight: 500;
