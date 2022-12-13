@@ -1,18 +1,16 @@
 <template>
   <div>
   <el-row>
-    <el-card :bodyStyle="{padding: 0}">
-      <PersonCount/>
-    </el-card>
+    <PersonCount/>
   </el-row>
-  <el-row class="row-margin" :gutter="[16,16]">
+  <el-row class="row-margin" :gutter="16">
     <el-col :span="12">
       <el-card title="核酸总体情况">
         <el-col :span="12">
-<!--          <PieChart title="普通人群" :isImportant="0"/>-->
+          <PieChart title="普通人群" :isImportant="0"/>
         </el-col>
         <el-col :span="12">
-<!--          <PieChart title="重点人群" :isImportant="1"/>-->
+          <PieChart title="重点人群" :isImportant="1"/>
         </el-col>
       </el-card>
     </el-col>
@@ -22,7 +20,7 @@
       </el-card>
     </el-col>
   </el-row>
-  <el-row class="row-margin"  :gutter="[16,16]">
+  <el-row class="row-margin"  :gutter="16">
     <el-col :span="8">
       <el-card title="项目总体情况">
         <BarChart/>
@@ -45,15 +43,19 @@
 <script>
 import BarChart from './module/BarChart'
 import PersonCount from "./module/PersonCount";
+import PieChart from "./module/PieChart";
 export default {
   name: "Dashboard",
   components:{
     BarChart,
-    PersonCount
+    PersonCount,
+    PieChart
   }
 }
 </script>
 
 <style scoped>
-
+.row-margin{
+  margin-top: 16px !important;
+}
 </style>

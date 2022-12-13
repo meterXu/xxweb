@@ -1,12 +1,14 @@
 <template>
-  <ul class="txtChart-container">
-    <li v-for="(item,i) in txtChartData" :key="i">
-      <div class="txtChart-item">
-        <div class="txtChart-num">{{item.num}}</div>
-        <div class="txtChart-txt">{{item.text}}</div>
-      </div>
-    </li>
-  </ul>
+  <el-row class="txtChart-container" :gutter="16">
+    <el-col :span="4" v-for="(item,i) in txtChartData" :key="i">
+      <el-card>
+        <div class="txtChart-item">
+          <div class="txtChart-num">{{item.num}}</div>
+          <div class="txtChart-txt">{{item.text}}</div>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
@@ -74,24 +76,9 @@ export default {
 
 <style scoped>
 .txtChart-container{
-  list-style: none;
-  background-color: #4F91F5;
-  display: flex;
   height: 80px;
-  align-items: center;
-  justify-content: left;
   margin: 0;
   padding: 0;
-}
-.txtChart-container li{
-  color: white;
-  width: 16.6%;
-  display: inline-flex;
-}
-.txtChart-container li+li{
-  border-left: 1px solid #fff;
-  padding: 0;
-  margin: 0;
 }
 .txtChart-item{
   display: inline-block;
