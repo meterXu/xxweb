@@ -60,8 +60,8 @@ export default {
 <style scoped>
 .comDetail{
   text-align: left;
-  minx-width: 868px;
-  max-width: 1000px;
+  mix-width: 868px;
+  max-width: 1366px;
   margin: 0 auto
 }
 </style>

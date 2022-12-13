@@ -4,7 +4,7 @@
 
 ```html
 <template>
-    <div style="width: 100%;height: 500px">
+    <div style="width: 100%;height: 600px">
         <JeecgLogin :config="config"></JeecgLogin>
     </div>
 </template>
@@ -13,7 +13,7 @@
         data(){
             return {
                 config:{
-                    logo: "./static/imgs/logo-white.png",
+                    logo: "https://dev.dpark.com.cn/files/s2-logo/logo-white.png",
                     title: "xxWebBox",
                     login: {
                         title: "xxWebBox",

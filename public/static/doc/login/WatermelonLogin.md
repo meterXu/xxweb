@@ -4,7 +4,7 @@
 
 ```html
 <template>
-    <div style="width: 100%;height: 500px">
+    <div style="width: 100%;height: 600px">
         <WatermelonLogin :config="config"></WatermelonLogin>
     </div>
 </template>
