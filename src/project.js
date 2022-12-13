@@ -13,7 +13,7 @@ const project = {
         theme: 'nitro',
         color: '#1890FF',
         layout: 'sidemenu',
-        multipage: true,
+        multipage: false,
         fixSideMenu: false
     },
     config: {
