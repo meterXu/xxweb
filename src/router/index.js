@@ -26,29 +26,29 @@ const normalRoutes =  [
     },
     {
         path: '/',
-        name: Index.name,
-        component: Index,
+        name: 'Index',
+        component:()=>import('../views/Index'),
         redirect:'/page/xxWebBox',
         children:[
             {
                 path:'/page/dashboard',
-                name: Dashboard.name,
-                component: Dashboard,
+                name: 'Dashboard',
+                component: ()=>import('../views/Page/Dashboard'),
             },
             {
                 path: '/page/xxWebBox',
-                name: XXWebBox.name,
-                component: XXWebBox,
+                name: 'XXWebBox',
+                component: ()=>import('../views/Page/XXWebBox'),
             },
             {
                 path: '/page/login',
-                name: PageLogin.name,
-                component: PageLogin,
+                name: 'PageLogin',
+                component: ()=>import('../views/Page/PageLogin'),
             },
             {
                 path: '/page/comDetail/:title',
-                name: ComDetail.name,
-                component: ComDetail,
+                name: 'ComDetail',
+                component:()=>import('../views/Page/ComDetail'),
                 props:true,
                 meta:{
                     title(vue){
@@ -59,8 +59,8 @@ const normalRoutes =  [
             },
             {
                 path: '/page/error',
-                name: ErrorList.name,
-                component: ErrorList,
+                name: 'ErrorList',
+                component:()=>import('../views/Page/ErrorList'),
             },
             {
                 path: '/page/test',
