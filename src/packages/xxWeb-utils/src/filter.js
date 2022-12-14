@@ -5,7 +5,6 @@ import * as util from './util'
 
 function filter(router, project) {
     let defaultLogin = project.redirect.login
-    let defaultIndex = project.redirect.index
     const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
     const _ls = new util.ls(project)
 

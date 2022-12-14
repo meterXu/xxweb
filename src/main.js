@@ -8,7 +8,7 @@ import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 Vue.prototype.$project = window.project
-filter(router,Vue.prototype.$project)
+// filter(router,Vue.prototype.$project)
 Vue.prototype.$ls = new util.ls(window.project)
 Vue.use(XXWebBox)
 Vue.component(DemoBlock.name,DemoBlock)
