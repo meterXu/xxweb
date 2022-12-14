@@ -46,7 +46,7 @@ const normalRoutes =  [
                 component: ()=>import('../views/Page/PageLogin'),
             },
             {
-                path: '/page/comDetail/:title',
+                path: '/page/comDetail/:type/:title',
                 name: 'ComDetail',
                 component:()=>import('../views/Page/ComDetail'),
                 props:true,
