@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import {Divider, Header} from 'element-ui'
+import {Divider, Header,Menu,MenuItem,Submenu} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 import Logo from "../../../components/common/Logo.vue";
 import Hamburger from "./Hamburger.vue";
@@ -102,7 +102,10 @@ export default {
     UserMenu,
     Header,
     DynamicMenu,
-    Divider
+    Divider,
+    Menu,
+    MenuItem,
+    Submenu
 },
   computed:{
     sidemenu(){

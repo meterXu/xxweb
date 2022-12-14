@@ -65,14 +65,12 @@ export default {
       })
       return sMenu
     }
-    function menuItemClick(){
-      window.location.href='http://www.baidu.com'
-    }
     return (
         <div class="dynamic-menu">
           <Menu
               collapse={isCollapse}
               default-active={defaultActive}
+              // default-openeds={permission.length>0?[permission[0].path]:[]}
               mode={mode}>
             {renderSubMenu()}
           </Menu>

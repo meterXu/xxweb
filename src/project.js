@@ -10,7 +10,7 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'nitro',
+        theme: 'thunder',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
@@ -89,9 +89,9 @@ const project = {
             links: [],
             copyright: {
                 content: "xxWebBox",
-                year: "2022",
-                href: "http://www.baidu.con",
-                target: "_blank"
+                year: new Date().getFullYear(),
+                href: "javascript:;",
+                target: "_self"
             }
         },
         plugins: {}

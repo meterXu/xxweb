@@ -4,8 +4,9 @@
 
 ```html
 <template>
-    <div style="width: 100%;height: 500px">
-        <PhylumLogin :config="config"></PhylumLogin>
+    <div style="width: 100%;height: 600px">
+        <PhylumLogin :config="config" @login="login">
+        </PhylumLogin>
     </div>
 </template>
 <script>
@@ -13,7 +14,7 @@
         data(){
             return {
                 config:{
-                    logo: "./static/imgs/logo-white.png",
+                    logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo.png",
                     title: "xxWebBox",
                     login: {
                         title: "xxWebBox",
@@ -29,6 +30,14 @@
                             target: "_blank"
                         }
                     }
+                }
+            }
+        },
+        methods:{
+            login(valid,loginState){
+                if(valid){
+                    console.log(valid)
+                    console.log(loginState)
                 }
             }
         }

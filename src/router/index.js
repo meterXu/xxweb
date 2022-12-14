@@ -26,41 +26,41 @@ const normalRoutes =  [
     },
     {
         path: '/',
-        name: Index.name,
-        component: Index,
+        name: 'Index',
+        component:()=>import('../views/Index'),
         redirect:'/page/xxWebBox',
         children:[
             {
                 path:'/page/dashboard',
-                name: Dashboard.name,
-                component: Dashboard,
+                name: 'Dashboard',
+                component: ()=>import('../views/Page/Dashboard'),
             },
             {
                 path: '/page/xxWebBox',
-                name: XXWebBox.name,
-                component: XXWebBox,
+                name: 'XXWebBox',
+                component: ()=>import('../views/Page/XXWebBox'),
             },
             {
                 path: '/page/login',
-                name: PageLogin.name,
-                component: PageLogin,
+                name: 'PageLogin',
+                component: ()=>import('../views/Page/PageLogin'),
             },
             {
-                path: '/page/comDetail/:type/:title',
-                name: ComDetail.name,
-                component: ComDetail,
+                path: '/page/comDetail/:title',
+                name: 'ComDetail',
+                component:()=>import('../views/Page/ComDetail'),
                 props:true,
                 meta:{
                     title(vue){
-                        return `查看详情-${vue.$route.params.title}`
+                        return `查看详情-${vue.$route.params.title||''}`
                     },
                     icon:'el-icon-tickets'
                 }
             },
             {
                 path: '/page/error',
-                name: ErrorList.name,
-                component: ErrorList,
+                name: 'ErrorList',
+                component:()=>import('../views/Page/ErrorList'),
             },
             {
                 path: '/page/test',
@@ -69,6 +69,11 @@ const normalRoutes =  [
                 meta:{
                     title:'test'
                 }
+            },
+            {
+                path:'/demo/dashboard',
+                name:"Dashboard",
+                component:()=>import('../views/demo/Dashboard')
             }
         ]
     }

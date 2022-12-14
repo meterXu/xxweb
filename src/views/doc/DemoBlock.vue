@@ -168,6 +168,7 @@ export default {
   }
   .source {
     padding: 24px;
+    overflow: auto;
   }
   .meta {
     background-color: #fafafa;
@@ -255,7 +256,8 @@ export default {
     &.is-fixed {
       position: fixed;
       bottom: 24px;
-      width: 868px;
+      min-width:998px;
+      max-width: 1364px;
     }
     i {
       font-size: 16px;

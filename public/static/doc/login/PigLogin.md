@@ -4,8 +4,8 @@
 
 ```html
 <template>
-    <div style="width: 100%;height: 500px">
-        <PigLogin :config="config"></PigLogin>
+    <div style="width: 1300px;height: 800px">
+        <PigLogin :config="config" @login="login"></PigLogin>
     </div>
 </template>
 <script>
@@ -13,7 +13,7 @@
         data(){
             return {
                 config:{
-                    logo: "./static/imgs/logo-white.png",
+                    logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo.png",
                     title: "xxWebBox",
                     login: {
                         title: "xxWebBox",
@@ -29,6 +29,14 @@
                             target: "_blank"
                         }
                     }
+                }
+            }
+        },
+        methods:{
+            login(valid,loginState){
+                if(valid){
+                    console.log(valid)
+                    console.log(loginState)
                 }
             }
         }

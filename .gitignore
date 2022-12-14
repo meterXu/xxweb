@@ -21,7 +21,7 @@ yarn-error.log*
 *.sln
 *.sw*
 *.tgz
+public/project.js
 yarn-error.log
 src/packages/xxWeb-box/yarn.lock
 src/packages/xxWeb-utils/yarn.lock
-/yarn.lock
