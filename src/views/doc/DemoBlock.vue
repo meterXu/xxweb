@@ -55,7 +55,12 @@ export default {
     scrollHandler() {
       const { top, bottom, left } = this.$refs.meta.getBoundingClientRect();
       this.fixedControl = bottom > document.documentElement.clientHeight && top + 44 <= document.documentElement.clientHeight;
-      this.$refs.control.style.left = this.fixedControl ? `${ left }px` : '0';
+      if(this.fixedControl){
+        this.$refs.control.style.left = `${ left }px`;
+        this.$refs.control.style.width = document.getElementsByClassName('demo-block')[0].clientWidth+'px'
+      }else{
+        this.$refs.control.style.left = '0';
+      }
     },
     removeScrollHandler() {
       this.scrollParent && this.scrollParent.removeEventListener('scroll', this.scrollHandler);
@@ -256,8 +261,6 @@ export default {
     &.is-fixed {
       position: fixed;
       bottom: 24px;
-      min-width:998px;
-      max-width: 1364px;
     }
     i {
       font-size: 16px;
