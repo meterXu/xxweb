@@ -9,7 +9,7 @@
            <div class="box-item-desc" v-html="item.desc"></div>
          </div>
           <div>
-            <Button type="primary" plain size="mini">
+            <Button type="primary" plain size="mini" @click="gotoCode(item)">
               <i class="el-icon-set-up" style="font-size: 18px"></i>
             </Button>
           </div>
@@ -27,7 +27,7 @@ export default {
   data(){
     return {
       xxWebBoxList:[
-        {title:"default",cover:require('../../assets/imgs/xxWebBox/default.png'),desc:'design by <a href="">jeecg</a>'},
+        {title:"default",cover:require('../../assets/imgs/xxWebBox/default.png'),desc:'design by <a href="">jeecg</a>',path:'/page/comDetail/xxWebBox/default'},
         {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">vue-admin</a>'},
         {title:"v2board",cover:require('../../assets/imgs/xxWebBox/v2board.png'),desc:'design by <a href="">v2board</a>'},
         {title:"thunder",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">thunder</a>'},
@@ -37,6 +37,13 @@ export default {
         {title:"nitro",cover:require('../../assets/imgs/xxWebBox/nitro.png'),desc:'design by <a href="">nitro</a>'},
         // {title:"Octavia",cover:require('../../assets/imgs/xxWebBox/Octavia.png'),desc:'design by <a href="">Octavia</a>'}
       ]
+    }
+  },
+  methods:{
+    gotoCode(item){
+      this.$router.push({
+        path:item.path
+      })
     }
   }
 }

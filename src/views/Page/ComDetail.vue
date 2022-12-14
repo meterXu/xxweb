@@ -1,6 +1,7 @@
 <template>
  <div id="comDetail" class="comDetail">
    <DynamicComponent :template="template" :js="js"></DynamicComponent>
+   <div v-html="attributes"></div>
  </div>
 </template>
 
@@ -38,7 +39,8 @@ export default {
   data(){
     return {
       template:null,
-      js:null
+      js:null,
+      attributes:null
     }
   },
   created() {
@@ -52,13 +54,17 @@ export default {
         Array.prototype.forEach.call(blocks, hljs.highlightBlock);
       });
     })
-
+    axios.get(`./static/doc/${this.type}/attributes.md`).then(res=>{
+      this.attributes = `<div>${md.render(res.data)}</div>`
+    })
   }
 }
 </script>
 
 <style scoped>
 .comDetail{
+  background-color: #fff;
+  padding: 20px 100px 40px 100px;
   text-align: left;
   min-width: 868px;
   max-width: 1366px;

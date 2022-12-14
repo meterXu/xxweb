@@ -53,7 +53,12 @@ const normalRoutes =  [
                 meta:{
                     title:'查看详情',
                     icon:'el-icon-tickets'
-                }
+                },
+                children: [{
+                    path:'/page/comDetail/dashboard',
+                    name:"Dashboard",
+                    component:()=>import('../views/demo/Dashboard')
+                }]
             },
             {
                 path: '/page/error',

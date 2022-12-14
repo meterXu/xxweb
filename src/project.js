@@ -48,7 +48,7 @@ const project = {
                 target: "_blank"
             },
             fullscreen: {
-                show: true,
+                show: false,
             },
             user: {
                 show: true,

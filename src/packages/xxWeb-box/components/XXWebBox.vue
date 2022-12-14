@@ -182,7 +182,7 @@ export default {
   computed:{
     contentWidth(){
       return {
-        width:`calc(100vw - ${this.appConfig.config.sideMenu.width})`
+        width:`calc(100% - ${this.appConfig.config.sideMenu.width})`
       }
     }
   },
