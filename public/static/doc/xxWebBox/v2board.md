@@ -5,10 +5,10 @@
 ```html
 <template>
     <div style="width: 100%;height: 600px">
-    <XXWebBox :appConfig="project" :permission="permission"
-              @dropdownMenuClick="dropdownMenuClick"
-              @menuClick="menuClick">
-    </XXWebBox>
+        <XXWebBox :appConfig="project" :permission="permission"
+                  @dropdownMenuClick="dropdownMenuClick"
+                  @menuClick="menuClick">
+        </XXWebBox>
     </div>
 </template>
 <script>
@@ -20,21 +20,21 @@
                         baseApi:'',
                         ssoApi:''
                     },
-                    redirect: {
-                        index: '/page/1',
-                        login: '/login/1',
-                        "404": '/error/1',
-                        '403':'/error/5'
+                    redirect: { // 以下路径需换成实际项目路由地址
+                        index: '/',
+                        login: '/',
+                        "404": '/',
+                        '403':'/'
                     },
                     style: {
                         theme: 'v2board',
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,
-                        fixSideMenu: false 
+                        fixSideMenu: false
                     },
                     config: {
-                        logo: "./static/imgs/logo.png",
+                        logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo.png",
                         menu:{
                             mode:'route'
                         },
@@ -93,7 +93,7 @@
                             }
                         },
                         tabs: {
-                            show: false,
+                            show: false, // 设置为true，显示tab标签
                             icon: true
                         },
                         footer: {
@@ -109,7 +109,7 @@
                         plugins: {}
                     }
                 },
-                permission: [{
+                permission: [{ // 以下路径需换成实际项目路由地址
                     path:'/page/comDetail',
                     meta: {
                         title: '示例页面',
