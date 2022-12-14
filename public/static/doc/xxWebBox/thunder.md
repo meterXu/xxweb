@@ -1,4 +1,4 @@
-### default
+### thunder
 
 :::demo
 
@@ -25,21 +25,16 @@
                         login: '/login/1',
                         "404": '/error/1',
                         '403':'/error/5'
-                    redirect: { // 以下路径需换成实际项目路由地址
-                        index: '/', 
-                        login: '/',
-                        "404": '/',
-                        '403':'/'
                     },
                     style: {
-                        theme: 'default',
+                        theme: 'thunder',
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,
                         fixSideMenu: false 
                     },
                     config: {
-                        logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo.png",
+                        logo: "./static/imgs/logo.png",
                         menu:{
                             mode:'route'
                         },
@@ -98,7 +93,7 @@
                             }
                         },
                         tabs: {
-                            show: false, // 设置为true，显示tab标签
+                            show: false,
                             icon: true
                         },
                         footer: {
@@ -114,7 +109,7 @@
                         plugins: {}
                     }
                 },
-                permission: [{ // 以下路径需换成实际项目路由地址
+                permission: [{
                     path:'/page/comDetail',
                     meta: {
                         title: '示例页面',
@@ -122,21 +117,21 @@
                     },
                     children: [
                         {
-                            path: '/page/comDetail/xxWebBox/default/dashboard',
+                            path: '/page/comDetail/xxWebBox/thunder/dashboard',
                             meta: {
                                 title: '统计分析',
                                 icon: 'el-icon-data-analysis'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/list',
+                            path: '/page/comDetail/xxWebBox/thunder/list',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/detail',
+                            path: '/page/comDetail/xxWebBox/thunder/detail',
                             meta: {
                                 title: '详情',
                                 icon: 'el-icon-tickets'
