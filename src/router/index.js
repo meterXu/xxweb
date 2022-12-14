@@ -55,8 +55,8 @@ const normalRoutes =  [
                     icon:'el-icon-tickets'
                 },
                 children: [{
-                    path:'/page/comDetail/dashboard',
-                    name:"Dashboard",
+                    path:'/page/comDetail/:type/:title/dashboard',
+                    name:"DetailDashboard",
                     component:()=>import('../views/demo/Dashboard')
                 }]
             },

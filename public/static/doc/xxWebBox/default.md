@@ -117,7 +117,7 @@
                     },
                     children: [
                         {
-                            path: '/page/comDetail/dashboard',
+                            path: '/page/comDetail/xxWebBox/default/dashboard',
                             meta: {
                                 title: '统计分析',
                                 icon: 'el-icon-data-analysis'
