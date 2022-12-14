@@ -28,13 +28,13 @@ export default {
     return {
       xxWebBoxList:[
         {title:"default",cover:require('../../assets/imgs/xxWebBox/default.png'),desc:'design by <a href="">jeecg</a>',path:'/page/comDetail/xxWebBox/default'},
-        {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">vue-admin</a>'},
-        {title:"v2board",cover:require('../../assets/imgs/xxWebBox/v2board.png'),desc:'design by <a href="">v2board</a>'},
-        {title:"thunder",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">thunder</a>'},
-        {title:"default-light",cover:require('../../assets/imgs/xxWebBox/default-light.png'),desc:'design by <a href="">default-light</a>'},
+        {title:"default-light",cover:require('../../assets/imgs/xxWebBox/default-light.png'),desc:'design by <a href="">default-light</a>',path:'/page/comDetail/xxWebBox/default-light'},
+        {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">vue-admin</a>',path:'/page/comDetail/xxWebBox/vue-admin'},
+        {title:"v2board",cover:require('../../assets/imgs/xxWebBox/v2board.png'),desc:'design by <a href="">v2board</a>',path:'/page/comDetail/xxWebBox/v2board'},
+        {title:"thunder",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">thunder</a>',path:'/page/comDetail/xxWebBox/thunder'},
         // {title:"Lux",cover:require('../../assets/imgs/xxWebBox/Lux.png'),desc:'design by <a href="">Lux</a>'},
         // {title:"Lux_dark",cover:require('../../assets/imgs/xxWebBox/Lux_dark.png'),desc:'design by <a href="">Lux_dark</a>'},
-        {title:"nitro",cover:require('../../assets/imgs/xxWebBox/nitro.png'),desc:'design by <a href="">nitro</a>'},
+        {title:"nitro",cover:require('../../assets/imgs/xxWebBox/nitro.png'),desc:'design by <a href="">nitro</a>',path:'/page/comDetail/xxWebBox/nitro'},
         // {title:"Octavia",cover:require('../../assets/imgs/xxWebBox/Octavia.png'),desc:'design by <a href="">Octavia</a>'}
       ]
     }

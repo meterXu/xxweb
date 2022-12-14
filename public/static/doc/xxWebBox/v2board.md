@@ -1,4 +1,4 @@
-### default
+### v2board
 
 :::demo
 
@@ -27,7 +27,7 @@
                         '403':'/error/5'
                     },
                     style: {
-                        theme: 'default',
+                        theme: 'v2board',
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,
@@ -117,21 +117,21 @@
                     },
                     children: [
                         {
-                            path: '/page/comDetail/xxWebBox/default/dashboard',
+                            path: '/page/comDetail/xxWebBox/v2board/dashboard',
                             meta: {
                                 title: '统计分析',
                                 icon: 'el-icon-data-analysis'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/list',
+                            path: '/page/comDetail/xxWebBox/v2board/list',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/detail',
+                            path: '/page/comDetail/xxWebBox/v2board/detail',
                             meta: {
                                 title: '详情',
                                 icon: 'el-icon-tickets'

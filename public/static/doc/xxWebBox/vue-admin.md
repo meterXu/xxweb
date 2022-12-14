@@ -1,4 +1,4 @@
-### default
+### vue-admin
 
 :::demo
 
@@ -27,11 +27,11 @@
                         '403':'/error/5'
                     },
                     style: {
-                        theme: 'default',
+                        theme: 'vue-admin',
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,
-                        fixSideMenu: false 
+                        fixSideMenu: true 
                     },
                     config: {
                         logo: "./static/imgs/logo.png",
@@ -93,7 +93,7 @@
                             }
                         },
                         tabs: {
-                            show: false,
+                            show: true,
                             icon: true
                         },
                         footer: {
@@ -110,28 +110,28 @@
                     }
                 },
                 permission: [{
-                    path:'/page/comDetail',
+                    path:'/demo',
                     meta: {
                         title: '示例页面',
                         icon: 'el-icon-s-help'
                     },
                     children: [
                         {
-                            path: '/page/comDetail/xxWebBox/default/dashboard',
+                            path: '/page/comDetail/xxWebBox/vue-admin/dashboard',
                             meta: {
                                 title: '统计分析',
                                 icon: 'el-icon-data-analysis'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/list',
+                            path: '/page/comDetail/xxWebBox/vue-admin/list',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/detail',
+                            path: '/page/comDetail/xxWebBox/vue-admin/detail',
                             meta: {
                                 title: '详情',
                                 icon: 'el-icon-tickets'
