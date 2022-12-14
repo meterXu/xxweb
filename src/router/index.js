@@ -51,9 +51,7 @@ const normalRoutes =  [
                 component:()=>import('../views/Page/ComDetail'),
                 props:true,
                 meta:{
-                    title(vue){
-                        return `查看详情-${vue.$route.params.title||''}`
-                    },
+                    title:'查看详情',
                     icon:'el-icon-tickets'
                 }
             },
