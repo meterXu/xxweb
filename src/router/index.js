@@ -46,7 +46,7 @@ const normalRoutes =  [
                 component: PageLogin,
             },
             {
-                path: '/page/comDetail/:title',
+                path: '/page/comDetail/:type/:title',
                 name: ComDetail.name,
                 component: ComDetail,
                 props:true,

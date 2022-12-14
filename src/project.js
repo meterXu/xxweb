@@ -12,7 +12,7 @@ const project = {
     style: {
         theme: 'nitro',
         color: '#1890FF',
-        layout: 'topmenu',
+        layout: 'sidemenu',
         multipage: true,
         fixSideMenu: false
     },

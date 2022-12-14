@@ -27,11 +27,11 @@ export default {
   data(){
     return {
       loginList:[
-        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',path:'/page/comDetail/JeecgLogin'},
-        {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>',path:'/page/comDetail/PigLogin'},
-        {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>',path:'/page/comDetail/TreeLogin'},
-        {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>',path:'/page/comDetail/WatermelonLogin'},
-        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>',path:'/page/comDetail/PhylumLogin'},
+        {title:"JeecgLogin",cover:require('../../assets/imgs/login/JeecgLogin.jpg'),desc:'design by <a href="">JeecgLogin</a>',path:'/page/comDetail/login/JeecgLogin'},
+        {title:"PigLogin",cover:require('../../assets/imgs/login/PigLogin.jpg'),desc:'design by <a href="">PigLogin</a>',path:'/page/comDetail/login/PigLogin'},
+        {title:"TreeLogin",cover:require('../../assets/imgs/login/TreeLogin.png'),desc:'design by <a href="">TreeLogin</a>',path:'/page/comDetail/login/TreeLogin'},
+        {title:"WatermelonLogin",cover:require('../../assets/imgs/login/WatermelonLogin.png'),desc:'design by <a href="">WatermelonLogin</a>',path:'/page/comDetail/login/WatermelonLogin'},
+        {title:"PhylumLogin",cover:require('../../assets/imgs/login/PhylumLogin.png'),desc:'design by <a href="">PhylumLogin</a>',path:'/page/comDetail/login/PhylumLogin'},
       ]
     }
   },

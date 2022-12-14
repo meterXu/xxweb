@@ -31,7 +31,7 @@ const DynamicComponent={
 
 export default {
   name: "ComDetail",
-  props:['title'],
+  props:['type','title'],
   components:{
     DynamicComponent
   },
@@ -44,7 +44,7 @@ export default {
   created() {
     const md = new md_it()
     containers({})(md)
-    axios.get(`./static/doc/login/${this.title}.md`).then(res=>{
+    axios.get(`./static/doc/${this.type}/${this.title}.md`).then(res=>{
       this.template = `<div>${md.render(res.data)}</div>`
       this.js = safeStringToObj(stripScript(res.data))
       Vue.nextTick(() => {
