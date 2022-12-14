@@ -19,7 +19,7 @@ export default {
             return res
         },
         myTitle(item){
-            if(item.meta){
+            if(item.meta&&item.meta.title){
                 if(typeof(item.meta.title)==='string'){
                     return item.meta.title
                 }else{

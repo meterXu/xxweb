@@ -1,14 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '../views/Login.vue'
-import Index from '../views/Index.vue'
-import Dashboard from '../views/Page/Dashboard.vue'
-import XXWebBox from '../views/Page/XXWebBox.vue'
-import ErrorList from '../views/Page/ErrorList.vue'
-import PageLogin from '../views/Page/PageLogin.vue'
 import error from '../views/Error'
 import Test from "../views/Test";
-import ComDetail from '../views/Page/ComDetail'
 Vue.use(Router);
 
 const normalRoutes =  [
@@ -57,7 +51,11 @@ const normalRoutes =  [
                 children: [{
                     path:'/page/comDetail/:type/:title/dashboard',
                     name:"DetailDashboard",
-                    component:()=>import('../views/demo/Dashboard')
+                    component:()=>import('../views/demo/Dashboard'),
+                    meta: {
+                        title: '详情-统计分析',
+                        icon: 'el-icon-data-analysis'
+                    }
                 }]
             },
             {

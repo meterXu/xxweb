@@ -66,8 +66,7 @@ export default {
   background-color: #fff;
   padding: 20px 100px 40px 100px;
   text-align: left;
-  min-width: 868px;
-  max-width: 1366px;
+  min-width: 1000px;
   margin: 0 auto
 }
 </style>

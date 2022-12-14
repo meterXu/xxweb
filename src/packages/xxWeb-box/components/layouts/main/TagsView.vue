@@ -166,7 +166,7 @@ export default {
           }
         }
         this.visitedViews.push(view)
-        this.saveCachedView(view.meta.keepAlive,route.name||view.name)
+        view.meta&&this.saveCachedView(view.meta.keepAlive,route.name||view.name)
       }
     },
     saveCachedView(keepAlive,name){

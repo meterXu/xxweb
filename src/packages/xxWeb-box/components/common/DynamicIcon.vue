@@ -5,7 +5,7 @@ export default {
   functional:true,
   render(h, context) {
     const { type,meta } = context.props;
-    if (meta.icon) {
+    if (meta&&meta.icon) {
       if (typeof (meta.icon) === 'object'){
         if(meta.icon.hasOwnProperty('render')){
           return h(meta.icon.render,{

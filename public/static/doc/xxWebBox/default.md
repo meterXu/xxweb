@@ -31,7 +31,7 @@
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,
-                        fixSideMenu: true 
+                        fixSideMenu: false 
                     },
                     config: {
                         logo: "./static/imgs/logo.png",
@@ -93,7 +93,7 @@
                             }
                         },
                         tabs: {
-                            show: true,
+                            show: false,
                             icon: true
                         },
                         footer: {
@@ -110,7 +110,7 @@
                     }
                 },
                 permission: [{
-                    path:'/demo',
+                    path:'/page/comDetail',
                     meta: {
                         title: '示例页面',
                         icon: 'el-icon-s-help'
@@ -124,14 +124,14 @@
                             }
                         },
                         {
-                            path: '/demo/list',
+                            path: '/page/comDetail/xxWebBox/default/list',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
                             }
                         },
                         {
-                            path: '/demo/detail',
+                            path: '/page/comDetail/xxWebBox/default/detail',
                             meta: {
                                 title: '详情',
                                 icon: 'el-icon-tickets'
@@ -149,7 +149,6 @@
                 console.log(isCollapse)
             },
             menuClick(path){
-                debugger
                 console.log(path)
             }
         }
