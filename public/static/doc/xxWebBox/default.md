@@ -20,11 +20,6 @@
                         baseApi:'',
                         ssoApi:''
                     },
-                    redirect: {
-                        index: '/page/1',
-                        login: '/login/1',
-                        "404": '/error/1',
-                        '403':'/error/5'
                     redirect: { // 以下路径需换成实际项目路由地址
                         index: '/', 
                         login: '/',
