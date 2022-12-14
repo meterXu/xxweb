@@ -65,17 +65,33 @@ export default {
       })
       return sMenu
     }
-    return (
-        <div class="dynamic-menu">
-          <Menu
-              collapse={isCollapse}
-              default-active={defaultActive}
-              // default-openeds={permission.length>0?[permission[0].path]:[]}
-              mode={mode}>
-            {renderSubMenu()}
-          </Menu>
-        </div>
-    )
+    let active_page = mixin.methods.searchMenuByPath(permission,defaultActive)
+
+    if(active_page){
+      return (
+          <div class="dynamic-menu">
+            <Menu
+                collapse={isCollapse}
+                default-active={defaultActive}
+                mode={mode}>
+              {renderSubMenu()}
+            </Menu>
+          </div>
+      )
+    }else{
+      return (
+          <div class="dynamic-menu">
+            <Menu
+                collapse={isCollapse}
+                default-active={defaultActive}
+                default-openeds={[permission[0].path]}
+                mode={mode}>
+              {renderSubMenu()}
+            </Menu>
+          </div>
+      )
+    }
+
   }
 }
 </script>
