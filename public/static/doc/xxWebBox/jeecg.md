@@ -1,4 +1,4 @@
-### default
+### jeecg
 
 :::demo
 
@@ -27,7 +27,7 @@
                         '403':'/'
                     },
                     style: {
-                        theme: 'default',
+                        theme: 'jeecg',
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,

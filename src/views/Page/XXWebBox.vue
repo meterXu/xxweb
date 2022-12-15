@@ -27,7 +27,7 @@ export default {
   data(){
     return {
       xxWebBoxList:[
-        {title:"default",cover:require('../../assets/imgs/xxWebBox/default.png'),desc:'design by <a href="">jeecg</a>',path:'/page/comDetail/xxWebBox/default'},
+        {title:"jeecg",cover:require('../../assets/imgs/xxWebBox/jeecg.png'),desc:'design by <a href="">jeecg</a>',path:'/page/comDetail/xxWebBox/jeecg'},
         {title:"default-light",cover:require('../../assets/imgs/xxWebBox/default-light.png'),desc:'design by <a href="">default-light</a>',path:'/page/comDetail/xxWebBox/default-light'},
         {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">vue-admin</a>',path:'/page/comDetail/xxWebBox/vue-admin'},
         {title:"v2board",cover:require('../../assets/imgs/xxWebBox/v2board.png'),desc:'design by <a href="">v2board</a>',path:'/page/comDetail/xxWebBox/v2board'},
