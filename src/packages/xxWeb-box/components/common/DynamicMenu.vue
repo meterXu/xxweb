@@ -84,7 +84,7 @@ export default {
             <Menu
                 collapse={isCollapse}
                 default-active={defaultActive}
-                default-openeds={[permission[0].path]}
+                default-openeds={permission.length>0?[permission[0].path]:[]}
                 mode={mode}>
               {renderSubMenu()}
             </Menu>
