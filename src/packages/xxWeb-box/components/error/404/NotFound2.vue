@@ -20,7 +20,7 @@ import {Button} from 'element-ui'
 import '../../../assets/css/404/404-2.less'
 
 export default {
-  name: "NotFound",
+  name: "NotFound2",
   props: {
     code: {
       type: String,

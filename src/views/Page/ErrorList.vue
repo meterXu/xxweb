@@ -27,11 +27,11 @@ export default {
   data(){
     return {
       Box404List:[
-        {title:"default",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">default</a>',path:'/error/1'},
-        {title:"default-dark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">default-dark</a>',path:'/error/2'},
-        {title:"jeecg-404",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">jeecg</a>',path:'/error/3'},
-        {title:"jeecg-403",cover:require('../../assets/imgs/403/403-1.png'),desc:'design by <a href="">jeecg</a>',path:'/error/4'},
-        {title:"Access-Denied",cover:require('../../assets/imgs/403/403-2.png'),desc:'design by <a href="">dribbble</a>',path:'/error/5'},
+        {title:"NotFound",cover:require('../../assets/imgs/404/404.png'),desc:'design by <a href="">NotFound</a>',path:'/page/comDetail/error/NotFound'},
+        {title:"NotFoundDark",cover:require('../../assets/imgs/404/404dark.png'),desc:'design by <a href="">NotFoundDark</a>',path:'/page/comDetail/error/NotFoundDark'},
+        {title:"NotFound2",cover:require('../../assets/imgs/404/404-2.png'),desc:'design by <a href="">NotFound2</a>',path:'/page/comDetail/error/NotFound2'},
+        {title:"NoAuthority1",cover:require('../../assets/imgs/403/403-1.png'),desc:'design by <a href="">NoAuthority1</a>',path:'/page/comDetail/error/NoAuthority1'},
+        {title:"NoAuthority2",cover:require('../../assets/imgs/403/403-2.png'),desc:'design by <a href="">NoAuthority2</a>',path:'/page/comDetail/error/NoAuthority2'},
       ]
     }
   },
