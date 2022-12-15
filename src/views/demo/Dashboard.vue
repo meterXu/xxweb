@@ -1,42 +1,40 @@
 <template>
-  <div>
-  <el-row>
-    <PersonCount/>
-  </el-row>
-  <el-row class="row-margin" :gutter="16">
-    <el-col :span="12">
-      <el-card title="核酸总体情况">
-        <el-col :span="12">
-          <PieChart title="普通人群" :isImportant="0"/>
-        </el-col>
-        <el-col :span="12">
-          <PieChart title="重点人群" :isImportant="1"/>
-        </el-col>
-      </el-card>
-    </el-col>
-    <el-col :span="12">
-      <el-card title="未核酸情况">
-<!--        <LineChart/>-->
-      </el-card>
-    </el-col>
-  </el-row>
-  <el-row class="row-margin"  :gutter="16">
-    <el-col :span="8">
-      <el-card title="项目总体情况">
-        <BarChart/>
-      </el-card>
-    </el-col>
-    <el-col :span="16">
-      <el-card title="功能区核酸情况">
-        <el-col :span="12">
-<!--          <StackBarChart title="工地普通人员核酸情况/周期" :isImportant="0"/>-->
-        </el-col>
-        <el-col :span="12">
-<!--          <StackBarChart title="工地重点人群/周期" :isImportant="1"/>-->
-        </el-col>
-      </el-card>
-    </el-col>
-  </el-row>
+  <div class="dashboard">
+    <el-row :gutter="16">
+      <el-col :span="16">
+        <el-card>
+          <div slot="header">
+            <span>Sales Overview</span>
+          </div>
+          <BarChart></BarChart>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card>
+          <div slot="header">
+            <span>Our Visitors</span>
+          </div>
+          <PieChart></PieChart>
+        </el-card>
+      </el-col>
+    </el-row>
+    <el-row class="row-margin"  :gutter="16">
+      <el-col :span="8">
+        <el-card :body-style="{ padding: '0px' }">
+          <div class="image"></div>
+          <div>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="16">
+        <el-card>
+          <div slot="header">
+            <span>Our Visitors</span>
+          </div>
+          <AreaChart></AreaChart>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -44,18 +42,31 @@
 import BarChart from './module/BarChart'
 import PersonCount from "./module/PersonCount";
 import PieChart from "./module/PieChart";
+import AreaChart from "./module/AreaChart"
 export default {
   name: "Dashboard",
   components:{
     BarChart,
     PersonCount,
-    PieChart
+    PieChart,
+    AreaChart
   }
 }
 </script>
 
 <style scoped>
+.dashboard{
+  text-align: left;
+  width: 1200px;
+  margin: 0 auto;
+}
 .row-margin{
-  margin-top: 16px !important;
+  margin-top: 24px;
+}
+.image{
+  height: 264px;
+  background: url("https://materialpro-vue3-dark.vercel.app/assets/u5.6e16be31.jpg") no-repeat center center;
+  background-size: cover;
+
 }
 </style>

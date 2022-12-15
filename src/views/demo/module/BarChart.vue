@@ -1,78 +1,76 @@
 <template>
-  <div style="position: relative">
-    <div ref="chart" class="chart"></div>
+  <div style="height: 320px">
+    <div ref="chart" class="chart">
+
+    </div>
   </div>
 </template>
 <script>
-import * as echarts from 'echarts/core';
-import { GridComponent } from 'echarts/components';
-import { BarChart } from 'echarts/charts';
-import { CanvasRenderer } from 'echarts/renderers';
-
-echarts.use([GridComponent, BarChart, CanvasRenderer]);
-
-import {colors} from '../mixin'
+import ApexCharts from 'apexcharts'
 export default {
   name:'BarChart',
   data(){
     return{
-      myChart:null,
-      option:{
-        colors:colors,
-        tooltip:{
-          show:true,
-        },
-        xAxis: {
-          type: 'category',
-          data: []
-        },
-        yAxis: {
-          type: 'value',
-          name:'项目数量',
-          axisLine:{
-            show: true
+      options:{
+        series: [{
+          data: [44, 55, 41, 64, 22, 43, 21]
+        }, {
+          data: [53, 32, 33, 52, 13, 44, 32]
+        }],
+        chart: {
+          type: 'bar',
+          height:320,
+          toolbar:{
+            show: false,
           }
         },
-        series: [
-          {
-            data: [],
-            type: 'bar',
-            label: {
-              show: true
+        grid:{
+          yaxis: {
+            lines: {
+              show: false,
+            }
+          }
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '36%',
+            dataLabels: {
+              position: 'top',
             },
           }
-        ]
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 5,
+          colors: ['transparent']
+        },
+        tooltip: {
+          shared: true,
+          intersect: false
+        },
+        legend:{
+          show:false
+        },
+        xaxis: {
+          categories: [2001, 2002, 2003, 2004, 2005, 2006, 2007],
+        }
       }
     }
   },
   methods:{
-    getChartData(){
-      const res={
-        data:[]
-      }
-      this.option.xAxis.data=[]
-      this.option.series[0].data=[]
-      Object.keys(res.data).forEach(c=>{
-        this.option.xAxis.data.push(c)
-        this.option.series[0].data.push(res.data[c])
-      })
-      this.myChart.setOption(this.option)
+    initChart(){
+      const chart = new ApexCharts(this.$refs.chart, this.options);
+      chart.render();
     }
   },
   mounted() {
-    this.myChart = echarts.init(this.$refs.chart);
-    this.getChartData()
+    this.initChart()
   }
 }
 </script>
 <style scoped>
-.chart {
-  width: 100%;
-  height: 415px;
-}
-.head{
-  position: absolute;
-  top: 0;
-  right: 0;
-}
 </style>
