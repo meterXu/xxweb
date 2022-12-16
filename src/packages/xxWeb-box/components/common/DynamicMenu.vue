@@ -78,20 +78,30 @@ export default {
             </Menu>
           </div>
       )
+    }else if(permission.length>0){
+      return (
+          <div class="dynamic-menu">
+            <Menu
+                collapse={isCollapse}
+                default-active={defaultActive}
+                default-openeds={[permission[0].path]}
+                mode={mode}>
+              {renderSubMenu()}
+            </Menu>
+          </div>
+      )
     }else{
       return (
           <div class="dynamic-menu">
             <Menu
                 collapse={isCollapse}
                 default-active={defaultActive}
-                default-openeds={permission.length>0?[permission[0].path]:[]}
                 mode={mode}>
               {renderSubMenu()}
             </Menu>
           </div>
       )
     }
-
   }
 }
 </script>
