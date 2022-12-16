@@ -25,6 +25,7 @@ export default {
           }
         },
         grid:{
+          strokeDashArray: 3,
           yaxis: {
             lines: {
               show: false,
