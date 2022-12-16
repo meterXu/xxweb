@@ -10,14 +10,15 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'jeecg',
+        theme: 'element',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
         fixSideMenu: false
     },
     config: {
-        logo: "./static/imgs/logo.png",
+        logo: "./static/imgs/logo-white.png",
+        favicon: "./static/imgs/logo.png",
         title: "xxWebBox",
         login: {
             title: "xxWebBox",
