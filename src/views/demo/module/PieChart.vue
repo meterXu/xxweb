@@ -40,7 +40,9 @@ export default {
           show:false
         },
         legend: {
-          show:false
+          show:true,
+          position: 'bottom',
+          horizontalAlign: 'center'
         }
       }
     }

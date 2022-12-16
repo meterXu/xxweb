@@ -33,9 +33,9 @@
             <el-divider></el-divider>
             <div style="display: flex;justify-content: space-between">
              <div>
-               <el-avatar style="margin-right: 10px" :size="40" src="https://materialpro-vue3-dark.vercel.app/assets/1.32ddcd87.jpg"></el-avatar>
-               <el-avatar style="margin-right: 10px" :size="40" src="https://materialpro-vue3-dark.vercel.app/assets/2.1c16a104.jpg"></el-avatar>
-               <el-avatar :size="40" src="https://materialpro-vue3-dark.vercel.app/assets/3.0594bd0b.jpg"></el-avatar>
+               <el-avatar style="margin-right: 10px" :size="40" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_e9c72655f34aa0e52c1f58ab3917998d_r.png"></el-avatar>
+               <el-avatar style="margin-right: 10px" :size="40" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_ee957d76f19c6dfb530bc278cf691ee2_r.png"></el-avatar>
+               <el-avatar :size="40" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_f0a4486335481c88e037e5c4bff3fea2_r.png"></el-avatar>
              </div>
               <div>
                 <el-button icon="el-icon-chat-round" circle></el-button>
@@ -89,7 +89,7 @@
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
           <div style="background: #FFF">
-            <img src="https://materialpro-vue3-dark.vercel.app/assets/weatherbg.39f32caf.jpg" width="100%" height="90">
+            <img src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_c825d2edc2a997b8440303246d100bc2_r.png" width="100%" height="90">
             <div style="padding: 7px 20px;display: flex">
               <div class="d-flex align-center justify-center">
                 <i class="el-icon-sunny weather-icon"></i>
@@ -113,9 +113,9 @@
     <el-row class="row-margin card-no-border" :gutter="16">
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
-          <img src="https://materialpro-vue3-dark.vercel.app/assets/login-register.eee26258.jpg" width="100%">
+          <img src="https://dev.dpark.com.cn/iplatform/files/login-register.eee26258.jpg" width="100%">
           <div class="user-avatar">
-            <el-avatar :size="100" src="https://materialpro-vue3-dark.vercel.app/assets/1.32ddcd87.jpg"></el-avatar>
+            <el-avatar :size="100" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_e01934314e0a4cd73b97a8b5f10f7d4e_r.png"></el-avatar>
           </div>
           <div class="user-content">
             <h2 style="margin-top: 16px">Jonathan Dominic</h2>
@@ -145,7 +145,7 @@
           </div>
           <div class="pa-4">
             <div class="li-user" v-for="item in 4">
-              <div class="li-user-avatar"><el-avatar :size="40" :src="`https://materialpro-vue3-dark.vercel.app/assets/images/users/${item}.jpg`"></el-avatar></div>
+              <div class="li-user-avatar"><el-avatar :size="40" :src="userIcons[item]"></el-avatar></div>
               <div class="li-user-info">
                 <h4>Pavan Kumar</h4>
                 <h6>info@wrappixel.com</h6>
@@ -159,8 +159,120 @@
           <el-tabs v-model="activeName">
             <el-tab-pane label="Activity" name="Activity">
               <div class="profiletimeline">
-                <div></div>
+                <div class="sk-item">
+                  <div class="sl-left">
+                    <img  width="40" class="rounded-circle" :src="userIcons[0]"/>
+                  </div>
+                  <div class="sl-right">
+                    <div class="d-md-flex align-items-center">
+                      <h3>John Doe</h3>
+                      <small class="ms-1">5 minutes ago</small>
+                    </div>
+                    <p>assign a new task Design weblayout</p>
+                    <el-row class="mt-3" :gutter="16">
+                      <el-col :span="6">
+                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_7c92a62b665cfd5e763a8b06e0b488c4_r.png"/>
+                      </el-col>
+                      <el-col :span="6">
+                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_26e068d108771690800690ed53f980cf_r.png"/>
+                      </el-col>
+                      <el-col :span="6">
+                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_9ea63c2772c667322b677b8717ed9279_r.png"/>
+                      </el-col>
+                      <el-col :span="6">
+                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_4f70fe3cd2fe3435d16a59444138091b_r.png"/>
+                      </el-col>
+                    </el-row>
+                    <div style="display: flex;align-items: center;width: 220px;justify-content: flex-start;margin-top: 12px">
+                      <a class="n-flex align-center text-14 text-primary mr-3"><i class="text-21 el-icon-s-comment"></i>  comments</a>
+                      <a class="n-flex align-center text-14 text-red"><i class="text-21 el-icon-star-on"></i>  5 Likes</a>
+                    </div>
+                  </div>
+                </div>
                 <el-divider></el-divider>
+                <div class="sk-item">
+                  <div class="sl-left">
+                    <img  width="40" class="rounded-circle" :src="userIcons[1]"/>
+                  </div>
+                  <div class="sl-right">
+                    <div class="d-md-flex align-items-center">
+                      <h3>John Doe</h3>
+                      <small class="ms-1">5 minutes ago</small>
+                    </div>
+                    <el-row class="mt-3" :gutter="16">
+                      <el-col :span="6">
+                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_26e068d108771690800690ed53f980cf_r.png"/>
+                      </el-col>
+                      <el-col :span="18">
+                        <div style="padding: 12px">
+                          <p style="line-height: 1.2rem">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+                          </p>
+                          <el-button style="margin-top: 12px" type="primary" size="small">Design Weblayout</el-button>
+                        </div>
+                      </el-col>
+                    </el-row>
+                    <div style="display: flex;align-items: center;width: 220px;justify-content: flex-start;margin-top: 12px">
+                      <a class="n-flex align-center text-14 text-primary mr-3"><i class="text-21 el-icon-s-comment"></i>  comments</a>
+                      <a class="n-flex align-center text-14 text-red"><i class="text-21 el-icon-star-on"></i>  5 Likes</a>
+                    </div>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+                <div class="sk-item">
+                  <div class="sl-left">
+                    <img  width="40" class="rounded-circle" :src="userIcons[2]"/>
+                  </div>
+                  <div class="sl-right">
+                    <div class="d-md-flex align-items-center">
+                      <h3>John Doe</h3>
+                      <small class="ms-1">5 minutes ago</small>
+                    </div>
+                    <el-row class="mt-3" :gutter="16">
+                      <el-col :span="24">
+                        <div>
+                          <p style="line-height: 1.2rem">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper
+                          </p>
+                        </div>
+                      </el-col>
+                    </el-row>
+                    <div style="display: flex;align-items: center;width: 220px;justify-content: flex-start;margin-top: 12px">
+                      <a class="n-flex align-center text-14 text-primary mr-3"><i class="text-21 el-icon-s-comment"></i>  comments</a>
+                      <a class="n-flex align-center text-14 text-red"><i class="text-21 el-icon-star-on"></i>  5 Likes</a>
+                    </div>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+                <div class="sk-item">
+                  <div class="sl-left">
+                    <img  width="40" class="rounded-circle" :src="userIcons[3]"/>
+                  </div>
+                  <div class="sl-right">
+                    <div class="d-md-flex align-items-center">
+                      <h3>John Doe</h3>
+                      <small class="ms-1">5 minutes ago</small>
+                    </div>
+                    <div style="padding: 16px;font-weight: 400;color: #1E88E5FF;font-size: 14px">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                    </div>
+                  </div>
+                </div>
+                <el-divider></el-divider>
+                <div class="sk-item">
+                  <div class="sl-left">
+                    <img  width="40" class="rounded-circle" :src="userIcons[4]"/>
+                  </div>
+                  <div class="sl-right">
+                    <div class="d-md-flex align-items-center">
+                      <h3>John Doe</h3>
+                      <small class="ms-1">5 minutes ago</small>
+                    </div>
+                    <div style="padding: 16px;font-weight: 400;color: #0CB9C5FF;font-size: 14px">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                    </div>
+                  </div>
+                </div>
               </div>
             </el-tab-pane>
             <el-tab-pane label="Profile" name="Profile">Profile</el-tab-pane>
@@ -191,7 +303,15 @@ export default {
   },
   data(){
     return {
-      activeName:'Activity'
+      activeName:'Activity',
+      userIcons:[
+          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_d43bcc2495f4606f1cb39d29a18e7120_r.png",
+          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_44e92c956d529db309f7772542077d2e_r.png",
+          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_70c94e9a77d614ec3b44a5f8912a1e82_r.png",
+          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_2602459f528fce48acad90998ebcd4e3_r.png",
+          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_55db117ac968d601c40c4ef092ecafd1_r.png",
+          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_543c71534211defc8ce40c9ebee1ebbc_r.png"
+      ]
     }
   }
 }
@@ -200,7 +320,6 @@ export default {
 <style lang="less" scoped>
 .dashboard{
   text-align: left;
-  width: 1200px;
   margin: 0 auto;
 }
 .row-margin{
@@ -253,7 +372,7 @@ export default {
 }
 .image{
   height: 264px;
-  background: url("https://materialpro-vue3-dark.vercel.app/assets/u5.6e16be31.jpg") no-repeat center center;
+  background: url("https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_59bca747bd05215fb4ad4a32a7e4100b_r.png") no-repeat center center;
   background-size: cover;
 
 }
@@ -264,6 +383,9 @@ export default {
   display: flex;
   padding: 10px;
   flex: 0.5;
+}
+.n-flex{
+  display: flex;
 }
 .align-center{
   align-items: center;
@@ -297,7 +419,7 @@ small {
   padding: 20px 30px 30px;
   text-align: center;
 }
-h1,h2,h5,h4,h6{
+h1,h2,h3,h5,h4,h6{
   padding: 0;
   margin: 0;
   font-weight: 500;
@@ -331,5 +453,50 @@ h5{
   padding-left: 40px;
   margin: 10px 10px 0 30px;
   border-left: 1px solid rgba(0,0,0,.1);
+}
+.sk-item{
+  display: flex;
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+.sl-left{
+  margin-left: -60px;
+  z-index: 1;
+  margin-right: 15px;
+}
+.rounded-circle{
+  border-radius: 50%;
+}
+.d-md-flex{
+  display: flex;
+}
+.align-items-center{
+  align-items: center;
+}
+.ms-1{
+  margin-inline-start: 4px;
+}
+.mt-3{
+  margin-top: 12px;
+}
+p{
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+.text-14{
+  font-size: 14px;
+}
+.text-21{
+  font-size: 21px;
+}
+.text-primary{
+  color: rgb(30,136,229);
+}
+.text-red{
+  color: rgb(224,67,54);
+}
+.mr-3{
+  margin-right: 12px;
 }
 </style>
