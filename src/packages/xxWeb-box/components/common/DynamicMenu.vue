@@ -69,7 +69,7 @@ export default {
 
     if(active_page){
       return (
-          <div class="dynamic-menu">
+          <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
             <Menu
                 collapse={isCollapse}
                 default-active={defaultActive}
@@ -80,7 +80,7 @@ export default {
       )
     }else if(permission.length>0){
       return (
-          <div class="dynamic-menu">
+          <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
             <Menu
                 collapse={isCollapse}
                 default-active={defaultActive}
@@ -92,7 +92,7 @@ export default {
       )
     }else{
       return (
-          <div class="dynamic-menu">
+          <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
             <Menu
                 collapse={isCollapse}
                 default-active={defaultActive}
