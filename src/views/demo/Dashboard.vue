@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
-    <el-row :gutter="16">
+    <el-row :gutter="16" class="card-no-border">
       <el-col :span="16">
         <el-card>
           <div slot="header">
@@ -18,7 +18,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row class="row-margin"  :gutter="16">
+    <el-row class="row-margin card-no-border" :gutter="16">
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
           <div class="image"></div>
@@ -53,20 +53,48 @@
         </el-card>
       </el-col>
     </el-row>
-    <el-row class="row-margin"  :gutter="16">
+    <el-row class="row-margin card-no-border" :gutter="16">
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
-          <div style="height: 176px;background: #1E88E5FF"></div>
+          <div class="min-card-chart">
+            <div class="card-title">
+              <i class="el-icon-s-help" style="font-size: 30px"></i>
+              <div class="card-title-con"><h3>Bandwidth usage</h3><h5>March 2022</h5></div>
+            </div>
+            <div class="card-body">
+              <div class="card-body-text">50 GB</div>
+              <div class="card-body-apexcharts">
+                <MiniLineChart></MiniLineChart>
+              </div>
+            </div>
+          </div>
         </el-card>
       </el-col>
       <el-col :span="8">
-        <el-card></el-card>
+        <el-card :body-style="{ padding: '0px' }">
+          <div class="min-card-chart" style="background: #0CB9C5FF">
+            <div class="card-title">
+              <i class="el-icon-s-help" style="font-size: 30px"></i>
+              <div class="card-title-con"><h3>Download Count</h3><h5>March 2022</h5></div>
+            </div>
+            <div class="card-body">
+              <div class="card-body-text">35487</div>
+              <div class="card-body-apexcharts">
+                <MinColumnChart></MinColumnChart>
+              </div>
+            </div>
+          </div>
+        </el-card>
       </el-col>
       <el-col :span="8">
-        <el-card></el-card>
+        <el-card :body-style="{ padding: '0px' }">
+          <div class="min-card-chart" style="background: #FFF">
+            <img src="https://materialpro-vue3-dark.vercel.app/assets/weatherbg.39f32caf.jpg" width="100%" height="90">
+          </div>
+        </el-card>
       </el-col>
     </el-row>
-    <el-row class="row-margin"  :gutter="16">
+    <el-row class="row-margin card-no-border" :gutter="16">
       <el-col :span="8">
         <el-card></el-card>
         <el-card style="margin-top: 24px"></el-card>
@@ -90,18 +118,22 @@ import BarChart from './module/BarChart'
 import PersonCount from "./module/PersonCount";
 import PieChart from "./module/PieChart";
 import AreaChart from "./module/AreaChart"
+import MiniLineChart from "./module/MiniLineChart"
+import MinColumnChart from "./module/MinColumnChart"
 export default {
   name: "Dashboard",
   components:{
     BarChart,
     PersonCount,
     PieChart,
-    AreaChart
+    AreaChart,
+    MiniLineChart,
+    MinColumnChart
   }
 }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .dashboard{
   text-align: left;
   width: 1200px;
@@ -109,6 +141,51 @@ export default {
 }
 .row-margin{
   margin-top: 24px;
+}
+.card-no-border{
+  .el-card{
+    border:none;
+  }
+}
+.card-title{
+  display: flex;
+  align-items: center;
+  line-height: 40px;
+  h3,h5{
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: 0.25px;
+    font-size: 16px;
+  }
+  h5{
+    font-size: 12px;
+  }
+  .card-title-con{
+    margin: 0 16px;
+  }
+}
+.card-body{
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  .card-body-text,.card-body-apexcharts{
+    padding: 12px;
+  }
+  .card-body-text{
+    width: 90px;
+    font-size: 21px;
+    font-weight: 300;
+  }
+  .card-body-apexcharts{
+    flex: 1;
+  }
+}
+.min-card-chart{
+  height: 126px;background: #1E88E5FF;color: #fff;
+  padding: 20px 30px 30px;
 }
 .image{
   height: 264px;
