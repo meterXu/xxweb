@@ -117,21 +117,21 @@
                     },
                     children: [
                         {
-                            path: '/page/comDetail/xxWebBox/default/dashboard',
+                            path: '/page/comDetail/xxWebBox/jeecg/dashboard',
                             meta: {
                                 title: '统计分析',
                                 icon: 'el-icon-data-analysis'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/list',
+                            path: '/page/comDetail/xxWebBox/jeecg/list',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default/detail',
+                            path: '/page/comDetail/xxWebBox/jeecg/detail',
                             meta: {
                                 title: '详情',
                                 icon: 'el-icon-tickets'

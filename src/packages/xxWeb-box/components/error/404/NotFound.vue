@@ -2,12 +2,14 @@
   <div class="xxWeb">
     <div class="not-found">
       <slot>
-        <div class="code">{{code}}</div>
-        <div class="info">{{text}}</div>
-        <slot name="img">
-          <div class="mark"></div>
-        </slot>
-        <a class="home-button" v-if="show.home" :href="link.home">返回首页</a>
+        <div class="not-found-content">
+          <div class="code">{{code}}</div>
+          <div class="info">{{text}}</div>
+          <slot name="img">
+            <div class="mark"></div>
+          </slot>
+          <a class="home-button" v-if="show.home" :href="link.home">返回首页</a>
+        </div>
       </slot>
       <div class="cloud">
       </div>

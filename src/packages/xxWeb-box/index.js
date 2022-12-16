@@ -15,6 +15,7 @@ let components = [
     NoAuthority1,
     NoAuthority2,
     Error,
+    NotFound2,
     DarkMode1
 ]
 

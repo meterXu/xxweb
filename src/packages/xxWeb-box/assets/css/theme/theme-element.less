@@ -1,4 +1,4 @@
-.xxWeb-box[theme='default-light']{
+.xxWeb-box[theme='element']{
   @--main-bg-color: #fff;
   @--text-color: #000;
   @--active-color:#409EFF;
@@ -6,22 +6,23 @@
   @--sideMenu-header-bg-color:#fff;
   @--menu-item-text-color:#000;
   @--menu-text-hover-color:#000;
-  @--menu-item-active-text-color:#f4f4f5;
+  @--menu-item-active-text-color:#000;
   @--menu-item-hover-bg-color:@--main-bg-color;
   @--submenu-item-bg-color:#fff;
   @--menu-sub-item-hover-bg-color:#ECF5FF;
   @--logo-bg-color:#002140;
   @--header-shadow-color:#00000033;
   @--topMenu-header-color:#fff;
-  @--topMenu-header-bg-color:@--main-bg-color;
+  @--topMenu-header-bg-color:#409EFF;
+  @--topMenu-header-active-bg-color: #2992ff;
   @--topMenu-shadow-color:rgba(0,21,41,0.08);
   @--contextmenu-bg-color:#eee;
   @--footer-bg-color:#fff;
   @--footer-text-color:#409EFF;
   @--app-main-bg-color:#eaecef;
   .header{
-    color: @--sideMenu-header-color;
-    background: @--sideMenu-header-bg-color;
+    color: @--topMenu-header-color;
+    background: @--topMenu-header-bg-color;
     box-shadow: 0 0px 4px @--header-shadow-color !important;
     .logo{
       background: @--logo-bg-color;
@@ -29,26 +30,64 @@
     .left-con {
       .user-menu-item {
         .no-redirect {
-          color: @--menu-text-hover-color;
+          color: @--topMenu-header-color;
         }
+      }
+    }
+    .el-breadcrumb__inner{
+      a{
+        color: @--topMenu-header-color;
+      }
+    }
+    .user-wrapper{
+      .el-dropdown{
+        color: @--topMenu-header-color;
       }
     }
   }
   .top-header{
     color: @--topMenu-header-color;
     background: @--topMenu-header-bg-color;
+    .head-title {
+      margin-left: 10px;
+    }
     .user-wrapper{
       .el-dropdown{
-        color: @--text-color;
+        color: @--topMenu-header-color;
       }
     }
     .el-breadcrumb__inner{
       a{
-        color: @--text-color;
+        color: @--topMenu-header-color;
       }
     }
+    .left-con .user-menu-item .no-redirect{
+      color: @--topMenu-header-color;
+    }
     .logo{
-      background:@--main-bg-color;
+      background:@--topMenu-header-bg-color;
+      .title {
+        color: @--topMenu-header-color;
+      }
+    }
+    .dynamic-menu {
+      .el-submenu__title {
+        color: @--topMenu-header-color;
+        background:@--topMenu-header-bg-color;
+        i {
+          color: @--topMenu-header-color !important;
+        }
+        &:hover{
+          color: @--topMenu-header-color;
+          background-color: @--topMenu-header-bg-color;
+        }
+      }
+      .el-submenu.is-active {
+        .el-submenu__title {
+          color: @--topMenu-header-color;
+          background-color: @--topMenu-header-active-bg-color;
+        }
+      }
     }
   }
   .side-header{
@@ -56,7 +95,13 @@
     background: @--sideMenu-header-bg-color;
   }
   .side-scrollbar{
-    background: @--main-bg-color
+    background: @--main-bg-color;
+    .side-menu-header {
+      background: @--topMenu-header-bg-color;
+      .title{
+        color: @--topMenu-header-color;
+      }
+    }
   }
   .side-menu{
     background: @--main-bg-color;
@@ -71,6 +116,11 @@
       background-color: @--main-bg-color;
       i {
         color: #909399 !important;
+      }
+    }
+    .el-submenu.is-active{
+      .el-submenu__title{
+        color:@--menu-item-active-text-color;
       }
     }
     .el-submenu {
@@ -88,6 +138,7 @@
       }
     }
     .el-submenu__title:hover,.el-menu-item:hover{
+      color: @--menu-text-hover-color;
       background-color: @--menu-item-hover-bg-color;
     }
     .el-menu-item.is-active{
@@ -126,11 +177,11 @@
     background-color: @--main-bg-color;
   }
 }
-.xxWeb-box-default{
-  @--main-bg-color: #304156;
-  @--menu-item-text-color:#bfcbd9;
+.xxWeb-xxWebBox-element{
+  @--main-bg-color: #fff;
+  @--menu-item-text-color:#000;
   @--active-color:#409EFF;
-  @--menu-item-hover-bg-color:#263445;
+  @--menu-item-hover-bg-color:#ECF5FF;
   .el-menu--popup{
     background-color: @--main-bg-color;
   }
@@ -143,7 +194,7 @@
       color: @--active-color;
     }
     .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
-      color: @--menu-item-text-color;
+      //color: @--menu-item-text-color;
       background-color: @--menu-item-hover-bg-color;
     }
   }

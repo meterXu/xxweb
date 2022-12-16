@@ -1,4 +1,4 @@
-### default-light
+### element
 
 :::demo
 
@@ -27,7 +27,7 @@
                         '403':'/'
                     },
                     style: {
-                        theme: 'default-light',
+                        theme: 'element',
                         color: '#1890FF',
                         layout: 'sidemenu',
                         multipage: true,
@@ -117,21 +117,21 @@
                     },
                     children: [
                         {
-                            path: '/page/comDetail/xxWebBox/default-light/dashboard',
+                            path: '/page/comDetail/xxWebBox/element/dashboard',
                             meta: {
                                 title: '统计分析',
                                 icon: 'el-icon-data-analysis'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default-light/list',
+                            path: '/page/comDetail/xxWebBox/element/list',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/default-light/detail',
+                            path: '/page/comDetail/xxWebBox/element/detail',
                             meta: {
                                 title: '详情',
                                 icon: 'el-icon-tickets'
