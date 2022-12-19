@@ -44,7 +44,7 @@ export default [
                 }
             },
             {
-                path: '/demo/list',
+                path: '/demo/pageList',
                 meta: {
                     title: '数据列表',
                     icon: 'el-icon-coin'
