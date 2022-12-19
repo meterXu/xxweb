@@ -34,7 +34,7 @@
                         fixSideMenu: false
                     },
                     config: {
-                        logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo.png",
+                        logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo-white.png",
                         menu:{
                             mode:'route'
                         },
