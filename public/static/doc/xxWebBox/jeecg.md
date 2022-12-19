@@ -124,7 +124,7 @@
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/jeecg/list',
+                            path: '/page/comDetail/xxWebBox/jeecg/pageList',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'

@@ -56,6 +56,22 @@ const normalRoutes =  [
                         title: '详情-统计分析',
                         icon: 'el-icon-data-analysis'
                     }
+                },{
+                    path:'/page/comDetail/:type/:title/pageList',
+                    name:"DetailDashboard",
+                    component:()=>import('../views/demo/PageList'),
+                    meta: {
+                        title: '详情-数据列表',
+                        icon: 'el-icon-data-analysis'
+                    }
+                },{
+                    path:'/page/comDetail/:type/:title/detail',
+                    name:"DetailDashboard",
+                    component:()=>import('../views/demo/Detail'),
+                    meta: {
+                        title: '详情-详情',
+                        icon: 'el-icon-data-analysis'
+                    }
                 }]
             },
             {
