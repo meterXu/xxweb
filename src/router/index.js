@@ -80,6 +80,11 @@ const normalRoutes =  [
                 path:'/demo/pageList',
                 name:"Dashboard",
                 component:()=>import('../views/demo/PageList')
+            },
+            {
+                path:'/demo/detail',
+                name:"Dashboard",
+                component:()=>import('../views/demo/Detail')
             }
         ]
     }
