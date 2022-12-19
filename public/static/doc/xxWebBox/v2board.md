@@ -124,7 +124,7 @@
                             }
                         },
                         {
-                            path: '/page/comDetail/xxWebBox/v2board/list',
+                            path: '/page/comDetail/xxWebBox/v2board/pageList',
                             meta: {
                                 title: '数据列表',
                                 icon: 'el-icon-coin'
