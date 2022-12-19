@@ -23,7 +23,7 @@
         <el-card :body-style="{ padding: '0px' }">
           <div class="image"></div>
           <div style="padding: 20px 30px 30px;">
-            <h3 style="font-weight:500">22 March, 2021</h3>
+            <h3 style="font-weight:500">22 March, 2022</h3>
             <h5 style="font-weight:500;font-size: 1.25rem;margin-top: 20px;margin-bottom: 8px">Super awesome, Vue 3 is there, Lets do this!</h5>
             <div class="tags">
               <el-tag size="medium">Medium</el-tag>
