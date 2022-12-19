@@ -65,14 +65,14 @@ export default {
         "404": '/404'
     },
     style: {
-        theme: 'default',
+        theme: 'vue-admin',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
         fixSideMenu: false,
     },
     config: {
-        logo: "./assets/logo.png",
+        logo: "https://dev.dpark.com.cn/iplatform/files/s2-logo/logo.png",
         title: "helloWorld",
         login: {
             title: "helloWorld",
@@ -144,7 +144,7 @@ export default {
             copyright: {
                 content: "xxweb-box",
                 year: "2022",
-                href: "https://www.npmjs.com/package/xxweb-box",
+                href: "javascript:;",
                 target: "_blank"
             }
         },
