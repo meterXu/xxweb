@@ -33,9 +33,9 @@
             <el-divider></el-divider>
             <div style="display: flex;justify-content: space-between">
              <div>
-               <el-avatar style="margin-right: 10px" :size="40" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_e9c72655f34aa0e52c1f58ab3917998d_r.png"></el-avatar>
-               <el-avatar style="margin-right: 10px" :size="40" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_ee957d76f19c6dfb530bc278cf691ee2_r.png"></el-avatar>
-               <el-avatar :size="40" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_f0a4486335481c88e037e5c4bff3fea2_r.png"></el-avatar>
+               <el-avatar style="margin-right: 10px" :size="40" src="./static/imgs/user-1.png"></el-avatar>
+               <el-avatar style="margin-right: 10px" :size="40" src="./static/imgs/user-2.png"></el-avatar>
+               <el-avatar :size="40" src="./static/imgs/user-3.png"></el-avatar>
              </div>
               <div>
                 <el-button icon="el-icon-chat-round" circle></el-button>
@@ -89,7 +89,7 @@
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
           <div style="background: #FFF">
-            <img src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_c825d2edc2a997b8440303246d100bc2_r.png" width="100%" height="90">
+            <img src="../../../public/static/imgs/bg-2.png" width="100%" height="90">
             <div style="padding: 7px 20px;display: flex">
               <div class="d-flex align-center justify-center">
                 <i class="el-icon-sunny weather-icon"></i>
@@ -113,9 +113,9 @@
     <el-row class="row-margin card-no-border" :gutter="16">
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
-          <img src="https://dev.dpark.com.cn/iplatform/files/login-register.eee26258.jpg" width="100%">
+          <img src="../../../public/static/imgs/login-register.jpg" width="100%">
           <div class="user-avatar">
-            <el-avatar :size="100" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_e01934314e0a4cd73b97a8b5f10f7d4e_r.png"></el-avatar>
+            <el-avatar :size="100" src="./static/imgs/user-1.png"></el-avatar>
           </div>
           <div class="user-content">
             <h2 style="margin-top: 16px">Jonathan Dominic</h2>
@@ -171,16 +171,16 @@
                     <p>assign a new task Design weblayout</p>
                     <el-row class="mt-3" :gutter="16">
                       <el-col :span="6">
-                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_7c92a62b665cfd5e763a8b06e0b488c4_r.png"/>
+                        <img width="100%" src="../../../public/static/imgs/illustration-2.png"/>
                       </el-col>
                       <el-col :span="6">
-                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_26e068d108771690800690ed53f980cf_r.png"/>
+                        <img width="100%" src="../../../public/static/imgs/illustration-4.png"/>
                       </el-col>
                       <el-col :span="6">
-                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_9ea63c2772c667322b677b8717ed9279_r.png"/>
+                        <img width="100%" src="../../../public/static/imgs/illustration-3.png"/>
                       </el-col>
                       <el-col :span="6">
-                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_4f70fe3cd2fe3435d16a59444138091b_r.png"/>
+                        <img width="100%" src="../../../public/static/imgs/illustration-1.png"/>
                       </el-col>
                     </el-row>
                     <div style="display: flex;align-items: center;width: 220px;justify-content: flex-start;margin-top: 12px">
@@ -201,7 +201,7 @@
                     </div>
                     <el-row class="mt-3" :gutter="16">
                       <el-col :span="6">
-                        <img width="100%" src="https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_26e068d108771690800690ed53f980cf_r.png"/>
+                        <img width="100%" src="../../../public/static/imgs/illustration-4.png"/>
                       </el-col>
                       <el-col :span="18">
                         <div style="padding: 12px">
@@ -305,12 +305,12 @@ export default {
     return {
       activeName:'Activity',
       userIcons:[
-          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_d43bcc2495f4606f1cb39d29a18e7120_r.png",
-          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_44e92c956d529db309f7772542077d2e_r.png",
-          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_70c94e9a77d614ec3b44a5f8912a1e82_r.png",
-          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_2602459f528fce48acad90998ebcd4e3_r.png",
-          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_55db117ac968d601c40c4ef092ecafd1_r.png",
-          "https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_543c71534211defc8ce40c9ebee1ebbc_r.png"
+          "./static/imgs/user-1.png",
+          "./static/imgs/user-2.png",
+          "./static/imgs/user-3.png",
+          "./static/imgs/user-4.png",
+          "./static/imgs/user-5.png",
+          "./static/imgs/user-6.png"
       ]
     }
   }
@@ -372,7 +372,7 @@ export default {
 }
 .image{
   height: 264px;
-  background: url("https://doc.dpark.com.cn/iplatform/geekdoc/uploads/wow/images/m_59bca747bd05215fb4ad4a32a7e4100b_r.png") no-repeat center center;
+  background: url("../../../public/static/imgs/bg-1.png") no-repeat center center;
   background-size: cover;
 
 }
