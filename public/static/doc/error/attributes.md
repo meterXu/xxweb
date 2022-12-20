@@ -1,10 +1,3 @@
-## 组件列表
-* NotFound
-* NotFoundDark
-* NoAuthority1
-* NoAuthority2
-* NotFound2
-
 ## 属性
 |prop| remark                  |
 |---|-------------------------|

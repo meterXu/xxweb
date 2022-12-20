@@ -42,7 +42,9 @@ export default {
     initChart(){
       const chart = new ApexCharts(this.$refs.chart, options);
       chart.render();
-
+      this.$on('hook:beforeDestroy',()=>{
+        chart.destroy()
+      })
     }
   },
   mounted() {
