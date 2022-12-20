@@ -54,8 +54,7 @@ const normalRoutes =  [
                     component:()=>import('../views/demo/Dashboard'),
                     meta: {
                         title: '详情-统计分析',
-                        icon: 'el-icon-data-analysis',
-                        keepAlive:true
+                        icon: 'el-icon-data-analysis'
                     }
                 },{
                     path:'/page/comDetail/:type/:title/pageList',

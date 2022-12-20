@@ -48,8 +48,6 @@ export default {
     }
   },
   mounted() {
-    let a = process.env.VUE_APP_ssoApi
-    console.log(a)
   },
   watch:{
     dark(nv){
@@ -57,7 +55,6 @@ export default {
     }
   },
   created() {
-    console.log(this.$project)
     this.dark = eval(this.$ls.get('dark'))
     window.permission = permission
   }
