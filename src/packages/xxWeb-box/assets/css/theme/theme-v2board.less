@@ -50,7 +50,14 @@
     background: @--sideMenu-header-bg-color;
   }
   .side-scrollbar{
-    background: @--main-bg-color
+    background: @--main-bg-color;
+    .side-menu-header {
+      box-shadow: 0 0 0 #00000033;
+      background: transparent;
+      .title{
+        color: @--topMenu-header-color;
+      }
+    }
   }
   .side-menu{
     background: @--main-bg-color;
