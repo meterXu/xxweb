@@ -24,7 +24,7 @@
             </div>
             </template>
             <template v-if="app.appConfig.config.head.breadcrumb.show">
-              <Divider direction="vertical" v-if="!topmenu"></Divider>
+              <Divider direction="vertical" v-if="!topmenu&&hamburgerShow"></Divider>
               <div :class="{'user-menu-item':true,'topmenu':topmenu}">
                 <slot name="head-breadcrumb">
                   <HeadBreadcrumb/>

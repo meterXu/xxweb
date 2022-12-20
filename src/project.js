@@ -33,7 +33,7 @@ const project = {
                 show: true,
             },
             title: {
-                show: true,
+                show: false,
                 desktop: "",
                 mobile: ""
             },
