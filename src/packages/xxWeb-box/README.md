@@ -14,12 +14,17 @@
 * 404页面(3种)
 * 403页面(2种)
 
-## 使用
+## 安装
 
 ```shell
 yarn add @dpark/s2-xxweb-box --registry=https://npm.dpark.com.cn/npm
 ```
+或者
+```shell
+npm install @dpark/s2-xxweb-box --registry=https://npm.dpark.com.cn/npm
+```
 
+## 使用
 ```js
 // main.js
 import router from "./router/index.js"
