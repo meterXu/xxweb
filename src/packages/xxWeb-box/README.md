@@ -9,12 +9,17 @@
 * vue-router
 
 ## 内置组件
-* 系统骨架(4种，含左右，上下布局)
+* 布局页(6种，含左右，上下布局)
 * 登录页(5种)
 * 404页面(3种)
 * 403页面(2种)
 
 ## 使用
+
+```shell
+yarn add @dpark/s2-xxweb-box --registry=https://npm.dpark.com.cn/npm
+```
+
 ```js
 // main.js
 import router from "./router/index.js"
@@ -82,11 +87,12 @@ export default {
             mode:'router'
         },
         head: {
+            hamburger:false,
             logo:{
                 show: true,
             },
             title: {
-                show: true,
+                show: false,
                 desktop: "",
                 mobile: ""
             },
