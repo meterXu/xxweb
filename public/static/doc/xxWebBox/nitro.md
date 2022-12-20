@@ -133,7 +133,7 @@
                         {
                             path: '/page/comDetail/xxWebBox/nitro/detail',
                             meta: {
-                                title: '详情',
+                                title: '详情页面',
                                 icon: 'el-icon-tickets'
                             }
                         }

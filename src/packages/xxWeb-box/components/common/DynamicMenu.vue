@@ -65,42 +65,20 @@ export default {
       })
       return sMenu
     }
+
     let active_page = mixin.methods.searchMenuByPath(permission,defaultActive)
-    if(mode==='vertical'){
-      if(active_page){
-        return (
-            <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
-              <Menu
-                  collapse={isCollapse}
-                  default-active={defaultActive}
-                  mode={mode}>
-                {renderSubMenu()}
-              </Menu>
-            </div>
-        )
-      }else if(permission.length>0){
-        return (
-            <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
-              <Menu
-                  collapse={isCollapse}
-                  default-active={defaultActive}
-                  default-openeds={[permission[0].path]}
-                  mode={mode}>
-                {renderSubMenu()}
-              </Menu>
-            </div>
-        )
-      }else{
-        return (
-            <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
-              <Menu
-                  collapse={isCollapse}
-                  mode={mode}>
-                {renderSubMenu()}
-              </Menu>
-            </div>
-        )
-      }
+
+    if(active_page){
+      return (
+          <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
+            <Menu
+                collapse={isCollapse}
+                default-active={defaultActive}
+                mode={mode}>
+              {renderSubMenu()}
+            </Menu>
+          </div>
+      )
     }else{
       return (
           <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
@@ -112,6 +90,56 @@ export default {
           </div>
       )
     }
+
+
+
+    // let active_page = mixin.methods.searchMenuByPath(permission,defaultActive)
+    // if(mode==='vertical'){
+    //   if(active_page){
+    //     return (
+    //         <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
+    //           <Menu
+    //               collapse={isCollapse}
+    //               default-active={defaultActive}
+    //               mode={mode}>
+    //             {renderSubMenu()}
+    //           </Menu>
+    //         </div>
+    //     )
+    //   }else if(permission.length>0){
+    //     return (
+    //         <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
+    //           <Menu
+    //               collapse={isCollapse}
+    //               default-active={defaultActive}
+    //               default-openeds={[permission[0].path]}
+    //               mode={mode}>
+    //             {renderSubMenu()}
+    //           </Menu>
+    //         </div>
+    //     )
+    //   }else{
+    //     return (
+    //         <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
+    //           <Menu
+    //               collapse={isCollapse}
+    //               mode={mode}>
+    //             {renderSubMenu()}
+    //           </Menu>
+    //         </div>
+    //     )
+    //   }
+    // }else{
+    //   return (
+    //       <div class={isCollapse?'is-Collapse dynamic-menu':'dynamic-menu'}>
+    //         <Menu
+    //             collapse={isCollapse}
+    //             mode={mode}>
+    //           {renderSubMenu()}
+    //         </Menu>
+    //       </div>
+    //   )
+    // }
   }
 }
 </script>

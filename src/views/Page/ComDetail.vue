@@ -14,6 +14,7 @@ import containers from '../../md-loader/containers'
 import {stripScript,safeStringToObj} from '../../md-loader/util'
 const DynamicComponent={
   props:['template','js'],
+  name:'DynamicComponent',
   computed:{
     myComponent(){
       let res = {
@@ -26,7 +27,11 @@ const DynamicComponent={
   },
   render(){
     const {myComponent} = this
-    return (<myComponent/>)
+    if(myComponent.template){
+      return (<myComponent/>)
+    }else{
+      return (<template/>)
+    }
   }
 }
 

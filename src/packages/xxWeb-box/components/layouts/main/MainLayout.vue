@@ -7,7 +7,7 @@
 
 <script>
 import {Tabs,TabPane,Card,Button,Row,Col} from 'element-ui'
-import TagsView from "./TagsView.vue";
+import TagsView from "./TabsView.vue";
 import AppMain from "./AppMain.vue";
 import mixin from "../../../mixin/mixin";
 export default {

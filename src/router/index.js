@@ -54,7 +54,8 @@ const normalRoutes =  [
                     component:()=>import('../views/demo/Dashboard'),
                     meta: {
                         title: '详情-统计分析',
-                        icon: 'el-icon-data-analysis'
+                        icon: 'el-icon-data-analysis',
+                        keepAlive:true
                     }
                 },{
                     path:'/page/comDetail/:type/:title/pageList',
@@ -69,7 +70,7 @@ const normalRoutes =  [
                     name:"DetailDashboard",
                     component:()=>import('../views/demo/Detail'),
                     meta: {
-                        title: '详情-详情',
+                        title: '详情-详情页面',
                         icon: 'el-icon-data-analysis'
                     }
                 }]
