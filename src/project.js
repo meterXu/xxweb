@@ -28,14 +28,14 @@ const project = {
             mode:'router'
         },
         head: {
-            hamburger:true,
+            hamburger:false,
             logo:{
                 show: true,
             },
             title: {
                 show: true,
-                desktop: "欢迎使用xxWebBox",
-                mobile: "xxWebBox"
+                desktop: "",
+                mobile: ""
             },
             breadcrumb: {
                 show: true,
@@ -68,7 +68,7 @@ const project = {
             logo:{
                 show: true,
             },
-            hamburger:false,
+            hamburger:true,
             user: {
                 show: false,
                 username: true,

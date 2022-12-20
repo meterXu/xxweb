@@ -27,6 +27,14 @@
     .logo{
       background: @--logo-bg-color;
     }
+    .el-breadcrumb__inner{
+      .no-redirect{
+        color: @--sideMenu-header-color;
+      }
+      a{
+        color: @--sideMenu-header-color;
+      }
+    }
   }
   .top-header{
     color: @--topMenu-header-color;
@@ -37,6 +45,9 @@
       }
     }
     .el-breadcrumb__inner{
+      .no-redirect{
+        color: @--topMenu-header-color;
+      }
       a{
         color: @--text-color;
       }
@@ -55,6 +66,9 @@
       box-shadow:none;
       background:transparent;
       .title{
+        color: @--text-color;
+      }
+      .hamburger-div{
         color: @--text-color;
       }
     }

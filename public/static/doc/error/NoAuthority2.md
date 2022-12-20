@@ -9,7 +9,6 @@
     </div>
 </template>
 <script>
-import {NoAuthority2} from '@dpark/s2-xxweb-box'
 export default {
     data(){
         return {
@@ -17,9 +16,6 @@ export default {
                 home: window.location.pathname
             }
         }
-    },
-    components:{
-        NoAuthority2
     }
 }
 </script>

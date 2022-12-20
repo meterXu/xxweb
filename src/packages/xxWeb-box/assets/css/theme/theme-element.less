@@ -20,6 +20,7 @@
   @--footer-bg-color:#fff;
   @--footer-text-color:#409EFF;
   @--app-main-bg-color:#eaecef;
+  @--border-color:#ebebeb;
   .header{
     color: @--topMenu-header-color;
     background: @--topMenu-header-bg-color;
@@ -27,14 +28,10 @@
     .logo{
       background: @--logo-bg-color;
     }
-    .left-con {
-      .user-menu-item {
-        .no-redirect {
-          color: @--topMenu-header-color;
-        }
-      }
-    }
     .el-breadcrumb__inner{
+      .no-redirect{
+        color: @--topMenu-header-color;
+      }
       a{
         color: @--topMenu-header-color;
       }
@@ -60,9 +57,6 @@
       a{
         color: @--topMenu-header-color;
       }
-    }
-    .left-con .user-menu-item .no-redirect{
-      color: @--topMenu-header-color;
     }
     .logo{
       background:@--topMenu-header-bg-color;
@@ -100,6 +94,9 @@
       box-shadow: 0 0px 4px #00000033;
       background: @--topMenu-header-bg-color;
       .title{
+        color: @--topMenu-header-color;
+      }
+      .hamburger-div{
         color: @--topMenu-header-color;
       }
     }
@@ -156,8 +153,9 @@
     padding-top: 40px !important;
   }
   .contextmenu {
-    background: @--text-color;
+    background: @--main-bg-color;
     color: @--sideMenu-header-color;
+    border:1px solid @--border-color;
     box-shadow: 2px 2px 3px 0 @--header-shadow-color;
     li {
       &:hover {

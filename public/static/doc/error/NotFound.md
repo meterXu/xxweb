@@ -9,7 +9,6 @@
     </div>
 </template>
 <script>
-import {NotFound} from '@dpark/s2-xxweb-box'
 export default {
     data(){
         return {
@@ -17,9 +16,6 @@ export default {
                 home: window.location.pathname
             }
         }
-    },
-    components:{
-        NotFound
     }
 }
 </script>
