@@ -73,6 +73,21 @@
           </div>
           <el-button class="friends-button" type="primary">View All Friends</el-button>
         </el-card>
+        <el-card class="basic-info">
+          <div slot="header">
+            <span>Travels</span>
+          </div>
+          <div class="friends-item" v-for="item in travelsArr" :key="item.themeName">
+            <div class="friends-icon">
+              <el-avatar :src="item.imgUrl"></el-avatar>
+            </div>
+            <div class="friends-name">
+              <div>{{item.travelsName}}</div>
+              <div class="friends-detail">{{item.travelsTime}}</div>
+            </div>
+            <i :class="item.icon"></i>
+          </div>
+        </el-card>
       </el-col>
       <el-col :span="18">
         <div class="block">
@@ -126,6 +141,10 @@ import avatar4 from '../../assets/imgs/detail/4.jpg'
 import avatar5 from '../../assets/imgs/detail/5.jpg'
 import detail1 from '../../assets/imgs/detail/sq1.jpg'
 import detail2 from '../../assets/imgs/detail/sq2.jpg'
+import travels1 from '../../assets/imgs/detail/travels1.jpg'
+import travels2 from '../../assets/imgs/detail/travels2.jpg'
+import travels3 from '../../assets/imgs/detail/travels3.jpg'
+import travels4 from '../../assets/imgs/detail/travels4.jpg'
 export default {
   name: "Dashboard",
   data() {
@@ -186,6 +205,23 @@ export default {
         friendsName:'Juggernaut Frost',
         friendsDetail:'2 mutual friend',
         icon:'el-icon-star-on'
+      }],
+      travelsArr:[{
+        imgUrl:travels1,
+        travelsName:'Dubai',
+        travelsTime:'2 days ago'
+      },{
+        imgUrl:travels2,
+        travelsName:'New York, USA',
+        travelsTime:'2 years ago'
+      },{
+        imgUrl:travels3,
+        travelsName:'Shanghai, China',
+        travelsTime:'11 months ago'
+      },{
+        imgUrl:travels4,
+        travelsName:'Paris, France',
+        travelsTime:'11 months ago'
       }],
       activities: [{
         avatarImg:avatar1,
