@@ -5,7 +5,7 @@
   <JeecgLogin :config="config" v-model="form" @login="login"></JeecgLogin>
 </template>
 <script>
-import {JeecgLogin} from '@dpark/s2-xxweb-box'
+import {JeecgLogin} from 'xxweb-box'
 export default {
   data(){
     return {

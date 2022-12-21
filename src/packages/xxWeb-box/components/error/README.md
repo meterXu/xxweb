@@ -5,7 +5,7 @@
   <NotFound :link="link"/>
 </template>
 <script>
-import {NotFound} from '@dpark/s2-xxweb-box'
+import {NotFound} from 'xxweb-box'
 export default {
   name: 'MyNotFound',
   data(){

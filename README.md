@@ -17,18 +17,18 @@
 ## 安装
 
 ```shell
-yarn add @dpark/s2-xxweb-box --registry=https://npm.dpark.com.cn/npm
+yarn add xxweb-box
 ```
 或者
 ```shell
-npm install @dpark/s2-xxweb-box --registry=https://npm.dpark.com.cn/npm
+npm install xxweb-box
 ```
 
 ## 使用
 ```js
 // main.js
 import router from "./router/index.js"
-import XXWebBox from '@dpark/s2-xxweb-box'
+import XXWebBox from 'xxweb-box'
 Vue.use(XXWebBox)
 new Vue({
     router,
