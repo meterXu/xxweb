@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style>
-html body #app{
+html,body,#app{
   overflow: hidden;
 }
 </style>

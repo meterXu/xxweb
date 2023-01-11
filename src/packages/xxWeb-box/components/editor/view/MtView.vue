@@ -38,14 +38,14 @@
           <i @click="zoomIn" class="el-icon-circle-plus icon-zoom" style="color: #67C23A"></i>
         </div>
         <div class="mtScale-control-item">
-          <i class="el-icon-full-screen control-icon" title="100%" @click="fullCanvas"></i>
+          <MtIcon icon="DoOneToOne" :size="16" class="control-icon" title="100%" @click="fullCanvas"></MtIcon>
         </div>
         <div  class="mtScale-control-item">
-          <i class="el-icon-crop control-icon" title="适应画布" @click="fitCanvas"></i>
+          <MtIcon icon="DoOverallReduction" :size="16" class="control-icon" title="适应画布" @click="fitCanvas"></MtIcon>
         </div>
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
-        <i class="el-icon-position control-icon" title="导航"></i>
+        <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航"></MtIcon>
       </div>
     </div>
   </div>
@@ -53,7 +53,9 @@
 
 <script>
 import 'element-ui/lib/theme-chalk/index.css'
+import '../assets/css/mtView.less'
 import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
+import MtIcon from "./MtIcon";
 export default {
   name: 'MtView',
   props:{
@@ -72,6 +74,7 @@ export default {
     }
   },
   components:{
+    MtIcon,
     Dropdown,
     DropdownMenu,
     DropdownItem
@@ -217,143 +220,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.mtScale[theme='light']{
-  --background-color:#e9e9eb;
-  --link-color:#409EFF;
-  --border-color:#DCDFE6;
-  --tool-bg:#fff;
-  --ruler-bg:#e9e9eb;
-  --ruler-color:#409EFF;
-  --line-bg:#409EFF;
-  --tool-icon:#909399;
-}
-.mtScale[theme='dark']{
-  --background-color:#202835;
-  --link-color:#409EFF;
-  --border-color:#181f29;
-  --tool-bg:#202735;
-  --ruler-bg:#1e2532;
-  --ruler-color:#009dff;
-  --line-bg:#009dff;
-  --tool-icon:#99a5be;
-}
-
-.mtScale{
-  position: relative;
-  overflow: hidden;
-  flex: 1;
-  display: inline-flex;
-  flex-flow: column;
-  justify-content: flex-start;
-  background-color: var(--background-color);
-  .el-dropdown-link {
-    cursor: pointer;
-    color: var(--link-color);
-    user-select: none;
-  }
-  .mtScale-view{
-    transition: all ease 0.3s;
-  }
-  .mtScale-container{
-    background-repeat: repeat repeat;
-    flex: 1;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  .mtScale-has-ruler{
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    margin-left: 20px;
-    margin-top: 20px;
-  }
-  .mtScale-control{
-    padding: 0 10px;
-    height: 30px;
-    line-height: 30px;
-    z-index: 10000;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-top: 1px solid var(--border-color);
-    background-color: var(--tool-bg);
-    text-align: right;
-  }
-  .mtScale-control-item{
-    display: inline-block;
-    cursor: pointer;
-  }
-  .mtScale-control-item+.mtScale-control-item{
-    margin-left: 10px;
-  }
-  .ruler-container-top,.ruler-container-right{
-    box-sizing: border-box;
-    border-color: var(--border-color);
-    background: var(--ruler-bg);
-    border-style: solid;
-  }
-  .ruler-container-top{
-    height: 20px;
-    position:absolute;
-    top: 0;
-    left: 20px;
-    right:0;
-    z-index: 2;
-    box-sizing: border-box;
-    border-left: none;
-    border-top: none;
-    border-right: none;
-    border-bottom-width: 1px;
-  }
-  .ruler-container-right{
-    width: 20px;
-    position:absolute;
-    top: 20px;
-    left: 0;
-    bottom:0;
-    z-index: 2;
-    border-left: none;
-    border-top: none;
-    border-bottom: none;
-    border-right-width: 1px;
-  }
-  .cursor-move{
-    cursor: move;
-  }
-  .ruler-content{
-    z-index: 9999;
-  }
-  .ruler-item{
-    position: absolute;
-    top: 0px;
-    height: 100%;
-    cursor: ew-resize;
-  }
-  .ruler-text{
-    color: var(--ruler-color);
-    text-indent: 4px;
-    position: absolute;
-    user-select:none;
-  }
-  .ruler-line{
-    width: 1px;
-    height: 100%;
-    background-color: var(--line-bg)
-  }
-  .control-icon{
-    color: var(--tool-icon)
-  }
-  .icon-zoom{
-    font-size: 14px;
-    margin-left: 8px;
-    margin-right: 8px;
-  }
-  .dark-bg{
-    background-color: var(--background-color);
-  }
-  .photoshop-bg{
-    background-image: url("../assets/img/scaleBg.png");
-  }
-}
-</style>
