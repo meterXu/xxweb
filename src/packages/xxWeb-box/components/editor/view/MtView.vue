@@ -25,7 +25,7 @@
     <div class="mtScale-control">
       <template v-if="config.isScale">
         <div class="mtScale-control-item" style="text-align: center">
-          <i @click="zoomOut" class="el-icon-remove" style="font-size: 13px;margin-right: 3px;color: #E6A23C"></i>
+          <i @click="zoomOut" class="el-icon-remove icon-zoom" style="color: #E6A23C"></i>
           <Dropdown placement="top" @on-click="percentageChange">
             <span class="el-dropdown-link">
               {{percentage}}
@@ -35,7 +35,7 @@
               <DropdownItem divided name="fitCanvas">适应画布</DropdownItem>
             </DropdownMenu>
           </Dropdown>
-          <i @click="zoomIn" class="el-icon-circle-plus" style="font-size: 13px;margin-left: 3px;color: #67C23A"></i>
+          <i @click="zoomIn" class="el-icon-circle-plus icon-zoom" style="color: #67C23A"></i>
         </div>
         <div class="mtScale-control-item">
           <i class="el-icon-full-screen control-icon" title="100%" @click="fullCanvas"></i>
@@ -66,7 +66,7 @@ export default {
           isScale:true,
           isDrag:true,
           isNavigate:true,
-          backgroundClass:'photoshop-bg'
+          backgroundClass:'dark-bg'
         }
       }
     }
@@ -230,14 +230,14 @@ export default {
   --tool-icon:#909399;
 }
 .mtScale[theme='dark']{
-  --background-color:#e9e9eb;
+  --background-color:#202835;
   --link-color:#409EFF;
-  --border-color:#DCDFE6;
-  --tool-bg:#fff;
-  --ruler-bg:#e9e9eb;
-  --ruler-color:#409EFF;
-  --line-bg:#409EFF;
-  --tool-icon:#909399;
+  --border-color:#181f29;
+  --tool-bg:#202735;
+  --ruler-bg:#1e2532;
+  --ruler-color:#009dff;
+  --line-bg:#009dff;
+  --tool-icon:#99a5be;
 }
 
 .mtScale{
@@ -290,7 +290,7 @@ export default {
   .ruler-container-top,.ruler-container-right{
     box-sizing: border-box;
     border-color: var(--border-color);
-    background: #e9e9eb;
+    background: var(--ruler-bg);
     border-style: solid;
   }
   .ruler-container-top{
@@ -343,6 +343,14 @@ export default {
   }
   .control-icon{
     color: var(--tool-icon)
+  }
+  .icon-zoom{
+    font-size: 14px;
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+  .dark-bg{
+    background-color: var(--background-color);
   }
   .photoshop-bg{
     background-image: url("../assets/img/scaleBg.png");
