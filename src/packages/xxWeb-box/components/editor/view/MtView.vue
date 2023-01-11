@@ -125,14 +125,14 @@ export default {
       }
     },
     fitCanvas(){
-      // const mtScaleContainer = this.$refs['mtScale-container']
-      // const mtCanvas = this.$refs['mtScale-view'].children[0]
-      // if(mtCanvas){
-      //   this.scale = parseFloat((mtScaleContainer.clientWidth/(mtCanvas.clientWidth+60)).toFixed(2))
-      //   this.scale =this.scale>1?1:this.scale
-      //   this.zoomLevel = this.getZoomLevel()
-      //   this.resetLocation()
-      // }
+      const mtScaleContainer = this.$refs['mtScale-container']
+      const mtCanvas = this.$refs['mtScale-view'].children[0]
+      if(mtCanvas){
+        this.scale = parseFloat((mtScaleContainer.clientWidth/(mtCanvas.clientWidth+60)).toFixed(2))
+        this.scale =this.scale>1?1:this.scale
+        this.zoomLevel = this.getZoomLevel()
+        this.resetLocation()
+      }
     },
     contextmenu(){
       event.preventDefault()
@@ -205,12 +205,12 @@ export default {
       }
     },
     resetLocation(){
-      // const mtScaleContainer = this.$refs['mtScale-container']
-      // const mtCanvas = this.$refs['mtScale-view'].children[0]
-      // if(mtCanvas){
-      //   this.location.x=(mtScaleContainer.clientWidth-mtCanvas.clientWidth*this.scale)/2
-      //   this.location.y=this.location.x>30?30:this.location.x
-      // }
+      const mtScaleContainer = this.$refs['mtScale-container']
+      const mtCanvas = this.$refs['mtScale-view'].children[0]
+      if(mtCanvas){
+        this.location.x=(mtScaleContainer.clientWidth-mtCanvas.clientWidth*this.scale)/2
+        this.location.y=this.location.x>30?30:this.location.x
+      }
     }
   }
 }
