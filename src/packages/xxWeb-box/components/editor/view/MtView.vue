@@ -10,7 +10,7 @@
     </template>
     <div ref="mtScale-container" :class="config.isRuler?['mtScale-container','mtScale-has-ruler',this.config.backgroundClass]:['mtScale-container',this.config.backgroundClass]"
          @contextmenu="(event)=>{event.preventDefault()}">
-      <div ref="mtScale-content" class="mtScale-content" @contextmenu="contextmenu" @mouseup="mouseup" :style="mtScaleContentStyle">
+      <div ref="mtScale-content" class="mtScale-content" @mousedown="canvasMousedown" @contextmenu="contextmenu" @mouseup="mouseup" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="'transform-origin: 0px 0px;transform: scale('+scale+')'">
           <slot v-bind:scale="scale"/>
         </div>
@@ -114,7 +114,7 @@ export default {
   watch:{
     scale(nv,ov){
       this.lines.forEach(l=>{
-        l.x = l.canvasX*nv
+        l.x = l.canvasX*nv+this.location.x
       })
     }
 
@@ -141,15 +141,27 @@ export default {
         this.resetLocation()
       }
     },
-    contextmenu(){
+    contextmenu(event){
       event.preventDefault()
-      if(this.config.isDrag){
-        this.$refs['mtScale-view'].classList.add('cursor-move')
-        const ownerRect = this.$refs['mtScale-content'].getBoundingClientRect()
-        this.shift.x= event.clientX-ownerRect.left
-        this.shift.y= event.clientY-ownerRect.top
-        document.removeEventListener('mousemove',this.mousemove)
-        document.addEventListener('mousemove',this.mousemove)
+      // if(this.config.isDrag){
+      //   this.$refs['mtScale-view'].classList.add('cursor-move')
+      //   const ownerRect = this.$refs['mtScale-content'].getBoundingClientRect()
+      //   this.shift.x= event.clientX-ownerRect.left
+      //   this.shift.y= event.clientY-ownerRect.top
+      //   document.removeEventListener('mousemove',this.mousemove)
+      //   document.addEventListener('mousemove',this.mousemove)
+      // }
+    },
+    canvasMousedown(event) {
+      if(event.button===2) {
+        if(this.config.isDrag){
+          this.$refs['mtScale-view'].classList.add('cursor-move')
+          const ownerRect = this.$refs['mtScale-content'].getBoundingClientRect()
+          this.shift.x= event.clientX-ownerRect.left
+          this.shift.y= event.clientY-ownerRect.top
+          document.removeEventListener('mousemove',this.mousemove)
+          document.addEventListener('mousemove',this.mousemove)
+        }
       }
     },
     lineMouseDown(line){
@@ -167,7 +179,7 @@ export default {
     },
     lineMousemove(event){
       this.moveLine.x = parseInt(event.pageX-this.shift.x)
-      this.moveLine.canvasX = parseInt(this.moveLine.x-this.location.x)
+      this.moveLine.canvasX = parseInt((this.moveLine.x-this.location.x)*(1/this.scale))
     },
     removeLineMouseMove(){
       document.removeEventListener('mousemove',this.lineMousemove)
