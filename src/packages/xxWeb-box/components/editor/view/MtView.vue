@@ -1,5 +1,5 @@
 <template>
-  <div class="mtScale" ref="mtScale">
+  <div class="mtScale" ref="mtScale" :theme="config.theme">
     <template v-if="config.isRuler">
       <div class="ruler-container-top">
         <canvas style="width: 100%;height: 100%"></canvas>
@@ -8,7 +8,8 @@
         <canvas style="width: 100%;height: 100%"></canvas>
       </div>
     </template>
-    <div ref="mtScale-container" :style="`background: url(${this.config.background})`" :class="{'mtScale-container':true, 'mtScale-has-ruler':this.config.isRuler}"  @contextmenu="(event)=>{event.preventDefault()}">
+    <div ref="mtScale-container" :class="config.isRuler?['mtScale-container','mtScale-has-ruler',this.config.backgroundClass]:['mtScale-container',this.config.backgroundClass]"
+         @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" @contextmenu="contextmenu" @mouseup="mouseup" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="'transform-origin: 0px 0px;transform: scale('+scale+')'">
           <slot v-bind:scale="scale"/>
@@ -60,11 +61,12 @@ export default {
       type:Object,
       default(){
         return {
+          theme:'dark',
           isRuler:true,
           isScale:true,
           isDrag:true,
           isNavigate:true,
-          background:require("../assets/img/scaleBg.png")
+          backgroundClass:'photoshop-bg'
         }
       }
     }
@@ -217,6 +219,27 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.mtScale[theme='light']{
+  --background-color:#e9e9eb;
+  --link-color:#409EFF;
+  --border-color:#DCDFE6;
+  --tool-bg:#fff;
+  --ruler-bg:#e9e9eb;
+  --ruler-color:#409EFF;
+  --line-bg:#409EFF;
+  --tool-icon:#909399;
+}
+.mtScale[theme='dark']{
+  --background-color:#e9e9eb;
+  --link-color:#409EFF;
+  --border-color:#DCDFE6;
+  --tool-bg:#fff;
+  --ruler-bg:#e9e9eb;
+  --ruler-color:#409EFF;
+  --line-bg:#409EFF;
+  --tool-icon:#909399;
+}
+
 .mtScale{
   position: relative;
   overflow: hidden;
@@ -224,10 +247,10 @@ export default {
   display: inline-flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-color: #9f9f9f;
+  background-color: var(--background-color);
   .el-dropdown-link {
     cursor: pointer;
-    color: #409EFF;
+    color: var(--link-color);
     user-select: none;
   }
   .mtScale-view{
@@ -253,8 +276,8 @@ export default {
     line-height: 30px;
     z-index: 10000;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-    border-top: 1px solid #d7dae2;
-    background-color: #fff;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--tool-bg);
     text-align: right;
   }
   .mtScale-control-item{
@@ -266,7 +289,7 @@ export default {
   }
   .ruler-container-top,.ruler-container-right{
     box-sizing: border-box;
-    border-color: #DCDFE6;
+    border-color: var(--border-color);
     background: #e9e9eb;
     border-style: solid;
   }
@@ -308,7 +331,7 @@ export default {
     cursor: ew-resize;
   }
   .ruler-text{
-    color: #409EFF;
+    color: var(--ruler-color);
     text-indent: 4px;
     position: absolute;
     user-select:none;
@@ -316,10 +339,13 @@ export default {
   .ruler-line{
     width: 1px;
     height: 100%;
-    background-color: #409EFF
+    background-color: var(--line-bg)
   }
   .control-icon{
-    color: #909399
+    color: var(--tool-icon)
+  }
+  .photoshop-bg{
+    background-image: url("../assets/img/scaleBg.png");
   }
 }
 </style>
