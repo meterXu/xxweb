@@ -8,7 +8,7 @@
         <canvas style="width: 100%;height: 100%"></canvas>
       </div>
     </template>
-    <div ref="mtScale-container" :class="{'mtScale-container':true, 'mtScale-has-ruler':this.config.isRuler}"  @contextmenu="(event)=>{event.preventDefault()}">
+    <div ref="mtScale-container" :style="`background: url(${this.config.background})`" :class="{'mtScale-container':true, 'mtScale-has-ruler':this.config.isRuler}"  @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" @contextmenu="contextmenu" @mouseup="mouseup" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="'transform-origin: 0px 0px;transform: scale('+scale+')'">
           <slot v-bind:scale="scale"/>
@@ -63,7 +63,8 @@ export default {
           isRuler:true,
           isScale:true,
           isDrag:true,
-          isNavigate:true
+          isNavigate:true,
+          background:require("../assets/img/scaleBg.png")
         }
       }
     }
@@ -215,12 +216,7 @@ export default {
 }
 </script>
 
-<style scoped>
-.el-dropdown-link {
-  cursor: pointer;
-  color: #409EFF;
-  user-select: none;
-}
+<style lang="less" scoped>
 .mtScale{
   position: relative;
   overflow: hidden;
@@ -228,89 +224,102 @@ export default {
   display: inline-flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-color: #909399;
-}
-.mtScale-view{
-  transition: all ease 0.3s;
-}
-.mtScale-container{
-  background: url("../assets/img/scaleBg.png") repeat repeat;
-  flex: 1;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.mtScale-has-ruler{
-  width: calc(100% - 20px);
-  height: calc(100% - 20px);
-  margin-left: 20px;
-  margin-top: 20px;
-}
-.mtScale-control{
-  padding: 0 10px;
-  height: 30px;
-  line-height: 30px;
-  z-index: 10000;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
-  border-top: 1px solid #d7dae2;
-  background-color: #fff;
-  text-align: right;
-}
-.mtScale-control-item{
-  display: inline-block;
-  cursor: pointer;
-}
-.mtScale-control-item+.mtScale-control-item{
-  margin-left: 10px;
-}
-.ruler-container-top,.ruler-container-right{
-  box-sizing: border-box;
-  border-color: #333;
-  background: #e9e9eb;
-}
-.ruler-container-top{
-  height: 20px;
-  position:absolute;
-  top: 0;
-  left: 20px;
-  right:0;
-  z-index: 2;
-  border-left: 1px solid;
-}
-.ruler-container-right{
-  width: 20px;
-  position:absolute;
-  top: 20px;
-  left: 0;
-  bottom:0;
-  z-index: 2;
-  border-top: 1px solid;
-}
-.cursor-move{
-  cursor: move;
-}
-.ruler-content{
-  z-index: 9999;
-}
-.ruler-item{
-  position: absolute;
-  top: 0px;
-  height: 100%;
-  cursor: ew-resize;
-}
-.ruler-text{
-  color: #409EFF;
-  text-indent: 4px;
-  position: absolute;
-  user-select:none;
-}
-.ruler-line{
-  width: 1px;
-  height: 100%;
-  background-color: #409EFF
-}
-.control-icon{
-  color: #909399
+  background-color: #9f9f9f;
+  .el-dropdown-link {
+    cursor: pointer;
+    color: #409EFF;
+    user-select: none;
+  }
+  .mtScale-view{
+    transition: all ease 0.3s;
+  }
+  .mtScale-container{
+    background-repeat: repeat repeat;
+    flex: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .mtScale-has-ruler{
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+  .mtScale-control{
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    z-index: 10000;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+    border-top: 1px solid #d7dae2;
+    background-color: #fff;
+    text-align: right;
+  }
+  .mtScale-control-item{
+    display: inline-block;
+    cursor: pointer;
+  }
+  .mtScale-control-item+.mtScale-control-item{
+    margin-left: 10px;
+  }
+  .ruler-container-top,.ruler-container-right{
+    box-sizing: border-box;
+    border-color: #DCDFE6;
+    background: #e9e9eb;
+    border-style: solid;
+  }
+  .ruler-container-top{
+    height: 20px;
+    position:absolute;
+    top: 0;
+    left: 20px;
+    right:0;
+    z-index: 2;
+    box-sizing: border-box;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom-width: 1px;
+  }
+  .ruler-container-right{
+    width: 20px;
+    position:absolute;
+    top: 20px;
+    left: 0;
+    bottom:0;
+    z-index: 2;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    border-right-width: 1px;
+  }
+  .cursor-move{
+    cursor: move;
+  }
+  .ruler-content{
+    z-index: 9999;
+  }
+  .ruler-item{
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    cursor: ew-resize;
+  }
+  .ruler-text{
+    color: #409EFF;
+    text-indent: 4px;
+    position: absolute;
+    user-select:none;
+  }
+  .ruler-line{
+    width: 1px;
+    height: 100%;
+    background-color: #409EFF
+  }
+  .control-icon{
+    color: #909399
+  }
 }
 </style>
