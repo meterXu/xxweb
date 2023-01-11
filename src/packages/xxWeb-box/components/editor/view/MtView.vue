@@ -2,7 +2,7 @@
   <div class="mtScale" ref="mtScale" :theme="config.theme">
     <template v-if="config.isRuler">
       <div class="ruler-container-top">
-        <canvas style="width: 100%;height: 100%"></canvas>
+<!--        <RulerScale/>-->
       </div>
       <div class="ruler-container-right">
         <canvas style="width: 100%;height: 100%"></canvas>
@@ -56,6 +56,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '../assets/css/mtView.less'
 import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 import MtIcon from "./MtIcon";
+// import RulerScale from "./RulerScale";
 export default {
   name: 'MtView',
   props:{
@@ -75,6 +76,7 @@ export default {
   },
   components:{
     MtIcon,
+    // RulerScale,
     Dropdown,
     DropdownMenu,
     DropdownItem
