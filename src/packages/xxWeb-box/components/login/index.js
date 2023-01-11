@@ -3,9 +3,10 @@ import PigLogin from './PigLogin'
 import TreeLogin from './TreeLogin'
 import WatermelonLogin from './WatermelonLogin'
 import PhylumLogin from "./PhylumLogin";
+import WDPLogin from "./WDPLogin";
 
 
-let logins = [JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin]
+let logins = [JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,WDPLogin]
 
 logins.forEach(login=>{
     login.install = function (Vue){
@@ -19,5 +20,6 @@ export {
     PigLogin,
     TreeLogin,
     WatermelonLogin,
-    PhylumLogin
+    PhylumLogin,
+    WDPLogin
 }

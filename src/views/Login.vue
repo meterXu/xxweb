@@ -10,11 +10,13 @@
     </WatermelonLogin>
     <PhylumLogin v-if="type==5" :config="config" :rules="rules" v-model="form" @login="login">
     </PhylumLogin>
+    <WDPLogin v-if="type==6" :config="config" :rules="rules" v-model="form" @login="login">
+    </WDPLogin>
   </div>
 </template>
 
 <script>
-import {JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin} from '../packages/xxWeb-box/index'
+import {JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,WDPLogin} from '../packages/xxWeb-box/index'
 import {types} from "../packages/xxWeb-utils/index";
 export default {
   name: "Login",
@@ -24,7 +26,8 @@ export default {
     PigLogin,
     TreeLogin,
     WatermelonLogin,
-    PhylumLogin
+    PhylumLogin,
+    WDPLogin
   },
   data(){
     return {
