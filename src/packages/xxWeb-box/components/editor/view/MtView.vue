@@ -1,6 +1,6 @@
 <template>
   <div class="mtScale" ref="mtScale">
-    <template v-if="isRuler">
+    <template v-if="config.isRuler">
       <div class="ruler-container-top">
         <canvas style="width: 100%;height: 100%"></canvas>
       </div>
@@ -8,13 +8,13 @@
         <canvas style="width: 100%;height: 100%"></canvas>
       </div>
     </template>
-    <div ref="mtScale-container" :class="{'mtScale-container':true, 'mtScale-has-ruler':this.isRuler}"  @contextmenu="(event)=>{event.preventDefault()}">
+    <div ref="mtScale-container" :class="{'mtScale-container':true, 'mtScale-has-ruler':this.config.isRuler}"  @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" @contextmenu="contextmenu" @mouseup="mouseup" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="'transform-origin: 0px 0px;transform: scale('+scale+')'">
           <slot v-bind:scale="scale"/>
         </div>
       </div>
-      <div v-if="isRuler" class="ruler-content">
+      <div v-if="config.isRuler" class="ruler-content">
         <div v-for="(item,index) in lines" :key="index" class="ruler-item" @mousedown="lineMouseDown(item)" @mouseup="removeLineMouseMove" :style="'left: '+item.x+'px;'">
           <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
           <div class="ruler-line"></div>
@@ -22,39 +22,57 @@
       </div>
     </div>
     <div class="mtScale-control">
-      <template v-if="isScale">
+      <template v-if="config.isScale">
         <div class="mtScale-control-item" style="text-align: center">
-          <Icon @click="zoomOut" style="position: relative;top: -1px;margin-right: 3px" :size="14" color="#E6A23C" type="ios-remove-circle"></Icon>
+          <i @click="zoomOut" class="el-icon-remove" style="font-size: 13px;margin-right: 3px;color: #E6A23C"></i>
           <Dropdown placement="top" @on-click="percentageChange">
-            <a href="javascript:void(0)">
+            <span class="el-dropdown-link">
               {{percentage}}
-            </a>
-            <Dropdown-menu slot="list">
-              <Dropdown-item v-for="item in scaleList" :name="item" :key="item">{{`${item*100}%`}}</Dropdown-item>
-              <Dropdown-item divided name="fitCanvas">适应画布</Dropdown-item>
-            </Dropdown-menu>
+            </span>
+            <DropdownMenu slot="dropdown">
+              <DropdownItem v-for="item in scaleList" :name="item" :key="item">{{`${item*100}%`}}</DropdownItem>
+              <DropdownItem divided name="fitCanvas">适应画布</DropdownItem>
+            </DropdownMenu>
           </Dropdown>
-          <Icon @click="zoomIn" style="position: relative;top: -1px;margin-left: 3px" color="#67C23A" :size="14" type="ios-add-circle"></Icon>
+          <i @click="zoomIn" class="el-icon-circle-plus" style="font-size: 13px;margin-left: 3px;color: #67C23A"></i>
         </div>
         <div class="mtScale-control-item">
-          <Icon :size="18" color="#909399" type="md-expand" title="100%" @click="fullCanvas"></Icon>
+          <i class="el-icon-full-screen control-icon" title="100%" @click="fullCanvas"></i>
         </div>
         <div  class="mtScale-control-item">
-          <Icon :size="18" color="#909399" type="md-contract" title="适应画布" @click="fitCanvas"></Icon>
+          <i class="el-icon-crop control-icon" title="适应画布" @click="fitCanvas"></i>
         </div>
       </template>
-      <div v-if="isNavigate" class="mtScale-control-item">
-        <Icon :size="18" color="#909399" type="ios-navigate" title="导航"></Icon>
+      <div v-if="config.isNavigate" class="mtScale-control-item">
+        <i class="el-icon-position control-icon" title="导航"></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
+import 'element-ui/lib/theme-chalk/index.css'
+import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 export default {
   name: 'MtView',
-  props:['isRuler','isScale','isDrag','isNavigate'],
+  props:{
+    config:{
+      type:Object,
+      default(){
+        return {
+          isRuler:true,
+          isScale:true,
+          isDrag:true,
+          isNavigate:true
+        }
+      }
+    }
+  },
+  components:{
+    Dropdown,
+    DropdownMenu,
+    DropdownItem
+  },
   data(){
     return {
       scale:1,
@@ -117,7 +135,7 @@ export default {
     },
     contextmenu(){
       event.preventDefault()
-      if(this.isDrag){
+      if(this.config.isDrag){
         this.$refs['mtScale-view'].classList.add('cursor-move')
         const ownerRect = this.$refs['mtScale-content'].getBoundingClientRect()
         this.shift.x= event.clientX-ownerRect.left
@@ -198,6 +216,11 @@ export default {
 </script>
 
 <style scoped>
+.el-dropdown-link {
+  cursor: pointer;
+  color: #409EFF;
+  user-select: none;
+}
 .mtScale{
   position: relative;
   overflow: hidden;
@@ -225,7 +248,6 @@ export default {
   margin-top: 20px;
 }
 .mtScale-control{
-  width: 100%;
   padding: 0 10px;
   height: 30px;
   line-height: 30px;
@@ -244,7 +266,8 @@ export default {
 }
 .ruler-container-top,.ruler-container-right{
   box-sizing: border-box;
-  border-color: #333333;
+  border-color: #333;
+  background: #e9e9eb;
 }
 .ruler-container-top{
   height: 20px;
@@ -252,7 +275,6 @@ export default {
   top: 0;
   left: 20px;
   right:0;
-  background: #909399;
   z-index: 2;
   border-left: 1px solid;
 }
@@ -262,7 +284,6 @@ export default {
   top: 20px;
   left: 0;
   bottom:0;
-  background: #909399;
   z-index: 2;
   border-top: 1px solid;
 }
@@ -288,5 +309,8 @@ export default {
   width: 1px;
   height: 100%;
   background-color: #409EFF
+}
+.control-icon{
+  color: #909399
 }
 </style>
