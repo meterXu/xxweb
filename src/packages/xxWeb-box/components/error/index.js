@@ -8,9 +8,9 @@ import NotFound2 from "./404/NotFound2";
 
 let errors = [NoAuthority1,Error,NotFoundDark,NotFound,NotFound2,NoAuthority2]
 
-errors.forEach(login=>{
-    login.install = function (Vue){
-        Vue.component(login.name,login)
+errors.forEach(error=>{
+    error.install = function (Vue){
+        Vue.component(error.name,error)
     }
 })
 
