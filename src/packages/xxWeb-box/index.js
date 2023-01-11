@@ -1,5 +1,5 @@
 import XXWebBox from './components/index'
-import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin} from './components/login'
+import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin, WDPLogin} from './components/login'
 import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error'
 import {DarkMode1} from './components/darmode'
 
@@ -10,6 +10,7 @@ let components = [
     TreeLogin,
     WatermelonLogin,
     PhylumLogin,
+    WDPLogin,
     NotFound,
     NotFoundDark,
     NoAuthority1,
@@ -35,6 +36,7 @@ export {
     TreeLogin,
     WatermelonLogin,
     PhylumLogin,
+    WDPLogin,
     NotFound,
     NotFoundDark,
     NotFound2,
