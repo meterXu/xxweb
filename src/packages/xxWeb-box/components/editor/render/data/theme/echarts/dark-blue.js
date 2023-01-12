@@ -30,7 +30,7 @@ const axisCommon = function() {
     };
 };
 
-const colorPalette = [
+export const colorPalette = [
     '#00305a',
     '#004b8d',
     '#0074d9',

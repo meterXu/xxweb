@@ -1,13 +1,14 @@
+export const colorPalette = [
+  '#4ea397',
+  '#22c3aa',
+  '#7bd9a5',
+  '#d0648a',
+  '#f58db2',
+  '#f2b3c9'
+]
 export default
 {
-  'color': [
-    '#4ea397',
-    '#22c3aa',
-    '#7bd9a5',
-    '#d0648a',
-    '#f58db2',
-    '#f2b3c9'
-  ],
+  'color': colorPalette,
   'backgroundColor': 'transparent',
   'textStyle': {},
   'title': {

@@ -1,11 +1,13 @@
-let halloween = {
-  'color': [
-    '#ff715e',
-    '#ffaf51',
-    '#ffee51',
-    '#8c6ac4',
-    '#715c87'
-  ],
+export const halloween = [
+  '#ff715e',
+  '#ffaf51',
+  '#ffee51',
+  '#8c6ac4',
+  '#715c87'
+]
+
+export default {
+  'color': halloween,
   'backgroundColor': 'transparent',
   'textStyle': {},
   'title': {
@@ -493,4 +495,3 @@ let halloween = {
     }
   }
 }
-export default halloween

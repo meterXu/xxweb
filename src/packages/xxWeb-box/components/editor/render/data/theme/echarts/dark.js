@@ -1,4 +1,4 @@
-const colorPalette = [
+export const colorPalette = [
     '#dd6b66',
     '#759aa0',
     '#e69d87',
