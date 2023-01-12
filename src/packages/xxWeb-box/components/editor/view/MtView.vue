@@ -8,10 +8,10 @@
         <canvas style="width: 100%;height: 100%"></canvas>
       </div>
     </template>
-    <div ref="mtScale-container" :class="config.isRuler?['mtScale-container','mtScale-has-ruler',this.config.backgroundClass]:['mtScale-container',this.config.backgroundClass]"
+    <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" @mousedown="canvasMousedown" @mouseup="mouseup" :style="mtScaleContentStyle">
-        <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="'transform-origin: 0px 0px;transform: scale('+scale+')'">
+        <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="mtScaleViewStyle">
           <slot v-bind:scale="scale"/>
         </div>
       </div>
@@ -26,13 +26,13 @@
       <template v-if="config.isScale">
         <div class="mtScale-control-item" style="text-align: center">
           <i @click="zoomOut" class="el-icon-remove icon-zoom" style="color: #E6A23C"></i>
-          <Dropdown placement="top" @on-click="percentageChange">
+          <Dropdown placement="top" @command="percentageChange">
             <span class="el-dropdown-link">
               {{percentage}}
             </span>
             <DropdownMenu slot="dropdown">
-              <DropdownItem v-for="item in scaleList" :name="item" :key="item">{{`${item*100}%`}}</DropdownItem>
-              <DropdownItem divided name="fitCanvas">适应画布</DropdownItem>
+              <DropdownItem v-for="item in scaleList" :command="item">{{`${item*100}%`}}</DropdownItem>
+              <DropdownItem divided command="fitCanvas">适应画布</DropdownItem>
             </DropdownMenu>
           </Dropdown>
           <i @click="zoomIn" class="el-icon-circle-plus icon-zoom" style="color: #67C23A"></i>
@@ -109,6 +109,17 @@ export default {
       return {
         transform:`translate(${this.location.x}px, ${this.location.y}px)`
       }
+    },
+    mtScaleViewStyle(){
+      return {
+        transformOrigin: '0px 0px',
+        transform: `scale(${this.scale})`
+      }
+    },
+    mtScaleContainerStyle(){
+      return this.config.isRuler?
+          ['mtScale-container','mtScale-has-ruler',this.config.backgroundClass]
+          :['mtScale-container',this.config.backgroundClass]
     }
   },
   watch:{
@@ -120,14 +131,15 @@ export default {
 
   },
   methods:{
-    percentageChange(nv){
-      switch (nv){
+    percentageChange(command){
+      switch (command){
         case 'fitCanvas':{
           this.fitCanvas()
         }break;
         default:{
-          this.scale = nv
+          this.scale = command
           this.zoomLevel = this.getZoomLevel()
+          this.resetLocation()
         }break;
       }
     },
@@ -140,6 +152,11 @@ export default {
         this.zoomLevel = this.getZoomLevel()
         this.resetLocation()
       }
+    },
+    fullCanvas(){
+      this.scale = 1
+      this.zoomLevel = 5
+      this.resetLocation()
     },
     canvasMousedown(event){
       event.preventDefault()
@@ -182,10 +199,6 @@ export default {
       this.$refs['mtScale-view'].classList.remove('cursor-move')
       document.removeEventListener('mousemove',this.mousemove)
     },
-    fullCanvas(){
-      this.scale = 1
-      this.zoomLevel = 5
-    },
     getZoomLevel(){
       let level = 0
       this.scaleList.forEach((n,i)=>{
@@ -225,6 +238,11 @@ export default {
         this.location.y=this.location.x>30?30:this.location.x
       }
     }
+  },
+  mounted() {
+    this.$nextTick(()=>{
+      this.resetLocation()
+    })
   }
 }
 </script>
