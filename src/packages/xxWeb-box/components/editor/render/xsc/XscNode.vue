@@ -54,7 +54,7 @@ import XscDom from './controls/XscDom'
 import XscDev from './controls/XscDev'
 import axios from 'axios'
 
-import echartsThemes from "../../../../../../../../../../private/xsLab/xslab-editor/src/packages/vue-draw-xs/src/data/theme/echartsThemes";
+import echartsThemes from "../data/theme/echartsThemes";
 Object.keys(echartsThemes).forEach(theme=>{
   eCharts.registerTheme(theme, echartsThemes[theme])
 })
