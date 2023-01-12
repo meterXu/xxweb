@@ -2,7 +2,7 @@
   <div class="editor">
     <MtView>
       <template v-slot="{scale}">
-        <Xsc :options="options" :charts="charts" :scale="scale" :view="true"></Xsc>
+        <Xsc :options="options" :charts="charts" :scale="scale" :view="false"></Xsc>
       </template>
     </MtView>
   </div>

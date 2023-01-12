@@ -16,11 +16,11 @@
         </div>
       </div>
       <div v-if="config.isRuler" class="ruler-content">
-        <div v-for="(item,index) in lines" :key="index" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
+        <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
           <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
           <div :style="mtScaleLineStyleX" class="ruler-line"></div>
         </div>
-        <div v-for="(item,index) in linesY" :key="index" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
+        <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
           <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
           <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>
         </div>
@@ -35,7 +35,7 @@
               {{percentage}}
             </span>
             <DropdownMenu slot="dropdown">
-              <DropdownItem v-for="item in scaleList" :command="item">{{`${item*100}%`}}</DropdownItem>
+              <DropdownItem v-for="item in scaleList" :key="item" :command="item">{{`${item*100}%`}}</DropdownItem>
               <DropdownItem divided command="fitCanvas">适应画布</DropdownItem>
             </DropdownMenu>
           </Dropdown>

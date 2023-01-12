@@ -7,25 +7,24 @@
                  :node="item"
                  :view="view"
                  :class="[view?'mt_node_view':(item===activeNode ? 'mt_node_active': 'mt_node_base'),'dragging']"
-                 @click.native="nodeClick(item)"
+                 @click.native="itemClick(item)"
                  @mousedown.native="itemMousedown(item)"
-                 @mouseup.native="removeMouseMove"
                  @dragstart="()=>{return false}"
         >
           <template v-if="item.type==='dev'" v-slot:[item.config.options.key]>
             <slot :name="item.config.options.key"></slot>
           </template>
           <template v-slot:resize>
-          <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item,'chart')" @mouseup="removeChangeSizeMouseMove">
-            <button ref="resize" v-if="!view&&item===activeNode" class="node_resize" shape="circle" icon="ios-resize"></button>
+          <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item,'chart')">
+            <div ref="resize" v-if="!view&&item===activeNode" class="node_resize" shape="circle" icon="ios-resize"></div>
           </span>
           </template>
         </XscNode>
       </template>
       <slot></slot>
     </div>
-    <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options,'canvas')" @mouseup="removeChangeSizeMouseMove">
-      <button ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle" icon="ios-resize"></button>
+    <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options,'canvas')">
+      <div ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle" icon="ios-resize"></div>
     </span>
   </div>
 </template>
@@ -95,11 +94,7 @@ export default {
   },
   methods: {
     removeMouseMove(){
-      event.stopPropagation()
       document.removeEventListener('mousemove',this.nodeMousemove)
-    },
-    removeChangeSizeMouseMove(){
-      event.stopPropagation()
       document.removeEventListener('mousemove',this.changeSizeMousemove)
     },
     keydown(){
@@ -126,11 +121,15 @@ export default {
         }
       }
     },
-    itemMousedown(node){
+    itemClick(node){
       event.preventDefault()
       event.stopPropagation()
+    },
+    itemMousedown(node){
       const mouseEvent = {
         0: () => {
+          event.preventDefault()
+          event.stopPropagation()
           if(!this.view){
             this.activeNode = node
             let clickBox = event.currentTarget.getBoundingClientRect()
@@ -139,9 +138,13 @@ export default {
             this.shift.y = event.clientY-clickBox.top
             document.removeEventListener('mousemove',this.nodeMousemove)
             document.addEventListener('mousemove',this.nodeMousemove)
+            document.removeEventListener('mouseup',this.removeMouseMove)
+            document.addEventListener('mouseup',this.removeMouseMove)
           }
         },
-        2: () => this.contextmenu(node)
+        2: () => {
+          this.contextmenu(node)
+        }
       }
       mouseEvent[ event.button ]();
     },
@@ -166,6 +169,8 @@ export default {
             this.shift.y = parseInt(clickBoxHeight*this.scale)-event.clientY
             document.removeEventListener('mousemove',this.changeSizeMousemove)
             document.addEventListener('mousemove',this.changeSizeMousemove)
+            document.removeEventListener('mouseup',this.removeMouseMove)
+            document.addEventListener('mouseup',this.removeMouseMove)
           }break
           case 'canvas':{
             let clickBoxWeight = event.currentTarget.previousSibling.offsetWidth;
@@ -174,6 +179,8 @@ export default {
             this.shift.y = parseInt(clickBoxHeight*this.scale)-event.clientY
             document.removeEventListener('mousemove',this.changeSizeMousemove)
             document.addEventListener('mousemove',this.changeSizeMousemove)
+            document.removeEventListener('mouseup',this.removeMouseMove)
+            document.addEventListener('mouseup',this.removeMouseMove)
           }break
         }
       }
@@ -206,8 +213,6 @@ export default {
       }
     },
     canvasClick () {
-      event.preventDefault()
-      event.stopPropagation()
       if(!this.view){
         this.activeNode = {
           type: 'dom',
@@ -371,13 +376,16 @@ export default {
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .node_resize{
-  cursor: nwse-resize;
-  float: right;
-  width: 24px;
-  height: 24px;
-  transform: rotate(268deg);
-  margin-right: -21px;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
+  position: absolute;
+  z-index: 3;
+  width: 7px;
+  height: 7px;
+  background: rgb(255, 255, 255);
+  border: 1px solid #2d8cf0;
+  border-radius: 2px;
+  bottom: -4.5px;
+  right: -4.5px;
+  cursor: se-resize;
 }
 .dragging{
   cursor: move;
