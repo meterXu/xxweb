@@ -149,6 +149,11 @@ export default {
       this.linesY.forEach(l=>{
         l.y = l.canvasY*nv+this.location.y
       })
+
+      this.guides1.zoom  = nv
+      this.guides1.resize()
+      this.guides2.zoom  = nv
+      this.guides2.resize()
     }
 
   },
@@ -280,13 +285,13 @@ export default {
     this.$nextTick(()=>{
       this.resetLocation()
     })
-    const guides1 =new Guides(document.querySelector(".ruler-container-top"), {
+    this.guides1 =new Guides(document.querySelector(".ruler-container-top"), {
       type: "horizontal",
       displayDragPos: true,
       zoom: this.scale
     });
 
-    window.guides2 =new Guides(document.querySelector(".ruler-container-right"), {
+    this.guides2 =new Guides(document.querySelector(".ruler-container-right"), {
       type: "vertical",
       displayDragPos: true,
       zoom: this.scale
