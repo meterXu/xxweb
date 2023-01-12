@@ -3,7 +3,6 @@ import Router from 'vue-router';
 import Login from '../views/Login.vue'
 import error from '../views/Error'
 import Test from "../views/Test";
-import EditorView from "../views/editor/EditorView";
 
 Vue.use(Router);
 
@@ -18,12 +17,6 @@ const normalRoutes =  [
         path: '/error/:type',
         name: error.name,
         component: error,
-        props:true
-    },
-    {
-        path: '/editor/view',
-        name: EditorView.name,
-        component: EditorView,
         props:true
     },
     {
@@ -109,6 +102,11 @@ const normalRoutes =  [
                 path:'/demo/detail',
                 name:"Dashboard",
                 component:()=>import('../views/demo/Detail')
+            },
+            {
+                path: '/demo/editor',
+                name: 'editor',
+                component: ()=>import('../views/demo/Editor')
             }
         ]
     }

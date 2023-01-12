@@ -56,6 +56,13 @@ export default [
                     title: '详情页面',
                     icon: 'el-icon-tickets'
                 }
+            },
+            {
+                path: '/demo/editor',
+                meta: {
+                    title: '编辑器',
+                    icon: 'el-icon-edit'
+                }
             }
         ]
     }
