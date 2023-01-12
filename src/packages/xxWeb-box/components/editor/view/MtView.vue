@@ -114,7 +114,7 @@ export default {
   watch:{
     scale(nv,ov){
       this.lines.forEach(l=>{
-        l.x = l.canvasX*nv+this.location.x
+        l.x = l.canvasX*nv
       })
     }
 
