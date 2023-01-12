@@ -13,11 +13,11 @@ export default {
     theme: String
   },
   computed: {
-    themeStyle () {
-      if (this.themeData && this.theme) {
-        return this.themeData[this.theme || 'light']
+    colorPalette () {
+      if (this.theme) {
+        return this.themeData[this.theme || 'light'].colorPalette
       } else {
-        return null
+        return {}
       }
     },
     textStyle () {
@@ -25,7 +25,7 @@ export default {
         'font-size': this.options.text.fontSize + 'px',
         'font-family': this.options.text.fontFamily,
         'font-weight': this.options.text.fontWeight,
-        'color': this.options.text.color || this.themeStyle.text.text.color,
+        'color': this.options.text.color||this.colorPalette.backgroundColor,
         'user-select':'none'
       }
     },
@@ -33,13 +33,13 @@ export default {
       return {
         'line-height': this.options.boxSpace.lineHeight + 'px',
         'text-align': this.options.boxSpace.textAlign,
-        'background-color': this.options.background.color || this.themeStyle.text.background.color,
+        'background-color': this.options.background.color,
         'border-width': this.options.border.width + 'px',
         'border-top-style': this.options.border.style,
         'border-bottom-style': this.options.border.style,
         'border-left-style': this.options.border.style,
         'border-right-style': this.options.border.style,
-        'border-color': this.options.border.color || this.themeStyle.text.border.color
+        'border-color': this.options.border.color
       }
     }
   }

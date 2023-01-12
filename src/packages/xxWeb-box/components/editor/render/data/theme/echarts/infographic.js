@@ -1,23 +1,29 @@
-export const colorPalette = [
-    '#C1232B',
-    '#27727B',
-    '#FCCE10',
-    '#E87C25',
-    '#B5C334',
-    '#FE8463',
-    '#9BCA63',
-    '#FAD860',
-    '#F3A43B',
-    '#60C0DD',
-    '#D7504B',
-    '#C6E579',
-    '#F4E001',
-    '#F0805A',
-    '#26C0C0'
-];
+export const colorPalette = {
+    backgroundColor: '#C1232B',
+    color: '#27727B',
+    theme: [
+        '#C1232B',
+        '#27727B',
+        '#FCCE10',
+        '#E87C25',
+        '#B5C334',
+        '#FE8463',
+        '#9BCA63',
+        '#FAD860',
+        '#F3A43B',
+        '#60C0DD',
+        '#D7504B',
+        '#C6E579',
+        '#F4E001',
+        '#F0805A',
+        '#26C0C0'
+    ],
+    border: '#b5c334'
+}
 
 export default {
-    color: colorPalette,
+    colorPalette:colorPalette,
+    color: colorPalette.theme,
     backgroundColor: 'transparent',
     title: {
         textStyle: {
@@ -33,7 +39,7 @@ export default {
     toolbox: {
         iconStyle: {
             normal: {
-                borderColor: colorPalette[0]
+                borderColor: colorPalette.theme[0]
             }
         }
     },

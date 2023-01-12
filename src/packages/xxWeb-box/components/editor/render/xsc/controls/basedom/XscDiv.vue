@@ -7,9 +7,7 @@
 export default {
   name: 'XscDiv',
   props: {
-    options: Object,
-    themeData: Object,
-    theme: String
+    options: Object
   },
   computed: {
     divStyle () {

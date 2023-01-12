@@ -1,17 +1,22 @@
-let contrastColor = '#eee'
-export const colorPalette = [
-  '#69d69d',
-  '#3c755e',
-  '#27323b',
-  '#c5ce97',
-  '#91c7ae',
-  '#749f83',
-  '#ca8622',
-  '#bda29a',
-  '#6e7074',
-  '#546570',
-  '#c4ccd3'
-]
+export const colorPalette = {
+  backgroundColor: '#69d69d',
+  color: '#eee',
+  theme: [
+    '#69d69d',
+    '#3c755e',
+    '#27323b',
+    '#c5ce97',
+    '#91c7ae',
+    '#749f83',
+    '#ca8622',
+    '#bda29a',
+    '#6e7074',
+    '#546570',
+    '#c4ccd3'
+  ],
+  border: '#cccccc'
+}
+
 const axisCommon = function () {
   return {
     axisLine: {
@@ -43,69 +48,70 @@ const axisCommon = function () {
     }
   }
 }
-const yyjk = {
+export default {
   backgroundColor: 'transparent',
-  color: colorPalette,
+  colorPalette:colorPalette,
+  color: colorPalette.theme,
   tooltip: {
     axisPointer: {
       lineStyle: {
-        color: contrastColor
+        color: colorPalette.color
       },
       crossStyle: {
-        color: contrastColor
+        color: colorPalette.color
       }
     }
   },
   legend: {
     textStyle: {
-      color: contrastColor
+      color: colorPalette.color
     }
   },
   textStyle: {
-    color: contrastColor
+    color: colorPalette.color
   },
   title: {
     textStyle: {
-      color: contrastColor
+      color: colorPalette.color
     }
   },
   toolbox: {
     iconStyle: {
       normal: {
-        borderColor: contrastColor
+        borderColor: colorPalette.color
       }
     }
   },
   dataZoom: {
     textStyle: {
-      color: contrastColor
+      color: colorPalette.color
     }
   },
   visualMap: {
     textStyle: {
-      color: contrastColor
+      color: colorPalette.color
     }
   },
   timeline: {
     lineStyle: {
-      color: contrastColor
+      color: colorPalette.color
     },
     itemStyle: {
       normal: {
-        color: colorPalette[1]
+        color: colorPalette.theme[1]
       }
     },
     label: {
       normal: {
         textStyle: {
-          color: contrastColor
+          color: colorPalette.color
         }
       }
     },
     controlStyle: {
       normal: {
-        color: contrastColor,
-        borderColor: contrastColor
+        color: colorPalette.color,
+        borderColor: colorPalette.color
       }
     }
   },
@@ -118,12 +124,12 @@ const yyjk = {
     symbol: 'circle'
   },
   graph: {
-    color: colorPalette
+    color: colorPalette.theme
   },
   gauge: {
     title: {
       textStyle: {
-        color: contrastColor
+        color: colorPalette.color
       }
     }
   },
@@ -138,4 +144,3 @@ const yyjk = {
     }
   }
 }
-export default yyjk

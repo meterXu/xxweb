@@ -1,19 +1,34 @@
-const contrastColor = '#eee';
+export const colorPalette = {
+    backgroundColor: '#00305a',
+    color: '#eee',
+    theme: [
+        '#00305a',
+        '#004b8d',
+        '#0074d9',
+        '#4192d9',
+        '#7abaf2',
+        '#99cce6',
+        '#d6ebf5',
+        '#eeeeee'
+    ],
+    border: '#ccc'
+}
+
 const axisCommon = function() {
     return {
         axisLine: {
             lineStyle: {
-                color: contrastColor
+                color: colorPalette.color
             }
         },
         axisTick: {
             lineStyle: {
-                color: contrastColor
+                color: colorPalette.color
             }
         },
         axisLabel: {
             textStyle: {
-                color: contrastColor
+                color: colorPalette.color
             }
         },
         splitLine: {
@@ -24,49 +39,40 @@ const axisCommon = function() {
         },
         splitArea: {
             areaStyle: {
-                color: contrastColor
+                color: colorPalette.color
             }
         }
     };
 };
 
-export const colorPalette = [
-    '#00305a',
-    '#004b8d',
-    '#0074d9',
-    '#4192d9',
-    '#7abaf2',
-    '#99cce6',
-    '#d6ebf5',
-    '#eeeeee'
-];
 export default {
-    color: colorPalette,
+    colorPalette:colorPalette,
+    color: colorPalette.color,
     backgroundColor: 'transparent',
     tooltip: {
         axisPointer: {
             lineStyle: {
-                color: contrastColor
+                color: colorPalette.color
             },
             crossStyle: {
-                color: contrastColor
+                color: colorPalette.color
             }
         }
     },
     legend: {
         textStyle: {
-            color: contrastColor
+            color: colorPalette.color
         }
     },
     title: {
         textStyle: {
-            color: contrastColor
+            color: colorPalette.color
         }
     },
     toolbox: {
         iconStyle: {
             normal: {
-                borderColor: contrastColor
+                borderColor: colorPalette.color
             }
         }
     },
@@ -83,14 +89,14 @@ export default {
             color: colorPalette[1]
         },
         lineStyle: {
-            color: contrastColor
+            color: colorPalette.color
         },
         controlStyle: {
-            color: contrastColor,
-            borderColor: contrastColor
+            color: colorPalette.color,
+            borderColor: colorPalette.color
         },
         label: {
-            color: contrastColor
+            color: colorPalette.color
         }
     },
 
@@ -103,7 +109,7 @@ export default {
         symbol: 'circle'
     },
     graph: {
-        color: colorPalette
+        color: colorPalette.color
     },
 
     gauge: {

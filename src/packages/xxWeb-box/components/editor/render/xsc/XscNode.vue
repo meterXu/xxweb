@@ -14,6 +14,7 @@
           :options="node.config.options"
           :theme="node.config.theme"
           :type="node.config.type"
+          :themeData="themeData"
           v-else-if="node.type==='dom'||node.type==='bigScreen'"
           :view="this.view"></XscDom>
       <XscDev :id="node.id" :options="node.config.options"
@@ -49,14 +50,13 @@ import 'echarts/lib/component/dataset'
 import 'echarts/map/js/world'
 import 'zrender/lib/svg/svg'
 import 'echarts-liquidfill'
-
 import XscDom from './controls/XscDom'
 import XscDev from './controls/XscDev'
 import axios from 'axios'
+import themeData from "../data/theme/themeData";
 
-import echartsThemes from "../data/theme/echartsThemes";
-Object.keys(echartsThemes).forEach(theme=>{
-  eCharts.registerTheme(theme, echartsThemes[theme])
+Object.keys(themeData).filter(c=>['normal','light'].indexOf(c)===-1).forEach(theme=>{
+  eCharts.registerTheme(theme, themeData[theme])
 })
 
 function getDbData (that, dbs, sqls) {
@@ -134,7 +134,8 @@ export default {
       showmenu: false,
       mtMenuPoint: null,
       timeout: null,
-      temOptions: null
+      temOptions: null,
+      themeData
     }
   },
   computed: {

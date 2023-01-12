@@ -20,9 +20,7 @@ import TWEEN from '@tweenjs/tween.js'
 export default {
   name: 'XscSlide',
   props: {
-    options: Object,
-    themeData: Object,
-    theme: String
+    options: Object
   },
   data () {
     return {
@@ -87,13 +85,6 @@ export default {
     }
   },
   computed: {
-    themeStyle () {
-      if (this.themeData && this.theme) {
-        return this.themeData[this.theme || 'light']
-      } else {
-        return null
-      }
-    },
     slideList () {
       return this.getSlideList()
     },
@@ -119,11 +110,11 @@ export default {
       return function (i) {
         if (that.payIndex === i + 1) {
           return {
-            'background-color': this.options.pageColor.active || this.themeStyle.slide.pageColor.active
+            'background-color': this.options.pageColor.active
           }
         } else {
           return {
-            'background-color': this.options.pageColor.normal || this.themeStyle.slide.pageColor.normal
+            'background-color': this.options.pageColor.normal
           }
         }
       }

@@ -1,22 +1,27 @@
-export const colorPalette = [
-  '#fc97af',
-  '#87f7cf',
-  '#f7f494',
-  '#72ccff',
-  '#f7c5a0',
-  '#d4a4eb',
-  '#d2f5a6',
-  '#76f2f2'
-]
+export const colorPalette = {
+  backgroundColor: '#fc97af',
+  color: '#ffffff',
+  theme: [
+    '#fc97af',
+    '#87f7cf',
+    '#f7f494',
+    '#72ccff',
+    '#f7c5a0',
+    '#d4a4eb',
+    '#d2f5a6',
+    '#76f2f2'
+  ],
+  border: '#ccc'
+}
 
-export default
-{
-  color: colorPalette,
+export default {
+  colorPalette:colorPalette,
+  color: colorPalette.theme,
   backgroundColor: 'transparent',
   textStyle: {},
   title: {
     textStyle: {
-      color: '#ffffff'
+      color: colorPalette.color
     },
     subtextStyle: {
       color: '#dddddd'
