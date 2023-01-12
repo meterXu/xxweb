@@ -2,10 +2,8 @@
   <div class="mtScale" ref="mtScale" :theme="config.theme">
     <template v-if="config.isRuler">
       <div class="ruler-container-top">
-<!--        <RulerScale/>-->
       </div>
       <div class="ruler-container-right">
-        <canvas style="width: 100%;height: 100%"></canvas>
       </div>
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
@@ -60,6 +58,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '../assets/css/mtView.less'
 import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 import MtIcon from "./MtIcon";
+import Guides from "@scena/guides";
 // import RulerScale from "./RulerScale";
 export default {
   name: 'MtView',
@@ -281,6 +280,17 @@ export default {
     this.$nextTick(()=>{
       this.resetLocation()
     })
+    const guides1 =new Guides(document.querySelector(".ruler-container-top"), {
+      type: "horizontal",
+      displayDragPos: true,
+      zoom: this.scale
+    });
+
+    window.guides2 =new Guides(document.querySelector(".ruler-container-right"), {
+      type: "vertical",
+      displayDragPos: true,
+      zoom: this.scale
+    });
   }
 }
 </script>
