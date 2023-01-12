@@ -10,15 +10,19 @@
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
-      <div ref="mtScale-content" class="mtScale-content" @mousedown="canvasMousedown" @mouseup="mouseup" :style="mtScaleContentStyle">
-        <div ref="mtScale-view" @dragstart="()=>{return false}" class="mtScale-view" :style="mtScaleViewStyle">
+      <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
+        <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" @mouseup="mouseup" class="mtScale-view" :style="mtScaleViewStyle">
           <slot v-bind:scale="scale"/>
         </div>
       </div>
       <div v-if="config.isRuler" class="ruler-content">
-        <div v-for="(item,index) in lines" :key="index" class="ruler-item" @mousedown="lineMouseDown(item)" @mouseup="removeLineMouseMove" :style="'left: '+item.x+'px;'">
+        <div v-for="(item,index) in lines" :key="index" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
           <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
-          <div class="ruler-line"></div>
+          <div :style="mtScaleLineStyleX" class="ruler-line"></div>
+        </div>
+        <div v-for="(item,index) in linesY" :key="index" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
+          <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
+          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>
         </div>
       </div>
     </div>
@@ -98,6 +102,10 @@ export default {
         x:24,
         canvasX:0
       }],
+      linesY:[{
+        y:24,
+        canvasY:0
+      }],
       moveLine:null
     }
   },
@@ -120,12 +128,27 @@ export default {
       return this.config.isRuler?
           ['mtScale-container','mtScale-has-ruler',this.config.backgroundClass]
           :['mtScale-container',this.config.backgroundClass]
-    }
+    },
+    mtScaleLineStyleX(){
+      return {
+        transformOrigin: '0px 0px',
+        transform: `scaleX(${this.scale})`
+      }
+    },
+    mtScaleLineStyleY(){
+      return {
+        transformOrigin: '0px 0px',
+        transform: `scaleY(${this.scale})`
+      }
+    },
   },
   watch:{
     scale(nv,ov){
       this.lines.forEach(l=>{
-        l.x = l.canvasX*nv
+        l.x = l.canvasX*nv+this.location.x
+      })
+      this.linesY.forEach(l=>{
+        l.y = l.canvasY*nv+this.location.y
       })
     }
 
@@ -175,13 +198,19 @@ export default {
       }
       mouseEvent[ event.button ]();
     },
-    lineMouseDown(line){
+    lineMouseDown(line,type){
       const ownerRect = this.$refs['mtScale-container'].getBoundingClientRect()
       this.shift.x= ownerRect.left
       this.shift.y= ownerRect.top
       this.moveLine  = line
-      document.removeEventListener('mousemove',this.lineMousemove)
-      document.addEventListener('mousemove',this.lineMousemove)
+      if(type==='x') {
+        document.removeEventListener('mousemove',this.lineMousemove)
+        document.addEventListener('mousemove',this.lineMousemove)
+      } else {
+        document.removeEventListener('mousemove',this.lineMousemoveY)
+        document.addEventListener('mousemove',this.lineMousemoveY)
+      }
+
     },
     mousemove(event){
       const ownerRect = this.$refs['mtScale-container'].getBoundingClientRect()
@@ -191,9 +220,18 @@ export default {
     lineMousemove(event){
       this.moveLine.x = parseInt(event.pageX-this.shift.x)
       this.moveLine.canvasX = parseInt((this.moveLine.x-this.location.x)*(1/this.scale))
+      // this.moveLine.canvasX = parseInt(this.moveLine.x-this.location.x)
     },
-    removeLineMouseMove(){
-      document.removeEventListener('mousemove',this.lineMousemove)
+    lineMousemoveY(event){
+      this.moveLine.y = parseInt(event.pageY-this.shift.y)
+      this.moveLine.canvasY = parseInt((this.moveLine.y-this.location.y)*(1/this.scale))
+    },
+    removeLineMouseMove(type){
+      if(type==='x') {
+        document.removeEventListener('mousemove',this.lineMousemove)
+      } else {
+        document.removeEventListener('mousemove',this.lineMousemoveY)
+      }
     },
     mouseup(){
       this.$refs['mtScale-view'].classList.remove('cursor-move')
