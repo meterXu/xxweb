@@ -22,6 +22,11 @@
     "path-to-regexp": "^6.2.1",
     "screenfull": "^4.2.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "@tweenjs/tween.js": "^17.4.0",
+    "echarts": "^4.5.0",
+    "resize-detector": "^0.1.9",
+    "vue-echarts": "^4.0.1",
+    "echarts-liquidfill": "^2.0.4"
   }
 }

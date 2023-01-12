@@ -2,7 +2,7 @@ import XXWebBox from './components/index'
 import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin,WDPLogin} from './components/login'
 import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error'
 import {DarkMode1} from './components/darmode'
-import {MtView} from './components/editor/index'
+import {MtView,Xsc} from './components/editor/index'
 
 const install = function (Vue) {
     XXWebBox.install(Vue)
@@ -26,7 +26,8 @@ export {
     NoAuthority2,
     Error,
     DarkMode1,
-    MtView
+    MtView,
+    Xsc
 }
 export default install
 
