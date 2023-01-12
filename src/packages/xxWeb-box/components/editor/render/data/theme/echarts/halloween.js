@@ -1,4 +1,4 @@
-export const halloween = [
+export const colorPalette = [
   '#ff715e',
   '#ffaf51',
   '#ffee51',
@@ -7,7 +7,7 @@ export const halloween = [
 ]
 
 export default {
-  'color': halloween,
+  'color': colorPalette,
   'backgroundColor': 'transparent',
   'textStyle': {},
   'title': {

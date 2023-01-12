@@ -1,5 +1,5 @@
 let contrastColor = '#eee'
-let colorPalette = [
+export const colorPalette = [
   '#69d69d',
   '#3c755e',
   '#27323b',
