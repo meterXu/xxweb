@@ -1,33 +1,32 @@
 <template>
-  <div tabindex="-1" :id="node.id" class="mt_node"
+  <div tabindex="-1" :id="item.id" class="mt_node"
        :style="nodeStyle">
     <template>
       <eCharts ref='echarts'
-               :id="node.id"
-               :theme="node.config.theme"
+               :id="item.id"
+               :theme="item.config.theme"
                :autoresize="autoresize"
                :options="temOptions"
-               v-if="node.type==='eCharts'">
+               v-if="item.type==='eCharts'">
                </eCharts>
       <XscDom
-          :id="node.id"
-          :options="node.config.options"
-          :theme="node.config.theme"
-          :type="node.config.type"
+          :id="item.id"
+          :options="item.config.options"
+          :theme="item.config.theme"
+          :type="item.config.type"
           :themeData="themeData"
-          v-else-if="node.type==='dom'||node.type==='bigScreen'"
+          v-else-if="item.type==='dom'||item.type==='bigScreen'"
           :view="this.view"></XscDom>
-      <XscDev :id="node.id" :options="node.config.options"
-      :type="node.config.type"
-      :view="this.view"
-       v-else-if="node.type==='dev'">
-       <template v-slot:[node.config.options.key]>
-         <slot :name="node.config.options.key"></slot>
+      <XscDev :id="item.id" :options="item.config.options"
+              :type="item.config.type"
+              :view="this.view"
+              v-else-if="item.type==='dev'">
+       <template v-slot:[item.config.options.key]>
+         <slot :name="item.config.options.key"></slot>
        </template>
        </XscDev>
       <div v-else>不支持的图表</div>
     </template>
-    <slot name="resize"></slot>
   </div>
 </template>
 
@@ -53,7 +52,7 @@ import 'echarts-liquidfill'
 import XscDom from './controls/XscDom'
 import XscDev from './controls/XscDev'
 import axios from 'axios'
-import themeData from "../data/theme/themeData";
+import themeData from "./data/theme/themeData";
 
 Object.keys(themeData).filter(c=>['normal','light'].indexOf(c)===-1).forEach(theme=>{
   eCharts.registerTheme(theme, themeData[theme])
@@ -101,30 +100,30 @@ function setDataOptions (that, pro, data) {
   pro.forEach(c => {
     try {
       if (c.split('/').length === 1) {
-        that.node.config.options[c.split('/')[0]] = data
+        that.item.config.options[c.split('/')[0]] = data
       } else if (c.split('/').length === 2) {
-        that.node.config.options[c.split('/')[0]][c.split('/')[1]] = data
+        that.item.config.options[c.split('/')[0]][c.split('/')[1]] = data
       } else if (c.split('/').length === 3) {
-        that.node.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]] = data
+        that.item.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]] = data
       } else if (c.split('/').length === 4) {
-        that.node.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]][c.split('/')[3]] = data
+        that.item.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]][c.split('/')[3]] = data
       } else if (c.split('/').length === 5) {
-        that.node.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]][c.split('/')[3]][c.split('/')[4]] = data
+        that.item.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]][c.split('/')[3]][c.split('/')[4]] = data
       } else if (c.split('/').length === 6) {
-        that.node.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]][c.split('/')[3]][c.split('/')[4]][c.split('/')[5]] = data
+        that.item.config.options[c.split('/')[0]][c.split('/')[1]][c.split('/')[2]][c.split('/')[3]][c.split('/')[4]][c.split('/')[5]] = data
       }
     } catch (e) {}
   })
 }
 export default {
-  name: 'xsc-node',
+  name: 'VueDrawXs',
   components: {
     eCharts,
     XscDom,
     XscDev
   },
   props: {
-    node: Object,
+    item: Object,
     view: Boolean
   },
   data () {
@@ -140,13 +139,13 @@ export default {
   },
   computed: {
     nodeStyle () {
-      if (this.node && this.node.config) {
+      if (this.item && this.item.config) {
         return {
-          width: (this.node.config.box.width || 400) + 'px',
-          height: (this.node.config.box.height || 300) + 'px',
-          left: (this.node.config.box.x || 0) + 'px',
-          top: (this.node.config.box.y || 0) + 'px',
-          zIndex: (this.node.config.box.zIndex || 100)
+          width: (this.item.config.box.width || 400) + 'px',
+          height: (this.item.config.box.height || 300) + 'px',
+          left: (this.item.config.box.x || 0) + 'px',
+          top: (this.item.config.box.y || 0) + 'px',
+          zIndex: (this.item.config.box.zIndex || 100)
         }
       } else {
         return {}
@@ -154,13 +153,13 @@ export default {
     }
   },
   watch: {
-    'node.config.options': {
+    'item.config.options': {
       handler (e, t) {
         this.setChartOption()
       },
       deep: true
     },
-    'node.config.theme': {
+    'item.config.theme': {
       handler (e, t) {
         this.setChartOption()
       },
@@ -170,17 +169,17 @@ export default {
   methods: {
     loopData () {
       let that = this
-      if (that.node.config.data && that.node.config.data.loop) {
+      if (that.item.config.data && that.item.config.data.loop) {
         that.loopUpdate()
       }
     },
     nodeClick: function () {
-      this.$emit('nodeClick', this.node)
+      this.$emit('nodeClick', this.item)
       event.stopPropagation()
     },
     dragStart: function () {
       if (!this.view) {
-        this.$emit('dragStart', this.node)
+        this.$emit('dragStart', this.item)
       }
     },
     loopUpdate () {
@@ -189,7 +188,7 @@ export default {
         if (that.view) {
           that.timeout = window.setTimeout(k => {
             that.loopUpdate()
-          }, that.node.config.data.interval * 1000)
+          }, that.item.config.data.interval * 1000)
         }
       })
     },
@@ -214,12 +213,12 @@ export default {
     getNodeData () {
       try {
         let that = this
-        if (that.node.config.data) {
+        if (that.item.config.data) {
           let dbDataIndex = []
           let dbs = []
           let sqls = []
           let promiseArray=[]
-          that.node.config.data.source.forEach((c, i) => {
+          that.item.config.data.source.forEach((c, i) => {
             switch (c.type) {
               case 3: { // api
                 promiseArray.push(that.getDataByApi(c,i))
@@ -245,9 +244,9 @@ export default {
       return new Promise((resolve,reject)=>{
         let apiConf = JSON.parse(c.apiConf||'{}')
         let params = c.params||'{}'
-        if(this.node.config.options.hasOwnProperty('pagination')){
-          params = params.replaceAll('$pageNo',this.node.config.options.pagination.pageNo)
-          params = params.replaceAll('$pageSize',this.node.config.options.pagination.pageSize)
+        if(this.item.config.options.hasOwnProperty('pagination')){
+          params = params.replaceAll('$pageNo',this.item.config.options.pagination.pageNo)
+          params = params.replaceAll('$pageSize',this.item.config.options.pagination.pageSize)
           if(c.method==='post'||c.method==='put'||c.method==='delete'){
             params = {data:JSON.parse(params)}
           }else{
@@ -274,8 +273,8 @@ export default {
                 pros.forEach((p)=>{
                   realTotal = realTotal[p]
                 })
-                if(this.node.config.options.hasOwnProperty('pagination')){
-                  this.node.config.options.pagination.total = realTotal
+                if(this.item.config.options.hasOwnProperty('pagination')){
+                  this.item.config.options.pagination.total = realTotal
                 }
               }
             }else {
@@ -327,7 +326,7 @@ export default {
     },
     updateNodeData (data) {
       let errMsgs = null
-      switch (this.node.config.data && this.node.config.data.coordinate) {
+      switch (this.item.config.data && this.item.config.data.coordinate) {
         case 'rightAngle': {
           errMsgs = this.setRightAngleData(data)
           break
@@ -347,8 +346,8 @@ export default {
     setRightAngleData (data) {
       let that = this
       let errMsgs = []
-      if (this.node.config.data.source) {
-        this.node.config.data.source.forEach((c, i) => {
+      if (this.item.config.data.source) {
+        this.item.config.data.source.forEach((c, i) => {
           if (c) {
             let inErrMsg = {index: i, warn: []}
             let sourceData = validateData(i, data[i], inErrMsg.warn)
@@ -391,8 +390,8 @@ export default {
     setNoCoordinateData (data) {
       let that = this
       let errMsgs = []
-      if (this.node.config.data.source) {
-        this.node.config.data.source.forEach((c, i) => {
+      if (this.item.config.data.source) {
+        this.item.config.data.source.forEach((c, i) => {
           if (c) {
             let inErrMsg = {index: i, warn: []}
             let sourceData = validateData(i, data[i], inErrMsg.warn)
@@ -417,11 +416,11 @@ export default {
             }
             // 赋值
             if (seriesData.length > 0) {
-              that.node.config.options.series.data = seriesData
+              that.item.config.options.series.data = seriesData
             }
             if (legendData.length > 0) {
-              if (that.node.config.options.legend) {
-                that.node.config.options.legend.data = legendData
+              if (that.item.config.options.legend) {
+                that.item.config.options.legend.data = legendData
               }
             }
             if (c.sto) {
@@ -434,8 +433,8 @@ export default {
     },
     setTableData (data) {
       let errMsgs = []
-      if (this.node.config.data.source) {
-        this.node.config.data.source.forEach((c, i) => {
+      if (this.item.config.data.source) {
+        this.item.config.data.source.forEach((c, i) => {
           if (c) {
             let inErrMsg = {index: i, warn: []}
             let sourceData = validateData(i, data[i], inErrMsg.warn)
@@ -450,10 +449,10 @@ export default {
             }
             // 赋值
             if (column.length > 0) {
-              this.node.config.options.column = column
+              this.item.config.options.column = column
             }
             if (sourceData) {
-              this.node.config.options.data = sourceData
+              this.item.config.options.data = sourceData
             }
           }
         })
@@ -461,8 +460,8 @@ export default {
       return errMsgs.length > 0 ? errMsgs : null
     },
     setChartOption () {
-      if (this.node.type === 'eCharts' && this.node.config.data.source) {
-        let cloneNode = JSON.parse(JSON.stringify(this.node))
+      if (this.item.type === 'eCharts' && this.item.config.data.source) {
+        let cloneNode = JSON.parse(JSON.stringify(this.item))
         cloneNode.config.data.source.forEach((c, i) => {
           if ((!c.json && c.type === 2) || (!c.sql && c.type === 1) || !c.s) {
             cloneNode.config.options.series[i] = null

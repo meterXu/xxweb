@@ -1,40 +1,32 @@
 <template>
-  <div :style="view?'display: block':'display: inline-block'">
-    <div ref="mt_canvas" @drop="drop" @dragover="dragover" @click="canvasClick" :style="canvasStyle" :class="['mt_canvas', {mt_canvas_position:view}]">
-      <template v-for="item in charts">
-        <XscNode :ref="item.id"
-                 :key="item.id"
-                 :node="item"
-                 :view="view"
-                 :class="[view?'mt_node_view':(item===activeNode ? 'mt_node_active': 'mt_node_base'),'dragging']"
-                 @click.native="itemClick(item)"
-                 @mousedown.native="itemMousedown(item)"
-                 @dragstart="()=>{return false}"
-        >
-          <template v-if="item.type==='dev'" v-slot:[item.config.options.key]>
-            <slot :name="item.config.options.key"></slot>
-          </template>
-          <template v-slot:resize>
+    <div ref="mt_canvas"
+         @drop="drop"
+         @dragover="dragover"
+         @click="canvasClick"
+         :style="canvasStyle"
+         :class="['mt_canvas', {mt_canvas_position:view}]">
+      <div v-for="item in charts">
+        <div ref="item.id"
+             :key="item.id"
+             :node="item"
+             :class="[view?'mt_node_view':(item===activeNode ? 'mt_node_active': 'mt_node_base'),'dragging']"
+             @click="itemClick(item)"
+             @mousedown="itemMousedown(item)"
+             @dragstart="()=>{return false}">
+          <slot :view="view" :item="item"></slot>
           <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item,'chart')">
             <div ref="resize" v-if="!view&&item===activeNode" class="node_resize" shape="circle" icon="ios-resize"></div>
           </span>
-          </template>
-        </XscNode>
-      </template>
-      <slot></slot>
+        </div>
+      </div>
+      <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options,'canvas')">
+        <div ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle" icon="ios-resize"></div>
+      </span>
     </div>
-    <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options,'canvas')">
-      <div ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle" icon="ios-resize"></div>
-    </span>
-  </div>
 </template>
 <script>
-import XscNode from './xsc/XscNode'
 export default {
-  name: 'Xsc',
-  components: {
-    XscNode
-  },
+  name: 'XscStaticLayout',
   props: {
     scale:Number,
     charts: {
@@ -81,13 +73,15 @@ export default {
           'background-color': this.options.backgroundColor,
           'background-image': 'url(\'' + this.options.backgroundImage + '\')',
           'background-size': this.options.backgroundSize,
-          'background-repeat': this.options.backgroundRepeat
+          'background-repeat': this.options.backgroundRepeat,
+          display:this.view?'block':'inline-block'
         }
       } else {
         return {
           width: '1000px',
           height: '500px',
-          'background-color': null
+          'background-color': null,
+          display:this.view?'block':'inline-block'
         }
       }
     }

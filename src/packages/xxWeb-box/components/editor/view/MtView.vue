@@ -10,17 +10,7 @@
          @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" @mouseup="mouseup" class="mtScale-view" :style="mtScaleViewStyle">
-          <slot v-bind:scale="scale"/>
-        </div>
-      </div>
-      <div v-if="config.isRuler" class="ruler-content">
-        <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
-          <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
-          <div :style="mtScaleLineStyleX" class="ruler-line"></div>
-        </div>
-        <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
-          <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
-          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>
+          <slot :scale="scale"/>
         </div>
       </div>
     </div>

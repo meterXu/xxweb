@@ -15,11 +15,8 @@
   "license": "MIT",
   "dependencies": {
     "@scena/guides": "^0.20.4",
-    "@tweenjs/tween.js": "^17.4.0",
     "axios": "^0.18.0",
     "darkreader": "^4.9.58",
-    "echarts": "^4.5.0",
-    "echarts-liquidfill": "^2.0.4",
     "element-ui": "^2.15.8",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
@@ -27,7 +24,6 @@
     "resize-detector": "^0.1.9",
     "screenfull": "^4.2.0",
     "vue": "^2.6.11",
-    "vue-echarts": "^4.0.1",
     "vue-router": "^3.0.2"
   }
 }

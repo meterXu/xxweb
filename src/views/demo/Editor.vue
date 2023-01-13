@@ -2,19 +2,25 @@
   <div class="editor">
     <MtView>
       <template v-slot="{scale}">
-        <Xsc :options="options" :charts="charts" :scale="scale" :view="false"></Xsc>
+        <XscStaticLayout :options="options" :charts="charts" :scale="scale" :view="false">
+          <template v-slot="{view,item}">
+            <VueDrawXs :view="view" :item="item"></VueDrawXs>
+          </template>
+        </XscStaticLayout>
       </template>
     </MtView>
   </div>
 </template>
 
 <script>
-import {MtView,Xsc} from "../../packages/xxWeb-box";
+import {MtView,XscStaticLayout} from "../../packages/xxWeb-box";
+import VueDrawXs from "../../packages/vue-draw-xs/Index";
 export default {
   name: "Editor",
   components:{
     MtView,
-    Xsc
+    XscStaticLayout,
+    VueDrawXs
   },
   data(){
     return {

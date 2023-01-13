@@ -1,8 +1,8 @@
 import MtView from './view/MtView'
-import Xsc from "./render/Xsc";
+import XscStaticLayout from "./layout/XscStaticLayout";
 
 
-let editor = [MtView,Xsc]
+let editor = [MtView,XscStaticLayout]
 
 editor.forEach(c=>{
     c.install = function (Vue){
@@ -13,5 +13,5 @@ editor.forEach(c=>{
 
 export {
     MtView,
-    Xsc
+    XscStaticLayout
 }
