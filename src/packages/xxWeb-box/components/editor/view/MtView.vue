@@ -173,7 +173,7 @@ export default {
     fullCanvas(){
       this.scale = 1
       this.zoomLevel = 5
-      this.resetLocation()
+      this.resetLocation(this.scale)
     },
     canvasMousedown(event){
       event.preventDefault()
@@ -262,31 +262,47 @@ export default {
         this.zoomLevel = this.zoomLevel>=11?11:this.zoomLevel
       }
     },
-    resetLocation(){
+    resetLocation(scale){
+      const padding = 30
       const mtScaleContainer = this.$refs['mtScale-container']
       const mtCanvas = this.$refs['mtScale-view'].children[0]
-      const mtScaleWidth = mtScaleContainer.clientWidth
-      const mtScaleHeight = mtScaleContainer.clientHeight
-      const viewWidth = mtScaleWidth-30*2
-      const viewHeight = mtScaleHeight-30*2
-      const mtCanvasWidth = mtCanvas.clientWidth
-      const mtCanvasHeight = mtCanvas.clientHeight
+      const viewWidth = mtScaleContainer.clientWidth-padding*2
+      const viewHeight = mtScaleContainer.clientHeight-padding*2
+      let mtCanvasWidth = mtCanvas.clientWidth
+      let mtCanvasHeight = mtCanvas.clientHeight
       let withScale,heightScale = 1;
       if(mtCanvas){
-        if(viewWidth<=mtCanvasWidth){
-          withScale = parseFloat((viewWidth/mtCanvasWidth).toFixed(2))
-        }
-        if(viewHeight<=mtCanvasHeight){
-          heightScale = parseFloat((viewHeight/mtCanvasHeight).toFixed(2))
-        }
-        if(withScale<=heightScale){
-          this.scale =withScale
-          this.location.x=(mtScaleWidth-mtCanvasWidth*withScale)/2
-          this.location.y = (mtScaleHeight-mtCanvasHeight*withScale)/2
+        if(scale){
+          mtCanvasWidth = mtCanvasWidth*this.scale
+          mtCanvasHeight = mtCanvasHeight*this.scale
+          if(viewWidth>mtCanvasWidth){
+            this.location.x=(viewWidth-mtCanvasWidth)/2
+          }else {
+            this.location.x=0
+          }
+          if(viewHeight>mtCanvasHeight){
+            this.location.y=(viewHeight-mtCanvasHeight)/2
+          }else{
+            this.location.y=0
+          }
         }else{
-          this.scale =heightScale
-          this.location.x=(mtScaleWidth-mtCanvasWidth*heightScale)/2
-          this.location.y = (mtScaleHeight-mtCanvasHeight*heightScale)/2
+          if(viewWidth<=mtCanvasWidth){
+            withScale = parseFloat((viewWidth/mtCanvasWidth).toFixed(2))
+          }
+          if(viewHeight<=mtCanvasHeight){
+            heightScale = parseFloat((viewHeight/mtCanvasHeight).toFixed(2))
+          }
+          if(withScale<=heightScale){
+            this.scale =withScale
+            this.location.x=(viewWidth-mtCanvasWidth*withScale)/2
+            this.location.y = (viewHeight-mtCanvasHeight*withScale)/2
+          }else{
+            this.scale =heightScale
+            this.location.x=(viewWidth-mtCanvasWidth*heightScale)/2
+            this.location.y = (viewHeight-mtCanvasHeight*heightScale)/2
+          }
+          this.location.x = this.location.x<0?padding:(padding+this.location.x)
+          this.location.y = this.location.y<0?padding:(padding+this.location.y)
         }
       }
     }
