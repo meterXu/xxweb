@@ -29,6 +29,7 @@ export default {
         "name": "新的画布",
         "width": 1920,
         "height": 1080,
+        "changeSize":false,
         "backgroundColor": null,
         "backgroundImage": "https://ts1.cn.mm.bing.net/th/id/R-C.413a7faf761101bdb1f267de68e8ff25?rik=v4iL9jBH%2f4zWXw&riu=http%3a%2f%2fimg.cgmodel.com%2fimage%2f2017%2f0520%2fbig%2f660125-1945092628.jpg&ehk=VYoWzhMNcmdlgpIvXbc6DzPNautyUCieMDNryF4yg5E%3d&risl=&pid=ImgRaw&r=0",
         "backgroundSize": "cover",

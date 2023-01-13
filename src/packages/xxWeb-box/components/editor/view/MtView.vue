@@ -265,9 +265,29 @@ export default {
     resetLocation(){
       const mtScaleContainer = this.$refs['mtScale-container']
       const mtCanvas = this.$refs['mtScale-view'].children[0]
+      const mtScaleWidth = mtScaleContainer.clientWidth
+      const mtScaleHeight = mtScaleContainer.clientHeight
+      const viewWidth = mtScaleWidth-30*2
+      const viewHeight = mtScaleHeight-30*2
+      const mtCanvasWidth = mtCanvas.clientWidth
+      const mtCanvasHeight = mtCanvas.clientHeight
+      let withScale,heightScale = 1;
       if(mtCanvas){
-        this.location.x=(mtScaleContainer.clientWidth-mtCanvas.clientWidth*this.scale)/2
-        this.location.y=this.location.x>30?30:this.location.x
+        if(viewWidth<=mtCanvasWidth){
+          withScale = parseFloat((viewWidth/mtCanvasWidth).toFixed(2))
+        }
+        if(viewHeight<=mtCanvasHeight){
+          heightScale = parseFloat((viewHeight/mtCanvasHeight).toFixed(2))
+        }
+        if(withScale<=heightScale){
+          this.scale =withScale
+          this.location.x=(mtScaleWidth-mtCanvasWidth*withScale)/2
+          this.location.y = (mtScaleHeight-mtCanvasHeight*withScale)/2
+        }else{
+          this.scale =heightScale
+          this.location.x=(mtScaleWidth-mtCanvasWidth*heightScale)/2
+          this.location.y = (mtScaleHeight-mtCanvasHeight*heightScale)/2
+        }
       }
     }
   },

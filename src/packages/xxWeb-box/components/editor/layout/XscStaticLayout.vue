@@ -18,7 +18,7 @@
             <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>
     </div>
-    <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options)">
+    <span v-if="options.changeSize" @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options)">
         <div ref="resize" v-if="!view&&activeItem&&activeItem.chart==='canvas'" class="item_resize"></div>
       </span>
   </div>
