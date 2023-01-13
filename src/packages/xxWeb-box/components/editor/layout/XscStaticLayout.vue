@@ -7,21 +7,19 @@
        :class="['mt_canvas', {mt_canvas_position:view}]">
     <div v-for="item in charts" :ref="item.id"
          :key="item.id"
-         :class="[view?['mt_node','mt_node_view']:(item===activeNode ? ['mt_node','mt_node_active']: ['mt_node','mt_node_base']),'dragging']"
+         :class="[view?['mt_item','mt_item_view']:(item===activeItem ? ['mt_item','mt_item_active']: ['mt_item','mt_item_base']),'dragging']"
          tabindex="-1"
-         :style="nodeStyle(item)"
+         :style="itemStyle(item)"
          @click="itemClick(item)"
          @mousedown="itemMousedown(item)"
          @dragstart="()=>{return false}">
       <slot :view="view" :item="item"></slot>
       <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item)">
-            <div ref="resize" v-if="!view&&item===activeNode" class="node_resize" shape="circle"
-                 icon="ios-resize"></div>
+            <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>
     </div>
     <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options)">
-        <div ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle"
-             icon="ios-resize"></div>
+        <div ref="resize" v-if="!view&&activeItem&&activeItem.chart==='canvas'" class="item_resize"></div>
       </span>
   </div>
 </template>
@@ -45,9 +43,9 @@ export default {
   },
   data() {
     return {
-      activeNode: null, // 活动的节点
+      activeItem: null, // 活动的节点
       startDrag: false,
-      dragNode: null,
+      dragItem: null,
       shift: {
         x: 0,
         y: 0
@@ -88,28 +86,28 @@ export default {
   },
   methods: {
     removeMouseMove() {
-      document.removeEventListener('mousemove', this.nodeMousemove)
+      document.removeEventListener('mousemove', this.itemMousemove)
       document.removeEventListener('mousemove', this.changeSizeMousemove)
     },
     keydown() {
       event.preventDefault()
       event.stopPropagation()
-      if (this.activeNode.chart !== 'canvas') {
+      if (this.activeItem.chart !== 'canvas') {
         switch (event.keyCode) {
           case 38: { // 上
-            this.activeNode.config.box.y--
+            this.activeItem.config.box.y--
             break
           }
           case 40: { // 下
-            this.activeNode.config.box.y++
+            this.activeItem.config.box.y++
             break
           }
           case 37: { // 左
-            this.activeNode.config.box.x--
+            this.activeItem.config.box.x--
             break
           }
           case 39: { // 右
-            this.activeNode.config.box.x++
+            this.activeItem.config.box.x++
             break
           }
         }
@@ -125,13 +123,13 @@ export default {
           event.preventDefault()
           event.stopPropagation()
           if (!this.view) {
-            this.activeNode = item
+            this.activeItem = item
             let clickBox = event.currentTarget.getBoundingClientRect()
-            this.dragNode = this.charts.find(c => c.id === item.id)
+            this.dragItem = this.charts.find(c => c.id === item.id)
             this.shift.x = event.clientX - clickBox.left
             this.shift.y = event.clientY - clickBox.top
-            document.removeEventListener('mousemove', this.nodeMousemove)
-            document.addEventListener('mousemove', this.nodeMousemove)
+            document.removeEventListener('mousemove', this.itemMousemove)
+            document.addEventListener('mousemove', this.itemMousemove)
             document.removeEventListener('mouseup', this.removeMouseMove)
             document.addEventListener('mouseup', this.removeMouseMove)
           }
@@ -142,18 +140,18 @@ export default {
       }
       mouseEvent[event.button]();
     },
-    nodeMousemove(event) {
+    itemMousemove(event) {
       event.stopPropagation()
       if (!this.view) {
         const ownerRect = this.$refs.mt_canvas.getBoundingClientRect()
-        this.dragNode.config.box.x = parseInt((event.pageX - ownerRect.left - this.shift.x) / this.scale)
-        this.dragNode.config.box.y = parseInt((event.pageY - ownerRect.top - this.shift.y) / this.scale)
+        this.dragItem.config.box.x = parseInt((event.pageX - ownerRect.left - this.shift.x) / this.scale)
+        this.dragItem.config.box.y = parseInt((event.pageY - ownerRect.top - this.shift.y) / this.scale)
       }
     },
     changeSizeSizeMousedown(item) {
       event.stopPropagation()
       if (!this.view) {
-        this.dragNode = item
+        this.dragItem = item
         let clickBoxWeight = event.currentTarget.parentElement.offsetWidth;
         let clickBoxHeight = event.currentTarget.parentElement.offsetHeight;
         this.shift.x = parseInt(clickBoxWeight * this.scale) - event.clientX
@@ -165,12 +163,13 @@ export default {
       }
     },
     changeSizeMousemove(event) {
-      if (this.dragNode.hasOwnProperty('config')) {
-        this.dragNode.config.box.width = parseInt((event.pageX + this.shift.x) / this.scale)
-        this.dragNode.config.box.height = parseInt((event.pageY + this.shift.y) / this.scale)
+      event.stopPropagation()
+      if (this.dragItem.hasOwnProperty('config')) {
+        this.dragItem.config.box.width = parseInt((event.pageX + this.shift.x) / this.scale)
+        this.dragItem.config.box.height = parseInt((event.pageY + this.shift.y) / this.scale)
       }else {
-        this.dragNode.width = parseInt((event.pageX + this.shift.x) / this.scale)
-        this.dragNode.height = parseInt((event.pageY + this.shift.y) / this.scale)
+        this.dragItem.width = parseInt((event.pageX + this.shift.x) / this.scale)
+        this.dragItem.height = parseInt((event.pageY + this.shift.y) / this.scale)
       }
     },
     drop() {
@@ -178,8 +177,8 @@ export default {
         event.preventDefault()
         event.stopPropagation()
         this.$emit('drop')
-        this.activeNode = this.charts[this.charts.length - 1]
-        this.$emit('nodeActive')
+        this.activeItem = this.charts[this.charts.length - 1]
+        this.$emit('itemActive')
       }
     },
     dragover() {
@@ -190,22 +189,14 @@ export default {
     },
     canvasClick() {
       if (!this.view) {
-        this.activeNode = {
+        this.activeItem = {
           type: 'dom',
           chart: 'canvas',
           config: {
             options: this.options
           }
         }
-        this.$emit('nodeActive')
-      }
-    },
-    nodeClick(item) {
-      event.preventDefault()
-      event.stopPropagation()
-      this.activeNode = item
-      if (!this.view) {
-        this.$emit('nodeActive')
+        this.$emit('itemActive')
       }
     },
     contextmenu(item) {
@@ -219,103 +210,7 @@ export default {
         })
       }
     },
-    getDataConf(id) {
-      if (id) {
-        let xscNode = this.charts.find(c => c.id === id)
-        if (xscNode) {
-          return xscNode.config.data
-        } else {
-          return null
-        }
-      } else {
-        return null
-      }
-    },
-    update(id) {
-      let that = this
-      let warnMsgs = null
-      let errors = null
-      return new Promise((resolve, reject) => {
-        if (id) {
-          that.$refs[id][0].update().then(warnData => {
-            if (resolve) {
-              warnMsgs = {id: id, warns: warnData}
-              resolve(warnMsgs)
-            }
-          }).catch(c => {
-            if (reject) {
-              errors = {id: id, error: c}
-              reject(errors)
-            }
-          })
-        } else {
-          let keys = Object.keys(that.$refs)
-          let resIndex = 0
-          keys.map(key => {
-            that.$refs[key][0].update().then(warnData => {
-              resIndex = resIndex + 1
-              warnMsgs = {id: key, warns: warnData}
-              if (resIndex === keys.length) {
-                if (resolve) {
-                  resolve(warnMsgs)
-                }
-              }
-            }).catch(c => {
-              resIndex = resIndex + 1
-              errors = {id: key, error: c}
-              if (resIndex === keys.length) {
-                if (reject) {
-                  reject(errors)
-                }
-              }
-            })
-          })
-        }
-      })
-    },
-    getData(id) {
-      let that = this
-      let datas = null
-      let errors = null
-      return new Promise((resolve, reject) => {
-        if (id) {
-          that.$refs[id][0].getNodeData().then(data => {
-            datas = {id: id, data: data}
-            if (resolve) {
-              resolve(datas)
-            }
-          }).catch(c => {
-            errors = {id: id, error: c}
-            if (reject) {
-              reject(errors)
-            }
-          })
-        } else {
-          let keys = Object.keys(that.$refs)
-          let resIndex = 0
-          keys.map(key => {
-            that.$refs[key][0].getNodeData().then(data => {
-              resIndex = resIndex + 1
-              datas = {id: key, data: data}
-              if (resIndex === keys.length) {
-                if (resolve) {
-                  resolve(datas)
-                }
-              }
-            }).catch(c => {
-              resIndex = resIndex + 1
-              errors = {id: key, error: c}
-              if (resIndex === keys.length) {
-                if (reject) {
-                  reject(errors)
-                }
-              }
-            })
-          })
-        }
-      })
-    },
-    nodeStyle (item) {
+    itemStyle (item) {
       if (item && item.config) {
         return {
           width: (item.config.box.width || 400) + 'px',
@@ -328,9 +223,6 @@ export default {
         return {}
       }
     }
-  },
-  updated() {
-    this.$emit('updated', this.$el)
   },
   mounted() {
     document.removeEventListener('keydown', this.keydown)
@@ -348,7 +240,7 @@ export default {
   background-size: auto;
   background-repeat: repeat;
 }
-.mt_node{
+.mt_item{
   display: inline-block;
   cursor: move;
   position: absolute;
@@ -358,23 +250,23 @@ export default {
   margin: 0 auto;
 }
 
-.mt_node_base {
+.mt_item_base {
   box-sizing: content-box;
   border: 1px dashed #000;
 }
 
-.mt_node_view {
+.mt_item_view {
   box-sizing: content-box;
   border: 0px solid rgba(0, 0, 0, 0);
 }
 
-.mt_node_active {
+.mt_item_active {
   box-sizing: content-box;
   border: 1px dashed #2d8cf0;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
-.node_resize {
+.item_resize {
   position: absolute;
   z-index: 3;
   width: 7px;
