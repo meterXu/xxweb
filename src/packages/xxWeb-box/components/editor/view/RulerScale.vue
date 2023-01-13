@@ -1,25 +1,64 @@
 <template>
-  <canvas ref="widthways" :style="getRuleStyle" style="flex: none"></canvas>
+<!--  <canvas ref="widthways" :style="getRuleStyle" style="flex: none"></canvas>-->
+  <div>
+    <div class="ruler-container-top" v-on:changeGuides="onChangeTop">
+    </div>
+    <div class="ruler-container-right" v-on:changeGuides="onChangeRight">
+    </div>
+  </div>
 </template>
 
 <script>
 
+import Guides from "@scena/guides";
+
 export default {
   name: 'RulerScale',
   props: {
-    options: {
-      offsetX: Number,
-      offsetY: Number,
-      scale: Number,
-    },
+    scale: Number,
+    location: Object,
+    theme: String,
     mode: 'horizontal' | 'vertical'
   },
+  data() {
+    return {
+      linesTop:[{
+        x:24,
+        canvasX:0
+      }],
+      linesRight:[{
+        y:24,
+        canvasY:0
+      }]
+    }
+  },
   watch: {
-    options: {
+    location: {
       deep: true,
-      handler() {
-        this.renderWidthWays()
+      handler(nv,ov) {
+        this.guides1.scrollGuides(-nv.y/this.scale); // line
+        this.guides1.scroll(-nv.x/this.scale); // scale
+        this.guides2.scrollGuides(-nv.x/this.scale);
+        this.guides2.scroll(-nv.y/this.scale);
       }
+    },
+    scale(nv,ov){
+      // this.linesTop.forEach(l=>{
+      //   l.x = l.canvasX*nv+this.location.x
+      // })
+      // this.linesRight.forEach(l=>{
+      //   l.y = l.canvasY*nv+this.location.y
+      // })
+      this.guides1.zoom  = nv
+      this.guides1.resize()
+      this.guides2.zoom  = nv
+      this.guides2.resize()
+      // console.log(this.location.x)
+      // console.log(this.location.y)
+      // this.guides1.scrollGuides(-(this.location.y/this.scale));
+      this.guides1.scroll(-this.location.x/this.scale);
+      // this.guides2.scrollGuides(-this.location.x/this.scale);
+      this.guides2.scroll(-this.location.y/this.scale);
     }
   },
   computed: {
@@ -35,6 +74,16 @@ export default {
     }
   },
   methods: {
+    onChangeTop(guides) {
+      console.log('Top:')
+      console.log(guides)
+      this.lines = guides
+    },
+    onChangeRight(guides) {
+      console.log('Right:')
+      console.log(guides)
+      this.linesY = guides
+    },
     getFixed(sparsity) {
       const pointIdx = String(sparsity).indexOf('.')
       const len = String(sparsity).length
@@ -130,6 +179,38 @@ export default {
       ctx.stroke()
       ctx.restore()
     }
+  },
+  mounted() {
+    let optionsH = {
+      type: "horizontal",
+      displayDragPos: true,
+      zoom: this.scale,
+    }
+    let optionsV = {
+      type: "vertical",
+      displayDragPos: true,
+      zoom: this.scale,
+    }
+    if(this.theme==='light') {
+      optionsH.textColor= '#000'
+      optionsH.backgroundColor= '#fff'
+      optionsV.textColor= '#000'
+      optionsV.backgroundColor= '#fff'
+    }
+      this.guides1 =new Guides(document.querySelector(".ruler-container-top"), optionsH).on("changeGuides", ({ guides }) => {
+        this.onChangeTop(guides)
+      });
+      this.guides2 =new Guides(document.querySelector(".ruler-container-right"), optionsV).on("changeGuides", ({ guides }) => {
+        this.onChangeRight(guides)
+      });
   }
 }
 </script>
+<style>
+.rCS1g1q24i .scena-guides-guide {
+  background: #009DFF !important;
+}
+.rCS1g1q24i .scena-guides-display-drag {
+  color: #009DFF !important;
+}
+</style>

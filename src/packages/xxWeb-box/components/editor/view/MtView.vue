@@ -1,10 +1,7 @@
 <template>
   <div class="mtScale" ref="mtScale" :theme="config.theme">
     <template v-if="config.isRuler">
-      <div class="ruler-container-top">
-      </div>
-      <div class="ruler-container-right">
-      </div>
+      <RulerScale :scale="scale" :location="location" :theme="config.theme"></RulerScale>
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
@@ -16,11 +13,13 @@
       <div v-if="config.isRuler" class="ruler-content">
         <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
           <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
-          <div :style="mtScaleLineStyleX" class="ruler-line"></div>
+<!--          <div :style="mtScaleLineStyleX" class="ruler-line"></div>-->
+          <div class="ruler-line"></div>
         </div>
         <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
           <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
-          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>
+<!--          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>-->
+          <div class="ruler-line-y"></div>
         </div>
       </div>
     </div>
@@ -59,7 +58,7 @@ import '../assets/css/mtView.less'
 import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 import MtIcon from "./MtIcon";
 import Guides from "@scena/guides";
-// import RulerScale from "./RulerScale";
+import RulerScale from "./RulerScale";
 export default {
   name: 'MtView',
   props:{
@@ -82,7 +81,8 @@ export default {
     // RulerScale,
     Dropdown,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
+    RulerScale
   },
   data(){
     return {
@@ -150,10 +150,10 @@ export default {
         l.y = l.canvasY*nv+this.location.y
       })
 
-      this.guides1.zoom  = nv
-      this.guides1.resize()
-      this.guides2.zoom  = nv
-      this.guides2.resize()
+      // this.guides1.zoom  = nv
+      // this.guides1.resize()
+      // this.guides2.zoom  = nv
+      // this.guides2.resize()
     }
 
   },
@@ -285,17 +285,6 @@ export default {
     this.$nextTick(()=>{
       this.resetLocation()
     })
-    this.guides1 =new Guides(document.querySelector(".ruler-container-top"), {
-      type: "horizontal",
-      displayDragPos: true,
-      zoom: this.scale
-    });
-
-    this.guides2 =new Guides(document.querySelector(".ruler-container-right"), {
-      type: "vertical",
-      displayDragPos: true,
-      zoom: this.scale
-    });
   }
 }
 </script>
