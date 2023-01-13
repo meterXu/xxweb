@@ -1,34 +1,35 @@
 <template>
-    <div ref="mt_canvas"
-         @drop="drop"
-         @dragover="dragover"
-         @click="canvasClick"
-         :style="canvasStyle"
-         :class="['mt_canvas', {mt_canvas_position:view}]">
-      <div v-for="item in charts">
-        <div ref="item.id"
-             :key="item.id"
-             :node="item"
-             :class="[view?'mt_node_view':(item===activeNode ? 'mt_node_active': 'mt_node_base'),'dragging']"
-             @click="itemClick(item)"
-             @mousedown="itemMousedown(item)"
-             @dragstart="()=>{return false}">
-          <slot :view="view" :item="item"></slot>
-          <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item,'chart')">
-            <div ref="resize" v-if="!view&&item===activeNode" class="node_resize" shape="circle" icon="ios-resize"></div>
+  <div ref="mt_canvas"
+       @drop="drop"
+       @dragover="dragover"
+       @click="canvasClick"
+       :style="canvasStyle"
+       :class="['mt_canvas', {mt_canvas_position:view}]">
+    <div v-for="item in charts" :ref="item.id"
+         :key="item.id"
+         :class="[view?['mt_node','mt_node_view']:(item===activeNode ? ['mt_node','mt_node_active']: ['mt_node','mt_node_base']),'dragging']"
+         tabindex="-1"
+         :style="nodeStyle(item)"
+         @click="itemClick(item)"
+         @mousedown="itemMousedown(item)"
+         @dragstart="()=>{return false}">
+      <slot :view="view" :item="item"></slot>
+      <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item)">
+            <div ref="resize" v-if="!view&&item===activeNode" class="node_resize" shape="circle"
+                 icon="ios-resize"></div>
           </span>
-        </div>
-      </div>
-      <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options,'canvas')">
-        <div ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle" icon="ios-resize"></div>
-      </span>
     </div>
+    <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options)">
+        <div ref="resize" v-if="!view&&activeNode&&activeNode.chart==='canvas'" class="node_resize" shape="circle"
+             icon="ios-resize"></div>
+      </span>
+  </div>
 </template>
 <script>
 export default {
   name: 'XscStaticLayout',
   props: {
-    scale:Number,
+    scale: Number,
     charts: {
       type: Array,
       default: null
@@ -42,30 +43,29 @@ export default {
       default: true
     }
   },
-  data () {
+  data() {
     return {
       activeNode: null, // 活动的节点
       startDrag: false,
-      dragNode:null,
-      shift:{
-        x:0,
-        y:0,
-        type:null
+      dragNode: null,
+      shift: {
+        x: 0,
+        y: 0
       }
     }
   },
-  watch:{
-    charts:{
-      immediate:true,
-      handler(){
-        this.$nextTick(()=>{
+  watch: {
+    charts: {
+      immediate: true,
+      handler() {
+        this.$nextTick(() => {
           this.$emit('loaded')
         })
       }
     }
   },
   computed: {
-    canvasStyle () { // 画布样式
+    canvasStyle() { // 画布样式
       if (this.options) {
         return {
           width: this.options.width + 'px',
@@ -74,27 +74,27 @@ export default {
           'background-image': 'url(\'' + this.options.backgroundImage + '\')',
           'background-size': this.options.backgroundSize,
           'background-repeat': this.options.backgroundRepeat,
-          display:this.view?'block':'inline-block'
+          display: this.view ? 'block' : 'inline-block'
         }
       } else {
         return {
           width: '1000px',
           height: '500px',
           'background-color': null,
-          display:this.view?'block':'inline-block'
+          display: this.view ? 'block' : 'inline-block'
         }
       }
     }
   },
   methods: {
-    removeMouseMove(){
-      document.removeEventListener('mousemove',this.nodeMousemove)
-      document.removeEventListener('mousemove',this.changeSizeMousemove)
+    removeMouseMove() {
+      document.removeEventListener('mousemove', this.nodeMousemove)
+      document.removeEventListener('mousemove', this.changeSizeMousemove)
     },
-    keydown(){
+    keydown() {
       event.preventDefault()
       event.stopPropagation()
-      if(this.activeNode.chart!=='canvas'){
+      if (this.activeNode.chart !== 'canvas') {
         switch (event.keyCode) {
           case 38: { // 上
             this.activeNode.config.box.y--
@@ -115,83 +115,65 @@ export default {
         }
       }
     },
-    itemClick(node){
+    itemClick() {
       event.preventDefault()
       event.stopPropagation()
     },
-    itemMousedown(node){
+    itemMousedown(item) {
       const mouseEvent = {
         0: () => {
           event.preventDefault()
           event.stopPropagation()
-          if(!this.view){
-            this.activeNode = node
+          if (!this.view) {
+            this.activeNode = item
             let clickBox = event.currentTarget.getBoundingClientRect()
-            this.dragNode = this.charts.find(c => c.id === node.id)
-            this.shift.x = event.clientX-clickBox.left
-            this.shift.y = event.clientY-clickBox.top
-            document.removeEventListener('mousemove',this.nodeMousemove)
-            document.addEventListener('mousemove',this.nodeMousemove)
-            document.removeEventListener('mouseup',this.removeMouseMove)
-            document.addEventListener('mouseup',this.removeMouseMove)
+            this.dragNode = this.charts.find(c => c.id === item.id)
+            this.shift.x = event.clientX - clickBox.left
+            this.shift.y = event.clientY - clickBox.top
+            document.removeEventListener('mousemove', this.nodeMousemove)
+            document.addEventListener('mousemove', this.nodeMousemove)
+            document.removeEventListener('mouseup', this.removeMouseMove)
+            document.addEventListener('mouseup', this.removeMouseMove)
           }
         },
         2: () => {
-          this.contextmenu(node)
+          this.contextmenu(item)
         }
       }
-      mouseEvent[ event.button ]();
+      mouseEvent[event.button]();
     },
-    nodeMousemove(event){
+    nodeMousemove(event) {
       event.stopPropagation()
-      if(!this.view){
+      if (!this.view) {
         const ownerRect = this.$refs.mt_canvas.getBoundingClientRect()
-        this.dragNode.config.box.x = parseInt((event.pageX-ownerRect.left-this.shift.x)/this.scale)
-        this.dragNode.config.box.y = parseInt((event.pageY-ownerRect.top-this.shift.y)/this.scale)
+        this.dragNode.config.box.x = parseInt((event.pageX - ownerRect.left - this.shift.x) / this.scale)
+        this.dragNode.config.box.y = parseInt((event.pageY - ownerRect.top - this.shift.y) / this.scale)
       }
     },
-    changeSizeSizeMousedown(node,type){
+    changeSizeSizeMousedown(item) {
       event.stopPropagation()
-      if(!this.view){
-        this.dragNode = node
-        this.shift.type=type
-        switch (type){
-          case 'chart':{
-            let clickBoxWeight = event.currentTarget.parentElement.offsetWidth;
-            let clickBoxHeight = event.currentTarget.parentElement.offsetHeight;
-            this.shift.x = parseInt(clickBoxWeight*this.scale)-event.clientX
-            this.shift.y = parseInt(clickBoxHeight*this.scale)-event.clientY
-            document.removeEventListener('mousemove',this.changeSizeMousemove)
-            document.addEventListener('mousemove',this.changeSizeMousemove)
-            document.removeEventListener('mouseup',this.removeMouseMove)
-            document.addEventListener('mouseup',this.removeMouseMove)
-          }break
-          case 'canvas':{
-            let clickBoxWeight = event.currentTarget.previousSibling.offsetWidth;
-            let clickBoxHeight = event.currentTarget.previousSibling.offsetHeight;
-            this.shift.x = parseInt(clickBoxWeight*this.scale)-event.clientX
-            this.shift.y = parseInt(clickBoxHeight*this.scale)-event.clientY
-            document.removeEventListener('mousemove',this.changeSizeMousemove)
-            document.addEventListener('mousemove',this.changeSizeMousemove)
-            document.removeEventListener('mouseup',this.removeMouseMove)
-            document.addEventListener('mouseup',this.removeMouseMove)
-          }break
-        }
+      if (!this.view) {
+        this.dragNode = item
+        let clickBoxWeight = event.currentTarget.parentElement.offsetWidth;
+        let clickBoxHeight = event.currentTarget.parentElement.offsetHeight;
+        this.shift.x = parseInt(clickBoxWeight * this.scale) - event.clientX
+        this.shift.y = parseInt(clickBoxHeight * this.scale) - event.clientY
+        document.removeEventListener('mousemove', this.changeSizeMousemove)
+        document.addEventListener('mousemove', this.changeSizeMousemove)
+        document.removeEventListener('mouseup', this.removeMouseMove)
+        document.addEventListener('mouseup', this.removeMouseMove)
       }
     },
-    changeSizeMousemove(event){
-      switch (this.shift.type){
-        case 'chart':{
-          this.dragNode.config.box.width = parseInt((event.pageX+this.shift.x)/this.scale)
-          this.dragNode.config.box.height = parseInt((event.pageY+this.shift.y)/this.scale)
-        }break
-        case 'canvas':{
-          this.dragNode.width = parseInt((event.pageX+this.shift.x)/this.scale)
-          this.dragNode.height = parseInt((event.pageY+this.shift.y)/this.scale)
-        }break
+    changeSizeMousemove(event) {
+      if (this.dragNode.hasOwnProperty('config')) {
+        this.dragNode.config.box.width = parseInt((event.pageX + this.shift.x) / this.scale)
+        this.dragNode.config.box.height = parseInt((event.pageY + this.shift.y) / this.scale)
+      }else {
+        this.dragNode.width = parseInt((event.pageX + this.shift.x) / this.scale)
+        this.dragNode.height = parseInt((event.pageY + this.shift.y) / this.scale)
       }
     },
-    drop () {
+    drop() {
       if (!this.view) {
         event.preventDefault()
         event.stopPropagation()
@@ -200,14 +182,14 @@ export default {
         this.$emit('nodeActive')
       }
     },
-    dragover () {
+    dragover() {
       if (!this.view) {
         event.preventDefault()
         event.stopPropagation()
       }
     },
-    canvasClick () {
-      if(!this.view){
+    canvasClick() {
+      if (!this.view) {
         this.activeNode = {
           type: 'dom',
           chart: 'canvas',
@@ -218,26 +200,26 @@ export default {
         this.$emit('nodeActive')
       }
     },
-    nodeClick (node) {
+    nodeClick(item) {
       event.preventDefault()
       event.stopPropagation()
-      this.activeNode = node
-      if(!this.view){
+      this.activeNode = item
+      if (!this.view) {
         this.$emit('nodeActive')
       }
     },
-    contextmenu (node) {
+    contextmenu(item) {
       event.preventDefault()
       event.stopPropagation()
       if (!this.view) {
         this.$emit('contextmenu', {
-          x: node.config.box.x + event.offsetX,
-          y: node.config.box.y + event.offsetY,
-          id: node.id
+          x: item.config.box.x + event.offsetX,
+          y: item.config.box.y + event.offsetY,
+          id: item.id
         })
       }
     },
-    getDataConf (id) {
+    getDataConf(id) {
       if (id) {
         let xscNode = this.charts.find(c => c.id === id)
         if (xscNode) {
@@ -249,7 +231,7 @@ export default {
         return null
       }
     },
-    update (id) {
+    update(id) {
       let that = this
       let warnMsgs = null
       let errors = null
@@ -291,7 +273,7 @@ export default {
         }
       })
     },
-    getData (id) {
+    getData(id) {
       let that = this
       let datas = null
       let errors = null
@@ -332,20 +314,33 @@ export default {
           })
         }
       })
+    },
+    nodeStyle (item) {
+      if (item && item.config) {
+        return {
+          width: (item.config.box.width || 400) + 'px',
+          height: (item.config.box.height || 300) + 'px',
+          left: (item.config.box.x || 0) + 'px',
+          top: (item.config.box.y || 0) + 'px',
+          zIndex: (item.config.box.zIndex || 100)
+        }
+      } else {
+        return {}
+      }
     }
   },
-  updated () {
+  updated() {
     this.$emit('updated', this.$el)
   },
   mounted() {
-    document.removeEventListener('keydown',this.keydown)
-    document.addEventListener('keydown',this.keydown)
+    document.removeEventListener('keydown', this.keydown)
+    document.addEventListener('keydown', this.keydown)
   }
 }
 </script>
 
 <style scoped>
-.mt_canvas{
+.mt_canvas {
   position: relative;
   width: 500px;
   height: 500px;
@@ -353,23 +348,33 @@ export default {
   background-size: auto;
   background-repeat: repeat;
 }
+.mt_node{
+  display: inline-block;
+  cursor: move;
+  position: absolute;
+  outline: none;
+}
 .mt_canvas_position {
   margin: 0 auto;
 }
-.mt_node_base{
+
+.mt_node_base {
   box-sizing: content-box;
   border: 1px dashed #000;
 }
-.mt_node_view{
+
+.mt_node_view {
   box-sizing: content-box;
-  border: 0px solid rgba(0,0,0,0);
+  border: 0px solid rgba(0, 0, 0, 0);
 }
-.mt_node_active{
+
+.mt_node_active {
   box-sizing: content-box;
   border: 1px dashed #2d8cf0;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.node_resize{
+
+.node_resize {
   position: absolute;
   z-index: 3;
   width: 7px;
@@ -381,7 +386,8 @@ export default {
   right: -4.5px;
   cursor: se-resize;
 }
-.dragging{
+
+.dragging {
   cursor: move;
 }
 </style>

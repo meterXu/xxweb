@@ -1,32 +1,29 @@
 <template>
-  <div tabindex="-1" :id="item.id" class="mt_node"
-       :style="nodeStyle">
-    <template>
-      <eCharts ref='echarts'
-               :id="item.id"
-               :theme="item.config.theme"
-               :autoresize="autoresize"
-               :options="temOptions"
-               v-if="item.type==='eCharts'">
-               </eCharts>
-      <XscDom
-          :id="item.id"
-          :options="item.config.options"
-          :theme="item.config.theme"
-          :type="item.config.type"
-          :themeData="themeData"
-          v-else-if="item.type==='dom'||item.type==='bigScreen'"
-          :view="this.view"></XscDom>
-      <XscDev :id="item.id" :options="item.config.options"
-              :type="item.config.type"
-              :view="this.view"
-              v-else-if="item.type==='dev'">
-       <template v-slot:[item.config.options.key]>
-         <slot :name="item.config.options.key"></slot>
-       </template>
-       </XscDev>
-      <div v-else>不支持的图表</div>
-    </template>
+  <div class="draw-item">
+    <eCharts ref='echarts'
+             :id="item.id"
+             :theme="item.config.theme"
+             :autoresize="autoresize"
+             :options="temOptions"
+             v-if="item.type==='eCharts'">
+    </eCharts>
+    <XscDom
+        :id="item.id"
+        :options="item.config.options"
+        :theme="item.config.theme"
+        :type="item.config.type"
+        :themeData="themeData"
+        v-else-if="item.type==='dom'||item.type==='bigScreen'"
+        :view="this.view"></XscDom>
+    <XscDev :id="item.id" :options="item.config.options"
+            :type="item.config.type"
+            :view="this.view"
+            v-else-if="item.type==='dev'">
+      <template v-slot:[item.config.options.key]>
+        <slot :name="item.config.options.key"></slot>
+      </template>
+    </XscDev>
+    <div v-else>不支持的图表</div>
   </div>
 </template>
 
@@ -135,21 +132,6 @@ export default {
       timeout: null,
       temOptions: null,
       themeData
-    }
-  },
-  computed: {
-    nodeStyle () {
-      if (this.item && this.item.config) {
-        return {
-          width: (this.item.config.box.width || 400) + 'px',
-          height: (this.item.config.box.height || 300) + 'px',
-          left: (this.item.config.box.x || 0) + 'px',
-          top: (this.item.config.box.y || 0) + 'px',
-          zIndex: (this.item.config.box.zIndex || 100)
-        }
-      } else {
-        return {}
-      }
     }
   },
   watch: {
@@ -492,11 +474,9 @@ export default {
     width: 100%;
     height: 100%;
   }
-  .mt_node{
-    display: inline-block;
-    cursor: move;
-    position: absolute;
-    outline: none;
+  .draw-item{
+    width: 100%;
+    height: 100%;
   }
 </style>
 <style>
