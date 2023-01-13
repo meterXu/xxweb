@@ -1,8 +1,8 @@
 <template>
   <div class="editor">
     <MtView>
-      <template v-slot="{scale}">
-        <XscStaticLayout :options="options" :charts="charts" :scale="scale" :view="false">
+      <template v-slot="{scale,view}">
+        <XscStaticLayout :options="options" :charts="charts" :scale="scale" :view="view">
           <template v-slot="{view,item}">
             <VueDrawXs :view="view" :item="item"></VueDrawXs>
           </template>

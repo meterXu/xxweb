@@ -10,7 +10,7 @@
          @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" @mouseup="mouseup" class="mtScale-view" :style="mtScaleViewStyle">
-          <slot :scale="scale"/>
+          <slot :scale="scale" :view="false"/>
         </div>
       </div>
     </div>
@@ -38,7 +38,7 @@
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
         <Navigate :config="navigateConf">
-          <slot/>
+          <slot :view="true"/>
         </Navigate>
         <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
       </div>
