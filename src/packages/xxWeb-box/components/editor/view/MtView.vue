@@ -1,14 +1,25 @@
 <template>
   <div class="mtScale" ref="mtScale" :theme="config.theme">
     <template v-if="config.isRuler">
-      <div class="ruler-container-top">
-      </div>
-      <div class="ruler-container-right">
-      </div>
+      <RulerScale :scale="scale" :location="location" :theme="config.theme"></RulerScale>
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
+        <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" @mouseup="mouseup" class="mtScale-view" :style="mtScaleViewStyle">
+          <slot v-bind:scale="scale"/>
+        </div>
+      </div>
+      <div v-if="config.isRuler" class="ruler-content">
+        <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
+          <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
+<!--          <div :style="mtScaleLineStyleX" class="ruler-line"></div>-->
+          <div class="ruler-line"></div>
+        </div>
+        <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
+          <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
+<!--          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>-->
+          <div class="ruler-line-y"></div>
         <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" class="mtScale-view" :style="mtScaleViewStyle">
           <slot :scale="scale" :view="false"/>
         </div>
@@ -54,6 +65,7 @@ import MtIcon from "./MtIcon";
 import Guides from "@scena/guides";
 // import RulerScale from "./RulerScale";
 import Navigate from "./Navigate";
+import RulerScale from "./RulerScale";
 export default {
   name: 'MtView',
   props:{
@@ -81,7 +93,8 @@ export default {
     // RulerScale,
     Dropdown,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
+    RulerScale
   },
   data(){
     return {
@@ -163,6 +176,12 @@ export default {
       this.guides2.zoom  = nv
       this.guides2.resize()
     },
+      // this.guides1.zoom  = nv
+      // this.guides1.resize()
+      // this.guides2.zoom  = nv
+      // this.guides2.resize()
+    }
+
   },
   methods:{
     percentageChange(command){
@@ -362,17 +381,6 @@ export default {
       this.resetMtLocation()
       this.setNavigateConf()
     })
-    this.guides1 =new Guides(document.querySelector(".ruler-container-top"), {
-      type: "horizontal",
-      displayDragPos: true,
-      zoom: this.scale
-    });
-
-    this.guides2 =new Guides(document.querySelector(".ruler-container-right"), {
-      type: "vertical",
-      displayDragPos: true,
-      zoom: this.scale
-    });
   }
 }
 </script>
