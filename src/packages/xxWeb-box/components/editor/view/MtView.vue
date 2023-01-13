@@ -37,7 +37,10 @@
         </div>
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
-        <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航"></MtIcon>
+        <Navigate :config="navigateConf">
+          <slot/>
+        </Navigate>
+        <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
       </div>
     </div>
   </div>
@@ -50,6 +53,7 @@ import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 import MtIcon from "./MtIcon";
 import Guides from "@scena/guides";
 // import RulerScale from "./RulerScale";
+import Navigate from "./Navigate";
 export default {
   name: 'MtView',
   props:{
@@ -62,13 +66,18 @@ export default {
           isScale:true,
           isDrag:true,
           isNavigate:true,
-          backgroundClass:'dark-bg'
+          backgroundClass:'dark-bg',
+          navigateConf:{
+            width:224,
+            height:160
+          }
         }
       }
     }
   },
   components:{
     MtIcon,
+    Navigate,
     // RulerScale,
     Dropdown,
     DropdownMenu,
@@ -95,7 +104,16 @@ export default {
         y:24,
         canvasY:0
       }],
-      moveLine:null
+      moveLine:null,
+      navigateConf:{
+        width:this.config.navigateConf.width,
+        height:this.config.navigateConf.height,
+        scale:0.1,
+        location:{
+          x:0,
+          y:0
+        }
+      }
     }
   },
   computed:{
@@ -129,7 +147,7 @@ export default {
         transformOrigin: '0px 0px',
         transform: `scaleY(${this.scale})`
       }
-    },
+    }
   },
   watch:{
     scale(nv,ov){
@@ -144,8 +162,7 @@ export default {
       this.guides1.resize()
       this.guides2.zoom  = nv
       this.guides2.resize()
-    }
-
+    },
   },
   methods:{
     percentageChange(command){
@@ -156,7 +173,7 @@ export default {
         default:{
           this.scale = command
           this.zoomLevel = this.getZoomLevel()
-          this.resetLocation()
+          this.resetMtLocation()
         }break;
       }
     },
@@ -167,13 +184,16 @@ export default {
         this.scale = parseFloat((mtScaleContainer.clientWidth/(mtCanvas.clientWidth+60)).toFixed(2))
         this.scale =this.scale>1?1:this.scale
         this.zoomLevel = this.getZoomLevel()
-        this.resetLocation()
+        this.resetMtLocation()
       }
     },
     fullCanvas(){
       this.scale = 1
       this.zoomLevel = 5
-      this.resetLocation(this.scale)
+      this.resetMtLocation(this.scale)
+    },
+    showNavigate(){
+
     },
     canvasMousedown(event){
       event.preventDefault()
@@ -262,7 +282,7 @@ export default {
         this.zoomLevel = this.zoomLevel>=11?11:this.zoomLevel
       }
     },
-    resetLocation(scale){
+    resetMtLocation(scale){
       const padding = 30
       const mtScaleContainer = this.$refs['mtScale-container']
       const mtCanvas = this.$refs['mtScale-view'].children[0]
@@ -270,46 +290,75 @@ export default {
       const viewHeight = mtScaleContainer.clientHeight-padding*2
       let mtCanvasWidth = mtCanvas.clientWidth
       let mtCanvasHeight = mtCanvas.clientHeight
-      let withScale,heightScale = 1;
       if(mtCanvas){
-        if(scale){
-          mtCanvasWidth = mtCanvasWidth*this.scale
-          mtCanvasHeight = mtCanvasHeight*this.scale
-          if(viewWidth>mtCanvasWidth){
-            this.location.x=(viewWidth-mtCanvasWidth)/2
-          }else {
-            this.location.x=0
-          }
-          if(viewHeight>mtCanvasHeight){
-            this.location.y=(viewHeight-mtCanvasHeight)/2
-          }else{
-            this.location.y=0
-          }
-        }else{
-          if(viewWidth<=mtCanvasWidth){
-            withScale = parseFloat((viewWidth/mtCanvasWidth).toFixed(2))
-          }
-          if(viewHeight<=mtCanvasHeight){
-            heightScale = parseFloat((viewHeight/mtCanvasHeight).toFixed(2))
-          }
-          if(withScale<=heightScale){
-            this.scale =withScale
-            this.location.x=(viewWidth-mtCanvasWidth*withScale)/2
-            this.location.y = (viewHeight-mtCanvasHeight*withScale)/2
-          }else{
-            this.scale =heightScale
-            this.location.x=(viewWidth-mtCanvasWidth*heightScale)/2
-            this.location.y = (viewHeight-mtCanvasHeight*heightScale)/2
-          }
-          this.location.x = this.location.x<0?padding:(padding+this.location.x)
-          this.location.y = this.location.y<0?padding:(padding+this.location.y)
+        let res = this.resetCanvas(scale,{width:viewWidth,height:viewHeight},{width:mtCanvasWidth,height:mtCanvasHeight},padding)
+        this.scale = res.scale
+        this.location.x = res.location.x
+        this.location.y = res.location.y
+      }
+    },
+    resetCanvas(scale,viewSize,canvasSize,padding=30){
+      let withScale,heightScale=0
+      let res = {
+        scale:1,
+        location:{
+          x:0,
+          y:0
         }
+      }
+      if(scale){
+        canvasSize.width = canvasSize.width*this.scale
+        canvasSize.height = canvasSize.height*this.scale
+        if(viewSize.width>canvasSize.width){
+          this.location.x=(viewSize.width-canvasSize.width)/2
+        }else {
+          this.location.x=0
+        }
+        if(viewSize.height>canvasSize.height){
+          this.location.y=(viewSize.height-canvasSize.height)/2
+        }else{
+          this.location.y=0
+        }
+      }else{
+        if(viewSize.width<=canvasSize.width){
+          withScale = parseFloat((viewSize.width/canvasSize.width).toFixed(2))
+        }
+        if(viewSize.height<=canvasSize.height){
+          heightScale = parseFloat((viewSize.height/canvasSize.height).toFixed(2))
+        }
+        if(withScale<=heightScale){
+          res.scale =withScale
+          res.location.x=(viewSize.width-canvasSize.width*withScale)/2
+          res.location.y = (viewSize.height-canvasSize.height*withScale)/2
+        }else{
+          res.scale =heightScale
+          res.location.x=(viewSize.width-canvasSize.width*heightScale)/2
+          res.location.y = (viewSize.height-canvasSize.height*heightScale)/2
+        }
+        res.location.x = res.location.x<0?padding:(padding+res.location.x)
+        res.location.y = res.location.y<0?padding:(padding+res.location.y)
+        return res
+      }
+    },
+    setNavigateConf(){
+      const mtCanvas = this.$refs['mtScale-view'].children[0]
+      let mtCanvasWidth = mtCanvas.clientWidth
+      let mtCanvasHeight = mtCanvas.clientHeight
+      if(mtCanvas){
+        const res = this.resetCanvas(
+            null,
+            {width:this.config.navigateConf.width,height:this.config.navigateConf.height},
+            {width:mtCanvasWidth,height:mtCanvasHeight},
+            0)
+        this.navigateConf.scale = res.scale
+        this.navigateConf.location = res.location
       }
     }
   },
   mounted() {
     this.$nextTick(()=>{
-      this.resetLocation()
+      this.resetMtLocation()
+      this.setNavigateConf()
     })
     this.guides1 =new Guides(document.querySelector(".ruler-container-top"), {
       type: "horizontal",
