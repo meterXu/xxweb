@@ -9,7 +9,7 @@
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
-        <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" @mouseup="mouseup" class="mtScale-view" :style="mtScaleViewStyle">
+        <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" class="mtScale-view" :style="mtScaleViewStyle">
           <slot :scale="scale" :view="false"/>
         </div>
       </div>
@@ -207,6 +207,8 @@ export default {
             this.shift.y= event.clientY-ownerRect.top
             document.removeEventListener('mousemove',this.mousemove)
             document.addEventListener('mousemove',this.mousemove)
+            document.removeEventListener('mouseup', this.mouseup)
+            document.addEventListener('mouseup', this.mouseup)
           }
         }
       }

@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-container" :style="{width:`${config.width}px`,height:`${config.height}px`}">
+  <div class="navigation-container" @mousedown="navigatorDown" :style="{width:`${config.width}px`,height:`${config.height}px`}">
     <div :style="{position: 'relative',transform: `scale(${config.scale})`}">
       <slot></slot>
     </div>
@@ -10,8 +10,15 @@
 export default {
   name: "Navigate",
   props:['config'],
-  mounted() {
+  methods:{
+    navigatorDown(){
+      event.stopPropagation()
+      document.removeEventListener('mousemove',this.eyeMove)
+      document.addEventListener('mousemove',this.eyeMove)
+    },
+    eyeMove(){
 
+    }
   }
 }
 </script>
