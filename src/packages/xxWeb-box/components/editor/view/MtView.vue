@@ -6,24 +6,22 @@
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
       <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
-        <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" @mouseup="mouseup" class="mtScale-view" :style="mtScaleViewStyle">
-          <slot v-bind:scale="scale"/>
-        </div>
-      </div>
-      <div v-if="config.isRuler" class="ruler-content">
-        <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
-          <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
-<!--          <div :style="mtScaleLineStyleX" class="ruler-line"></div>-->
-          <div class="ruler-line"></div>
-        </div>
-        <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
-          <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
-<!--          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>-->
-          <div class="ruler-line-y"></div>
         <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" class="mtScale-view" :style="mtScaleViewStyle">
           <slot :scale="scale" :view="false"/>
         </div>
+        <div v-if="config.isRuler" class="ruler-content">
+          <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
+            <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
+            <!--          <div :style="mtScaleLineStyleX" class="ruler-line"></div>-->
+            <div class="ruler-line"></div>
+          </div>
+          <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
+            <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
+            <!--          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>-->
+            <div class="ruler-line-y"></div>
+          </div>
       </div>
+    </div>
     </div>
     <div class="mtScale-control">
       <template v-if="config.isScale">
@@ -40,11 +38,11 @@
           </Dropdown>
           <i @click="zoomIn" class="el-icon-circle-plus icon-zoom" style="color: #67C23A"></i>
         </div>
-        <div class="mtScale-control-item">
-          <MtIcon icon="DoOneToOne" :size="16" class="control-icon" title="100%" @click="fullCanvas"></MtIcon>
-        </div>
         <div  class="mtScale-control-item">
           <MtIcon icon="DoOverallReduction" :size="16" class="control-icon" title="适应画布" @click="fitCanvas"></MtIcon>
+        </div>
+        <div class="mtScale-control-item">
+          <MtIcon icon="DoOneToOne" :size="16" class="control-icon" title="100%" @click="fullCanvas"></MtIcon>
         </div>
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
@@ -62,7 +60,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '../assets/css/mtView.less'
 import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 import MtIcon from "./MtIcon";
-import Guides from "@scena/guides";
 // import RulerScale from "./RulerScale";
 import Navigate from "./Navigate";
 import RulerScale from "./RulerScale";
@@ -109,14 +106,7 @@ export default {
         x:0,
         y:0
       },
-      lines:[{
-        x:24,
-        canvasX:0
-      }],
-      linesY:[{
-        y:24,
-        canvasY:0
-      }],
+      lines:[],
       moveLine:null,
       navigateConf:{
         width:this.config.navigateConf.width,
