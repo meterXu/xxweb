@@ -180,8 +180,6 @@ export default {
       // this.guides1.resize()
       // this.guides2.zoom  = nv
       // this.guides2.resize()
-    }
-
   },
   methods:{
     percentageChange(command){
