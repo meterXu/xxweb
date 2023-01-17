@@ -1,5 +1,4 @@
 <template>
-<!--  <canvas ref="widthways" :style="getRuleStyle" style="flex: none"></canvas>-->
   <div>
     <div class="ruler-container-top" v-on:changeGuides="onChangeTop">
     </div>
@@ -55,16 +54,6 @@ export default {
     }
   },
   computed: {
-    getRuleStyle() {
-      return {
-        width: props.mode === 'horizontal' ? '100%' : '30px',
-        height: props.mode === 'horizontal' ? '30px' : '100%',
-        backgroundColor: 'white',
-        zIndex: 996,
-        display: 'block',
-        cursor: props.mode === 'horizontal' ? 'row-resize' : 'col-resize'
-      }
-    }
   },
   methods: {
     onChangeTop(guides) {

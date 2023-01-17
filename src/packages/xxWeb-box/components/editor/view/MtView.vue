@@ -58,12 +58,12 @@ export default {
       type:Object,
       default(){
         return {
-          theme:'dark',
+          theme:'light',
           isRuler:true,
           isScale:true,
           isDrag:true,
           isNavigate:true,
-          backgroundClass:'dark-bg',
+          backgroundClass:'default-bg',
           navigateConf:{
             width:224,
             height:160
