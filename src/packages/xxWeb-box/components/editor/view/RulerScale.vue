@@ -21,14 +21,8 @@ export default {
   },
   data() {
     return {
-      linesTop:[{
-        x:24,
-        canvasX:0
-      }],
-      linesRight:[{
-        y:24,
-        canvasY:0
-      }]
+      linesTop:[],
+      linesRight:[]
     }
   },
   watch: {
@@ -57,10 +51,10 @@ export default {
   },
   methods: {
     onChangeTop(guides) {
-      this.lines = guides
+      this.linesTop = guides
     },
     onChangeRight(guides) {
-      this.linesY = guides
+      this.linesRight = guides
     },
   },
   mounted() {

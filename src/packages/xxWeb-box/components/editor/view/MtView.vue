@@ -1,7 +1,7 @@
 <template>
   <div class="mtScale" ref="mtScale" :theme="config.theme">
     <template v-if="config.isRuler">
-      <RulerScale :scale="scale" :location="location" :theme="config.theme"></RulerScale>
+      <RulerScale :scale="scale" :location="location" :theme="config.theme" v-model="lines"></RulerScale>
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
@@ -96,7 +96,10 @@ export default {
         y:0
       },
       toggleNavigate:false,
-      lines:[],
+      lines:{
+        top:[],
+        left:[]
+      },
       moveLine:null,
       navigateConf:{
         canvasWidth:this.config.navigateConf.canvasWidth,
