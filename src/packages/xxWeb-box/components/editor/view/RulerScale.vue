@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="ruler-container-top" v-on:changeGuides="onChangeTop">
+    <div class="ruler-container-top">
     </div>
-    <div class="ruler-container-right" v-on:changeGuides="onChangeRight">
+    <div class="ruler-container-right">
     </div>
   </div>
 </template>
@@ -17,7 +17,19 @@ export default {
     scale: Number,
     location: Object,
     theme: String,
-    mode: 'horizontal' | 'vertical'
+    lines:{
+      type: Object,
+      default(){
+        return {
+          top:[],
+          left:[]
+        }
+      }
+    }
+  },
+  model:{
+    prop:'lines',
+    event:'change'
   },
   data() {
     return {
@@ -51,10 +63,14 @@ export default {
   },
   methods: {
     onChangeTop(guides) {
-      this.linesTop = guides
+      console.log(guides)
+      this.lines.top = guides
+      console.log(this.lines)
     },
-    onChangeRight(guides) {
-      this.linesRight = guides
+    onChangeLeft(guides) {
+      console.log(guides)
+      this.lines.left = guides
+      console.log(this.lines)
     },
   },
   mounted() {
@@ -83,10 +99,10 @@ export default {
         this.onChangeTop(guides)
       });
       this.guides2 =new Guides(document.querySelector(".ruler-container-right"), optionsV).on("changeGuides", ({ guides }) => {
-        this.onChangeRight(guides)
+        this.onChangeLeft(guides)
       });
-      // this.guides1.loadGuides([100,200,300])
-      // this.guides2.loadGuides([200,400,600])
+      this.guides1.loadGuides(this.lines.top)
+      this.guides2.loadGuides(this.lines.left)
   }
 }
 </script>
