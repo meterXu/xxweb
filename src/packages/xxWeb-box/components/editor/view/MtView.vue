@@ -58,7 +58,7 @@ export default {
       type:Object,
       default(){
         return {
-          theme:'light',
+          theme:'dark',
           isRuler:true,
           isScale:true,
           isDrag:true,
