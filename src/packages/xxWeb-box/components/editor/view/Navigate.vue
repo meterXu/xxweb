@@ -13,7 +13,25 @@
 import {add as 加,subtract as 减,multiply as 乘,divide as 除,ceil as 四舍五入} from 'lodash'
 export default {
   name: "Navigate",
-  props:['config'],
+  props:{
+    config:{
+      type:Object,
+      default(){
+        return {
+          canvasWidth:0,
+          canvasHeight:0,
+          viewWidth:0,
+          viewHeight:0,
+          canvasScale:0.1,
+          eyeScale:1,
+          location:{
+            x:0,
+            y:0
+          }
+        }
+      }
+    }
+  },
   data(){
     return{
       location:{
@@ -40,10 +58,12 @@ export default {
   },
   computed:{
     eyeStyle(){
+      let toWidth = 除(this.config.viewWidth,this.config.eyeScale)
+      let toHeight = 除(this.config.viewHeight,this.config.eyeScale)
       return {
         transform:`translate(${除(this.location.x,this.config.eyeScale)}px, ${除(this.location.y,this.config.eyeScale)}px)`,
-        width:`${除(this.config.viewWidth,this.config.eyeScale)}px`,
-        height: `${除(this.config.viewHeight,this.config.eyeScale)}px`
+        width:`${toWidth}px`,
+        height: `${toHeight}px`
       }
     },
     navCanvasStyle(){

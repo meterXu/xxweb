@@ -34,7 +34,7 @@
         </div>
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
-        <Navigate :config="navigateConf" @navigateMove="navigateMove">
+        <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
           <slot :scale="scale" :view="true"/>
         </Navigate>
         <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
@@ -95,6 +95,7 @@ export default {
         x:0,
         y:0
       },
+      toggleNavigate:false,
       lines:[],
       moveLine:null,
       navigateConf:{
@@ -173,7 +174,7 @@ export default {
       this.resetMtLocation(this.scale)
     },
     showNavigate(){
-
+      this.toggleNavigate = !this.toggleNavigate
     },
     canvasMousedown(event){
       event.preventDefault()
