@@ -1,8 +1,8 @@
 <template>
   <div class="editor">
-    <MtView>
+    <MtView @topAlign="topAlign">
       <template v-slot="{scale,view}">
-        <XscStaticLayout :options="options" :charts="charts" :scale="scale" :view="view">
+        <XscStaticLayout ref="xsc-static-layout" @selectedItems="selectedItems" :options="options" :charts="charts" :scale="scale" :view="view">
           <template v-slot="{view,item}">
             <VueDrawXs :view="view" :item="item"></VueDrawXs>
           </template>
@@ -1065,6 +1065,11 @@ export default {
           }
         }
       ]
+    }
+  },
+  methods:{
+    topAlign(){
+      this.$emit('xsc-static-layout').topAlign()
     }
   }
 }

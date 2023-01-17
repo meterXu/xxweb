@@ -7,7 +7,7 @@
        :class="['mt_canvas', {mt_canvas_position:view}]">
     <div v-for="item in charts" :ref="item.id"
          :key="item.id"
-         :class="[view?['mt_item','mt_item_view']:(item===activeItem ? ['mt_item','mt_item_active']: ['mt_item','mt_item_base']),'dragging']"
+         :class="itemClass(item)"
          tabindex="-1"
          :style="itemStyle(item)"
          @click="itemClick(item)"
@@ -44,8 +44,10 @@ export default {
   data() {
     return {
       activeItem: null, // 活动的节点
+      selectedItems:[],
       startDrag: false,
       dragItem: null,
+      shiftKey:false,
       shift: {
         x: 0,
         y: 0
@@ -92,6 +94,9 @@ export default {
     keydown() {
       event.preventDefault()
       event.stopPropagation()
+      if(event.keyCode===16){
+        this.shiftKey = true
+      }
       if (this.activeItem&&(this.activeItem.chart !== 'canvas')) {
         switch (event.keyCode) {
           case 38: { // 上
@@ -124,6 +129,11 @@ export default {
           event.stopPropagation()
           if (!this.view) {
             this.activeItem = item
+            if(this.shiftKey){
+              this.selectedItems.push(item)
+            }else{
+              this.selectedItems=[item]
+            }
             let clickBox = event.currentTarget.getBoundingClientRect()
             this.dragItem = this.charts.find(c => c.id === item.id)
             this.shift.x = event.clientX - clickBox.left
@@ -178,6 +188,7 @@ export default {
         event.stopPropagation()
         this.$emit('drop')
         this.activeItem = this.charts[this.charts.length - 1]
+        this.selectedItems=[this.activeItem]
         this.$emit('itemActive')
       }
     },
@@ -222,11 +233,34 @@ export default {
       } else {
         return {}
       }
+    },
+    itemClass(item){
+      if(this.view){
+        return ['mt_item','mt_item_view']
+      }else{
+        return this.selectedItems.findIndex(c=>c.id===item.id)>-1? ['mt_item','mt_item_active','dragging']: ['mt_item','mt_item_base']
+      }
+    },
+    topAlign(){
+
+    },
+    bottomAlign(){
+
+    },
+    leftAlign(){
+
+    },
+    rightAlign(){
+
     }
+
   },
   mounted() {
     document.removeEventListener('keydown', this.keydown)
     document.addEventListener('keydown', this.keydown)
+    document.addEventListener('keyup', ()=>{
+      this.shiftKey = false
+    })
   }
 }
 </script>
