@@ -51,6 +51,7 @@ import MtIcon from "./MtIcon";
 // import RulerScale from "./RulerScale";
 import Navigate from "./Navigate";
 import RulerScale from "./RulerScale";
+import {add as 加,subtract as 减,multiply as 乘,divide as 除,ceil as 四舍五入} from 'lodash'
 export default {
   name: 'MtView',
   props:{
@@ -130,18 +131,6 @@ export default {
       return this.config.isRuler?
           ['mtScale-container','mtScale-has-ruler',this.config.backgroundClass]
           :['mtScale-container',this.config.backgroundClass]
-    },
-    mtScaleLineStyleX(){
-      return {
-        transformOrigin: '0px 0px',
-        transform: `scaleX(${this.scale})`
-      }
-    },
-    mtScaleLineStyleY(){
-      return {
-        transformOrigin: '0px 0px',
-        transform: `scaleY(${this.scale})`
-      }
     }
   },
   watch:{
@@ -195,8 +184,8 @@ export default {
           if(this.config.isDrag){
             this.$refs['mtScale-view'].classList.add('cursor-move')
             const ownerRect = this.$refs['mtScale-content'].getBoundingClientRect()
-            this.shift.x= event.clientX-ownerRect.left
-            this.shift.y= event.clientY-ownerRect.top
+            this.shift.x= 减(event.clientX-ownerRect.left)
+            this.shift.y= 减(event.clientY-ownerRect.top)
             document.removeEventListener('mousemove',this.mousemove)
             document.addEventListener('mousemove',this.mousemove)
             document.removeEventListener('mouseup', this.mouseup)
