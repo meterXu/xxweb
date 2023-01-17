@@ -91,6 +91,8 @@ export default {
       this.guides2 =new Guides(document.querySelector(".ruler-container-right"), optionsV).on("changeGuides", ({ guides }) => {
         this.onChangeRight(guides)
       });
+      // this.guides1.loadGuides([100,200,300])
+      // this.guides2.loadGuides([200,400,600])
   }
 }
 </script>
