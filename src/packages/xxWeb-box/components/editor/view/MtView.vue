@@ -10,16 +10,16 @@
           <slot :scale="scale" :view="false"/>
         </div>
         <div v-if="config.isRuler" class="ruler-content">
-          <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
-            <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
-            <!--          <div :style="mtScaleLineStyleX" class="ruler-line"></div>-->
-            <div class="ruler-line"></div>
-          </div>
-          <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
-            <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
-            <!--          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>-->
-            <div class="ruler-line-y"></div>
-          </div>
+<!--          <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">-->
+<!--            <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>-->
+<!--            &lt;!&ndash;          <div :style="mtScaleLineStyleX" class="ruler-line"></div>&ndash;&gt;-->
+<!--            <div class="ruler-line"></div>-->
+<!--          </div>-->
+<!--          <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">-->
+<!--            <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>-->
+<!--            &lt;!&ndash;          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>&ndash;&gt;-->
+<!--            <div class="ruler-line-y"></div>-->
+<!--          </div>-->
       </div>
     </div>
     </div>
@@ -46,8 +46,8 @@
         </div>
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
-        <Navigate :config="navigateConf">
-          <slot :view="true"/>
+        <Navigate :config="navigateConf" @navigateMove="navigateMove">
+          <slot :scale="scale" :view="true"/>
         </Navigate>
         <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
       </div>
@@ -63,6 +63,7 @@ import MtIcon from "./MtIcon";
 // import RulerScale from "./RulerScale";
 import Navigate from "./Navigate";
 import RulerScale from "./RulerScale";
+import {add as 加,subtract as 减,multiply as 乘,divide as 除,ceil as 四舍五入} from 'lodash'
 export default {
   name: 'MtView',
   props:{
@@ -75,10 +76,11 @@ export default {
           isScale:true,
           isDrag:true,
           isNavigate:true,
+          containerPadding:30,
           backgroundClass:'dark-bg',
           navigateConf:{
-            width:224,
-            height:160
+            canvasWidth:224,
+            canvasHeight:160
           }
         }
       }
@@ -109,9 +111,12 @@ export default {
       lines:[],
       moveLine:null,
       navigateConf:{
-        width:this.config.navigateConf.width,
-        height:this.config.navigateConf.height,
-        scale:0.1,
+        canvasWidth:this.config.navigateConf.canvasWidth,
+        canvasHeight:this.config.navigateConf.canvasHeight,
+        viewWidth:0,
+        viewHeight:0,
+        canvasScale:0.1,
+        eyeScale:1,
         location:{
           x:0,
           y:0
@@ -154,22 +159,15 @@ export default {
   },
   watch:{
     scale(nv,ov){
-      this.lines.forEach(l=>{
-        l.x = l.canvasX*nv+this.location.x
-      })
-      this.linesY.forEach(l=>{
-        l.y = l.canvasY*nv+this.location.y
-      })
-
-      this.guides1.zoom  = nv
-      this.guides1.resize()
-      this.guides2.zoom  = nv
-      this.guides2.resize()
+      this.navigateConf.eyeScale = nv
     },
-      // this.guides1.zoom  = nv
-      // this.guides1.resize()
-      // this.guides2.zoom  = nv
-      // this.guides2.resize()
+    location:{
+      handler(nv){
+        this.navigateConf.location.x = nv.x*this.navigateConf.canvasScale
+        this.navigateConf.location.y = nv.y*this.navigateConf.canvasScale
+      },
+      deep:true
+    }
   },
   methods:{
     percentageChange(command){
@@ -188,7 +186,7 @@ export default {
       const mtScaleContainer = this.$refs['mtScale-container']
       const mtCanvas = this.$refs['mtScale-view'].children[0]
       if(mtCanvas){
-        this.scale = parseFloat((mtScaleContainer.clientWidth/(mtCanvas.clientWidth+60)).toFixed(2))
+        this.scale = 除(mtScaleContainer.clientWidth,(mtCanvas.clientWidth+60))
         this.scale =this.scale>1?1:this.scale
         this.zoomLevel = this.getZoomLevel()
         this.resetMtLocation()
@@ -237,8 +235,8 @@ export default {
     },
     mousemove(event){
       const ownerRect = this.$refs['mtScale-container'].getBoundingClientRect()
-      this.location.x = event.pageX-ownerRect.left-this.shift.x
-      this.location.y = event.pageY-ownerRect.top-this.shift.y
+      this.location.x = 减(event.pageX,加(ownerRect.left,this.shift.x))
+      this.location.y = 减(event.pageY,加(ownerRect.top,this.shift.y))
     },
     lineMousemove(event){
       this.moveLine.x = parseInt(event.pageX-this.shift.x)
@@ -292,21 +290,20 @@ export default {
       }
     },
     resetMtLocation(scale){
-      const padding = 30
       const mtScaleContainer = this.$refs['mtScale-container']
       const mtCanvas = this.$refs['mtScale-view'].children[0]
-      const viewWidth = mtScaleContainer.clientWidth-padding*2
-      const viewHeight = mtScaleContainer.clientHeight-padding*2
+      const viewWidth = 减(mtScaleContainer.clientWidth,this.config.containerPadding*2)
+      const viewHeight = 减(mtScaleContainer.clientHeight,this.config.containerPadding*2)
       let mtCanvasWidth = mtCanvas.clientWidth
       let mtCanvasHeight = mtCanvas.clientHeight
       if(mtCanvas){
-        let res = this.resetCanvas(scale,{width:viewWidth,height:viewHeight},{width:mtCanvasWidth,height:mtCanvasHeight},padding)
+        let res = this.resetCanvas(scale,{width:viewWidth,height:viewHeight},{width:mtCanvasWidth,height:mtCanvasHeight},this.config.containerPadding)
         this.scale = res.scale
         this.location.x = res.location.x
         this.location.y = res.location.y
       }
     },
-    resetCanvas(scale,viewSize,canvasSize,padding=30){
+    resetCanvas(scale,viewSize,canvasSize){
       let withScale,heightScale=0
       let res = {
         scale:1,
@@ -316,52 +313,62 @@ export default {
         }
       }
       if(scale){
-        canvasSize.width = canvasSize.width*this.scale
-        canvasSize.height = canvasSize.height*this.scale
+        canvasSize.width = 乘(canvasSize.width,this.scale)
+        canvasSize.height = 乘(canvasSize.height,this.scale)
         if(viewSize.width>canvasSize.width){
-          this.location.x=(viewSize.width-canvasSize.width)/2
+          this.location.x=减(viewSize.width,canvasSize.width)/2
         }else {
           this.location.x=0
         }
         if(viewSize.height>canvasSize.height){
-          this.location.y=(viewSize.height-canvasSize.height)/2
+          this.location.y=减(viewSize.height,canvasSize.height)/2
         }else{
           this.location.y=0
         }
       }else{
         if(viewSize.width<=canvasSize.width){
-          withScale = parseFloat((viewSize.width/canvasSize.width).toFixed(2))
+          withScale = 除(viewSize.width,canvasSize.width)
         }
         if(viewSize.height<=canvasSize.height){
-          heightScale = parseFloat((viewSize.height/canvasSize.height).toFixed(2))
+          heightScale = 除(viewSize.height,canvasSize.height)
         }
         if(withScale<=heightScale){
-          res.scale =withScale
-          res.location.x=(viewSize.width-canvasSize.width*withScale)/2
-          res.location.y = (viewSize.height-canvasSize.height*withScale)/2
+          res.scale =四舍五入(withScale,2)
+          res.location.x = 减(viewSize.width,乘(canvasSize.width,withScale))/2
+          res.location.y = 减(viewSize.height,乘(canvasSize.height,withScale))/2
         }else{
-          res.scale =heightScale
-          res.location.x=(viewSize.width-canvasSize.width*heightScale)/2
-          res.location.y = (viewSize.height-canvasSize.height*heightScale)/2
+          res.scale =四舍五入(heightScale,2)
+          res.location.x = 减(viewSize.width,乘(canvasSize.width,heightScale))/2
+          res.location.y = 减(viewSize.height,乘(canvasSize.height,heightScale))/2
         }
-        res.location.x = res.location.x<0?padding:(padding+res.location.x)
-        res.location.y = res.location.y<0?padding:(padding+res.location.y)
-        return res
+        res.location.x = res.location.x<0?this.config.containerPadding:加(this.config.containerPadding,res.location.x)
+        res.location.y = res.location.y<0?this.config.containerPadding:加(this.config.containerPadding,res.location.y)
       }
+      return res
     },
     setNavigateConf(){
+      const mtScaleContainer = this.$refs['mtScale-container']
       const mtCanvas = this.$refs['mtScale-view'].children[0]
       let mtCanvasWidth = mtCanvas.clientWidth
       let mtCanvasHeight = mtCanvas.clientHeight
       if(mtCanvas){
         const res = this.resetCanvas(
             null,
-            {width:this.config.navigateConf.width,height:this.config.navigateConf.height},
+            {width:224,height:160},
             {width:mtCanvasWidth,height:mtCanvasHeight},
             0)
-        this.navigateConf.scale = res.scale
-        this.navigateConf.location = res.location
+        this.navigateConf.canvasScale = res.scale
+        this.navigateConf.location.x = 乘(this.location.x,res.scale)
+        this.navigateConf.location.y = 乘(this.location.y,res.scale)
+        this.navigateConf.canvasWidth = 乘(mtCanvasWidth,res.scale)
+        this.navigateConf.canvasHeight = 乘(mtCanvasHeight,res.scale)
+        this.navigateConf.viewWidth = 乘(mtScaleContainer.clientWidth,res.scale)
+        this.navigateConf.viewHeight = 乘(mtScaleContainer.clientHeight,res.scale)
       }
+    },
+    navigateMove(location){
+      this.location.x = -location.x
+      this.location.y = -location.y
     }
   },
   mounted() {

@@ -92,7 +92,7 @@ export default {
     keydown() {
       event.preventDefault()
       event.stopPropagation()
-      if (this.activeItem.chart !== 'canvas') {
+      if (this.activeItem&&(this.activeItem.chart !== 'canvas')) {
         switch (event.keyCode) {
           case 38: { // 上
             this.activeItem.config.box.y--
