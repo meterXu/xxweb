@@ -123,7 +123,7 @@ export default {
   -ms-flex-align: center;
   align-items: center;
   position: absolute;
-  z-index: 1000;
+  z-index: 500;
   overflow: hidden;
   right: 16px;
   bottom: 40px;

@@ -34,12 +34,12 @@
         </div>
       </template>
       <div v-if="config.isNavigate" class="mtScale-control-item">
-        <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
-          <slot :scale="scale" :view="true"/>
-        </Navigate>
         <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
       </div>
     </div>
+    <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
+      <slot :scale="scale" :view="true"/>
+    </Navigate>
   </div>
 </template>
 
@@ -157,7 +157,7 @@ export default {
         default:{
           this.scale = command
           this.zoomLevel = this.getZoomLevel()
-          this.resetMtLocation()
+          this.resetMtLocation(command)
         }break;
       }
     },
@@ -204,7 +204,9 @@ export default {
       this.location.y = 减(event.pageY,加(ownerRect.top,this.shift.y))
     },
     mouseup(){
-      this.$refs['mtScale-view'].classList.remove('cursor-move')
+      if(this.$refs['mtScale-view']&&this.$refs['mtScale-view'].classList){
+        this.$refs['mtScale-view'].classList.remove('cursor-move')
+      }
       document.removeEventListener('mousemove',this.mousemove)
     },
     getZoomLevel(){
@@ -255,7 +257,7 @@ export default {
     resetCanvas(scale,viewSize,canvasSize){
       let withScale,heightScale=0
       let res = {
-        scale:1,
+        scale,
         location:{
           x:0,
           y:0
