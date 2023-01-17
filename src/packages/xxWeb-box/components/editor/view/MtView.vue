@@ -50,7 +50,7 @@ import {Dropdown,DropdownMenu,DropdownItem} from 'element-ui'
 import MtIcon from "./MtIcon";
 import Navigate from "./Navigate";
 import RulerScale from "./RulerScale";
-import {add as 加,subtract as 减,multiply as 乘,divide as 除,ceil as 四舍五入} from 'lodash'
+import {add as 加,subtract as 减,multiply as 乘,divide as 除,floor as 四舍五入} from 'lodash'
 export default {
   name: 'MtView',
   props:{
