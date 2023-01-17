@@ -9,18 +9,6 @@
         <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" class="mtScale-view" :style="mtScaleViewStyle">
           <slot :scale="scale" :view="false"/>
         </div>
-        <div v-if="config.isRuler" class="ruler-content">
-          <div v-for="(item,index) in lines" class="ruler-item" @mousedown="lineMouseDown(item,'x')" @mouseup="removeLineMouseMove('x')" :style="'left: '+item.x+'px;'">
-            <span class="ruler-text">{{item.canvasX}}px,{{item.x}}</span>
-            <!--          <div :style="mtScaleLineStyleX" class="ruler-line"></div>-->
-            <div class="ruler-line"></div>
-          </div>
-          <div v-for="(item,index) in linesY" class="ruler-item-y" @mousedown="lineMouseDown(item,'y')" @mouseup="removeLineMouseMove('y')" :style="'top: '+item.y+'px;'">
-            <span class="ruler-text-y">{{item.canvasY}}px,{{item.y}}</span>
-            <!--          <div :style="mtScaleLineStyleY" class="ruler-line-y"></div>-->
-            <div class="ruler-line-y"></div>
-          </div>
-      </div>
     </div>
     </div>
     <div class="mtScale-control">
@@ -152,25 +140,6 @@ export default {
       }
     }
   },
-  watch:{
-    scale(nv,ov){
-      this.lines.forEach(l=>{
-        l.x = l.canvasX*nv+this.location.x
-      })
-      this.linesY.forEach(l=>{
-        l.y = l.canvasY*nv+this.location.y
-      })
-
-      this.guides1.zoom  = nv
-      this.guides1.resize()
-      this.guides2.zoom  = nv
-      this.guides2.resize()
-    },
-      // this.guides1.zoom  = nv
-      // this.guides1.resize()
-      // this.guides2.zoom  = nv
-      // this.guides2.resize()
-  },
   methods:{
     percentageChange(command){
       switch (command){
@@ -221,40 +190,10 @@ export default {
       }
       mouseEvent[ event.button ]();
     },
-    lineMouseDown(line,type){
-      const ownerRect = this.$refs['mtScale-container'].getBoundingClientRect()
-      this.shift.x= ownerRect.left
-      this.shift.y= ownerRect.top
-      this.moveLine  = line
-      if(type==='x') {
-        document.removeEventListener('mousemove',this.lineMousemove)
-        document.addEventListener('mousemove',this.lineMousemove)
-      } else {
-        document.removeEventListener('mousemove',this.lineMousemoveY)
-        document.addEventListener('mousemove',this.lineMousemoveY)
-      }
-
-    },
     mousemove(event){
       const ownerRect = this.$refs['mtScale-container'].getBoundingClientRect()
       this.location.x = event.pageX-ownerRect.left-this.shift.x
       this.location.y = event.pageY-ownerRect.top-this.shift.y
-    },
-    lineMousemove(event){
-      this.moveLine.x = parseInt(event.pageX-this.shift.x)
-      this.moveLine.canvasX = parseInt((this.moveLine.x-this.location.x)*(1/this.scale))
-      // this.moveLine.canvasX = parseInt(this.moveLine.x-this.location.x)
-    },
-    lineMousemoveY(event){
-      this.moveLine.y = parseInt(event.pageY-this.shift.y)
-      this.moveLine.canvasY = parseInt((this.moveLine.y-this.location.y)*(1/this.scale))
-    },
-    removeLineMouseMove(type){
-      if(type==='x') {
-        document.removeEventListener('mousemove',this.lineMousemove)
-      } else {
-        document.removeEventListener('mousemove',this.lineMousemoveY)
-      }
     },
     mouseup(){
       this.$refs['mtScale-view'].classList.remove('cursor-move')
