@@ -2,7 +2,7 @@
   <div class="editor">
     <MtView @topAlign="topAlign" :config="config">
       <template v-slot="{scale,view}">
-        <XscStaticLayout ref="xsc-static-layout" @selectedItems="selectedItems" :options="options" :charts="charts" :scale="scale" :view="view">
+        <XscStaticLayout ref="xsc-static-layout" :options="options" :charts="charts" :scale="scale" :view="view">
           <template v-slot="{view,item}">
             <VueDrawXs :view="view" :item="item"></VueDrawXs>
           </template>

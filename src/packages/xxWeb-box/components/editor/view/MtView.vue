@@ -71,12 +71,20 @@ export default {
           }
         }
       }
-    }
+    },
+    lines:{
+      type:Object,
+      default() {
+        return {
+          top:[],
+          left:[]
+        };
+      }
+    },
   },
   components:{
     MtIcon,
     Navigate,
-    // RulerScale,
     Dropdown,
     DropdownMenu,
     DropdownItem,
@@ -96,10 +104,6 @@ export default {
         y:0
       },
       toggleNavigate:false,
-      lines:{
-        top:[],
-        left:[]
-      },
       moveLine:null,
       navigateConf:{
         canvasWidth:this.config.navigateConf.canvasWidth,
@@ -249,13 +253,15 @@ export default {
       let mtCanvasHeight = mtCanvas.clientHeight
       if(mtCanvas){
         let res = this.resetCanvas(scale,{width:viewWidth,height:viewHeight},{width:mtCanvasWidth,height:mtCanvasHeight},this.config.containerPadding)
+
         this.scale = res.scale
+
         this.location.x = res.location.x
         this.location.y = res.location.y
       }
     },
     resetCanvas(scale,viewSize,canvasSize){
-      let withScale,heightScale=0
+      let withScale,heightScale=1
       let res = {
         scale,
         location:{

@@ -24,7 +24,7 @@ export const xxWebBox=[
 ]
 
 export const editor=[
-    {title:"MtView",cover:require('../imgs/xxWebBox/nitro.png'),desc:'develop by <a href="javascript:;">hanjx,xuhg</a>',path:'/page/comDetail/xxWebBox/element'},
+    {title:"MtView",cover:require('../imgs/editor/mtView.png'),desc:'develop by <a href="javascript:;">hanjx,xuhg</a>',path:'/page/comDetail/editor/mtView'},
     {title:"ProPanel",cover:require('../imgs/xxWebBox/nitro.png'),desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/element'},
 ]
 

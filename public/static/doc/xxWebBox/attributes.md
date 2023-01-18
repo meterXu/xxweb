@@ -1,10 +1,10 @@
 ## 属性
 
-|prop|remark|
-|---|---|
-|appConfig|应用配置|
-|permission|权限数据|
-|initCollapse|初始是否收缩，默认值false|
+|prop|remark| default |
+|---|---|---------|
+|appConfig|应用配置| ---     |
+|permission|权限数据| ---     |
+|initCollapse|初始是否收缩| false   |
 
 ## 事件
 |methodName|methodParams|remark|

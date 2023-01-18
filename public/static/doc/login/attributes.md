@@ -1,12 +1,12 @@
 ### 属性
 
-|prop| remark           |
-|---|------------------|
-|config| 配置               |
-|remember| 初始是显示记住密码，默认true |
-|placeholder| input描述，{username:'请输入用户名/邮箱/手机号',password:"请输入密码"}         |
-|rules| 验证规则             |
-|form| 表单               |
+|prop| remark          | default                                                                                                                            |
+|---|-----------------|------------------------------------------------------------------------------------------------------------------------------------|
+|config| 配置              | {}                                                                                                                                 |
+|remember| 初始是显示记住密码，默认true | true                                                                                                                               |
+|placeholder| input描述         | {username:'请输入用户名/邮箱/手机号',password:"请输入密码"}                                                                                        |
+|rules| 验证规则            | {username:[{ required: true, message: '用户名不能为空',trigger: 'blur'}],password:[{ required: true, message: '密码不能为空',trigger: 'blur'}]} |
+|form| 表单              | {}                                                                                                                                 |
 
 ### 事件
 |methodName| methodParams                | remark |

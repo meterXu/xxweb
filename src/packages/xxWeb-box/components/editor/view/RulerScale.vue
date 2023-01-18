@@ -31,12 +31,6 @@ export default {
     prop:'lines',
     event:'change'
   },
-  data() {
-    return {
-      linesTop:[],
-      linesRight:[]
-    }
-  },
   watch: {
     location: {
       deep: true,
@@ -63,14 +57,10 @@ export default {
   },
   methods: {
     onChangeTop(guides) {
-      console.log(guides)
       this.lines.top = guides
-      console.log(this.lines)
     },
     onChangeLeft(guides) {
-      console.log(guides)
       this.lines.left = guides
-      console.log(this.lines)
     },
   },
   mounted() {
