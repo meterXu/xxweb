@@ -1087,10 +1087,47 @@ export default {
           }
         }
       ],
-      activeItem:null,
+      activeItem:{
+        "id": 1673490800977,
+        "type": "dom",
+        "chart": "text",
+        "config": {
+          "box": {
+            "width": 417,
+            "height": 38,
+            "x": 766,
+            "y": 10,
+            "zIndex": 100
+          },
+          "type": "text",
+          "theme": "dark",
+          "options": {
+            "text": {
+              "fontFamily": "智慧城市",
+              "content": "智慧城市",
+              "fontSize": 30,
+              "color": null,
+              "fontWeight": "normal"
+            },
+            "boxSpace": {
+              "lineHeight": 40,
+              "textAlign": "center"
+            },
+            "background": {
+              "color": "transparent"
+            },
+            "border": {
+              "width": 0,
+              "style": "solid",
+              "color": "transparent"
+            }
+          }
+        }
+      },
       panelConfig:[
       {
         type: '基础',
+        icon:'el-icon-s-operation',
         con: [
           {
             key: 'box',
@@ -1155,7 +1192,7 @@ export default {
       },
       {
         type: '样式',
-        icon: 'md-brush',
+        icon: 'el-icon-s-operation',
         con: [
           {
             key: '',
