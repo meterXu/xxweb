@@ -9,6 +9,8 @@
   --tool-icon:#909399;
   --ruler-scale-text:#000;
   --ruler-scale-bg:#fff;
+  --rule-other-bg:#fff;
+  --rule-border-color:#818181;
 }
 .mtScale[theme='dark']{
   --background-color:#202835;
@@ -21,6 +23,8 @@
   --tool-icon:#99a5be;
   --ruler-scale-text:#96A2BA;
   --ruler-scale-bg:#1E2532;
+  --rule-other-bg:#202835;
+  --rule-border-color:#818181;
 }
 
 .mtScale{
@@ -30,7 +34,7 @@
   display: inline-flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-color: var(--background-color);
+  background-color: var(--rule-other-bg);
   .el-dropdown-link {
     cursor: pointer;
     color: var(--link-color);
@@ -51,10 +55,10 @@
     display: inline-block;
   }
   .mtScale-has-ruler{
-    width: calc(100% - 30px);
-    height: calc(100% - 30px);
-    margin-left: 30px;
-    margin-top: 30px;
+    width: calc(100% - 31px);
+    height: calc(100% - 31px);
+    margin-left: 31px;
+    margin-top: 31px;
   }
   .mtScale-control{
     box-sizing: border-box;
@@ -75,7 +79,7 @@
     margin-left: 10px;
   }
   .ruler-container-top,.ruler-container-right{
-    box-sizing: border-box;
+    box-sizing: content-box;
     border-color: var(--border-color);
     background: var(--ruler-bg);
     border-style: solid;
@@ -87,11 +91,10 @@
     left: 30px;
     right:0;
     z-index: 2;
-    box-sizing: border-box;
-    border-left: none;
-    border-top: none;
+    border-left: 1px solid var(--rule-border-color);
     border-right: none;
-    border-bottom-width: 1px;
+    border-top: none;
+    border-bottom: 1px solid var(--rule-border-color) ;
   }
   .ruler-container-right{
     width: 30px;
@@ -101,9 +104,9 @@
     bottom:0;
     z-index: 2;
     border-left: none;
-    border-top: none;
+    border-right: 1px solid var(--rule-border-color);
+    border-top: 1px solid var(--rule-border-color);
     border-bottom: none;
-    border-right-width: 1px;
   }
   .cursor-move{
     cursor: move;
@@ -122,5 +125,11 @@
   }
   .photoshop-bg{
     background-image: url("../img/scaleBg.png");
+  }
+  .rCS1g1q24i .scena-guides-guide {
+    background: #0686D7 !important;
+  }
+  .rCS1g1q24i .scena-guides-display-drag {
+    color: #0686D7 !important;
   }
 }

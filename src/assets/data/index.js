@@ -23,8 +23,14 @@ export const xxWebBox=[
     {title:"nitro",cover:require('../imgs/xxWebBox/nitro.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/xxWebBox/nitro'},
 ]
 
+export const editor=[
+    {title:"MtView",cover:require('../imgs/xxWebBox/nitro.png'),desc:'develop by <a href="javascript:;">hanjx,xuhg</a>',path:'/page/comDetail/xxWebBox/element'},
+    {title:"ProPanel",cover:require('../imgs/xxWebBox/nitro.png'),desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/element'},
+]
+
 export default {
     error,
     login,
-    xxWebBox
+    xxWebBox,
+    editor
 }

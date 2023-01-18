@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <MtView @topAlign="topAlign">
+    <MtView @topAlign="topAlign" :config="config">
       <template v-slot="{scale,view}">
         <XscStaticLayout ref="xsc-static-layout" @selectedItems="selectedItems" :options="options" :charts="charts" :scale="scale" :view="view">
           <template v-slot="{view,item}">
@@ -24,6 +24,19 @@ export default {
   },
   data(){
     return {
+      config:{
+        theme:'dark',
+        isRuler:true,
+        isScale:true,
+        isDrag:true,
+        isNavigate:true,
+        containerPadding:30,
+        backgroundClass:'default-bg',
+        navigateConf:{
+          canvasWidth:224,
+          canvasHeight:160
+        }
+      },
       options:{
         "id": 1673488946179,
         "name": "新的画布",
@@ -1084,9 +1097,10 @@ html,body,#app{
   overflow: hidden;
   flex: 1;
   position: absolute;
-  top: 41px;
+  top: 40px;
   bottom: 0;
   right: 0;
-  left: 0;
+  left: 1px;
+  z-index: 99;
 }
 </style>

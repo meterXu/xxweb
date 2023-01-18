@@ -106,11 +106,3 @@ export default {
   }
 }
 </script>
-<style>
-.rCS1g1q24i .scena-guides-guide {
-  background: #0686D7 !important;
-}
-.rCS1g1q24i .scena-guides-display-drag {
-  color: #0686D7 !important;
-}
-</style>

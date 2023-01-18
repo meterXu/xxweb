@@ -28,7 +28,7 @@ export default [
             }
         },
         {
-            path: '/page/itemList/draw',
+            path: '/page/itemList/editor',
             meta: {
                 title: 'editor',
                 icon: 'el-icon-crop'
