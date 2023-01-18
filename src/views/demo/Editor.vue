@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <MtView @topAlign="topAlign" :config="config">
+    <MtView @topAlign="topAlign" :config="config" :lines="lines">
       <template v-slot="{scale,view}">
         <XscStaticLayout ref="xsc-static-layout" :options="options" :charts="charts" :scale="scale" :view="view">
           <template v-slot="{view,item}">
@@ -36,6 +36,10 @@ export default {
           canvasWidth:224,
           canvasHeight:160
         }
+      },
+      lines:{
+        top:[200],
+        left:[200]
       },
       options:{
         "id": 1673488946179,

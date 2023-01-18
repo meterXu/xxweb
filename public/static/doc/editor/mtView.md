@@ -5,7 +5,7 @@
 ```html
 <template>
     <div style="display:flex;flex:1;width: 100%;height: 600px">
-        <MtView :config="config" :lines="lines">
+        <MtView :config="config">
             <template v-slot="{scale,view}">
                 <div style="background-color: #fff;width: 800px;height: 600px;position: relative">
                     <div style="position: absolute;top:200px;left: 200px;width: 100px;height: 100px;background: #9e29ec"></div>
@@ -31,10 +31,6 @@ export default {
                     canvasWidth:224,
                     canvasHeight:160
                 }
-            },
-            lines:{
-                left:[200]
-                top:[200]
             }
         }
     }
