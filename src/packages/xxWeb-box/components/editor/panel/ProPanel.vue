@@ -20,7 +20,7 @@
 
 <script>
 import 'element-ui/lib/theme-chalk/index.css'
-import {Tabs,TabPane,Form,FormItem,Collapse,CollapseItem} from 'element-ui'
+import {Tabs,TabPane,Form,FormItem,Collapse,CollapseItem,Input} from 'element-ui'
 import MtFormItem from './MtFormItem'
 export default {
   name: "ProPanel",
@@ -35,6 +35,7 @@ export default {
     }
   },
   components:{
+    Input,
     Tabs,
     TabPane,
     Form,

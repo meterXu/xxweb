@@ -1065,7 +1065,7 @@ export default {
             "theme": "dark",
             "options": {
               "text": {
-                "fontFamily": "智慧城市",
+                "fontFamily": "微软雅黑",
                 "content": "智慧城市",
                 "fontSize": 30,
                 "color": null,
@@ -1126,28 +1126,30 @@ export default {
       },
       panelConfig:[
       {
-        type: '基础',
+        type: '文字',
         icon:'el-icon-s-operation',
         con: [
           {
             key: 'box',
             name: '大小及坐标',
             sub: [
-              {key: 'width', name: '宽度', type: 'number'},
-              {key: 'height', name: '高度', type: 'number'},
-              {key: 'x', name: 'x', type: 'number'},
-              {key: 'y', name: 'y', type: 'number'}
+              {key: 'config.box.width', name: '宽度', type: 'number'},
+              {key: 'config.box.height', name: '高度', type: 'number'},
+              {key: 'config.box.x', name: 'x', type: 'number'},
+              {key: 'config.box.y', name: 'y', type: 'number'}
             ]
           },
           {
-            key: 'options/text',
-            name: '文字',
+            key: 'options',
+            name: '选项',
             sub: [
-              {key: 'fontFamily', name: '字体', type: 'text'},
-              {key: 'content', name: '内容', type: 'text'},
-              {key: 'fontSize', name: '大小', type: 'number'},
-              {
-                key: 'fontWeight',
+              {key: 'config.options.text.fontFamily', name: '字体', type: 'select',
+                data: [
+                  {text: '微软雅黑', value: '微软雅黑'},
+                  {text: '黑体', value: '黑体'}]},
+              {key: 'config.options.text/content', name: '内容', type: 'text'},
+              {key: 'config.options.text/fontSize', name: '大小', type: 'number'},
+              {key: 'config.options.text/fontWeight',
                 name: '粗细',
                 type: 'select',
                 data: [
@@ -1155,81 +1157,24 @@ export default {
                   {text: '加粗', value: 'bold'},
                   {text: '细化', value: 'lighter'}
                 ]
-              }
-            ]
-          },
-          {
-            key: 'options/boxSpace',
-            name: '空间',
-            sub: [
-              {key: 'lineHeight', name: '行高', type: 'number'},
-              {
-                key: 'textAlign',
+              },
+              {key: 'config.options.text.color', name: '颜色', type: 'color'},
+              {key: 'config.options.text.lineHeight', name: '行高', type: 'number'},
+              {key: 'config.options.text.textAlign',
                 name: '对其方式',
                 type: 'select',
                 data: [
                   {text: '居左对齐', value: 'left'},
                   {text: '居中对齐', value: 'center'},
                   {text: '居右对齐', value: 'right'}]
-              }
-            ]
-          },
-          {
-            key: 'options/border',
-            name: '边框',
-            sub: [
-              {key: 'width', name: '大小', type: 'number'},
-              {
-                key: 'style',
-                name: '样式',
-                type: 'select',
-                data: []
               },
-              {key: '', type: 'div', style: {height: 200}}
+              {key: 'config.options.border.width', name: '边框粗细', type: 'number'},
+              {key: 'config.options.border.color', name: '边框颜色', type: 'color'}
             ]
           }
         ]
-      },
-      {
-        type: '样式',
-        icon: 'el-icon-s-operation',
-        con: [
-          {
-            key: '',
-            name: '全局',
-            sub: [
-              {
-                key: 'theme',
-                name: '主题',
-                type: 'select',
-                data: []
-              }
-            ]
-          },
-          {
-            key: 'options/text',
-            name: '文字',
-            sub: [
-              {key: 'color', name: '颜色', type: 'color'}
-            ]
-          },
-          {
-            key: 'options/background',
-            name: '背景',
-            sub: [
-              {key: 'color', name: '颜色', type: 'color'}
-            ]
-          },
-          {
-            key: 'options/border',
-            name: '边框',
-            sub: [
-              {key: 'color', name: '颜色', type: 'color'},
-              {key: '', type: 'div', style: {height: 240}}
-            ]
-          }
-        ]
-      }]
+      }
+      ]
     }
   },
   methods:{

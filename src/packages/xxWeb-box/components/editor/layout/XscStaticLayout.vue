@@ -99,7 +99,6 @@ export default {
       document.removeEventListener('mousemove', this.changeSizeMousemove)
     },
     keydown() {
-      event.preventDefault()
       event.stopPropagation()
       if(event.keyCode===16){
         this.shiftKey = true
@@ -126,13 +125,11 @@ export default {
       }
     },
     itemClick() {
-      event.preventDefault()
       event.stopPropagation()
     },
     itemMousedown(item) {
       const mouseEvent = {
         0: () => {
-          event.preventDefault()
           event.stopPropagation()
           if (!this.view) {
             this.$emit('change',item)

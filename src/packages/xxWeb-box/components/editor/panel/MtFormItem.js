@@ -34,13 +34,7 @@ export default {
                     )
                 }
                 case 'text': {
-                    return (
-                        <Input value={modelObj[fItem.key]} onChange={$event => {
-                            debugger
-                            modelObj[fItem.key] = $event
-
-                        }} size="mini"/>
-                    )
+                    return (<Input value={modelObj[fItem.key]} onInput={$event => {modelObj[fItem.key] = $event}} size="mini"/>)
                 }
                 case 'color': {
                     return null
@@ -94,7 +88,6 @@ export default {
 
         const {fItem, panel, controlledObj} = context.props
         const modelObj = getModelProp(panel.key, controlledObj,fItem.key)
-        const item = renderItem(fItem, modelObj)
-        return (item)
+        return renderItem(fItem, modelObj)
     }
 }
