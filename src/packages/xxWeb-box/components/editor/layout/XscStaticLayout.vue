@@ -39,11 +39,18 @@ export default {
     view: {
       type: Boolean,
       default: true
+    },
+    activeItem:{
+      type:Object,
+      default:null
     }
+  },
+  model:{
+    prop:'activeItem',
+    event:'change'
   },
   data() {
     return {
-      activeItem: null, // 活动的节点
       selectedItems:[],
       startDrag: false,
       dragItem: null,
@@ -128,7 +135,7 @@ export default {
           event.preventDefault()
           event.stopPropagation()
           if (!this.view) {
-            this.activeItem = item
+            this.$emit('change',item)
             if(this.shiftKey){
               this.selectedItems.push(item)
             }else{
@@ -187,9 +194,9 @@ export default {
         event.preventDefault()
         event.stopPropagation()
         this.$emit('drop')
-        this.activeItem = this.charts[this.charts.length - 1]
-        this.selectedItems=[this.activeItem]
-        this.$emit('itemActive')
+        let activeItem = this.charts[this.charts.length - 1]
+        this.$emit('change',activeItem)
+        this.selectedItems=[activeItem]
       }
     },
     dragover() {
@@ -200,14 +207,14 @@ export default {
     },
     canvasClick() {
       if (!this.view) {
-        this.activeItem = {
+        const activeItem = {
           type: 'dom',
           chart: 'canvas',
           config: {
             options: this.options
           }
         }
-        this.$emit('itemActive')
+        this.$emit('change',activeItem)
       }
     },
     contextmenu(item) {

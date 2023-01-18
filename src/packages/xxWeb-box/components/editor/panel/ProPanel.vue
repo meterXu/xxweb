@@ -1,6 +1,6 @@
 <template>
-  <Tabs class="pro-panel">
-    <TabPane v-for="(tab,index) in activeOptions.config" type="card" :key="index">
+  <Tabs class="pro-panel" type="border-card">
+    <TabPane v-for="(tab,index) in config" :key="index">
       <span slot="label">
         <i :class="tab.icon"></i>
         {{tab.type}}
@@ -14,17 +14,19 @@ import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs,TabPane,Form,FormItem} from 'element-ui'
 export default {
   name: "ProPanel",
-  props:['options'],
+  props:{
+    controlledObj:{
+      type:Object,
+      default:null
+    },
+    config:{
+      type:Array,
+      default: []
+    }
+  },
   components:{
     Tabs,
     TabPane
-  },
-  data(){
-    return {
-      activeOptions:{
-        config:[]
-      }
-    }
   }
 }
 </script>
