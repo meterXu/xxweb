@@ -31,14 +31,10 @@ const normalRoutes =  [
                 component: ()=>import('../views/Page/Dashboard'),
             },
             {
-                path: '/page/xxWebBox',
-                name: 'XXWebBox',
-                component: ()=>import('../views/Page/XXWebBox'),
-            },
-            {
-                path: '/page/login',
-                name: 'PageLogin',
-                component: ()=>import('../views/Page/PageLogin'),
+                path: '/page/itemList/:type',
+                name: 'ItemList',
+                component:()=>import('../views/Page/ItemList'),
+                props: true
             },
             {
                 path: '/page/comDetail/:type/:title',
@@ -74,11 +70,6 @@ const normalRoutes =  [
                         icon: 'el-icon-data-analysis'
                     }
                 }]
-            },
-            {
-                path: '/page/error',
-                name: 'ErrorList',
-                component:()=>import('../views/Page/ErrorList'),
             },
             {
                 path: '/page/test',

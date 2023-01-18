@@ -1,6 +1,6 @@
 <template>
   <ul class="box-list">
-    <li v-for="(item,index) in xxWebBoxList" :key="item.index">
+    <li v-for="(item,index) in itemList" :key="index">
       <Card class="box-card">
         <div class="image" :style="{'backgroundImage':'url('+item.cover+')'} "/>
         <div class="box-item-text">
@@ -21,22 +21,14 @@
 
 <script>
 import {Card,Button} from 'element-ui'
+import data from '@/assets/data'
 export default {
   name: "XXWebBox",
+  props:['type'],
   components:{Card,Button},
   data(){
     return {
-      xxWebBoxList:[
-        {title:"element",cover:require('../../assets/imgs/xxWebBox/element.png'),desc:'design by <a href="">element</a>',path:'/page/comDetail/xxWebBox/element'},
-        {title:"jeecg",cover:require('../../assets/imgs/xxWebBox/jeecg.png'),desc:'design by <a href="">jeecg</a>',path:'/page/comDetail/xxWebBox/jeecg'},
-        {title:"vue-admin",cover:require('../../assets/imgs/xxWebBox/vue-admin.png'),desc:'design by <a href="">vue-admin</a>',path:'/page/comDetail/xxWebBox/vue-admin'},
-        {title:"v2board",cover:require('../../assets/imgs/xxWebBox/v2board.png'),desc:'design by <a href="">v2board</a>',path:'/page/comDetail/xxWebBox/v2board'},
-        {title:"thunder",cover:require('../../assets/imgs/xxWebBox/thunder.png'),desc:'design by <a href="">thunder</a>',path:'/page/comDetail/xxWebBox/thunder'},
-        // {title:"Lux",cover:require('../../assets/imgs/xxWebBox/Lux.png'),desc:'design by <a href="">Lux</a>'},
-        // {title:"Lux_dark",cover:require('../../assets/imgs/xxWebBox/Lux_dark.png'),desc:'design by <a href="">Lux_dark</a>'},
-        {title:"nitro",cover:require('../../assets/imgs/xxWebBox/nitro.png'),desc:'design by <a href="">nitro</a>',path:'/page/comDetail/xxWebBox/nitro'},
-        // {title:"Octavia",cover:require('../../assets/imgs/xxWebBox/Octavia.png'),desc:'design by <a href="">Octavia</a>'}
-      ]
+      itemList:data[this.type]
     }
   },
   methods:{

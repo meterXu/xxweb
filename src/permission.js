@@ -7,24 +7,31 @@ export default [
     },
     children: [
         {
-            path: '/page/xxWebBox',
+            path: '/page/itemList/xxWebBox',
             meta: {
                 title: 'xxWebBox',
                 icon: 'el-icon-box'
             }
         },
         {
-            path: '/page/login',
+            path: '/page/itemList/login',
             meta: {
                 title: 'login',
                 icon: 'el-icon-user'
             }
         },
         {
-            path: '/page/error',
+            path: '/page/itemList/error',
             meta: {
                 title: 'error',
                 icon: 'el-icon-circle-close'
+            }
+        },
+        {
+            path: '/page/itemList/draw',
+            meta: {
+                title: 'editor',
+                icon: 'el-icon-crop'
             }
         }
     ]

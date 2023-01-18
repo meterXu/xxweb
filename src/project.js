@@ -4,7 +4,7 @@ const project = {
         ssoApi:process.env.VUE_APP_ssoApi
     },
     redirect: {
-        index: '/page/xxWebBox',
+        index: '/page/itemList/xxWebBox',
         login: '/login/1',
         "404": '/error/1',
         '403':'/error/5'
