@@ -4,7 +4,7 @@
 
 ```html
 <template>
-    <div style="display:flex;flex:1;width: 100%;height: 600px">
+    <div style="width: 100%;height: 600px">
         <MtView :config="config">
             <template v-slot="{scale,view}">
                 <div style="background-color: #fff;width: 800px;height: 600px;position: relative">

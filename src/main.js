@@ -14,7 +14,10 @@ import {JeecgLogin,
   NoAuthority2,
   Error,
   DarkMode1,
-  MtView} from './packages/xxWeb-box'
+  MtView,
+  XscStaticLayout,
+  ProPanel
+} from './packages/xxWeb-box'
 import router from './router';
 import DemoBlock from "@/views/doc/DemoBlock";
 import elementUI from 'element-ui'
@@ -38,7 +41,10 @@ const components = [JeecgLogin,
   NoAuthority2,
   Error,
   DarkMode1,
-  MtView]
+  MtView,
+  XscStaticLayout,
+  ProPanel
+]
 components.forEach(c=>{
   Vue.use(c)
 })

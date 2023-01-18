@@ -1,26 +1,33 @@
 <template>
   <div class="editor">
-    <MtView @topAlign="topAlign" :config="config" :lines="lines">
-      <template v-slot="{scale,view}">
-        <XscStaticLayout ref="xsc-static-layout" :options="options" :charts="charts" :scale="scale" :view="view">
-          <template v-slot="{view,item}">
-            <VueDrawXs :view="view" :item="item"></VueDrawXs>
-          </template>
-        </XscStaticLayout>
-      </template>
-    </MtView>
+    <div style="flex: 1;height: 100%;overflow: hidden">
+      <MtView @topAlign="topAlign" :config="config" :lines="lines">
+        <template v-slot="{scale,view}">
+          <XscStaticLayout ref="xsc-static-layout" :options="options" :charts="charts" :scale="scale" :view="view">
+            <template v-slot="{view,item}">
+              <VueDrawXs :view="view" :item="item"></VueDrawXs>
+            </template>
+          </XscStaticLayout>
+        </template>
+      </MtView>
+    </div>
+    <div style="width: 250px;height: 100%">
+      xxx
+      <ProPanel></ProPanel>
+    </div>
   </div>
 </template>
 
 <script>
-import {MtView,XscStaticLayout} from "../../packages/xxWeb-box";
+import {MtView,XscStaticLayout,ProPanel} from "../../packages/xxWeb-box";
 import VueDrawXs from "../../packages/vue-draw-xs/Index";
 export default {
   name: "Editor",
   components:{
     MtView,
     XscStaticLayout,
-    VueDrawXs
+    VueDrawXs,
+    ProPanel
   },
   data(){
     return {
