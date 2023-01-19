@@ -51,7 +51,7 @@ export default {
                 case 'select': {
                     return (
                         <Select size="small" value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                            {fItem.data.map(item=><Option value={item.value}>{item.text}</Option>)}
+                            {fItem.data.map(item=><Option label={item.text} value={item.value}>{item.text}</Option>)}
                         </Select>
                     )
                 }
@@ -62,8 +62,7 @@ export default {
                     return (
                         <RadioGroup value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
                             {fItem.data.map(item=><Radio label={item.value}>
-                                <Icon type={item.icon}></Icon>
-                                <span>{item.text}</span>
+                                {item.text}
                             </Radio>)}
                         </RadioGroup>
                     )

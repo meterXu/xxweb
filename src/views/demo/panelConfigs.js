@@ -8,10 +8,10 @@ export default {
                     key: 'config.options',
                     name: '选项',
                     sub: [
-                        {key: 'config.options.text.content', name: '文字', type: 'text'},
+                        {key: 'config.options.show', name: '显示', type: 'boolean'},
+                        {key: 'config.options.text.content', name: '内容', type: 'text'},
                         {key: 'config.options.text.fontSize', name: '大小', type: 'number'},
                         {key: 'config.options.text.fontWeight', name: '粗细', type: 'select', data: [{text: '正常', value: 'normal'}, {text: '加粗', value: 'bold'}, {text: '细化', value: 'lighter'}]},
-                        {key: 'config.options.text.fontFamily', name: '字体', type: 'select', data: [{text: '微软雅黑', value: '微软雅黑'}, {text: '黑体', value: '黑体'}]},
                         {key: 'config.options.text.color', name: '颜色', type: 'color'},
                         {key: 'config.options.background.color', name: '背景色', type: 'color'},
                         {key: 'config.options.boxSpace.lineHeight', name: '行高', type: 'number'},

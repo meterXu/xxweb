@@ -38,7 +38,9 @@ export default {
     },
     config:{
       type:Array,
-      default: []
+      default(){
+        return []
+      }
     }
   },
   components:{
@@ -54,6 +56,17 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
+.pro-panel{
+  /deep/ .el-form-item__label{
+    font-size: 12px;
+    line-height: 30px;
+  }
+  /deep/ .el-form-item__content{
+    line-height: 30px;
+  }
+  /deep/ .el-form-item{
+    margin-bottom: 8px;
+  }
+}
 </style>
