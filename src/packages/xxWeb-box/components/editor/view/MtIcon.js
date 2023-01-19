@@ -26,6 +26,54 @@ const DoGps = {
     }
 }
 
+const LeftAlign = {
+    render(h,context){
+        const {size} = context.props;
+        return (
+            <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><rect x="8" y="7" width="24" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="8" y="21" width="32" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="8" y="35" width="18" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect></svg>
+        )
+    }
+}
+const TopAlign = {
+    render(h,context){
+        const {size} = context.props;
+        return (
+            <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><rect x="7" y="8" width="6" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="21" y="8" width="6" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="35" y="8" width="6" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect></svg>
+        )
+    }
+}
+const RightAlign = {
+    render(h,context){
+        const {size} = context.props;
+        return (
+            <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><rect x="16" y="7" width="24" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="8" y="21" width="32" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="22" y="35" width="18" height="6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect></svg>
+        )
+    }
+}
+const BottomAlign = {
+    render(h,context){
+        const {size} = context.props;
+        return (
+            <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><rect x="7" y="16" width="6" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="21" y="8" width="6" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><rect x="35" y="22" width="6" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect></svg>
+        )
+    }
+}
+const VerticallyAlign = {
+    render(h,context){
+        const {size} = context.props;
+        return (
+            <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path d="M6 7H42" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><rect x="16" y="16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M6 41H42" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        )
+    }
+}
+const HorizontallyAlign = {
+    render(h,context){
+        const {size} = context.props;
+        return (
+            <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><rect x="16" y="16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></rect><path d="M5 40L5 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M43 40L43 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        )
+    }
+}
 export default {
     name:'MtIcon',
     functional:true,
@@ -35,7 +83,13 @@ export default {
         const icons = {
             DoOneToOne,
             DoOverallReduction,
-            DoGps
+            DoGps,
+            LeftAlign,
+            TopAlign,
+            RightAlign,
+            BottomAlign,
+            VerticallyAlign,
+            HorizontallyAlign
         }
         return h('span',{
             class:['mt-icon',staticClass],

@@ -152,6 +152,7 @@ export default {
           this.contextmenu(item)
         }
       }
+      console.log(this.selectedItems)
       mouseEvent[event.button]();
     },
     itemMousemove(event) {
@@ -203,6 +204,7 @@ export default {
       }
     },
     canvasClick() {
+      console.log(this.selectedItems)
       if (!this.view) {
         const activeItem = {
           type: 'dom',
@@ -245,17 +247,33 @@ export default {
         return this.selectedItems.findIndex(c=>c.id===item.id)>-1? ['mt_item','mt_item_active','dragging']: ['mt_item','mt_item_base']
       }
     },
-    topAlign(){
-
-    },
-    bottomAlign(){
-
-    },
     leftAlign(){
-
+      console.log('left')
+      console.log(this.selectedItems)
+      // let xArr = []
+      // let yArr = []
+      // this.selectedItems.forEach(item=>{
+      //   xArr.push({
+      //     x:item.config.box.x,
+      //     width:item.config.box.width
+      //   })
+      //   yArr.push({
+      //     y:item.config.box.y,
+      //     height:item.config.box.height
+      //   })
+      // })
+      let Xmax = Math.max.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
+      let Xmin = Math.min.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
+      // config
     },
     rightAlign(){
-
+      console.log('right')
+    },
+    topAlign(){
+      console.log('top')
+    },
+    bottomAlign(){
+      console.log('bottom')
     }
 
   },

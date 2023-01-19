@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <div style="flex: 1;height: 100%;overflow: hidden">
-      <MtView @topAlign="topAlign" :config="config" :lines="lines">
+      <MtView @viewAlign="viewAlign" :config="config" :lines="lines">
         <template v-slot="{scale,view}">
           <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :options="options" :charts="charts" :scale="scale" :view="view">
             <template v-slot="{view,item}">
@@ -1100,8 +1100,27 @@ export default {
     }
   },
   methods:{
-    topAlign(){
-      this.$emit('xsc-static-layout').topAlign()
+    viewAlign(type){
+      switch (type) {
+        case 'left':
+          console.log(this.$refs['xsc-static-layout'])
+            this.$nextTick(()=>{
+              this.$refs['xsc-static-layout'].leftAlign();
+            })
+          break;
+        case 'right':
+          this.$refs['xsc-static-layout'].rightAlign();
+          break;
+        case 'top':
+          this.$refs['xsc-static-layout'].topAlign();
+          break;
+        case 'bottom':
+          this.$refs['xsc-static-layout'].bottomAlign();
+          break;
+        default:
+          break;
+      }
+      // this.$emit('xsc-static-layout').topAlign()
     }
   }
 }

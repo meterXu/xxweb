@@ -5,6 +5,14 @@
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
+      <div class="align-btn">
+        <MtIcon icon="LeftAlign" :size="16" class="align-icon" title="左对齐" @click="clickAlign('left')"></MtIcon>
+        <MtIcon icon="RightAlign" :size="16" class="align-icon" title="右对齐" @click="clickAlign('right')"></MtIcon>
+        <MtIcon icon="TopAlign" :size="16" class="align-icon" title="上对齐" @click="clickAlign('top')"></MtIcon>
+        <MtIcon icon="BottomAlign" :size="16" class="align-icon" title="下对齐" @click="clickAlign('bottom')"></MtIcon>
+        <MtIcon icon="VerticallyAlign" :size="16" class="align-icon" title="垂直对齐" @click="clickAlign('vertically')"></MtIcon>
+        <MtIcon icon="HorizontallyAlign" :size="16" class="align-icon" title="水平对齐" @click="clickAlign('horizontally')"></MtIcon>
+      </div>
       <div ref="mtScale-content" class="mtScale-content" :style="mtScaleContentStyle">
         <div ref="mtScale-view" @dragstart="()=>{return false}" @mousedown="canvasMousedown" class="mtScale-view" :style="mtScaleViewStyle">
           <slot :scale="scale" :view="false"/>
@@ -326,6 +334,9 @@ export default {
     navigateMove(location){
       this.location.x = -location.x
       this.location.y = -location.y
+    },
+    clickAlign(type) {
+      this.$emit('viewAlign',type)
     }
   },
   mounted() {

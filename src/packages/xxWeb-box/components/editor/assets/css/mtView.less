@@ -52,6 +52,25 @@
     width: 100%;
     height: 100%;
     position: relative;
+    .align-btn{
+      position: absolute;
+      width: 200px;
+      height: 16px;
+      border-color: #1B5CFF;
+      top: 10px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      z-index: 10000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .align-icon{
+        color: var(--ruler-scale-text);
+        cursor: pointer;
+      }
+    }
   }
   .mtScale-content{
     display: inline-block;
