@@ -5,15 +5,22 @@
         <i :class="tab.icon"></i>
         {{tab.type}}
       </span>
-      <Collapse>
+      <Collapse v-if="tab.con instanceof Array">
         <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi">
           <Form label-width="60px">
             <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
-              <MtFormItem :fItem="fItem" :panel="panel" :controlledObj="controlledObj"></MtFormItem>
+              <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
             </FormItem>
           </Form>
         </CollapseItem>
       </Collapse>
+      <template v-else>
+        <Form label-width="60px">
+          <FormItem v-for="(fItem,fi) in tab.con.sub" :key="fi" :label="fItem.name">
+            <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+          </FormItem>
+        </Form>
+      </template>
     </TabPane>
   </Tabs>
 </template>

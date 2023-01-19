@@ -20,6 +20,8 @@
 <script>
 import {MtView,XscStaticLayout,ProPanel} from "../../packages/xxWeb-box";
 import VueDrawXs from "../../packages/vue-draw-xs/Index";
+import panelConfigs from "@/views/demo/panelConfigs";
+import {get} from 'lodash'
 export default {
   name: "Editor",
   components:{
@@ -1087,94 +1089,13 @@ export default {
           }
         }
       ],
-      activeItem:{
-        "id": 1673490800977,
-        "type": "dom",
-        "chart": "text",
-        "config": {
-          "box": {
-            "width": 417,
-            "height": 38,
-            "x": 766,
-            "y": 10,
-            "zIndex": 100
-          },
-          "type": "text",
-          "theme": "dark",
-          "options": {
-            "text": {
-              "fontFamily": "智慧城市",
-              "content": "智慧城市",
-              "fontSize": 30,
-              "color": null,
-              "fontWeight": "normal"
-            },
-            "boxSpace": {
-              "lineHeight": 40,
-              "textAlign": "center"
-            },
-            "background": {
-              "color": "transparent"
-            },
-            "border": {
-              "width": 0,
-              "style": "solid",
-              "color": "transparent"
-            }
-          }
-        }
-      },
-      panelConfig:[
-      {
-        type: '文字',
-        icon:'el-icon-s-operation',
-        con: [
-          {
-            key: 'box',
-            name: '大小及坐标',
-            sub: [
-              {key: 'config.box.width', name: '宽度', type: 'number'},
-              {key: 'config.box.height', name: '高度', type: 'number'},
-              {key: 'config.box.x', name: 'x', type: 'number'},
-              {key: 'config.box.y', name: 'y', type: 'number'}
-            ]
-          },
-          {
-            key: 'options',
-            name: '选项',
-            sub: [
-              {key: 'config.options.text.fontFamily', name: '字体', type: 'select',
-                data: [
-                  {text: '微软雅黑', value: '微软雅黑'},
-                  {text: '黑体', value: '黑体'}]},
-              {key: 'config.options.text/content', name: '内容', type: 'text'},
-              {key: 'config.options.text/fontSize', name: '大小', type: 'number'},
-              {key: 'config.options.text/fontWeight',
-                name: '粗细',
-                type: 'select',
-                data: [
-                  {text: '正常', value: 'normal'},
-                  {text: '加粗', value: 'bold'},
-                  {text: '细化', value: 'lighter'}
-                ]
-              },
-              {key: 'config.options.text.color', name: '颜色', type: 'color'},
-              {key: 'config.options.text.lineHeight', name: '行高', type: 'number'},
-              {key: 'config.options.text.textAlign',
-                name: '对其方式',
-                type: 'select',
-                data: [
-                  {text: '居左对齐', value: 'left'},
-                  {text: '居中对齐', value: 'center'},
-                  {text: '居右对齐', value: 'right'}]
-              },
-              {key: 'config.options.border.width', name: '边框粗细', type: 'number'},
-              {key: 'config.options.border.color', name: '边框颜色', type: 'color'}
-            ]
-          }
-        ]
-      }
-      ]
+      activeItem:null,
+      panelConfig:null
+    }
+  },
+  watch:{
+    activeItem(nv){
+      this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
     }
   },
   methods:{
