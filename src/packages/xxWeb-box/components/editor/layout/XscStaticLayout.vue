@@ -43,6 +43,10 @@ export default {
     activeItem:{
       type:Object,
       default:null
+    },
+    alignment:{
+      type: String,
+      default: null
     }
   },
   model:{
@@ -68,6 +72,30 @@ export default {
         this.$nextTick(() => {
           this.$emit('loaded')
         })
+      }
+    },
+    alignment: {
+      immediate: true,
+      handler(nv,ov) {
+        console.log(nv)
+        if(this.selectedItems.length>0) {
+          switch (nv) {
+            case 'left':
+              this.leftAlign();
+              break;
+            case 'right':
+              this.rightAlign();
+              break;
+            case 'top':
+              this.topAlign();
+              break;
+            case 'bottom':
+              this.bottomAlign();
+              break;
+            default:
+              break;
+          }
+        }
       }
     }
   },
@@ -204,7 +232,6 @@ export default {
       }
     },
     canvasClick() {
-      console.log(this.selectedItems)
       if (!this.view) {
         const activeItem = {
           type: 'dom',
@@ -249,21 +276,12 @@ export default {
     },
     leftAlign(){
       console.log('left')
-      console.log(this.selectedItems)
-      // let xArr = []
-      // let yArr = []
-      // this.selectedItems.forEach(item=>{
-      //   xArr.push({
-      //     x:item.config.box.x,
-      //     width:item.config.box.width
-      //   })
-      //   yArr.push({
-      //     y:item.config.box.y,
-      //     height:item.config.box.height
-      //   })
-      // })
-      let Xmax = Math.max.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
+      // let Xmax = Math.max.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
       let Xmin = Math.min.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
+      this.selectedItems.forEach(item=>{
+        item.config.box.x=Xmin
+      })
+      this.$emit('resetAlignment')
       // config
     },
     rightAlign(){
