@@ -12,7 +12,7 @@ export const login =[
     {title:"TreeLogin",cover:require('../imgs/login/TreeLogin.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/TreeLogin'},
     {title:"WatermelonLogin",cover:require('../imgs/login/WatermelonLogin.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/WatermelonLogin'},
     {title:"PhylumLogin",cover:require('../imgs/login/PhylumLogin.png'),desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/login/PhylumLogin'},
-    {title:"WDPLogin",cover:require('../imgs/login/PhylumLogin.png'),desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/login/WDPLogin'},
+    {title:"WDPLogin",cover:require('../imgs/login/WDPLogin.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/WDPLogin'},
 ]
 
 export const xxWebBox=[
