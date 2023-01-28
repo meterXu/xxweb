@@ -1,4 +1,4 @@
-### proPanel
+### ProPanel
 
 :::demo
 
