@@ -3,7 +3,7 @@
     <div style="flex: 1;height: 100%;overflow: hidden">
       <MtView @viewAlign="viewAlign" :config="config" :lines="lines">
         <template v-slot="{scale,view}">
-          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :options="options" :charts="charts" :scale="scale" :view="view">
+          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :options="options" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
             <template v-slot="{view,item}">
               <VueDrawXs :view="view" :item="item"></VueDrawXs>
             </template>
@@ -1101,26 +1101,26 @@ export default {
   },
   methods:{
     viewAlign(type){
-      switch (type) {
-        case 'left':
-          console.log(this.$refs['xsc-static-layout'])
-            this.$nextTick(()=>{
-              this.$refs['xsc-static-layout'].leftAlign();
-            })
-          break;
-        case 'right':
-          this.$refs['xsc-static-layout'].rightAlign();
-          break;
-        case 'top':
-          this.$refs['xsc-static-layout'].topAlign();
-          break;
-        case 'bottom':
-          this.$refs['xsc-static-layout'].bottomAlign();
-          break;
-        default:
-          break;
-      }
-      // this.$emit('xsc-static-layout').topAlign()
+      this.alignment = type
+      // switch (type) {
+      //   case 'left':
+      //     this.$refs['xsc-static-layout'].leftAlign();
+      //     break;
+      //   case 'right':
+      //     this.$refs['xsc-static-layout'].rightAlign();
+      //     break;
+      //   case 'top':
+      //     this.$refs['xsc-static-layout'].topAlign();
+      //     break;
+      //   case 'bottom':
+      //     this.$refs['xsc-static-layout'].bottomAlign();
+      //     break;
+      //   default:
+      //     break;
+      // }
+    },
+    resetAlignment() {
+      this.alignment=null
     }
   }
 }
