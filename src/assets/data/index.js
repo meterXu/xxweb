@@ -22,7 +22,7 @@ export const xxWebBox=[
     {title:"v2board",cover:require('../imgs/xxWebBox/v2board.png'),desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/v2board'},
     {title:"thunder",cover:require('../imgs/xxWebBox/thunder.png'),desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/thunder'},
     {title:"nitro",cover:require('../imgs/xxWebBox/nitro.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/xxWebBox/nitro'},
-    {title:"nitro",cover:require('../imgs/xxWebBox/wdp.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/xxWebBox/wdp'}
+    {title:"wdp",cover:require('../imgs/xxWebBox/wdp.png'),desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/xxWebBox/wdp'}
 ]
 
 export const editor=[

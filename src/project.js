@@ -10,7 +10,7 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'element',
+        theme: 'wdp',
         color: '#1890FF',
         layout: 'sidemenu',
         multipage: true,
