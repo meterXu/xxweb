@@ -6,7 +6,7 @@
         {{tab.type}}
       </span>
       <Collapse v-if="tab.con instanceof Array">
-        <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi">
+        <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
           <Form label-width="60px">
             <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
               <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
