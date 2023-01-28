@@ -4,7 +4,7 @@
       <div class="container">
         <slot v-bind:config="config">
           <Row style="height: 100%">
-            <Col style="height: 100%" :xl="16" :md="14" :sm="12" :xs="0">
+            <Col style="height: 100%" :span="16">
               <div class="left">
                 <div class="bg-header">
                   <img :src="config.logo" class="logo" alt="logo">
@@ -13,7 +13,7 @@
                 <img class="bg-img" src="../../assets/imgs/login3/slogan.svg" alt="" />
               </div>
             </Col>
-            <Col style="height: 100%" :xl="8" :md="10" :sm="12" :xs="24">
+            <Col style="height: 100%" :span="8">
               <div class="main">
                 <div class="login-header">
 <!--                  <img v-if="config.logo" :src="config.logo" class="logo" alt="logo">-->
