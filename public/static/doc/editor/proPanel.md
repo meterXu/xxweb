@@ -29,7 +29,6 @@ export default {
                     "type": "text",
                     "theme": "dark",
                     "options": {
-                        "show":true,
                         "text": {
                             "fontFamily": "微软雅黑",
                             "content": "智慧城市",
