@@ -10,7 +10,7 @@
     </WatermelonLogin>
     <PhylumLogin v-if="type==5" :config="config" :rules="rules" v-model="form" @login="login">
     </PhylumLogin>
-    <WDPLogin v-if="type==6" :config="config" :rules="rules" v-model="form" @login="login">
+    <WDPLogin v-if="type==6" :config="config" @login="login">
     </WDPLogin>
   </div>
 </template>
