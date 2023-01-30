@@ -5,7 +5,7 @@
         <slot v-bind:config="config">
           <Row style="height: 100%">
             <Col style="height: 100%" :span="16">
-             <slot v-slot:login-container-left>
+             <slot name="login-container-left">
                <div class="left">
                  <div class="bg-header">
                    <img :src="config.logo" class="logo" alt="logo">
@@ -16,7 +16,7 @@
              </slot>
             </Col>
             <Col style="height: 100%" :span="8">
-              <slot v-slot:login-container-right>
+              <slot name="login-container-right">
                 <div class="main">
                   <div class="login-header">
                     <span v-if="config.login" class="title">{{ config.login.title }}</span>
