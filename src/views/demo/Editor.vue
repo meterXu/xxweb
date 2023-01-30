@@ -1119,10 +1119,6 @@ export default {
     }
   },
   watch:{
-    // activeItem(nv){
-    //   console.log(nv)
-    //   this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
-    // }
     activeItem:{
       immediate: true,
       deep:true,
@@ -1143,22 +1139,6 @@ export default {
     },
     viewAlign(type){
       this.alignment = type
-      // switch (type) {
-      //   case 'left':
-      //     this.$refs['xsc-static-layout'].leftAlign();
-      //     break;
-      //   case 'right':
-      //     this.$refs['xsc-static-layout'].rightAlign();
-      //     break;
-      //   case 'top':
-      //     this.$refs['xsc-static-layout'].topAlign();
-      //     break;
-      //   case 'bottom':
-      //     this.$refs['xsc-static-layout'].bottomAlign();
-      //     break;
-      //   default:
-      //     break;
-      // }
     },
     resetAlignment() {
       this.alignment=null

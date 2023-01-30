@@ -76,7 +76,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input, Tree} from 'element-ui'
 import MtFormItem from './MtFormItem'
 import DynamicIcon from "../../common/DynamicIcon";
-import draggable from 'vuedraggable'
+// import draggable from 'vuedraggable'
 
 export default {
   name: "UIList",
@@ -96,8 +96,7 @@ export default {
     Collapse,
     CollapseItem,
     MtFormItem,
-    Tree,
-    draggable
+    Tree
   },
   watch:{
     uiList:{

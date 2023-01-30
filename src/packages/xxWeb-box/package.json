@@ -25,7 +25,6 @@
     "resize-detector": "^0.1.9",
     "screenfull": "^4.2.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.0.2",
-    "vuedraggable": "^2.24.3"
+    "vue-router": "^3.0.2"
   }
 }
