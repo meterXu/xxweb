@@ -3,7 +3,7 @@
     <div style="flex: 1;height: 100%;overflow: hidden">
       <MtView @viewAlign="viewAlign" :config="config" :lines="lines">
         <template v-slot="{scale,view}">
-          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :alignment="alignment" :options="options" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
+          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :activeId="activeId" :alignment="alignment" :options="options" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
             <template v-slot="{view,item}">
               <VueDrawXs :view="view" :item="item"></VueDrawXs>
             </template>
@@ -12,13 +12,18 @@
       </MtView>
     </div>
     <div style="width: 250px;height: 100%">
+      <UIList :uiList="uiList" @nodeChange="nodeChange">
+        <template v-slot:ui-custom-icon="scope">
+          <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
+        </template>
+      </UIList>
       <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>
     </div>
   </div>
 </template>
 
 <script>
-import {MtView,XscStaticLayout,ProPanel} from "../../packages/xxWeb-box";
+import {MtView,XscStaticLayout,ProPanel,UIList} from "../../packages/xxWeb-box";
 import VueDrawXs from "../../packages/vue-draw-xs/Index";
 import panelConfigs from "@/views/demo/panelConfigs";
 import {get} from 'lodash'
@@ -28,7 +33,8 @@ export default {
     MtView,
     XscStaticLayout,
     VueDrawXs,
-    ProPanel
+    ProPanel,
+    UIList
   },
   data(){
     return {
@@ -72,7 +78,9 @@ export default {
               "height": 300,
               "x": 71,
               "y": 363,
-              "zIndex": 101
+              "zIndex": 101,
+              "show":true,
+              "name": '仪表盘'
             },
             "theme": "chalk",
             "options": {
@@ -186,7 +194,9 @@ export default {
               "height": 300,
               "x": 1427,
               "y": 31,
-              "zIndex": 100
+              "zIndex": 101,
+              "show":true,
+              "name": '柱状图'
             },
             "theme": "chalk",
             "options": {
@@ -383,7 +393,9 @@ export default {
               "height": 300,
               "x": 1427,
               "y": 367,
-              "zIndex": 100
+              "zIndex": 102,
+              "show":true,
+              "name": '柱状图'
             },
             "theme": "chalk",
             "options": {
@@ -617,7 +629,9 @@ export default {
               "height": 300,
               "x": 73,
               "y": 703,
-              "zIndex": 100
+              "zIndex": 103,
+              "show":true,
+              "name": '饼图'
             },
             "theme": "chalk",
             "options": {
@@ -767,7 +781,9 @@ export default {
               "height": 300,
               "x": 1425,
               "y": 699,
-              "zIndex": 100
+              "zIndex": 104,
+              "show":true,
+              "name": '折线图'
             },
             "theme": "chalk",
             "options": {
@@ -916,7 +932,9 @@ export default {
               "height": 300,
               "x": 70,
               "y": 24,
-              "zIndex": 100
+              "zIndex": 105,
+              "show":true,
+              "name": '柱状图'
             },
             "theme": "chalk",
             "options": {
@@ -1061,12 +1079,13 @@ export default {
               "height": 38,
               "x": 766,
               "y": 10,
-              "zIndex": 100
+              "zIndex": 106,
+              "show":true,
+              "name": '文字'
             },
             "type": "text",
             "theme": "dark",
             "options": {
-              "show":true,
               "text": {
                 "fontFamily": "微软雅黑",
                 "content": "智慧城市",
@@ -1090,17 +1109,38 @@ export default {
           }
         }
       ],
-      activeItem:null,
+      activeItem:{},
       panelConfig:null,
-      alignment:null
+      alignment:null,
+      uiList: [],
+      pageList: [],
+      activeId: null,
+      zIndexArr: [],
     }
   },
   watch:{
-    activeItem(nv){
-      this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
+    // activeItem(nv){
+    //   console.log(nv)
+    //   this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
+    // }
+    activeItem:{
+      immediate: true,
+      deep:true,
+      handler(nv) {
+        this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
+        this.getUiList()
+      }
     }
+
   },
   methods:{
+    compare(property) {
+      return function (obj1, obj2) {
+        let val1 = obj1[property];
+        let val2 = obj2[property];
+        return val2 - val1;
+      }
+    },
     viewAlign(type){
       this.alignment = type
       // switch (type) {
@@ -1122,7 +1162,104 @@ export default {
     },
     resetAlignment() {
       this.alignment=null
+    },
+    getUiList() {
+      this.uiList=[]
+      this.zIndexArr=[]
+      this.uiList.push({
+        id:this.options.id,
+        name:this.options.name
+      })
+      let zIndexArr = []
+      let arr = []
+      this.charts.forEach(item=>{
+        arr.push({
+          name: item.config.box.name,
+          id: item.id,
+          zIndex: item.config.box.zIndex
+        })
+        zIndexArr.push({
+          id:item.id,
+          zIndex:item.config.box.zIndex
+        })
+      })
+      arr.sort(this.compare('zIndex'))
+      zIndexArr.sort(this.compare('zIndex'))
+      this.uiList[0].children = arr
+      this.zIndexArr.push({
+        id:this.options.id,
+        children: zIndexArr
+      })
+    },
+    nodeChange(data,type) {
+      switch (type) {
+        case 'active':
+          // 选中事件
+          this.activeId = data
+          break;
+        case 'show':
+          // 显隐事件
+          this.controlShow(data)
+          break;
+        case 'drag':
+          this.nodeSort(data)
+          break;
+        default:
+          break;
+      }
+    },
+    controlShow(id) {
+      if(this.options.id===id) {
+
+      }else {
+        this.charts.forEach(item=>{
+          if(item.id===id) {
+            item.config.box.show=!item.config.box.show
+          }
+        })
+      }
+    },
+    nodeSort(data) {
+      this.uiList.forEach(ui=>{
+        this.zIndexArr.forEach(zIndex=>{
+          if(ui.id===zIndex.id) {
+            ui.children.forEach((child,i)=>{
+              child.zIndex=zIndex.children[i].zIndex
+            })
+          }
+        })
+      })
+      this.pageList.forEach(page=>{
+        this.uiList.forEach(ui=>{
+          if(page.id===ui.id) {
+            page.children.forEach(pChild=>{
+              ui.children.forEach(uiChild=>{
+                if(pChild.id===uiChild.id) {
+                  pChild.config.box.zIndex=uiChild.zIndex
+                }
+              })
+            })
+          }
+        })
+      })
+    },
+    deleteNode(scpoe) {
+      this.pageList.forEach((item, index) => {
+        if(scpoe.node.parent.data.id===item.id) {
+          item.children.map((child,cIndex)=>{
+            if(child.id===scpoe.data.id) {
+              item.children.splice(cIndex, 1)
+            }
+          })
+        }
+      });
+      this.getUiList()
     }
+  },
+  mounted() {
+    this.pageList.push(this.options)
+    this.pageList[0].children=this.charts
+    this.getUiList()
   }
 }
 </script>
