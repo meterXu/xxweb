@@ -13,7 +13,7 @@
          @click="itemClick(item)"
          @mousedown="itemMousedown(item)"
          @dragstart="()=>{return false}">
-      <slot :view="view" :item="item"></slot>
+      <slot v-if="item.config.box.show" :view="view" :item="item"></slot>
       <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item)">
             <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>
@@ -47,7 +47,8 @@ export default {
     alignment:{
       type: String,
       default: null
-    }
+    },
+    activeId:Number
   },
   model:{
     prop:'activeItem',
@@ -77,7 +78,6 @@ export default {
     alignment: {
       immediate: true,
       handler(nv,ov) {
-        console.log(nv)
         if(this.selectedItems.length>0) {
           switch (nv) {
             case 'left':
@@ -95,6 +95,25 @@ export default {
             default:
               break;
           }
+        }
+      }
+    },
+    activeId: {
+      immediate: true,
+      handler(nv) {
+        if(nv) {
+          let result = false
+          this.charts.forEach(item=>{
+            if(item.id===nv) {
+              this.$emit('change',item)
+              this.selectedItems = [item]
+              result = true
+            }
+            if(!result) {
+              this.$emit('change',{})
+              this.selectedItems = []
+            }
+          })
         }
       }
     }

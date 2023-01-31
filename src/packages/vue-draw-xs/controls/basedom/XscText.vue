@@ -1,5 +1,5 @@
 <template>
-    <div v-show="options.show" class="d_box_style" :style="boxStyle">
+    <div class="d_box_style" :style="boxStyle">
       <span :style="textStyle">{{options.text.content}}</span>
     </div>
 </template>
