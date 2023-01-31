@@ -78,7 +78,6 @@
 <script>
 import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input, Tree} from 'element-ui'
-import MtFormItem from './MtFormItem'
 import DynamicIcon from "../../common/DynamicIcon";
 // import draggable from 'vuedraggable'
 
@@ -103,7 +102,6 @@ export default {
     FormItem,
     Collapse,
     CollapseItem,
-    MtFormItem,
     Tree
   },
   watch:{
@@ -112,6 +110,9 @@ export default {
       immediate: true,
       handler() {
         this.dataList = Object.assign([],this.uiList)
+        this.$nextTick(() => {
+          this.$refs['ui-tree'].setCurrentKey(this.activeId)
+        })
       }
     },
     activeId:{
