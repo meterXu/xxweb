@@ -12,7 +12,7 @@
       </MtView>
     </div>
     <div style="width: 250px;height: 100%">
-      <UIList :uiList="uiList" @nodeChange="nodeChange">
+      <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
         <template v-slot:ui-custom-icon="scope">
           <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
         </template>
@@ -1124,6 +1124,7 @@ export default {
       deep:true,
       handler(nv) {
         this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
+        this.activeId = nv.id
         this.getUiList()
       }
     }

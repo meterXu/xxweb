@@ -6,12 +6,15 @@
         UL列表
       </span>
       <Tree
+          ref="ui-tree"
           :data="dataList"
           :props="defaultProps"
           node-key="id"
           :indent="0"
           default-expand-all
+          :highlight-current="true"
           draggable
+          :current-node-key="activeId"
           :allow-drop="allowDrop"
           @node-drop="handleDrop"
       >
@@ -24,6 +27,7 @@
           </span>
         </span>
       </Tree>
+
       <!--      <Collapse v-for="(item,pi) in uiList" :key="pi">-->
       <!--        <CollapseItem :name="pi">-->
       <!--          <template slot="title">-->
@@ -84,6 +88,10 @@ export default {
     uiList: {
       type: Array,
       default: []
+    },
+    activeId:{
+      type: Number,
+      default: 0
     }
   },
   components: {
@@ -103,11 +111,17 @@ export default {
       deep:true,
       immediate: true,
       handler() {
+        this.dataList = Object.assign([],this.uiList)
+      }
+    },
+    activeId:{
+      immediate: true,
+      handler(nv) {
         this.$nextTick(() => {
-          this.dataList = this.uiList
+          this.$refs['ui-tree'].setCurrentKey(nv)
         })
       }
-    }
+    },
   },
   data() {
     return {
@@ -117,7 +131,7 @@ export default {
         children: 'children',
         label: 'name'
       },
-      dataList: []
+      dataList:[]
     };
   },
   computed: {
@@ -126,9 +140,7 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.dataList = this.uiList
-    })
+    this.dataList = Object.assign([],this.uiList)
   },
   methods: {
     // checkMove: function(e) {
@@ -141,7 +153,6 @@ export default {
     // },
     handleDrop(draggingNode, dropNode, dropType, ev) {
       this.$emit('nodeChange',this.dataList,'drag')
-      // this.getProjectVolumeTree();
     },
     allowDrop(draggingNode, dropNode, type) {
       if (draggingNode.data.id !== dropNode.data.id) {
