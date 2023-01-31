@@ -24,6 +24,9 @@
                 <template v-slot:side-user-tag-text>
                   <slot name="side-user-tag-text"></slot>
                 </template>
+                <template v-slot:side-bottom>
+                  <slot name="side-bottom"></slot>
+                </template>
               </SideMenu>
             </slot>
           </template>

@@ -28,6 +28,7 @@
           :isCollapse="isCollapse"
           :defaultActive="activeIndex">
       </DynamicMenu>
+      <slot name="side-bottom"></slot>
     </Aside>
   </Scrollbar>
 </template>
