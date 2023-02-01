@@ -52,9 +52,11 @@ export function getErrorText(status){
         case 403:
             return '拒绝访问'
         case 500:
-            return '后端异常'
+            return '服务异常'
         case 404:
            return '很抱歉，资源未找到'
+        case 503:
+            return '服务不可用'
         case 504:
            return '网络超时'
         case 401:
@@ -62,6 +64,6 @@ export function getErrorText(status){
         case 426:
             return '服务器拒绝使用当前协议执行请求'
         default:
-            return '未知'
+            return '未知错误'
     }
 }

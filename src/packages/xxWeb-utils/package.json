@@ -1,6 +1,6 @@
 {
-  "name": "xxweb-utils",
-  "version": "0.0.9",
+  "name": "@dpark/s2-xxweb-utils",
+  "version": "0.0.12",
   "description": "xxweb工具库",
   "main": "index.js",
   "scripts": {

@@ -8,7 +8,7 @@ export default {
     if (meta&&meta.icon) {
       if (typeof (meta.icon) === 'object'){
         if(meta.icon.hasOwnProperty('render')){
-          return h(meta.icon.render,{
+          return h(meta.icon,{
             class:type==='menu'?'el-icon-dog-icon':''
           })
         }else{
