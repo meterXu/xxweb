@@ -12,13 +12,24 @@
       </MtView>
     </div>
     <div style="width: 250px;height: 100%">
-      <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
-        <template v-slot:ui-custom-icon="scope">
-          <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
-        </template>
-      </UIList>
-      <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>
+      <div class="panel-right-ui">
+        <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
+          <template v-slot:ui-custom-icon="scope">
+            <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
+          </template>
+        </UIList>
+      </div>
+      <div class="panel-right-pro">
+        <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>
+      </div>
     </div>
+<!--      <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">-->
+<!--        <template v-slot:ui-custom-icon="scope">-->
+<!--          <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>-->
+<!--        </template>-->
+<!--      </UIList>-->
+<!--      <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>-->
+<!--    </div>-->
   </div>
 </template>
 
@@ -1259,5 +1270,13 @@ html,body,#app{
   right: 0;
   left: 1px;
   z-index: 99;
+}
+.panel-right-ui {
+  height: 30%;
+  /*overflow: hidden;*/
+  /*overflow-y: auto;*/
+}
+.panel-right-pro {
+  height: 70%;
 }
 </style>

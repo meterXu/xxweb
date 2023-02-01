@@ -1,6 +1,6 @@
 <template>
   <Tabs class="pro-panel" type="border-card" size="small">
-    <TabPane>
+    <TabPane style="height: 100%">
       <span slot="label">
 <!--        <i :class="item.icon"></i>-->
         UL列表
@@ -177,17 +177,16 @@ export default {
 
 <style lang="less" scoped>
 .pro-panel {
-  /deep/ .el-form-item__label {
-    font-size: 12px;
-    line-height: 30px;
+  height: 100%;
+  /deep/ .el-tabs__content {
+    height: 80%;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
-
-  /deep/ .el-form-item__content {
-    line-height: 30px;
-  }
-
-  /deep/ .el-form-item {
-    margin-bottom: 8px;
+  /deep/ .el-tabs__content::-webkit-scrollbar {
+    display: none;
   }
 }
 
