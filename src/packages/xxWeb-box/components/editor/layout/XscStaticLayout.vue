@@ -106,12 +106,16 @@ export default {
           this.charts.forEach(item=>{
             if(item.id===nv) {
               this.$emit('change',item)
-              this.selectedItems = [item]
+              if(!this.shiftKey) {
+                this.selectedItems = [item]
+              }
               result = true
             }
             if(!result) {
               this.$emit('change',{})
-              this.selectedItems = []
+              if(!this.shiftKey) {
+                this.selectedItems = []
+              }
             }
           })
         }
