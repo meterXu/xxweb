@@ -1,5 +1,5 @@
 <template>
-  <Tabs class="pro-panel" type="border-card" size="small">
+  <Tabs class="ui-list" type="border-card" size="small">
     <TabPane style="height: 100%">
       <span slot="label">
 <!--        <i :class="item.icon"></i>-->
@@ -176,7 +176,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.pro-panel {
+.ui-list {
   height: 100%;
   /deep/ .el-tabs__content {
     height: 80%;

@@ -58,6 +58,7 @@ export default {
 
 <style lang="less" scoped>
 .pro-panel{
+  height: 100%;
   /deep/ .el-form-item__label{
     font-size: 12px;
     line-height: 30px;
@@ -67,6 +68,16 @@ export default {
   }
   /deep/ .el-form-item{
     margin-bottom: 8px;
+  }
+  /deep/ .el-tabs__content {
+    height: 90%;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  /deep/ .el-tabs__content::-webkit-scrollbar {
+    display: none;
   }
 }
 </style>
