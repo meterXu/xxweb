@@ -237,14 +237,21 @@ export default {
         this.dragItem.height = parseInt((event.pageY + this.shift.y) / this.scale)
       }
     },
-    drop() {
+    drop(event) {
       if (!this.view) {
         event.preventDefault()
         event.stopPropagation()
-        this.$emit('drop')
-        let activeItem = this.charts[this.charts.length - 1]
-        this.$emit('change',activeItem)
-        this.selectedItems=[activeItem]
+        let clickBox = event.currentTarget.getBoundingClientRect()
+        let location = {
+          x:parseInt((event.clientX - clickBox.left)/this.scale),
+          y:parseInt((event.clientY - clickBox.top)/this.scale)
+        }
+        this.$emit('drop',location)
+        this.$nextTick(()=>{
+          let activeItem = this.charts[this.charts.length - 1]
+          this.$emit('change',activeItem)
+          this.selectedItems=[activeItem]
+        })
       }
     },
     dragover() {
