@@ -23,7 +23,7 @@ const normalRoutes =  [
         path: '/',
         name: 'Index',
         component:()=>import('../views/Index'),
-        redirect:'/page/xxWebBox',
+        redirect:'/page/itemList/xxWebBox',
         children:[
             {
                 path:'/page/dashboard',

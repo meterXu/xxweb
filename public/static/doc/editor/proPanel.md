@@ -4,7 +4,7 @@
 
 ```html
 <template>
-    <div style="width: 250px;height: 100%">
+    <div style="width: 300px;height: 100%">
         <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>
     </div>
 </template>
@@ -34,6 +34,7 @@ export default {
                             "content": "智慧城市",
                             "fontSize": 30,
                             "color": null,
+                            "tips": [1,2,4],
                             "fontWeight": "normal"
                         },
                         "boxSpace": {
@@ -63,6 +64,8 @@ export default {
                             {key: 'config.box.name', name: '名称', type: 'text'},
                             {key: 'config.options.text.content', name: '内容', type: 'text'},
                             {key: 'config.options.text.fontSize', name: '大小', type: 'number'},
+                            {key: 'config.options.text.fontSize', name: '大小', type: 'slider'},
+                            {key: 'config.options.text.tips', name: '标签', type: 'checkbox',data:[{text: '🌧️', value: 1},{text: '🌞', value: 2},{text: '⚡️', value: 3}]},
                             {key: 'config.options.text.fontWeight', name: '粗细', type: 'select', data: [{text: '正常', value: 'normal'}, {text: '加粗', value: 'bold'}, {text: '细化', value: 'lighter'}]},
                             {key: 'config.options.text.color', name: '颜色', type: 'color'},
                             {key: 'config.options.background.color', name: '背景色', type: 'color'},
