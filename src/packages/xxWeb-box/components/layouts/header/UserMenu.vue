@@ -16,12 +16,12 @@
       </div>
       <div class="user-wrapper-username" v-if="!isCollapse">
         <Dropdown @command="handleCommand">
-        <span class="el-dropdown-link">
+        <span class="el-dropdown-link flex-middle">
           <i v-if="type==='text'" class="el-icon-user"></i>
           <slot name="side-user-userName" v-if="app.appConfig.config.head.user.username">
-            <span>管理员</span>
+            <span class="side-user-userName">管理员</span>
           </slot>
-          <i class="el-icon-arrow-down el-icon--right"></i>
+          <i style="line-height: 20px" class="el-icon-arrow-down el-icon--right"></i>
         </span>
           <DropdownMenu v-if="app.appConfig.config.head.user.menu.show" slot="dropdown">
             <slot name="side-user-dropdownMenuItem" :menu="app.appConfig.config.head.user.menu">

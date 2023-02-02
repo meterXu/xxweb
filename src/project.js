@@ -70,7 +70,7 @@ const project = {
             },
             hamburger:true,
             user: {
-                show: false,
+                show: true,
                 username: true,
                 tag:true,
                 menu: {
