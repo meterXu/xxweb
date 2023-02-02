@@ -18,9 +18,11 @@
         <Dropdown @command="handleCommand">
         <span class="el-dropdown-link flex-middle">
           <i v-if="type==='text'" class="el-icon-user"></i>
-          <slot name="side-user-userName" v-if="app.appConfig.config.head.user.username">
-            <span class="side-user-userName">管理员</span>
-          </slot>
+          <span class="side-user-userName" v-if="app.appConfig.config.head.user.username">
+            <slot name="side-user-userName">
+             管理员
+            </slot>
+          </span>
           <i style="line-height: 20px" class="el-icon-arrow-down el-icon--right"></i>
         </span>
           <DropdownMenu v-if="app.appConfig.config.head.user.menu.show" slot="dropdown">
