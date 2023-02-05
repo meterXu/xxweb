@@ -9,10 +9,10 @@ color:''
 }
 
     {key: 'config.options.title.textStyle', name: '标题风格', type: 'text-style',props:{
-    style:{key:'config.options.title.textStyle.fontStyle',name:'风格',type:'select',data:[]},
-    weight:{key:'config.options.title.textStyle.fontWeight',name:'粗细',type:'select',data:[]},
-    size:{key:'config.options.title.textStyle.fontSize',name:'大小',type:'select',data:[]},
-    color:{key:'config.options.title.textStyle.color',name:'颜色',type:'color'}
+        size:{key:'fontSize',name:'大小',type:'number',data:[]},
+        style:{key:'fontStyle',name:'风格',type:'select',data:[]},
+        weight:{key:'fontWeight',name:'粗细',type:'select',data:[]},
+        color:{key:'color',name:'颜色',type:'color'}
     }},
 
 
@@ -67,7 +67,7 @@ export default {
         case 'number': {
           return (
               <span>
-                <InputNumber value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></InputNumber> {fItem.unit}
+                <InputNumber controls-position="right" value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></InputNumber> {fItem.unit}
               </span>
           )
         }
@@ -128,8 +128,71 @@ export default {
               ></el-slider>
           )
         }
-        case 'text-style':{
+        case 'icon-drop':{
           return (null)
+        }
+        case 'text-style':{
+          let sizeRendered = null
+          let colorRendered = null
+          let weightRendered = null
+          let styleRendered = null
+
+          if(fItem.props.hasOwnProperty('size')){
+            sizeRendered = renderItem(fItem.props['size'],{
+              obj:modelPro.obj[modelPro.key],
+              key:fItem.props['size'].key
+            })
+          }
+          if(fItem.props.hasOwnProperty('color')){
+            colorRendered = renderItem(fItem.props['color'],{
+              obj:modelPro.obj[modelPro.key],
+              key:fItem.props['color'].key
+            })
+          }
+          if(fItem.props.hasOwnProperty('weight')){
+            weightRendered = renderItem(fItem.props['weight'],{
+              obj:modelPro.obj[modelPro.key],
+              key:fItem.props['weight'].key
+            })
+          }
+          if(fItem.props.hasOwnProperty('style')){
+            styleRendered = renderItem(fItem.props['style'],{
+              obj:modelPro.obj[modelPro.key],
+              key:fItem.props['style'].key
+            })
+          }
+          return (
+              <el-row>
+                {
+                  sizeRendered&&(
+                      <el-col span={6}>
+                        {sizeRendered}
+                      </el-col>
+                  )
+                }
+                {
+                  colorRendered&&(
+                      <el-col span={6}>
+                        {colorRendered}
+                      </el-col>
+                  )
+                }
+                {
+                  weightRendered&&(
+                      <el-col span={6}>
+                        {weightRendered}
+                      </el-col>
+                  )
+                }
+                {
+                  styleRendered&&(
+                      <el-col span={6}>
+                        {styleRendered}
+                      </el-col>
+                  )
+                }
+              </el-row>
+          )
         }
         case 'inner-array':{
           return (null)
@@ -137,7 +200,13 @@ export default {
         case 'img-dialog':{
           return (null)
         }
+        case 'img-select':{
+          return (null)
+        }
         case 'code-dialog': {
+          return (null)
+        }
+        case 'code': {
           return (null)
         }
         case 'div':{

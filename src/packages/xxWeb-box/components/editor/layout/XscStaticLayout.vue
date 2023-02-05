@@ -13,7 +13,7 @@
          @click="itemClick(item)"
          @mousedown="itemMousedown(item)"
          @dragstart="()=>{return false}">
-      <slot v-if="item.config.box.show" :view="view" :item="item"></slot>
+      <slot v-show="item.config.box.show" :view="view" :item="item"></slot>
       <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item)">
             <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>

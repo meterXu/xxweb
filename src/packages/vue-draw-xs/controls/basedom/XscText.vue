@@ -13,19 +13,12 @@ export default {
     theme: String
   },
   computed: {
-    colorPalette () {
-      if (this.theme) {
-        return this.themeData[this.theme || 'light'].colorPalette
-      } else {
-        return {}
-      }
-    },
     textStyle () {
       return {
-        'font-size': this.options.text.fontSize + 'px',
-        'font-family': this.options.text.fontFamily,
-        'font-weight': this.options.text.fontWeight,
-        'color': this.options.text.color||this.colorPalette.backgroundColor,
+        'font-size': this.options.text.textStyle.fontSize + 'px',
+        'font-style': this.options.text.textStyle.fontFamily,
+        'font-weight': this.options.text.textStyle.fontWeight,
+        'color': this.options.text.textStyle.color,
         'user-select':'none'
       }
     },
