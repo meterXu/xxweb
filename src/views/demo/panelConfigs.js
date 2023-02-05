@@ -11,7 +11,6 @@ export default {
                         {key: 'config.box.show', name: '显示', type: 'boolean'},
                         {key: 'config.box.name', name: '名称', type: 'text'},
                         {key: 'config.options.text.content', name: '内容', type: 'text'},
-                        {key:'config.options.text.textStyle.fontSize',name:'大小',type:'number'},
                         {key: 'config.options.text.textStyle', name: '内容风格', type: 'text-style',props:{
                                 size:{key:'fontSize',name:'大小',type:'number'},
                                 color:{key:'color',name:'颜色',type:'color'},

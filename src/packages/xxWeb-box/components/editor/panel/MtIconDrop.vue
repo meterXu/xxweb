@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="icon-drop">
     <el-dropdown @command="handleCommand">
     <span class="el-dropdown-link">
       {{value}}
@@ -26,5 +26,12 @@ export default {
 }
 </script>
 <style scoped>
+.icon-drop{
+  line-height: 22px;
+  padding:2px;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+}
 
 </style>
