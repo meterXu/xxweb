@@ -1,6 +1,27 @@
 <script>
 import {get} from "lodash";
 
+/*textStyle:{
+fontStyle:"",
+fontWeight:'',
+fontSize:12,
+color:''
+}
+
+    {key: 'config.options.title.textStyle', name: '标题风格', type: 'text-style',props:{
+    style:{key:'config.options.title.textStyle.fontStyle',name:'风格',type:'select',data:[]},
+    weight:{key:'config.options.title.textStyle.fontWeight',name:'粗细',type:'select',data:[]},
+    size:{key:'config.options.title.textStyle.fontSize',name:'大小',type:'select',data:[]},
+    color:{key:'config.options.title.textStyle.color',name:'颜色',type:'color'}
+    }},
+
+
+
+*/
+
+
+
+
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -106,6 +127,12 @@ export default {
                       marks={fItem.props['marks']}
               ></el-slider>
           )
+        }
+        case 'text-style':{
+          return (null)
+        }
+        case 'inner-array':{
+          return (null)
         }
         case 'img-dialog':{
           return (null)
