@@ -1,27 +1,7 @@
 <script>
 import {get} from "lodash";
-
-/*textStyle:{
-fontStyle:"",
-fontWeight:'',
-fontSize:12,
-color:''
-}
-
-    {key: 'config.options.title.textStyle', name: '标题风格', type: 'text-style',props:{
-        size:{key:'fontSize',name:'大小',type:'number',data:[]},
-        style:{key:'fontStyle',name:'风格',type:'select',data:[]},
-        weight:{key:'fontWeight',name:'粗细',type:'select',data:[]},
-        color:{key:'color',name:'颜色',type:'color'}
-    }},
-
-
-
-*/
-
-
-
-
+import MtIconDrop from './MtIconDrop'
+require('element-ui')
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -30,9 +10,8 @@ export default {
     panel: Object,
     controlledObj: Object
   },
+  components:{MtIconDrop},
   render(createElement, context) {
-    const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
-    const {get} = require('lodash')
 
     function getModelPro(proPath, controlledObj){
       const parentProPath = proPath.substring(0,proPath.lastIndexOf('.'))
@@ -67,41 +46,41 @@ export default {
         case 'number': {
           return (
               <span>
-                <InputNumber controls-position="right" value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></InputNumber> {fItem.unit}
+                <el-input-number class={fItem.props['class']} controls-position="right" value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></el-input-number> {fItem.unit}
               </span>
           )
         }
         case 'text': {
-          return (<Input value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>)
+          return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>)
         }
         case 'color': {
-          return (<ColorPicker value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" show-alpha={true} predefine={predefine}></ColorPicker>)
+          return (<el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>)
         }
         case 'textarea': {
           return (
-              <Input type="textarea" rows={4} value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>
+              <el-input type="textarea" rows={4} value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>
           )
         }
         case 'boolean': {
           return (
-              <Switch value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-              </Switch>
+              <el-switch value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+              </el-switch>
           )
         }
         case 'select': {
           return (
-              <Select size="small" value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                {fItem.data.map(item=><Option label={item.text} value={item.value}>{item.text}</Option>)}
-              </Select>
+              <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+                {fItem.data.map(item=><el-option label={item.text} value={item.value}>{item.text}</el-option>)}
+              </el-select>
           )
         }
         case 'radio':{
           return (
-              <RadioGroup value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                {fItem.data.map(item=><Radio label={item.value}>
+              <el-radio-group value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+                {fItem.data.map(item=><el-radio label={item.value}>
                   {item.text}
-                </Radio>)}
-              </RadioGroup>
+                </el-radio>)}
+              </el-radio-group>
           )
         }
         case 'checkbox':{
@@ -129,7 +108,9 @@ export default {
           )
         }
         case 'icon-drop':{
-          return (null)
+          return (
+              <MtIconDrop value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" items={fItem.data}></MtIconDrop>
+          )
         }
         case 'text-style':{
           let sizeRendered = null
@@ -162,36 +143,36 @@ export default {
             })
           }
           return (
-              <el-row>
+              <div class="pro-panel text-style-row">
                 {
                   sizeRendered&&(
-                      <el-col span={6}>
+                      <div class="text-style-col">
                         {sizeRendered}
-                      </el-col>
+                      </div>
                   )
                 }
                 {
                   colorRendered&&(
-                      <el-col span={6}>
+                      <div class="text-style-col">
                         {colorRendered}
-                      </el-col>
+                      </div>
                   )
                 }
                 {
                   weightRendered&&(
-                      <el-col span={6}>
+                      <div class="text-style-col">
                         {weightRendered}
-                      </el-col>
+                      </div>
                   )
                 }
                 {
                   styleRendered&&(
-                      <el-col span={6}>
+                      <div class="text-style-col">
                         {styleRendered}
-                      </el-col>
+                      </div>
                   )
                 }
-              </el-row>
+              </div>
           )
         }
         case 'inner-array':{
@@ -228,3 +209,35 @@ export default {
   }
 }
 </script>
+<style>
+.pro-panel .text-style-row{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.pro-panel .text-style-row,.text-style-col {
+  height: 28px;
+  line-height: 28px;
+}
+.pro-panel .text-style-col+.text-style-col{
+  margin-left: 4px;
+}
+.pro-panel .el-input-number{
+  position: relative;
+  top: -1px;
+}
+.pro-panel .text-style-col .el-input__inner{
+  padding-left:0 !important;
+  padding-right: 0px !important;
+  text-align: left;
+  text-indent: 3px;
+  height: 26px;
+  line-height: 26px;
+}
+.pro-panel .text-style-col .el-input-number{
+  width: 40px;
+}
+.pro-panel .text-style-col .el-input-number__decrease,.text-style-col .el-input-number__increase{
+  width: 12px!important;
+}
+</style>

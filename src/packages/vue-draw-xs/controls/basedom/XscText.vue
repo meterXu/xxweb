@@ -16,7 +16,7 @@ export default {
     textStyle () {
       return {
         'font-size': this.options.text.textStyle.fontSize + 'px',
-        'font-style': this.options.text.textStyle.fontFamily,
+        'font-style': this.options.text.textStyle.fontStyle,
         'font-weight': this.options.text.textStyle.fontWeight,
         'color': this.options.text.textStyle.color,
         'user-select':'none'

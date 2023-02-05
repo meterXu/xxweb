@@ -11,11 +11,12 @@ export default {
                         {key: 'config.box.show', name: '显示', type: 'boolean'},
                         {key: 'config.box.name', name: '名称', type: 'text'},
                         {key: 'config.options.text.content', name: '内容', type: 'text'},
+                        {key:'config.options.text.textStyle.fontSize',name:'大小',type:'number'},
                         {key: 'config.options.text.textStyle', name: '内容风格', type: 'text-style',props:{
                                 size:{key:'fontSize',name:'大小',type:'number'},
                                 color:{key:'color',name:'颜色',type:'color'},
-                                weight:{key:'fontWeight',name:'粗细',type:'icon-drop',data:[{icon:'do-icon-fontWeight-normal',text: '正常', value: 'normal'}, {icon:'do-icon-fontWeight-bold',text: '加粗', value: 'bold'}, {icon:'do-icon-fontWeight-lighter',text: '细化', value: 'lighter'}]},
-                                style:{key:'fontStyle',name:'风格',type:'icon-drop',data:[{icon:'do-icon-fontStyle-normal',text: '正常', value: 'normal'}, {icon:'do-icon-fontStyle-italic',text: '斜体', value: 'italic'},{icon:'do-icon-fontStyle-oblique',text: '倾斜', value: 'oblique'}]}
+                                weight:{key:'fontWeight',name:'粗细',type:'icon-drop',data:[{icon:'do-icon-fontWeight-normal',text: '正常', value: 'normal'}, {icon:'do-icon-fontWeight-bold',text: '加粗', value: 'bold'}]},
+                                style:{key:'fontStyle',name:'风格',type:'icon-drop',data:[{icon:'do-icon-fontStyle-normal',text: '正常', value: 'normal'}, {icon:'do-icon-fontStyle-italic',text: '斜体', value: 'italic'}]}
                             }},
                         {key: 'config.options.text.tips', name: '标签', type: 'checkbox',data:[{text: '🌧️', value: 1},{text: '🌞', value: 2},{text: '⚡️', value: 3}]},
                         {key: 'config.options.text.fontWeight', name: '粗细', type: 'select', data: [{text: '正常', value: 'normal'}, {text: '加粗', value: 'bold'}, {text: '细化', value: 'lighter'}]},

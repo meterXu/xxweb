@@ -1,6 +1,6 @@
 <template>
   <div style="display: flex;justify-content: flex-start">
-    <div style="width: 300px;height: 100%">
+    <div style="width: 400px;height: 100%">
       <ProPanel :controlledObj="activeItem" :config="panelConfigs.dom.text"></ProPanel>
     </div>
     <div style="margin-left: 20px">
