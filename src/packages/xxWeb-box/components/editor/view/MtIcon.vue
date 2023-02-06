@@ -75,6 +75,22 @@ const HorizontallyAlign = {
     )
   }
 }
+const TextItalic = {
+  render(h,context){
+    const {size} = context.props;
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path d="M20 6H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 42H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M29 5.95239L19 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    )
+  }
+}
+const TextBold = {
+  render(h,context){
+    const {size} = context.props;
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path fill-rule="evenodd" clip-rule="evenodd" d="M24 24C29.5056 24 33.9688 19.5228 33.9688 14C33.9688 8.47715 29.5056 4 24 4H11V24H24Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M28.0312 44C33.5368 44 38 39.5228 38 34C38 28.4772 33.5368 24 28.0312 24H11V44H28.0312Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    )
+  }
+}
 export default {
   name:'MtIcon',
   functional:true,
@@ -90,7 +106,9 @@ export default {
       RightAlign,
       BottomAlign,
       VerticallyAlign,
-      HorizontallyAlign
+      HorizontallyAlign,
+      TextItalic,
+      TextBold
     }
     return h('span',{
       class:['mt-icon',staticClass],

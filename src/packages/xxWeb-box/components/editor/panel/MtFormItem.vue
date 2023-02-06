@@ -1,6 +1,7 @@
 <script>
 import {get} from "lodash";
 import MtIconDrop from './MtIconDrop'
+import {login} from "../../../../../assets/data";
 require('element-ui')
 export default {
   name: 'mtFormItem',
@@ -109,71 +110,26 @@ export default {
         }
         case 'icon-drop':{
           return (
-              <MtIconDrop value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" items={fItem.data}></MtIconDrop>
+              <MtIconDrop value={modelPro.obj[modelPro.key]} icon={fItem.icon} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" items={fItem.data}></MtIconDrop>
           )
         }
-        case 'text-style':{
-          let sizeRendered = null
-          let colorRendered = null
-          let weightRendered = null
-          let styleRendered = null
-
-          if(fItem.props.hasOwnProperty('size')){
-            sizeRendered = renderItem(fItem.props['size'],{
-              obj:modelPro.obj[modelPro.key],
-              key:fItem.props['size'].key
-            })
-          }
-          if(fItem.props.hasOwnProperty('color')){
-            colorRendered = renderItem(fItem.props['color'],{
-              obj:modelPro.obj[modelPro.key],
-              key:fItem.props['color'].key
-            })
-          }
-          if(fItem.props.hasOwnProperty('weight')){
-            weightRendered = renderItem(fItem.props['weight'],{
-              obj:modelPro.obj[modelPro.key],
-              key:fItem.props['weight'].key
-            })
-          }
-          if(fItem.props.hasOwnProperty('style')){
-            styleRendered = renderItem(fItem.props['style'],{
-              obj:modelPro.obj[modelPro.key],
-              key:fItem.props['style'].key
-            })
-          }
-          return (
-              <div class="pro-panel text-style-row">
-                {
-                  sizeRendered&&(
-                      <div class="text-style-col">
-                        {sizeRendered}
-                      </div>
-                  )
-                }
-                {
-                  colorRendered&&(
-                      <div class="text-style-col">
-                        {colorRendered}
-                      </div>
-                  )
-                }
-                {
-                  weightRendered&&(
-                      <div class="text-style-col">
-                        {weightRendered}
-                      </div>
-                  )
-                }
-                {
-                  styleRendered&&(
-                      <div class="text-style-col">
-                        {styleRendered}
-                      </div>
-                  )
-                }
-              </div>
-          )
+        case 'horizontalList-control':{
+          let rendered = []
+          fItem.props.forEach((item)=>{
+            rendered.push(renderItem(item,{
+                obj:modelPro.obj[modelPro.key],
+                key:item.key
+              }))
+          })
+          return (createElement('div',{
+                attrs:{
+                  class:"pro-panel text-style-row"
+                }},rendered.map((item)=> {
+                  return (<div class="text-style-col">
+                    {item}
+                  </div>)
+                })
+              ))
         }
         case 'inner-array':{
           return (null)

@@ -2,7 +2,7 @@
   <div class="icon-drop">
     <el-dropdown @command="handleCommand">
     <span class="el-dropdown-link">
-      {{value}}
+      <MtIcon :icon="icon" :size="16" class="align-icon" title="左对齐"></MtIcon>
     </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item v-for="item in items" :key="item.value" :command="item.value">{{item.value}}</el-dropdown-item>
@@ -11,12 +11,19 @@
   </div>
 </template>
 <script>
+import MtIcon from "../view/MtIcon"
+import Navigate from "../view/Navigate";
+import {Dropdown, DropdownItem, DropdownMenu} from "element-ui";
+import RulerScale from "../view/RulerScale";
 export default {
   name: "MtIconDrop",
-  props:['value','items'],
+  props:['value','icon','items'],
   model:{
     prop:'value',
     event:'change'
+  },
+  components:{
+    MtIcon
   },
   methods:{
     handleCommand(command){
