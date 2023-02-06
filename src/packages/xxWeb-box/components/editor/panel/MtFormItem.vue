@@ -1,7 +1,6 @@
 <script>
 import {get} from "lodash";
 import MtIconDrop from './MtIconDrop'
-import {login} from "../../../../../assets/data";
 require('element-ui')
 export default {
   name: 'mtFormItem',
