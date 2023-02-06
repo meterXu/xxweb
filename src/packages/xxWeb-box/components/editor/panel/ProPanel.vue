@@ -79,5 +79,15 @@ export default {
   /deep/ .el-tabs__content::-webkit-scrollbar {
     display: none;
   }
+  /deep/ .el-tabs__content{
+    padding: 6px;
+  }
+  /deep/ .el-tab-pane{
+    border: 1px solid #d7dde4;
+  }
+  /deep/ .el-collapse-item__header{
+    background: #f7f7f7;
+    text-indent: 12px;
+  }
 }
 </style>
