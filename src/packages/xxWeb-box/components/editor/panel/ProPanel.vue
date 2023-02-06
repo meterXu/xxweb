@@ -83,11 +83,17 @@ export default {
     padding: 6px;
   }
   /deep/ .el-tab-pane{
-    border: 1px solid #d7dde4;
+    border: 1px solid #e4e7ed;
   }
   /deep/ .el-collapse-item__header{
-    background: #f7f7f7;
+    background: #f5f7fa;
     text-indent: 12px;
+  }
+  /deep/ .el-collapse-item+.el-collapse-item{
+    .el-collapse-item__header{
+      border-bottom: none;
+      border-top: 1px solid #d7dde4;
+    }
   }
 }
 </style>
