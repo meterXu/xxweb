@@ -129,7 +129,8 @@ export default {
   },
   computed:{
     percentage(){
-      return `${this.scale*100}%`
+      let scale = this.scale*100
+      return `${scale.toFixed(2)}%`
     },
     mtScaleContentStyle(){
       return {
