@@ -3,7 +3,7 @@
     <div style="flex: 1;height: 100%;overflow: hidden">
       <MtView @viewAlign="viewAlign" :config="config" :lines="lines">
         <template v-slot="{scale,view}">
-          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :activeId="activeId" :alignment="alignment" :pageConf="pageConf" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
+          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :activeId="activeId" :alignment="alignment" :page="page" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
             <template v-slot="{view,item}">
               <VueDrawXs :view="view" :item="item"></VueDrawXs>
             </template>
@@ -20,7 +20,7 @@
         </UIList>
       </div>
       <div class="panel-right-pro">
-        <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>
+        <ProPanel v-if="panelConfig" :controlledObj="activeItem" :config="panelConfig"></ProPanel>
       </div>
     </div>
 <!--      <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">-->
@@ -66,29 +66,29 @@ export default {
         top:[],
         left:[]
       },
-      pageConf:{
+      page:{
         id: 1673488946179,
-        box:{
-          name: "新的画布",
-          width: 1920,
-          height: 1080,
-        },
-        type:'dom',
-        chart:'page',
-        options:{
-          "changeSize":false,
-          "backgroundColor": 'transparent',
-          "backgroundImage": "https://ts1.cn.mm.bing.net/th/id/R-C.413a7faf761101bdb1f267de68e8ff25?rik=v4iL9jBH%2f4zWXw&riu=http%3a%2f%2fimg.cgmodel.com%2fimage%2f2017%2f0520%2fbig%2f660125-1945092628.jpg&ehk=VYoWzhMNcmdlgpIvXbc6DzPNautyUCieMDNryF4yg5E%3d&risl=&pid=ImgRaw&r=0",
-          "backgroundSize": "cover",
-          "backgroundRepeat": "no-repeat",
-          "baseUrl": ""
+        config:{
+          box:{
+            name: "新的画布",
+            width: 1920,
+            height: 1080,
+          },
+          type:'dom',
+          chart:'page',
+          options:{
+            "changeSize":false,
+            "backgroundColor": 'transparent',
+            "backgroundImage": "https://ts1.cn.mm.bing.net/th/id/R-C.413a7faf761101bdb1f267de68e8ff25?rik=v4iL9jBH%2f4zWXw&riu=http%3a%2f%2fimg.cgmodel.com%2fimage%2f2017%2f0520%2fbig%2f660125-1945092628.jpg&ehk=VYoWzhMNcmdlgpIvXbc6DzPNautyUCieMDNryF4yg5E%3d&risl=&pid=ImgRaw&r=0",
+            "backgroundSize": "cover",
+            "backgroundRepeat": "no-repeat",
+            "baseUrl": ""
+          }
         }
       },
       charts:[
         {
           "id": 1673489030749,
-          "type": "eCharts",
-          "chart": "gauge",
           "config": {
             "box": {
               "width": 400,
@@ -99,6 +99,8 @@ export default {
               "show":true,
               "name": '仪表盘'
             },
+            "type": "echarts",
+            "chart": "gauge",
             "theme": "chalk",
             "options": {
               "grid": {
@@ -203,8 +205,6 @@ export default {
         },
         {
           "id": 1673489064078,
-          "type": "eCharts",
-          "chart": "barNegative",
           "config": {
             "box": {
               "width": 400,
@@ -216,6 +216,8 @@ export default {
               "name": '柱状图'
             },
             "theme": "chalk",
+            "type": "echarts",
+            "chart": "barNegative",
             "options": {
               "grid": {
                 "show": false,
@@ -402,8 +404,6 @@ export default {
         },
         {
           "id": 1673489066864,
-          "type": "eCharts",
-          "chart": "barStack",
           "config": {
             "box": {
               "width": 400,
@@ -415,6 +415,8 @@ export default {
               "name": '柱状图'
             },
             "theme": "chalk",
+            "type": "echarts",
+            "chart": "barStack",
             "options": {
               "grid": {
                 "show": false,
@@ -638,8 +640,6 @@ export default {
         },
         {
           "id": 1673489075499,
-          "type": "eCharts",
-          "chart": "pieRose",
           "config": {
             "box": {
               "width": 400,
@@ -651,6 +651,8 @@ export default {
               "name": '饼图'
             },
             "theme": "chalk",
+            "type": "echarts",
+            "chart": "pieRose",
             "options": {
               "grid": {
                 "show": false,
@@ -790,8 +792,6 @@ export default {
         },
         {
           "id": 1673489220587,
-          "type": "eCharts",
-          "chart": "line",
           "config": {
             "box": {
               "width": 400,
@@ -803,6 +803,8 @@ export default {
               "name": '折线图'
             },
             "theme": "chalk",
+            "type": "echarts",
+            "chart": "line",
             "options": {
               "grid": {
                 "show": false,
@@ -941,8 +943,6 @@ export default {
         },
         {
           "id": 1673490448922,
-          "type": "eCharts",
-          "chart": "bar",
           "config": {
             "box": {
               "width": 400,
@@ -954,6 +954,8 @@ export default {
               "name": '柱状图'
             },
             "theme": "chalk",
+            "type": "echarts",
+            "chart": "bar",
             "options": {
               "grid": {
                 "show": false,
@@ -1088,8 +1090,6 @@ export default {
         },
         {
           "id": 1673490800977,
-          "type": "dom",
-          "chart": "text",
           "config": {
             "box": {
               "width": 417,
@@ -1100,7 +1100,8 @@ export default {
               "show":true,
               "name": '文字'
             },
-            "type": "text",
+            "type": "dom",
+            "chart": "text",
             "theme": "dark",
             "options": {
               "text": {
@@ -1139,10 +1140,8 @@ export default {
   },
   watch:{
     activeItem:{
-      immediate: true,
-      deep:true,
       handler(nv) {
-        this.panelConfig = get(panelConfigs,[nv.type,nv.chart].join('.'))
+        this.panelConfig = get(panelConfigs,[nv.config.type,nv.config.chart].join('.'))
         this.activeId = nv.id
         this.getUiList()
       }
@@ -1167,8 +1166,8 @@ export default {
       this.uiList=[]
       this.zIndexArr=[]
       this.uiList.push({
-        id:this.pageConf.id,
-        name:this.pageConf.box.name
+        id:this.page.id,
+        name:this.page.config.box.name
       })
       let zIndexArr = []
       let arr = []
@@ -1187,7 +1186,7 @@ export default {
       zIndexArr.sort(this.compare('zIndex'))
       this.uiList[0].children = arr
       this.zIndexArr.push({
-        id:this.pageConf.id,
+        id:this.page.id,
         children: zIndexArr
       })
     },
@@ -1209,7 +1208,7 @@ export default {
       }
     },
     controlShow(id) {
-      if(this.pageConf.id===id) {
+      if(this.page.id===id) {
 
       }else {
         this.charts.forEach(item=>{
@@ -1258,8 +1257,8 @@ export default {
   },
   mounted() {
     this.pageList.push({
-      id:this.pageConf.id,
-      name:this.pageConf.box.name
+      id:this.page.id,
+      name:this.page.config.box.name
     })
     this.pageList[0].children=this.charts
     this.getUiList()

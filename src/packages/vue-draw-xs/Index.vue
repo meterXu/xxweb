@@ -5,15 +5,15 @@
              :theme="item.config.theme"
              :autoresize="autoresize"
              :options="temOptions"
-             v-if="item.type==='eCharts'">
+             v-if="item.config.type==='echarts'">
     </eCharts>
     <XscDom
         :id="item.id"
         :options="item.config.options"
         :theme="item.config.theme"
-        :type="item.config.type"
+        :type="item.config.chart"
         :themeData="themeData"
-        v-else-if="item.type==='dom'||item.type==='bigScreen'"
+        v-else-if="item.config.type==='dom'||item.config.type==='bigScreen'"
         :view="this.view"></XscDom>
     <XscDev :id="item.id" :options="item.config.options"
             :type="item.config.type"
@@ -442,7 +442,7 @@ export default {
       return errMsgs.length > 0 ? errMsgs : null
     },
     setChartOption () {
-      if (this.item.type === 'eCharts' && this.item.config.data.source) {
+      if (this.item.config.type === 'echarts' && this.item.config.data.source) {
         let cloneNode = JSON.parse(JSON.stringify(this.item))
         cloneNode.config.data.source.forEach((c, i) => {
           if ((!c.json && c.type === 2) || (!c.sql && c.type === 1) || !c.s) {

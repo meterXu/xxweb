@@ -18,7 +18,7 @@
             <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>
     </div>
-    <span v-if="pageConf.options.changeSize" @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(pageConf)">
+    <span v-if="page.config.options.changeSize" @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(page)">
         <div ref="resize" v-if="!view&&activeItem&&activeItem.chart==='canvas'" class="item_resize"></div>
       </span>
   </div>
@@ -32,7 +32,7 @@ export default {
       type: Array,
       default: null
     },
-    pageConf: {
+    page: {
       type: Object,
       default: null
     },
@@ -97,41 +97,18 @@ export default {
           }
         }
       }
-    },
-    activeId: {
-      immediate: true,
-      handler(nv) {
-        if(nv) {
-          let result = false
-          this.charts.forEach(item=>{
-            if(item.id===nv) {
-              this.$emit('change',item)
-              if(!this.shiftKey) {
-                this.selectedItems = [item]
-              }
-              result = true
-            }
-            if(!result) {
-              this.$emit('change',{})
-              if(!this.shiftKey) {
-                this.selectedItems = []
-              }
-            }
-          })
-        }
-      }
     }
   },
   computed: {
     canvasStyle() { // 画布样式
-      if (this.pageConf) {
+      if (this.page) {
         return {
-          width: this.pageConf.box.width + 'px',
-          height: this.pageConf.box.height + 'px',
-          'background-color': this.pageConf.options.backgroundColor,
-          'background-image': 'url(\'' + this.pageConf.options.backgroundImage + '\')',
-          'background-size': this.pageConf.options.backgroundSize,
-          'background-repeat': this.pageConf.options.backgroundRepeat,
+          width: this.page.config.box.width + 'px',
+          height: this.page.config.box.height + 'px',
+          'background-color': this.page.config.options.backgroundColor,
+          'background-image': 'url(\'' + this.page.config.options.backgroundImage + '\')',
+          'background-size': this.page.config.options.backgroundSize,
+          'background-repeat': this.page.config.options.backgroundRepeat,
           display: this.view ? 'block' : 'inline-block'
         }
       } else {
@@ -229,7 +206,7 @@ export default {
     },
     changeSizeMousemove(event) {
       event.stopPropagation()
-      if (this.dragItem.type==='page') {
+      if (this.dragItem.config.type==='dom'&&this.dragItem.config.chart==='page') {
         this.dragItem.width = parseInt((event.pageX + this.shift.x) / this.scale)
         this.dragItem.height = parseInt((event.pageY + this.shift.y) / this.scale)
       }else {
@@ -262,7 +239,7 @@ export default {
     },
     canvasClick() {
       if (!this.view) {
-        const activeItem = this.pageConf
+        const activeItem = this.page
         this.$emit('change',activeItem)
       }
     },

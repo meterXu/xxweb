@@ -12,22 +12,27 @@
 </template>
 <script>
 import MtIcon from "../view/MtIcon"
-import Navigate from "../view/Navigate";
-import {Dropdown, DropdownItem, DropdownMenu} from "element-ui";
-import RulerScale from "../view/RulerScale";
 export default {
   name: "MtIconDrop",
-  props:['value','icon','items'],
+  props:['value','items'],
   model:{
     prop:'value',
     event:'change'
+  },
+  data(){
+    let findItem = this.items.find(c=>c.value===this.value)
+    return{
+      icon:findItem?findItem.icon:null
+    }
   },
   components:{
     MtIcon
   },
   methods:{
     handleCommand(command){
-      this.$emit('change',command)
+      let item = items.find(c=>c.value===command)
+      this.icon = item.icon
+      this.$emit('change',item.value)
     }
   }
 }

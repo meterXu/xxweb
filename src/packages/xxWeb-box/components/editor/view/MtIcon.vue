@@ -110,17 +110,21 @@ export default {
       TextItalic,
       TextBold
     }
-    return h('span',{
-      class:['mt-icon',staticClass],
-      on:on,
-      style: {
-        display: 'inline-block',
-        fontStyle: 'normal',
-        lineHeight: 0,
-        textAlign: 'center',
-        verticalAlign: '-0.15em'
-      },
-    },[icons[icon].render(h,context)])
+    if(icon){
+      return h('span',{
+        class:['mt-icon',staticClass],
+        on:on,
+        style: {
+          display: 'inline-block',
+          fontStyle: 'normal',
+          lineHeight: 0,
+          textAlign: 'center',
+          verticalAlign: '-0.15em'
+        },
+      },[icons[icon].render(h,context)])
+    }else{
+      return h('span')
+    }
   }
 }
 
