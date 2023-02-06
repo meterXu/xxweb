@@ -3,7 +3,7 @@
     <div style="flex: 1;height: 100%;overflow: hidden">
       <MtView @viewAlign="viewAlign" :config="config" :lines="lines">
         <template v-slot="{scale,view}">
-          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :activeId="activeId" :alignment="alignment" :options="options" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
+          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :activeId="activeId" :alignment="alignment" :pageConf="pageConf" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
             <template v-slot="{view,item}">
               <VueDrawXs :view="view" :item="item"></VueDrawXs>
             </template>
@@ -66,17 +66,23 @@ export default {
         top:[],
         left:[]
       },
-      options:{
-        "id": 1673488946179,
-        "name": "新的画布",
-        "width": 1920,
-        "height": 1080,
-        "changeSize":false,
-        "backgroundColor": 'transparent',
-        "backgroundImage": "https://ts1.cn.mm.bing.net/th/id/R-C.413a7faf761101bdb1f267de68e8ff25?rik=v4iL9jBH%2f4zWXw&riu=http%3a%2f%2fimg.cgmodel.com%2fimage%2f2017%2f0520%2fbig%2f660125-1945092628.jpg&ehk=VYoWzhMNcmdlgpIvXbc6DzPNautyUCieMDNryF4yg5E%3d&risl=&pid=ImgRaw&r=0",
-        "backgroundSize": "cover",
-        "backgroundRepeat": "no-repeat",
-        "baseUrl": "."
+      pageConf:{
+        id: 1673488946179,
+        box:{
+          name: "新的画布",
+          width: 1920,
+          height: 1080,
+        },
+        type:'dom',
+        chart:'page',
+        options:{
+          "changeSize":false,
+          "backgroundColor": 'transparent',
+          "backgroundImage": "https://ts1.cn.mm.bing.net/th/id/R-C.413a7faf761101bdb1f267de68e8ff25?rik=v4iL9jBH%2f4zWXw&riu=http%3a%2f%2fimg.cgmodel.com%2fimage%2f2017%2f0520%2fbig%2f660125-1945092628.jpg&ehk=VYoWzhMNcmdlgpIvXbc6DzPNautyUCieMDNryF4yg5E%3d&risl=&pid=ImgRaw&r=0",
+          "backgroundSize": "cover",
+          "backgroundRepeat": "no-repeat",
+          "baseUrl": ""
+        }
       },
       charts:[
         {
@@ -719,7 +725,7 @@ export default {
                     "value": 10
                   },
                   {
-                    "name": "rose2",
+                    "name": "      name: \"新的画布\",rose2",
                     "value": 5
                   },
                   {
@@ -1100,9 +1106,11 @@ export default {
               "text": {
                 "fontFamily": "微软雅黑",
                 "content": "智慧城市",
-                "fontSize": 30,
-                "color": null,
-                "fontWeight": "normal"
+                textStyle:{
+                  "fontSize": 30,
+                  "color": null,
+                  "fontWeight": "normal"
+                }
               },
               "boxSpace": {
                 "lineHeight": 40,
@@ -1159,8 +1167,8 @@ export default {
       this.uiList=[]
       this.zIndexArr=[]
       this.uiList.push({
-        id:this.options.id,
-        name:this.options.name
+        id:this.pageConf.id,
+        name:this.pageConf.box.name
       })
       let zIndexArr = []
       let arr = []
@@ -1179,7 +1187,7 @@ export default {
       zIndexArr.sort(this.compare('zIndex'))
       this.uiList[0].children = arr
       this.zIndexArr.push({
-        id:this.options.id,
+        id:this.pageConf.id,
         children: zIndexArr
       })
     },
@@ -1201,7 +1209,7 @@ export default {
       }
     },
     controlShow(id) {
-      if(this.options.id===id) {
+      if(this.pageConf.id===id) {
 
       }else {
         this.charts.forEach(item=>{
@@ -1249,7 +1257,10 @@ export default {
     }
   },
   mounted() {
-    this.pageList.push(this.options)
+    this.pageList.push({
+      id:this.pageConf.id,
+      name:this.pageConf.box.name
+    })
     this.pageList[0].children=this.charts
     this.getUiList()
   }

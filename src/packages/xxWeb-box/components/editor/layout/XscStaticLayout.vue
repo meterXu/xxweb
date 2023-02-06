@@ -18,7 +18,7 @@
             <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>
     </div>
-    <span v-if="options.changeSize" @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(options)">
+    <span v-if="pageConf.options.changeSize" @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(pageConf)">
         <div ref="resize" v-if="!view&&activeItem&&activeItem.chart==='canvas'" class="item_resize"></div>
       </span>
   </div>
@@ -32,7 +32,7 @@ export default {
       type: Array,
       default: null
     },
-    options: {
+    pageConf: {
       type: Object,
       default: null
     },
@@ -124,14 +124,14 @@ export default {
   },
   computed: {
     canvasStyle() { // 画布样式
-      if (this.options) {
+      if (this.pageConf) {
         return {
-          width: this.options.width + 'px',
-          height: this.options.height + 'px',
-          'background-color': this.options.backgroundColor,
-          'background-image': 'url(\'' + this.options.backgroundImage + '\')',
-          'background-size': this.options.backgroundSize,
-          'background-repeat': this.options.backgroundRepeat,
+          width: this.pageConf.box.width + 'px',
+          height: this.pageConf.box.height + 'px',
+          'background-color': this.pageConf.options.backgroundColor,
+          'background-image': 'url(\'' + this.pageConf.options.backgroundImage + '\')',
+          'background-size': this.pageConf.options.backgroundSize,
+          'background-repeat': this.pageConf.options.backgroundRepeat,
           display: this.view ? 'block' : 'inline-block'
         }
       } else {
@@ -229,12 +229,12 @@ export default {
     },
     changeSizeMousemove(event) {
       event.stopPropagation()
-      if (this.dragItem.hasOwnProperty('config')) {
-        this.dragItem.config.box.width = parseInt((event.pageX + this.shift.x) / this.scale)
-        this.dragItem.config.box.height = parseInt((event.pageY + this.shift.y) / this.scale)
-      }else {
+      if (this.dragItem.type==='page') {
         this.dragItem.width = parseInt((event.pageX + this.shift.x) / this.scale)
         this.dragItem.height = parseInt((event.pageY + this.shift.y) / this.scale)
+      }else {
+        this.dragItem.config.box.width = parseInt((event.pageX + this.shift.x) / this.scale)
+        this.dragItem.config.box.height = parseInt((event.pageY + this.shift.y) / this.scale)
       }
     },
     drop(event) {
@@ -262,13 +262,7 @@ export default {
     },
     canvasClick() {
       if (!this.view) {
-        const activeItem = {
-          type: 'dom',
-          chart: 'canvas',
-          config: {
-            options: this.options
-          }
-        }
+        const activeItem = this.pageConf
         this.$emit('change',activeItem)
       }
     },
