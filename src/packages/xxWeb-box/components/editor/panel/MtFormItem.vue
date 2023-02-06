@@ -1,7 +1,6 @@
 <script>
 import {get} from "lodash";
 import MtIconDrop from './MtIconDrop'
-require('element-ui')
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -12,6 +11,7 @@ export default {
   },
   components:{MtIconDrop},
   render(createElement, context) {
+    const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
     function getModelPro(proPath, controlledObj){
       const parentProPath = proPath.substring(0,proPath.lastIndexOf('.'))
       const key = proPath.substring(proPath.lastIndexOf('.')+1)
@@ -83,21 +83,11 @@ export default {
           )
         }
         case 'checkbox':{
-          // debugger
-          // return (
-          //     <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-          //       {fItem.data.map(item=><el-checkbox label={item.value}>
-          //         {item.text}
-          //       </el-checkbox>)}
-          //     </el-checkbox-group>
-          // )
           return (
-              <el-checkbox-group>
-                <el-checkbox label="复选框 A"></el-checkbox>
-                <el-checkbox label="复选框 B"></el-checkbox>
-                <el-checkbox label="复选框 C"></el-checkbox>
-                <el-checkbox label="禁用" disabled></el-checkbox>
-                <el-checkbox label="选中且禁用" disabled></el-checkbox>
+              <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+                {fItem.data.map(item=><el-checkbox label={item.value}>
+                  {item.text}
+                </el-checkbox>)}
               </el-checkbox-group>
           )
         }

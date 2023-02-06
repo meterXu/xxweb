@@ -1110,8 +1110,10 @@ export default {
                 textStyle:{
                   "fontSize": 30,
                   "color": null,
-                  "fontWeight": "normal"
-                }
+                  "fontWeight": "normal",
+                  fontStyle:'normal'
+                },
+                tips:[1,2],
               },
               "boxSpace": {
                 "lineHeight": 40,

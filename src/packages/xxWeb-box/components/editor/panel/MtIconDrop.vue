@@ -30,7 +30,7 @@ export default {
   },
   methods:{
     handleCommand(command){
-      let item = items.find(c=>c.value===command)
+      let item = this.items.find(c=>c.value===command)
       this.icon = item.icon
       this.$emit('change',item.value)
     }
