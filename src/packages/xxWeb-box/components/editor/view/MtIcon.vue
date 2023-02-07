@@ -83,11 +83,34 @@ const TextItalic = {
     )
   }
 }
+const TextItalicNormal = {
+  render(h,context){
+    const {size} = context.props;
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="none">
+          <g>
+            <title>Layer 1</title>
+            <path stroke="currentColor" id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" d="m17,5l14,0"/>
+            <path id="svg_2" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" d="m16,42l16,0"/>
+            <path stroke="currentColor" id="svg_3" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" d="m24,5.95239l0,36.04761"/>
+          </g>
+        </svg>
+    )
+  }
+}
+const TextBoldNormal = {
+  render(h,context){
+    const {size} = context.props;
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path fill-rule="evenodd" clip-rule="evenodd" d="M24 24C29.5056 24 33.9688 19.5228 33.9688 14C33.9688 8.47715 29.5056 4 24 4H11V24H24Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M28.0312 44C33.5368 44 38 39.5228 38 34C38 28.4772 33.5368 24 28.0312 24H11V44H28.0312Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    )
+  }
+}
 const TextBold = {
   render(h,context){
     const {size} = context.props;
     return (
-        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path fill-rule="evenodd" clip-rule="evenodd" d="M24 24C29.5056 24 33.9688 19.5228 33.9688 14C33.9688 8.47715 29.5056 4 24 4H11V24H24Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M28.0312 44C33.5368 44 38 39.5228 38 34C38 28.4772 33.5368 24 28.0312 24H11V44H28.0312Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path fill-rule="evenodd" clip-rule="evenodd" d="M24 24C29.5056 24 33.9688 19.5228 33.9688 14C33.9688 8.47715 29.5056 4 24 4H11V24H24Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M28.0312 44C33.5368 44 38 39.5228 38 34C38 28.4772 33.5368 24 28.0312 24H11V44H28.0312Z" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
     )
   }
 }
@@ -108,7 +131,9 @@ export default {
       VerticallyAlign,
       HorizontallyAlign,
       TextItalic,
-      TextBold
+      TextBold,
+      TextItalicNormal,
+      TextBoldNormal
     }
     if(icon){
       return h('span',{

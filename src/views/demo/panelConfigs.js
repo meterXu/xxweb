@@ -14,8 +14,8 @@ export default {
                         {key: 'config.options.text.textStyle', name: '内容风格', type: 'horizontalList-control',props:[
                             {key:'fontSize',name:'大小',type:'number'},
                             {key:'color',name:'颜色',type:'color'},
-                            {key:'fontWeight',name:'粗细',type:'icon-drop',data:[{icon:'TextBold',text: '正常', value: 'normal'}, {icon:'TextBold',text: '加粗', value: 'bold'}]},
-                            {key:'fontStyle',name:'风格',type:'icon-drop',data:[{icon:'TextBold',text: '正常', value: 'normal'}, {icon:'TextBold',text: '斜体', value: 'italic'}]}
+                            {key:'fontWeight',name:'粗细',type:'icon-drop',data:[{icon:'TextBoldNormal',text: '正常', value: 'normal'}, {icon:'TextBold',text: '加粗', value: 'bold'}]},
+                            {key:'fontStyle',name:'风格',type:'icon-drop',data:[{icon:'TextItalicNormal',text: '正常', value: 'normal'}, {icon:'TextItalic',text: '斜体', value: 'italic'}]}
                         ]},
                         {key: 'config.options.text.tips', name: '标签', type: 'checkbox',data:[{text: '🌧', value: 1},{text: '🌞', value: 2},{text: '⚡️', value: 3}]},
                         {key: 'config.options.text.fontWeight', name: '粗细', type: 'select', data: [{text: '正常', value: 'normal'}, {text: '加粗', value: 'bold'}, {text: '细化', value: 'lighter'}]},
