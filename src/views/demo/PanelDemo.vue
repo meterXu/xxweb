@@ -49,7 +49,7 @@ export default {
                 "color": null,
                 "fontWeight": "normal",
                 "fontStyle": "normal",
-              }
+              },
             },
             "boxSpace": {
               "lineHeight": 40,
@@ -62,7 +62,13 @@ export default {
               "width": 0,
               "style": "solid",
               "color": "transparent"
-            }
+            },
+            "verticalList": [
+              {
+                "id": 1,
+                "name": "子标题1"
+              }
+            ]
           }
         }
       },
