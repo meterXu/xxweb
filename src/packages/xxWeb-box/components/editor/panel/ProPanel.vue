@@ -79,5 +79,8 @@ export default {
   /deep/ .el-tabs__content::-webkit-scrollbar {
     display: none;
   }
+  /deep/ .el-collapse-item__wrap{
+    overflow-x: auto;
+  }
 }
 </style>
