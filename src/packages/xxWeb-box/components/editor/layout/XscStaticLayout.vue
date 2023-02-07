@@ -313,6 +313,8 @@ export default {
   background: #fff;
   background-size: auto;
   background-repeat: repeat;
+  border: 1px solid #d7dae2;
+  box-sizing: border-box;
 }
 .mt_item{
   display: inline-block;
@@ -321,6 +323,7 @@ export default {
   outline: none;
 }
 .mt_canvas_position {
+  border: none;
   margin: 0 auto;
 }
 
