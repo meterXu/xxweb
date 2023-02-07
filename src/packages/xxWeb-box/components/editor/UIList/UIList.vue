@@ -89,8 +89,8 @@ export default {
       default: []
     },
     activeId:{
-      type: Number,
-      default: 0
+      type: String,
+      default: ''
     }
   },
   components: {
