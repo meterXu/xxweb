@@ -321,6 +321,7 @@ export default {
   cursor: move;
   position: absolute;
   outline: none;
+  pointer-events:auto;
 }
 .mt_canvas_position {
   border: none;
