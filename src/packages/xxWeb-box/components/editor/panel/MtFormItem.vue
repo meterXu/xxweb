@@ -155,6 +155,11 @@ export default {
               <div class="mt-emptyDiv" style={{width: 'auto',height: fItem.style.height+'px'}}></div>
           )
         }
+        case 'span':{
+          return (
+              <span class="mt-emptySpan">{fItem.value}</span>
+          )
+        }
         default:{
           return (
               <Input value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>
