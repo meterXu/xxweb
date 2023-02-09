@@ -25,7 +25,11 @@ export default {
                         {key: 'config.options.boxSpace.lineHeight', name: '行高', type: 'number'},
                         {key: 'config.options.boxSpace.textAlign', name: '对其方式', type: 'select', data: [{text: '居左对齐', value: 'left'}, {text: '居中对齐', value: 'center'}, {text: '居右对齐', value: 'right'}]},
                         {key: 'config.options.border.width', name: '边框粗细', type: 'number'},
-                        {key: 'config.options.border.color', name: '边框颜色', type: 'color'}
+                        {key: 'config.options.border.color', name: '边框颜色', type: 'color'},
+                        {key: 'config.options.activeList', name: '初始选中', type: 'select', data: {
+                            isPath:true,
+                            dataArr:[{label:'左侧子标题',data:'verticalList'},{label:'右侧子标题',data:'verticalList2'}]
+                        }},
                     ]
                 }
             }

@@ -65,10 +65,21 @@ export default {
             },
             "verticalList": [
               {
-                "id": 1,
+                "id": '1',
+                "name": "子标题1"
+              },
+              {
+                "id": '2',
+                "name": "子标题2"
+              }
+            ],
+            "verticalList2": [
+              {
+                "id": '3',
                 "name": "子标题1"
               }
-            ]
+            ],
+            "activeList":'1'
           }
         }
       },

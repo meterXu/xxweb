@@ -68,11 +68,29 @@ export default {
           )
         }
         case 'select': {
-          return (
-              <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                {fItem.data.map(item=><el-option label={item.text} value={item.value}>{item.text}</el-option>)}
-              </el-select>
-          )
+          if(fItem.data.isPath) {
+            let options = []
+            fItem.data.dataArr.forEach(item=>{
+              options.push({
+                label:item.label,
+                options:modelPro.obj[item.data]
+              })
+            })
+            return (
+                <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+                  {options.map(item=><el-option-group label={item.label} key={item.label}>{
+                    item.options.map(o=><el-option label={o.name} value={o.id}>{o.name}</el-option>)
+                  }</el-option-group>)}
+                </el-select>
+            )
+            return
+          } else {
+            return (
+                <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+                  {fItem.data.map(item=><el-option label={item.text} value={item.value}>{item.text}</el-option>)}
+                </el-select>
+            )
+          }
         }
         case 'radio':{
           return (
