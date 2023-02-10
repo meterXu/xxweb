@@ -5,7 +5,7 @@
     </template>
     <div ref="mtScale-container" :class="mtScaleContainerStyle"
          @contextmenu="(event)=>{event.preventDefault()}">
-      <div class="align-btn">
+      <div v-if="config.isAlign" class="align-btn">
         <MtIcon icon="LeftAlign" :size="16" class="align-icon" title="左对齐" @click="clickAlign('left')"></MtIcon>
         <MtIcon icon="RightAlign" :size="16" class="align-icon" title="右对齐" @click="clickAlign('right')"></MtIcon>
         <MtIcon icon="TopAlign" :size="16" class="align-icon" title="上对齐" @click="clickAlign('top')"></MtIcon>
@@ -71,6 +71,7 @@ export default {
           isScale:true,
           isDrag:true,
           isNavigate:true,
+          isAlign:true,
           containerPadding:30,
           backgroundClass:'default-bg',
           navigateConf:{
@@ -152,6 +153,7 @@ export default {
   watch:{
     scale(nv,ov){
       this.navigateConf.eyeScale = nv
+      this.$emit('scaleChange',nv)
     },
     location:{
       handler(nv){
@@ -282,14 +284,14 @@ export default {
         canvasSize.width = 乘(canvasSize.width,this.scale)
         canvasSize.height = 乘(canvasSize.height,this.scale)
         if(viewSize.width>canvasSize.width){
-          this.location.x=减(viewSize.width,canvasSize.width)/2
+          res.location.x=减(viewSize.width,canvasSize.width)/2
         }else {
-          this.location.x=0
+          res.location.x=0
         }
         if(viewSize.height>canvasSize.height){
-          this.location.y=减(viewSize.height,canvasSize.height)/2
+          res.location.y=减(viewSize.height,canvasSize.height)/2
         }else{
-          this.location.y=0
+          res.location.y=0
         }
       }else{
         if(viewSize.width<=canvasSize.width){
