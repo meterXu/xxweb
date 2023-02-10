@@ -73,6 +73,7 @@ export default {
           isNavigate:true,
           isAlign:true,
           containerPadding:30,
+          initScale:1,
           backgroundClass:'default-bg',
           navigateConf:{
             canvasWidth:224,
@@ -344,7 +345,7 @@ export default {
   },
   mounted() {
     this.$nextTick(()=>{
-      this.resetMtLocation()
+      this.resetMtLocation(this.config.initScale)
       this.setNavigateConf()
     })
   }
