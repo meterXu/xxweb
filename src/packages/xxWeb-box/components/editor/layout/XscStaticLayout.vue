@@ -313,7 +313,6 @@ export default {
   background: #fff;
   background-size: auto;
   background-repeat: repeat;
-  border: 1px solid #bfc1c7;
   box-sizing: border-box;
 }
 .mt_item{
