@@ -196,10 +196,12 @@ export default {
       this.toggleNavigate = !this.toggleNavigate
     },
     canvasMousedown(event){
-      event.preventDefault()
       const mouseEvent = {
-        0: ()=>{},
+        0: ()=>{
+          return true
+        },
         2: () => {
+          event.preventDefault()
           if(this.config.isDrag){
             this.$refs['mtScale-view'].classList.add('cursor-move')
             const ownerRect = this.$refs['mtScale-content'].getBoundingClientRect()
