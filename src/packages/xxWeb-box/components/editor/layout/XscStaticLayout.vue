@@ -177,7 +177,11 @@ export default {
           }
         },
         2: () => {
-          this.contextmenu(item)
+          if(!this.view){
+            event.preventDefault()
+            this.$emit('change',item)
+            this.contextmenu(item)
+          }
         }
       }
       mouseEvent[event.button]();
