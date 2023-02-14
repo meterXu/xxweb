@@ -21,6 +21,7 @@
     "analyz": "set npm_config_report=true && npm run build"
   },
   "dependencies": {
+    "@handsontable/vue": "^12.3.1",
     "@scena/guides": "^0.20.4",
     "@tweenjs/tween.js": "^17.4.0",
     "apexcharts": "^3.36.3",
@@ -31,6 +32,7 @@
     "echarts": "^4.5.0",
     "echarts-liquidfill": "^2.0.4",
     "element-ui": "^2.15.8",
+    "handsontable": "^12.3.1",
     "highlight.js": "^11.7.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
