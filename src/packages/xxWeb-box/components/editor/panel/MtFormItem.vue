@@ -203,6 +203,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
 }
 .pro-panel .text-style-row,.text-style-col {
   height: 28px;
@@ -224,7 +225,7 @@ export default {
   line-height: 26px;
 }
 .pro-panel .text-style-col .el-input-number{
-  width: 40px;
+  width: 50px;
 }
 .pro-panel .text-style-col .el-input-number__decrease,.text-style-col .el-input-number__increase{
   width: 12px!important;
