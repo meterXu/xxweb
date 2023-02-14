@@ -27,7 +27,7 @@ export default {
     return {
       activeItem:{
         "id": 1673490800977,
-        "type": "dom",
+        "type": "echarts",
         "chart": "text",
         "config": {
           "box": {
@@ -50,6 +50,7 @@ export default {
                 "fontWeight": "normal",
                 "fontStyle": "normal",
               },
+              "data": 1
             },
             "boxSpace": {
               "lineHeight": 40,
@@ -80,6 +81,34 @@ export default {
               }
             ],
             "activeList":'1'
+          },
+          data: {
+            type: "echarts",
+            coordinate: 'rightAngle', // 直角坐标系
+            loop: false,
+            interval: 30,
+            source:
+              { type: 2,
+                db: '',
+                sql: '',
+                json: '[{"month":"周一","value":90},\n' +
+                    '{"month":"周二","value":50},\n' +
+                    '{"month":"周三","value":110},\n' +
+                    '{"month":"周四","value":120},\n' +
+                    '{"month":"周五","value":90},\n' +
+                    '{"month":"周六","value":100},\n' +
+                    '{"month":"周日","value":80}]',
+                x: 'week',
+                y: 'value',
+                s: '信访量',
+                xto: 'xAxis/data',
+                yto: 'series/0/data',
+                sto: ['legend/data/0', 'series/0/name'],
+                url:'',
+                method:'',
+                params:'',
+                apiConf:'',
+                proPath:''}
           }
         }
       },

@@ -16,7 +16,7 @@
       </Collapse>
       <template v-else>
         <Form label-width="60px">
-          <FormItem v-for="(fItem,fi) in tab.con.sub" :key="fi" :label="fItem.name">
+          <FormItem v-for="(fItem,fi) in tab.con.sub" :key="fi" :label="fItem.name" :class="fItem.name?'':'none-label'">
             <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>
         </Form>
@@ -58,6 +58,7 @@ export default {
 
 <style lang="less" scoped>
 .pro-panel{
+  width: 100%;
   height: 100%;
   /deep/ .el-form-item__label{
     font-size: 12px;
@@ -81,6 +82,9 @@ export default {
   }
   /deep/ .el-collapse-item__wrap{
     overflow-x: auto;
+  }
+  .none-label /deep/ .el-form-item__content {
+    margin-left: 0 !important;
   }
 }
 </style>

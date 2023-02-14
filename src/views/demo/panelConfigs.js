@@ -29,7 +29,18 @@ export default {
                         {key: 'config.options.activeList', name: '初始选中', type: 'select', data: {
                             isPath:true,
                             dataArr:[{label:'左侧子标题',data:'verticalList'},{label:'右侧子标题',data:'verticalList2'}]
-                        }},
+                        }}
+                    ]
+                }
+            },
+            {
+                type: '数据',
+                icon:'el-icon-s-operation',
+                con: {
+                    key: 'config.data',
+                    name: '选项',
+                    sub: [
+                        {key: 'config.data', type: 'data-components'},
                     ]
                 }
             }

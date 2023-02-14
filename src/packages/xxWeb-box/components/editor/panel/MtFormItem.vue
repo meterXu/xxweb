@@ -2,6 +2,7 @@
 import {get} from "lodash";
 import MtIconDrop from './MtIconDrop'
 import VerticalControl from './VerticalControl'
+import DataComponents from './DataComponents'
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -10,7 +11,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components:{MtIconDrop,VerticalControl},
+  components:{MtIconDrop,VerticalControl,DataComponents},
   render(createElement, context) {
     const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
     function getModelPro(proPath, controlledObj){
@@ -151,6 +152,11 @@ export default {
         case 'vertical-control':{
           return (
               <VerticalControl value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></VerticalControl>
+          )
+        }
+        case 'data-components':{
+          return (
+              <DataComponents value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
           )
         }
         case 'inner-array':{
