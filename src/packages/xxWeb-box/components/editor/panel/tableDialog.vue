@@ -16,7 +16,7 @@
 
 <script>
 import { HotTable } from '@handsontable/vue';
-import { registerAllModules } from 'handsontable/registry';
+// import { registerAllModules } from 'handsontable/registry';
 import 'handsontable/dist/handsontable.full.css';
 export default {
   name: "tableDialog",
@@ -71,16 +71,25 @@ export default {
         if(this.maxCol<changes[0][1]) {
           this.maxCol=changes[0][1]
         }
-        console.log(this.$refs.staticTable.hotInstance.countVisibleCols())
-        console.log(this.$refs.staticTable.hotInstance.countEmptyCols(false))
+        console.log(this.$refs.staticTable.hotInstance.getDataAtRow(0))
+        console.log(this.$refs.staticTable.hotInstance.getDataAtCol(0))
         // this.data = this.$refs.staticTable.hotInstance.getData(this.maxRow,this.maxCol)
-        this.removeEmptyArray(this.$refs.staticTable.hotInstance.getData())
-        // console.log(this.data)
+        const row = this.removeEmptyArray(this.$refs.staticTable.hotInstance.getDataAtRow(0))
+        const col =  this.removeEmptyArray(this.$refs.staticTable.hotInstance.getDataAtCol(0))
+        console.log(row,col)
+        this.data = this.$refs.staticTable.hotInstance.getData(row,col)
+        console.log(this.data)
       }
     },
     removeEmptyArray(data) {
-      console.log(data)
-      // data.forEach()
+      let num = 0
+      data.some((item,index) => {
+        if(!item) {
+          num = index
+          return true
+        }
+      })
+      return num-1
     }
   }
 }
