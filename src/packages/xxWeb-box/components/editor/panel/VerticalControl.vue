@@ -5,10 +5,10 @@
         <el-col :span="16">
           <el-input v-model="value[index].name" size="mini"></el-input>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="2">
           <i class="el-icon-plus" @click="addItem"></i>
         </el-col>
-        <el-col :span="4">
+        <el-col :span="2">
           <i class="el-icon-minus" @click="reduceItem(index)"></i>
         </el-col>
       </el-row>

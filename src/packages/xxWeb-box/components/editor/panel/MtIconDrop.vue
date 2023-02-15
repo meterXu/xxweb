@@ -43,6 +43,8 @@ export default {
 .icon-drop{
   line-height: 22px;
   padding:2px;
+  min-width: 28px;
+  text-align: center;
   box-sizing: border-box;
   border: 1px solid #e6e6e6;
   border-radius: 4px;

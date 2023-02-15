@@ -209,8 +209,9 @@ export default {
   height: 28px;
   line-height: 28px;
 }
-.pro-panel .text-style-col+.text-style-col{
-  margin-left: 4px;
+.pro-panel .text-style-col{
+  margin-right: 4px;
+  margin-bottom: 4px;
 }
 .pro-panel .el-input-number{
   position: relative;
