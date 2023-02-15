@@ -53,9 +53,13 @@ export default {
       this.dialogVisible = true
     },
     changeData(data) {
-      console.log(data)
+      this.value.source.json = JSON.stringify(data)
+      console.log(this.value)
     }
   },
+  mounted() {
+    this.tableData = JSON.parse(this.value.source.json)
+  }
 }
 </script>
 
