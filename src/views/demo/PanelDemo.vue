@@ -91,16 +91,38 @@ export default {
               { type: 2,
                 db: '',
                 sql: '',
-                json: '[["类别","类别1","类别2","类别3"],["系列1","40","50","80"],["系列2","50","20","40"],["系列3","20","80","30"]]',
+                json: '[["信访量","系列1","系列2","系列3"],["类别1","40","50","80"],["类别2","50","20","40"],["类别3","20","80","30"]]',
                 x: 'week',
                 y: 'value',
                 s: '信访量',
                 xto: 'xAxis/data',
                 yto: 'series/0/data',
                 sto: ['legend/data/0', 'series/0/name'],
-                url:'',
-                method:'',
-                params:'',
+                url:'http://xxx/yyy',
+                method:'Get',
+                params:{
+                  code:200,
+                  success:true,
+                  data: {
+                    colunms: {
+                      column1: "系列",
+                      colume2: "类别"
+                    },
+                    records: [
+                      ["类别","系列1","系列2","系列3"],
+                      ["类别1","40","50","80"],
+                      ["类别1","40","50","80"],
+                      ["类别3","20","80","30"]
+                    ],
+                    page:{
+                      total:100,
+                      currentPage:1,
+                      pageSize:10
+                    }
+                  },
+                },
+                autoupdate:false,
+                autoupdateTime: 0,
                 apiConf:'',
                 proPath:''}
           }

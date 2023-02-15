@@ -13,7 +13,27 @@
       </div>
     </div >
     <div v-show="value.source.type===3" class="dynamic-data">
-        动态数据
+      <el-form label-position="left" label-width="60px" :model="value.source" size="small">
+        <el-form-item class="none-label">
+          <el-row type="flex" justify="space-between">
+            <el-col :span="12">
+              <el-checkbox v-model="value.source.autoupdate">自动更新请求</el-checkbox>
+            </el-col>
+            <el-col v-if="value.source.autoupdate" :span="8" style="display: flex;justify-content: flex-end">
+              <el-input v-model.number="value.source.autoupdateTime"></el-input>
+              <span style="width: 60px;margin-left: 10px">秒/次</span>
+            </el-col>
+          </el-row>
+        </el-form-item>
+        <el-form-item>
+          <span slot="label">数据服务</span>
+          <span style="font-size: 12px;">{{value.source.method}}</span>
+        </el-form-item>
+        <el-form-item>
+          <span slot="label">Url</span>
+          <el-input style="width: 70%" v-model="value.source.url"></el-input>
+        </el-form-item>
+      </el-form>
     </div>
     <tableDialog v-model="dialogVisible" :tableData="tableData" @changeData="changeData"></tableDialog>
   </div>
@@ -54,7 +74,6 @@ export default {
     },
     changeData(data) {
       this.value.source.json = JSON.stringify(data)
-      console.log(this.value)
     }
   },
   mounted() {
@@ -64,8 +83,19 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.none-label /deep/ .el-form-item__content {
+  margin-left: 0 !important;
+}
 .data-components {
   width: 100%;
   height: 100%;
+}
+::v-deep .numrule input::-webkit-outer-spin-button,
+::v-deep .numrule input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+::v-deep .numrule input[type="number"] {
+  width: 60px;
+  -moz-appearance: textfield !important;
 }
 </style>
