@@ -64,7 +64,7 @@ export default {
         }
         case 'boolean': {
           return (
-              <el-switch value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
+              <el-switch value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} onChange={$event=>{event.stopPropagation()}} size="mini">
               </el-switch>
           )
         }
@@ -128,7 +128,7 @@ export default {
         }
         case 'icon-drop':{
           return (
-              <MtIconDrop value={modelPro.obj[modelPro.key]} icon={fItem.icon} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" items={fItem.data}></MtIconDrop>
+              <MtIconDrop value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" items={fItem.data}></MtIconDrop>
           )
         }
         case 'horizontal-control':{
@@ -198,7 +198,7 @@ export default {
   }
 }
 </script>
-<style>
+<style lang="less">
 .pro-panel .text-style-row{
   display: flex;
   align-items: center;
@@ -225,10 +225,21 @@ export default {
   height: 26px;
   line-height: 26px;
 }
-.pro-panel .text-style-col .el-input-number{
-  width: 50px;
-}
-.pro-panel .text-style-col .el-input-number__decrease,.text-style-col .el-input-number__increase{
-  width: 12px!important;
+.pro-panel .text-style-col{
+  .el-input-number__decrease{
+    width: 12px!important;
+  }
+  .el-input-number__increase{
+    width: 12px!important;
+  }
+  .el-input-number{
+    width: 60px;
+  }
+  .el-select{
+    width: 60px;
+    .el-input__suffix{
+      right: -2px;
+    }
+  }
 }
 </style>

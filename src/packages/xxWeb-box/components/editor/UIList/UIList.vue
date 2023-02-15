@@ -2,7 +2,6 @@
   <Tabs class="ui-list" type="border-card" size="small">
     <TabPane style="height: 100%">
       <span slot="label">
-<!--        <i :class="item.icon"></i>-->
         UL列表
       </span>
       <Tree
@@ -19,7 +18,6 @@
           @node-drop="handleDrop"
       >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-<!--          <i class="header-icon el-icon-view"></i>-->
           <div class="custom-tree-node-label" @click="treeNodeClick(data)">{{ node.label }}</div>
           <span>
             <i class="el-icon-view" @click="controlShow(data)"></i>
@@ -27,50 +25,6 @@
           </span>
         </span>
       </Tree>
-
-      <!--      <Collapse v-for="(item,pi) in uiList" :key="pi">-->
-      <!--        <CollapseItem :name="pi">-->
-      <!--          <template slot="title">-->
-      <!--            <div class="collapse-item-title">-->
-      <!--              <span>{{item.name}}</span>-->
-      <!--              <span>-->
-      <!--                <i class="header-icon el-icon-view"></i>-->
-      <!--                <i class="header-icon el-icon-view"></i>-->
-      <!--              </span>-->
-      <!--            </div>-->
-
-      <!--          </template>-->
-      <!--          <draggable-->
-      <!--              :list="item.children"-->
-      <!--              :disabled="!enabled"-->
-      <!--              class="list-group"-->
-      <!--              ghost-class="ghost"-->
-      <!--              :move="checkMove"-->
-      <!--              @start="dragging = true"-->
-      <!--              @end="dragging = false"-->
-      <!--          >-->
-      <!--            <div-->
-      <!--                class="list-group-item collapse-item-chart"-->
-      <!--                v-for="element in item.children"-->
-      <!--                :key="element.id"-->
-      <!--            >-->
-      <!--              <span>{{element.config.box.name}}</span>-->
-      <!--              <span>-->
-      <!--                <i class="header-icon el-icon-view"></i>-->
-      <!--                <i class="header-icon el-icon-view"></i>-->
-      <!--              </span>-->
-      <!--            </div>-->
-      <!--          </draggable>-->
-      <!--&lt;!&ndash;          <div class="collapse-item-chart" v-for="(chart,ci) in item.children">&ndash;&gt;-->
-      <!--&lt;!&ndash;            <span>{{chart.config.box.name}}</span>&ndash;&gt;-->
-      <!--&lt;!&ndash;            <span>&ndash;&gt;-->
-      <!--&lt;!&ndash;              <i class="header-icon el-icon-view"></i>&ndash;&gt;-->
-      <!--&lt;!&ndash;              <i class="header-icon el-icon-view"></i>&ndash;&gt;-->
-      <!--&lt;!&ndash;            </span>&ndash;&gt;-->
-      <!--&lt;!&ndash;          </div>&ndash;&gt;-->
-      <!--        </CollapseItem>-->
-      <!--      </Collapse>-->
-
     </TabPane>
   </Tabs>
 </template>

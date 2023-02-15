@@ -5,8 +5,16 @@
         <i :class="tab.icon"></i>
         {{tab.type}}
       </span>
-      <Collapse v-if="tab.con instanceof Array">
+      <Collapse v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
         <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
+          <template slot="title">
+            <span class="panel-title">
+              {{panel.name}}
+            </span>
+            <template v-for="(tItem,ti) in panel.tools">
+              <MtFormItem :fItem="tItem" :controlledObj="controlledObj"></MtFormItem>
+            </template>
+          </template>
           <Form label-width="60px">
             <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
               <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
@@ -60,6 +68,14 @@ export default {
 .pro-panel{
   width: 100%;
   height: 100%;
+  .panel-title{
+    width: 70px;
+    padding: 2px;
+    margin-right: 6px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   /deep/ .el-form-item__label{
     font-size: 12px;
     line-height: 30px;

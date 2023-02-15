@@ -2,7 +2,7 @@
   <div class="icon-drop">
     <el-dropdown @command="handleCommand">
     <span class="el-dropdown-link">
-      <MtIcon :icon="icon" :size="16" class="align-icon"></MtIcon>
+      <MtIcon :icon="items.find(c=>c.value===value).icon" :size="14" class="align-icon"></MtIcon>
     </span>
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item v-for="item in items" :key="item.value" :command="item.value">
