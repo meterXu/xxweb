@@ -260,7 +260,7 @@ export default {
     width: 60px;
   }
   .el-select{
-    width: 60px;
+    width: 75px;
     .el-input__suffix{
       right: -2px;
     }
