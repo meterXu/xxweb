@@ -16,7 +16,7 @@ export default {
                         {key: 'config.options.text.content', name: '内容', type: 'text'},
                         {key: 'config.options.text.textStyle', name: '内容风格', type: 'horizontal-control',props:[
                                 {key: 'fontSize', name: '大小', type: 'select', data: [{text: '12px', value: 12}, {text: '14px', value: 14}, {text: '16px', value: 16},{text: '18px', value: 18},{text: '24px', value: 24},{text: '30px', value: 30}]},
-                                {key:'fontSize',name:'大小',type:'number'},
+                                {key:'fontSize',name:'大小',type:'number',props:{controls:false,unit:'px',class:'unit-px'}},
                                 {key:'color',name:'颜色',type:'color'},
                                 {key:'fontWeight',name:'粗细',type:'icon-drop',data:[{icon:'TextBoldNormal',text: '正常', value: 'normal'}, {icon:'TextBold',text: '加粗', value: 'bold'}]},
                                 {key:'fontStyle',name:'风格',type:'icon-drop',data:[{icon:'TextItalicNormal',text: '正常', value: 'normal'}, {icon:'TextItalic',text: '斜体', value: 'italic'}]},

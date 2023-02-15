@@ -45,9 +45,17 @@ export default {
       fItem.props = fItem.props||{}
       switch (fItem.type) {
         case 'number': {
+          let number =
+              (<el-input-number class={fItem.props['class']}
+                                controls-position={fItem.props['controls-position']||'right'}
+                                controls={fItem.props['controls']}
+                                value={modelPro.obj[modelPro.key]}
+                                onInput={$event => {modelPro.obj[modelPro.key] = $event}}
+                                size="mini"></el-input-number>)
+
           return (
               <span>
-                <el-input-number class={fItem.props['class']} controls-position="right" value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></el-input-number> {fItem.unit}
+                {number} {fItem.unit}
               </span>
           )
         }
@@ -216,6 +224,22 @@ export default {
 .pro-panel .el-input-number{
   position: relative;
   top: -1px;
+}
+.unit-px:after{
+  position: absolute;
+  right: 4px;
+  top: 0;
+  content: 'px';
+  color: #666666;
+  opacity: 0.5;
+}
+.unit-percent:after{
+  position: absolute;
+  right: 4px;
+  top: 0;
+  content: '%';
+  color: #666666;
+  opacity: 0.5;
 }
 .pro-panel .text-style-col .el-input__inner{
   padding-left:0 !important;
