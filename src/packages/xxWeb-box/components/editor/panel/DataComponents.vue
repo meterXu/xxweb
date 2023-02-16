@@ -19,9 +19,9 @@
             <el-col :span="12">
               <el-checkbox v-model="value.source.autoupdate">自动更新请求</el-checkbox>
             </el-col>
-            <el-col v-if="value.source.autoupdate" :span="8" style="display: flex;justify-content: flex-end">
+            <el-col v-if="value.source.autoupdate" :span="11" style="display: flex;justify-content: flex-end">
               <el-input v-model.number="value.source.autoupdateTime"></el-input>
-              <span style="width: 60px;margin-left: 10px">秒/次</span>
+              <span style="width: 60px;margin-left: 4px;font-size: 12px">秒/次</span>
             </el-col>
           </el-row>
         </el-form-item>
@@ -106,12 +106,8 @@ export default {
   width: 100%;
   height: 100%;
 }
-::v-deep .numrule input::-webkit-outer-spin-button,
-::v-deep .numrule input::-webkit-inner-spin-button {
-  -webkit-appearance: none !important;
-}
-::v-deep .numrule input[type="number"] {
-  width: 60px;
-  -moz-appearance: textfield !important;
+/deep/ .el-input--small .el-input__inner {
+  height: 26px;
+  line-height: 26px;
 }
 </style>
