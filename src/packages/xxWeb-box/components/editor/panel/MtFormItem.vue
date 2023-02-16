@@ -164,7 +164,7 @@ export default {
         }
         case 'data-components':{
           return (
-              <DataComponents value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
+              <DataComponents on={context.data.on} value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
           )
         }
         case 'inner-array':{

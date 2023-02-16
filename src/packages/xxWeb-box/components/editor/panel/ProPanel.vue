@@ -12,12 +12,12 @@
               {{panel.name}}
             </span>
             <template v-for="(tItem,ti) in panel.tools">
-              <MtFormItem :fItem="tItem" :controlledObj="controlledObj"></MtFormItem>
+              <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj"></MtFormItem>
             </template>
           </template>
           <Form label-width="60px">
             <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
-              <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+              <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
             </FormItem>
           </Form>
         </CollapseItem>
@@ -25,7 +25,7 @@
       <template v-else>
         <Form label-width="60px">
           <FormItem v-for="(fItem,fi) in tab.con.sub" :key="fi" :label="fItem.name" :class="fItem.name?'':'none-label'">
-            <MtFormItem :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+            <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>
         </Form>
       </template>
