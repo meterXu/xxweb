@@ -34,15 +34,16 @@
           <el-input style="width: 70%" v-model="value.source.url"></el-input>
         </el-form-item>
       </el-form>
+      <codemirror ref="cmExpressionsRef" style="width:100%" v-model="value.source.params" :options="cmOptions"></codemirror>
     </div>
     <tableDialog v-model="dialogVisible" :tableData="tableData" @changeData="changeData"></tableDialog>
   </div>
 </template>
 
 <script>
-// import { HotTable } from '@handsontable/vue';
-// import { registerAllModules } from 'handsontable/registry';
-// import 'handsontable/dist/handsontable.full.css';
+import { codemirror } from 'vue-codemirror'
+import 'codemirror/lib/codemirror.css'
+
 import tableDialog from './tableDialog'
 export default {
   name: "DataComponents",
@@ -52,7 +53,17 @@ export default {
     event:'change'
   },
   components: {
-    tableDialog
+    tableDialog,
+    codemirror
+  },
+  watch:{
+    'value.source.type':{
+      handler(nv) {
+        if(nv===3) {
+          this.$refs.cmExpressionsRef.refresh()
+        }
+      }
+    }
   },
   data() {
     return {
@@ -65,6 +76,11 @@ export default {
         minRows: 10,
         height: 'auto',
         licenseKey: 'non-commercial-and-evaluation'
+      },
+      cmOptions: {
+        readOnly: true,
+        mode: 'text/javascript',
+        theme: 'base16-dark',
       }
     }
   },

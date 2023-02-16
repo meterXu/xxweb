@@ -100,27 +100,27 @@ export default {
                 sto: ['legend/data/0', 'series/0/name'],
                 url:'http://xxx/yyy',
                 method:'Get',
-                params:{
-                  code:200,
-                  success:true,
-                  data: {
-                    colunms: {
-                      column1: "系列",
-                      colume2: "类别"
-                    },
-                    records: [
-                      ["类别","系列1","系列2","系列3"],
-                      ["类别1","40","50","80"],
-                      ["类别1","40","50","80"],
-                      ["类别3","20","80","30"]
-                    ],
-                    page:{
-                      total:100,
-                      currentPage:1,
-                      pageSize:10
-                    }
-                  },
-                },
+                params: `{
+  code:200,
+  success:true,
+  data: {
+    colunms: {
+      column1: "系列",
+      colume2: "类别"
+    },
+    records: [
+      ["类别","系列1","系列2","系列3"],
+      ["类别1","40","50","80"],
+      ["类别1","40","50","80"],
+      ["类别3","20","80","30"]
+    ],
+    page:{
+      total:100,
+      currentPage:1,
+      pageSize:10
+    }
+  }
+}`,
                 autoupdate:false,
                 autoupdateTime: 0,
                 apiConf:'',
