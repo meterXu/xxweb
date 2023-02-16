@@ -34,6 +34,10 @@
           <el-input style="width: 70%" v-model="value.source.url"></el-input>
         </el-form-item>
       </el-form>
+      <div style="background-color: #F5F5F5">
+        <span>服务结果示例</span>
+        <i style="margin-left: 10px" class="el-icon-arrow-up"></i>
+      </div>
       <codemirror ref="cmExpressionsRef" style="width:100%" v-model="value.source.params" :options="cmOptions"></codemirror>
     </div>
     <tableDialog v-model="dialogVisible" :tableData="tableData" @changeData="changeData"></tableDialog>
@@ -43,7 +47,8 @@
 <script>
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
-
+import 'codemirror/theme/base16-light.css'
+import 'codemirror/mode/javascript/javascript.js'
 import tableDialog from './tableDialog'
 export default {
   name: "DataComponents",
@@ -79,8 +84,10 @@ export default {
       },
       cmOptions: {
         readOnly: true,
+        lineNumbers: true,
+        line: true,
         mode: 'text/javascript',
-        theme: 'base16-dark',
+        theme: 'base16-light',
       }
     }
   },
