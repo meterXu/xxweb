@@ -13,32 +13,32 @@
       </div>
     </div >
     <div v-show="value.source.type===3" class="dynamic-data">
-      <el-form label-position="left" label-width="60px" :model="value.source" size="small">
+      <el-form label-position="left" label-width="60px" :model="source" size="small">
         <el-form-item class="none-label">
           <el-row type="flex" justify="space-between">
             <el-col :span="12">
-              <el-checkbox v-model="value.source.autoupdate">自动更新请求</el-checkbox>
+              <el-checkbox v-model="source.autoupdate">自动更新请求</el-checkbox>
             </el-col>
-            <el-col v-if="value.source.autoupdate" :span="11" style="display: flex;justify-content: flex-end">
-              <el-input v-model.number="value.source.autoupdateTime"></el-input>
+            <el-col v-if="source.autoupdate" :span="11" style="display: flex;justify-content: flex-end">
+              <el-input v-model.number="source.autoupdateTime"></el-input>
               <span style="width: 60px;margin-left: 4px;font-size: 12px">秒/次</span>
             </el-col>
           </el-row>
         </el-form-item>
         <el-form-item>
           <span slot="label">数据服务</span>
-          <span style="font-size: 12px;">{{value.source.method}}</span>
+          <span style="font-size: 12px;">{{source.method}}</span>
         </el-form-item>
         <el-form-item>
           <span slot="label">Url</span>
-          <el-input style="width: 70%" v-model="value.source.url"></el-input>
+          <el-input style="width: 70%" v-model="source.url"></el-input>
         </el-form-item>
       </el-form>
       <div style="background-color: #F5F5F5">
         <span>服务结果示例</span>
         <i style="margin-left: 10px" class="el-icon-arrow-up"></i>
       </div>
-      <codemirror ref="cmExpressionsRef" style="width:100%" v-model="value.source.params" :options="cmOptions"></codemirror>
+      <codemirror ref="cmExpressionsRef" style="width:100%" v-model="source.params" :options="cmOptions"></codemirror>
       <div style="width: 100%;display: flex;justify-content: flex-end">
         <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
       </div>
@@ -64,6 +64,14 @@ export default {
     tableDialog,
     codemirror
   },
+  watch:{
+    'value.source':{
+      deep:true,
+      handler(nv) {
+        this.source = Object.assign({},nv)
+      }
+    }
+  },
   data() {
     return {
       dialogVisible: false,
@@ -82,7 +90,8 @@ export default {
         line: true,
         mode: 'text/javascript',
         theme: 'base16-light',
-      }
+      },
+      source: {}
     }
   },
   methods:{
@@ -94,10 +103,10 @@ export default {
     },
     handleDynamicData() {
       this.$emit('updateData',{
-        url:this.value.source.url,
-        method:this.value.source.method,
-        autoupdate:this.value.source.autoupdate,
-        autoupdateTime: this.value.source.autoupdateTime,
+        url:this.source.url,
+        method:this.source.method,
+        autoupdate:this.source.autoupdate,
+        autoupdateTime: this.source.autoupdateTime,
         type: this.value.type,
       })
     }
@@ -106,11 +115,9 @@ export default {
     if(this.value.source.type==3) {
       this.$refs.cmExpressionsRef.refresh()
     }
-    console.log(this.value)
   },
   mounted() {
-    console.log(this.$refs.cmExpressionsRef)
-    console.log(this.$attrs)
+    this.source = Object.assign({},this.value.source)
     this.tableData = JSON.parse(this.value.source.json)
   }
 }
