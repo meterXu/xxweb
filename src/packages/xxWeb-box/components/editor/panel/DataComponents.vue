@@ -64,15 +64,6 @@ export default {
     tableDialog,
     codemirror
   },
-  watch:{
-    'value.source.type':{
-      handler(nv) {
-        if(nv===3) {
-          this.$refs.cmExpressionsRef.refresh()
-        }
-      }
-    }
-  },
   data() {
     return {
       dialogVisible: false,
@@ -111,7 +102,15 @@ export default {
       })
     }
   },
+  updated() {
+    if(this.value.source.type==3) {
+      this.$refs.cmExpressionsRef.refresh()
+    }
+    console.log(this.value)
+  },
   mounted() {
+    console.log(this.$refs.cmExpressionsRef)
+    console.log(this.$attrs)
     this.tableData = JSON.parse(this.value.source.json)
   }
 }

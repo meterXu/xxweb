@@ -1,5 +1,5 @@
 <template>
-  <Tabs class="pro-panel" type="border-card" size="small">
+  <Tabs class="pro-panel" type="border-card" size="small" @tab-click="handleTabClick">
     <TabPane v-for="(tab,ti) in config" :key="ti">
       <span slot="label">
         <i :class="tab.icon"></i>
@@ -60,6 +60,11 @@ export default {
     Collapse,
     CollapseItem,
     MtFormItem
+  },
+  methods:{
+    handleTabClick(tab, event) {
+      this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
+    }
   }
 }
 </script>
