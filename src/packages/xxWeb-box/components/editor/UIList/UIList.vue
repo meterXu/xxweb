@@ -20,7 +20,6 @@
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="treeNodeClick(data)">{{ node.label }}</div>
           <span>
-            <i class="el-icon-view" @click="controlShow(data)"></i>
             <slot name="ui-custom-icon" :data="{node,data}"></slot>
           </span>
         </span>
@@ -121,9 +120,6 @@ export default {
     },
     treeNodeClick(data) {
       this.$emit('nodeChange',data.id,'active')
-    },
-    controlShow(data) {
-      this.$emit('nodeChange',data.id,'show')
     }
   }
 }
