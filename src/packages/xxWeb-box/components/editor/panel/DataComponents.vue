@@ -34,7 +34,7 @@
           <el-input style="width: 70%" v-model="source.url"></el-input>
         </el-form-item>
       </el-form>
-      <div style="width: 100%;display: flex;justify-content: flex-end">
+      <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-end">
         <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
       </div>
       <div style="background-color: #F5F5F5">
