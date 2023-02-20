@@ -30,9 +30,11 @@ export default {
   },
   watch:{
     visible(nv) {
-      this.$nextTick(()=>{
-        this.$refs.staticTable.hotInstance.updateData(this.tableData)
-      })
+      if(nv) {
+        this.$nextTick(()=>{
+          this.$refs.staticTable.hotInstance.updateData(this.tableData)
+        })
+      }
     }
   },
   data() {

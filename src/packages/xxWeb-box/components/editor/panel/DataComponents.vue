@@ -69,6 +69,7 @@ export default {
       deep:true,
       handler(nv) {
         this.source = Object.assign({},nv)
+        this.tableData = JSON.parse(this.value.source.json)
       }
     }
   },
