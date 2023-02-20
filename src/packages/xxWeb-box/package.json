@@ -15,11 +15,11 @@
   "license": "MIT",
   "dependencies": {
     "@handsontable/vue": "^12.3.1",
-    "handsontable": "^12.3.1",
     "@scena/guides": "^0.20.4",
     "axios": "^0.18.0",
     "darkreader": "^4.9.58",
     "element-ui": "^2.15.8",
+    "handsontable": "^12.3.1",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "lodash": "^4.17.21",
@@ -27,6 +27,7 @@
     "resize-detector": "^0.1.9",
     "screenfull": "^4.2.0",
     "vue": "^2.6.11",
+    "vue-codemirror": "^4.0.6",
     "vue-router": "^3.0.2"
   }
 }
