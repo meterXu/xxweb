@@ -34,14 +34,14 @@
           <el-input style="width: 70%" v-model="source.url"></el-input>
         </el-form-item>
       </el-form>
+      <div style="width: 100%;display: flex;justify-content: flex-end">
+        <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
+      </div>
       <div style="background-color: #F5F5F5">
         <span>服务结果示例</span>
         <i style="margin-left: 10px" class="el-icon-arrow-up"></i>
       </div>
       <codemirror ref="cmExpressionsRef" style="width:100%" v-model="source.params" :options="cmOptions"></codemirror>
-      <div style="width: 100%;display: flex;justify-content: flex-end">
-        <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
-      </div>
     </div>
     <tableDialog v-model="dialogVisible" :tableData="tableData" @changeData="changeData"></tableDialog>
   </div>

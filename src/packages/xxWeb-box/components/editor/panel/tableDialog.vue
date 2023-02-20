@@ -5,7 +5,7 @@
       width="60%"
       @close="onCancel">
     <div class="hot--box">
-      <hot-table ref="staticTable" :data="data" :settings="hotSettings"></hot-table>
+      <hot-table ref="staticTable" :data="tableData" :settings="hotSettings"></hot-table>
     </div>
     <span slot="footer" class="dialog-footer">
       <el-button @click="onCancel">取 消</el-button>
@@ -29,13 +29,14 @@ export default {
     HotTable
   },
   watch:{
-    tableData(nv) {
-      this.data=nv
+    visible(nv) {
+      this.$nextTick(()=>{
+        this.$refs.staticTable.hotInstance.updateData(this.tableData)
+      })
     }
   },
   data() {
     return {
-      data: [],
       hotSettings: {
         colHeaders: true,
         rowHeaders: true,
