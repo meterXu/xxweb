@@ -2,14 +2,17 @@
   <draggable
       class="list-group"
       v-bind="dragOptions"
+      v-model="chart.items"
       @start="drag = true"
       @end="drag = false"
   >
-    <el-row :gutter="0" v-for="item in charts">
-      <el-col :span="24" class="xsc-item">
-        <slot :view="view" :item="item"></slot>
-      </el-col>
-    </el-row>
+    <transition-group type="transition" :name="!drag ? 'flip-list' : null">
+      <el-row :gutter="0" v-for="(item,index) in chart.items"  :key="index">
+        <el-col :span="24" class="xsc-item">
+          <slot :view="view" :item="item"></slot>
+        </el-col>
+      </el-row>
+    </transition-group>
   </draggable>
 </template>
 
@@ -20,8 +23,8 @@ export default {
   name: "XscRowLayout",
   props: {
     scale: Number,
-    charts: {
-      type: Array,
+    chart: {
+      type: Object,
       default: null
     },
     view: {
@@ -42,6 +45,7 @@ export default {
   },
   data() {
     return {
+      drag: false,
       dragOptions: {
         animation: 200,
         group: "description",
@@ -75,6 +79,8 @@ export default {
     bottom: 0;
     background: rgb(161, 255, 235);
   }
-
+}
+.flip-list-move {
+  transition: transform 0.5s;
 }
 </style>

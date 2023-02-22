@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <MtView :config="config">
-      <XscRowLayout :charts="charts" :view="false">
+      <XscRowLayout :chart="chart" :view="false">
         <div style="width: 800px;height: 200px;background: green"></div>
       </XscRowLayout>
     </MtView>
@@ -19,7 +19,9 @@ export default {
   },
   data(){
     return {
-      charts:charts,
+      chart:{
+        items:charts
+      },
       config:{
         theme:'light',
         isRuler:false,
