@@ -35,6 +35,14 @@ export default {
       type: Object,
       default: null
     },
+    config:{
+      type:Object,
+      default(){
+        return {
+          background: 'rgb(161, 255, 235)'
+        }
+      }
+    }
   },
   model: {
     prop: 'activeItem',
