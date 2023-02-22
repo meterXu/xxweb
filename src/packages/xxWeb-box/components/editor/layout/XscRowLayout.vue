@@ -7,7 +7,7 @@
       @end="drag = false"
   >
     <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-      <el-row :gutter="0" v-for="(item,index) in chart.items"  :key="index">
+      <el-row :gutter="0" v-for="(item,index) in chart.items"  :key="index" @dragstart.native="dragstart">
         <el-col :span="24" class="xsc-item">
           <slot :view="view" :item="item"></slot>
         </el-col>
@@ -55,6 +55,10 @@ export default {
     }
   },
   methods:{
+    dragstart(){
+      const div = document.createElement("div");
+      event.dataTransfer.setDragImage(div, 0, 0);
+    }
   }
 }
 </script>
@@ -68,10 +72,12 @@ export default {
 }
 .ghost {
   border:2px dashed #acacac;
+  cursor:move;
   :after{
     content: '';
     display: block;
     position: absolute;
+    cursor:move;
     z-index: 2;
     top: 0;
     left: 0;
