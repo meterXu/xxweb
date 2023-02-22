@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <MtView :config="config">
-      <XscRowLayout :chart="chart" :view="false">
+      <XscRowLayout v-model="activeItem" :chart="chart" :view="false">
         <template v-slot="{view,item}">
          <div :style="{width: item.config.box.width+'px',height: item.config.box.height+'px'}">
            <VueDrawXs :view="view" :item="item"></VueDrawXs>
@@ -28,6 +28,7 @@ export default {
       chart:{
         items:charts
       },
+      activeItem:null,
       config:{
         theme:'light',
         isRuler:false,

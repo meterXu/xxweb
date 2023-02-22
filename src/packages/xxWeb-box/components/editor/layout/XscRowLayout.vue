@@ -7,7 +7,7 @@
       @end="drag = false"
   >
     <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-      <el-row :gutter="0" v-for="(item,index) in chart.items"  :key="index" @dragstart.native="dragstart">
+      <el-row :style="cssVars" :gutter="0" v-for="(item,index) in chart.items"  :key="index" @dragstart.native="dragstart(item)" @click.native="itemClick(item)">
         <el-col :span="24" class="xsc-item">
           <slot :view="view" :item="item"></slot>
         </el-col>
@@ -39,7 +39,12 @@ export default {
       type:Object,
       default(){
         return {
-          background: 'rgb(161, 255, 235)'
+          moveStyle:{
+            background: 'rgb(161, 255, 235)',
+            borderWidth:'2px',
+            borderStyle:'dashed',
+            borderColor:'#acacac'
+          }
         }
       }
     }
@@ -62,10 +67,24 @@ export default {
       }
     }
   },
+  computed:{
+    cssVars(){
+      return {
+        '--bg-color': this.config.moveStyle.background,
+        '--border-width':this.config.moveStyle.borderWidth,
+        '--border-style':this.config.moveStyle.borderStyle,
+        '--border-color':this.config.moveStyle.borderColor,
+      }
+    }
+  },
   methods:{
-    dragstart(){
+    dragstart(item){
       const div = document.createElement("div");
       event.dataTransfer.setDragImage(div, 0, 0);
+      this.$emit('change',item)
+    },
+    itemClick(item){
+      this.$emit('change',item)
     }
   }
 }
@@ -79,7 +98,9 @@ export default {
   box-sizing: border-box;
 }
 .ghost {
-  border:2px dashed #acacac;
+  border-width:var(--border-width);
+  border-style:var(--border-style);
+  border-color:var(--border-color);
   cursor:move;
   :after{
     content: '';
@@ -91,7 +112,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgb(161, 255, 235);
+    background: var(--bg-color);
   }
 }
 .flip-list-move {
