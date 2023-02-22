@@ -2,7 +2,11 @@
   <div class="editor">
     <MtView :config="config">
       <XscRowLayout :chart="chart" :view="false">
-        <div style="width: 800px;height: 200px;background: green"></div>
+        <template v-slot="{view,item}">
+         <div :style="{width: item.config.box.width+'px',height: item.config.box.height+'px'}">
+           <VueDrawXs :view="view" :item="item"></VueDrawXs>
+         </div>
+        </template>
       </XscRowLayout>
     </MtView>
   </div>
@@ -11,11 +15,13 @@
 <script>
 import {MtView,XscRowLayout} from "../../packages/xxWeb-box";
 import charts from './charts'
+import VueDrawXs from "../../packages/vue-draw-xs/Index";
 export default {
   name: "RowLayoutEditor",
   components:{
     MtView,
-    XscRowLayout
+    XscRowLayout,
+    VueDrawXs
   },
   data(){
     return {
