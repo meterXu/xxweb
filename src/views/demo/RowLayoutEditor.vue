@@ -1,11 +1,17 @@
 <template>
-
+  <MtView>
+    <XscRowLayout></XscRowLayout>
+  </MtView>
 </template>
 
 <script>
-import {MtView,XscStaticLayout} from "../../packages/xxWeb-box";
+import {MtView,XscRowLayout} from "../../packages/xxWeb-box";
 export default {
-  name: "RowLayoutEditor.vue"
+  name: "RowLayoutEditor",
+  components:{
+    MtView,
+    XscRowLayout
+  }
 }
 </script>
 

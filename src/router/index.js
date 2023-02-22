@@ -100,6 +100,11 @@ const normalRoutes =  [
                 component: ()=>import('../views/demo/Editor')
             },
             {
+                path: '/demo/rowLayoutEditor',
+                name: 'rowLayoutEditor',
+                component: ()=>import('../views/demo/RowLayoutEditor')
+            },
+            {
                 path: '/demo/panelDemo',
                 name: 'panelDemo',
                 component: ()=>import('../views/demo/PanelDemo')

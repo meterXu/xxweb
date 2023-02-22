@@ -17,6 +17,9 @@ import {JeecgLogin,
   DarkMode1,
   MtView,
   XscStaticLayout,
+  XscRowLayout,
+  XscColumnLayout,
+  XscGridLayout,
   ProPanel
 } from './packages/xxWeb-box'
 import router from './router';
@@ -45,6 +48,9 @@ const components = [JeecgLogin,
   DarkMode1,
   MtView,
   XscStaticLayout,
+  XscRowLayout,
+  XscColumnLayout,
+  XscGridLayout,
   ProPanel
 ]
 components.forEach(c=>{
