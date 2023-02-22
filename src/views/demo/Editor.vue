@@ -13,11 +13,18 @@
     </div>
     <div style="width: 250px;height: 100%">
       <div class="panel-right-ui">
-        <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
-          <template v-slot:ui-custom-icon="scope">
-            <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
-          </template>
-        </UIList>
+          <el-tabs class="ui-list" type="border-card" size="small">
+            <el-tabPane style="height: 100%">
+              <span slot="label">
+                UL列表
+              </span>
+                <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
+                  <template v-slot:ui-custom-icon="scope">
+                    <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
+                  </template>
+                </UIList>
+            </el-tabPane>
+          </el-tabs>
       </div>
       <div class="panel-right-pro">
         <ProPanel v-if="panelConfig" :controlledObj="activeItem" :config="panelConfig"></ProPanel>
@@ -1268,7 +1275,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 html,body,#app{
   overflow: hidden;
 }

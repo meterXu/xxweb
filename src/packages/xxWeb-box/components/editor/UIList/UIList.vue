@@ -1,31 +1,26 @@
 <template>
-  <Tabs class="ui-list" type="border-card" size="small">
-    <TabPane style="height: 100%">
-      <span slot="label">
-        UL列表
-      </span>
-      <Tree
-          ref="ui-tree"
-          :data="dataList"
-          :props="defaultProps"
-          node-key="id"
-          :indent="0"
-          default-expand-all
-          :highlight-current="true"
-          draggable
-          :current-node-key="activeId"
-          :allow-drop="allowDrop"
-          @node-drop="handleDrop"
-      >
+  <div class="ui-list">
+    <Tree
+        ref="ui-tree"
+        :data="dataList"
+        :props="defaultProps"
+        node-key="id"
+        :indent="0"
+        default-expand-all
+        :highlight-current="true"
+        draggable
+        :current-node-key="activeId"
+        :allow-drop="allowDrop"
+        @node-drop="handleDrop"
+    >
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="treeNodeClick(data)">{{ node.label }}</div>
           <span>
             <slot name="ui-custom-icon" :data="{node,data}"></slot>
           </span>
         </span>
-      </Tree>
-    </TabPane>
-  </Tabs>
+    </Tree>
+  </div>
 </template>
 
 <script>
