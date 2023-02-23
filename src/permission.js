@@ -74,14 +74,21 @@ export default [
             {
                 path: '/demo/rowLayoutEditor',
                 meta: {
-                    title: '水平布局编辑器',
+                    title: '行布局编辑器',
                     icon: 'el-icon-edit'
                 }
             },
             {
                 path: '/demo/columnLayoutEditor',
                 meta: {
-                    title: '垂直布局编辑器',
+                    title: '列布局编辑器',
+                    icon: 'el-icon-edit'
+                }
+            },
+            {
+                path: '/demo/GridLayoutEditor',
+                meta: {
+                    title: '栅格布局编辑器',
                     icon: 'el-icon-edit'
                 }
             }

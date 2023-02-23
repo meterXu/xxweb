@@ -110,6 +110,11 @@ const normalRoutes =  [
                 component: ()=>import('../views/demo/ColumnLayoutEditor')
             },
             {
+                path: '/demo/gridLayoutEditor',
+                name: 'gridLayoutEditor',
+                component: ()=>import('../views/demo/GridLayoutEditor')
+            },
+            {
                 path: '/demo/panelDemo',
                 name: 'panelDemo',
                 component: ()=>import('../views/demo/PanelDemo')

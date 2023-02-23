@@ -3,12 +3,12 @@
     <draggable
         class="list-group"
         v-bind="dragOptions"
-        v-model="chart.items"
+        v-model="xxx"
         @start="drag = true"
         @end="drag = false"
     >
       <transition-group class="transition-group" type="transition" :name="!drag ? 'flip-list' : null">
-        <div v-for="(item,index) in chart.items"
+        <div v-for="(item,index) in xxx"
              :key="index" @dragstart="dragstart(item)" @click="itemClick(item)"
              class="xsc-col" :style="cssVars">
           <slot :view="view" :item="item" :index="index"></slot>
@@ -68,7 +68,8 @@ export default {
         group: "description",
         disabled: this.view,
         ghostClass: "ghost"
-      }
+      },
+      xxx:[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
     }
   },
   computed:{
