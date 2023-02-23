@@ -3,8 +3,8 @@
     <MtView :config="config">
       <XscGridLayout v-model="activeItem" :chart="chart" :view="false">
         <template v-slot="{view,item,index}">
-         <div :style="{width: '300px',height: '300px',background:'#333',color:'#fff'}">
-<!--           <VueDrawXs :view="view" :item="item"></VueDrawXs>-->
+         <div :style="{background:'#333',color:'#fff',width:'100%',height:'100%'}">
+           <VueDrawXs :view="view" :item="item"></VueDrawXs>
          </div>
         </template>
       </XscGridLayout>
