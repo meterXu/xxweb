@@ -119,7 +119,7 @@ export default [
         "id": 1673489064078,
         "config": {
             "box": {
-                "width": 400,
+                "width": 500,
                 "height": 300,
                 "x": 1427,
                 "y": 31,
@@ -318,7 +318,7 @@ export default [
         "id": 1673489066864,
         "config": {
             "box": {
-                "width": 400,
+                "width": 600,
                 "height": 300,
                 "x": 1427,
                 "y": 367,

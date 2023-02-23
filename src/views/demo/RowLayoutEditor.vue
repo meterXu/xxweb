@@ -2,9 +2,10 @@
   <div class="editor">
     <MtView :config="config">
       <XscRowLayout v-model="activeItem" :chart="chart" :view="false">
-        <template v-slot="{view,item}">
-         <div :style="{width: item.config.box.width+'px',height: item.config.box.height+'px'}">
-           <VueDrawXs :view="view" :item="item"></VueDrawXs>
+        <template v-slot="{view,item,index}">
+         <div :style="{width: item.config.box.width+'px',height: '300px',background:'#333',color:'#fff'}">
+           {{ item.id }}
+<!--           <VueDrawXs :view="view" :item="item"></VueDrawXs>-->
          </div>
         </template>
       </XscRowLayout>

@@ -70,6 +70,13 @@ export default [
                     title: '编辑器',
                     icon: 'el-icon-edit'
                 }
+            },
+            {
+                path: '/demo/rowLayoutEditor',
+                meta: {
+                    title: '水平布局编辑器',
+                    icon: 'el-icon-edit'
+                }
             }
         ]
     }

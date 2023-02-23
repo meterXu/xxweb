@@ -1,22 +1,25 @@
 <template>
-  <draggable
-      class="list-group"
-      v-bind="dragOptions"
-      v-model="chart.items"
-      @start="drag = true"
-      @end="drag = false"
-  >
-    <transition-group type="transition" :name="!drag ? 'flip-list' : null">
-      <el-row :style="cssVars" :gutter="0" v-for="(item,index) in chart.items"  :key="index" @dragstart.native="dragstart(item)" @click.native="itemClick(item)">
-        <el-col :span="24" class="xsc-item">
-          <slot :view="view" :item="item"></slot>
-        </el-col>
-      </el-row>
-    </transition-group>
-  </draggable>
+  <div class="XscRowLayout">
+    <draggable
+        class="list-group"
+        v-bind="dragOptions"
+        v-model="chart.items"
+        @start="drag = true"
+        @end="drag = false"
+    >
+      <transition-group class="transition-group" type="transition" :name="!drag ? 'flip-list' : null">
+        <div v-for="(item,index) in chart.items"
+             :key="index" @dragstart="dragstart(item)" @click="itemClick(item)"
+             class="xsc-row" :style="cssVars">
+          <slot :view="view" :item="item" :index="index"></slot>
+        </div>
+      </transition-group>
+    </draggable>
+  </div>
 </template>
 
 <script>
+import '../assets/css/XscRowLayout.less'
 import draggable from "vuedraggable";
 
 export default {
@@ -39,11 +42,12 @@ export default {
       type:Object,
       default(){
         return {
+          gutter:'6px',
           moveStyle:{
-            background: 'rgb(161, 255, 235)',
-            borderWidth:'2px',
+            background: '#dae8fc',
+            borderWidth:'1px',
             borderStyle:'dashed',
-            borderColor:'#acacac'
+            borderColor:'#6c8ebf'
           }
         }
       }
@@ -70,6 +74,7 @@ export default {
   computed:{
     cssVars(){
       return {
+        '--gutter':this.config.gutter,
         '--bg-color': this.config.moveStyle.background,
         '--border-width':this.config.moveStyle.borderWidth,
         '--border-style':this.config.moveStyle.borderStyle,
@@ -91,31 +96,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.xsc-item {
-  padding: 6px;
-  cursor: grab;
-  position: relative;
-  box-sizing: border-box;
-}
-.ghost {
-  border-width:var(--border-width);
-  border-style:var(--border-style);
-  border-color:var(--border-color);
-  cursor:move;
-  :after{
-    content: '';
-    display: block;
-    position: absolute;
-    cursor:move;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--bg-color);
-  }
-}
-.flip-list-move {
-  transition: transform 0.5s;
-}
+
 </style>
