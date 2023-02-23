@@ -1,17 +1,17 @@
-.XscRowLayout {
+.XscGridLayout {
   .list-group{
   }
   .transition-group{
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     align-items: flex-start;
     justify-content: flex-start;
   }
-  .xsc-row{
+  .xsc-col{
     display: inline-block;
     cursor: grab;
     position: relative;
-    margin:var(--gutter) 0;
+    margin:0 var(--gutter) ;
   }
   .ghost {
     border-width:var(--border-width);

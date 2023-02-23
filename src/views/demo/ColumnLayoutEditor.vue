@@ -3,7 +3,7 @@
     <MtView :config="config">
       <XscColumnLayout v-model="activeItem" :chart="chart" :view="false">
         <template v-slot="{view,item,index}">
-         <div :style="{width: item.config.box.width+'px',height: '300px',background:'#333',color:'#fff'}">
+         <div :style="{width: item.config.box.width+'px',height: item.config.box.height+'px',background:'#333',color:'#fff'}">
            <VueDrawXs :view="view" :item="item"></VueDrawXs>
          </div>
         </template>

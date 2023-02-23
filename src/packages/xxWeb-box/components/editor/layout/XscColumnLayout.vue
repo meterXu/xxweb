@@ -1,5 +1,5 @@
 <template>
-  <div class="XscRowLayout">
+  <div class="XscColumnLayout">
     <draggable
         class="list-group"
         v-bind="dragOptions"
@@ -10,7 +10,7 @@
       <transition-group class="transition-group" type="transition" :name="!drag ? 'flip-list' : null">
         <div v-for="(item,index) in chart.items"
              :key="index" @dragstart="dragstart(item)" @click="itemClick(item)"
-             class="xsc-row" :style="cssVars">
+             class="xsc-col" :style="cssVars">
           <slot :view="view" :item="item" :index="index"></slot>
         </div>
       </transition-group>
