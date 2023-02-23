@@ -4,7 +4,7 @@
        @dragover="dragover"
        @click="canvasClick"
        :style="canvasStyle"
-       :class="['mt_canvas', {mt_canvas_position:view}]">
+       :class="['xsc-static-layout', {mt_canvas_position:view}]">
     <div v-for="item in charts" :ref="item.id"
          :key="item.id"
          :class="itemClass(item)"
@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import '../assets/css/XscStaticLayout.less'
 export default {
   name: 'XscStaticLayout',
   props: {
@@ -310,57 +311,5 @@ export default {
 </script>
 
 <style scoped>
-.mt_canvas {
-  position: relative;
-  width: 500px;
-  height: 500px;
-  background: #fff;
-  background-size: auto;
-  background-repeat: repeat;
-  box-sizing: border-box;
-}
-.mt_item{
-  display: inline-block;
-  cursor: move;
-  position: absolute;
-  outline: none;
-  pointer-events:auto;
-}
-.mt_canvas_position {
-  border: none;
-  margin: 0 auto;
-}
 
-.mt_item_base {
-  box-sizing: content-box;
-  border: 1px dashed #000;
-}
-
-.mt_item_view {
-  box-sizing: content-box;
-  border: 0px solid rgba(0, 0, 0, 0);
-}
-
-.mt_item_active {
-  box-sizing: content-box;
-  border: 1px dashed #2d8cf0;
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-}
-
-.item_resize {
-  position: absolute;
-  z-index: 3;
-  width: 7px;
-  height: 7px;
-  background: rgb(255, 255, 255);
-  border: 1px solid #2d8cf0;
-  border-radius: 2px;
-  bottom: -4.5px;
-  right: -4.5px;
-  cursor: se-resize;
-}
-
-.dragging {
-  cursor: move;
-}
 </style>

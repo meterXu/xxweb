@@ -77,6 +77,13 @@ export default [
                     title: '水平布局编辑器',
                     icon: 'el-icon-edit'
                 }
+            },
+            {
+                path: '/demo/columnLayoutEditor',
+                meta: {
+                    title: '垂直布局编辑器',
+                    icon: 'el-icon-edit'
+                }
             }
         ]
     }

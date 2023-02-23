@@ -1,13 +1,13 @@
 <template>
   <div class="editor">
     <MtView :config="config">
-      <XscRowLayout v-model="activeItem" :chart="chart" :view="false">
+      <XscColumnLayout v-model="activeItem" :chart="chart" :view="false">
         <template v-slot="{view,item,index}">
          <div :style="{width: item.config.box.width+'px',height: '300px',background:'#333',color:'#fff'}">
            <VueDrawXs :view="view" :item="item"></VueDrawXs>
          </div>
         </template>
-      </XscRowLayout>
+      </XscColumnLayout>
     </MtView>
   </div>
 </template>
@@ -16,9 +16,11 @@
 import {MtView,XscRowLayout} from "../../packages/xxWeb-box";
 import charts from './charts'
 import VueDrawXs from "../../packages/vue-draw-xs/Index";
+import XscColumnLayout from "../../packages/xxWeb-box/components/editor/layout/XscColumnLayout";
 export default {
-  name: "RowLayoutEditor",
+  name: "ColumnLayoutEditor",
   components:{
+    XscColumnLayout,
     MtView,
     XscRowLayout,
     VueDrawXs
