@@ -157,11 +157,11 @@ export default {
       event.stopPropagation()
     },
     itemMousedown(item) {
+      this.$emit('change',item)
       const mouseEvent = {
         0: () => {
           event.stopPropagation()
           if (!this.view) {
-            this.$emit('change',item)
             if(this.shiftKey){
               this.selectedItems.push(item)
             }else{
@@ -180,7 +180,6 @@ export default {
         2: () => {
           if(!this.view){
             event.preventDefault()
-            this.$emit('change',item)
             this.contextmenu(item)
           }
         }
