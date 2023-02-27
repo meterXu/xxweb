@@ -8,7 +8,7 @@
         :indent="0"
         default-expand-all
         :highlight-current="true"
-        draggable
+        :draggable="draggable"
         :current-node-key="activeId"
         :allow-drop="allowDrop"
         @node-drop="handleDrop"
@@ -39,6 +39,10 @@ export default {
     activeId:{
       type: String,
       default: ''
+    },
+    draggable:{
+      type: Boolean,
+      default: false
     }
   },
   components: {
