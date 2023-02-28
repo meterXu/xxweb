@@ -9,7 +9,7 @@
     >
       <transition-group class="transition-group" type="transition" :name="!drag ? 'flip-list' : null">
         <div v-for="(item,index) in chart.items"
-             :key="index" @dragstart="dragstart(item)" @click="itemClick(item)"
+             :key="item.id" @dragstart="dragstart(item)" @click="itemClick(item)"
              class="xsc-item" :style="cssVars">
           <slot :view="view" :item="item" :index="index"></slot>
         </div>
