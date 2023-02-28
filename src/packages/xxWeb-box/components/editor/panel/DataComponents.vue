@@ -123,11 +123,18 @@ export default {
     // 3 动态
     changeSourceType(val) {
       // 切换为静态时存储一下临时数据
+      // if (['echarts'].includes(this.value.type)) {
+      //   return
+      // }
       if (val === 2) {
         this.value.source.dynamicJson = this.value.source.json
         this.value.source.json = this.value.source.staticJson
       } else {
-        this.value.source.staticJson = this.value.source.json
+        if (['echarts', 'staticList'].includes(this.value.type)) {
+          this.value.source.dynamicJson = typeof (this.value.source.dynamicJson) === 'string' ? this.value.source.dynamicJson : (this.value.type === 'echarts' ? JSON.stringify({}) : JSON.stringify([]))
+        }
+        // console.log( this.value.source.dynamicJson);
+        this.value.source.staticJson = typeof (this.value.source.json) === 'string' ? this.value.source.json : ''
         this.value.source.json = this.value.source.dynamicJson
       }
     },
