@@ -152,19 +152,15 @@ export default {
       if(!view){
         view = this.searchMenuByPath(this.app.permission, route.path)
         if(view){
-          let _meta= Object.assign({},view.meta)
           view = JSON.parse(JSON.stringify(view))
-          view.meta = Object.assign(_meta,route.meta, {
-            permanent
-          })
+          view.meta = Object.assign({},view.meta,route.meta)
         }else{
           view = this.searchMenuByPath(this.$router.getRoutes(), route.path)
           if(!view){
             view = {name:'notfound', path:route.path, meta:{title:''}}
-          }else{
-            view = route
           }
         }
+        view.meta =  Object.assign(view.meta,{permanent})
         this.visitedViews.push(view)
         view.meta&&this.saveCachedView(view.meta.keepAlive,route.name||view.name)
       }
