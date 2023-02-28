@@ -1,7 +1,7 @@
 <template>
   <el-dialog
       title="静态数据"
-      :visible.sync="visible"
+      :visible="visible"
       width="60%"
       @close="onCancel">
     <div class="hot--box">
@@ -54,7 +54,8 @@ export default {
     onCancel() {
       this.$emit('change',false)
     },
-    handleSuccess(){
+    handleSuccess() {
+      this.afterChange(true)
       this.$emit('changeData',this.data)
       this.$emit('change',false)
     },
