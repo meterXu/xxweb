@@ -42,7 +42,7 @@ export default {
     ]
 
     function renderItem(fItem, modelPro) {
-      fItem.props = fItem.props||{}
+      fItem.props = fItem.props || {}
       switch (fItem.type) {
         case 'number': {
           let number =
@@ -164,7 +164,7 @@ export default {
         }
         case 'data-components':{
           return (
-              <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
+              <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
           )
         }
         case 'inner-array':{

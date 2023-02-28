@@ -18,7 +18,7 @@
               <span slot="label">
                 UL列表
               </span>
-                <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
+                <UIList :draggable="true" :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">
                   <template v-slot:ui-custom-icon="scope">
                     <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>
                   </template>
