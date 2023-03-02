@@ -14,11 +14,11 @@
          @mousedown="itemMousedown(item)"
          @dragstart="()=>{return false}">
       <slot v-if="item.config.box.show" :view="view" :item="item"></slot>
-      <span @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(item)">
+      <span style="user-select: none" draggable="false"  @mousedown="changeSizeSizeMousedown(item)">
             <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
           </span>
     </div>
-    <span v-if="page.config.options.changeSize" @dragstart="()=>{return false}" @mousedown="changeSizeSizeMousedown(page)">
+    <span v-if="page.config.options.changeSize" draggable="false" style="user-select: none" @mousedown="changeSizeSizeMousedown(page)">
         <div ref="resize" v-if="!view&&activeItem&&activeItem.chart==='canvas'" class="item_resize"></div>
       </span>
   </div>
