@@ -9,7 +9,7 @@
             {{text}}
           </div>
           <div class="action">
-            <Button class="btn" type="primary" v-if="show.home" @click="goHome">返回首页</Button>
+            <Button class="btn" type="primary" v-if="show.home" @click="goHome">{{btnText||返回首页}}</Button>
           </div>
         </div>
       </slot>
@@ -31,6 +31,10 @@ export default {
     text: {
       type: String,
       default: '你无权访问此页面，请联系管理员！'
+    },
+    btnText:{
+      type: String,
+      default: '返回首页'
     },
     show: {
       type: Object,
