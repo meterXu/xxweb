@@ -132,26 +132,26 @@ export default {
       if(event.keyCode===16){
         this.shiftKey = true
       }
-      if (this.activeItem&&(this.activeItem.chart !== 'canvas')) {
-        switch (event.keyCode) {
-          case 38: { // 上
-            this.activeItem.config.box.y--
-            break
-          }
-          case 40: { // 下
-            this.activeItem.config.box.y++
-            break
-          }
-          case 37: { // 左
-            this.activeItem.config.box.x--
-            break
-          }
-          case 39: { // 右
-            this.activeItem.config.box.x++
-            break
-          }
-        }
-      }
+      // if (this.activeItem&&(this.activeItem.chart !== 'canvas')) {
+      //   switch (event.keyCode) {
+      //     case 38: { // 上
+      //       this.activeItem.config.box.y--
+      //       break
+      //     }
+      //     case 40: { // 下
+      //       this.activeItem.config.box.y++
+      //       break
+      //     }
+      //     case 37: { // 左
+      //       this.activeItem.config.box.x--
+      //       break
+      //     }
+      //     case 39: { // 右
+      //       this.activeItem.config.box.x++
+      //       break
+      //     }
+      //   }
+      // }
     },
     itemClick() {
       event.stopPropagation()
