@@ -135,7 +135,7 @@ export default {
       TextItalicNormal,
       TextBoldNormal
     }
-    if(icon){
+    if(icon&&icons[icon]){
       return h('span',{
         class:['mt-icon',staticClass],
         on:on,
