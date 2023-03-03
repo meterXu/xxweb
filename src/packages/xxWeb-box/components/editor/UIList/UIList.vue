@@ -1,6 +1,7 @@
 <template>
   <div class="ui-list">
     <Tree
+        v-clickoutside="handleClickOutside"
         ref="ui-tree"
         :data="dataList"
         :props="defaultProps"
@@ -14,7 +15,20 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="treeNodeClick(data)">{{ node.label }}</div>
+          <div v-if="showMenu" style="width: 120px" @contextmenu.prevent="openMenu(data)">
+            <el-popover
+                :ref="'popper_'+data.id"
+                placement="bottom"
+                trigger="manual"
+                v-model="data.menuVisible"
+            >
+            <span slot="reference" @click="treeNodeClick(data)">{{ node.label }}</span>
+            <div class="popover-menu">
+              <slot name="ui-custom-menu" :data="{node,data}"></slot>
+            </div>
+          </el-popover>
+          </div>
+          <div v-else style="width: 120px" @click="treeNodeClick(data)">{{ node.label }}</div>
           <span>
             <slot name="ui-custom-icon" :data="{node,data}"></slot>
           </span>
@@ -28,6 +42,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input, Tree} from 'element-ui'
 import DynamicIcon from "../../common/DynamicIcon";
 // import draggable from 'vuedraggable'
+import Clickoutside from 'element-ui/src/utils/clickoutside'
 
 export default {
   name: "UIList",
@@ -43,8 +58,13 @@ export default {
     draggable:{
       type: Boolean,
       default: false
+    },
+    showMenu:{
+      type: Boolean,
+      default: false
     }
   },
+  directives: { Clickoutside },
   components: {
     DynamicIcon,
     Input,
@@ -119,6 +139,18 @@ export default {
     },
     treeNodeClick(data) {
       this.$emit('nodeChange',data.id,'active')
+    },
+    openMenu(data) {
+      data.menuVisible = true
+    },
+    handleClickOutside() {
+      if(this.$refs) {
+        Object.keys(this.$refs).forEach(key=>{
+          if(/^popper.*/.test(key)&&this.$refs[key]) {
+            this.$refs[key].doClose()
+          }
+        })
+      }
     }
   }
 }
