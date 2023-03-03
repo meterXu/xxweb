@@ -1,6 +1,7 @@
 <template>
   <div class="ui-list">
     <Tree
+        v-clickoutside="handleClickOutside"
         ref="ui-tree"
         :data="dataList"
         :props="defaultProps"
@@ -14,7 +15,7 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div v-clickoutside="handleClickOutside" v-if="showMenu" style="width: 120px" @contextmenu.prevent="openMenu(data)">
+          <div v-if="showMenu" style="width: 120px" @contextmenu.prevent="openMenu(data)">
             <el-popover
                 :ref="'popper_'+data.id"
                 placement="bottom"
@@ -143,11 +144,13 @@ export default {
       data.menuVisible = true
     },
     handleClickOutside() {
-      Object.keys(this.$refs).forEach(key=>{
-        if(/^popper.*/.test(key)) {
-          this.$refs[key].doClose()
-        }
-      })
+      if(this.$refs) {
+        Object.keys(this.$refs).forEach(key=>{
+          if(/^popper.*/.test(key)&&this.$refs[key]) {
+            this.$refs[key].doClose()
+          }
+        })
+      }
     }
   }
 }
