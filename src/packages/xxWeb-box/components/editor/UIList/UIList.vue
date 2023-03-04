@@ -1,7 +1,6 @@
 <template>
   <div class="ui-list">
     <Tree
-        v-clickoutside="handleClickOutside"
         ref="ui-tree"
         :data="dataList"
         :props="defaultProps"
@@ -15,25 +14,10 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div v-if="showMenu" style="width: 120px" @contextmenu.prevent="openMenu(data)">
-            <el-popover
-                :ref="'popper_'+data.id"
-                placement="bottom"
-                trigger="manual"
-                v-model="data.menuVisible"
-            >
-            <span slot="reference" @click="treeNodeClick(data)">{{ node.label }}</span>
-            <div class="popover-menu">
-              <slot name="ui-custom-menu" :data="{node,data}"></slot>
-            </div>
-          </el-popover>
-          </div>
-          <div v-else style="width: 120px" @click="treeNodeClick(data)">{{ node.label }}</div>
-          <span>
-            <slot name="ui-custom-icon" :data="{node,data}"></slot>
-          </span>
+          <div class="custom-tree-node-label" @click="itemMousedown(data)" @contextmenu="itemMousedown(data,'menuClick')">{{ node.label }}</div>
         </span>
     </Tree>
+    <slot name="ui-content-menu"></slot>
   </div>
 </template>
 
@@ -41,8 +25,6 @@
 import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input, Tree} from 'element-ui'
 import DynamicIcon from "../../common/DynamicIcon";
-// import draggable from 'vuedraggable'
-import Clickoutside from 'element-ui/src/utils/clickoutside'
 
 export default {
   name: "UIList",
@@ -58,13 +40,8 @@ export default {
     draggable:{
       type: Boolean,
       default: false
-    },
-    showMenu:{
-      type: Boolean,
-      default: false
     }
   },
-  directives: { Clickoutside },
   components: {
     DynamicIcon,
     Input,
@@ -116,14 +93,6 @@ export default {
     this.dataList = Object.assign([],this.uiList)
   },
   methods: {
-    // checkMove: function(e) {
-    //   window.console.log("Future index: " + e.draggedContext.futureIndex);
-    //   window.console.log(e.relatedContext.list);
-    //   this.uiList[0].children=e.relatedContext.list
-    //   this.uiList.push(Object.assign({},this.uiList[0]))
-    //   this.uiList.shift()
-    //   console.log(this.uiList)
-    // },
     handleDrop(draggingNode, dropNode, dropType, ev) {
       this.$emit('nodeChange',this.dataList,'drag')
     },
@@ -137,20 +106,17 @@ export default {
         return false;
       }
     },
-    treeNodeClick(data) {
-      this.$emit('nodeChange',data.id,'active')
-    },
-    openMenu(data) {
-      data.menuVisible = true
-    },
-    handleClickOutside() {
-      if(this.$refs) {
-        Object.keys(this.$refs).forEach(key=>{
-          if(/^popper.*/.test(key)&&this.$refs[key]) {
-            this.$refs[key].doClose()
-          }
+    itemMousedown(data,type) {
+      let showMenu = false
+      if(type==='menuClick'){
+        event.preventDefault()
+        this.$emit('contextmenu',{
+          x:event.layerX,
+          y:event.layerY
         })
+        showMenu = true
       }
+      this.$emit('nodeChange',data.id,'active',showMenu)
     }
   }
 }
@@ -158,6 +124,7 @@ export default {
 
 <style lang="less" scoped>
 .ui-list {
+  position:relative;
   height: 100%;
   /deep/ .el-tabs__content {
     height: 80%;
