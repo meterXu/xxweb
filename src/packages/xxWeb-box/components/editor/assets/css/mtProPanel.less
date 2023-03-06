@@ -9,30 +9,95 @@
     white-space: nowrap;
     overflow: hidden;
   }
-  /deep/ .el-form-item__label{
+  .el-form-item__label{
     font-size: 12px;
     line-height: 30px;
   }
-  /deep/ .el-form-item__content{
+  .el-form-item__content{
     line-height: 30px;
   }
-  /deep/ .el-form-item{
+  .el-form-item{
     margin-bottom: 8px;
   }
-  /deep/ .el-tabs__content {
+  .el-tabs__content {
     height: 90%;
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  /deep/ .el-tabs__content::-webkit-scrollbar {
+  .el-tabs__content::-webkit-scrollbar {
     display: none;
   }
-  /deep/ .el-collapse-item__wrap{
+  .el-collapse-item__wrap{
     overflow-x: auto;
   }
-  .none-label /deep/ .el-form-item__content {
-    margin-left: 0 !important;
+  .none-label .el-form-item__content {
+    margin-left: 0;
+  }
+  .horizontal-control{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    .text-style-col{
+      height: 28px;
+      line-height: 28px;
+    }
+    .text-style-col{
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+    .el-input-number{
+      position: relative;
+      top: -1px;
+    }
+    .unit-px:after{
+      position: absolute;
+      right: 4px;
+      top: 0;
+      content: 'px';
+      color: #666666;
+      opacity: 0.5;
+    }
+    .unit-percent:after{
+      position: absolute;
+      right: 4px;
+      top: 0;
+      content: '%';
+      color: #666666;
+      opacity: 0.5;
+    }
+    .text-style-col .el-input__inner{
+      padding-left:0;
+      padding-right: 0px;
+      text-align: left;
+      text-indent: 3px;
+      height: 26px;
+      line-height: 26px;
+    }
+    .text-style-col{
+      .el-input-number__decrease{
+        width: 12px;
+      }
+      .el-input-number__increase{
+        width: 12px;
+      }
+      .el-input-number{
+        width: 60px;
+      }
+      .el-select{
+        width: 75px;
+        .el-input__suffix{
+          right: -2px;
+        }
+      }
+    }
+  }
+  .array-control {
+    i {
+      margin-left: 8px;
+      cursor: pointer;
+    }
   }
 }

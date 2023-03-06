@@ -3,7 +3,6 @@ import {get,set} from "lodash";
 import MtIconDrop from './MtIconDrop'
 import ArrayControl from './ArrayControl'
 import DataComponents from './DataComponents'
-import '../assets/css/mtFormItem.less'
 export default {
   name: 'mtFormItem',
   functional: true,

@@ -29,7 +29,7 @@ export default {
   methods:{
     addItem() {
       this.value.push({
-        id: "vertical_list_"+new Date().valueOf(),
+        id: "array_"+new Date().valueOf(),
         name: `子标题${this.value.length+1}`
       })
       this.$emit('change',this.value)
@@ -41,12 +41,3 @@ export default {
   },
 }
 </script>
-<style lang="less" scoped>
-.vertical-control {
- i {
-   margin-left: 8px;
-   cursor: pointer;
- }
-}
-
-</style>
