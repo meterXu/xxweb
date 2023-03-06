@@ -173,19 +173,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-.none-label /deep/ .el-form-item__content {
-  margin-left: 0 !important;
-}
-
-.data-components {
-  width: 100%;
-  height: 100%;
-}
-
-/deep/ .el-input--small .el-input__inner {
-  height: 26px;
-  line-height: 26px;
-}
-</style>

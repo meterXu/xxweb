@@ -79,11 +79,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.hot-table-box {
-  /*width: 100%;*/
-  /*height: 600px;*/
-  /*overflow: auto;*/
-}
-</style>
