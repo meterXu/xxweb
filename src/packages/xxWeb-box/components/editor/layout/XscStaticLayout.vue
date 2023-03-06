@@ -49,7 +49,18 @@ export default {
       type: String,
       default: null
     },
-    activeId:Number
+    isLight:{
+      type: Boolean,
+      default: false
+    },
+    lightStyle:{
+      type: Object,
+      default: null
+    },
+    isDrag:{
+      type: Boolean,
+      default: true
+    }
   },
   model:{
     prop:'activeItem',
@@ -172,9 +183,11 @@ export default {
             this.shift.x = event.clientX - clickBox.left
             this.shift.y = event.clientY - clickBox.top
             document.removeEventListener('mousemove', this.itemMousemove)
-            document.addEventListener('mousemove', this.itemMousemove)
             document.removeEventListener('mouseup', this.removeMouseMove)
-            document.addEventListener('mouseup', this.removeMouseMove)
+            if(this.isDrag) {
+              document.addEventListener('mousemove', this.itemMousemove)
+              document.addEventListener('mouseup', this.removeMouseMove)
+            }
           }
         },
         2: () => {
@@ -260,13 +273,20 @@ export default {
     },
     itemStyle (item) {
       if (item && item.config) {
-        return {
+        let style = {
           width: (item.config.box.width || 400) + 'px',
           height: (item.config.box.height || 300) + 'px',
           left: (item.config.box.x || 0) + 'px',
           top: (item.config.box.y || 0) + 'px',
-          zIndex: (item.config.box.zIndex || 100)
+          zIndex: (item.config.box.zIndex || 100),
+          "--border": '',
+          "--box-shadow": ''
         }
+        if(this.isLight) {
+          style["--border"]=(this.lightStyle&&this.lightStyle["border"])?this.lightStyle["border"]:"1px solid #8595FF"
+          style["--box-shadow"]=(this.lightStyle&&this.lightStyle["box-shadow"])?this.lightStyle["box-shadow"]:"0 2px 12px 0 #8595FF"
+        }
+        return style
       } else {
         return {}
       }
@@ -275,11 +295,10 @@ export default {
       if(this.view){
         return ['mt_item','mt_item_view']
       }else{
-        return this.selectedItems.findIndex(c=>c.id===item.id)>-1? ['mt_item','mt_item_active','dragging']: ['mt_item','mt_item_base']
+        return this.selectedItems.findIndex(c=>c.id===item.id)>-1? this.isLight? ['mt_item','mt_item_light','dragging']:['mt_item','mt_item_active','dragging']: ['mt_item','mt_item_base']
       }
     },
     leftAlign(){
-      console.log('left')
       // let Xmax = Math.max.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
       let Xmin = Math.min.apply(Math,this.selectedItems.map(item => { return item.config.box.x }))
       this.selectedItems.forEach(item=>{

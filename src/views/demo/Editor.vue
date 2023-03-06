@@ -3,7 +3,7 @@
     <div style="flex: 1;height: 100%;overflow: hidden">
       <MtView @viewAlign="viewAlign" :config="config" :lines="lines">
         <template v-slot="{scale,view}">
-          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :activeId="activeId" :alignment="alignment" :page="page" :charts="charts" :scale="scale" :view="view" @resetAlignment="resetAlignment">
+          <XscStaticLayout ref="xsc-static-layout" v-model="activeItem" :alignment="alignment" :page="page" :charts="charts" :scale="scale" :view="false" @resetAlignment="resetAlignment">
             <template v-slot="{view,item}">
               <VueDrawXs :view="view" :item="item"></VueDrawXs>
             </template>
@@ -102,6 +102,10 @@ export default {
       pageList: [],
       activeId: null,
       zIndexArr: [],
+      lightStyle: {
+        "border": "1px solid #fff",
+        "box-shadow": "0 2px 12px 0 #fff",
+      }
     }
   },
   watch:{
