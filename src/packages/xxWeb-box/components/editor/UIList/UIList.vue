@@ -28,7 +28,20 @@ import DynamicIcon from "../../common/DynamicIcon";
 import '../assets/css/mtUiList.less'
 export default {
   name: "UIList",
-  props:["uiList","activeId","draggable"],
+  props: {
+    uiList: {
+      type: Array,
+      default: []
+    },
+    activeId:{
+      type: String,
+      default: ''
+    },
+    draggable:{
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
     DynamicIcon,
     Input,
@@ -108,7 +121,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-
-</style>

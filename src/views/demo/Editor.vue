@@ -30,20 +30,13 @@
         <ProPanel v-if="panelConfig" :controlledObj="activeItem" :config="panelConfig"></ProPanel>
       </div>
     </div>
-<!--      <UIList :uiList="uiList" :activeId="activeId" @nodeChange="nodeChange">-->
-<!--        <template v-slot:ui-custom-icon="scope">-->
-<!--          <i class="el-icon-delete" @click="deleteNode(scope.data)"></i>-->
-<!--        </template>-->
-<!--      </UIList>-->
-<!--      <ProPanel :controlledObj="activeItem" :config="panelConfig"></ProPanel>-->
-<!--    </div>-->
   </div>
 </template>
 
 <script>
 import {MtView,XscStaticLayout,ProPanel,UIList} from "../../packages/xxWeb-box";
 import VueDrawXs from "../../packages/vue-draw-xs/Index";
-import panelConfigs from "@/views/demo/panelConfigs";
+import panelConfigs from "../../views/demo/panelConfigs";
 import charts from './charts'
 import {get} from 'lodash'
 export default {
