@@ -28,20 +28,7 @@ import DynamicIcon from "../../common/DynamicIcon";
 import '../assets/css/mtUiList.less'
 export default {
   name: "UIList",
-  props: {
-    uiList: {
-      type: Array,
-      default: []
-    },
-    activeId:{
-      type: String,
-      default: ''
-    },
-    draggable:{
-      type: Boolean,
-      default: false
-    }
-  },
+  props: ["uiList","activeId","draggable"],
   components: {
     DynamicIcon,
     Input,

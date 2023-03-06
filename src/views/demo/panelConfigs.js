@@ -31,7 +31,7 @@ export default {
 
 
                             ]},
-                        {key: 'config.options.verticalList', name: '垂直控件', type: 'vertical-control'},
+                        {key: 'config.options.verticalList', name: '数组', type: 'array-control'},
                         {key: 'config.options.text.tips', name: '标签', type: 'checkbox',data:[{text: '🌧', value: 1},{text: '🌞', value: 2},{text: '⚡️', value: 3}]},
                         {key: 'config.options.text.fontWeight', name: '粗细', type: 'select', data: [{text: '正常', value: 'normal'}, {text: '加粗', value: 'bold'}, {text: '细化', value: 'lighter'}]},
                         {key: 'config.options.text.color', name: '颜色', type: 'color'},
@@ -69,10 +69,8 @@ export default {
                                     {key:'color',name:'颜色',type:'color'},
                                     {key:'fontWeight',name:'粗细',type:'icon-drop',data:[{icon:'TextBoldNormal',text: '正常', value: 'normal'}, {icon:'TextBold',text: '加粗', value: 'bold'}]},
                                     {key:'fontStyle',name:'风格',type:'icon-drop',data:[{icon:'TextItalicNormal',text: '正常', value: 'normal'}, {icon:'TextItalic',text: '斜体', value: 'italic'}]}
-
-
                                 ]},
-                            {key: 'config.options.verticalList', name: '垂直控件', type: 'vertical-control'},
+                            {key: 'config.options.verticalList', name: '数组控件', type: 'array-control'},
                             {key: 'config.options.text.tips', name: '标签', type: 'checkbox',data:[{text: '🌧', value: 1},{text: '🌞', value: 2},{text: '⚡️', value: 3}]},
                             {key: 'config.options.text.fontWeight', name: '粗细', type: 'select', data: [{text: '正常', value: 'normal'}, {text: '加粗', value: 'bold'}, {text: '细化', value: 'lighter'}]},
                             {key: 'config.options.text.color', name: '颜色', type: 'color'},

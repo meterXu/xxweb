@@ -20,7 +20,7 @@
 </template>
 <script>
 export default {
-  name: "VerticalControl",
+  name: "ArrayControl",
   props:['value'],
   model:{
     prop:'value',

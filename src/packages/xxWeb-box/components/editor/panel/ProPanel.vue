@@ -37,6 +37,7 @@
 import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs,TabPane,Form,FormItem,Collapse,CollapseItem,Input} from 'element-ui'
 import MtFormItem from './MtFormItem'
+import '../assets/css/mtProPanel.less'
 export default {
   name: "ProPanel",
   props:{
@@ -68,7 +69,3 @@ export default {
   }
 }
 </script>
-
-<style lang="less" scoped>
-
-</style>

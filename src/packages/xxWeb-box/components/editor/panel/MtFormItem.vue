@@ -1,8 +1,9 @@
 <script>
-import {get} from "lodash";
+import {get,set} from "lodash";
 import MtIconDrop from './MtIconDrop'
-import VerticalControl from './VerticalControl'
+import VerticalControl from './ArrayControl'
 import DataComponents from './DataComponents'
+import '../assets/css/mtFormItem.less'
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -16,13 +17,14 @@ export default {
     const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
 
     function getModelPro(proPath, controlledObj){
-      const value = get(controlledObj,proPath)
-      if(value===undefined){
-        set(controlledObj,proPath,null)
-      }
       const parentProPath = proPath.substring(0,proPath.lastIndexOf('.'))
       const key = proPath.substring(proPath.lastIndexOf('.')+1)
       const obj = get(controlledObj,parentProPath)
+      if(!obj){
+        set(controlledObj,proPath,null)
+      }else if(obj[key]===undefined){
+        set(controlledObj,proPath,null)
+      }
       return {
         obj,
         key
@@ -87,7 +89,7 @@ export default {
             fItem.data.dataArr.forEach(item=>{
               options.push({
                 label:item.label,
-                options:modelPro.obj[item.data]
+                options:modelPro.obj[item.data]||[]
               })
             })
             return (
@@ -154,7 +156,7 @@ export default {
           })
           return (createElement('div',{
                 attrs:{
-                  class:"pro-panel text-style-row"
+                  class:"horizontal-control text-style-row"
                 }},rendered.map((item)=> {
                   return (<div class="text-style-col">
                     {item}
@@ -162,7 +164,8 @@ export default {
                 })
               ))
         }
-        case 'vertical-control':{
+        case 'array-control':{
+          modelPro.obj[modelPro.key] = modelPro.obj[modelPro.key]||[]
           return (
               <VerticalControl value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></VerticalControl>
           )
@@ -171,9 +174,6 @@ export default {
           return (
               <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
           )
-        }
-        case 'inner-array':{
-          return (null)
         }
         case 'img-dialog':{
           return (null)
@@ -211,64 +211,3 @@ export default {
   }
 }
 </script>
-<style lang="less">
-.pro-panel .text-style-row{
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-.pro-panel .text-style-row,.text-style-col {
-  height: 28px;
-  line-height: 28px;
-}
-.pro-panel .text-style-col{
-  margin-right: 4px;
-  margin-bottom: 4px;
-}
-.pro-panel .el-input-number{
-  position: relative;
-  top: -1px;
-}
-.unit-px:after{
-  position: absolute;
-  right: 4px;
-  top: 0;
-  content: 'px';
-  color: #666666;
-  opacity: 0.5;
-}
-.unit-percent:after{
-  position: absolute;
-  right: 4px;
-  top: 0;
-  content: '%';
-  color: #666666;
-  opacity: 0.5;
-}
-.pro-panel .text-style-col .el-input__inner{
-  padding-left:0 !important;
-  padding-right: 0px !important;
-  text-align: left;
-  text-indent: 3px;
-  height: 26px;
-  line-height: 26px;
-}
-.pro-panel .text-style-col{
-  .el-input-number__decrease{
-    width: 12px!important;
-  }
-  .el-input-number__increase{
-    width: 12px!important;
-  }
-  .el-input-number{
-    width: 60px;
-  }
-  .el-select{
-    width: 75px;
-    .el-input__suffix{
-      right: -2px;
-    }
-  }
-}
-</style>
