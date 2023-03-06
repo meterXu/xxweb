@@ -1,7 +1,7 @@
 <script>
 import {get,set} from "lodash";
 import MtIconDrop from './MtIconDrop'
-import VerticalControl from './ArrayControl'
+import ArrayControl from './ArrayControl'
 import DataComponents from './DataComponents'
 import '../assets/css/mtFormItem.less'
 export default {
@@ -12,18 +12,18 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components:{MtIconDrop,VerticalControl,DataComponents},
+  components:{MtIconDrop,ArrayControl,DataComponents},
   render(createElement, context) {
     const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
 
-    function getModelPro(proPath, controlledObj){
+    function getModelPro(proPath,type,controlledObj){
       const parentProPath = proPath.substring(0,proPath.lastIndexOf('.'))
       const key = proPath.substring(proPath.lastIndexOf('.')+1)
       const obj = get(controlledObj,parentProPath)
       if(!obj){
-        set(controlledObj,proPath,null)
+        set(controlledObj,proPath,type==='array-control'?[]:null)
       }else if(obj[key]===undefined){
-        set(controlledObj,proPath,null)
+        set(controlledObj,proPath,type==='array-control'?[]:null)
       }
       return {
         obj,
@@ -165,9 +165,9 @@ export default {
               ))
         }
         case 'array-control':{
-          modelPro.obj[modelPro.key] = modelPro.obj[modelPro.key]||[]
+          modelPro.obj[modelPro.key] = modelPro.obj[modelPro.key]
           return (
-              <VerticalControl value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></VerticalControl>
+              <ArrayControl value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></ArrayControl>
           )
         }
         case 'data-components':{
@@ -206,7 +206,7 @@ export default {
     }
 
     const {fItem, controlledObj} = context.props
-    const modelPro = getModelPro(fItem.key,controlledObj)
+    const modelPro = getModelPro(fItem.key,fItem.type,controlledObj)
     return renderItem(fItem, modelPro)
   }
 }
