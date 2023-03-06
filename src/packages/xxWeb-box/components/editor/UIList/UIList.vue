@@ -14,7 +14,7 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="itemMousedown(data)" @contextmenu="itemMousedown(data,'menuClick')">
+          <div class="custom-tree-node-label" @click="nodeClick" @contextmenu="contextmenu">
             {{ node.label }}
           </div>
           <slot name="ui-custom-icon" :data="{node,data}"></slot>
@@ -91,15 +91,16 @@ export default {
         return false;
       }
     },
-    itemMousedown(data,type) {
-      if(type==='menuClick'){
-        event.preventDefault()
-        this.$emit('contextmenu',{
+    nodeClick(data){
+      this.$emit('nodeChange',data.id,'active')
+    },
+    contextmenu(data) {
+      event.preventDefault()
+      this.$emit('nodeChange',data.id,'active')
+      this.$emit('contextmenu',{
           x:event.clientX,
           y:event.clientY
-        })
-      }
-      this.$emit('nodeChange',data.id,'active')
+      })
     }
   }
 }
