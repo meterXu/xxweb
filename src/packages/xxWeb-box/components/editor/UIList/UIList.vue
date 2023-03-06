@@ -95,8 +95,8 @@ export default {
       if(type==='menuClick'){
         event.preventDefault()
         this.$emit('contextmenu',{
-          x:event.pageX,
-          y:event.pageY
+          x:event.clientX,
+          y:event.clientY
         })
       }
       this.$emit('nodeChange',data.id,'active')
