@@ -1,5 +1,5 @@
 <template>
-  <Tabs class="pro-panel" type="border-card" size="small" @tab-click="handleTabClick">
+  <Tabs class="mt-pro-panel" type="border-card" size="small" @tab-click="handleTabClick">
     <TabPane v-for="(tab,ti) in config" :key="ti">
       <span slot="label">
         <i :class="tab.icon"></i>
@@ -70,42 +70,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.pro-panel{
-  width: 100%;
-  height: 100%;
-  .panel-title{
-    width: 70px;
-    padding: 2px;
-    margin-right: 6px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  /deep/ .el-form-item__label{
-    font-size: 12px;
-    line-height: 30px;
-  }
-  /deep/ .el-form-item__content{
-    line-height: 30px;
-  }
-  /deep/ .el-form-item{
-    margin-bottom: 8px;
-  }
-  /deep/ .el-tabs__content {
-    height: 90%;
-    overflow: hidden;
-    overflow-y: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  /deep/ .el-tabs__content::-webkit-scrollbar {
-    display: none;
-  }
-  /deep/ .el-collapse-item__wrap{
-    overflow-x: auto;
-  }
-  .none-label /deep/ .el-form-item__content {
-    margin-left: 0 !important;
-  }
-}
+
 </style>

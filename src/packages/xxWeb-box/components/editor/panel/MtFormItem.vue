@@ -14,7 +14,12 @@ export default {
   components:{MtIconDrop,VerticalControl,DataComponents},
   render(createElement, context) {
     const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
+
     function getModelPro(proPath, controlledObj){
+      const value = get(controlledObj,proPath)
+      if(value===undefined){
+        set(controlledObj,proPath,null)
+      }
       const parentProPath = proPath.substring(0,proPath.lastIndexOf('.'))
       const key = proPath.substring(proPath.lastIndexOf('.')+1)
       const obj = get(controlledObj,parentProPath)
