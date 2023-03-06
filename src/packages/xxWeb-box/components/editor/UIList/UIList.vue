@@ -14,7 +14,7 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="nodeClick" @contextmenu="contextmenu">
+          <div class="custom-tree-node-label" @click="nodeClick(data)" @contextmenu="contextmenu(data)">
             {{ node.label }}
           </div>
           <slot name="ui-custom-icon" :data="{node,data}"></slot>
