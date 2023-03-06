@@ -15,6 +15,7 @@
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="itemMousedown(data)" @contextmenu="itemMousedown(data,'menuClick')">{{ node.label }}</div>
+          <slot name="ui-custom-icon" :data="{node,data}"></slot>
         </span>
     </Tree>
     <slot name="ui-content-menu"></slot>
