@@ -96,8 +96,8 @@ export default {
     },
     contextmenu(data) {
       event.preventDefault()
-      this.$emit('nodeChange',data.id,'active')
       this.$emit('contextmenu',{
+          id:data.id,
           x:event.clientX,
           y:event.clientY
       })
