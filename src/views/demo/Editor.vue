@@ -246,8 +246,13 @@ html,body,#app{
 }
 .panel-right-ui {
   height: 30%;
-  /*overflow: hidden;*/
-  /*overflow-y: auto;*/
+  .ui-list{
+    height: 100%;
+  }
+  .el-tabs__content{
+    height: calc(100% - 40px);
+    overflow-y: auto;
+  }
 }
 .panel-right-pro {
   height: 70%;
