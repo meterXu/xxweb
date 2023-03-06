@@ -11,7 +11,7 @@
         </template>
       </MtView>
     </div>
-    <div style="width: 250px;height: 100%">
+    <div style="width: 250px;height: 100%;">
       <div class="panel-right-ui">
           <el-tabs class="ui-list" type="border-card" size="small">
             <el-tabPane style="height: 100%">

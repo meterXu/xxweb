@@ -14,7 +14,9 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="itemMousedown(data)" @contextmenu="itemMousedown(data,'menuClick')">{{ node.label }}</div>
+          <div class="custom-tree-node-label" @click="itemMousedown(data)" @contextmenu="itemMousedown(data,'menuClick')">
+            {{ node.label }}
+          </div>
           <slot name="ui-custom-icon" :data="{node,data}"></slot>
         </span>
     </Tree>
@@ -72,16 +74,11 @@ export default {
       dataList:[]
     };
   },
-  computed: {
-    draggingInfo() {
-      return this.dragging ? "under drag" : "";
-    }
-  },
   mounted() {
     this.dataList = Object.assign([],this.uiList)
   },
   methods: {
-    handleDrop(draggingNode, dropNode, dropType, ev) {
+    handleDrop() {
       this.$emit('nodeChange',this.dataList,'drag')
     },
     allowDrop(draggingNode, dropNode, type) {
@@ -95,16 +92,14 @@ export default {
       }
     },
     itemMousedown(data,type) {
-      let showMenu = false
       if(type==='menuClick'){
         event.preventDefault()
         this.$emit('contextmenu',{
-          x:event.layerX,
-          y:event.layerY
+          x:event.pageX,
+          y:event.pageY
         })
-        showMenu = true
       }
-      this.$emit('nodeChange',data.id,'active',showMenu)
+      this.$emit('nodeChange',data.id,'active')
     }
   }
 }
