@@ -87,6 +87,13 @@ export default {
         })
       }
     },
+    activeItem: {
+      handler(nv) {
+        if(!this.shiftKey){
+          this.selectedItems=[nv]
+        }
+      }
+    },
     alignment: {
       immediate: true,
       handler(nv,ov) {
@@ -138,6 +145,13 @@ export default {
       document.removeEventListener('mousemove', this.itemMousemove)
       document.removeEventListener('mousemove', this.changeSizeMousemove)
     },
+    addSelectedItems(data) {
+      if(this.selectedItems&&!this.selectedItems.find(c=>c.id===data.id)) {
+        this.selectedItems.push(data)
+      } else {
+        this.selectedItems.push(data)
+      }
+    },
     keydown() {
       event.stopPropagation()
       if(event.keyCode===16){
@@ -174,7 +188,7 @@ export default {
           event.stopPropagation()
           if (!this.view) {
             if(this.shiftKey){
-              this.selectedItems.push(item)
+              this.addSelectedItems(item)
             }else{
               this.selectedItems=[item]
             }
