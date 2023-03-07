@@ -10,6 +10,7 @@
         :highlight-current="true"
         :draggable="draggable"
         :current-node-key="activeId"
+        :expand-on-click-node="false"
         :allow-drop="allowDrop"
         @node-drop="handleDrop"
     >
