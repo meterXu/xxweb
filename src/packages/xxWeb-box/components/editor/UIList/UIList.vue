@@ -78,7 +78,7 @@ export default {
     this.dataList = Object.assign([],this.uiList)
   },
   methods: {
-    handleDrop() {
+    handleDrop(draggingNode, dropNode) {
       this.$emit('nodeChange',this.dataList,'drag',dropNode.parent.data.id)
     },
     allowDrop(draggingNode, dropNode, type) {
