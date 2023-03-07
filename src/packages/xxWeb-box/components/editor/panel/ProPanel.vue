@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-07 09:00:41
+ * @LastEditTime: 2023-03-07 10:10:52
  * @Description: 
 -->
 <template>
@@ -12,7 +12,7 @@
         <i :class="tab.icon"></i>
         {{tab.type}}
       </span>
-      <Collapse v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
+      <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
         <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
           <template slot="title">
             <span class="panel-title">
@@ -22,7 +22,7 @@
               <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj"></MtFormItem>
             </template>
           </template>
-          <Form label-width="60px">
+          <Form>
             <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
               <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
             </FormItem>
@@ -30,7 +30,7 @@
         </CollapseItem>
       </Collapse>
       <template v-else>
-        <Form label-width="60px">
+        <Form>
           <FormItem v-for="(fItem,fi) in tab.con.sub" :key="fi" :label="fItem.name" :class="fItem.name?'':'none-label'">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>

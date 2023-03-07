@@ -29,7 +29,7 @@
       </div>
     </div>
     <div v-show="value.source.type === 3" class="dynamic-data">
-      <el-form label-position="left" label-width="60px" :model="source" size="small">
+      <el-form label-position="left" :model="source" size="small">
         <el-form-item class="none-label">
           <el-row type="flex" justify="space-between">
             <el-col :span="12">
