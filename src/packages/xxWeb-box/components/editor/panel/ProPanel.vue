@@ -1,5 +1,12 @@
+<!--
+ * @Author: zhangyuc
+ * @Date: 2023-03-06 18:09:50
+ * @LastEditors: zhangyuc
+ * @LastEditTime: 2023-03-07 09:00:41
+ * @Description: 
+-->
 <template>
-  <Tabs class="mt-pro-panel" type="border-card" size="small" @tab-click="handleTabClick">
+  <Tabs class="mt-pro-panel" size="small" @tab-click="handleTabClick">
     <TabPane v-for="(tab,ti) in config" :key="ti">
       <span slot="label">
         <i :class="tab.icon"></i>
