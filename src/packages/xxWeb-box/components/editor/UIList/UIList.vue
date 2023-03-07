@@ -79,7 +79,7 @@ export default {
   },
   methods: {
     handleDrop() {
-      this.$emit('nodeChange',this.dataList,'drag')
+      this.$emit('nodeChange',this.dataList,'drag',dropNode.parent.data.id)
     },
     allowDrop(draggingNode, dropNode, type) {
       if (draggingNode.data.id !== dropNode.data.id) {
