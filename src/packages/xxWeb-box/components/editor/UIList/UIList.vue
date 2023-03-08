@@ -10,12 +10,15 @@
         :highlight-current="true"
         :draggable="draggable"
         :current-node-key="activeId"
+        :expand-on-click-node="false"
         :allow-drop="allowDrop"
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="nodeClick(data)" @contextmenu="contextmenu(data)">
-            {{ node.label }}
+          <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
+           <slot name="label" :data="data">
+              {{ data.name }}
+           </slot>
           </div>
           <slot name="ui-custom-icon" :data="{node,data}"></slot>
         </span>
@@ -78,8 +81,8 @@ export default {
     this.dataList = Object.assign([],this.uiList)
   },
   methods: {
-    handleDrop() {
-      this.$emit('nodeChange',this.dataList,'drag')
+    handleDrop(draggingNode, dropNode) {
+      this.$emit('nodeChange',this.dataList,'drag',dropNode.parent.data.id)
     },
     allowDrop(draggingNode, dropNode, type) {
       if (draggingNode.data.id !== dropNode.data.id) {
@@ -91,8 +94,8 @@ export default {
         return false;
       }
     },
-    nodeClick(data){
-      this.$emit('nodeChange',data.id,'active')
+    nodeClick(data,dropNode){
+      this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
     contextmenu(data) {
       event.preventDefault()
