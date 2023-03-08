@@ -92,6 +92,9 @@ export default {
         if(!this.shiftKey){
           this.selectedItems=[nv]
         }
+        if(nv===null){
+          this.selectedItems=[]
+        }
       }
     },
     alignment: {
