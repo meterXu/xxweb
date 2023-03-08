@@ -163,6 +163,40 @@ export default {
                 })
               ))
         }
+        // div组件 通过外部div 配置样式 适应于部分场景
+        case 'div-control':{
+          let rendered = []
+          fItem.props.forEach((item)=>{
+            rendered.push(renderItem(item,{
+                obj:modelPro.obj,   //这里不动obj  确保div层不影响数据穿透
+                key:modelPro.key
+              }))
+          })
+          return (createElement('div',{
+                attrs:{
+                  class:"div-control " + fItem['class']
+                }},rendered.map((item)=> {
+                  return (
+                    <div>
+                      {item}
+                    </div>
+                  )
+                })
+              ))
+        }
+        case 'empty_number': {
+          let number =
+              (<el-input-number class={fItem.props['class']}
+                  controls={false}
+                  value={modelPro.obj[modelPro.key]}
+                  onInput={$event => {modelPro.obj[modelPro.key] = $event}}
+                  size="mini"></el-input-number>)
+          return (
+              <div class="empty_number">
+                <div class="empty_number_name">{fItem.name} </div> {number} {fItem.unit}
+              </div>
+          )
+        }
         case 'array-control':{
           modelPro.obj[modelPro.key] = modelPro.obj[modelPro.key]
           return (
