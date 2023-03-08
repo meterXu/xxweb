@@ -15,7 +15,7 @@
         @node-drop="handleDrop"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="nodeClick(data)" @contextmenu="contextmenu(data)">
+          <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
            <slot name="label" :data="data">
               {{ data.name }}
            </slot>
@@ -94,8 +94,8 @@ export default {
         return false;
       }
     },
-    nodeClick(data){
-      this.$emit('nodeChange',data.id,'active')
+    nodeClick(data,dropNode){
+      this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
     contextmenu(data) {
       event.preventDefault()
