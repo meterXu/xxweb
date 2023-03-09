@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-09 13:59:38
+ * @LastEditTime: 2023-03-09 15:51:12
  * @Description: 
 -->
 <template>
@@ -20,30 +20,35 @@
         </Form>
       </div>
       <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
-        <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
-          <template slot="title">
-            <span class="panel-title">
-              {{panel.name}}
-            </span>
-            <template v-for="(tItem,ti) in panel.tools">
-              <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj"></MtFormItem>
-            </template>
-          </template>
-          <Form>
-            <FormItem v-for="(fItem,fi) in panel.sub" :key="fi">
-              <!-- label可能是文本也可能是个icon -->
-              <span slot='label'>
-                <span v-if='fItem.nameType === "icon"'>
-                  <MtIcon :icon='fItem.name' size='20'></MtIcon>
-                </span>
-                <span v-else>
-                  {{ fItem.name }}
-                </span>
+        <template v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi">
+          <div class="mt-pro-collapse-stick" v-if="panel.stick">
+            <MtFormItem v-on="$listeners" :fItem="panel.stick" :controlledObj="controlledObj"></MtFormItem>
+          </div>
+          <CollapseItem>
+            <template slot="title">
+              <span class="panel-title">
+                {{panel.name}}
               </span>
-              <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
-            </FormItem>
-          </Form>
-        </CollapseItem>
+              <template v-for="(tItem,ti) in panel.tools">
+                <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj" :key="ti"></MtFormItem>
+              </template>
+            </template>
+            <Form>
+              <FormItem v-for="(fItem,fi) in panel.sub" :key="fi">
+                <!-- label可能是文本也可能是个icon -->
+                <span slot='label'>
+                  <span v-if='fItem.nameType === "icon"'>
+                    <MtIcon :icon='fItem.name' size='20'></MtIcon>
+                  </span>
+                  <span v-else>
+                    {{ fItem.name }}
+                  </span>
+                </span>
+                <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+              </FormItem>
+            </Form>
+          </CollapseItem>
+        </template>
       </Collapse>
       <template v-else>
         <Form>
