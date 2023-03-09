@@ -2,12 +2,12 @@
  * @Author: zhangyuc
  * @Date: 2023-03-09 08:56:48
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-09 14:00:48
+ * @LastEditTime: 2023-03-09 14:52:24
  * @Description: 
 -->
 <template>
-  <div class="bind-icon" :style="isBind?'background: #4634EE;':'background: #F6F6F6;'" @click="changeStatus">
-    <MtIcon icon="TextBoldNormal" :size="12"></MtIcon>
+  <div class="bind-icon" :style="isBind?'color: #4634EE;':''" @click="changeStatus">
+    <MtIcon icon="DoLink" :size="20"></MtIcon>
   </div>
 </template>
 <script>
@@ -51,7 +51,7 @@ export default {
       this.items.map((item) => {
         if(newVal[item] != val[item]) {
           first = item;
-          scale = newVal[item]/val[item];
+          scale =Number(newVal[item]/val[item]).toFixed(2);
           return
         }
       })
@@ -62,7 +62,7 @@ export default {
       // 二次遍历缩放比例
       this.items.map((item) => {
         if(newVal[item] == val[item] && item != first) {
-          newVal[item] = val[item]*scale
+          newVal[item] = Number(val[item]*scale).toFixed(2);
         }
       })
       this.changeLoading = true;
@@ -79,8 +79,8 @@ export default {
 </script>
 <style scoped>
 .bind-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   display: flex;
   background: #F6F6F6;
   justify-content: center;
