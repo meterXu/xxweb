@@ -88,8 +88,10 @@ export default {
         }
         case 'boolean': {
           return (
-              <el-switch value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} onChange={$event=>{event.stopPropagation()}} size="mini">
+            <div class={modelPro.obj[modelPro.key]?'mt-boolean-active':'mt-boolean-inactive'}>
+              <el-switch active-color={'#FFFFFF'} inactive-color={'#FFFFFF'} value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} onChange={$event=>{event.stopPropagation()}} size="mini">
               </el-switch>
+            </div>
           )
         }
         case 'select': {
@@ -108,7 +110,6 @@ export default {
                   }</el-option-group>)}
                 </el-select>
             )
-            return
           } else {
             return (
                 <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
