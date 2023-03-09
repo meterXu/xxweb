@@ -1,6 +1,7 @@
 <script>
 import {get,set} from "lodash";
 import MtIconDrop from './MtIconDrop'
+import MtIconBind from './MtIconBind'
 import ArrayControl from './ArrayControl'
 import DataComponents from './DataComponents'
 export default {
@@ -11,7 +12,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components:{MtIconDrop,ArrayControl,DataComponents},
+  components:{MtIconDrop,MtIconBind,ArrayControl,DataComponents},
   render(createElement, context) {
     const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
 
@@ -138,6 +139,12 @@ export default {
                       range={fItem.props['range']}
                       marks={fItem.props['marks']}
               ></el-slider>
+          )
+        }
+        // 图标 绑定元素同比例
+        case 'icon-bind':{
+          return (
+              <MtIconBind value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}}  items={fItem.data}></MtIconBind>
           )
         }
         case 'icon-drop':{
