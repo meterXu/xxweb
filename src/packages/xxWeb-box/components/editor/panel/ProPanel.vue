@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-09 15:51:12
+ * @LastEditTime: 2023-03-09 18:05:33
  * @Description: 
 -->
 <template>
@@ -20,11 +20,11 @@
         </Form>
       </div>
       <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
-        <template v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi">
+        <template v-for="(panel,pi) in tab.con">
           <div class="mt-pro-collapse-stick" v-if="panel.stick">
             <MtFormItem v-on="$listeners" :fItem="panel.stick" :controlledObj="controlledObj"></MtFormItem>
           </div>
-          <CollapseItem>
+          <CollapseItem :title="panel.name" :name="pi">
             <template slot="title">
               <span class="panel-title">
                 {{panel.name}}
