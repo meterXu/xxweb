@@ -70,7 +70,16 @@ export default {
           return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>)
         }
         case 'color': {
-          return (<el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>)
+          return (
+            <el-row>
+              <el-col span={4} class='text-col-twice'>
+                <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
+              </el-col>
+              <el-col span={20} class='text-col-twice'>
+                <el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" ></el-input>
+              </el-col>
+            </el-row>
+          )
         }
         case 'textarea': {
           return (
@@ -154,21 +163,33 @@ export default {
         }
         case 'horizontal-control':{
           let rendered = []
-          fItem.props.forEach((item)=>{
-            rendered.push(renderItem(item,{
-                obj:modelPro.obj[modelPro.key],
-                key:item.key
-              }))
+          fItem.props.forEach((item) => {
+            if (item.span) {
+              rendered.push(
+                <el-col span={item.span} class='text-col'>
+                  {renderItem(item, {
+                    obj: modelPro.obj[modelPro.key],
+                    key: item.key
+                  })}
+                </el-col>
+              )
+            } else {
+              rendered.push(
+                <div class='text-style-col'>
+                  {renderItem(item, {
+                    obj: modelPro.obj[modelPro.key],
+                    key: item.key
+                  })}
+                </div>
+              )
+            }
           })
-          return (createElement('div',{
-                attrs:{
-                  class:"horizontal-control text-style-row"
-                }},rendered.map((item)=> {
-                  return (<div class="text-style-col">
-                    {item}
-                  </div>)
-                })
-              ))
+          return (createElement('el-row', {
+            attrs: {
+              class: "horizontal-control text-style-row"
+            }
+          }, rendered
+          ))
         }
         // div组件 通过外部div 配置样式 适应于部分场景
         case 'div-control':{
@@ -251,3 +272,30 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+.text-col {
+  margin-bottom: 4px;
+  line-height: 28px;
+  height: 28px;
+  padding-right: 4px;
+  .text-col-twice{
+    padding-right: 0;
+  }
+}
+
+.text-col-twice {
+  line-height: 28px;
+  height: 28px;
+  height: 28px;
+  padding-right: 4px;
+}
+
+.el-row {
+  width: 100%;
+}
+
+.el-form-item__content {
+  display: flex;
+}
+</style>
