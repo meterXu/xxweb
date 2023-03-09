@@ -46,7 +46,8 @@
       </div>
     </div>
     <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
-      <slot :scale="scale" :view="true"/>
+      <slot name="navigate" :scale="scale" :view="true">
+      </slot>
     </Navigate>
   </div>
 </template>
