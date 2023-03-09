@@ -30,7 +30,16 @@
             </template>
           </template>
           <Form>
-            <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
+            <FormItem v-for="(fItem,fi) in panel.sub" :key="fi">
+              <!-- label可能是文本也可能是个icon -->
+              <span slot='label'>
+                <span v-if='fItem.nameType === "icon"'>
+                  <MtIcon :icon='fItem.name' size='20'></MtIcon>
+                </span>
+                <span v-else>
+                  {{ fItem.name }}
+                </span>
+              </span>
               <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
             </FormItem>
           </Form>
@@ -52,6 +61,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs,TabPane,Form,FormItem,Collapse,CollapseItem,Input} from 'element-ui'
 import MtFormItem from './MtFormItem'
 import '../assets/css/mtProPanel.less'
+import MtIcon from '../view/MtIcon.vue'
 export default {
   name: "ProPanel",
   props:{
@@ -74,7 +84,8 @@ export default {
     FormItem,
     Collapse,
     CollapseItem,
-    MtFormItem
+    MtFormItem,
+    MtIcon
   },
   methods:{
     handleTabClick(tab, event) {
