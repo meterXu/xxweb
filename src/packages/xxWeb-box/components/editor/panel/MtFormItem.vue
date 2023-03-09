@@ -1,9 +1,11 @@
 <script>
-import {get,set} from "lodash";
+import { get, set } from "lodash";
 import MtIconDrop from './MtIconDrop'
 import MtIconBind from './MtIconBind'
 import ArrayControl from './ArrayControl'
 import DataComponents from './DataComponents'
+import MtIcon from "../view/MtIcon.vue";
+import MtIconSelect from "../panel/MtIconSelect.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -12,18 +14,18 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components:{MtIconDrop,MtIconBind,ArrayControl,DataComponents},
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect },
   render(createElement, context) {
-    const {Input,InputNumber,Select,Switch,Option,Radio,RadioGroup,ColorPicker,Tooltip} =require('element-ui')
+    const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
-    function getModelPro(proPath,type,controlledObj){
-      const parentProPath = proPath.substring(0,proPath.lastIndexOf('.'))
-      const key = proPath.substring(proPath.lastIndexOf('.')+1)
-      const obj = get(controlledObj,parentProPath)
-      if(!obj){
-        set(controlledObj,proPath,type==='array-control'?[]:null)
-      }else if(obj[key]===undefined){
-        set(controlledObj,proPath,type==='array-control'?[]:null)
+    function getModelPro(proPath, type, controlledObj) {
+      const parentProPath = proPath.substring(0, proPath.lastIndexOf('.'))
+      const key = proPath.substring(proPath.lastIndexOf('.') + 1)
+      const obj = get(controlledObj, parentProPath)
+      if (!obj) {
+        set(controlledObj, proPath, type === 'array-control' ? [] : null)
+      } else if (obj[key] === undefined) {
+        set(controlledObj, proPath, type === 'array-control' ? [] : null)
       }
       return {
         obj,
@@ -52,38 +54,47 @@ export default {
       fItem.props = fItem.props || {}
       switch (fItem.type) {
         case 'number': {
+          // {fItem.unit}
+          let PrependSlot = fItem.props.prepend ? (
+            <MtIcon icon={fItem.props.prepend} size={16}></MtIcon>
+          ) : ''
           let number =
-              (<el-input-number class={fItem.props['class']}
-                                controls-position={fItem.props['controls-position']||'right'}
-                                controls={fItem.props['controls']}
-                                value={modelPro.obj[modelPro.key]}
-                                onInput={$event => {modelPro.obj[modelPro.key] = $event}}
-                                size="mini"></el-input-number>)
-
+            (<div class={fItem.props.prepend ? 'prepend' : ''}>{PrependSlot}<el-input-number class={fItem.props['class']}
+              controls-position={fItem.props['controls-position'] || 'right'}
+              controls={fItem.props['controls']}
+              value={modelPro.obj[modelPro.key]}
+              onInput={$event => { modelPro.obj[modelPro.key] = $event }}
+              size="mini"></el-input-number></div>)
           return (
-              <span>
-                {number} {fItem.unit}
-              </span>
+            <span>
+              {number} {fItem.unit}
+            </span>
           )
         }
         case 'text': {
-          return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>)
+          return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" />)
         }
         case 'color': {
-          return (
-            <el-row>
-              <el-col span={4} class='text-col-twice'>
-                <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
-              </el-col>
-              <el-col span={20} class='text-col-twice'>
-                <el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" ></el-input>
-              </el-col>
-            </el-row>
-          )
+          if (fItem.hasInput) {
+            return (
+              <el-row>
+                <el-col span={4} class='text-col-twice'>
+                  <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
+                </el-col>
+                <el-col span={20} class='text-col-twice'>
+                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" ></el-input>
+                </el-col>
+              </el-row>
+            )
+          } else {
+            return (
+              <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
+            )
+          }
         }
         case 'textarea': {
           return (
-              <el-input type="textarea" rows={4} value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>
+            <el-input type="textarea" rows={4} value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" />
           )
         }
         case 'boolean': {
@@ -95,74 +106,79 @@ export default {
           )
         }
         case 'select': {
-          if(fItem.data.isPath) {
+          if (fItem.data.isPath) {
             let options = []
-            fItem.data.dataArr.forEach(item=>{
+            fItem.data.dataArr.forEach(item => {
               options.push({
-                label:item.label,
-                options:modelPro.obj[item.data]||[]
+                label: item.label,
+                options: modelPro.obj[item.data] || []
               })
             })
             return (
-                <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                  {options.map(item=><el-option-group label={item.label} key={item.label}>{
-                    item.options.map(o=><el-option label={o.name} value={o.id}>{o.name}</el-option>)
-                  }</el-option-group>)}
-                </el-select>
+              <el-select value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+                {options.map(item => <el-option-group label={item.label} key={item.label}>{
+                  item.options.map(o => <el-option label={o.name} value={o.id}>{o.name}</el-option>)
+                }</el-option-group>)}
+              </el-select>
             )
           } else {
             return (
-                <el-select value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                  {fItem.data.map(item=><el-option label={item.text} value={item.value}>{item.text}</el-option>)}
-                </el-select>
+              <el-select value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+                {fItem.data.map(item => <el-option label={item.text} value={item.value}>{item.text}</el-option>)}
+              </el-select>
             )
           }
         }
-        case 'radio':{
+        case 'IconSelect': {
           return (
-              <el-radio-group value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                {fItem.data.map(item=><el-radio label={item.value}>
-                  {item.text}
-                </el-radio>)}
-              </el-radio-group>
+            <MtIconSelect value={modelPro.obj[modelPro.key]} items={fItem.data} onChange={$event => { modelPro.obj[modelPro.key] = $event }}></MtIconSelect>
           )
         }
-        case 'checkbox':{
+        case 'radio': {
           return (
-              <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini">
-                {fItem.data.map(item=><el-checkbox label={item.value}>
-                  {item.text}
-                </el-checkbox>)}
-              </el-checkbox-group>
+            <el-radio-group value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+              {fItem.data.map(item => <el-radio label={item.value}>
+                {item.text}
+              </el-radio>)}
+            </el-radio-group>
+          )
+        }
+        case 'checkbox': {
+          return (
+            <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+              {fItem.data.map(item => <el-checkbox label={item.value}>
+                {item.text}
+              </el-checkbox>)}
+            </el-checkbox-group>
           )
         }
         case 'slider': {
           return (
-              <el-slider value={modelPro.obj[modelPro.key]}
-                      onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"
-                      show-tooltip={fItem.props['show-tooltip']}
-                      format-tooltip={fItem.props['format-tooltip']}
-                      step={fItem.props['step']}
-                      show-stops={fItem.props['show-stops']}
-                      max={fItem.props['max']}
-                      min={fItem.props['min']}
-                      range={fItem.props['range']}
-                      marks={fItem.props['marks']}
-              ></el-slider>
+            <el-slider value={modelPro.obj[modelPro.key]}
+              onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"
+              show-tooltip={fItem.props['show-tooltip']}
+              format-tooltip={fItem.props['format-tooltip']}
+              step={fItem.props['step']}
+              show-stops={fItem.props['show-stops']}
+              max={fItem.props['max']}
+              min={fItem.props['min']}
+              range={fItem.props['range']}
+              marks={fItem.props['marks']}
+            ></el-slider>
           )
         }
         // 图标 绑定元素同比例
-        case 'icon-bind':{
+        case 'icon-bind': {
           return (
-              <MtIconBind value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}}  items={fItem.data}></MtIconBind>
+            <MtIconBind value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
           )
         }
-        case 'icon-drop':{
+        case 'icon-drop': {
           return (
-              <MtIconDrop value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini" items={fItem.data}></MtIconDrop>
+            <MtIconDrop value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" items={fItem.data}></MtIconDrop>
           )
         }
-        case 'horizontal-control':{
+        case 'horizontal-control': {
           let rendered = []
           fItem.props.forEach((item) => {
             if (item.span) {
@@ -193,54 +209,55 @@ export default {
           ))
         }
         // div组件 通过外部div 配置样式 适应于部分场景
-        case 'div-control':{
+        case 'div-control': {
           let rendered = []
-          fItem.props.forEach((item)=>{
-            rendered.push(renderItem(item,{
-                obj:modelPro.obj,   //这里不动obj  确保div层不影响数据穿透
-                key:modelPro.key
-              }))
+          fItem.props.forEach((item) => {
+            rendered.push(renderItem(item, {
+              obj: modelPro.obj,   //这里不动obj  确保div层不影响数据穿透
+              key: modelPro.key
+            }))
           })
-          return (createElement('div',{
-                attrs:{
-                  class:"div-control " + fItem['class']
-                }},rendered.map((item)=> {
-                  return (
-                    <div>
-                      {item}
-                    </div>
-                  )
-                })
-              ))
+          return (createElement('div', {
+            attrs: {
+              class: "div-control " + fItem['class']
+            }
+          }, rendered.map((item) => {
+            return (
+              <div>
+                {item}
+              </div>
+            )
+          })
+          ))
         }
         case 'empty_number': {
           let number =
-              (<el-input-number class={fItem.props['class']}
-                  controls={false}
-                  value={modelPro.obj[modelPro.key]}
-                  onInput={$event => {modelPro.obj[modelPro.key] = $event}}
-                  size="mini"></el-input-number>)
+            (<el-input-number class={fItem.props['class']}
+              controls={false}
+              value={modelPro.obj[modelPro.key]}
+              onInput={$event => { modelPro.obj[modelPro.key] = $event }}
+              size="mini"></el-input-number>)
           return (
-              <div class="empty_number">
-                <div class="empty_number_name">{fItem.name} </div> {number} {fItem.unit}
-              </div>
+            <div class="empty_number">
+              <div class="empty_number_name">{fItem.name} </div> {number} {fItem.unit}
+            </div>
           )
         }
-        case 'array-control':{
+        case 'array-control': {
           modelPro.obj[modelPro.key] = modelPro.obj[modelPro.key]
           return (
-              <ArrayControl value={modelPro.obj[modelPro.key]} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></ArrayControl>
+            <ArrayControl value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"></ArrayControl>
           )
         }
-        case 'data-components':{
+        case 'data-components': {
           return (
-              <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"></DataComponents>
+            <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"></DataComponents>
           )
         }
-        case 'img-dialog':{
+        case 'img-dialog': {
           return (null)
         }
-        case 'img-select':{
+        case 'img-select': {
           return (null)
         }
         case 'code-dialog': {
@@ -249,26 +266,26 @@ export default {
         case 'code': {
           return (null)
         }
-        case 'div':{
+        case 'div': {
           return (
-              <div class="mt-emptyDiv" style={{width: 'auto',height: fItem.style.height+'px'}}></div>
+            <div class="mt-emptyDiv" style={{ width: 'auto', height: fItem.style.height + 'px' }}></div>
           )
         }
-        case 'span':{
+        case 'span': {
           return (
-              <span class="mt-emptySpan">{fItem.value}</span>
+            <span class="mt-emptySpan">{fItem.value}</span>
           )
         }
-        default:{
+        default: {
           return (
-              <Input value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} size="mini"/>
+            <Input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" />
           )
         }
       }
     }
 
-    const {fItem, controlledObj} = context.props
-    const modelPro = getModelPro(fItem.key,fItem.type,controlledObj)
+    const { fItem, controlledObj } = context.props
+    const modelPro = getModelPro(fItem.key, fItem.type, controlledObj)
     return renderItem(fItem, modelPro)
   }
 }
@@ -276,11 +293,12 @@ export default {
 
 <style lang="less">
 .text-col {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   line-height: 28px;
   height: 28px;
   padding-right: 4px;
-  .text-col-twice{
+
+  .text-col-twice {
     padding-right: 0;
   }
 }
@@ -298,5 +316,25 @@ export default {
 
 .el-form-item__content {
   display: flex;
+}
+
+.prepend {
+  position: relative;
+  display: flex;
+
+  .mt-icon {
+    position: absolute;
+    top: 50%;
+    z-index: 999;
+    left: 2px;
+    transform: translate(0, -50%);
+    color: #999;
+  }
+
+  .el-input {
+    .el-input__inner {
+      padding-left: 16px !important;
+    }
+  }
 }
 </style>
