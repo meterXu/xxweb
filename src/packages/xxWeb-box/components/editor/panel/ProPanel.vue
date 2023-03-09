@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-07 10:10:52
+ * @LastEditTime: 2023-03-09 13:59:38
  * @Description: 
 -->
 <template>
@@ -12,6 +12,13 @@
         <i :class="tab.icon"></i>
         {{tab.type}}
       </span>
+      <div v-for="(panel,pi) in tab.head" :key="pi" class="mt-pro-div">
+        <Form>
+          <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
+            <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+          </FormItem>
+        </Form>
+      </div>
       <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
         <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
           <template slot="title">

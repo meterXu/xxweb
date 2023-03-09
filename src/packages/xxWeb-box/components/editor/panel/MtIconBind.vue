@@ -2,12 +2,12 @@
  * @Author: zhangyuc
  * @Date: 2023-03-09 08:56:48
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-09 10:56:45
- * @Description: 宽高等比绑定组件
+ * @LastEditTime: 2023-03-09 14:00:48
+ * @Description: 
 -->
 <template>
-  <div class="bind-icon" :style="isBind?'background: #4634EE;':'background: #F6F6F6;'">
-    <MtIcon icon="TextBoldNormal" :size="12" @click="changeStatus"></MtIcon>
+  <div class="bind-icon" :style="isBind?'background: #4634EE;':'background: #F6F6F6;'" @click="changeStatus">
+    <MtIcon icon="TextBoldNormal" :size="12"></MtIcon>
   </div>
 </template>
 <script>
@@ -65,7 +65,7 @@ export default {
           newVal[item] = val[item]*scale
         }
       })
-      this.changeLoading = true; // 避免死循环
+      this.changeLoading = true;
       this.$emit('change',newVal)
       setTimeout(() => {
         this.changeLoading = false;
