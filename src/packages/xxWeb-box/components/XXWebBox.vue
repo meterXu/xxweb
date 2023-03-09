@@ -189,7 +189,8 @@ export default {
       }
     }
   },
-  created() {
+  mounted() {
+    this.resizeHandler()
     this.$bus.$on('dropdownMenuClick',(command) => {
       this.$emit('dropdownMenuClick',command)
     })
@@ -206,9 +207,6 @@ export default {
     this.$bus.$on('tabViewChange',(activeIndex) => {
       this.activeIndex = activeIndex
     })
-  },
-  mounted() {
-    this.resizeHandler()
   },
   beforeMount() {
     window.addEventListener('resize', this.resizeHandler);

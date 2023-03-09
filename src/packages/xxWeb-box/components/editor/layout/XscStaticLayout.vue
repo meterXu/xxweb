@@ -13,13 +13,13 @@
          @click="itemClick(item)"
          @mousedown="itemMousedown(item)"
          @dragstart="()=>{return false}">
-      <slot v-if="item.config.box.show" :view="view" :item="item" :active="item===activeItem"></slot>
+      <slot v-if="item.config.box.show" :view="view" :item="item" :active="activeItem&&item.id===activeItem.id"></slot>
       <span style="user-select: none" draggable="false"  @mousedown="changeSizeSizeMousedown(item)">
-            <div ref="resize" v-if="!view&&item===activeItem" class="item_resize"></div>
+            <div ref="resize" v-if="!view&&(activeItem&&item.id===activeItem.id)" class="item_resize"></div>
       </span>
     </div>
     <span v-if="page.config.options.changeSize" draggable="false" style="user-select: none" @mousedown="changeSizeSizeMousedown(page)">
-        <div ref="resize" v-if="!view&&activeItem&&activeItem.chart==='canvas'" class="item_resize"></div>
+        <div ref="resize" v-if="!view&&(activeItem&&activeItem.chart==='canvas')" class="item_resize"></div>
     </span>
   </div>
 </template>
@@ -91,6 +91,9 @@ export default {
       handler(nv) {
         if(!this.shiftKey){
           this.selectedItems=[nv]
+        }
+        if(nv===null){
+          this.selectedItems=[]
         }
       }
     },
