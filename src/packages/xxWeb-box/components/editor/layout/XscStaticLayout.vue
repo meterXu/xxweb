@@ -15,11 +15,11 @@
          @dragstart="()=>{return false}">
       <slot v-if="item.config.box.show" :view="view" :isEditor="isEditor" :item="item" :active="activeItem&&item.id===activeItem.id"></slot>
       <span style="user-select: none" draggable="false"  @mousedown="changeSizeSizeMousedown(item)">
-            <div ref="resize" v-if="!view&&isDrag&&(activeItem&&item.id===activeItem.id)" class="item_resize"></div>
+            <div ref="resize" v-if="!view&&isEditor&&(activeItem&&item.id===activeItem.id)" class="item_resize"></div>
       </span>
     </div>
     <span v-if="page.config.options.changeSize" draggable="false" style="user-select: none" @mousedown="changeSizeSizeMousedown(page)">
-        <div ref="resize" v-if="!view&&isDrag&&(activeItem&&activeItem.chart==='canvas')" class="item_resize"></div>
+        <div ref="resize" v-if="!view&&isEditor&&(activeItem&&activeItem.chart==='canvas')" class="item_resize"></div>
     </span>
   </div>
 </template>
@@ -201,7 +201,7 @@ export default {
             this.shift.y = event.clientY - clickBox.top
             document.removeEventListener('mousemove', this.itemMousemove)
             document.removeEventListener('mouseup', this.removeMouseMove)
-            if(this.isDrag) {
+            if(this.isEditor) {
               document.addEventListener('mousemove', this.itemMousemove)
               document.addEventListener('mouseup', this.removeMouseMove)
             }
