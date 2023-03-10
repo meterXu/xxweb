@@ -57,7 +57,7 @@ export default {
       type: Object,
       default: null
     },
-    isDrag:{
+    isEditor:{
       type: Boolean,
       default: true
     }
