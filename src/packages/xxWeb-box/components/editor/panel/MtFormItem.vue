@@ -361,5 +361,13 @@ export default {
       padding-left: 16px !important;
     }
   }
+
+
+}
+
+.el-input-number.is-without-controls .el-input__inner {
+  padding-left: 2px;
+  padding-right: 20px;
+  text-align: left;
 }
 </style>
