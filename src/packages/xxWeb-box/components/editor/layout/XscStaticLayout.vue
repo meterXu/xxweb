@@ -13,7 +13,7 @@
          @click="itemClick(item)"
          @mousedown="itemMousedown(item)"
          @dragstart="()=>{return false}">
-      <slot v-if="item.config.box.show" :view="view" :item="item" :active="activeItem&&item.id===activeItem.id"></slot>
+      <slot v-if="item.config.box.show" :view="view" :isEditor="isEditor" :item="item" :active="activeItem&&item.id===activeItem.id"></slot>
       <span style="user-select: none" draggable="false"  @mousedown="changeSizeSizeMousedown(item)">
             <div ref="resize" v-if="!view&&isDrag&&(activeItem&&item.id===activeItem.id)" class="item_resize"></div>
       </span>
@@ -57,7 +57,7 @@ export default {
       type: Object,
       default: null
     },
-    isDrag:{
+    isEditor:{
       type: Boolean,
       default: true
     }
