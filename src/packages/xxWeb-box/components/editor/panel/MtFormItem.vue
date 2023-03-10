@@ -33,6 +33,15 @@ export default {
       }
     }
 
+    // 判断含有特殊样式的输入框，默认高度为28px，该函数返回的class不限制它的高度
+    function hasSpecialClass(item) {
+      // desc为有描述的input文本
+      if (item.desc) {
+        return true
+      } else {
+        return false
+      }
+    }
     const predefine = [
       '#ff4500',
       '#ff8c00',
@@ -55,21 +64,22 @@ export default {
       switch (fItem.type) {
         case 'number': {
           // {fItem.unit}
+          // 预配置的前缀图标
           let PrependSlot = fItem.props.prepend ? (
             <MtIcon icon={fItem.props.prepend} size={16}></MtIcon>
           ) : ''
+          // 底部文字介绍标识
+          let DescBtm = fItem.desc ? (
+            <div class='desc'>{fItem.desc}</div>
+          ) : ''
           let number =
-            (<div class={fItem.props.prepend ? 'prepend' : ''}>{PrependSlot}<el-input-number class={fItem.props['class']}
+            (<div class={fItem.props.prepend ? 'prepend' : 'number-box'}>{PrependSlot}<el-input-number class={fItem.props['class']}
               controls-position={fItem.props['controls-position'] || 'right'}
               controls={fItem.props['controls']}
               value={modelPro.obj[modelPro.key]}
               onInput={$event => { modelPro.obj[modelPro.key] = $event }}
-              size="mini"></el-input-number></div>)
-          return (
-            <span>
-              {number} {fItem.unit}
-            </span>
-          )
+              size="mini"></el-input-number>{DescBtm}</div>)
+          return number
         }
         case 'text': {
           return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" />)
@@ -99,8 +109,8 @@ export default {
         }
         case 'boolean': {
           return (
-            <div class={modelPro.obj[modelPro.key]?'mt-boolean-active':'mt-boolean-inactive'}>
-              <el-switch active-color={'#FFFFFF'} inactive-color={'#FFFFFF'} value={modelPro.obj[modelPro.key]} onInput={$event => {modelPro.obj[modelPro.key] = $event}} onChange={$event=>{event.stopPropagation()}} size="mini">
+            <div class={modelPro.obj[modelPro.key] ? 'mt-boolean-active' : 'mt-boolean-inactive'}>
+              <el-switch active-color={'#FFFFFF'} inactive-color={'#FFFFFF'} value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} onChange={$event => { event.stopPropagation() }} size="mini">
               </el-switch>
             </div>
           )
@@ -183,7 +193,7 @@ export default {
           fItem.props.forEach((item) => {
             if (item.span) {
               rendered.push(
-                <el-col span={item.span} class='text-col'>
+                <el-col span={item.span} class={['text-col', hasSpecialClass(item) ? 'text-col-height' : '']}>
                   {renderItem(item, {
                     obj: modelPro.obj[modelPro.key],
                     key: item.key
@@ -303,6 +313,10 @@ export default {
   }
 }
 
+.text-col-height {
+  height: auto;
+}
+
 .text-col-twice {
   line-height: 28px;
   height: 28px;
@@ -312,6 +326,17 @@ export default {
 
 .el-row {
   width: 100%;
+}
+
+.el-input-number {
+  width: 100%;
+}
+
+.desc {
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+  color: #666;
 }
 
 .el-form-item__content {
