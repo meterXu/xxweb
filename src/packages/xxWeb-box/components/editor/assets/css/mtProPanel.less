@@ -192,10 +192,16 @@
   }
   .mt-pro-collapse {
     position: relative;
-    .mt-pro-collapse-stick {
-      position: absolute;
-      right: 15px;
-      top: 14px;
+    .el-collapse-item:last-child {
+      margin-bottom: 0px !important; // 没有边界线bug
+    }
+    .mt-pro-collapse-out {
+      position: relative;
+      .mt-pro-collapse-stick {
+        position: absolute;
+        right: 15px;
+        top: 14px;
+      }
     }
     .el-collapse-item__header {
       display: -webkit-box;

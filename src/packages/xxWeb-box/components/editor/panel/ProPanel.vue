@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-09 18:32:13
+ * @LastEditTime: 2023-03-10 13:30:06
  * @Description: 
 -->
 <template>
@@ -20,7 +20,7 @@
         </Form>
       </div>
       <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" v-model="activeNames">
-        <template v-for="(panel,pi) in tab.con">
+        <div v-for="(panel,pi) in tab.con" :key="pi" class="mt-pro-collapse-out">
           <div class="mt-pro-collapse-stick" v-if="panel.stick">
             <MtFormItem v-on="$listeners" :fItem="panel.stick" :controlledObj="controlledObj"></MtFormItem>
           </div>
@@ -48,7 +48,7 @@
               </FormItem>
             </Form>
           </CollapseItem>
-        </template>
+        </div>
       </Collapse>
       <template v-else>
         <Form>
