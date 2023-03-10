@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-07 10:10:52
+ * @LastEditTime: 2023-03-09 18:32:13
  * @Description: 
 -->
 <template>
@@ -12,22 +12,43 @@
         <i :class="tab.icon"></i>
         {{tab.type}}
       </span>
-      <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" :value="tab.con.map((c,i)=>{return i})">
-        <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
-          <template slot="title">
-            <span class="panel-title">
-              {{panel.name}}
-            </span>
-            <template v-for="(tItem,ti) in panel.tools">
-              <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj"></MtFormItem>
+      <div v-for="(panel,pi) in tab.head" :key="pi" class="mt-pro-div">
+        <Form>
+          <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
+            <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+          </FormItem>
+        </Form>
+      </div>
+      <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" v-model="activeNames">
+        <template v-for="(panel,pi) in tab.con">
+          <div class="mt-pro-collapse-stick" v-if="panel.stick">
+            <MtFormItem v-on="$listeners" :fItem="panel.stick" :controlledObj="controlledObj"></MtFormItem>
+          </div>
+          <CollapseItem :title="panel.name" :name="pi">
+            <template slot="title">
+              <span class="panel-title">
+                {{panel.name}}
+              </span>
+              <template v-for="(tItem,ti) in panel.tools">
+                <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj" :key="ti"></MtFormItem>
+              </template>
             </template>
-          </template>
-          <Form>
-            <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
-              <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
-            </FormItem>
-          </Form>
-        </CollapseItem>
+            <Form>
+              <FormItem v-for="(fItem,fi) in panel.sub" :key="fi">
+                <!-- label可能是文本也可能是个icon -->
+                <span slot='label'>
+                  <span v-if='fItem.nameType === "icon"'>
+                    <MtIcon :icon='fItem.name' size='20'></MtIcon>
+                  </span>
+                  <span v-else>
+                    {{ fItem.name }}
+                  </span>
+                </span>
+                <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+              </FormItem>
+            </Form>
+          </CollapseItem>
+        </template>
       </Collapse>
       <template v-else>
         <Form>
@@ -45,6 +66,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs,TabPane,Form,FormItem,Collapse,CollapseItem,Input} from 'element-ui'
 import MtFormItem from './MtFormItem'
 import '../assets/css/mtProPanel.less'
+import MtIcon from '../view/MtIcon.vue'
 export default {
   name: "ProPanel",
   props:{
@@ -67,7 +89,13 @@ export default {
     FormItem,
     Collapse,
     CollapseItem,
-    MtFormItem
+    MtFormItem,
+    MtIcon
+  },
+  data(){
+    return {
+      activeNames:[]
+    }
   },
   methods:{
     handleTabClick(tab, event) {
