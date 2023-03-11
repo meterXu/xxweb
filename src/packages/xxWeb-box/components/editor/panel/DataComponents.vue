@@ -18,7 +18,7 @@
       <!-- 静态表单 -->
       <div v-else-if="value.type === 'staticForm'" class="spreadsheet">
         <!-- <el-input v-model="value.source.json" size="mini" clearable @change="changeData"></el-input> -->
-        <el-form ref="form" :inline="true" :model="value.source.json" label-width="40px">
+        <el-form ref="form" :inline="true" :model="value.source.json | convertType" label-width="40px">
           <el-form-item :label="item.label" v-for='item in formoption' :key='item.key'>
             <el-input v-model="value.source.json[item.key]"></el-input>
           </el-form-item>
@@ -80,6 +80,17 @@ export default {
     tableDialog,
     codemirror
   },
+  // 转换json数据，因为动态数据中会存在JSON类型
+  // 此时静态数据v-show的表单中，绑定的对象类型会报错
+  filters: {
+    convertType(val) {
+      try {
+        return JSON.parse(val)
+      } catch (error) {
+        return val
+      }
+    }
+  },
   watch: {
     'value.source': {
       deep: true,
@@ -123,18 +134,21 @@ export default {
     // 3 动态
     changeSourceType(val) {
       // 切换为静态时存储一下临时数据
-      // if (['echarts'].includes(this.value.type)) {
-      //   return
-      // }
+      if (['echarts'].includes(this.value.type)) {
+        return
+      }
       if (val === 2) {
         this.value.source.dynamicJson = this.value.source.json
         this.value.source.json = this.value.source.staticJson
       } else {
-        if (['echarts', 'staticList'].includes(this.value.type)) {
-          this.value.source.dynamicJson = typeof (this.value.source.dynamicJson) === 'string' ? this.value.source.dynamicJson : (this.value.type === 'echarts' ? JSON.stringify({}) : JSON.stringify([]))
+        // echarts staticForm 给到的默认值为{}
+        // staticList 给到的默认值为 []
+        // 避免表单对象undefined报错
+        if (['echarts', 'staticList', 'staticForm'].includes(this.value.type)) {
+          this.value.source.dynamicJson = typeof (this.value.source.dynamicJson) === 'string' ? {} : (['echarts', 'staticForm'].includes(this.value.type) ? JSON.stringify({}) : JSON.stringify([]))
         }
-        // console.log( this.value.source.dynamicJson);
-        this.value.source.staticJson = typeof (this.value.source.json) === 'string' ? this.value.source.json : ''
+        // 其他类型默认值为 ''
+        this.value.source.staticJson = this.value.source.json ? this.value.source.json : ''
         this.value.source.json = this.value.source.dynamicJson
       }
     },

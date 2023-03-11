@@ -94,7 +94,7 @@ export default {
   },
   methods:{
     handleTabClick(tab, event) {
-      this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
+      // this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
     }
   }
 }
