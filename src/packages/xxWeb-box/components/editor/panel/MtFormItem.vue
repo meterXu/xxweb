@@ -58,9 +58,23 @@ export default {
       'hsla(209, 100%, 56%, 0.73)',
       '#c7158577'
     ]
-
+    // 处理绑定 数组值时 监听不到变化 不刷新问题 
+    function autoChange(fItem) {
+      // TODO: 需要在云平台中配置个 isChange
+      if(fItem.autoChange && controlledObj.config.options) {
+        controlledObj.config.options.isChange = !controlledObj.config.options.isChange;
+      }
+    }
     function renderItem(fItem, modelPro) {
-      fItem.props = fItem.props || {}
+      fItem.props = fItem.props || {};
+      if(fItem.deep) {
+        let arr = modelPro.key.split('.');
+        for (let index = 0; index < arr.length-1; index++) {
+          const key = arr[index];
+          modelPro.obj = modelPro.obj[key];
+        }
+        modelPro.key = arr[arr.length -1];
+      } // 深层次处理obj【】  xxx.xxx.xxx情况
       switch (fItem.type) {
         case 'number': {
           // {fItem.unit}
@@ -77,22 +91,22 @@ export default {
               controls-position={fItem.props['controls-position'] || 'right'}
               controls={fItem.props['controls']}
               value={modelPro.obj[modelPro.key]}
-              onInput={$event => { modelPro.obj[modelPro.key] = $event }}
+              onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }}
               size="mini"></el-input-number>{DescBtm}</div>)
           return number
         }
         case 'text': {
-          return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" />)
+          return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }} size="mini" />)
         }
         case 'color': {
           if (fItem.hasInput) {
             return (
               <el-row>
                 <el-col span={4} class='text-col-twice'>
-                  <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
+                  <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
                 </el-col>
                 <el-col span={20} class='text-col-twice'>
-                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" ></el-input>
+                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }} size="mini" ></el-input>
                 </el-col>
               </el-row>
             )
@@ -275,6 +289,10 @@ export default {
         }
         case 'code': {
           return (null)
+        }
+        // 空占位符
+        case 'space': {
+          return ''
         }
         case 'div': {
           return (
