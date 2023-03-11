@@ -7,47 +7,50 @@
 -->
 <template>
   <Tabs class="mt-pro-panel" size="small" @tab-click="handleTabClick">
-    <TabPane v-for="(tab,ti) in config" :key="ti">
+    <TabPane v-for="(tab, ti) in config" :key="ti">
       <span slot="label">
         <i :class="tab.icon"></i>
-        {{tab.type}}
+        {{ tab.type }}
       </span>
-      <div v-for="(panel,pi) in tab.head" :key="pi" class="mt-pro-div">
+      <div v-for="(panel, pi) in tab.head" :key="pi" class="mt-pro-div">
         <Form>
-          <FormItem v-for="(fItem,fi) in panel.sub" :key="fi" :label="fItem.name">
+          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi" :label="fItem.name">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>
         </Form>
       </div>
       <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" v-model="activeNames">
-        <CollapseItem v-for="(panel,pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
+        <CollapseItem v-for="(panel, pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
           <template slot="title">
             <span class="panel-title">
-              {{panel.name}}
+              {{ panel.name }}
             </span>
-            <div v-for="(tItem,ti) in panel.tools" class="mt-pro-collapse-tools" :key="ti">
+            <div v-for="(tItem, ti) in panel.tools" class="mt-pro-collapse-tools" :key="ti">
               <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj" :key="ti"></MtFormItem>
             </div>
           </template>
           <Form>
-            <FormItem v-for="(fItem,fi) in panel.sub" :key="fi">
-              <!-- label可能是文本也可能是个icon -->
-              <span slot='label'>
-                <span v-if='fItem.nameType === "icon"'>
-                  <MtIcon :icon='fItem.name' size='20'></MtIcon>
+            <div :class='fItem.name ? "label-min" : ""' v-for="(fItem, fi) in panel.sub" :key="fi">
+              <FormItem>
+                <!-- label可能是文本也可能是个icon -->
+                <span slot='label'>
+                  <span v-if='fItem.nameType === "icon"'>
+                    <MtIcon :icon='fItem.name' size='20'></MtIcon>
+                  </span>
+                  <span v-else>
+                    {{ fItem.name }}
+                  </span>
                 </span>
-                <span v-else>
-                  {{ fItem.name }}
-                </span>
-              </span>
-              <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
-            </FormItem>
+                <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+              </FormItem>
+            </div>
           </Form>
         </CollapseItem>
       </Collapse>
       <template v-else>
         <Form>
-          <FormItem v-for="(fItem,fi) in tab.con.sub" :key="fi" :label="fItem.name" :class="fItem.name?'':'none-label'">
+          <FormItem v-for="(fItem, fi) in tab.con.sub" :key="fi" :label="fItem.name"
+            :class="fItem.name ? '' : 'none-label'">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>
         </Form>
@@ -58,25 +61,25 @@
 
 <script>
 import 'element-ui/lib/theme-chalk/index.css'
-import {Tabs,TabPane,Form,FormItem,Collapse,CollapseItem,Input} from 'element-ui'
+import { Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input } from 'element-ui'
 import MtFormItem from './MtFormItem'
 import '../assets/css/mtProPanel.less'
 import MtIcon from '../view/MtIcon.vue'
 export default {
   name: "ProPanel",
-  props:{
-    controlledObj:{
-      type:Object,
-      default:null
+  props: {
+    controlledObj: {
+      type: Object,
+      default: null
     },
-    config:{
-      type:Array,
-      default(){
+    config: {
+      type: Array,
+      default() {
         return []
       }
     }
   },
-  components:{
+  components: {
     Input,
     Tabs,
     TabPane,
@@ -87,15 +90,25 @@ export default {
     MtFormItem,
     MtIcon
   },
-  data(){
+  data() {
     return {
-      activeNames:[]
+      activeNames: []
     }
   },
-  methods:{
+  methods: {
     handleTabClick(tab, event) {
-      this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
+      // this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
     }
   }
 }
 </script>
+<style lang='less'>
+.label-min {
+  .el-form-item__label {
+    min-width: 50px;
+  }
+  .el-select{
+    width: 100%;
+  }
+}
+</style>

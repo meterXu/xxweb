@@ -269,8 +269,11 @@ export default {
         }
         case 'array-control': {
           modelPro.obj[modelPro.key] = modelPro.obj[modelPro.key]
+          // activeKey 活动的标题
+          // key 列表数据
           return (
-            <ArrayControl value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"></ArrayControl>
+            <ArrayControl value={modelPro.obj[modelPro.key]} activeKey={modelPro.obj[fItem.activeKey.slice(fItem.activeKey.lastIndexOf('.') + 1)
+            ]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} onchangeActive={$event => { modelPro.obj[fItem.activeKey.slice(fItem.activeKey.lastIndexOf('.') + 1)] = $event }} size="mini"></ArrayControl>
           )
         }
         case 'data-components': {
