@@ -31,7 +31,8 @@
           </template>
           <Form>
             <div :class='fItem.name ? "label-min" : ""' v-for="(fItem, fi) in panel.sub" :key="fi">
-              <FormItem>
+              <!-- 存在下拉选项依赖关系的表单逻辑 -->
+              <FormItem v-if='!fItem.dependKey || fItem.dependValues.includes(get(controlledObj, fItem.dependKey))'>
                 <!-- label可能是文本也可能是个icon -->
                 <span slot='label'>
                   <span v-if='fItem.nameType === "icon"'>
@@ -65,6 +66,7 @@ import { Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input } from 'el
 import MtFormItem from './MtFormItem'
 import '../assets/css/mtProPanel.less'
 import MtIcon from '../view/MtIcon.vue'
+import { get } from "lodash";
 export default {
   name: "ProPanel",
   props: {
@@ -96,6 +98,7 @@ export default {
     }
   },
   methods: {
+    get,
     handleTabClick(tab, event) {
       // this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
     }
@@ -107,7 +110,8 @@ export default {
   .el-form-item__label {
     min-width: 50px;
   }
-  .el-select{
+
+  .el-select {
     width: 100%;
   }
 }
