@@ -95,12 +95,23 @@ export default {
     'value.source': {
       deep: true,
       handler(nv) {
-        this.source = Object.assign({}, nv)
+        // 不懂
+        // this.source = Object.assign({}, nv)
         if (['echarts', 'staticList'].includes(this.value.type)) {
           this.tableData = JSON.parse(this.value.source.json)
         } else {
           this.tableData = this.value.source.json
         }
+      }
+    }
+  },
+  computed: {
+    source: {
+      get() { 
+        return this.value.source
+      },
+      set(val) {
+        this.value.source = val
       }
     }
   },
@@ -125,7 +136,7 @@ export default {
         mode: 'text/javascript',
         theme: 'base16-light',
       },
-      source: {}
+      // source: {}
     }
   },
   methods: {

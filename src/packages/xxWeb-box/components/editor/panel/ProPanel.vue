@@ -6,15 +6,15 @@
  * @Description: 
 -->
 <template>
-  <Tabs class="mt-pro-panel" size="small" @tab-click="handleTabClick">
-    <TabPane v-for="(tab, ti) in config" :key="ti">
+  <Tabs class="mt-pro-panel" size="small" @tab-click="handleTabClick" v-model='value'>
+    <TabPane v-for="(tab, ti) in config" :key="ti" :name="ti + ''">
       <span slot="label">
         <i :class="tab.icon"></i>
         {{ tab.type }}
       </span>
       <div v-for="(panel, pi) in tab.head" :key="pi" class="mt-pro-div">
         <Form>
-          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi" :label="fItem.name">
+          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" :label="fItem.name">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>
         </Form>
@@ -92,8 +92,18 @@ export default {
     MtFormItem,
     MtIcon
   },
+  watch: {
+    config: {
+      handler(val) {
+        console.log(val);
+        this.value = '0'
+      }
+    },
+    deep: true
+  },
   data() {
     return {
+      value: '0',
       activeNames: []
     }
   },
