@@ -127,7 +127,7 @@ export default {
         return {
           width: this.page.config.box.width + 'px',
           height: this.page.config.box.height + 'px',
-          'background-color': this.page.config.options.backgroundColor,
+          'background-color': this.page.config.options.backgroundColor||'transparent',
           'background-image': 'url(\'' + this.page.config.options.backgroundImage + '\')',
           'background-size': this.page.config.options.backgroundSize,
           'background-repeat': this.page.config.options.backgroundRepeat,
