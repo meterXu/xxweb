@@ -99,22 +99,27 @@ export default {
           return (<el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }} size="mini" />)
         }
         case 'color': {
-          if (fItem.hasInput) {
-            return (
+          return (
               <el-row>
-                <el-col span={4} class='text-col-twice'>
-                  <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
+                <el-col span={fItem.hasInput?4:24} class='text-col-twice'>
+                  <el-color-picker value={modelPro.obj[modelPro.key]}
+                                   onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }}
+                                   onactive-change={$event=>{
+                                     modelPro.obj[modelPro.key] = $event
+                                   }}
+                                   size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
                 </el-col>
-                <el-col span={20} class='text-col-twice'>
-                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event;autoChange(fItem) }} size="mini" ></el-input>
-                </el-col>
+                {fItem.hasInput&&(
+                    <el-col span={20} className='text-col-twice'>
+                      <el-input value={modelPro.obj[modelPro.key]} onInput={$event => {
+                        modelPro.obj[modelPro.key] = $event;
+                        autoChange(fItem)
+                      }} size="mini"></el-input>
+                    </el-col>
+                )}
+
               </el-row>
-            )
-          } else {
-            return (
-              <el-color-picker value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
-            )
-          }
+          )
         }
         case 'textarea': {
           return (
