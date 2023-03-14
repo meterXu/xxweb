@@ -95,8 +95,8 @@ export default {
   watch: {
     config: {
       handler(val) {
-        console.log(val);
         this.value = '0'
+        this.activeNames = val[0].con.map((v, index) => index)
       }
     },
     deep: true
@@ -104,7 +104,7 @@ export default {
   data() {
     return {
       value: '0',
-      activeNames: []
+      activeNames: [0]
     }
   },
   methods: {
