@@ -49,7 +49,7 @@
         </CollapseItem>
       </Collapse>
       <template v-else>
-        <Form>
+        <Form class="single-con">
           <FormItem v-for="(fItem, fi) in tab.con.sub" :key="fi" :label="fItem.name"
             :class="fItem.name ? '' : 'none-label'">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
