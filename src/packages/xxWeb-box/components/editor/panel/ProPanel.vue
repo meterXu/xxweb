@@ -115,14 +115,3 @@ export default {
   }
 }
 </script>
-<style lang='less'>
-.label-min {
-  .el-form-item__label {
-    min-width: 50px;
-  }
-
-  .el-select {
-    width: 100%;
-  }
-}
-</style>
