@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-09 08:56:48
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-09 14:52:24
+ * @LastEditTime: 2023-03-15 15:00:24
  * @Description: 
 -->
 <template>
@@ -14,7 +14,7 @@
 import MtIcon from "../view/MtIcon"
 export default {
   name: "MtIconBind",
-  props:['value','items'],
+  props:['value','items','isSame'],
   data(){
     let findItem = this.items.find(c=>c.value===this.value)
     return{
@@ -37,14 +37,44 @@ export default {
         if(this.changeLoading || !this.isBind) {
           return
         }
-        // 找到第一项改变的值，计算放大比例
-        // 其余几项等于 旧×放大  
-        this.changeValue(newVal,val);
+        if(this.isSame) {
+          this.sameChangeValue(newVal,val);
+        } else {
+          this.changeValue(newVal,val);
+        }
       },
       deep:true
     }
   },
   methods:{
+    // 同等增加
+    sameChangeValue(newVal,val) {
+      let first = ''; // 记录第一个监听改变的items里的值
+      this.items.map((item) => {
+        if(newVal[item] != val[item]) {
+          first = item;
+          return
+        }
+      })
+      // 如果找不到 第一个变化 就结束
+      if(!first) {
+        return
+      }
+      // 二次遍历 赋一样的值
+      this.items.map((item) => {
+        if(newVal[item] == val[item] && item != first) {
+          newVal[item] =newVal[first];
+        }
+      })
+      this.changeLoading = true;
+      this.$emit('change',newVal)
+      setTimeout(() => {
+        this.changeLoading = false;
+      }, 0);
+    },
+    // 比例增加
+    // 找到第一项改变的值，计算放大比例
+    // 其余几项等于 旧×放大  
     changeValue(newVal,val) {
       let first = ''; // 记录第一个监听改变的items里的值
       let scale = 1;  // 记录第一个的缩放比例

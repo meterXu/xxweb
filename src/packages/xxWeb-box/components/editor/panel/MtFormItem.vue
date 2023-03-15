@@ -199,7 +199,7 @@ export default {
         // 图标 绑定元素同比例
         case 'icon-bind': {
           return (
-            <MtIconBind value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
+            <MtIconBind value={modelPro.obj[modelPro.key]} isSame={fItem.isSame} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
           )
         }
         case 'icon-drop': {
