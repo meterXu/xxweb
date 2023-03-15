@@ -174,7 +174,7 @@ export default {
         }
         case 'checkbox': {
           return (
-            <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+            <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = [...$event] }} size="mini">
               {fItem.data.map(item => <el-checkbox label={item.value}>
                 {item.text}
               </el-checkbox>)}
