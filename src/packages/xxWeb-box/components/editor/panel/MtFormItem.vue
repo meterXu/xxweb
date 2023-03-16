@@ -6,6 +6,7 @@ import ArrayControl from './ArrayControl'
 import DataComponents from './DataComponents'
 import MtIcon from "../view/MtIcon.vue";
 import MtIconSelect from "../panel/MtIconSelect.vue";
+import MtIconSwitch from "../panel/MtIconSwitch.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -14,7 +15,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect },
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -200,6 +201,12 @@ export default {
         case 'icon-bind': {
           return (
             <MtIconBind value={modelPro.obj[modelPro.key]} isSame={fItem.isSame} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
+          )
+        }
+         // 图标 开关
+        case 'icon-switch': {
+          return (
+            <MtIconSwitch value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconSwitch>
           )
         }
         case 'icon-drop': {
