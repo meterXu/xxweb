@@ -2,9 +2,8 @@
  * @Author: zhangyuc
  * @Date: 2023-03-16 16:22:23
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-16 17:11:09
+ * @LastEditTime: 2023-03-17 09:53:39
  * @Description: 图表开关
--->
 -->
 <template>
   <div class="switch-icon" :style="value?'color: #4634EE;':''" @click="changeStatus">
