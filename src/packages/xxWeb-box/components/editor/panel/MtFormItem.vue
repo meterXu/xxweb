@@ -7,6 +7,7 @@ import DataComponents from './DataComponents'
 import MtIcon from "../view/MtIcon.vue";
 import MtIconSelect from "../panel/MtIconSelect.vue";
 import MtIconSwitch from "../panel/MtIconSwitch.vue";
+import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -15,7 +16,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch },
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtButtonSwitch },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -211,10 +212,16 @@ export default {
             <MtIconBind value={modelPro.obj[modelPro.key]} isSame={fItem.isSame} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
           )
         }
-         // 图标 开关
+        // 图标 开关
         case 'icon-switch': {
           return (
             <MtIconSwitch value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconSwitch>
+          )
+        }
+         // 按钮 开关
+         case 'button-switch': {
+          return (
+            <MtButtonSwitch value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtButtonSwitch>
           )
         }
         case 'icon-drop': {
