@@ -18,7 +18,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch,MtFormColor, MtArrangement, MtButtonSwitch },
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -104,33 +104,7 @@ export default {
         }
         case 'color': {
           return (
-            <el-row>
-              <el-col span={fItem.hasInput ? 4 : 24} class='text-col-twice'>
-                <el-color-picker  value={modelPro.obj[modelPro.key]}
-                  onInput={$event => { modelPro.obj[modelPro.key] = $event; autoChange(fItem) }}
-                  onactive-change={$event => {
-                    modelPro.obj[modelPro.key] = $event
-                  }}
-                  size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
-              </el-col>
-              {/* {fItem.hasInput && (
-                <el-col span={10} className='text-col-twice' style="padding-right: 4px">
-                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => {
-                    modelPro.obj[modelPro.key] = $event;
-                    autoChange(fItem)
-                  }} size="mini"></el-input>
-                </el-col>
-              )} */}
-              {fItem.hasInput && (
-                <el-col span={20} className='text-col-twice'>
-                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => {
-                    modelPro.obj[modelPro.key] = $event;
-                    autoChange(fItem)
-                  }} size="mini"></el-input>
-                </el-col>
-              )}
-
-            </el-row>
+            <MtFormColor value={modelPro.obj[modelPro.key]} modelPro={modelPro} predefine={predefine} onChange={$event => { modelPro.obj[modelPro.key] = $event }} fItem={fItem} />
           )
         }
         case 'textarea': {
@@ -217,7 +191,7 @@ export default {
         // 图标 绑定元素同比例
         case 'arrangement': {
           return (
-            <MtArrangement left={modelPro.obj[modelPro.key].left} top={modelPro.obj[modelPro.key].top} onChangeArrange={(e) => { modelPro.obj[modelPro.key].left = e.left;modelPro.obj[modelPro.key].top = e.top;}}></MtArrangement>
+            <MtArrangement left={modelPro.obj[modelPro.key].left} top={modelPro.obj[modelPro.key].top} onChangeArrange={(e) => { modelPro.obj[modelPro.key].left = e.left; modelPro.obj[modelPro.key].top = e.top; }}></MtArrangement>
           )
         }
         // 图标 开关
@@ -435,7 +409,7 @@ export default {
   padding-top: 1px;
 }
 
-.el-input__suffix{
+.el-input__suffix {
   right: 1px;
   top: 1px;
   height: calc(100% - 2px);
