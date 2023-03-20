@@ -10,6 +10,7 @@ import MtIconSwitch from "../panel/MtIconSwitch.vue";
 import MtArrangement from "../panel/MtArrangement.vue";
 import MtFormColor from "./MtFormColor.vue"
 import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
+import MtFormTheme from "./MtFormTheme.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -18,7 +19,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch },
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch, MtFormTheme },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -105,6 +106,11 @@ export default {
         case 'color': {
           return (
             <MtFormColor value={modelPro.obj[modelPro.key]} modelPro={modelPro} predefine={predefine} onChange={$event => { modelPro.obj[modelPro.key] = $event }} fItem={fItem} />
+          )
+        }
+        case 'theme': {
+          return (
+            <MtFormTheme value={modelPro.obj[modelPro.key]} modelPro={modelPro} onChange={$event => { modelPro.obj[modelPro.key] = $event }} fItem={fItem} />
           )
         }
         case 'textarea': {
@@ -332,6 +338,10 @@ export default {
 </script>
 
 <style lang="less">
+.el-input__inner {
+  padding-left: 5px;
+}
+
 .text-col {
   margin-bottom: 8px;
   line-height: 28px;

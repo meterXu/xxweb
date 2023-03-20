@@ -36,7 +36,7 @@
                 <!-- label可能是文本也可能是个icon -->
                 <span slot='label'>
                   <span v-if='fItem.nameType === "icon"'>
-                    <MtIcon :icon='fItem.name' size='20'></MtIcon>
+                    <MtIcon :icon='fItem.name' :size='fItem.iconSize || 20'></MtIcon>
                   </span>
                   <span v-else>
                     {{ fItem.name }}
