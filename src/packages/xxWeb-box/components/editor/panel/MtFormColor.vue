@@ -1,3 +1,9 @@
+<!-- 
+** hasInput
+默认显示 color + opacity输入框
+** hideColor
+配置后 隐藏color输入框 
+-->
 <template>
   <div>
     <el-row>
@@ -5,7 +11,7 @@
         <el-color-picker color-format="hex" v-model="color" size="mini" :predefine="formatPredefine"
           @active-change='activeChange' @change='changeColor'></el-color-picker>
       </el-col>
-      <el-col :span='12' v-if='fItem.hasInput' class='text-col-twice' style="padding-right: 4px">
+      <el-col :span='12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice' style="padding-right: 4px">
         <el-input v-model='color' size='mini'></el-input>
       </el-col>
       <el-col :span='8' v-if='fItem.hasInput' class='prepend'>

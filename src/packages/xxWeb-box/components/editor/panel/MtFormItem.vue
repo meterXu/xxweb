@@ -226,8 +226,8 @@ export default {
             <MtIconSwitch value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconSwitch>
           )
         }
-         // 按钮 开关
-         case 'button-switch': {
+        // 按钮 开关
+        case 'button-switch': {
           return (
             <MtButtonSwitch value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtButtonSwitch>
           )
@@ -429,5 +429,18 @@ export default {
   padding-left: 2px;
   padding-right: 20px;
   text-align: left;
+}
+
+.el-color-picker {
+  padding-top: 1px;
+}
+
+.el-input__suffix{
+  right: 1px;
+  top: 1px;
+  height: calc(100% - 2px);
+  border-radius: 0 4px 4px 0;
+  background: #F1F4F8;
+  color: #666666;
 }
 </style>
