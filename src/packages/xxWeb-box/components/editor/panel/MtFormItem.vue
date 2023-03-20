@@ -7,6 +7,7 @@ import DataComponents from './DataComponents'
 import MtIcon from "../view/MtIcon.vue";
 import MtIconSelect from "../panel/MtIconSelect.vue";
 import MtIconSwitch from "../panel/MtIconSwitch.vue";
+import MtArrangement from "../panel/MtArrangement.vue";
 import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
 export default {
   name: 'mtFormItem',
@@ -16,7 +17,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtButtonSwitch },
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch,MtArrangement, MtButtonSwitch },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -210,6 +211,12 @@ export default {
         case 'icon-bind': {
           return (
             <MtIconBind value={modelPro.obj[modelPro.key]} isSame={fItem.isSame} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
+          )
+        }
+        // 图标 绑定元素同比例
+        case 'arrangement': {
+          return (
+            <MtArrangement left={modelPro.obj[modelPro.key].left} top={modelPro.obj[modelPro.key].top} onChangeArrange={(e) => { console.log(e,modelPro.obj[modelPro.key]); modelPro.obj[modelPro.key].left = e.left;modelPro.obj[modelPro.key].top = e.top;}}></MtArrangement>
           )
         }
         // 图标 开关
