@@ -7,6 +7,7 @@ import DataComponents from './DataComponents'
 import MtIcon from "../view/MtIcon.vue";
 import MtIconSelect from "../panel/MtIconSelect.vue";
 import MtIconSwitch from "../panel/MtIconSwitch.vue";
+import MtFormColor from "./MtFormColor.vue"
 import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
 export default {
   name: 'mtFormItem',
@@ -52,13 +53,7 @@ export default {
       '#00ced1',
       '#1e90ff',
       '#c71585',
-      'rgba(255, 69, 0, 0.68)',
       'rgb(255, 120, 0)',
-      'hsv(51, 100, 98)',
-      'hsva(120, 40, 94, 0.5)',
-      'hsl(181, 100%, 37%)',
-      'hsla(209, 100%, 56%, 0.73)',
-      '#c7158577'
     ]
     // 处理绑定 数组值时 监听不到变化 不刷新问题 
     function autoChange(fItem) {
@@ -102,33 +97,7 @@ export default {
         }
         case 'color': {
           return (
-            <el-row>
-              <el-col span={fItem.hasInput ? 4 : 24} class='text-col-twice'>
-                <el-color-picker  value={modelPro.obj[modelPro.key]}
-                  onInput={$event => { modelPro.obj[modelPro.key] = $event; autoChange(fItem) }}
-                  onactive-change={$event => {
-                    modelPro.obj[modelPro.key] = $event
-                  }}
-                  size="mini" show-alpha={true} predefine={predefine}></el-color-picker>
-              </el-col>
-              {/* {fItem.hasInput && (
-                <el-col span={10} className='text-col-twice' style="padding-right: 4px">
-                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => {
-                    modelPro.obj[modelPro.key] = $event;
-                    autoChange(fItem)
-                  }} size="mini"></el-input>
-                </el-col>
-              )} */}
-              {fItem.hasInput && (
-                <el-col span={20} className='text-col-twice'>
-                  <el-input value={modelPro.obj[modelPro.key]} onInput={$event => {
-                    modelPro.obj[modelPro.key] = $event;
-                    autoChange(fItem)
-                  }} size="mini"></el-input>
-                </el-col>
-              )}
-
-            </el-row>
+            <MtFormColor value={modelPro.obj[modelPro.key]} modelPro={modelPro} predefine={predefine} onChange={$event => { modelPro.obj[modelPro.key] = $event }} fItem={fItem} />
           )
         }
         case 'textarea': {
