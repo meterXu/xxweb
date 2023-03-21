@@ -14,7 +14,7 @@
       <el-col :span='12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice' style="padding-right: 4px">
         <el-input v-model='color' size='mini'></el-input>
     </el-col>
-    <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend'>
+    <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend-percent'>
       <el-input v-model='opacity' size='mini' @input='changeColor'>
       </el-input>
     </el-col>
@@ -218,7 +218,7 @@ export default {
   border-left: none;
 }
 
-.prepend {
+.prepend-percent {
   /deep/.el-input__inner {
     padding: 0 2px;
     padding-left: 2px !important;
