@@ -55,7 +55,7 @@ export default {
   watch: {
     color: {
       handler(val) {
-        console.log(val);
+        // console.log(val);
       }
     }
   },
