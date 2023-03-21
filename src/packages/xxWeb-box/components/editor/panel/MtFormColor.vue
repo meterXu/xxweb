@@ -7,18 +7,18 @@
 <template>
   <div>
     <el-row>
-      <el-col :span="fItem.hasInput ? (fItem.colorSpan||4) : 24" class='text-col-twice'>
+      <el-col :span="fItem.hasInput ? (fItem.colorSpan || 4) : 24" class='text-col-twice'>
         <el-color-picker color-format="hex" v-model="color" size="mini" :predefine="formatPredefine"
           @active-change='activeChange' @change='changeColor'></el-color-picker>
       </el-col>
       <el-col :span='12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice' style="padding-right: 4px">
         <el-input v-model='color' size='mini'></el-input>
-      </el-col>
-      <el-col :span='fItem.opcSpan||8' v-if='fItem.hasInput' class='prepend'>
-        <el-input v-model='opacity' size='mini' @input='changeColor'>
-        </el-input>
-      </el-col>
-      <!-- {fItem.hasInput && (
+    </el-col>
+    <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend'>
+      <el-input v-model='opacity' size='mini' @input='changeColor'>
+      </el-input>
+    </el-col>
+    <!-- {fItem.hasInput && (
       <el-col span={10} className='text-col-twice' style="padding-right: 4px">
         <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
           modelPro.obj[modelPro.key] = $event;
@@ -30,12 +30,12 @@
       fItem.hasInput && (
       <el-col span={20} className='text-col-twice'>
         <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-          modelPro.obj[modelPro.key] = $event;
-          autoChange(fItem)
-          }} size="mini"></el-input>
-      </el-col>
-      )
-      } -->
+                modelPro.obj[modelPro.key] = $event;
+                autoChange(fItem)
+                }} size="mini"></el-input>
+            </el-col>
+            )
+            } -->
 
     </el-row>
   </div>
@@ -124,6 +124,9 @@ export default {
       } else if (color.startsWith('#')) {
         let hex = color.slice(1);
         // 转换为hex格式
+        if (hex.length === 8) {
+          return hex
+        }
         return hex.length === 3 ? '#' + hex.repeat(2) + 'ff' : '#' + hex + 'ff';
       } else {
         return null;
@@ -183,17 +186,26 @@ export default {
       }
 
       return (r << 16) | (g << 8) | b;
+    },
+    // 随机生成color
+    randomColor() {
+      let random = Math.random()
+      if (random === 0) {
+        return this.randomColor()
+      }
+      return '#' + random.toString(16).substring(2, 8)
     }
   },
   mounted() {
     const color = this.colorToHex(this.modelPro.obj[this.modelPro.key])
-    this.color = color ? color.slice(0, -2) : null
+    this.color = color ? color.slice(0, -2) : this.randomColor()
     this.opacity = color ? parseInt(parseInt(color.slice(-2), 16) / 255 * 100) : 100
     if (this.predefine.length) {
       this.predefine.map(val => {
         this.formatPredefine.push(this.colorToHex(val.replaceAll(' ', '')))
       })
     }
+    this.changeColor()
   },
 }
 </script>

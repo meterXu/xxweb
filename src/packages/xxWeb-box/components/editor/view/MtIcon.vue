@@ -79,7 +79,8 @@ const TextItalic = {
   render(h, context) {
     const { size } = context.props;
     return (
-      <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path d="M20 6H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 42H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M29 5.95239L19 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      // <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path d="M20 6H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 42H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M29 5.95239L19 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      <svg style="transform: rotate(8deg)" t="1679301195805" width={size} height={size} class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9309" ><path d="M896 179.2V358.4h-51.2V230.4h-665.6V358.4h-51.2V179.2z" fill="currentColor" p-id="9310"></path><path d="M537.6 204.8v665.6h-51.2V204.8z" fill="currentColor" p-id="9311"></path><path d="M614.4 844.8v51.2H409.6v-51.2z" fill="currentColor" p-id="9312"></path></svg>
     )
   }
 }
@@ -87,14 +88,16 @@ const TextItalicNormal = {
   render(h, context) {
     const { size } = context.props;
     return (
-      <svg width={size} height={size} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="none">
-        <g>
-          <title>Layer 1</title>
-          <path stroke="currentColor" id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" d="m17,5l14,0" />
-          <path id="svg_2" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" d="m16,42l16,0" />
-          <path stroke="currentColor" id="svg_3" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" d="m24,5.95239l0,36.04761" />
-        </g>
-      </svg>
+      // <svg width={size} height={size} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="none">
+      //   <g>
+      //     <title>Layer 1</title>
+      //     <path stroke="currentColor" id="svg_1" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" d="m17,5l14,0" />
+      //     <path id="svg_2" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" d="m16,42l16,0" />
+      //     <path stroke="currentColor" id="svg_3" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" d="m24,5.95239l0,36.04761" />
+      //   </g>
+      // </svg>
+
+      <svg t="1679301195805" width={size} height={size} class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9309" ><path d="M896 179.2V358.4h-51.2V230.4h-665.6V358.4h-51.2V179.2z" fill="currentColor" p-id="9310"></path><path d="M537.6 204.8v665.6h-51.2V204.8z" fill="currentColor" p-id="9311"></path><path d="M614.4 844.8v51.2H409.6v-51.2z" fill="currentColor" p-id="9312"></path></svg>
     )
   }
 }
@@ -241,6 +244,15 @@ const DoRound = {
     return (<svg width={size} height={size} version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M16,6H8C6.9,6,6,6.9,6,8v8c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V8C18,6.9,17.1,6,16,6z" /></svg>)
   },
 };
+// 色卡
+const 色卡 = {
+  render(h, context) {
+    const { size } = context.props;
+    return (
+      <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 44C13.3137 44 16 41.3137 16 38V23.5147V4H4V38C4 41.3137 6.68629 44 10 44Z" fill="#333" /><path d="M10 44C13.3137 44 16 41.3137 16 38V23.5147M10 44C6.68629 44 4 41.3137 4 38V4H16V23.5147M10 44H44V32H24.4853M5.75736 42.2426C8.10051 44.5858 11.8995 44.5858 14.2426 42.2426L24.4853 32M16 23.5147L35.0147 4.5L35.4853 4L43.9853 12.5L24.4853 32" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M14.2427 42.2426L43.9853 12.5L35.4853 4L16 23.5147" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M24.4853 32H44V44H12.5" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M24.4853 32H44V44H12.5" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /><path d="M10 44C13.3137 44 16 41.3137 16 38V23.5147V4H4V38C4 41.3137 6.68629 44 10 44Z" fill="#333" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    )
+  },
+};
 export default {
   name: 'MtIcon',
   functional: true,
@@ -279,7 +291,7 @@ export default {
       DoNewLine,
       DoElle,
       DoRound,
-
+      色卡
     }
     if (icon && icons[icon]) {
       return h('span', {
