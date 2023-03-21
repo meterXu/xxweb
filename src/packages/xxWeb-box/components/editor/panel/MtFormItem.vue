@@ -404,7 +404,7 @@ export default {
   .el-input {
     .el-input__inner {
       text-align: left !important;
-      padding-left: 10px !important;
+      padding-left: 20px !important;
     }
   }
 
