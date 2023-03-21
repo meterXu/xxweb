@@ -124,6 +124,9 @@ export default {
       } else if (color.startsWith('#')) {
         let hex = color.slice(1);
         // 转换为hex格式
+        if (hex.length === 8) {
+          return hex
+        }
         return hex.length === 3 ? '#' + hex.repeat(2) + 'ff' : '#' + hex + 'ff';
       } else {
         return null;
@@ -187,6 +190,7 @@ export default {
   },
   mounted() {
     const color = this.colorToHex(this.modelPro.obj[this.modelPro.key])
+    console.log(color);
     this.color = color ? color.slice(0, -2) : null
     this.opacity = color ? parseInt(parseInt(color.slice(-2), 16) / 255 * 100) : 100
     if (this.predefine.length) {
