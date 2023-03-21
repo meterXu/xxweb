@@ -421,7 +421,7 @@ export default {
   padding-top: 1px;
 }
 
-.el-input__suffix {
+.mt-pro-panel .el-input__suffix {
   right: 1px;
   top: 1px;
   height: calc(100% - 2px);
