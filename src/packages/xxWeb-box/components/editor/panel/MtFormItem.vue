@@ -150,6 +150,19 @@ export default {
             )
           }
         }
+        case 'select-input': {
+          return (
+            <el-select popper-class={fItem.props['class']}
+              filter-method={(e) => { modelPro.obj[modelPro.key] = e || modelPro.obj[modelPro.key]}} 
+              class={fItem.props['class']} 
+              filterable={true} 
+              allow-create={true} 
+              onInput={$event => { modelPro.obj[modelPro.key] = $event;}}
+              value={modelPro.obj[modelPro.key]} size="mini">
+              {fItem.data.map(item => <el-option key={item+''} label={item+''} value={item+''}></el-option>)}
+            </el-select>                            
+          )
+        }
         case 'IconSelect': {
           return (
             <MtIconSelect value={modelPro.obj[modelPro.key]} items={fItem.data} onChange={$event => { modelPro.obj[modelPro.key] = $event }}></MtIconSelect>
