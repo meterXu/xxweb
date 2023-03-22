@@ -11,6 +11,7 @@ import MtArrangement from "../panel/MtArrangement.vue";
 import MtFormColor from "./MtFormColor.vue"
 import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
 import MtFormTheme from "./MtFormTheme.vue";
+import MtIconRadius from "./MtIconRadius.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -19,7 +20,7 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch, MtFormTheme },
+  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch, MtFormTheme, MtIconRadius },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -206,6 +207,12 @@ export default {
         case 'icon-bind': {
           return (
             <MtIconBind value={modelPro.obj[modelPro.key]} isSame={fItem.isSame} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconBind>
+          )
+        }
+        // 图标 绑定元素同比例
+        case 'icon-radius': {
+          return (
+            <MtIconRadius value={modelPro.obj[modelPro.key]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} items={fItem.data}></MtIconRadius>
           )
         }
         // 图标 绑定元素同比例
