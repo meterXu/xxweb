@@ -20,7 +20,7 @@
         <!-- <el-input v-model="value.source.json" size="mini" clearable @change="changeData"></el-input> -->
         <el-form ref="form" :inline="true" :model="value.source.json | convertType" label-width="40px">
           <el-form-item :label="item.label" v-for='item in formoption' :key='item.key'>
-            <el-input v-model="value.source.json[item.key]"></el-input>
+            <el-input :value="get(config, item.key)" @input='changeForm($event, item.key)'></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import { get, set } from 'lodash'
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/base16-light.css'
@@ -71,7 +72,7 @@ import 'codemirror/mode/javascript/javascript.js'
 import tableDialog from './tableDialog'
 export default {
   name: "DataComponents",
-  props: ['value', 'formoption'],
+  props: ['value', 'formoption', 'config'],
   model: {
     prop: 'value',
     event: 'change'
@@ -107,7 +108,7 @@ export default {
   },
   computed: {
     source: {
-      get() { 
+      get() {
         return this.value.source
       },
       set(val) {
@@ -140,6 +141,10 @@ export default {
     }
   },
   methods: {
+    get,
+    changeForm(val, key) {
+      set(this.config, key, val)
+    },
     // 切换静态数据和动态数据按钮
     // 2 静态
     // 3 动态

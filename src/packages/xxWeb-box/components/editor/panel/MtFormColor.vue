@@ -30,12 +30,12 @@
       fItem.hasInput && (
       <el-col span={20} className='text-col-twice'>
         <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-                  modelPro.obj[modelPro.key] = $event;
-                  autoChange(fItem)
-                  }} size="mini"></el-input>
-              </el-col>
-              )
-              } -->
+                      modelPro.obj[modelPro.key] = $event;
+                      autoChange(fItem)
+                      }} size="mini"></el-input>
+                  </el-col>
+                  )
+                  } -->
 
     </el-row>
   </div>
@@ -57,10 +57,27 @@ export default {
       handler(val) {
         // console.log(val);
       }
+    },
+    // 解决同类型控件切换，value视图不更新的问题
+    'modelPro.obj'(val) {
+      if (val[this.modelPro.key] !== this.color) {
+        this.updateColor()
+      }
     }
   },
   methods: {
     activeChange(val) {
+    },
+    updateColor() {
+      const color = this.colorToHex(this.modelPro.obj[this.modelPro.key])
+      this.color = color ? color.slice(0, -2) : null
+      this.opacity = color ? parseInt(parseInt(color.slice(-2), 16) / 255 * 100) : 100
+      if (this.predefine.length) {
+        this.formatPredefine = []
+        this.predefine.map(val => {
+          this.formatPredefine.push(this.colorToHex(val.replaceAll(' ', '')))
+        })
+      }
     },
     changeColor() {
       const color = this.color + this.to16(this.opacity)
@@ -197,18 +214,11 @@ export default {
     }
   },
   mounted() {
-    const color = this.colorToHex(this.modelPro.obj[this.modelPro.key])
-    this.color = color ? color.slice(0, -2) : null
-    this.opacity = color ? parseInt(parseInt(color.slice(-2), 16) / 255 * 100) : 100
-    if (this.predefine.length) {
-      this.predefine.map(val => {
-        this.formatPredefine.push(this.colorToHex(val.replaceAll(' ', '')))
-      })
-    }
+    this.updateColor()
     // this.$nextTick(() => {
     //   this.changeColor()
     // })
-  },
+  }
 }
 </script>
 <style lang="less" scoped>
