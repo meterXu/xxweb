@@ -30,12 +30,12 @@
       fItem.hasInput && (
       <el-col span={20} className='text-col-twice'>
         <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-                      modelPro.obj[modelPro.key] = $event;
-                      autoChange(fItem)
-                      }} size="mini"></el-input>
-                  </el-col>
-                  )
-                  } -->
+                        modelPro.obj[modelPro.key] = $event;
+                        autoChange(fItem)
+                        }} size="mini"></el-input>
+                    </el-col>
+                    )
+                    } -->
 
     </el-row>
   </div>
@@ -67,6 +67,9 @@ export default {
   },
   methods: {
     activeChange(val) {
+      const color = this.colorToHex(val).slice(0, -2)
+      this.color = color
+      this.changeColor()
     },
     updateColor() {
       const color = this.colorToHex(this.modelPro.obj[this.modelPro.key])
