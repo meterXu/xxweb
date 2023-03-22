@@ -205,9 +205,9 @@ export default {
         this.formatPredefine.push(this.colorToHex(val.replaceAll(' ', '')))
       })
     }
-    this.$nextTick(() => {
-      this.changeColor()
-    })
+    // this.$nextTick(() => {
+    //   this.changeColor()
+    // })
   },
 }
 </script>
