@@ -61,7 +61,10 @@ export default {
       immediate: true,
       handler(nv) {
         this.$nextTick(() => {
-          this.$refs['ui-tree'].setCurrentKey(nv)
+          this.$refs['ui-tree'].setCurrentKey(nv);
+          if(nv) {
+            this.$emit('nodeChange',nv,'active',this.$refs['ui-tree'].getNode(nv).parent.data.id)
+          }
         })
       }
     },
@@ -95,6 +98,7 @@ export default {
       }
     },
     nodeClick(data,dropNode){
+      console.log(data,dropNode,'213213123')
       this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
     contextmenu(data) {
