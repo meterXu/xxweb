@@ -98,7 +98,6 @@ export default {
       }
     },
     nodeClick(data,dropNode){
-      console.log(data,dropNode,'213213123')
       this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
     contextmenu(data) {
