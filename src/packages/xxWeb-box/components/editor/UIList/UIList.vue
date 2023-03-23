@@ -62,9 +62,6 @@ export default {
       handler(nv) {
         this.$nextTick(() => {
           this.$refs['ui-tree'].setCurrentKey(nv);
-          if(nv) {
-            this.$emit('nodeChange',nv,'active',this.$refs['ui-tree'].getNode(nv).parent.data.id)
-          }
         })
       }
     },
