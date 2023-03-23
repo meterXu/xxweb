@@ -131,7 +131,7 @@ export default {
           'background-image': 'url(\'' + this.page.config.options.backgroundImage + '\')',
           'background-size': this.page.config.options.backgroundSize,
           'background-repeat': this.page.config.options.backgroundRepeat,
-          display: this.view ? 'block' : 'inline-block'
+          display: this.view ? 'block' : 'inline-block',
         }
       } else {
         return {
@@ -297,7 +297,8 @@ export default {
           top: (item.config.box.y || 0) + 'px',
           zIndex: (item.config.box.zIndex || 100),
           "--border": '',
-          "--box-shadow": ''
+          "--box-shadow": '',
+          visibility:item.config.box.show?'visible':'hidden'
         }
         if(this.isLight) {
           style["--border"]=(this.lightStyle&&this.lightStyle["border"])?this.lightStyle["border"]:"1px solid #8595FF"
