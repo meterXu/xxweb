@@ -96,7 +96,7 @@ export default {
     config: {
       handler(val) {
         this.value = '0'
-        this.activeNames = val[0].con.map((v, index) => index)
+        this.activeNames = val?val[0].con.map((v, index) => index):null
       }
     },
     deep: true
