@@ -112,4 +112,7 @@ export default {
 .mt-ui-list .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
   background: #EBECFB;
 }
+.mt-ui-list .el-tree__drop-indicator {
+  background-color: #4634EE;
+}
 </style>
