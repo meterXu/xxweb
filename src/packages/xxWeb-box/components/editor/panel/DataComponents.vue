@@ -32,13 +32,13 @@
     <div v-show="value.source.type === 3" class="dynamic-data">
       <div v-if='chartType === "media"' class='upload-box'>
         <div class="label">本地</div>
-        <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+        <!-- <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
           :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
           <img v-if="imageUrl" :src="imageUrl" class="avatar">
           <div v-else class="avatar-uploader-icon">
 
           </div>
-        </el-upload>
+        </el-upload> -->
       </div>
       <div v-else>
         <el-form label-position="left" :model="source" size="small">
@@ -308,7 +308,9 @@ export default {
   height: 178px;
   display: block;
 }
-
+.static-data{
+  margin-top: 20px;
+}
 .upload-box {
   margin-top: 20px;
   display: flex;
