@@ -13,30 +13,11 @@
       </el-col>
       <el-col :span='12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice' style="padding-right: 4px">
         <el-input v-model='color' size='mini'></el-input>
-    </el-col>
-    <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend-percent'>
-      <el-input v-model='opacity' size='mini' @input='changeColor'>
-      </el-input>
-    </el-col>
-    <!-- {fItem.hasInput && (
-      <el-col span={10} className='text-col-twice' style="padding-right: 4px">
-        <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-          modelPro.obj[modelPro.key] = $event;
-          autoChange(fItem)
-          }} size="mini"></el-input>
       </el-col>
-      )}
-      {
-      fItem.hasInput && (
-      <el-col span={20} className='text-col-twice'>
-        <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-                        modelPro.obj[modelPro.key] = $event;
-                        autoChange(fItem)
-                        }} size="mini"></el-input>
-                    </el-col>
-                    )
-                    } -->
-
+      <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend-percent'>
+        <el-input v-model='opacity' size='mini' @input='changeColor'>
+        </el-input>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -53,14 +34,13 @@ export default {
     }
   },
   watch: {
-    color: {
-      handler(val) {
-        // console.log(val);
-      }
-    },
     // 解决同类型控件切换，value视图不更新的问题
     'modelPro.obj'(val) {
-      if (val[this.modelPro.key] !== this.color) {
+      let changeColor
+      if (val[this.modelPro.key] && val[this.modelPro.key].length === 9) {
+        changeColor = val[this.modelPro.key].slice(0, -2)
+      }
+      if (changeColor && (changeColor !== this.color)) {
         this.updateColor()
       }
     }
@@ -68,7 +48,7 @@ export default {
   methods: {
     activeChange(val) {
       const color = this.colorToHex(val).slice(0, -2)
-      this.color = color
+      this.color = color.toUpperCase()
       this.changeColor()
     },
     updateColor() {
@@ -82,14 +62,27 @@ export default {
         })
       }
     },
-    changeColor() {
-      const color = this.color + this.to16(this.opacity)
+    changeColor(val) {
+      if (val && val > 100) {
+        this.opacity = 100
+      }
+      let color = this.color + this.to16(this.opacity)
+      if (!this.color) {
+        color = 'transparent'
+      }
       this.$emit('change', color)
     },
     // 十进制转16进制
     to16(val) {
-      if (val && val !== 0) {
-        return Math.round((val / 100 * 255)).toString(16)
+      if (val) {
+        if (val === '0') {
+          return '00'
+        }
+        if (val > 100) {
+          val = 100
+        }
+        const newVal = Math.round((val / 100 * 255)).toString(16)
+        return newVal.length === 1 ? '0' + newVal : newVal
       } else {
         return 'FF'
       }
@@ -99,7 +92,7 @@ export default {
       if (typeof color !== 'string') {
         return null;
       }
-      if (color === 'transparent') {
+      if (color === 'transparent' || color === '') {
         return null
       }
 
@@ -218,9 +211,6 @@ export default {
   },
   mounted() {
     this.updateColor()
-    // this.$nextTick(() => {
-    //   this.changeColor()
-    // })
   }
 }
 </script>

@@ -48,6 +48,8 @@ export default {
         return false
       }
     }
+    // 预配置的颜色不再包含透明度
+    // 用户使用建议选择主色后自行调整
     const predefine = [
       '#ff4500',
       '#ff8c00',
@@ -56,13 +58,8 @@ export default {
       '#00ced1',
       '#1e90ff',
       '#c71585',
-      'rgba(255, 69, 0, 0.68)',
-      'rgb(255, 120, 0)',
-      'hsv(51, 100, 98)',
-      'hsva(120, 40, 94, 0.5)',
-      'hsl(181, 100%, 37%)',
-      'hsla(209, 100%, 56%, 0.73)',
-      '#c7158577'
+      '#adff45',
+      '#ffff78'
     ]
     // 处理绑定 数组值时 监听不到变化 不刷新问题 
     function autoChange(fItem) {
@@ -314,7 +311,7 @@ export default {
         }
         case 'data-components': {
           return (
-            <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"></DataComponents>
+            <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => { modelPro.obj[modelPro.key] = $event }} config={controlledObj} size="mini"></DataComponents>
           )
         }
         case 'img-dialog': {

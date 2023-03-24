@@ -2,8 +2,9 @@
   <div class="data-components">
     <div class="top-radio">
       <el-radio-group v-model="value.source.type" @change='changeSourceType'>
-        <el-radio :label="2">静态数据</el-radio>
-        <el-radio :label="3">动态数据</el-radio>
+        <!-- <el-radio :label="2">静态数据</el-radio>
+        <el-radio :label="3">动态数据</el-radio> -->
+        <el-radio v-for='val in labelOption' :label="val.label" :key='val.label'>{{ val.value }}</el-radio>
       </el-radio-group>
     </div>
     <div v-show="value.source.type === 2" class="static-data">
@@ -11,10 +12,10 @@
         <el-button size="small" @click="handleSheet">配置数据</el-button>
       </div>
       <!-- 静态输入框 -->
-      <div v-else-if="value.type === 'staticInput'" class="spreadsheet">
+      <div v-else-if="value.type === 'staticInput'" class="spreadsheet" style='display: flex;'>
+        <div v-if='value.staticInputLabel' class="label" style='width: 100px'>{{ value.staticInputLabel }}</div>
         <el-input v-model="value.source.json" size="mini" clearable @change="changeData"></el-input>
       </div>
-
       <!-- 静态表单 -->
       <div v-else-if="value.type === 'staticForm'" class="spreadsheet">
         <!-- <el-input v-model="value.source.json" size="mini" clearable @change="changeData"></el-input> -->
@@ -29,35 +30,48 @@
       </div>
     </div>
     <div v-show="value.source.type === 3" class="dynamic-data">
-      <el-form label-position="left" :model="source" size="small">
-        <el-form-item class="none-label">
-          <el-row type="flex" justify="space-between">
-            <el-col :span="12">
-              <el-checkbox v-model="source.autoupdate">自动更新请求</el-checkbox>
-            </el-col>
-            <el-col v-show="source.autoupdate" :span="11" style="display: flex;justify-content: flex-end">
-              <el-input v-model.number="source.autoupdateTime"></el-input>
-              <span style="width: 60px;margin-left: 4px;font-size: 12px">秒/次</span>
-            </el-col>
-          </el-row>
-        </el-form-item>
-        <el-form-item>
-          <span slot="label">数据服务</span>
-          <span style="font-size: 12px;">{{ source.method }}</span>
-        </el-form-item>
-        <el-form-item>
-          <span slot="label">Url</span>
-          <el-input style="width: 70%" v-model="source.url"></el-input>
-        </el-form-item>
-      </el-form>
-      <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-end">
-        <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
+      <div v-if='chartType === "media"' class='upload-box'>
+        <div class="label">本地</div>
+        <!-- <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+          :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar">
+          <div v-else class="avatar-uploader-icon">
+
+          </div>
+        </el-upload> -->
       </div>
-      <div style="background-color: #F5F5F5">
-        <span>服务结果示例</span>
-        <i style="margin-left: 10px" class="el-icon-arrow-up"></i>
+      <div class='dynamic-data-box' v-else>
+        <el-form label-position="left" :model="source" size="small">
+          <el-form-item class="none-label">
+            <el-row type="flex" justify="space-between">
+              <el-col :span="12">
+                <el-checkbox v-model="source.autoupdate">自动更新请求</el-checkbox>
+              </el-col>
+              <el-col v-show="source.autoupdate" :span="11" style="display: flex;justify-content: flex-end">
+                <el-input v-model.number="source.autoupdateTime"></el-input>
+                <span style="width: 60px;margin-left: 4px;font-size: 12px">秒/次</span>
+              </el-col>
+            </el-row>
+          </el-form-item>
+          <el-form-item>
+            <span slot="label">数据服务</span>
+            <span style="font-size: 12px;">{{ source.method }}</span>
+          </el-form-item>
+          <el-form-item>
+            <span slot="label">Url</span>
+            <el-input style="width: 70%" v-model="source.url"></el-input>
+          </el-form-item>
+        </el-form>
+        <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-end">
+          <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
+        </div>
+        <div class="res-box">
+          <div class="res-title">
+            服务结果示例<i style="margin-left: 10px;font-weight: 700;" class="el-icon-arrow-up"></i>
+          </div>
+          <VueJsonPretty :showLine='false' showLineNumber collapsedOnClickBrackets :data="parseStrObj(source.params)" />
+        </div>
       </div>
-      <codemirror ref="cmExpressionsRef" style="width:100%" v-model="source.params" :options="cmOptions"></codemirror>
     </div>
     <tableDialog v-model="dialogVisible" :tableData="tableData" @changeData="changeData"></tableDialog>
   </div>
@@ -65,10 +79,8 @@
 
 <script>
 import { get, set } from 'lodash'
-import { codemirror } from 'vue-codemirror'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/base16-light.css'
-import 'codemirror/mode/javascript/javascript.js'
+import VueJsonPretty from 'vue-json-pretty';
+import 'vue-json-pretty/lib/styles.css';
 import tableDialog from './tableDialog'
 export default {
   name: "DataComponents",
@@ -79,7 +91,7 @@ export default {
   },
   components: {
     tableDialog,
-    codemirror
+    VueJsonPretty
   },
   // 转换json数据，因为动态数据中会存在JSON类型
   // 此时静态数据v-show的表单中，绑定的对象类型会报错
@@ -114,10 +126,51 @@ export default {
       set(val) {
         this.value.source = val
       }
-    }
+    },
+    chartType: {
+      // 多媒体-图片、视频，使用的是不同的label
+      // 通过云管平台的chart 属性匹配
+      get() {
+        const mediaArr = ['img', 'video']
+        if (mediaArr.includes(this.config.config.chart)) {
+          return 'media'
+        }
+        return false
+      }
+    },
+    labelOption: {
+      get() {
+        // 多媒体-图片、视频，使用的是不同的label
+        // 通过云管平台的chart 属性匹配
+        if (this.chartType === 'media') {
+          return [
+            {
+              label: 3,
+              value: '本地'
+            },
+            {
+              label: 2,
+              value: '在线'
+            }
+          ]
+        } else {
+          return [
+            {
+              label: 2,
+              value: '静态数据'
+            },
+            {
+              label: 3,
+              value: '动态数据'
+            }
+          ]
+        }
+      }
+    },
   },
   data() {
     return {
+      imageUrl: '',
       // 配置为静态 input框数据
       staticInput: '',
       dialogVisible: false,
@@ -141,6 +194,33 @@ export default {
     }
   },
   methods: {
+    parseStrObj(val) {
+      let res
+      try {
+        res = eval("(" + val + ")")
+      } catch (error) {
+        // 处理老数据的错误信息
+        val = val.replaceAll('‘', '\'')
+        val = val.replaceAll('’', '\'')
+        res = eval("(" + val + ")")
+      }
+      return res
+    },
+    handleAvatarSuccess(res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw);
+    },
+    beforeAvatarUpload(file) {
+      // const isJPG = file.type === 'image/jpeg';
+      const isLt5M = file.size / 1024 / 1024 < 5;
+
+      // if (!isJPG) {
+      //   this.$message.error('上传头像图片只能是 JPG 格式!');
+      // }
+      if (!isLt5M) {
+        this.$message.error('上传图片大小不能超过 5MB!');
+      }
+      return isLt5M;
+    },
     get,
     changeForm(val, key) {
       set(this.config, key, val)
@@ -189,8 +269,9 @@ export default {
     }
   },
   updated() {
-    if (this.value.source.type == 3) {
-      this.$refs.cmExpressionsRef.refresh()
+    // 特殊的配置类型 不需要刷新code面板
+    if (!this.chartType && this.value.source.type == 3) {
+      // this.$refs.cmExpressionsRef.refresh()
     }
   },
   mounted() {
@@ -203,3 +284,91 @@ export default {
   }
 }
 </script>
+
+<style lang='less'>
+.top-radio {
+  border-bottom: 1px dotted #E9E9EB;
+  padding-bottom: 12px;
+}
+
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 121px;
+  height: 81px;
+  line-height: 81px;
+  text-align: center;
+  background: url('../assets/img/img.png');
+  background-size: 100% 100%;
+}
+
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
+}
+
+.static-data {
+  margin-top: 20px;
+}
+
+.upload-box {
+  margin-top: 20px;
+  display: flex;
+
+  .label {
+    font-size: 14px;
+    width: 50px;
+  }
+}
+
+.dynamic-data-box {
+  margin-top: 20px;
+}
+
+.res-box {
+  margin: 0 -20px;
+
+  .res-title {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    background: #F1F4F8;
+  }
+
+  .vjs-tree {
+    padding-left: 40px !important;
+
+    .vjs-node-index {
+      width: 36px;
+      text-align: end;
+      padding-right: 10px;
+      box-sizing: border-box;
+      background: #F1F4F8;
+    }
+  }
+  .vjs-node-index{
+    user-select: none;
+  }
+}
+
+.el-tab-pane {
+  min-height: 100%;
+
+  .single-con {
+    min-height: 100%;
+  }
+}
+</style>
