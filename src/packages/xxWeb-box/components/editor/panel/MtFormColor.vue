@@ -13,30 +13,11 @@
       </el-col>
       <el-col :span='12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice' style="padding-right: 4px">
         <el-input v-model='color' size='mini'></el-input>
-    </el-col>
-    <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend-percent'>
-      <el-input v-model='opacity' size='mini' @input='changeColor'>
-      </el-input>
-    </el-col>
-    <!-- {fItem.hasInput && (
-      <el-col span={10} className='text-col-twice' style="padding-right: 4px">
-        <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-          modelPro.obj[modelPro.key] = $event;
-          autoChange(fItem)
-          }} size="mini"></el-input>
       </el-col>
-      )}
-      {
-      fItem.hasInput && (
-      <el-col span={20} className='text-col-twice'>
-        <el-input value={modelPro.obj[modelPro.key]} onInput={$event=> {
-                        modelPro.obj[modelPro.key] = $event;
-                        autoChange(fItem)
-                        }} size="mini"></el-input>
-                    </el-col>
-                    )
-                    } -->
-
+      <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend-percent'>
+        <el-input v-model='opacity' size='mini' @input='changeColor'>
+        </el-input>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -68,7 +49,7 @@ export default {
   methods: {
     activeChange(val) {
       const color = this.colorToHex(val).slice(0, -2)
-      this.color = color
+      this.color = color.toUpperCase()
       this.changeColor()
     },
     updateColor() {
@@ -84,7 +65,7 @@ export default {
     },
     changeColor() {
       const color = this.color + this.to16(this.opacity)
-      this.$emit('change', color)
+      this.$emit('change', color.toUpperCase())
     },
     // 十进制转16进制
     to16(val) {
@@ -218,9 +199,6 @@ export default {
   },
   mounted() {
     this.updateColor()
-    // this.$nextTick(() => {
-    //   this.changeColor()
-    // })
   }
 }
 </script>
