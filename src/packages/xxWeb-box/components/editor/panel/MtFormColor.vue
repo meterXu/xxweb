@@ -66,7 +66,10 @@ export default {
       if (val && val > 100) {
         this.opacity = 100
       }
-      const color = this.color + this.to16(this.opacity)
+      let color = this.color + this.to16(this.opacity)
+      if (!this.color) {
+        color = 'transparent'
+      }
       this.$emit('change', color)
     },
     // 十进制转16进制
@@ -89,7 +92,7 @@ export default {
       if (typeof color !== 'string') {
         return null;
       }
-      if (color === 'transparent') {
+      if (color === 'transparent' || color === '') {
         return null
       }
 
