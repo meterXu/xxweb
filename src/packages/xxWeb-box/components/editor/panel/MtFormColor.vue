@@ -34,14 +34,13 @@ export default {
     }
   },
   watch: {
-    color: {
-      handler(val) {
-        // console.log(val);
-      }
-    },
     // 解决同类型控件切换，value视图不更新的问题
     'modelPro.obj'(val) {
-      if (val[this.modelPro.key] !== this.color) {
+      let changeColor
+      if (val[this.modelPro.key] && val[this.modelPro.key].length === 9) {
+        changeColor = val[this.modelPro.key].slice(0, -2)
+      }
+      if (changeColor && (changeColor !== this.color)) {
         this.updateColor()
       }
     }
@@ -63,14 +62,24 @@ export default {
         })
       }
     },
-    changeColor() {
+    changeColor(val) {
+      if (val && val > 100) {
+        this.opacity = 100
+      }
       const color = this.color + this.to16(this.opacity)
-      this.$emit('change', color.toUpperCase())
+      this.$emit('change', color)
     },
     // 十进制转16进制
     to16(val) {
-      if (val && val !== 0) {
-        return Math.round((val / 100 * 255)).toString(16)
+      if (val) {
+        if (val === '0') {
+          return '00'
+        }
+        if (val > 100) {
+          val = 100
+        }
+        const newVal = Math.round((val / 100 * 255)).toString(16)
+        return newVal.length === 1 ? '0' + newVal : newVal
       } else {
         return 'FF'
       }

@@ -59,8 +59,7 @@ export default {
       '#1e90ff',
       '#c71585',
       '#adff45',
-      '#ffff78',
-      '#c71585'
+      '#ffff78'
     ]
     // 处理绑定 数组值时 监听不到变化 不刷新问题 
     function autoChange(fItem) {
