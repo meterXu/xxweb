@@ -40,7 +40,7 @@
           </div>
         </el-upload> -->
       </div>
-      <div v-else>
+      <div class='dynamic-data-box' v-else>
         <el-form label-position="left" :model="source" size="small">
           <el-form-item class="none-label">
             <el-row type="flex" justify="space-between">
@@ -65,11 +65,12 @@
         <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-end">
           <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
         </div>
-        <div style="background-color: #F5F5F5">
-          <span>服务结果示例</span>
-          <i style="margin-left: 10px" class="el-icon-arrow-up"></i>
+        <div class="res-box">
+          <div class="res-title">
+            服务结果示例<i style="margin-left: 10px;font-weight: 700;" class="el-icon-arrow-up"></i>
+          </div>
+          <VueJsonPretty :showLine='false' showLineNumber collapsedOnClickBrackets :data="parseStrObj(source.params)" />
         </div>
-        <codemirror ref="cmExpressionsRef" style="width:100%" v-model="source.params" :options="cmOptions"></codemirror>
       </div>
     </div>
     <tableDialog v-model="dialogVisible" :tableData="tableData" @changeData="changeData"></tableDialog>
@@ -78,10 +79,8 @@
 
 <script>
 import { get, set } from 'lodash'
-import { codemirror } from 'vue-codemirror'
-import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/base16-light.css'
-import 'codemirror/mode/javascript/javascript.js'
+import VueJsonPretty from 'vue-json-pretty';
+import 'vue-json-pretty/lib/styles.css';
 import tableDialog from './tableDialog'
 export default {
   name: "DataComponents",
@@ -92,7 +91,7 @@ export default {
   },
   components: {
     tableDialog,
-    codemirror
+    VueJsonPretty
   },
   // 转换json数据，因为动态数据中会存在JSON类型
   // 此时静态数据v-show的表单中，绑定的对象类型会报错
@@ -195,6 +194,18 @@ export default {
     }
   },
   methods: {
+    parseStrObj(val) {
+      let res
+      try {
+        res = eval("(" + val + ")")
+      } catch (error) {
+        // 处理老数据的错误信息
+        val = val.replaceAll('‘', '\'')
+        val = val.replaceAll('’', '\'')
+        res = eval("(" + val + ")")
+      }
+      return res
+    },
     handleAvatarSuccess(res, file) {
       this.imageUrl = URL.createObjectURL(file.raw);
     },
@@ -260,7 +271,7 @@ export default {
   updated() {
     // 特殊的配置类型 不需要刷新code面板
     if (!this.chartType && this.value.source.type == 3) {
-      this.$refs.cmExpressionsRef.refresh()
+      // this.$refs.cmExpressionsRef.refresh()
     }
   },
   mounted() {
@@ -308,9 +319,11 @@ export default {
   height: 178px;
   display: block;
 }
-.static-data{
+
+.static-data {
   margin-top: 20px;
 }
+
 .upload-box {
   margin-top: 20px;
   display: flex;
@@ -319,4 +332,43 @@ export default {
     font-size: 14px;
     width: 50px;
   }
-}</style>
+}
+
+.dynamic-data-box {
+  margin-top: 20px;
+}
+
+.res-box {
+  margin: 0 -20px;
+
+  .res-title {
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+    background: #F1F4F8;
+  }
+
+  .vjs-tree {
+    padding-left: 40px !important;
+
+    .vjs-node-index {
+      width: 36px;
+      text-align: end;
+      padding-right: 10px;
+      box-sizing: border-box;
+      background: #F1F4F8;
+    }
+  }
+  .vjs-node-index{
+    user-select: none;
+  }
+}
+
+.el-tab-pane {
+  min-height: 100%;
+
+  .single-con {
+    min-height: 100%;
+  }
+}
+</style>
