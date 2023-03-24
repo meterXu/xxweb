@@ -344,7 +344,7 @@ export default {
           )
         }
         default: {
-          return context.scopedSlots.default({dynamicUi:fItem,modelObj:modelPro.obj,modelkey:modelPro.key})
+          return context.scopedSlots.default({dynamicUi:fItem,modelObj:modelPro.obj,modelKey:modelPro.key})
         }
       }
     }
