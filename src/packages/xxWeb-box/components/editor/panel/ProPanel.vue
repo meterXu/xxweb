@@ -20,7 +20,7 @@
         </Form>
       </div>
       <Collapse class="mt-pro-collapse" v-if="tab.con instanceof Array" v-model="activeNames">
-        <CollapseItem v-for="(panel, pi) in tab.con" :title="panel.name" :name="pi" :key="pi">
+        <CollapseItem v-for="(panel, pi) in tab.con" :title="panel.name" :name="pi" :key="pi" :disabled="panel.fold||false">
           <template slot="title">
             <span class="panel-title">
               {{ panel.name }}
