@@ -154,14 +154,14 @@ export default {
         case 'select-input': {
           return (
             <el-select popper-class={fItem.props['class']}
-              filter-method={(e) => { modelPro.obj[modelPro.key] = e || modelPro.obj[modelPro.key]}} 
-              class={fItem.props['class']} 
-              filterable={true} 
-              allow-create={true} 
+              filter-method={(e) => { modelPro.obj[modelPro.key] = e || modelPro.obj[modelPro.key]}}
+              class={fItem.props['class']}
+              filterable={true}
+              allow-create={true}
               onInput={$event => { modelPro.obj[modelPro.key] = $event;}}
               value={modelPro.obj[modelPro.key]} size="mini">
-              {fItem.data.map(item => <el-option key={item+''} label={item+''} value={item}></el-option>)}
-            </el-select>                            
+              {fItem.data.map(item => <el-option key={item+''} label={item+''} value={item+''}></el-option>)}
+            </el-select>
           )
         }
         case 'IconSelect': {
@@ -314,7 +314,7 @@ export default {
         }
         case 'data-components': {
           return (
-            <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} fItem={fItem} config={controlledObj} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"></DataComponents>
+            <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => { modelPro.obj[modelPro.key] = $event }} size="mini"></DataComponents>
           )
         }
         case 'img-dialog': {
@@ -344,9 +344,7 @@ export default {
           )
         }
         default: {
-          return (
-            <Input value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini" />
-          )
+          return context.scopedSlots.default({dynamicUi:fItem,modelObj:modelPro.obj,modelkey:modelPro.key})
         }
       }
     }
