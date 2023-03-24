@@ -48,6 +48,8 @@ export default {
         return false
       }
     }
+    // 预配置的颜色不再包含透明度
+    // 用户使用建议选择主色后自行调整
     const predefine = [
       '#ff4500',
       '#ff8c00',
@@ -56,9 +58,9 @@ export default {
       '#00ced1',
       '#1e90ff',
       '#c71585',
-      '#adff4500',
-      '#ffff7800',
-      '#c7158577'
+      '#adff45',
+      '#ffff78',
+      '#c71585'
     ]
     // 处理绑定 数组值时 监听不到变化 不刷新问题 
     function autoChange(fItem) {
