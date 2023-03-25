@@ -51,7 +51,8 @@ export default {
       deep:true,
       immediate: true,
       handler() {
-        this.dataList = Object.assign([],this.uiList)
+        // 不懂, 会导致tree刷新，所有列表自动展开的bug
+        // this.dataList = Object.assign([],this.uiList)
         this.$nextTick(() => {
           this.$refs['ui-tree'].setCurrentKey(this.activeId)
         })
