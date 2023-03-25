@@ -12,6 +12,7 @@ import MtFormColor from "./MtFormColor.vue"
 import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
 import MtFormTheme from "./MtFormTheme.vue";
 import MtIconRadius from "./MtIconRadius.vue";
+import MtButtonGroup from "./MtButtonGroup.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -20,7 +21,20 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch, MtFormTheme, MtIconRadius },
+  components: {
+    MtIconDrop,
+    MtIconBind,
+    ArrayControl,
+    DataComponents,
+    MtIconSelect,
+    MtIconSwitch,
+    MtFormColor,
+    MtArrangement,
+    MtButtonSwitch,
+    MtFormTheme,
+    MtIconRadius,
+    MtButtonGroup
+  },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -91,6 +105,7 @@ export default {
           ) : ''
           let number =
             (<div class={fItem.props.prepend ? 'prepend' : 'number-box'}>{PrependSlot}<el-input-number class={fItem.props['class']}
+              disabled={fItem.props['disabled']}
               controls-position={fItem.props['controls-position'] || 'right'}
               controls={fItem.props['controls']}
               value={modelPro.obj[modelPro.key]}
@@ -341,6 +356,11 @@ export default {
             <span class="mt-emptySpan">{fItem.value}</span>
           )
         }
+        case 'btn-group':{
+          return (
+              <MtButtonGroup value={modelPro.obj[modelPro.key]} modelPro={modelPro}  onChange={$event => { modelPro.obj[modelPro.key] = $event }} fItem={fItem} />
+          )
+        }
         default: {
           return context.scopedSlots.default({dynamicUi:fItem,modelObj:modelPro.obj,modelKey:modelPro.key})
         }
@@ -349,7 +369,11 @@ export default {
 
     const { fItem, controlledObj } = context.props
     const modelPro = getModelPro(fItem.key, fItem.type, controlledObj)
-    return renderItem(fItem, modelPro)
+    try {
+      return renderItem(fItem, modelPro)
+    } catch (e) {
+      return null;
+    }
   }
 }
 </script>
@@ -363,7 +387,7 @@ export default {
   margin-bottom: 8px;
   line-height: 28px;
   height: 28px;
-  padding-right: 4px;
+  padding-right: 10px;
 
   .text-col-twice {
     padding-right: 0;
@@ -378,7 +402,7 @@ export default {
   line-height: 28px;
   height: 28px;
   height: 28px;
-  padding-right: 4px;
+  padding-right: 10px;
 }
 
 .el-row {
@@ -412,9 +436,9 @@ export default {
     position: absolute;
     top: 50%;
     z-index: 999;
-    left: 2px;
+    left: 4px;
     transform: translate(0, -50%);
-    color: #999;
+    color: #333;
   }
 
   .el-input {
@@ -447,6 +471,6 @@ export default {
 }
 .el-form-item__content > .el-input,
 .el-form-item__content > .el-select{
-  padding-right: 4px;
+  padding-right: 10px;
 }
 </style>

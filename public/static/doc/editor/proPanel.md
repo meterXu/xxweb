@@ -30,7 +30,7 @@ export default {
                     "theme": "dark",
                     "options": {
                         "text": {
-                            "fontFamily": "微软雅黑",
+                            "fontFamily": "思源黑体",
                             "content": "智慧城市",
                             "fontSize": 30,
                             "color": null,

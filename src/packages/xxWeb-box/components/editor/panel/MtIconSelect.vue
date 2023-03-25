@@ -30,7 +30,7 @@ export default {
   display: flex;
 
   .icon-drop {
-    margin-right: 4px;
+    margin-right: 6px;
     height: 28px;
     cursor: pointer;
   }
