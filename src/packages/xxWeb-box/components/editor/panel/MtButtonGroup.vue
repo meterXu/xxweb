@@ -1,6 +1,6 @@
 <template>
   <div class="mt-btn-group">
-    <el-button v-for="item in  buttons" :keys="item.value" size="mini" @click="changeSelect(item)" :class="{active:item.value === selectedValue}">{{item.text}}</el-button>
+    <el-button v-for="item in  buttons" :key="item.value" size="mini" @click="changeSelect(item)" :class="{active:item.value === selectedValue}">{{item.text}}</el-button>
   </div>
 </template>
 
