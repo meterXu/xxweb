@@ -358,6 +358,7 @@ export default {
       }else{
         return null
       }
+      delete window._controlledObj
     }else{
       return renderItem(fItem, modelPro)
     }
