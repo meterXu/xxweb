@@ -38,7 +38,7 @@ export default {
   .icon-list {
     padding: 4px 6px;
     display: flex;
-    width: 50%;
+    width: 91px;
     border-radius: 4px;
     cursor: pointer;
 
