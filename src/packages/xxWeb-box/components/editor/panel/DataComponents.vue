@@ -290,34 +290,35 @@ export default {
   border-bottom: 1px dotted #E9E9EB;
   padding-bottom: 12px;
 }
-
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.avatar-uploader .el-upload:hover {
-  border-color: #409EFF;
-}
-
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 121px;
-  height: 81px;
-  line-height: 81px;
-  text-align: center;
-  background: url('../assets/img/img.png');
-  background-size: 100% 100%;
-}
-
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
+.upload-box{
+  .avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .avatar-uploader .el-upload:hover {
+    border-color: #409EFF;
+  }
+  
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 121px;
+    height: 81px;
+    line-height: 81px;
+    text-align: center;
+    background: url('../assets/img/img.png');
+    background-size: 100% 100%;
+  }
+  
+  .avatar {
+    width: 178px;
+    height: 178px;
+    display: block;
+  }
 }
 
 .static-data {
