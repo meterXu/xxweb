@@ -197,6 +197,7 @@ export default {
               range={fItem.props['range']}
               marks={fItem.props['marks']}
               show-input={fItem.props['show-input']}
+              show-input-controls={fItem.props['show-input-controls']}
             ></el-slider>
           )
         }
