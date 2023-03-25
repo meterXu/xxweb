@@ -342,6 +342,9 @@ export default {
     document.addEventListener('keyup', ()=>{
       this.shiftKey = false
     })
+    this.$nextTick(()=>{
+      this.$emit("loadSuccess")
+    })
   }
 }
 </script>
