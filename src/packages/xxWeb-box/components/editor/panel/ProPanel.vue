@@ -14,7 +14,7 @@
       </span>
       <div v-for="(panel, pi) in tab.head" :key="pi" class="mt-pro-div">
         <Form>
-          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" :label="fItem.name">
+          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" :label="fItem.name" v-show="colFormItemShow(fItem)">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
               <template v-slot="{dynamicUi,modelObj,modelkey}">
                 <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelkey="modelkey"></slot>
@@ -40,7 +40,7 @@
           <Form>
             <div :class='fItem.name ? "label-min" : ""' v-for="(fItem, fi) in panel.sub" :key="fi">
               <!-- 存在下拉选项依赖关系的表单逻辑 -->
-              <FormItem v-if='!fItem.dependKey || fItem.dependValues.includes(get(controlledObj, fItem.dependKey))'>
+              <FormItem v-if='!fItem.dependKey || fItem.dependValues.includes(get(controlledObj, fItem.dependKey))' v-show="colFormItemShow(fItem)">
                 <!-- label可能是文本也可能是个icon -->
                 <span slot='label'>
                   <span v-if='fItem.nameType === "icon"'>
@@ -63,7 +63,7 @@
       <template v-else>
         <Form class="single-con">
           <FormItem v-for="(fItem, fi) in tab.con.sub" :key="fi" :label="fItem.name"
-            :class="fItem.name ? '' : 'none-label'">
+            :class="fItem.name ? '' : 'none-label'" v-show="colFormItemShow(fItem)">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
           </FormItem>
         </Form>
@@ -123,6 +123,17 @@ export default {
     get,
     handleTabClick(tab, event) {
       // this.$refs.dataComponents.$refs.cmExpressionsRef.refresh()
+    },
+    colFormItemShow(fItem){
+      window._controlledObj = this.controlledObj
+      if(fItem.show){
+        const exp = fItem.show.replace("$",'return window._controlledObj.')
+        const fun = new Function(exp)
+        const res = fun()
+        delete window._controlledObj
+        return res
+      }
+      return true
     }
   }
 }
