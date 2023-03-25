@@ -61,7 +61,7 @@ export default {
                         name: '选项',
                         sub: [
                             {key: 'config.box.show', name: '显示', type: 'boolean'},
-                            {key: 'config.box.name', name: '名称', type: 'text'},
+                            {key: 'config.box.name', name: '名称', type: 'text',show:'$config.options.text.fontSize===30'},
                             {key: 'config.options.text.content', name: '内容', type: 'text'},
                             {key: 'config.options.text.fontSize', name: '大小', type: 'number'},
                             {key: 'config.options.text.fontSize', name: '大小', type: 'slider'},

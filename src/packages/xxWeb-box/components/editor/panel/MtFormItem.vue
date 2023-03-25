@@ -368,19 +368,7 @@ export default {
 
     const { fItem, controlledObj } = context.props
     const modelPro = getModelPro(fItem.key, fItem.type, controlledObj)
-    window._controlledObj = controlledObj
-    if(fItem.show){
-      const fun = new Function(fItem.show.replace("$",'return window._controlledObj.'))
-      const res = fun()
-      if(res){
-        return renderItem(fItem, modelPro)
-      }else{
-        return null
-      }
-      delete window._controlledObj
-    }else{
-      return renderItem(fItem, modelPro)
-    }
+    return renderItem(fItem, modelPro)
   }
 }
 </script>
