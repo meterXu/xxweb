@@ -129,7 +129,7 @@
     margin-bottom: 8px;
   }
   .el-tabs__content {
-    height: 90%;
+    height: calc(100% - 40px);
     overflow: hidden;
     overflow-y: auto;
     scrollbar-width: none;
@@ -140,6 +140,8 @@
   }
   .el-collapse-item__wrap {
     overflow-x: auto;
+    border-width: 280px;
+    border-bottom: 1px dotted #E9E9EB;;
   }
   .none-label .el-form-item__content {
     margin-left: 0;
@@ -167,7 +169,6 @@
     }
     .el-input-number {
       position: relative;
-      top: -1px;
     }
     .unit-px:after {
       position: absolute;
@@ -224,16 +225,20 @@
   }
   .icon-drop {
     line-height: 22px;
-    padding: 2px;
+    // padding: 2px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 28px;
     text-align: center;
     box-sizing: border-box;
-    border: 1px solid #e6e6e6;
+    // border: 1px solid #e6e6e6;
     border-radius: 4px;
   }
   .mt-pro-div {
     margin-top: 10px;
-    padding: 0px 10px;
+    padding: 0px 20px;
   }
 
   .mt-pro-collapse {
@@ -247,7 +252,7 @@
       right: 30px;
     }
     .el-collapse-item__content {
-      padding: 0px 26px 0 20px;
+      padding: 0 20px 0 20px;
     }
   }
   .data-components {

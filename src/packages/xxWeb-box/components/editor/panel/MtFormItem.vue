@@ -105,6 +105,7 @@ export default {
           ) : ''
           let number =
             (<div class={fItem.props.prepend ? 'prepend' : 'number-box'}>{PrependSlot}<el-input-number class={fItem.props['class']}
+              disabled={fItem.props['disabled']}
               controls-position={fItem.props['controls-position'] || 'right'}
               controls={fItem.props['controls']}
               value={modelPro.obj[modelPro.key]}
@@ -386,7 +387,7 @@ export default {
   margin-bottom: 8px;
   line-height: 28px;
   height: 28px;
-  padding-right: 4px;
+  padding-right: 10px;
 
   .text-col-twice {
     padding-right: 0;
@@ -401,7 +402,7 @@ export default {
   line-height: 28px;
   height: 28px;
   height: 28px;
-  padding-right: 4px;
+  padding-right: 10px;
 }
 
 .el-row {
@@ -435,9 +436,9 @@ export default {
     position: absolute;
     top: 50%;
     z-index: 999;
-    left: 2px;
+    left: 4px;
     transform: translate(0, -50%);
-    color: #999;
+    color: #333;
   }
 
   .el-input {
@@ -470,6 +471,6 @@ export default {
 }
 .el-form-item__content > .el-input,
 .el-form-item__content > .el-select{
-  padding-right: 4px;
+  padding-right: 10px;
 }
 </style>

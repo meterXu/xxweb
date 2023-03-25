@@ -80,7 +80,8 @@ const TextItalic = {
     const { size } = context.props;
     return (
       // <svg width={size} height={size} viewBox="0 0 48 48" fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ><path d="M20 6H36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 42H28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M29 5.95239L19 42" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-      <svg style="transform: rotate(8deg)" t="1679301195805" width={size} height={size} class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9309" ><path d="M896 179.2V358.4h-51.2V230.4h-665.6V358.4h-51.2V179.2z" fill="currentColor" p-id="9310"></path><path d="M537.6 204.8v665.6h-51.2V204.8z" fill="currentColor" p-id="9311"></path><path d="M614.4 844.8v51.2H409.6v-51.2z" fill="currentColor" p-id="9312"></path></svg>
+      // <svg style="transform: rotate(8deg)" t="1679301195805" width={size} height={size} class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9309" ><path d="M896 179.2V358.4h-51.2V230.4h-665.6V358.4h-51.2V179.2z" fill="currentColor" p-id="9310"></path><path d="M537.6 204.8v665.6h-51.2V204.8z" fill="currentColor" p-id="9311"></path><path d="M614.4 844.8v51.2H409.6v-51.2z" fill="currentColor" p-id="9312"></path></svg>
+      <svg style="transform: rotate(6deg)" t="1679727539245" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2803" width={size} height={size}><path d="M599.552 842.093714H768V1024h-512v-181.906286h168.228571V181.979429H146.285714v86.162285H0V0h1024v268.141714h-146.285714V181.979429H599.552v660.114285z" fill="currentColor" p-id="2804"></path></svg>
     )
   }
 }
