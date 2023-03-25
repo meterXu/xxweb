@@ -12,6 +12,7 @@ import MtFormColor from "./MtFormColor.vue"
 import MtButtonSwitch from "../panel/MtButtonSwitch.vue";
 import MtFormTheme from "./MtFormTheme.vue";
 import MtIconRadius from "./MtIconRadius.vue";
+import MtButtonGroup from "./MtButtonGroup.vue";
 export default {
   name: 'mtFormItem',
   functional: true,
@@ -20,7 +21,20 @@ export default {
     panel: Object,
     controlledObj: Object
   },
-  components: { MtIconDrop, MtIconBind, ArrayControl, DataComponents, MtIconSelect, MtIconSwitch, MtFormColor, MtArrangement, MtButtonSwitch, MtFormTheme, MtIconRadius },
+  components: {
+    MtIconDrop,
+    MtIconBind,
+    ArrayControl,
+    DataComponents,
+    MtIconSelect,
+    MtIconSwitch,
+    MtFormColor,
+    MtArrangement,
+    MtButtonSwitch,
+    MtFormTheme,
+    MtIconRadius,
+    MtButtonGroup
+  },
   render(createElement, context) {
     const { Input, InputNumber, Select, Switch, Option, Radio, RadioGroup, ColorPicker, Tooltip } = require('element-ui')
 
@@ -339,6 +353,11 @@ export default {
         case 'span': {
           return (
             <span class="mt-emptySpan">{fItem.value}</span>
+          )
+        }
+        case 'btn-group':{
+          return (
+              <MtButtonGroup value={modelPro.obj[modelPro.key]} modelPro={modelPro}  onChange={$event => { modelPro.obj[modelPro.key] = $event }} fItem={fItem} />
           )
         }
         default: {
