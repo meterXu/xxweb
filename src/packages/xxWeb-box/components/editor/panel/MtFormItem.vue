@@ -368,7 +368,11 @@ export default {
 
     const { fItem, controlledObj } = context.props
     const modelPro = getModelPro(fItem.key, fItem.type, controlledObj)
-    return renderItem(fItem, modelPro)
+    try {
+      return renderItem(fItem, modelPro)
+    } catch (e) {
+      return null;
+    }
   }
 }
 </script>
