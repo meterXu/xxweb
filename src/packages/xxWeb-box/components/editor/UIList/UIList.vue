@@ -6,7 +6,6 @@
         :props="defaultProps"
         node-key="id"
         :indent="0"
-        default-expand-all
         :highlight-current="true"
         :draggable="draggable"
         :current-node-key="activeId"
@@ -52,7 +51,7 @@ export default {
       immediate: true,
       handler() {
         // 不懂, 会导致tree刷新，所有列表自动展开的bug
-        // this.dataList = Object.assign([],this.uiList)
+        this.dataList = Object.assign([],this.uiList)
         this.$nextTick(() => {
           this.$refs['ui-tree'].setCurrentKey(this.activeId)
         })
@@ -79,7 +78,7 @@ export default {
     };
   },
   mounted() {
-    this.dataList = Object.assign([],this.uiList)
+    this.dataList = Object.assign(this.uiList)
   },
   methods: {
     handleDrop(draggingNode, dropNode) {
