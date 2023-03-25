@@ -368,7 +368,19 @@ export default {
 
     const { fItem, controlledObj } = context.props
     const modelPro = getModelPro(fItem.key, fItem.type, controlledObj)
-    return renderItem(fItem, modelPro)
+    window._controlledObj = controlledObj
+    if(fItem.show){
+      const fun = new Function(fItem.show.replace("$",'return window._controlledObj.'))
+      const res = fun()
+      if(res){
+        return renderItem(fItem, modelPro)
+      }else{
+        return null
+      }
+      delete window._controlledObj
+    }else{
+      return renderItem(fItem, modelPro)
+    }
   }
 }
 </script>
@@ -463,5 +475,9 @@ export default {
   border-radius: 0 4px 4px 0;
   background: #F1F4F8;
   color: #666666;
+}
+.el-form-item__content > .el-input,
+.el-form-item__content > .el-select{
+  padding-right: 4px;
 }
 </style>
