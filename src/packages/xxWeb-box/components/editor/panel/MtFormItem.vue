@@ -197,6 +197,7 @@ export default {
               range={fItem.props['range']}
               marks={fItem.props['marks']}
               show-input={fItem.props['show-input']}
+              show-input-controls={fItem.props['show-input-controls']}
             ></el-slider>
           )
         }
@@ -454,5 +455,9 @@ export default {
   border-radius: 0 4px 4px 0;
   background: #F1F4F8;
   color: #666666;
+}
+.el-form-item__content > .el-input,
+.el-form-item__content > .el-select{
+  padding-right: 4px;
 }
 </style>

@@ -13,14 +13,14 @@
     }
     .el-input::after {
       position: absolute;
-      right: 27px;
+      right: 30px;
       top: 0;
       content: 'px';
       color: #666666;
       opacity: 0.5;
     }
     .el-select-dropdown__item::after {
-      content: "px";
+      content: 'px';
     }
   }
   .number-box {
@@ -58,6 +58,7 @@
     .el-switch__core::after {
       background: #4634ee;
       border: 1px solid #ffffff;
+      box-shadow: #00000075 0 0 6px;
     }
   }
   .el-switch {
@@ -83,7 +84,7 @@
   .panel-title {
     width: 70px;
     margin-right: 10px;
-    margin-left: 10px;
+    margin-left: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -109,7 +110,7 @@
 
   .el-tabs__header {
     border-bottom: none !important;
-    padding: 0 10px;
+    padding: 0 30px 0 20px;
     margin: 0;
     // height: 80px;
   }
@@ -143,6 +144,13 @@
   .none-label .el-form-item__content {
     margin-left: 0;
   }
+  .horizontal-control{
+    .text-style-col:nth-child(1){
+      .empty_number{
+        margin-right: 37px;
+      }
+    }
+  }
   .horizontal-control {
     display: flex;
     align-items: center;
@@ -169,9 +177,9 @@
       color: #666666;
       opacity: 0.5;
     }
-    .center{
-      input{
-        text-align: center!important;
+    .center {
+      input {
+        text-align: center !important;
       }
     }
     .unit-percent:after {
@@ -217,7 +225,7 @@
   .icon-drop {
     line-height: 22px;
     padding: 2px;
-    min-width: 28px;
+    width: 28px;
     text-align: center;
     box-sizing: border-box;
     border: 1px solid #e6e6e6;
@@ -236,10 +244,10 @@
     .mt-pro-collapse-tools {
       position: absolute;
       top: 0px;
-      right: 10px;
+      right: 30px;
     }
     .el-collapse-item__content {
-      padding: 0px 5px 0 10px;
+      padding: 0px 26px 0 20px;
     }
   }
   .data-components {
@@ -258,20 +266,20 @@
     .el-form-item__label {
       min-width: 50px;
     }
-  
+
     .el-select {
       width: 100%;
     }
   }
-  .single-con{
+  .single-con {
     padding: 0 10px;
     margin-top: 10px;
   }
-  .el-collapse-item.is-disabled{
-    .el-collapse-item__header{
+  .el-collapse-item.is-disabled {
+    .el-collapse-item__header {
       cursor: default;
     }
-    .el-collapse-item__arrow{
+    .el-collapse-item__arrow {
       visibility: hidden;
     }
   }
