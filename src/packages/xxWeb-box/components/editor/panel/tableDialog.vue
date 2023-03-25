@@ -1,8 +1,16 @@
+<!--
+ * @Author: zhangyuc
+ * @Date: 2023-03-25 10:40:45
+ * @LastEditors: zhangyuc
+ * @LastEditTime: 2023-03-25 15:52:14
+ * @Description: 
+-->
 <template>
   <el-dialog
       title="静态数据"
       :visible="visible"
       width="60%"
+      append-to-body
       @close="onCancel">
     <div class="hot--box">
       <hot-table ref="staticTable" :data="tableData" :settings="hotSettings"></hot-table>
