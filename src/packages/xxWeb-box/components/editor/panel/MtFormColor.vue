@@ -35,14 +35,18 @@ export default {
   },
   watch: {
     // 解决同类型控件切换，value视图不更新的问题
-    'modelPro.obj'(val) {
-      let changeColor
-      if (val[this.modelPro.key] && val[this.modelPro.key].length === 9) {
-        changeColor = val[this.modelPro.key].slice(0, -2)
-      }
-      if (changeColor && (changeColor !== this.color)) {
-        this.updateColor()
-      }
+    'modelPro.obj': {
+      handler(val) {
+        let changeColor = 'transparent';
+        if (val[this.modelPro.key] && val[this.modelPro.key].length === 9) {
+          changeColor = val[this.modelPro.key].slice(0, -2)
+        }
+        if (changeColor && (changeColor !== this.color)) {
+          this.updateColor()
+        }
+      },
+      immediate: true,
+      deep:true
     }
   },
   methods: {
