@@ -49,12 +49,13 @@ export default {
     uiList:{
       deep:true,
       immediate: true,
-      handler() {
+      handler(nv) {
         // 不懂, 会导致tree刷新，所有列表自动展开的bug
         this.dataList = Object.assign([],this.uiList)
         this.$nextTick(() => {
           this.$refs['ui-tree'].setCurrentKey(this.activeId)
         })
+        this.expandedKeys = nv&&nv.length>0?[nv[0].id]:[]
       }
     },
     activeId:{
