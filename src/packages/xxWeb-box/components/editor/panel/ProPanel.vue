@@ -16,8 +16,8 @@
         <Form>
           <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" :label="fItem.name" v-show="colFormItemShow(fItem)">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
-              <template v-slot="{dynamicUi,modelObj,modelkey}">
-                <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelkey="modelkey"></slot>
+              <template v-slot="{dynamicUi,modelObj,modelKey}">
+                <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelKey="modelKey"></slot>
               </template>
             </MtFormItem>
           </FormItem>

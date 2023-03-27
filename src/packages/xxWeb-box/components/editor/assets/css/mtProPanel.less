@@ -1,12 +1,6 @@
 .mt-pro-panel {
   width: 100%;
   height: 100%;
-  // 实现虚线下拉框样式
-  .lineSelect {
-    text-overflow: clip !important;
-    width: 70px;
-    padding: 0 5px;
-  }
   .select-input-option {
     .el-input__inner {
       padding-right: 41px;
@@ -141,14 +135,14 @@
   .el-collapse-item__wrap {
     overflow-x: auto;
     border-width: 280px;
-    border-bottom: 1px dotted #E9E9EB;;
+    border-bottom: 1px dotted #e9e9eb;
   }
   .none-label .el-form-item__content {
     margin-left: 0;
   }
-  .horizontal-control{
-    .text-style-col:nth-child(1){
-      .empty_number{
+  .horizontal-control {
+    .text-style-col:nth-child(1) {
+      .empty_number {
         margin-right: 37px;
       }
     }
@@ -288,4 +282,10 @@
       visibility: hidden;
     }
   }
+}
+// 实现虚线下拉框样式
+.lineSelect {
+  text-overflow: clip !important;
+  width: 100px;
+  padding: 0 5px;
 }
