@@ -2,13 +2,13 @@
   <div class="mt-ui-list">
     <Tree
         ref="ui-tree"
-        :data="dataList"
+        :data="uiList"
         :props="defaultProps"
         node-key="id"
         :indent="0"
         :highlight-current="true"
         :draggable="draggable"
-        default-expand-all
+        :default-expand-all="true"
         :current-node-key="activeId"
         :expand-on-click-node="false"
         :allow-drop="allowDrop"
@@ -47,15 +47,6 @@ export default {
     Tree
   },
   watch:{
-    uiList:{
-      immediate: true,
-      handler(nv) {
-        this.dataList = Object.assign([],this.uiList)
-        this.$nextTick(() => {
-          this.$refs['ui-tree'].setCurrentKey(this.activeId)
-        })
-      }
-    },
     activeId:{
       immediate: true,
       handler(nv) {
@@ -69,24 +60,17 @@ export default {
     return {
       enabled: true,
       dragging: false,
-      expandedKeys:null,
       defaultProps: {
         children: 'children',
         label: 'name'
       },
-      dataList:[]
     };
   },
   mounted() {
-    this.dataList = Object.assign(this.uiList)
-    this.$nextTick(()=>{
-      const treeItems = this.$refs["ui-tree"].$el.childNodes
-      treeItems[0].childNodes[0].childNodes[0].click()
-    })
   },
   methods: {
     handleDrop(draggingNode, dropNode) {
-      this.$emit('nodeChange',this.dataList,'drag',dropNode.parent.data.id)
+      this.$emit('nodeChange',this.uiList,'drag',dropNode.parent.data.id)
     },
     allowDrop(draggingNode, dropNode, type) {
       if (draggingNode.data.id !== dropNode.data.id) {
@@ -104,9 +88,9 @@ export default {
     contextmenu(data) {
       event.preventDefault()
       this.$emit('contextmenu',{
-          id:data.id,
-          x:event.clientX,
-          y:event.clientY
+        id:data.id,
+        x:event.clientX,
+        y:event.clientY
       })
     }
   }
