@@ -52,6 +52,8 @@ export default {
         this.dataList = Object.assign([],this.uiList)
         this.$nextTick(() => {
           this.$refs['ui-tree'].setCurrentKey(this.activeId)
+          const treeItems = this.$refs["ui-tree"].$el.childNodes
+          treeItems[0].childNodes[0].childNodes[0].click()
         })
       }
     },
