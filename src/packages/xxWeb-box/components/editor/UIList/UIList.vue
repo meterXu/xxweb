@@ -8,6 +8,7 @@
         :indent="0"
         :highlight-current="true"
         :draggable="draggable"
+        :default-expanded-keys="expandedKeys"
         :current-node-key="activeId"
         :expand-on-click-node="false"
         :allow-drop="allowDrop"
@@ -71,6 +72,7 @@ export default {
     return {
       enabled: true,
       dragging: false,
+      expandedKeys:null,
       defaultProps: {
         children: 'children',
         label: 'name'
