@@ -7,8 +7,10 @@
         node-key="id"
         :indent="0"
         :highlight-current="true"
+        :default-expanded-keys="expandedKeys"
+        @node-expand="nodeExpandHandle"
+        @node-collapse="nodeCollapseHandle"
         :draggable="draggable"
-        :default-expand-all="true"
         :current-node-key="activeId"
         :expand-on-click-node="false"
         :allow-drop="allowDrop"
@@ -47,17 +49,29 @@ export default {
     Tree
   },
   watch:{
+    uiList:{
+      immediate: true,
+      handler(nv){
+        if(nv&&nv.length>0&&!this.expandedKeys){
+          this.pushExpandedKeys(nv[0].id)
+        }
+      }
+    },
     activeId:{
       immediate: true,
       handler(nv) {
-        this.$nextTick(() => {
-          this.$refs['ui-tree'].setCurrentKey(nv);
-        })
+        if(nv){
+          this.$nextTick(() => {
+            this.$refs['ui-tree'].setCurrentKey(nv);
+            this.pushExpandedKeys(nv.id)
+          })
+        }
       }
     },
   },
   data() {
     return {
+      expandedKeys:null,
       enabled: true,
       dragging: false,
       defaultProps: {
@@ -67,6 +81,7 @@ export default {
     };
   },
   mounted() {
+
   },
   methods: {
     handleDrop(draggingNode, dropNode) {
@@ -92,6 +107,29 @@ export default {
         x:event.clientX,
         y:event.clientY
       })
+    },
+    pushExpandedKeys(id){
+      if(this.expandedKeys){
+        if(this.expandedKeys.indexOf(id)===-1){
+          this.expandedKeys.push(id)
+        }
+      }else{
+        this.expandedKeys = [id]
+      }
+    },
+    removeExpandedKeys(id){
+      if(this.expandedKeys){
+        const index =this.expandedKeys.indexOf(id)
+        if(index!=-1){
+          this.expandedKeys.splice(index,1)
+        }
+      }
+    },
+    nodeExpandHandle(data){
+      this.pushExpandedKeys(data.id)
+    },
+    nodeCollapseHandle(data){
+      this.removeExpandedKeys(data.id)
     }
   }
 }
