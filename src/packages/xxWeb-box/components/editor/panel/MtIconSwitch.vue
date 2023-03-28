@@ -2,12 +2,14 @@
  * @Author: zhangyuc
  * @Date: 2023-03-16 16:22:23
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-17 09:53:39
+ * @LastEditTime: 2023-03-28 15:38:39
  * @Description: 图表开关
 -->
 <template>
-  <div class="switch-icon" :style="value?'color: #4634EE;':''" @click="changeStatus">
-    <i class="el-icon-view" ></i>
+  <div class="switch-icon" @click="changeStatus">
+    <DoIcon
+      :icon="value ? 'DoShow' : 'DoHide'"
+      :size='14' />
   </div>
 </template>
 <script>
@@ -31,6 +33,7 @@ export default {
   width: 40px;
   height: 28px;
   display: flex;
+  color: #666;
   justify-content: center;
   align-items: center;
   cursor:pointer;
