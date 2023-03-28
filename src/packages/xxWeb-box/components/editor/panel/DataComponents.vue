@@ -8,7 +8,7 @@
       </el-radio-group>
     </div>
     <div v-show="value.source.type === 2" class="static-data">
-      <div v-if="['echarts', 'staticList'].includes(value.type)" class="spreadsheet">
+      <div v-if="['echarts', 'staticList','scrollList'].includes(value.type)" class="spreadsheet">
         <el-button size="small" @click="handleSheet">配置数据</el-button>
       </div>
       <!-- 静态输入框 -->
@@ -110,7 +110,7 @@ export default {
       handler(nv) {
         // 不懂
         // this.source = Object.assign({}, nv)
-        if (['echarts', 'staticList'].includes(this.value.type)) {
+        if (['echarts', 'staticList','scrollList'].includes(this.value.type)) {
           this.tableData = JSON.parse(this.value.source.json)
         } else {
           this.tableData = this.value.source.json
@@ -240,7 +240,7 @@ export default {
         // echarts staticForm 给到的默认值为{}
         // staticList 给到的默认值为 []
         // 避免表单对象undefined报错
-        if (['echarts', 'staticList', 'staticForm'].includes(this.value.type)) {
+        if (['echarts', 'staticList', 'staticForm','scrollList'].includes(this.value.type)) {
           this.value.source.dynamicJson = typeof (this.value.source.dynamicJson) === 'string' ? {} : (['echarts', 'staticForm'].includes(this.value.type) ? JSON.stringify({}) : JSON.stringify([]))
         }
         // 其他类型默认值为 ''
@@ -252,7 +252,7 @@ export default {
       this.dialogVisible = true
     },
     changeData(data) {
-      if (['echarts', 'staticList'].includes(this.value.type)) {
+      if (['echarts', 'staticList','scrollList'].includes(this.value.type)) {
         this.value.source.json = JSON.stringify(data)
       } else {
         this.value.source.json = data
@@ -276,7 +276,7 @@ export default {
   },
   mounted() {
     this.source = Object.assign({}, this.value.source)
-    if (['echarts', 'staticList'].includes(this.value.type)) {
+    if (['echarts', 'staticList','scrollList'].includes(this.value.type)) {
       this.tableData = JSON.parse(this.value.source.json)
     } else {
       this.tableData = this.value.source.json
