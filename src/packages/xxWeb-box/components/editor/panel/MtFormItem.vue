@@ -172,7 +172,7 @@ export default {
               allow-create={true}
               onInput={$event => { modelPro.obj[modelPro.key] = $event;}}
               value={modelPro.obj[modelPro.key]} size="mini">
-              {fItem.data.map(item => <el-option key={item+''} label={item+''} value={item+''}></el-option>)}
+              {fItem.data.map(item => <el-option key={item+''} label={item+''} value={item}></el-option>)}
             </el-select>
           )
         }
