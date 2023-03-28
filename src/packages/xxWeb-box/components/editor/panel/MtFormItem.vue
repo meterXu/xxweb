@@ -369,7 +369,7 @@ export default {
           )
         }
         default: {
-          return context.scopedSlots.default({dynamicUi:fItem,modelObj:modelPro.obj,modelKey:modelPro.key})
+          return context.scopedSlots.default({dynamicUi:fItem,modelObj:modelPro.obj,modelKey:modelPro.key,controlledObj:controlledObj})
         }
       }
     }
