@@ -120,7 +120,7 @@ export default {
     removeExpandedKeys(id){
       if(this.expandedKeys){
         const index =this.expandedKeys.indexOf(id)
-        if(index!=-1){
+        if(index!==-1){
           this.expandedKeys.splice(index,1)
         }
       }
