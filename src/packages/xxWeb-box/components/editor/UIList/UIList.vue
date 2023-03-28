@@ -2,11 +2,14 @@
   <div class="mt-ui-list">
     <Tree
         ref="ui-tree"
-        :data="dataList"
+        :data="uiList"
         :props="defaultProps"
         node-key="id"
         :indent="0"
         :highlight-current="true"
+        :default-expanded-keys="expandedKeys"
+        @node-expand="nodeExpandHandle"
+        @node-collapse="nodeCollapseHandle"
         :draggable="draggable"
         :current-node-key="activeId"
         :expand-on-click-node="false"
@@ -47,42 +50,42 @@ export default {
   },
   watch:{
     uiList:{
-      deep:true,
       immediate: true,
-      handler() {
-        // 不懂, 会导致tree刷新，所有列表自动展开的bug
-        this.dataList = Object.assign([],this.uiList)
-        this.$nextTick(() => {
-          this.$refs['ui-tree'].setCurrentKey(this.activeId)
-        })
+      handler(nv){
+        if(nv&&nv.length>0&&!this.expandedKeys){
+          this.pushExpandedKeys(nv[0].id)
+        }
       }
     },
     activeId:{
       immediate: true,
       handler(nv) {
-        this.$nextTick(() => {
-          this.$refs['ui-tree'].setCurrentKey(nv);
-        })
+        if(nv){
+          this.$nextTick(() => {
+            this.$refs['ui-tree'].setCurrentKey(nv);
+            this.pushExpandedKeys(nv.id)
+          })
+        }
       }
     },
   },
   data() {
     return {
+      expandedKeys:null,
       enabled: true,
       dragging: false,
       defaultProps: {
         children: 'children',
         label: 'name'
       },
-      dataList:[]
     };
   },
   mounted() {
-    this.dataList = Object.assign(this.uiList)
+
   },
   methods: {
     handleDrop(draggingNode, dropNode) {
-      this.$emit('nodeChange',this.dataList,'drag',dropNode.parent.data.id)
+      this.$emit('nodeChange',this.uiList,'drag',dropNode.parent.data.id)
     },
     allowDrop(draggingNode, dropNode, type) {
       if (draggingNode.data.id !== dropNode.data.id) {
@@ -100,10 +103,33 @@ export default {
     contextmenu(data) {
       event.preventDefault()
       this.$emit('contextmenu',{
-          id:data.id,
-          x:event.clientX,
-          y:event.clientY
+        id:data.id,
+        x:event.clientX,
+        y:event.clientY
       })
+    },
+    pushExpandedKeys(id){
+      if(this.expandedKeys){
+        if(this.expandedKeys.indexOf(id)===-1){
+          this.expandedKeys.push(id)
+        }
+      }else{
+        this.expandedKeys = [id]
+      }
+    },
+    removeExpandedKeys(id){
+      if(this.expandedKeys){
+        const index =this.expandedKeys.indexOf(id)
+        if(index!=-1){
+          this.expandedKeys.splice(index,1)
+        }
+      }
+    },
+    nodeExpandHandle(data){
+      this.pushExpandedKeys(data.id)
+    },
+    nodeCollapseHandle(data){
+      this.removeExpandedKeys(data.id)
     }
   }
 }

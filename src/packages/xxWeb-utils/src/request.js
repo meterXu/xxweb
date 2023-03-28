@@ -42,7 +42,12 @@ export function onResponseError(service,callback){
     service.interceptors.response.use((response) => {
         return response
     }, (error) => {
-        callback&&callback(error)
+        if(callback){
+            const data = callback(error)
+            return Promise.reject(data)
+        }else{
+            return Promise.reject(error)
+        }
     })
 }
 
