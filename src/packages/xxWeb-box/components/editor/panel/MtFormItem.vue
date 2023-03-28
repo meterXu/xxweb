@@ -92,6 +92,9 @@ export default {
         }
         modelPro.key = arr[arr.length - 1];
       } // 深层次处理obj【】  xxx.xxx.xxx情况
+      if(context.scopedSlots.hasOwnProperty(fItem.type)){
+        return context.scopedSlots[fItem.type]({dynamicUi:fItem,modelObj:modelPro.obj,modelKey:modelPro.key,controlledObj:controlledObj})
+      }
       switch (fItem.type) {
         case 'number': {
           // {fItem.unit}
