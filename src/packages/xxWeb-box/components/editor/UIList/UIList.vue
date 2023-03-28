@@ -8,6 +8,7 @@
         :indent="0"
         :highlight-current="true"
         :draggable="draggable"
+        default-expand-all
         :current-node-key="activeId"
         :expand-on-click-node="false"
         :allow-drop="allowDrop"
@@ -52,8 +53,6 @@ export default {
         this.dataList = Object.assign([],this.uiList)
         this.$nextTick(() => {
           this.$refs['ui-tree'].setCurrentKey(this.activeId)
-          const treeItems = this.$refs["ui-tree"].$el.childNodes
-          treeItems[0].childNodes[0].childNodes[0].click()
         })
       }
     },
