@@ -82,7 +82,7 @@ export default {
         controlledObj.config.options.isChange = !controlledObj.config.options.isChange;
       }
     }
-    function renderItem(fItem, modelPro) {
+    function renderItem(fItem, modelPro,controlledObj) {
       fItem.props = fItem.props || {};
       if (fItem.deep) {
         let arr = modelPro.key.split('.');
@@ -140,7 +140,7 @@ export default {
           )
         }
         case 'select': {
-          if (fItem.data.isPath) {
+          if (typeof(fItem.data)==='object'&&fItem.data.isPath) {
             let options = []
             fItem.data.dataArr.forEach(item => {
               options.push({
@@ -154,6 +154,13 @@ export default {
                   item.options.map(o => <el-option label={o.name} value={o.id}>{o.name}</el-option>)
                 }</el-option-group>)}
               </el-select>
+            )
+          } else if(typeof(fItem.data)==='string'){
+            const data = get(controlledObj,fItem.data.replace("$",""))
+            return (
+                <el-select value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+                  {data.map(item => <el-option class={fItem.props['class']} label={item.text} value={item.value}>{item.text}</el-option>)}
+                </el-select>
             )
           } else {
             return (
@@ -260,7 +267,7 @@ export default {
                   {renderItem(item, {
                     obj: modelPro.obj[modelPro.key],
                     key: item.key
-                  })}
+                  },controlledObj)}
                 </el-col>
               )
             } else {
@@ -269,7 +276,7 @@ export default {
                   {renderItem(item, {
                     obj: modelPro.obj[modelPro.key],
                     key: item.key
-                  })}
+                  },controlledObj)}
                 </div>
               )
             }
@@ -288,7 +295,7 @@ export default {
             rendered.push(renderItem(item, {
               obj: modelPro.obj,   //这里不动obj  确保div层不影响数据穿透
               key: modelPro.key
-            }))
+            },controlledObj))
           })
           return (createElement('div', {
             attrs: {
@@ -370,7 +377,7 @@ export default {
     const { fItem, controlledObj } = context.props
     const modelPro = getModelPro(fItem.key, fItem.type, controlledObj)
     try {
-      return renderItem(fItem, modelPro)
+      return renderItem(fItem, modelPro,controlledObj)
     } catch (e) {
       return null;
     }
