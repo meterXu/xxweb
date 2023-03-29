@@ -1,6 +1,7 @@
 <template>
   <div class='icon-box'>
-    <div class="icon-list" v-for='(item, index) in colorList' :key='index' :class='index === active ? "active" : ""'>
+    <div class="icon-list" v-for='(item, index) in colorList' :key='index' :class='index === active ? "active" : ""'
+         :title="item.text">
       <div class="icon-color" v-for='val in item.color' :key='val' :style='{ background: val }'>
       </div>
     </div>
@@ -14,6 +15,8 @@ export default {
       active: 0,
       colorList: [
         {
+          text:'默认',
+          value:'mapmost',
           color: ['#A162F7', '#6F88FE', '#45E3FF', '#FDFFF2']
         }
       ]
