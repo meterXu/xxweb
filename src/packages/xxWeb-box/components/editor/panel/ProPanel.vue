@@ -48,6 +48,7 @@
                   </span>
                   <span v-else>
                     {{ fItem.name }}
+                    <slot name="label-icon" :fItem="fItem"></slot>
                   </span>
                 </span>
                 <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">

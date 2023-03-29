@@ -254,6 +254,25 @@ const 色卡 = {
     )
   },
 };
+
+const 文件夹_开 = {
+  render(h, context) {
+    const { size } = context.props;
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none"><path d="M4 9V41L9 21H39.5V15C39.5 13.8954 38.6046 13 37.5 13H24L19 7H6C4.89543 7 4 7.89543 4 9Z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M40 41L44 21H8.8125L4 41H40Z" fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    )
+  },
+};
+
+const 文件夹_关 = {
+  render(h, context) {
+    const { size } = context.props;
+    return (
+        <svg width={size} height={size} viewBox="0 0 48 48" fill="none"><path d="M5 8C5 6.89543 5.89543 6 7 6H19L24 12H41C42.1046 12 43 12.8954 43 14V40C43 41.1046 42.1046 42 41 42H7C5.89543 42 5 41.1046 5 40V8Z" fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M43 22H5" stroke="#FFF" stroke-width="4" stroke-linejoin="round"/><path d="M5 16V28" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M43 16V28" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    )
+  },
+};
+
 export default {
   name: 'MtIcon',
   functional: true,
@@ -292,7 +311,9 @@ export default {
       DoNewLine,
       DoElle,
       DoRound,
-      色卡
+      色卡,
+      文件夹_开,
+      文件夹_关
     }
     if (icon && icons[icon]) {
       return h('span', {

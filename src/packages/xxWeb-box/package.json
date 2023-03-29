@@ -28,7 +28,7 @@
     "screenfull": "^4.2.0",
     "vue": "^2.6.11",
     "vue-codemirror": "^4.0.6",
-    "vue-json-pretty": "^2.2.4",
+    "vue-json-pretty": "1.9.3",
     "vue-router": "^3.0.2",
     "vuedraggable": "^2.24.3"
   }
