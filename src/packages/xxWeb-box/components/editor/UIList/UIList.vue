@@ -8,19 +8,26 @@
         :indent="0"
         :highlight-current="true"
         :default-expanded-keys="expandedKeys"
-        @node-expand="nodeExpandHandle"
-        @node-collapse="nodeCollapseHandle"
         :draggable="draggable"
         :current-node-key="activeId"
         :expand-on-click-node="false"
         :allow-drop="allowDrop"
+        icon-class="tree-icon"
         @node-drop="handleDrop"
+        @node-expand="nodeExpandHandle"
+        @node-collapse="nodeCollapseHandle"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
-           <slot name="label" :data="data">
+            <span v-if="!node.parent.id" class="page-icon">
+              <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
+              <MtIcon v-else="node.expanded" icon="文件夹_关" :size="11"></MtIcon>
+            </span>
+          <span class="node-title">
+             <slot name="label" :data="data">
               {{ data.name }}
            </slot>
+          </span>
           </div>
           <slot name="ui-custom-icon" :data="{node,data}"></slot>
         </span>
@@ -32,13 +39,13 @@
 <script>
 import 'element-ui/lib/theme-chalk/index.css'
 import {Tabs, TabPane, Form, FormItem, Collapse, CollapseItem, Input, Tree} from 'element-ui'
-import DynamicIcon from "../../common/DynamicIcon";
+import MtIcon from "../view/MtIcon";
 import '../assets/css/mtUiList.less'
 export default {
   name: "UIList",
   props: ["uiList","activeId","draggable"],
   components: {
-    DynamicIcon,
+    MtIcon,
     Input,
     Tabs,
     TabPane,
@@ -98,6 +105,7 @@ export default {
       }
     },
     nodeClick(data,dropNode){
+      console.log(dropNode)
       this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
     contextmenu(data) {
@@ -134,11 +142,3 @@ export default {
   }
 }
 </script>
-<style>
-.mt-ui-list .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
-  background: #EBECFB;
-}
-.mt-ui-list .el-tree__drop-indicator {
-  background-color: #4634EE;
-}
-</style>
