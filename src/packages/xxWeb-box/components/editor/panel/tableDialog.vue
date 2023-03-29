@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-25 10:40:45
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-25 15:52:14
+ * @LastEditTime: 2023-03-29 16:07:12
  * @Description: 
 -->
 <template>
@@ -16,8 +16,8 @@
       <hot-table ref="staticTable" :data="tableData" :settings="hotSettings"></hot-table>
     </div>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="onCancel">取 消</el-button>
-      <el-button type="primary" @click="handleSuccess">确 定</el-button>
+      <el-button @click="onCancel" class="cancle">取 消</el-button>
+      <el-button type="primary" @click="handleSuccess" class="confirm-button">确 定</el-button>
     </span>
   </el-dialog>
 </template>
@@ -87,3 +87,18 @@ export default {
   }
 }
 </script>
+<class lang="less" scoped>
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+  .confirm-button {
+    border-color: #4634EE;
+    background: #4634EE;
+    display: flex;
+    text-align: center;
+    height: 32px;
+    margin-left: 50px;
+    align-items: center;
+  }
+}
+</class>

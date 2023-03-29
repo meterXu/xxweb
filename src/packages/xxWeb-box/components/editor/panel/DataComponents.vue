@@ -1,7 +1,8 @@
 <template>
   <div class="data-components">
     <div class="top-radio">
-      <el-radio-group v-model="value.source.type" @change='changeSourceType'>
+      <div class="top-radio-title">数据类型</div>
+      <el-radio-group class="group" v-model="value.source.type" @change='changeSourceType' text-color="#606266" fill="black">
         <!-- <el-radio :label="2">静态数据</el-radio>
         <el-radio :label="3">动态数据</el-radio> -->
         <el-radio v-for='val in labelOption' :label="val.label" :key='val.label'>{{ val.value }}</el-radio>
@@ -30,7 +31,7 @@
       </div>
     </div>
     <div v-show="value.source.type === 3" class="dynamic-data">
-      <div v-if='chartType === "media"' class='upload-box'>
+      <div v-if='chartType === "media"' class='upload-box'> 
         <div class="label">本地</div>
         <!-- <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
           :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
@@ -44,26 +45,26 @@
         <el-form label-position="left" :model="source" size="small">
           <el-form-item class="none-label">
             <el-row type="flex" justify="space-between">
-              <el-col :span="12">
-                <el-checkbox v-model="source.autoupdate">自动更新请求</el-checkbox>
+              <el-col :span="15">
+                <el-checkbox class="check" v-model="source.autoupdate">  自动更新请求</el-checkbox>
               </el-col>
-              <el-col v-show="source.autoupdate" :span="11" style="display: flex;justify-content: flex-end">
-                <el-input v-model.number="source.autoupdateTime"></el-input>
+              <el-col v-show="source.autoupdate" :span="9" style="display: flex;justify-content: flex-end">
+                <el-input v-model.number="source.autoupdateTime" style="width: 80px;"></el-input>
                 <span style="width: 60px;margin-left: 4px;font-size: 12px">秒/次</span>
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item>
-            <span slot="label">数据服务</span>
+          <el-form-item  label-width="80px">
+            <span slot="label">数据服务:</span>
             <span style="font-size: 12px;">{{ source.method }}</span>
           </el-form-item>
-          <el-form-item>
+          <el-form-item  label-width="80px">
             <span slot="label">Url</span>
-            <el-input style="width: 70%" v-model="source.url"></el-input>
+            <el-input style="width: 100%" v-model="source.url" placeholder="http://"></el-input>
           </el-form-item>
         </el-form>
-        <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-end">
-          <el-button size="small" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
+        <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-start">
+          <el-button size="small" type="primary" class="confirm-button" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
         </div>
         <div class="res-box">
           <div class="res-title">
@@ -289,6 +290,39 @@ export default {
 .top-radio {
   border-bottom: 1px dotted #E9E9EB;
   padding-bottom: 12px;
+  .top-radio-title {
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  .group {
+    .el-radio__label {
+      color: #333333 !important;
+    }
+    .el-radio__input.is-checked .el-radio__inner {
+      border-color: #4634EE;
+      background: #4634EE;
+    }
+  }
+}
+.check {
+  margin-left: 13px;
+  .el-checkbox__label {
+    color: #333333 !important;
+    margin-left: 13px;
+  }
+  .el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: #4634EE !important;
+    border-color: #4634EE !important;
+  }
+}
+.confirm-button {
+  border-color: #4634EE;
+  background: #4634EE;
+  height: 28px;
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 .upload-box{
   .avatar-uploader .el-upload {
@@ -337,6 +371,9 @@ export default {
 
 .dynamic-data-box {
   margin-top: 20px;
+  .el-form-item__label {
+    font-weight: bold;
+  }
 }
 
 .res-box {
