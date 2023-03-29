@@ -19,11 +19,11 @@
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
-            <span v-if="!node.parent.id" class="page-icon">
+            <span v-if="!node.isLeaf" class="page-icon">
               <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
               <MtIcon v-else="node.expanded" icon="文件夹_关" :size="11"></MtIcon>
             </span>
-          <span :class="{'node-title':true,'node-parent-title':!node.parent.id}">
+          <span :class="{'node-title':true,'node-parent-title':!node.isLeaf}">
              <slot name="label" :data="data">
               {{ data.name }}
            </slot>
@@ -105,7 +105,6 @@ export default {
       }
     },
     nodeClick(data,dropNode){
-      console.log(dropNode)
       this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
     contextmenu(data) {
