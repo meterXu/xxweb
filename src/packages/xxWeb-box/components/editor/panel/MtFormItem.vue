@@ -398,7 +398,9 @@ export default {
   line-height: 28px;
   height: 28px;
   padding-right: 10px;
-
+  .el-input{
+    line-height: initial;
+  }
   .text-col-twice {
     padding-right: 0;
   }
