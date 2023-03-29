@@ -23,7 +23,7 @@
               <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
               <MtIcon v-else="node.expanded" icon="文件夹_关" :size="11"></MtIcon>
             </span>
-          <span class="node-title">
+          <span :class="{'node-title':true,'node-parent-title':!node.parent.id}">
              <slot name="label" :data="data">
               {{ data.name }}
            </slot>
