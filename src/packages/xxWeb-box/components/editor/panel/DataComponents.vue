@@ -60,12 +60,12 @@
           </el-form-item>
           <el-form-item  label-width="80px">
             <span slot="label">Url</span>
-            <el-input style="width: 100%" v-model="source.url" placeholder="http://"></el-input>
+            <el-input style="width: 100%" v-model="source.url" placeholder="http://" @keyup.enter.native='handleDynamicData'></el-input>
           </el-form-item>
         </el-form>
-        <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-start">
+        <!-- <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-start">
           <el-button size="small" type="primary" class="confirm-button" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
-        </div>
+        </div> -->
         <div class="res-box">
           <div class="res-title">
             服务结果示例<i style="margin-left: 10px;font-weight: 700;" class="el-icon-arrow-up"></i>
@@ -370,7 +370,7 @@ export default {
 }
 
 .dynamic-data-box {
-  margin-top: 20px;
+  margin-top: 15px;
   .el-form-item__label {
     font-weight: bold;
   }
