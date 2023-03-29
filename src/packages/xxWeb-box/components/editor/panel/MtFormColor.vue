@@ -241,6 +241,7 @@ export default {
     content: '%';
     color: #666666;
     opacity: 0.5;
+    line-height: 26px;
   }
 }
 </style>
