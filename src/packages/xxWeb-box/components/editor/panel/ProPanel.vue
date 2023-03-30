@@ -2,7 +2,7 @@
  * @Author: zhangyuc
  * @Date: 2023-03-06 18:09:50
  * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-10 15:07:40
+ * @LastEditTime: 2023-03-30 14:42:20
  * @Description: 
 -->
 <template>
@@ -13,7 +13,10 @@
         {{ tab.type }}
       </span>
       <div v-for="(panel, pi) in tab.head" :key="pi" class="mt-pro-div">
-        <Form>
+        <div v-if="panel.title" style="margin-bottom: 10px;margin-top: 5px;font-weight: 500;">
+          {{ panel.title }}
+        </div>
+        <Form :label-width="panel.labelWidth||''">
           <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" :label="fItem.name" v-show="colFormItemShow(fItem)">
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
               <template v-slot="{dynamicUi,modelObj,modelKey}">
