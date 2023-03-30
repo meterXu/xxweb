@@ -43,7 +43,7 @@ export default {
     display: flex;
     width: 91px;
     border-radius: 4px;
-    cursor: pointer;
+    cursor: default;
 
     .icon-color {
       height: 14px;
