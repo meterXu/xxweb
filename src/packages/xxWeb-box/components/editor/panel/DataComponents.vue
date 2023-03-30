@@ -60,7 +60,7 @@
           </el-form-item>
           <el-form-item  label-width="80px">
             <span slot="label">Url</span>
-            <el-input style="width: 100%" v-model="source.url" placeholder="http://" @keyup.enter.native='handleDynamicData'></el-input>
+            <el-input style="width: 100%" v-model="source.url" placeholder="http://" @change='handleDynamicData'></el-input>
           </el-form-item>
         </el-form>
         <!-- <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-start">
@@ -247,6 +247,10 @@ export default {
         // 其他类型默认值为 ''
         this.value.source.staticJson = this.value.source.json ? this.value.source.json : ''
         this.value.source.json = this.value.source.dynamicJson
+        // 如果存在服务地址，切换tab时就要请求一次
+        if (this.source.url) {
+          this.handleDynamicData()
+        }
       }
     },
     handleSheet() {
