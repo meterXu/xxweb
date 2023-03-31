@@ -2,14 +2,15 @@
   <div class="data-components">
     <div class="top-radio">
       <div class="top-radio-title">数据类型</div>
-      <el-radio-group class="group" v-model="value.source.type" @change='changeSourceType' text-color="#606266" fill="black">
+      <el-radio-group class="group" v-model="value.source.type" @change='changeSourceType' text-color="#606266"
+        fill="black">
         <!-- <el-radio :label="2">静态数据</el-radio>
         <el-radio :label="3">动态数据</el-radio> -->
         <el-radio v-for='val in labelOption' :label="val.label" :key='val.label'>{{ val.value }}</el-radio>
       </el-radio-group>
     </div>
     <div v-show="value.source.type === 2" class="static-data">
-      <div v-if="['echarts', 'staticList','scrollList'].includes(value.type)" class="spreadsheet">
+      <div v-if="['echarts', 'staticList', 'scrollList'].includes(value.type)" class="spreadsheet">
         <el-button size="small" @click="handleSheet">配置数据</el-button>
       </div>
       <!-- 静态输入框 -->
@@ -31,7 +32,7 @@
       </div>
     </div>
     <div v-show="value.source.type === 3" class="dynamic-data">
-      <div v-if='chartType === "media"' class='upload-box'> 
+      <div v-if='chartType === "media"' class='upload-box'>
         <div class="label">本地</div>
         <!-- <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
           :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
@@ -46,7 +47,7 @@
           <el-form-item class="none-label">
             <el-row type="flex" justify="space-between">
               <el-col :span="15">
-                <el-checkbox class="check" v-model="source.autoupdate">  自动更新请求</el-checkbox>
+                <el-checkbox class="check" v-model="source.autoupdate"> 自动更新请求</el-checkbox>
               </el-col>
               <el-col v-show="source.autoupdate" :span="9" style="display: flex;justify-content: flex-end">
                 <el-input v-model.number="source.autoupdateTime" style="width: 80px;"></el-input>
@@ -54,13 +55,14 @@
               </el-col>
             </el-row>
           </el-form-item>
-          <el-form-item  label-width="80px">
+          <el-form-item label-width="80px">
             <span slot="label">数据服务:</span>
             <span style="font-size: 12px;">{{ source.method }}</span>
           </el-form-item>
-          <el-form-item  label-width="80px">
+          <el-form-item label-width="80px">
             <span slot="label">Url</span>
-            <el-input style="width: 100%" v-model="source.url" placeholder="http://" @change='handleDynamicData'></el-input>
+            <el-input style="width: 100%" v-model="source.url" placeholder="http://"
+              @change='handleDynamicData'></el-input>
           </el-form-item>
         </el-form>
         <!-- <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-start">
@@ -111,7 +113,7 @@ export default {
       handler(nv) {
         // 不懂
         // this.source = Object.assign({}, nv)
-        if (['echarts', 'staticList','scrollList'].includes(this.value.type)) {
+        if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
           this.tableData = JSON.parse(this.value.source.json)
         } else {
           this.tableData = this.value.source.json
@@ -241,8 +243,23 @@ export default {
         // echarts staticForm 给到的默认值为{}
         // staticList 给到的默认值为 []
         // 避免表单对象undefined报错
-        if (['echarts', 'staticList', 'staticForm','scrollList'].includes(this.value.type)) {
-          this.value.source.dynamicJson = typeof (this.value.source.dynamicJson) === 'string' ? {} : (['echarts', 'staticForm'].includes(this.value.type) ? JSON.stringify({}) : JSON.stringify([]))
+        if (['echarts', 'staticList', 'staticForm', 'scrollList'].includes(this.value.type)) {
+          let defaultJson
+          let JSONType
+          try {
+            JSONType = typeof (JSON.parse(this.value.source.dynamicJson))
+          } catch (error) {
+            JSONType = typeof (this.value.source.dynamicJson)
+          }
+          if (JSONType === 'string') {
+            defaultJson = {}
+          } else if (['echarts', 'staticForm'].includes(this.value.type)) {
+            defaultJson = JSON.stringify({})
+          } else {
+            defaultJson = JSON.stringify([])
+          }
+          this.value.source.dynamicJson = defaultJson
+          // this.value.source.dynamicJson = typeof (this.value.source.dynamicJson) === 'string' ? {} : (['echarts', 'staticForm'].includes(this.value.type) ? JSON.stringify({}) : JSON.stringify([]))
         }
         // 其他类型默认值为 ''
         this.value.source.staticJson = this.value.source.json ? this.value.source.json : ''
@@ -257,7 +274,7 @@ export default {
       this.dialogVisible = true
     },
     changeData(data) {
-      if (['echarts', 'staticList','scrollList'].includes(this.value.type)) {
+      if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
         this.value.source.json = JSON.stringify(data)
       } else {
         this.value.source.json = data
@@ -281,7 +298,7 @@ export default {
   },
   mounted() {
     this.source = Object.assign({}, this.value.source)
-    if (['echarts', 'staticList','scrollList'].includes(this.value.type)) {
+    if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
       this.tableData = JSON.parse(this.value.source.json)
     } else {
       this.tableData = this.value.source.json
@@ -294,32 +311,39 @@ export default {
 .top-radio {
   border-bottom: 1px dotted #E9E9EB;
   padding-bottom: 12px;
+
   .top-radio-title {
     font-weight: bold;
     color: #333333;
     margin-bottom: 5px;
   }
+
   .group {
     .el-radio__label {
       color: #333333 !important;
     }
+
     .el-radio__input.is-checked .el-radio__inner {
       border-color: #4634EE;
       background: #4634EE;
     }
   }
 }
+
 .check {
   margin-left: 13px;
+
   .el-checkbox__label {
     color: #333333 !important;
     margin-left: 13px;
   }
+
   .el-checkbox__input.is-checked .el-checkbox__inner {
     background-color: #4634EE !important;
     border-color: #4634EE !important;
   }
 }
+
 .confirm-button {
   border-color: #4634EE;
   background: #4634EE;
@@ -328,7 +352,8 @@ export default {
   text-align: center;
   align-items: center;
 }
-.upload-box{
+
+.upload-box {
   .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
     border-radius: 6px;
@@ -336,11 +361,11 @@ export default {
     position: relative;
     overflow: hidden;
   }
-  
+
   .avatar-uploader .el-upload:hover {
     border-color: #409EFF;
   }
-  
+
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
@@ -351,7 +376,7 @@ export default {
     background: url('../assets/img/img.png');
     background-size: 100% 100%;
   }
-  
+
   .avatar {
     width: 178px;
     height: 178px;
@@ -375,6 +400,7 @@ export default {
 
 .dynamic-data-box {
   margin-top: 15px;
+
   .el-form-item__label {
     font-weight: bold;
   }
@@ -401,7 +427,8 @@ export default {
       background: #F1F4F8;
     }
   }
-  .vjs-node-index{
+
+  .vjs-node-index {
     user-select: none;
   }
 }
@@ -412,5 +439,4 @@ export default {
   .single-con {
     min-height: 100%;
   }
-}
-</style>
+}</style>
