@@ -297,11 +297,13 @@ export default {
     }
   },
   mounted() {
-    this.source = Object.assign({}, this.value.source)
-    if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
-      this.tableData = JSON.parse(this.value.source.json)
-    } else {
-      this.tableData = this.value.source.json
+    if(this.value){
+      this.source = Object.assign({}, this.value.source)
+      if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
+        this.tableData = JSON.parse(this.value.source.json)
+      } else {
+        this.tableData = this.value.source.json
+      }
     }
   }
 }
