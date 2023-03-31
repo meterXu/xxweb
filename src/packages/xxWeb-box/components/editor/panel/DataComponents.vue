@@ -147,10 +147,10 @@ export default {
         // 通过云管平台的chart 属性匹配
         if (this.chartType === 'media') {
           return [
-            {
-              label: 3,
-              value: '本地'
-            },
+            // {
+            //   label: 3,
+            //   value: '本地'
+            // },
             {
               label: 2,
               value: '在线'
