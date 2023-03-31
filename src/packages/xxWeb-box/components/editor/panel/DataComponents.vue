@@ -1,5 +1,5 @@
 <template>
-  <div class="data-components">
+  <div class="data-components" v-if="value">
     <div class="top-radio">
       <div class="top-radio-title">数据类型</div>
       <el-radio-group class="group" v-model="value.source.type" @change='changeSourceType' text-color="#606266"
