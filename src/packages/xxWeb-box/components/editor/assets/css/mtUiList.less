@@ -50,6 +50,15 @@
   .el-tree-node__expand-icon.expanded{
     transform: rotate(-180deg);
   }
+  .el-tree {
+    .el-tree-node {
+      .el-tree-node__content {
+        height: 40px;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+  }
+  .el-tree--highlight-current .el-tree-node.is-expanded>.el-tree-node__content,
   .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
     background: #F7F8FB;
   }

@@ -148,8 +148,3 @@ export default {
   }
 }
 </script>
-<style lang="less">
-.mt-ui-list .el-tree-node__content {
-  border-bottom: 1px solid #ddd;
-}
-</style>
