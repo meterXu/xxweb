@@ -111,12 +111,12 @@ export default {
     'value.source': {
       deep: true,
       handler(nv) {
-        // 不懂
-        // this.source = Object.assign({}, nv)
-        if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
+        if(nv){
+          if (['echarts', 'staticList', 'scrollList'].includes(this.value.type)) {
           this.tableData = JSON.parse(this.value.source.json)
         } else {
           this.tableData = this.value.source.json
+        }
         }
       }
     }
