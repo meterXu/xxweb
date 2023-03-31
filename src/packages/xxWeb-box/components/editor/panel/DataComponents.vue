@@ -292,7 +292,7 @@ export default {
   },
   updated() {
     // 特殊的配置类型 不需要刷新code面板
-    if (!this.chartType && this.value.source.type == 3) {
+    if (!this.chartType &&this.value&& this.value.source.type == 3) {
       // this.$refs.cmExpressionsRef.refresh()
     }
   },
