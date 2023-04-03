@@ -261,7 +261,7 @@ export default {
         this.$nextTick(()=>{
           let activeItem = this.charts[this.charts.length - 1]
           this.$emit('change',activeItem)
-          this.selectedItems=[activeItem]
+          this.selectedItems=activeItem?[activeItem]:[]
         })
       }
     },
