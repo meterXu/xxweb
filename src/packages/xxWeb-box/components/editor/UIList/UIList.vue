@@ -19,7 +19,7 @@
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
-            <span v-if="!node.isLeaf" class="page-icon">
+            <span v-if="node.level===1" class="page-icon">
               <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
               <MtIcon v-else icon="文件夹_关" :size="11"></MtIcon>
             </span>
