@@ -52,6 +52,7 @@ export default {
   },
   methods:{
     goHome(){
+      this.$emit('goHome')
       window.location.href=this.link.home
     }
   }
