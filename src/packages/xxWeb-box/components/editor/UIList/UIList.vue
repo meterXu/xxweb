@@ -59,8 +59,28 @@ export default {
     uiList:{
       immediate: true,
       handler(nv){
-        if(nv&&nv.length>0&&!this.expandedKeys){
-          this.pushExpandedKeys(nv[0].id)
+        if(nv&&nv.length>0){
+          if(!this.expandedKeys) {
+            this.pushExpandedKeys(nv[0].id)
+          }
+          this.$nextTick(()=>{
+            let isFater = []
+            let arr = document.getElementsByClassName('el-tree-node__expand-icon')
+            for(let i = 0;i<arr.length;i++) {
+              if(arr[i].nextElementSibling.querySelector('.custom-tree-node-label').querySelector('.page-icon')) {
+                isFater.push(arr[i])
+              }
+            }
+            if(isFater.length) {
+              isFater.forEach(item=>{
+                if(item.classList.contains('is-leaf')) {
+                  item.classList.remove('is-leaf')
+                  let fb = this.iconClick.bind(this,item)
+                  item.addEventListener("click",fb,false)
+                }
+              })
+            }
+          })
         }
       }
     },
@@ -144,6 +164,13 @@ export default {
     },
     nodeCollapseHandle(data){
       this.removeExpandedKeys(data.id)
+    },
+    iconClick(item){
+      if(item.classList.contains('expanded')) {
+        item.classList.remove('expanded')
+      } else {
+        item.classList.add('expanded')
+      }
     }
   }
 }
