@@ -19,9 +19,13 @@
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
           <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
-            <span v-if="node.level===1" class="page-icon">
+            <span v-if="!node.isLeaf" class="page-icon">
               <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
               <MtIcon v-else icon="文件夹_关" :size="11"></MtIcon>
+            </span>
+            <span v-else-if="node.level===1&&node.isLeaf" class="page-icon">
+              <span class="page-icon-hide"><MtIcon icon="文件夹_开" :size="11"></MtIcon></span>
+              <span><MtIcon icon="文件夹_关" :size="11"></MtIcon></span>
             </span>
           <span :class="{'node-title':true,'node-parent-title':!node.isLeaf}">
              <slot name="label" :data="data">
@@ -166,10 +170,18 @@ export default {
       this.removeExpandedKeys(data.id)
     },
     iconClick(item){
+      let arr = item.nextElementSibling.querySelector('.page-icon').children
       if(item.classList.contains('expanded')) {
         item.classList.remove('expanded')
       } else {
         item.classList.add('expanded')
+      }
+      if(arr[0].classList.contains('page-icon-hide')) {
+        arr[0].classList.remove('page-icon-hide')
+        arr[1].classList.add('page-icon-hide')
+      } else {
+        arr[1].classList.remove('page-icon-hide')
+        arr[0].classList.add('page-icon-hide')
       }
     }
   }
