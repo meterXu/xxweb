@@ -75,9 +75,7 @@ export default {
       '#adff45',
       '#ffff78'
     ]
-    // 处理绑定 数组值时 监听不到变化 不刷新问题 
     function autoChange(fItem) {
-      // TODO: 需要在云平台中配置个 isChange
       if (fItem.autoChange && controlledObj.config.options) {
         controlledObj.config.options.isChange = !controlledObj.config.options.isChange;
       }
@@ -91,9 +89,6 @@ export default {
           modelPro.obj = modelPro.obj[key];
         }
         modelPro.key = arr[arr.length - 1];
-      } // 深层次处理obj【】  xxx.xxx.xxx情况
-      if(context.scopedSlots.hasOwnProperty(fItem.type)){
-        return context.scopedSlots[fItem.type]({dynamicUi:fItem,modelObj:modelPro.obj,modelKey:modelPro.key,controlledObj:controlledObj})
       }
       switch (fItem.type) {
         case 'number': {
