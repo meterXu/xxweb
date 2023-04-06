@@ -1,17 +1,6 @@
 <template>
   <div class="vertical-control">
     <div v-if="value.length > 0">
-      <!-- <el-row v-for="(item,index) in value" :key="item.id">
-        <el-col :span="16">
-          <el-input v-model="value[index].name" size="mini"></el-input>
-        </el-col>
-        <el-col :span="2">
-          <i class="el-icon-plus" @click="addItem"></i>
-        </el-col>
-        <el-col :span="2">
-          <i class="el-icon-minus" @click="reduceItem(index)"></i>
-        </el-col>
-      </el-row> -->
       <el-radio-group v-model="innerActiveKey">
         <el-row v-for="(item, index) in value" :key="item.id">
           <el-col>
@@ -50,13 +39,16 @@ export default {
   },
   data() {
     return {
-      innerActiveKey: this.activeKey
+      innerActiveKey: null
     }
   },
   computed: {
     ...mapGetters(['app'])
   },
   watch: {
+    activeKey(nv){
+      this.innerActiveKey = nv
+    },
     innerActiveKey(newVal) {
       this.$emit('changeActive', newVal)
     }
@@ -73,7 +65,7 @@ export default {
       this.value.splice(index, 1)
       this.$emit('change', this.value)
     }
-  },
+  }
 }
 </script>
 
