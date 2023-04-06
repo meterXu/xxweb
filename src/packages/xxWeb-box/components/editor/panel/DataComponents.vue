@@ -4,8 +4,6 @@
       <div class="top-radio-title">数据类型</div>
       <el-radio-group class="group" v-model="value.source.type" @change='changeSourceType' text-color="#606266"
         fill="black">
-        <!-- <el-radio :label="2">静态数据</el-radio>
-        <el-radio :label="3">动态数据</el-radio> -->
         <el-radio v-for='val in labelOption' :label="val.label" :key='val.label'>{{ val.value }}</el-radio>
       </el-radio-group>
     </div>
@@ -20,7 +18,6 @@
       </div>
       <!-- 静态表单 -->
       <div v-else-if="value.type === 'staticForm'" class="spreadsheet">
-        <!-- <el-input v-model="value.source.json" size="mini" clearable @change="changeData"></el-input> -->
         <el-form ref="form" :inline="true" :model="value.source.json | convertType" label-width="40px">
           <el-form-item :label="item.label" v-for='item in formoption' :key='item.key'>
             <el-input :value="get(config, item.key)" @input='changeForm($event, item.key)'></el-input>
@@ -34,13 +31,6 @@
     <div v-show="value.source.type === 3" class="dynamic-data">
       <div v-if='chartType === "media"' class='upload-box'>
         <div class="label">本地</div>
-        <!-- <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
-          :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-          <img v-if="imageUrl" :src="imageUrl" class="avatar">
-          <div v-else class="avatar-uploader-icon">
-
-          </div>
-        </el-upload> -->
       </div>
       <div class='dynamic-data-box' v-else>
         <el-form label-position="left" :model="source" size="small">
@@ -50,29 +40,29 @@
                 <el-checkbox class="check" v-model="source.autoupdate"> 自动更新请求</el-checkbox>
               </el-col>
               <el-col v-show="source.autoupdate" :span="9" style="display: flex;justify-content: flex-end">
-                <el-input v-model.number="source.autoupdateTime" style="width: 80px;"></el-input>
-                <span style="width: 60px;margin-left: 4px;font-size: 12px">秒/次</span>
+                <el-input class="my-input" v-model.number="source.autoupdateTime" style="width: 80px;"></el-input>
+                <span class="res-unit">秒/次</span>
               </el-col>
             </el-row>
           </el-form-item>
           <el-form-item label-width="80px">
-            <span slot="label">数据服务:</span>
-            <span style="font-size: 12px;">{{ source.method }}</span>
+            <span slot="label" class="data-service-title">数据服务:</span>
+            <span class="data-service-method">{{ source.method }}</span>
           </el-form-item>
           <el-form-item label-width="80px">
-            <span slot="label">Url</span>
+            <span slot="label" class="data-service-title">Url</span>
             <el-input style="width: 100%" v-model="source.url" placeholder="http://"
               @change='handleDynamicData'></el-input>
           </el-form-item>
         </el-form>
-        <!-- <div style="width: 100%;margin-bottom:10px; display: flex;justify-content: flex-start">
-          <el-button size="small" type="primary" class="confirm-button" style="margin-top: 10px" @click="handleDynamicData">确认</el-button>
-        </div> -->
         <div class="res-box">
           <div class="res-title">
-            服务结果示例<i style="margin-left: 10px;font-weight: 700;" class="el-icon-arrow-up"></i>
+            服务结果示例
+            <i @click="toggleResWarp" :class="{'el-icon-arrow-up':resWarpShow,'el-icon-arrow-down':!resWarpShow,'res-title-icon':true}"></i>
           </div>
-          <VueJsonPretty :showLine='false' showLineNumber collapsedOnClickBrackets :data="parseStrObj(source.params)" />
+          <div v-show="resWarpShow" class="res-warp">
+            <VueJsonPretty :showLine='false' showLineNumber collapsedOnClickBrackets :data="parseStrObj(source.params)" />
+          </div>
         </div>
       </div>
     </div>
@@ -173,6 +163,7 @@ export default {
   },
   data() {
     return {
+      resWarpShow:true,
       imageUrl: '',
       // 配置为静态 input框数据
       staticInput: '',
@@ -288,6 +279,9 @@ export default {
         autoupdateTime: this.source.autoupdateTime,
         type: this.value.type,
       })
+    },
+    toggleResWarp(){
+      this.resWarpShow = !this.resWarpShow
     }
   },
   updated() {
@@ -312,26 +306,47 @@ export default {
 <style lang='less'>
 .top-radio {
   border-bottom: 1px dotted #E9E9EB;
-  padding-bottom: 12px;
+  padding-bottom: 16px;
 
   .top-radio-title {
     font-weight: bold;
     color: #333333;
-    margin-bottom: 5px;
+    margin: 13px 0;
   }
 
   .group {
     .el-radio__label {
-      color: #333333 !important;
+      color: #666 !important;
+      font-weight: 300;
     }
-
-    .el-radio__input.is-checked .el-radio__inner {
+    .el-radio__input.is-checked .el-radio__inner{
+      width: 12px;
+      height: 12px;
       border-color: #4634EE;
+      background:  transparent;
+    }
+    .el-radio__input:hover .el-radio__inner{
+      border-color: #4634EE;
+    }
+    .el-radio__inner::after{
+      width:6px;
+      height: 6px;
       background: #4634EE;
     }
   }
 }
-
+.data-service-title{
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+.data-service-method{
+  color: #333;
+  display: block;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}
 .check {
   margin-left: 13px;
 
@@ -412,6 +427,7 @@ export default {
   margin: 0 -20px;
 
   .res-title {
+    color: #333;
     height: 40px;
     line-height: 40px;
     padding-left: 20px;
@@ -422,6 +438,7 @@ export default {
     padding-left: 40px !important;
 
     .vjs-node-index {
+      color: #333;
       width: 36px;
       text-align: end;
       padding-right: 10px;
@@ -442,3 +459,27 @@ export default {
     min-height: 100%;
   }
 }</style>
+<style lang="less">
+.data-components{
+  .res-unit{
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    width: 60px;
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .res-title-icon{
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 700;
+  }
+  .el-input__inner{
+    border-radius: 2px;
+  }
+  .el-form-item{
+    margin-bottom: 16px !important;
+  }
+}
+</style>
