@@ -34,8 +34,8 @@
             </span>
             <div v-for="(tItem, ti) in panel.tools" class="mt-pro-collapse-tools" :key="ti">
               <MtFormItem v-on="$listeners" :fItem="tItem" :controlledObj="controlledObj" :key="ti">
-                <template v-slot="{dynamicUi,modelObj,modelkey}">
-                  <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelkey="modelkey"></slot>
+                <template v-slot="{dynamicUi,modelObj,modelKey}">
+                  <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelKey="modelKey"></slot>
                 </template>
               </MtFormItem>
             </div>
@@ -55,8 +55,8 @@
                   </span>
                 </span>
                 <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
-                  <template v-slot="{dynamicUi,modelObj,modelkey}">
-                    <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelkey="modelkey"></slot>
+                  <template v-slot="{dynamicUi,modelObj,modelKey}">
+                    <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelKey="modelKey"></slot>
                   </template>
                 </MtFormItem>
               </FormItem>
