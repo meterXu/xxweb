@@ -3,7 +3,6 @@ import { get, set } from "lodash";
 import MtIconDrop from './MtIconDrop'
 import MtIconBind from './MtIconBind'
 import ArrayControl from './ArrayControl'
-import DataComponents from './DataComponents'
 import MtIcon from "../view/MtIcon.vue";
 import MtIconSelect from "../panel/MtIconSelect.vue";
 import MtIconSwitch from "../panel/MtIconSwitch.vue";
@@ -25,7 +24,6 @@ export default {
     MtIconDrop,
     MtIconBind,
     ArrayControl,
-    DataComponents,
     MtIconSelect,
     MtIconSwitch,
     MtFormColor,
@@ -328,11 +326,6 @@ export default {
           return (
             <ArrayControl value={modelPro.obj[modelPro.key]} activeKey={modelPro.obj[fItem.activeKey.slice(fItem.activeKey.lastIndexOf('.') + 1)
             ]} onChange={$event => { modelPro.obj[modelPro.key] = $event }} onchangeActive={$event => { modelPro.obj[fItem.activeKey.slice(fItem.activeKey.lastIndexOf('.') + 1)] = $event }} size="mini"></ArrayControl>
-          )
-        }
-        case 'data-components': {
-          return (
-            <DataComponents ref="dataComponents" on={context.data.on} value={modelPro.obj[modelPro.key]} formoption={fItem.FormOption} onChange={$event => { modelPro.obj[modelPro.key] = $event }} config={controlledObj} size="mini"></DataComponents>
           )
         }
         case 'img-dialog': {
