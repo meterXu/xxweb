@@ -68,7 +68,11 @@
         <Form class="single-con">
           <FormItem v-for="(fItem, fi) in tab.con.sub" :key="fi" :label="fItem.name"
             :class="fItem.name ? '' : 'none-label'" v-show="colFormItemShow(fItem)">
-            <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj"></MtFormItem>
+            <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
+              <template v-slot="{dynamicUi,modelObj,modelKey}">
+                    <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelKey="modelKey"></slot>
+              </template>
+            </MtFormItem>
           </FormItem>
         </Form>
       </template>
