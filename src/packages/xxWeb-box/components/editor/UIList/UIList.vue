@@ -123,7 +123,7 @@ export default {
                 this.$refs['ui-tree'].getNode(nv).expanded=true;
               }
             }
-            this.pushExpandedKeys(nv.id)
+            this.pushExpandedKeys(nv)
           })
         }
       }
