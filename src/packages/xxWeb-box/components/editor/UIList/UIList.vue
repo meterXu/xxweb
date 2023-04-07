@@ -119,7 +119,7 @@ export default {
             if(nv) {
               if(this.$refs['ui-tree'].getNode(nv)&&this.$refs['ui-tree'].getNode(nv).parent) {
                 this.$refs['ui-tree'].getNode(nv).parent.expanded=true;
-              } else {
+              } else if(this.$refs['ui-tree'].getNode(nv)){
                 this.$refs['ui-tree'].getNode(nv).expanded=true;
               }
             }
