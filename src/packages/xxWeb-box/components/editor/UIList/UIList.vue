@@ -18,7 +18,7 @@
         @node-collapse="nodeCollapseHandle"
     >
         <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data)">
+          <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data,node.parent)">
             <span v-if="!node.isLeaf" class="page-icon">
               <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
               <MtIcon v-else icon="文件夹_关" :size="11"></MtIcon>
@@ -47,7 +47,29 @@ import MtIcon from "../view/MtIcon";
 import '../assets/css/mtUiList.less'
 export default {
   name: "UIList",
-  props: ["uiList","activeId","draggable"],
+  props: {
+    uiList:{
+      type: Array,
+      default:()=>[]
+    },
+    activeId:{
+      type: String,
+      default:null
+    },
+    draggable:{
+      type: Boolean,
+      default:false
+    },
+    defaultProps:{
+      type: Object,
+      default(){
+        return {
+          children: 'children',
+          label: 'name'
+        }
+      }
+    }
+  },
   components: {
     MtIcon,
     Input,
@@ -111,15 +133,10 @@ export default {
     return {
       expandedKeys:null,
       enabled: true,
-      dragging: false,
-      defaultProps: {
-        children: 'children',
-        label: 'name'
-      },
+      dragging: false
     };
   },
   mounted() {
-
   },
   methods: {
     handleDrop(draggingNode, dropNode) {
@@ -127,21 +144,27 @@ export default {
     },
     allowDrop(draggingNode, dropNode, type) {
       if (draggingNode.data.id !== dropNode.data.id) {
-        if (!dropNode.data.children&&draggingNode.parent.data.id===dropNode.parent.data.id) {
+        if(draggingNode.data.hasOwnProperty('children')){//页面
           return type === "prev" || type === "next";
-        } else {
-          return false;
+        }else{//图表
+          if (dropNode.parent.data.id) {
+            return type === "prev" || type === "next";
+          } else {
+            return false
+          }
         }
-        return false;
       }
+      return true
     },
     nodeClick(data,dropNode){
       this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
     },
-    contextmenu(data) {
+    contextmenu(data,parent) {
       event.preventDefault()
       this.$emit('contextmenu',{
         id:data.id,
+        data:data,
+        parentId:parent?parent.data.id:null,
         x:event.clientX,
         y:event.clientY
       })
@@ -176,12 +199,12 @@ export default {
       } else {
         item.classList.add('expanded')
       }
-      if(arr[0].classList.contains('page-icon-hide')) {
-        arr[0].classList.remove('page-icon-hide')
-        arr[1].classList.add('page-icon-hide')
+      if(arr[0]&&arr[0].classList.contains('page-icon-hide')) {
+        arr[0]&&arr[0].classList.remove('page-icon-hide')
+        arr[1]&&arr[1].classList.add('page-icon-hide')
       } else {
-        arr[1].classList.remove('page-icon-hide')
-        arr[0].classList.add('page-icon-hide')
+        arr[1]&&arr[1].classList.remove('page-icon-hide')
+        arr[0]&&arr[0].classList.add('page-icon-hide')
       }
     }
   }
