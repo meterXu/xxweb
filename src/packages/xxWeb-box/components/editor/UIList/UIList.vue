@@ -11,6 +11,7 @@
         :draggable="draggable"
         :current-node-key="activeId"
         :expand-on-click-node="false"
+        :default-expand-all="defaultExpandAll"
         :allow-drop="allowDrop"
         icon-class="tree-icon"
         @node-drop="handleDrop"
@@ -57,6 +58,14 @@ export default {
       default:null
     },
     draggable:{
+      type: Boolean,
+      default:false
+    },
+    crossParentDraggable:{
+      type: Boolean,
+      default:false
+    },
+    defaultExpandAll:{
       type: Boolean,
       default:false
     },
@@ -119,7 +128,7 @@ export default {
             if(nv) {
               if(this.$refs['ui-tree'].getNode(nv)&&this.$refs['ui-tree'].getNode(nv).parent) {
                 this.$refs['ui-tree'].getNode(nv).parent.expanded=true;
-              } else if(this.$refs['ui-tree'].getNode(nv)){
+              } else {
                 this.$refs['ui-tree'].getNode(nv).expanded=true;
               }
             }
@@ -140,17 +149,37 @@ export default {
   },
   methods: {
     handleDrop(draggingNode, dropNode) {
-      this.$emit('nodeChange',this.uiList,'drag',dropNode.parent.data.id)
+      if(draggingNode.data.parentId===dropNode.data.parentId){//同父节点拖动
+        this.$emit('nodeChange',this.uiList,'drag',dropNode.parent.data.id)
+      }else{//跨父节点拖动
+        let toIndex= 0
+        if(dropNode.data.parentId){//在父节点内部拖
+          toIndex = dropNode.parent.childNodes.findIndex(c=>c.data.id===draggingNode.data.id)
+        }else{//直接拖至父节点上
+          toIndex = dropNode.childNodes.length-1
+        }
+        this.$emit('nodeChange',{
+          formPaentId:draggingNode.data.parentId,
+          toParentId:dropNode.data.parentId||dropNode.data.id,
+          toIndex:toIndex,
+          id:draggingNode.data.id
+        },'cross-page',dropNode.parent.data.id)
+      }
     },
     allowDrop(draggingNode, dropNode, type) {
+      draggingNode.data.parentId = draggingNode.parent?draggingNode.parent.data.id:null
+      dropNode.data.parentId = dropNode.parent?dropNode.parent.data.id:null
       if (draggingNode.data.id !== dropNode.data.id) {
-        if(draggingNode.data.hasOwnProperty('children')){//页面
-          return type === "prev" || type === "next";
-        }else{//图表
-          if (dropNode.parent.data.id) {
-            return type === "prev" || type === "next";
-          } else {
-            return false
+        if(draggingNode.data.hasOwnProperty('children')){//父节点拖动
+          return !dropNode.data.parentId && (type === "prev" || type === "next");
+        }else{//子节点拖动
+          if (dropNode.parent.data.id) {//释放至子节点
+            return (this.crossParentDraggable
+                ? true
+                :dropNode.parent.data.id===draggingNode.parent.data.id)
+                &&type !== "inner"
+          } else {//释放至父节点
+            return this.crossParentDraggable&&type === "inner"
           }
         }
       }
