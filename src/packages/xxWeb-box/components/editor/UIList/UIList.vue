@@ -127,13 +127,13 @@ export default {
           this.$nextTick(() => {
             this.$refs['ui-tree'].setCurrentKey(nv);
             if(nv) {
-              if(this.$refs['ui-tree'].getNode(nv)&&this.$refs['ui-tree'].getNode(nv).parent) {
-                this.$refs['ui-tree'].getNode(nv).parent.expanded=true;
-              } else {
-                this.$refs['ui-tree'].getNode(nv).expanded=true;
+              const node = this.$refs['ui-tree'].getNode(nv)
+              if(node&&node.parent.data instanceof Object) {
+                node.parent.expanded=true;
+                this.pushExpandedKeys(node.parent.data.id)
               }
             }
-            this.pushExpandedKeys(nv)
+
           })
         }
       }
