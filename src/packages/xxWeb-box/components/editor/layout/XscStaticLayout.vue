@@ -311,7 +311,17 @@ export default {
     },
     itemClass(item){
       if(this.view){
-        return ['mt_item','mt_item_view']
+        if(item.config.box.animation&&item.config.box.animation.length>0) {
+          let isHighLight = false
+          item.config.box.animation.forEach(item=>{
+            if(item==='highLight') {
+              isHighLight = true
+            }
+          })
+          return isHighLight?['mt_item','mt_item_light','mt_item_view']:['mt_item','mt_item_view']
+        } else {
+          return ['mt_item','mt_item_view']
+        }
       }else{
         return this.selectedItems.findIndex(c=>c.id===item.id)>-1? this.isLight? ['mt_item','mt_item_light','dragging']:['mt_item','mt_item_active','dragging']: ['mt_item','mt_item_base']
       }
