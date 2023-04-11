@@ -163,7 +163,8 @@ export default {
           formPaentId:draggingNode.data.parentId,
           toParentId:dropNode.data.parentId||dropNode.data.id,
           toIndex:toIndex,
-          id:draggingNode.data.id
+          id:draggingNode.data.id,
+          uiList:this.uiList
         },'cross-page',dropNode.parent.data.id)
       }
     },
