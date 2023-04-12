@@ -19,7 +19,7 @@
         </div>
     </div>
     </div>
-    <div class="mtScale-control">
+    <div class="mtScale-control" v-if="config.isControl">
       <template v-if="config.isScale">
         <div class="mtScale-control-item" style="text-align: center">
           <i @click="zoomOut" class="el-icon-remove icon-zoom" style="color: #E6A23C"></i>
@@ -68,6 +68,7 @@ export default {
       default(){
         return {
           theme:'dark',
+          isControl:true,
           isRuler:true,
           isScale:true,
           isDrag:true,
@@ -136,14 +137,27 @@ export default {
       return `${scale.toFixed(2)}%`
     },
     mtScaleContentStyle(){
-      return {
-        transform:`translate(${this.location.x}px, ${this.location.y}px)`
+      if(this.config.isScale){
+        return {
+          transform:`translate(${this.location.x}px, ${this.location.y}px)`
+        }
+      }else{
+        return {
+          width: '100%',
+          height: '100%',
+        }
       }
     },
     mtScaleViewStyle(){
+      if(this.config.isScale){
+        return {
+          transformOrigin: '0px 0px',
+          transform: `scale(${this.scale})`
+        }
+      }
       return {
-        transformOrigin: '0px 0px',
-        transform: `scale(${this.scale})`
+        width: '100%',
+        height: '100%',
       }
     },
     mtScaleContainerStyle(){
