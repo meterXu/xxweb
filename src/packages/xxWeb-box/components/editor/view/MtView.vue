@@ -44,6 +44,7 @@
       <div v-if="config.isNavigate" class="mtScale-control-item">
         <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
       </div>
+      <slot name="control" :scale="scale" :percentage="percentage"></slot>
     </div>
     <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
       <slot name="navigate" :scale="scale" :view="true">
