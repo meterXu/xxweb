@@ -81,22 +81,18 @@ export default {
       optionsH.textColor= '#B5B5B5'
       optionsH.backgroundColor= '#F1F4F8'
       optionsH.lineColor = '#ddd'
-      optionsH.className = 'guides-light'
       optionsH.height=24
       optionsH.textOffset = [0,4]
       optionsV.textColor= '#B5B5B5'
       optionsV.lineColor = '#ddd'
       optionsV.backgroundColor= '#F1F4F8'
-      optionsV.className = 'guides-light'
       optionsV.width=24
       optionsV.textOffset = [4,0]
     } else {
       optionsH.textColor= '#96A2BA'
-      optionsH.backgroundColor= '#F1F4F8'
+      optionsH.backgroundColor= '#1E2532'
       optionsV.textColor= '#96A2BA'
-      optionsV.backgroundColor= '#F1F4F8'
-      optionsH.className = 'guides-dark'
-      optionsV.className = 'guides-dark'
+      optionsV.backgroundColor= '#1E2532'
     }
       this.guides1 =new Guides(document.querySelector(".ruler-container-top"), optionsH).on("changeGuides", ({ guides }) => {
         this.onChangeTop(guides)

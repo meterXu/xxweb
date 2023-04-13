@@ -11,6 +11,7 @@
   --ruler-scale-bg:#fff;
   --rule-other-bg:transparent;
   --rule-border-color:#ddd;
+  --ruler-empty-bg:#F1F4F8;
 }
 .mtScale[theme='dark']{
   --background:transparent;
@@ -25,6 +26,7 @@
   --ruler-scale-bg:#1E2532;
   --rule-other-bg:transparent;
   --rule-border-color:#818181;
+  --ruler-empty-bg:#1E2532;
 }
 
 .mtScale{
@@ -100,7 +102,7 @@
     margin-left: 10px;
   }
   .ruler-container-empty{
-    background: #fff;
+    background: var(--ruler-empty-bg);
     width: 24px;
     height: 24px;
   }
