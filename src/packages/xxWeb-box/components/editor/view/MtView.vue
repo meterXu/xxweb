@@ -354,8 +354,3 @@ export default {
   }
 }
 </script>
-<style>
-.mtScale .mtScale-control-item .el-dropdown-link {
-  color: #6D5EFF;
-}
-</style>
