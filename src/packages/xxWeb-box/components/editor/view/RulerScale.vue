@@ -1,5 +1,7 @@
 <template>
   <div>
+    <div class="ruler-container-empty">
+    </div>
     <div class="ruler-container-top">
     </div>
     <div class="ruler-container-right">
@@ -17,6 +19,7 @@ export default {
     scale: Number,
     location: Object,
     theme: String,
+
     lines:{
       type: Object,
       default(){
@@ -75,15 +78,25 @@ export default {
       zoom: this.scale,
     }
     if(this.theme==='light') {
-      optionsH.textColor= '#000'
-      optionsH.backgroundColor= '#fff'
-      optionsV.textColor= '#000'
-      optionsV.backgroundColor= '#fff'
+      optionsH.textColor= '#B5B5B5'
+      optionsH.backgroundColor= '#F1F4F8'
+      optionsH.lineColor = '#ddd'
+      optionsH.className = 'guides-light'
+      optionsH.height=24
+      optionsH.textOffset = [0,4]
+      optionsV.textColor= '#B5B5B5'
+      optionsV.lineColor = '#ddd'
+      optionsV.backgroundColor= '#F1F4F8'
+      optionsV.className = 'guides-light'
+      optionsV.width=24
+      optionsV.textOffset = [4,0]
     } else {
       optionsH.textColor= '#96A2BA'
-      optionsH.backgroundColor= '#1E2532'
+      optionsH.backgroundColor= '#F1F4F8'
       optionsV.textColor= '#96A2BA'
-      optionsV.backgroundColor= '#1E2532'
+      optionsV.backgroundColor= '#F1F4F8'
+      optionsH.className = 'guides-dark'
+      optionsV.className = 'guides-dark'
     }
       this.guides1 =new Guides(document.querySelector(".ruler-container-top"), optionsH).on("changeGuides", ({ guides }) => {
         this.onChangeTop(guides)

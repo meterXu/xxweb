@@ -9,8 +9,8 @@
   --tool-icon:#909399;
   --ruler-scale-text:#000;
   --ruler-scale-bg:#fff;
-  --rule-other-bg:#fff;
-  --rule-border-color:#818181;
+  --rule-other-bg:transparent;
+  --rule-border-color:#ddd;
 }
 .mtScale[theme='dark']{
   --background:transparent;
@@ -23,7 +23,7 @@
   --tool-icon:#99a5be;
   --ruler-scale-text:#96A2BA;
   --ruler-scale-bg:#1E2532;
-  --rule-other-bg:#202835;
+  --rule-other-bg:transparent;
   --rule-border-color:#818181;
 }
 
@@ -36,7 +36,7 @@
   display: flex;
   flex-flow: column;
   justify-content: flex-start;
-  background-color: var(--rule-other-bg);
+  background: var(--rule-other-bg);
   .el-dropdown-link {
     cursor: pointer;
     color: var(--link-color);
@@ -99,6 +99,11 @@
   .mtScale-control-item+.mtScale-control-item{
     margin-left: 10px;
   }
+  .ruler-container-empty{
+    background: #fff;
+    width: 24px;
+    height: 24px;
+  }
   .ruler-container-top,.ruler-container-right{
     box-sizing: content-box;
     border-color: var(--border-color);
@@ -106,10 +111,10 @@
     border-style: solid;
   }
   .ruler-container-top{
-    height: 30px;
+    height: 24px;
     position:absolute;
     top: 0;
-    left: 30px;
+    left: 24px;
     right:0;
     z-index: 2;
     border-left: 1px solid var(--rule-border-color);
@@ -118,9 +123,9 @@
     border-bottom: 1px solid var(--rule-border-color) ;
   }
   .ruler-container-right{
-    width: 30px;
+    width: 24px;
     position:absolute;
-    top: 30px;
+    top: 24px;
     left: 0;
     bottom:0;
     z-index: 2;
