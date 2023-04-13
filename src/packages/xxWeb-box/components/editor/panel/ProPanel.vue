@@ -115,7 +115,7 @@ export default {
   watch: {
     config: {
       handler(val) {
-        if(val&&val instanceof Array){
+        if(val&&val instanceof Array&&val.length>0){
           this.activeNames = val[0].con.map((v, index) => index)
         }
       },
