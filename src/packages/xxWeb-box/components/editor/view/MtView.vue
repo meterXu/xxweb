@@ -20,31 +20,37 @@
     </div>
     </div>
     <div class="mtScale-control">
-      <template v-if="config.isScale">
-        <div class="mtScale-control-item" style="text-align: center">
-          <i @click="zoomOut" class="el-icon-remove icon-zoom" style="color: #E6A23C"></i>
-          <Dropdown placement="top" @command="percentageChange">
+      <slot name="control" :scale="scale" :percentage="percentage">
+        <div class="mtScale-control-left">
+          <slot name="left-control"></slot>
+        </div>
+        <template v-if="config.isScale">
+          <div class="mtScale-control-right">
+            <div class="mtScale-control-item" style="text-align: center">
+              <i @click="zoomOut" class="el-icon-remove icon-zoom" style="color: #E6A23C"></i>
+              <Dropdown placement="top" @command="percentageChange">
             <span class="el-dropdown-link">
               {{percentage}}
             </span>
-            <DropdownMenu slot="dropdown">
-              <DropdownItem v-for="item in scaleList" :key="item" :command="item">{{`${item*100}%`}}</DropdownItem>
-              <DropdownItem divided command="fitCanvas">适应画布</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-          <i @click="zoomIn" class="el-icon-circle-plus icon-zoom" style="color: #67C23A"></i>
+                <DropdownMenu slot="dropdown">
+                  <DropdownItem v-for="item in scaleList" :key="item" :command="item">{{`${item*100}%`}}</DropdownItem>
+                  <DropdownItem divided command="fitCanvas">适应画布</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <i @click="zoomIn" class="el-icon-circle-plus icon-zoom" style="color: #67C23A"></i>
+            </div>
+            <div  class="mtScale-control-item">
+              <MtIcon icon="DoOverallReduction" :size="16" class="control-icon" title="适应画布" @click="fitCanvas"></MtIcon>
+            </div>
+            <div class="mtScale-control-item">
+              <MtIcon icon="DoOneToOne" :size="16" class="control-icon" title="100%" @click="fullCanvas"></MtIcon>
+            </div>
+          </div>
+        </template>
+        <div v-if="config.isNavigate" class="mtScale-control-item">
+          <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
         </div>
-        <div  class="mtScale-control-item">
-          <MtIcon icon="DoOverallReduction" :size="16" class="control-icon" title="适应画布" @click="fitCanvas"></MtIcon>
-        </div>
-        <div class="mtScale-control-item">
-          <MtIcon icon="DoOneToOne" :size="16" class="control-icon" title="100%" @click="fullCanvas"></MtIcon>
-        </div>
-      </template>
-      <div v-if="config.isNavigate" class="mtScale-control-item">
-        <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
-      </div>
-      <slot name="control" :scale="scale" :percentage="percentage"></slot>
+      </slot>
     </div>
     <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
       <slot name="navigate" :scale="scale" :view="true">
