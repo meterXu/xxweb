@@ -131,14 +131,14 @@ export default {
           'background-image': 'url(\'' + this.page.config.options.backgroundImage + '\')',
           'background-size': this.page.config.options.backgroundSize,
           'background-repeat': this.page.config.options.backgroundRepeat,
-          display: this.view ? 'block' : 'inline-block',
+          display: this.view ? 'block' : 'block',
         }
       } else {
         return {
           width: '1000px',
           height: '500px',
           'background-color': null,
-          display: this.view ? 'block' : 'inline-block'
+          display: this.view ? 'block' : 'block'
         }
       }
     }
