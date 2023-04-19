@@ -103,8 +103,10 @@ export default {
             let isFater = []
             let arr = document.getElementsByClassName('el-tree-node__expand-icon')
             for(let i = 0;i<arr.length;i++) {
-              if(arr[i].nextElementSibling.querySelector('.custom-tree-node-label').querySelector('.page-icon')) {
-                isFater.push(arr[i])
+              if(arr[i].nextElementSibling.querySelector('.custom-tree-node-label')){
+                if(arr[i].nextElementSibling.querySelector('.custom-tree-node-label').querySelector('.page-icon')) {
+                  isFater.push(arr[i])
+                }
               }
             }
             if(isFater.length) {
