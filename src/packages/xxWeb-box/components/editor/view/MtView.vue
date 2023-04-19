@@ -254,6 +254,7 @@ export default {
       }else{
         this.scale = 4*0.25+(this.zoomLevel-5)*0.5
       }
+      this.$emit("canvasChange",this.scale,this.location)
     },
     zoomIn(){
       this.zoomLevel++
@@ -265,6 +266,7 @@ export default {
         this.scale = this.scale>=4?4:this.scale
         this.zoomLevel = this.zoomLevel>=11?11:this.zoomLevel
       }
+      this.$emit("canvasChange",this.scale,this.location)
     },
     resetMtLocation(scale){
       const mtScaleContainer = this.$refs['mtScale-container']
@@ -280,6 +282,7 @@ export default {
 
         this.location.x = res.location.x
         this.location.y = res.location.y
+        this.$emit("canvasChange",this.scale,this.location)
       }
     },
     resetCanvas(scale,viewSize,canvasSize){
