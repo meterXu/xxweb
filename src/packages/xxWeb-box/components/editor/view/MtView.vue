@@ -228,6 +228,7 @@ export default {
       const ownerRect = this.$refs['mtScale-container'].getBoundingClientRect()
       this.location.x = 减(event.pageX,加(ownerRect.left,this.shift.x))
       this.location.y = 减(event.pageY,加(ownerRect.top,this.shift.y))
+      this.$emit("canvasChange",this.scale,this.location)
     },
     mouseup(){
       if(this.$refs['mtScale-view']&&this.$refs['mtScale-view'].classList){
