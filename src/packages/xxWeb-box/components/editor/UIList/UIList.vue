@@ -99,7 +99,7 @@ export default {
             this.pushExpandedKeys(nv[0].id)
           }
           this.$nextTick(()=>{
-            this.$refs['ui-tree'].setCurrentKey(this.activeId);
+            this.$refs['ui-tree']&&this.$refs['ui-tree'].setCurrentKey(this.activeId);
             let isFater = []
             let arr = document.getElementsByClassName('el-tree-node__expand-icon')
             for(let i = 0;i<arr.length;i++) {
