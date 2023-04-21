@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-resize="()=>{resizeGuides(this.scale)}">
     <div class="ruler-container-empty">
     </div>
     <div class="ruler-container-top">
@@ -34,6 +34,25 @@ export default {
     prop:'lines',
     event:'change'
   },
+  directive:{
+    resize: {
+      bind(el, binding) {
+        let width = '', height = '';
+        function isResize() {
+          const style = document.defaultView.getComputedStyle(el);
+          if (width !== style.width || height !== style.height) {
+            binding.value();
+          }
+          width = style.width;
+          height = style.height;
+        }
+        el.__vueSetInterval__ = setInterval(isResize, 300);
+      },
+      unbind(el) {
+        clearInterval(el.__vueSetInterval__);
+      }
+    }
+  },
   watch: {
     location: {
       deep: true,
@@ -44,13 +63,8 @@ export default {
         this.guides2.scroll(-nv.y/this.scale,this.scale);
       }
     },
-    scale:{
-      handler(nv,ov){
-        this.$nextTick(()=>{
-          this.initGuides()
-        })
-      },
-      immediate:true
+    scale(nv,ov){
+      this.resizeGuides(nv)
     }
   },
   computed: {
@@ -61,6 +75,18 @@ export default {
     },
     onChangeLeft(guides) {
       this.lines.left = guides
+    },
+    resizeGuides(nv){
+      this.$nextTick(()=> {
+        this.guides1.zoom  = nv
+        this.guides1.resize()
+        this.guides2.zoom  = nv
+        this.guides2.resize()
+        this.guides1.scroll(-this.location.x/nv,nv);
+        this.guides2.scroll(-this.location.y/nv,nv);
+        this.guides1.scrollGuides(-this.location.y/nv,nv);
+        this.guides2.scrollGuides(-this.location.x/nv,nv);
+      })
     },
     initGuides(){
       let optionsH = {
@@ -98,15 +124,10 @@ export default {
       });
       this.guides1.loadGuides(this.lines.top)
       this.guides2.loadGuides(this.lines.left)
-      this.guides1.zoom  = nv
-      this.guides1.resize()
-      this.guides2.zoom  = nv
-      this.guides2.resize()
-      this.guides1.scroll(-this.location.x/nv,nv);
-      this.guides2.scroll(-this.location.y/nv,nv);
-      this.guides1.scrollGuides(-this.location.y/nv,nv);
-      this.guides2.scrollGuides(-this.location.x/nv,nv);
     }
+  },
+  mounted() {
+    this.initGuides()
   }
 }
 </script>
