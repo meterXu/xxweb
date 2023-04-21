@@ -45,16 +45,19 @@
             <div class="mtScale-control-item">
               <MtIcon icon="DoOneToOne" :size="16" class="control-icon" title="100%" @click="fullCanvas"></MtIcon>
             </div>
+            <div v-if="config.isNavigate" class="mtScale-control-item">
+              <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
+            </div>
           </div>
         </template>
-        <div v-if="config.isNavigate" class="mtScale-control-item">
-          <MtIcon icon="DoGps" :size="16" class="control-icon" title="导航" @click="showNavigate"></MtIcon>
-        </div>
       </slot>
     </div>
     <Navigate v-show="toggleNavigate" :config="navigateConf" @navigateMove="navigateMove">
-      <slot name="navigate" :scale="scale" :view="true">
-      </slot>
+       <div class="navigate-con">
+         <slot :scale="scale" :view="false"/>
+         <slot name='otherNavigate' :scale="scale" :view="false">
+         </slot>
+       </div>
     </Navigate>
   </div>
 </template>
@@ -352,6 +355,7 @@ export default {
     navigateMove(location){
       this.location.x = -location.x
       this.location.y = -location.y
+      this.$emit("canvasChange",this.scale,this.location)
     },
     clickAlign(type) {
       this.$emit('viewAlign',type)
