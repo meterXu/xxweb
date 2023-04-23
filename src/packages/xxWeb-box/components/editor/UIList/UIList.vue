@@ -10,7 +10,7 @@
         :default-expanded-keys="expandedKeys"
         :draggable="draggable"
         :current-node-key="activeId"
-        :expand-on-click-node="false"
+        :expand-on-click-node="true"
         :default-expand-all="defaultExpandAll"
         :allow-drop="allowDrop"
         icon-class="tree-icon"
