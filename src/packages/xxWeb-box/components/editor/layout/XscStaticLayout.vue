@@ -258,11 +258,6 @@ export default {
           y:parseInt((event.clientY - clickBox.top)/this.scale)
         }
         this.$emit('drop',location)
-        this.$nextTick(()=>{
-          let activeItem = this.charts[this.charts.length - 1]
-          this.$emit('change',activeItem)
-          this.selectedItems=activeItem?[activeItem]:[]
-        })
       }
     },
     dragover() {
