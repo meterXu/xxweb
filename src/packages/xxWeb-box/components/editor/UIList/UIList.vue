@@ -28,7 +28,7 @@
               <span class="page-icon-hide"><MtIcon icon="文件夹_开" :size="11"></MtIcon></span>
               <span><MtIcon icon="文件夹_关" :size="11"></MtIcon></span>
             </span>
-          <span :class="{'node-title':true,'node-parent-title':!node.isLeaf}">
+          <span @dblclick.stop="nodeDblclick(data,node)" :class="{'node-title':true,'node-parent-title':!node.isLeaf}">
              <slot name="label" :data="data">
               {{ data.name }}
            </slot>
@@ -191,6 +191,9 @@ export default {
     },
     nodeClick(data,dropNode){
       this.$emit('nodeChange',data.id,'active',dropNode.parent.data.id)
+    },
+    nodeDblclick(data,dropNode) {
+      this.$emit('nodeChange',data.id,'dblclick',dropNode.parent.data.id)
     },
     contextmenu(data,parent) {
       event.preventDefault()
