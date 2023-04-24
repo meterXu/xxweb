@@ -28,7 +28,7 @@
               <span class="page-icon-hide"><MtIcon icon="文件夹_开" :size="11"></MtIcon></span>
               <span><MtIcon icon="文件夹_关" :size="11"></MtIcon></span>
             </span>
-          <span @dblclick.stop="nodeDblclick(data,node)" :class="{'node-title':true,'node-parent-title':!node.isLeaf}">
+          <span @dblclick.stop="nodeDblclick(data,node)" :class="{'node-title':true,'node-parent-title':!node.isLeaf || node.level===1}">
              <slot name="label" :data="data">
               {{ data.name }}
            </slot>
