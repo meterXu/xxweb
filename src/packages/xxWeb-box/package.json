@@ -1,6 +1,6 @@
 {
   "name": "@dpark/s2-xxweb-box",
-  "version": "0.0.20.014-alpha",
+  "version": "0.0.20.015-alpha",
   "description": "可复用的web常用页面",
   "main": "index.js",
   "scripts": {
