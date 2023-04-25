@@ -479,6 +479,7 @@ export default {
   color: #666666;
 }
 .el-form-item__content > .el-input,
+.el-form-item__content > .el-slider,
 .el-form-item__content > .el-select{
   padding-right: 10px;
 }
