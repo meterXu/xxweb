@@ -130,7 +130,12 @@ export default {
         case 'boolean': {
           return (
             <div class={modelPro.obj[modelPro.key] ? 'mt-boolean-active' : 'mt-boolean-inactive'}>
-              <el-switch active-color={'#FFFFFF'} inactive-color={'#FFFFFF'} value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} onChange={$event => { event.stopPropagation() }} size="mini">
+              <el-switch active-color={'#FFFFFF'}
+                         inactive-color={'#FFFFFF'}
+                         value={modelPro.obj[modelPro.key]}
+                         title={fItem.attrs.title}
+                         onInput={$event => { modelPro.obj[modelPro.key] = $event }}
+                         onChange={$event => { event.stopPropagation() }} size="mini">
               </el-switch>
             </div>
           )
