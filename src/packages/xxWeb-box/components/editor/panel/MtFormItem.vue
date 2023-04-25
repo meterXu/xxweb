@@ -200,7 +200,11 @@ export default {
         }
         case 'checkbox': {
           return (
-            <el-checkbox-group value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = [...$event] }} size="mini">
+            <el-checkbox-group
+                value={modelPro.obj[modelPro.key]}
+                onInput={$event => { modelPro.obj[modelPro.key] = [...$event] }}
+                class={`chk-flow-${fItem.props.flow}`}
+                size="mini">
               {fItem.data.map(item => <el-checkbox label={item.value}>
                 {item.text}
               </el-checkbox>)}
@@ -477,5 +481,10 @@ export default {
 .el-form-item__content > .el-input,
 .el-form-item__content > .el-select{
   padding-right: 10px;
+}
+.chk-flow-row{
+  .el-checkbox{
+    display: block;
+  }
 }
 </style>
