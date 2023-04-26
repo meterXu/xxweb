@@ -1,10 +1,3 @@
-<!--
- * @Author: zhangyuc
- * @Date: 2023-03-06 18:09:50
- * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-30 14:42:20
- * @Description: 
--->
 <template>
   <Tabs class="mt-pro-panel" size="small" @tab-click="handleTabClick" v-model='value'>
     <TabPane v-for="(tab, ti) in config" :key="ti" :name="ti + ''">
@@ -17,7 +10,13 @@
           {{ panel.title }}
         </div>
         <Form :label-width="panel.labelWidth||''">
-          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" :label="fItem.name" v-show="colFormItemShow(fItem)">
+          <FormItem v-for="(fItem, fi) in panel.sub" :key="fi.toString()" v-show="colFormItemShow(fItem)">
+            <span slot='label'>
+              {{fItem.name}}
+              <sub class="none-label-sub" v-if="fItem.nameSub">
+                {{fItem.nameSub}}
+              </sub>
+            </span>
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
               <template v-slot="{dynamicUi,modelObj,modelKey}">
                 <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelKey="modelKey"></slot>
@@ -51,6 +50,9 @@
                   </span>
                   <span v-else>
                     {{ fItem.name }}
+                    <sub class="none-label-sub" v-if="fItem.nameSub">
+                        {{fItem.nameSub}}
+                    </sub>
                     <slot name="label-icon" :fItem="fItem"></slot>
                   </span>
                 </span>
@@ -66,8 +68,14 @@
       </Collapse>
       <template v-else>
         <Form class="single-con">
-          <FormItem v-for="(fItem, fi) in tab.con.sub" :key="fi" :label="fItem.name"
+          <FormItem v-for="(fItem, fi) in tab.con.sub" :key="fi"
             :class="fItem.name ? '' : 'none-label'" v-show="colFormItemShow(fItem)">
+            <span slot="label">
+              {{fItem.name}}
+              <sub class="none-label-sub" v-if="fItem.nameSub">
+                {{fItem.nameSub}}
+              </sub>
+            </span>
             <MtFormItem v-on="$listeners" :fItem="fItem" :controlledObj="controlledObj">
               <template v-slot="{dynamicUi,modelObj,modelKey}">
                     <slot :dynamicUi="dynamicUi" :modelObj="modelObj" :modelKey="modelKey"></slot>
