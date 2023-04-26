@@ -391,7 +391,6 @@ export default {
 }
 
 .text-col {
-  margin-bottom: 8px;
   line-height: 28px;
   height: 28px;
   padding-right: 10px;
