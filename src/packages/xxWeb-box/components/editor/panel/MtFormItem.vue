@@ -165,7 +165,7 @@ export default {
             )
           } else {
             return (
-              <el-select value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
+              <el-select class="pro-panel-select" value={modelPro.obj[modelPro.key]} onInput={$event => { modelPro.obj[modelPro.key] = $event }} size="mini">
                 {fItem.data.map(item => <el-option class={fItem.props['class']} label={item.text} value={item.value}>{item.text}</el-option>)}
               </el-select>
             )
