@@ -133,7 +133,7 @@ export default {
               <el-switch active-color={'#FFFFFF'}
                          inactive-color={'#FFFFFF'}
                          value={modelPro.obj[modelPro.key]}
-                         title={fItem.attrs.title}
+                         title={fItem.attrs&&fItem.attrs.title}
                          onInput={$event => { modelPro.obj[modelPro.key] = $event }}
                          onChange={$event => { event.stopPropagation() }} size="mini">
               </el-switch>
