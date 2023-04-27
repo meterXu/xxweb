@@ -1,6 +1,11 @@
 <template>
   <div class="switch-button">
-    <div v-for="item in items" :class="value == item.value?'active':''" @click="changeStatus(item.value)">{{item.text}}</div>
+    <div v-for="item in items"
+         :key="item.value"
+         :class="value == item.value?'active':''"
+         @click="changeStatus(item.value)">
+      {{item.text}}
+    </div>
   </div>
 </template>
 <script>

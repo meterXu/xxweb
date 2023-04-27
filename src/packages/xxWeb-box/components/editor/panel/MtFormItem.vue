@@ -480,7 +480,7 @@ export default {
 .el-form-item__content > .el-input,
 .el-form-item__content > .el-slider,
 .el-form-item__content > .el-select{
-  padding-right: 10px;
+  margin-right: 10px;
 }
 .chk-flow-row{
   .el-checkbox{
