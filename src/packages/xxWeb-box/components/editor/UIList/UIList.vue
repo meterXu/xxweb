@@ -18,8 +18,8 @@
         @node-expand="nodeExpandHandle"
         @node-collapse="nodeCollapseHandle"
     >
-        <span class="custom-tree-node" slot-scope="{ node, data }">
-          <div class="custom-tree-node-label" @click="nodeClick(data,node)" @contextmenu="contextmenu(data,node.parent)">
+        <span class="custom-tree-node" slot-scope="{ node, data }" @click="nodeClick(data,node)" @contextmenu="contextmenu(data,node.parent)">
+          <div class="custom-tree-node-label">
             <span v-if="!node.isLeaf" class="page-icon">
               <MtIcon v-if="node.expanded" icon="文件夹_开" :size="11"></MtIcon>
               <MtIcon v-else icon="文件夹_关" :size="11"></MtIcon>
