@@ -1,20 +1,12 @@
-<!--
- * @Author: zhangyuc
- * @Date: 2023-03-17 09:42:34
- * @LastEditors: zhangyuc
- * @LastEditTime: 2023-03-17 10:36:36
- * @Description: 按钮切换状态
--->
 <template>
   <div class="switch-button">
-    <div :class="value == 'horizontal'?'active':''" @click="changeStatus('horizontal')">横向</div>
-    <div :class="value == 'vertical'?'active':''" @click="changeStatus('vertical')">纵向</div>
+    <div v-for="item in items" :class="value == item.value?'active':''" @click="changeStatus(item.value)">{{item.text}}</div>
   </div>
 </template>
 <script>
 export default {
   name: "MtButtonSwitch",
-  props:['value'],
+  props:['value','items'],
   data(){
     return{
       
