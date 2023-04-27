@@ -470,7 +470,8 @@ export default {
   background: #F1F4F8;
   color: #666666;
 }
-.el-form-item__content > .el-input,
+.mt-pro-panel{
+  .el-form-item__content > .el-input,
 .el-form-item__content > .el-slider,
 .el-form-item__content > .el-select{
   margin-right: 10px;
@@ -480,4 +481,6 @@ export default {
     display: block;
   }
 }
+}
+
 </style>
