@@ -406,13 +406,6 @@ export default {
   height: auto;
 }
 
-.text-col-twice {
-  line-height: 28px;
-  height: 28px;
-  height: 28px;
-  padding-right: 10px;
-}
-
 .el-row {
   width: 100%;
 }

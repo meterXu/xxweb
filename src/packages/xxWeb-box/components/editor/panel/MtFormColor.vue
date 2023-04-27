@@ -1,14 +1,14 @@
 <template>
-  <div>
+  <div class="mt-lj-color">
     <el-row>
       <el-col :span="fItem.hasInput ? (fItem.colorSpan || 4) : 24" class='text-col-twice'>
         <el-color-picker color-format="hex" v-model="color" size="mini" :predefine="formatPredefine"
           @active-change='activeChange' @change='changeColor'></el-color-picker>
       </el-col>
-      <el-col :span='12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice' style="padding-right: 3px">
+      <el-col :span='fItem.inputSpan || 12' v-if='fItem.hasInput && !fItem.hideColor' class='text-col-twice'>
         <el-input v-model='color' size='mini'></el-input>
       </el-col>
-      <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput' class='prepend-percent' style="padding-left: 7px">
+      <el-col :span='fItem.opcSpan || 8' v-if='fItem.hasInput && !fItem.hideOpacity' class='prepend-percent'>
         <el-input v-model='opacity' size='mini' @input='changeColor'>
         </el-input>
       </el-col>
@@ -236,6 +236,16 @@ export default {
     color: #666666;
     opacity: 0.5;
     line-height: 26px;
+  }
+}
+.mt-lj-color{
+  .text-col-twice+.prepend-percent{
+    padding-left: 10px
+  }
+  .text-col-twice {
+    line-height: 28px;
+    height: 28px;
+    height: 28px;
   }
 }
 </style>
