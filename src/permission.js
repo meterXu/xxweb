@@ -26,13 +26,6 @@ export default [
                 title: 'error',
                 icon: 'el-icon-circle-close'
             }
-        },
-        {
-            path: '/page/itemList/editor',
-            meta: {
-                title: 'editor',
-                icon: 'el-icon-crop'
-            }
         }
     ]
 },
@@ -62,34 +55,6 @@ export default [
                 meta: {
                     title: '详情页面',
                     icon: 'el-icon-tickets'
-                }
-            },
-            {
-                path: '/demo/editor',
-                meta: {
-                    title: '编辑器',
-                    icon: 'el-icon-edit'
-                }
-            },
-            {
-                path: '/demo/rowLayoutEditor',
-                meta: {
-                    title: '行布局编辑器',
-                    icon: 'el-icon-edit'
-                }
-            },
-            {
-                path: '/demo/columnLayoutEditor',
-                meta: {
-                    title: '列布局编辑器',
-                    icon: 'el-icon-edit'
-                }
-            },
-            {
-                path: '/demo/GridLayoutEditor',
-                meta: {
-                    title: '栅格布局编辑器',
-                    icon: 'el-icon-edit'
                 }
             }
         ]
