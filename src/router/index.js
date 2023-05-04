@@ -93,31 +93,6 @@ const normalRoutes =  [
                 path:'/demo/detail',
                 name:"Dashboard",
                 component:()=>import('../views/demo/Detail')
-            },
-            {
-                path: '/demo/editor',
-                name: 'editor',
-                component: ()=>import('../views/demo/Editor')
-            },
-            {
-                path: '/demo/rowLayoutEditor',
-                name: 'rowLayoutEditor',
-                component: ()=>import('../views/demo/RowLayoutEditor')
-            },
-            {
-                path: '/demo/columnLayoutEditor',
-                name: 'columnLayoutEditor',
-                component: ()=>import('../views/demo/ColumnLayoutEditor')
-            },
-            {
-                path: '/demo/gridLayoutEditor',
-                name: 'gridLayoutEditor',
-                component: ()=>import('../views/demo/GridLayoutEditor')
-            },
-            {
-                path: '/demo/panelDemo',
-                name: 'panelDemo',
-                component: ()=>import('../views/demo/PanelDemo')
             }
         ]
     }

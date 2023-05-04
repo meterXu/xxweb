@@ -1,5 +1,5 @@
 {
-  "name": "s2-xxweb-utils",
+  "name": "xxweb-utils",
   "version": "0.0.13.001-alpha",
   "description": "xxweb工具库",
   "main": "index.js",

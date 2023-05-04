@@ -15,20 +15,13 @@ import {JeecgLogin,
   NoAuthority2,
   Error,
   DarkMode1,
-  MtView,
-  XscStaticLayout,
-  XscRowLayout,
-  XscColumnLayout,
-  XscGridLayout,
-  ProPanel
 } from './packages/xxWeb-box'
 import router from './router';
-import DemoBlock from "@/views/doc/DemoBlock";
+import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
 Vue.prototype.$project = window.project
-// filter(router,Vue.prototype.$project)
 Vue.prototype.$ls = new util.ls(window.project)
 Vue.use(XXWeb)
 Vue.component(DemoBlock.name,DemoBlock)
@@ -45,13 +38,7 @@ const components = [JeecgLogin,
   NoAuthority1,
   NoAuthority2,
   Error,
-  DarkMode1,
-  MtView,
-  XscStaticLayout,
-  XscRowLayout,
-  XscColumnLayout,
-  XscGridLayout,
-  ProPanel
+  DarkMode1
 ]
 components.forEach(c=>{
   Vue.use(c)
