@@ -1,6 +1,6 @@
 {
   "name": "xxweb-utils",
-  "version": "0.0.12.001-alpha",
+  "version": "0.0.13",
   "description": "xxweb工具库",
   "main": "index.js",
   "scripts": {
