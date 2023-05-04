@@ -27,7 +27,7 @@ npm install xxweb-box
 ## 使用
 ```js
 // main.js
-import router from "./router/index.js"
+import router from "./router/util.js"
 import XXWebBox from 'xxweb-box'
 Vue.use(XXWebBox)
 new Vue({
@@ -37,7 +37,7 @@ new Vue({
 ```
 
 ```js
-// /router/index.js
+// /router/util.js
 import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from '../components/HelloWorld.vue'

@@ -16,8 +16,7 @@
 </template>
 
 <script>
-import {JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,WDPLogin} from '../packages/xxWeb-box/index'
-import {types} from "../packages/xxWeb-utils/index";
+import {JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,WDPLogin,types} from '../packages/xxWeb-box/index'
 export default {
   name: "Login",
   props:['type'],

@@ -15,8 +15,7 @@
 
 import permission from "../permission";
 import {Tag} from 'element-ui'
-import {types} from '../packages/xxWeb-utils/index'
-import {DarkMode1} from '../packages/xxWeb-box'
+import {DarkMode1,types} from '../packages/xxWeb-box'
 export default {
   name: 'Index',
   data() {

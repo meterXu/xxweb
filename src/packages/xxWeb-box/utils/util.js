@@ -2,6 +2,10 @@ import {ACCESS_TOKEN,USER_INFO} from './mutation-types'
 import CryptoJS from 'crypto-js'
 import moment from 'moment'
 
+export function isExternal(path) {
+    return /^(https?:|mailto:|tel:)/.test(path);
+}
+
 export function timeFix() {
     const time = new Date()
     const hour = time.getHours()

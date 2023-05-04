@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import {filter,util} from './packages/xxWeb-utils/index'
-import XXWeb from './packages/xxWeb-box'
+import XXWeb,{filter,util} from './packages/xxWeb-box'
 import {JeecgLogin,
   PigLogin,
   TreeLogin,
