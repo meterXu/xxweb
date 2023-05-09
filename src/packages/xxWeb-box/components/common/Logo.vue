@@ -1,6 +1,6 @@
 <template>
   <div class="logo" :style="maxWidth">
-    <img :src="imgSrc" alt="logo">
+    <img v-if="imgSrc" :src="imgSrc" alt="logo">
     <transition name="title">
       <h1 v-if="!isCollapse" class="title">{{title}}</h1>
     </transition>
