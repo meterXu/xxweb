@@ -53,53 +53,57 @@
         </template>
         <Container class="content-container" :style="contentWidth">
           <HeaderLayout :isCollapse="isCollapse">
-            <template v-slot:head-expand-left-start>
-              <slot name="head-expand-left-start"></slot>
-            </template>
-            <template v-slot:head-hamburger>
-              <slot name="head-hamburger"></slot>
-            </template>
-            <template v-slot:head-logo>
-              <slot name="head-logo"></slot>
-            </template>
-            <template v-slot:head-title>
-              <slot name="head-title"></slot>
-            </template>
-            <template v-slot:head-breadcrumb>
-              <slot name="head-breadcrumb"></slot>
-            </template>
-            <template v-slot:head-expand-left-end>
-              <slot name="head-expand-left-end"></slot>
-            </template>
-            <template v-slot:head-expand-center>
-              <slot name="head-expand-center"></slot>
-            </template>
-            <template v-slot:head-expand-right-start>
-              <slot name="head-expand-right-start"></slot>
-            </template>
-            <template v-slot:head-searchMenu>
-              <slot name="head-searchMenu"></slot>
-            </template>
-            <template v-slot:head-fullScreen>
-              <slot name="head-fullScreen"></slot>
-            </template>
-            <template v-slot:head-userMenu>
-              <slot name="head-userMenu"></slot>
-            </template>
-            <template v-slot:head-user-userName>
-              <slot name="head-user-userName"></slot>
-            </template>
-            <template v-slot:head-user-dropdownMenuItem="{menu}">
-              <slot name="head-user-dropdownMenuItem" :menu="menu"></slot>
-            </template>
-            <template v-slot:head-user-tag>
-              <slot name="head-user-tag"></slot>
-            </template>
-            <template v-slot:head-user-tag-text>
-              <slot name="head-user-tag-text"></slot>
-            </template>
-            <template v-slot:head-expand-right-end>
-              <slot name="head-expand-right-end"></slot>
+            <template v-slot:header>
+              <slot name="header">
+                <template v-slot:head-expand-left-start>
+                  <slot name="head-expand-left-start"></slot>
+                </template>
+                <template v-slot:head-hamburger>
+                  <slot name="head-hamburger"></slot>
+                </template>
+                <template v-slot:head-logo>
+                  <slot name="head-logo"></slot>
+                </template>
+                <template v-slot:head-title>
+                  <slot name="head-title"></slot>
+                </template>
+                <template v-slot:head-breadcrumb>
+                  <slot name="head-breadcrumb"></slot>
+                </template>
+                <template v-slot:head-expand-left-end>
+                  <slot name="head-expand-left-end"></slot>
+                </template>
+                <template v-slot:head-expand-center>
+                  <slot name="head-expand-center"></slot>
+                </template>
+                <template v-slot:head-expand-right-start>
+                  <slot name="head-expand-right-start"></slot>
+                </template>
+                <template v-slot:head-searchMenu>
+                  <slot name="head-searchMenu"></slot>
+                </template>
+                <template v-slot:head-fullScreen>
+                  <slot name="head-fullScreen"></slot>
+                </template>
+                <template v-slot:head-userMenu>
+                  <slot name="head-userMenu"></slot>
+                </template>
+                <template v-slot:head-user-userName>
+                  <slot name="head-user-userName"></slot>
+                </template>
+                <template v-slot:head-user-dropdownMenuItem="{menu}">
+                  <slot name="head-user-dropdownMenuItem" :menu="menu"></slot>
+                </template>
+                <template v-slot:head-user-tag>
+                  <slot name="head-user-tag"></slot>
+                </template>
+                <template v-slot:head-user-tag-text>
+                  <slot name="head-user-tag-text"></slot>
+                </template>
+                <template v-slot:head-expand-right-end>
+                  <slot name="head-expand-right-end"></slot>
+                </template>
+              </slot>
             </template>
           </HeaderLayout>
           <MainLayout/>

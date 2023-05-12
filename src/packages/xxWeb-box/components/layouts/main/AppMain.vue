@@ -34,5 +34,7 @@ export default {
 </script>
 
 <style scoped>
-
+.transition-container{
+  overflow: hidden;
+}
 </style>

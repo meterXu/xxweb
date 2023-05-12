@@ -22,7 +22,7 @@
 import mixin from "../../../mixin/mixin";
 import {Autocomplete} from 'element-ui'
 import DynamicIcon from '../../common/DynamicIcon'
-import {isExternal} from "../../../utils/util";
+import {isExternal} from "../../../utils";
 export default {
   name: "SearchMenu",
   components:{
