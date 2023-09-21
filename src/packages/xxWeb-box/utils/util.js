@@ -433,7 +433,7 @@ export function ssoLoginOutUrl(ssoBackUrl,query){
     Object.keys(query).filter(c=>c!=='path').forEach(c=>{
         queryArray.push(`${c}=${query[c]}`)
     })
-    let params = {"redirect_url":encodeURIComponent(`${window.location.origin}${window.location.pathname}#${query.path||''}${queryArray.length>0?'?='+queryArray.join('&'):''}`)};
+    let params = {"redirect_url":encodeURIComponent(`${window.location.origin}${window.location.pathname}#${query.path||''}${queryArray.length>0?'?'+queryArray.join('&'):''}`)};
     if(ssoBackUrl.lastIndexOf('?')>-1){
         ssoBackUrl+='&action=logout'
     }else{
