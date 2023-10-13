@@ -8,6 +8,12 @@
     <template v-slot:head-expand-right-start>
       <DarkMode1 v-model="dark" style="margin-right: 12px"/>
     </template>
+    <template v-slot:head-user-userName>
+      xxxx
+    </template>
+    <template v-slot:side-user-userName>
+      yyyyy
+    </template>
   </XXWebBox>
 </template>
 

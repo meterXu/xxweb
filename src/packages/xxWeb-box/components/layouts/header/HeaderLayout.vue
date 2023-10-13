@@ -54,17 +54,17 @@
               </div>
               <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.user.show">
                 <slot name="head-userMenu">
-                  <UserMenu type="text">
-                    <template v-slot:side-user-userName>
+                  <UserMenu type="text" :user="app.appConfig.config.head.user">
+                    <template v-slot:user-userName>
                       <slot name="head-user-userName"></slot>
                     </template>
-                    <template v-slot:side-user-dropdownMenuItem="{menu}">
+                    <template v-slot:user-dropdownMenuItem="{menu}">
                       <slot name="head-user-dropdownMenuItem" :menu="menu"></slot>
                     </template>
-                    <template v-slot:side-user-tag>
+                    <template v-slot:user-tag>
                       <slot name="head-user-tag"></slot>
                     </template>
-                    <template v-slot:side-user-tag-text>
+                    <template v-slot:user-tag-text>
                       <slot name="head-user-tag-text"></slot>
                     </template>
                   </UserMenu>

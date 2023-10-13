@@ -5,10 +5,10 @@
         <div class="not-found-content">
           <div class="code">{{code}}</div>
           <div class="info">{{text}}</div>
+          <a class="home-button" v-if="show.home" :href="link.home">返回首页</a>
           <slot name="img">
             <div class="mark"></div>
           </slot>
-          <a class="home-button" v-if="show.home" :href="link.home">返回首页</a>
         </div>
       </slot>
       <div class="cloud">

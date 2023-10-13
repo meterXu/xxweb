@@ -8,17 +8,17 @@
         <Hamburger v-if="hamburgerShow" :isCollapse="isCollapse"/>
       </div>
       <slot name="side-userMenu" v-if="app.appConfig.config.sideMenu.user.show">
-        <UserMenu type='avatar' :isCollapse="isCollapse">
-          <template v-slot:side-user-userName>
+        <UserMenu type='avatar' :isCollapse="isCollapse" :user="app.appConfig.config.sideMenu.user">
+          <template v-slot:user-userName>
             <slot name="side-user-userName"></slot>
           </template>
-          <template v-slot:side-user-dropdownMenuItem="{menu}">
+          <template v-slot:user-dropdownMenuItem="{menu}">
             <slot name="side-user-dropdownMenuItem" :menu="menu"></slot>
           </template>
-          <template v-slot:side-user-tag>
+          <template v-slot:user-tag>
             <slot name="side-user-tag"></slot>
           </template>
-          <template v-slot:side-user-tag-text>
+          <template v-slot:user-tag-text>
             <slot name="side-user-tag-text"></slot>
           </template>
         </UserMenu>
