@@ -93,6 +93,11 @@ const normalRoutes =  [
                 path:'/demo/detail',
                 name:"Dashboard",
                 component:()=>import('../views/demo/Detail')
+            },
+            {
+                path:'/demo/text-editor',
+                name:"Dashboard",
+                component:()=>import('../views/demo/TextEditor')
             }
         ]
     }
