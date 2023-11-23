@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  TextEditor
+  <div>TextEditor</div>
 </template>
 
 <style scoped>
