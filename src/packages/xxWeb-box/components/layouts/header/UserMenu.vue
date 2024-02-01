@@ -1,45 +1,93 @@
 <template>
   <div class="user-wrapper">
     <div class="user-wrapper-container">
-      <div class="user-wrapper-avatar" v-if="type==='avatar'">
-        <Dropdown  v-if="isCollapse" @command="handleCommand">
-          <Avatar class="avatar-img" :size="50" :src="circleUrl"></Avatar>
-          <DropdownMenu v-if="app.appConfig.config.head.user.menu.show" slot="dropdown">
-            <slot name="side-user-dropdownMenuItem" :menu="app.appConfig.config.head.user.menu">
-              <DropdownItem command="clearCache" v-if="app.appConfig.config.head.user.menu.clearCache" icon="el-icon-delete">清除缓存</DropdownItem>
-              <DropdownItem command="changePwd" v-if="app.appConfig.config.head.user.menu.changePwd" icon="el-icon-edit">修改密码</DropdownItem>
-              <DropdownItem command="exitSystem" v-if="app.appConfig.config.head.user.menu.exitSystem" icon="el-icon-close">退出系统</DropdownItem>
-            </slot>
-          </DropdownMenu>
+      <div class="user-wrapper-avatar" v-if="type === 'avatar'">
+        <Dropdown v-if="isCollapse" @command="handleCommand">
+          <div class="avatar-warp">
+            <Avatar class="avatar-img" :size="50" :src="circleUrl"></Avatar>
+            <slot name="user-wrapper-avatar-icon"></slot>
+          </div>
+          <template v-slot:dropdown>
+            <DropdownMenu v-if="app.appConfig.config.head.user.menu.show">
+              <slot
+                name="side-user-dropdownMenuItem"
+                :menu="app.appConfig.config.head.user.menu"
+              >
+                <DropdownItem
+                  command="clearCache"
+                  v-if="app.appConfig.config.head.user.menu.clearCache"
+                  icon="el-icon-delete"
+                  >清除缓存</DropdownItem
+                >
+                <DropdownItem
+                  command="changePwd"
+                  v-if="app.appConfig.config.head.user.menu.changePwd"
+                  icon="el-icon-edit"
+                  >修改密码</DropdownItem
+                >
+                <DropdownItem
+                  command="exitSystem"
+                  v-if="app.appConfig.config.head.user.menu.exitSystem"
+                  icon="el-icon-close"
+                  >退出系统</DropdownItem
+                >
+              </slot>
+            </DropdownMenu>
+          </template>
         </Dropdown>
-        <Avatar v-if="!isCollapse" class="avatar-img" :size="50" :src="circleUrl"></Avatar>
+        <div class="avatar-warp" v-if="!isCollapse">
+          <Avatar class="avatar-img" :size="50" :src="circleUrl"></Avatar>
+          <slot name="user-wrapper-avatar-icon"></slot>
+        </div>
       </div>
       <div class="user-wrapper-username" v-if="!isCollapse">
         <Dropdown @command="handleCommand">
-        <span class="el-dropdown-link flex-middle">
-          <i v-if="type==='text'" class="el-icon-user"></i>
-          <span class="side-user-userName" v-if="app.appConfig.config.head.user.username">
-            <slot name="side-user-userName">
-             管理员
-            </slot>
+          <span class="el-dropdown-link flex-middle">
+            <i v-if="type==='text'" class="el-icon-user"></i>
+            <span
+              class="side-user-userName"
+              v-if="app.appConfig.config.head.user.username"
+            >
+              <slot name="side-user-userName"> 管理员 </slot>
+            </span>
+            <i style="line-height: 20px" class="el-icon-arrow-down el-icon--right"></i>
           </span>
-          <i style="line-height: 20px" class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-          <DropdownMenu v-if="app.appConfig.config.head.user.menu.show" slot="dropdown">
-            <slot name="side-user-dropdownMenuItem" :menu="app.appConfig.config.head.user.menu">
-              <DropdownItem command="clearCache" v-if="app.appConfig.config.head.user.menu.clearCache" icon="el-icon-delete">清除缓存</DropdownItem>
-              <DropdownItem command="changePwd" v-if="app.appConfig.config.head.user.menu.changePwd" icon="el-icon-edit">修改密码</DropdownItem>
-              <DropdownItem command="exitSystem" v-if="app.appConfig.config.head.user.menu.exitSystem" icon="el-icon-close">退出系统</DropdownItem>
-            </slot>
-          </DropdownMenu>
+          <template v-slot:dropdown>
+            <DropdownMenu v-if="app.appConfig.config.head.user.menu.show">
+              <slot
+                name="side-user-dropdownMenuItem"
+                :menu="app.appConfig.config.head.user.menu"
+              >
+                <DropdownItem
+                  command="clearCache"
+                  v-if="app.appConfig.config.head.user.menu.clearCache"
+                  icon="el-icon-delete"
+                  >清除缓存</DropdownItem
+                >
+                <DropdownItem
+                  command="changePwd"
+                  v-if="app.appConfig.config.head.user.menu.changePwd"
+                  icon="el-icon-edit"
+                  >修改密码</DropdownItem
+                >
+                <DropdownItem
+                  command="exitSystem"
+                  v-if="app.appConfig.config.head.user.menu.exitSystem"
+                  icon="el-icon-close"
+                  >退出系统</DropdownItem
+                >
+              </slot>
+            </DropdownMenu>
+          </template>
         </Dropdown>
-        <div class="user-vip" v-if="type==='avatar'&&app.appConfig.config.sideMenu.user.tag">
+        <div
+          class="user-vip"
+          v-if="type === 'avatar' && app.appConfig.config.sideMenu.user.tag"
+        >
           <slot name="side-user-tag">
             <div class="user-vip-img">&nbsp;</div>
             <div class="user-vip-text">
-              <slot name="side-user-tag-text">
-                vip6
-              </slot>
+              <slot name="side-user-tag-text"> vip6 </slot>
             </div>
           </slot>
         </div>
@@ -49,27 +97,34 @@
 </template>
 
 <script>
-import {Dropdown,DropdownMenu,DropdownItem,Avatar} from 'element-ui'
-import mixin from "../../../mixin/mixin";
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
+import {
+  ElDropdown as Dropdown,
+  ElDropdownMenu as DropdownMenu,
+  ElDropdownItem as DropdownItem,
+  ElAvatar as Avatar,
+} from 'element-plus'
+import mixin from '../../../mixin/mixin'
 export default {
-  name: "UserMenu",
-  props:['type','isCollapse'],
-  components:{
+  components: {
     Dropdown,
     DropdownMenu,
     DropdownItem,
-    Avatar
+    Avatar,
   },
-  data(){
+  name: 'UserMenu',
+  props: ['type', 'isCollapse'],
+  data() {
     return {
-      circleUrl:require('../../../assets/imgs/user.png')
+      circleUrl: require('../../../assets/imgs/user.png'),
     }
   },
-  mixins:[mixin],
-  methods:{
-    handleCommand(command){
-      this.$bus.$emit('dropdownMenuClick',command)
-    }
-  }
+  mixins: [mixin],
+  methods: {
+    handleCommand(command) {
+      $emit(this.$bus, 'dropdownMenuClick', command)
+    },
+  },
+  emits: ['dropdownMenuClick'],
 }
 </script>

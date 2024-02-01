@@ -1,31 +1,27 @@
 <template>
   <div class="head-title">
-    <span> {{headTitle}} </span>
+    <span> {{ headTitle }} </span>
   </div>
 </template>
 
 <script>
-import mixin from "../../../mixin/mixin";
+import mixin from '../../../mixin/mixin'
 export default {
-  name: "HeadTitle",
-  mixins:[mixin],
-  data(){
+  name: 'HeadTitle',
+  mixins: [mixin],
+  data() {
     return {
-      device:'desktop',
+      device: 'desktop',
     }
   },
-  computed:{
-    headTitle(){
-      if(this.device==='desktop'){
+  computed: {
+    headTitle() {
+      if (this.device === 'desktop') {
         return this.app.appConfig.config.head.title.desktop
-      }else{
+      } else {
         return this.app.appConfig.config.head.title.mobile
       }
-    }
+    },
   },
 }
 </script>
-
-<style scoped>
-
-</style>

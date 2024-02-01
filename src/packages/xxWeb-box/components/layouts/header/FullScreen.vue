@@ -3,19 +3,15 @@
 </template>
 
 <script>
-import screenfull from "screenfull";
+import screenfull from 'screenfull'
 
 export default {
-  name: "FullScreen",
-  methods:{
-    handleFullScreen(){
-      const element = document.querySelector("body");
-      if (element) screenfull.toggle(element);
-    }
-  }
+  name: 'FullScreen',
+  methods: {
+    handleFullScreen() {
+      const element = document.querySelector('body')
+      if (element) screenfull.toggle(element)
+    },
+  },
 }
 </script>
-
-<style scoped>
-
-</style>

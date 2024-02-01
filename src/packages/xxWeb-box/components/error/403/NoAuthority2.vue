@@ -4,12 +4,18 @@
       <slot>
         <div class="img"></div>
         <div class="content">
-          <h1 class="h1">{{code}}</h1>
+          <h1 class="h1">{{ code }}</h1>
           <div class="desc">
-            {{text}}
+            {{ text }}
           </div>
           <div class="action">
-            <Button class="btn" type="primary" v-if="show.home" @click="goHome">{{btnText||返回首页}}</Button>
+            <Button
+              class="btn"
+              type="primary"
+              v-if="show.home"
+              @click="goHome"
+              >{{ btnText || 返回首页 }}</Button
+            >
           </div>
         </div>
       </slot>
@@ -18,49 +24,53 @@
 </template>
 
 <script>
-import {Button} from 'element-ui'
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
+import { ElButton as Button } from 'element-plus'
 import '../../../assets/css/403/403-2.less'
 
 export default {
-  name: "NoAuthority2",
+  name: 'NoAuthority2',
   props: {
     code: {
       type: String,
-      default: '抱歉'
+      default: '抱歉',
     },
     text: {
       type: String,
-      default: '你无权访问此页面，请联系管理员！'
+      default: '你无权访问此页面，请联系管理员！',
     },
-    btnText:{
+    btnText: {
       type: String,
-      default: '返回首页'
+      default: '返回首页',
     },
     show: {
       type: Object,
       default() {
         return {
-          home: true
+          home: true,
         }
-      }
+      },
     },
     link: {
       type: Object,
       default() {
         return {
-          home: "javascript:;"
-        };
-      }
-    }
+          home: 'javascript:;',
+        }
+      },
+    },
   },
   components: {
-    Button
+    Button,
   },
-  methods:{
-    goHome(){
-      this.$emit('goHome')
-      window.location.href=this.link.home
-    }
-  }
+  methods: {
+    goHome() {
+      $emit(this, 'goHome')
+      if (this.link.home) {
+        window.location.href = this.link.home
+      }
+    },
+  },
+  emits: ['goHome'],
 }
 </script>

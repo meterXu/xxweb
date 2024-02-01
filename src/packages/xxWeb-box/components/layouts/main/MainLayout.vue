@@ -1,19 +1,35 @@
 <template>
-  <Main :class="{'layout-main':true,'tab-padding':app.appConfig.style.multipage&&app.appConfig.config.tabs.show}">
-    <TagsView v-if="app.appConfig.style.multipage&&app.appConfig.config.tabs.show" @refresh="refresh"></TagsView>
+  <Main
+    :class="{
+      'layout-main': true,
+      'tab-padding':
+        app.appConfig.style.multipage && app.appConfig.config.tabs.show,
+    }"
+  >
+    <TagsView
+      v-if="app.appConfig.style.multipage && app.appConfig.config.tabs.show"
+      @refresh="refresh"
+    ></TagsView>
     <AppMain ref="appMain"></AppMain>
   </Main>
 </template>
 
 <script>
-import {Tabs,TabPane,Card,Button,Row,Col} from 'element-ui'
-import TagsView from "./TabsView.vue";
-import AppMain from "./AppMain.vue";
-import mixin from "../../../mixin/mixin";
+import {
+  ElTabs as Tabs,
+  ElTabPane as TabPane,
+  ElCard as Card,
+  ElButton as Button,
+  ElRow as Row,
+  ElCol as Col,
+} from 'element-plus'
+import TagsView from './TabsView.vue'
+import AppMain from './AppMain.vue'
+import mixin from '../../../mixin/mixin'
 export default {
-  name: "TabLayout",
-   mixins:[mixin],
-  components:{
+  name: 'TabLayout',
+  mixins: [mixin],
+  components: {
     AppMain,
     TagsView,
     Tabs,
@@ -21,16 +37,12 @@ export default {
     Card,
     Button,
     Row,
-    Col
+    Col,
   },
   methods: {
-    refresh(){
+    refresh() {
       this.$refs.appMain.refresh()
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style scoped>
-
-</style>

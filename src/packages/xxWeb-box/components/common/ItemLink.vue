@@ -1,60 +1,60 @@
-
 <template>
-  <component v-bind="linkProps(to,mode)" @click="handleClick">
+  <component v-bind="linkProps(to, mode)" @click="handleClick">
     <slot />
   </component>
 </template>
 
 <script>
-import { isExternal } from '../../utils/util';
+import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
+import { isExternal } from '../../utils'
 
 export default {
-  name:'ItemLink',
+  name: 'ItemLink',
   props: {
     to: {
       type: String,
-      required: true
+      required: true,
     },
-    mode:{
+    mode: {
       type: String,
-      default:'router'
-    }
+      default: 'router',
+    },
   },
   methods: {
-    linkProps(to,mode) {
-      switch (mode){
-        case 'event':{
+    linkProps(to, mode) {
+      switch (mode) {
+        case 'event': {
           return {
             is: 'a',
-            class:"box-item-link",
-            href: 'javascript:;'
-          };
+            class: 'box-item-link',
+            href: 'javascript:;',
+          }
           break
         }
         case 'router':
-        default:
-          {
+        default: {
           if (isExternal(to)) {
             return {
               is: 'a',
-              class:"box-item-link",
+              class: 'box-item-link',
               href: to,
-              target: '_blank'
-            };
+              target: '_blank',
+            }
           }
           return {
             is: 'router-link',
-            class:'box-item-link',
-            to: to
-          };
+            class: 'box-item-link',
+            to: to,
+          }
         }
       }
     },
-    handleClick(){
-      if(this.mode==='event'){
-        this.$bus.$emit('menuClick',this.to);
+    handleClick() {
+      if (this.mode === 'event') {
+        $emit(this.$bus, 'menuClick', this.to)
       }
-    }
-  }
+    },
+  },
+  emits: ['menuClick'],
 }
 </script>

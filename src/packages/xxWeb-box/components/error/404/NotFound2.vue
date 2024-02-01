@@ -4,10 +4,12 @@
       <slot>
         <div class="img"></div>
         <div class="content">
-          <h1>{{code}}</h1>
-          <div class="desc">{{text}}</div>
+          <h1>{{ code }}</h1>
+          <div class="desc">{{ text }}</div>
           <div class="action">
-            <Button type="primary" size="small" v-if="show.home" @click="goHome">返回首页</Button>
+            <Button type="primary" size="small" v-if="show.home" @click="goHome"
+              >返回首页</Button
+            >
           </div>
         </div>
       </slot>
@@ -16,44 +18,49 @@
 </template>
 
 <script>
-import {Button} from 'element-ui'
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
+import { ElButton as Button } from 'element-plus'
 import '../../../assets/css/404/404-2.less'
 
 export default {
-  name: "NotFound2",
+  name: 'NotFound2',
   props: {
     code: {
       type: String,
-      default: '404'
+      default: '404',
     },
     text: {
       type: String,
-      default: '抱歉，你访问的页面不存在或无权访问！'
+      default: '抱歉，你访问的页面不存在或无权访问！',
     },
     show: {
       type: Object,
       default() {
         return {
-          home: true
+          home: true,
         }
-      }
+      },
     },
     link: {
       type: Object,
       default() {
         return {
-          home: "javascript:;"
-        };
-      }
-    }
+          home: 'javascript:;',
+        }
+      },
+    },
   },
   components: {
-    Button
+    Button,
   },
-  methods:{
-    goHome(){
-      window.location.href=this.link.home
-    }
-  }
+  methods: {
+    goHome() {
+      $emit(this, 'goHome')
+      if (this.link.home) {
+        window.location.href = this.link.home
+      }
+    },
+  },
+  emits: ['goHome'],
 }
 </script>

@@ -8,35 +8,51 @@
               <!-- 右面登录区域上面部分 -->
               <div class="login-content-input">
                 <h2 v-if="config.login">
-                  {{config.login.title}}
-                  <br/>
+                  {{ config.login.title }}
+                  <br />
                 </h2>
-                <Form ref="loginForm" :model="form" :rules="rules" label-width="35px">
+                <Form
+                  ref="loginForm"
+                  :model="form"
+                  :rules="rules"
+                  label-width="35px"
+                >
                   <slot name="form-item-prefix"></slot>
                   <FormItem prop="username">
                     <Input
-                        v-model="form.username"
-                        prefix-icon="el-icon-user-solid"
-                        @keyup.enter.native="login"
-                        :placeholder="placeholder.username"
+                      v-model="form.username"
+                      prefix-icon="el-icon-user-solid"
+                      @keyup.enter="login"
+                      :placeholder="placeholder.username"
                     ></Input>
                   </FormItem>
                   <FormItem prop="password">
                     <Input
-                        v-model="form.password"
-                        prefix-icon="el-icon-key"
-                        @keyup.enter.native="login"
-                        :placeholder="placeholder.password"
-                        show-password
+                      v-model="form.password"
+                      prefix-icon="el-icon-key"
+                      @keyup.enter="login"
+                      :placeholder="placeholder.password"
+                      show-password
                     ></Input>
                   </FormItem>
                   <slot name="form-item-suffix"></slot>
                   <FormItem class="check-box" v-if="remember">
-                    <Checkbox v-model="form.remember" label="记住密码" name="type"></Checkbox>
+                    <Checkbox
+                      v-model:value="form.remember"
+                      label="记住密码"
+                      name="type"
+                    ></Checkbox>
                   </FormItem>
                   <FormItem>
                     <slot name="form-login-btn">
-                      <Button :loading="loginState.loading" :disabled="loginState.loading" type="primary" size="small" class="el-login-but" @click="login">
+                      <Button
+                        :loading="loginState.loading"
+                        :disabled="loginState.loading"
+                        type="primary"
+                        size="small"
+                        class="el-login-but"
+                        @click="login"
+                      >
                         登录
                       </Button>
                       <slot name="form-login-btn-other"></slot>
@@ -66,63 +82,75 @@
 </template>
 
 <script>
+import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
 import '../../assets/css/login/tree-login.less'
-import {Form,FormItem,Input,Button,Checkbox} from 'element-ui'
+import {
+  ElForm as Form,
+  ElFormItem as FormItem,
+  ElInput as Input,
+  ElButton as Button,
+  ElCheckbox as Checkbox,
+} from 'element-plus'
 export default {
-  name: "TreeLogin",
-  props:{
-    config:{default(){return {}}},
-    tips:{default:true},
-    remember:{default:true},
-    placeholder:{default(){return{username:'请输入用户名/邮箱/手机号',password:"请输入密码"}}},
-    rules:{
-      type:Object,
-      default(){
-        return {
-          username:[
-            { required: true, message: '用户名不能为空',trigger: 'blur'},
-          ],
-          password:[
-            { required: true, message: '密码不能为空',trigger: 'blur'},
-          ]
-        }
-      }
-    },
-    form:{
-      type:Object,
-      default(){
+  name: 'TreeLogin',
+  props: {
+    config: {
+      default() {
         return {}
-      }
-    }
+      },
+    },
+    tips: { default: true },
+    remember: { default: true },
+    placeholder: {
+      default() {
+        return { username: '请输入用户名/邮箱/手机号', password: '请输入密码' }
+      },
+    },
+    rules: {
+      type: Object,
+      default() {
+        return {
+          username: [
+            { required: true, message: '用户名不能为空', trigger: 'blur' },
+          ],
+          password: [
+            { required: true, message: '密码不能为空', trigger: 'blur' },
+          ],
+        }
+      },
+    },
+    form: {
+      type: Object,
+      default() {
+        return {}
+      },
+    },
   },
-  data(){
+  data() {
     return {
-      loginState:{
-        loading:false
-      }
+      loginState: {
+        loading: false,
+      },
     }
   },
-  model:{
-    prop:'form',
-    event:'change'
+  model: {
+    prop: 'form',
+    event: 'change',
   },
-  components:{
+  components: {
     Form,
     FormItem,
     Input,
     Button,
-    Checkbox
+    Checkbox,
   },
-  methods:{
-    login(){
-      this.$refs.loginForm.validate(valid=>{
-        this.$emit('login',valid,this.loginState)
+  methods: {
+    login() {
+      this.$refs.loginForm.validate((valid) => {
+        $emit(this, 'login', valid, this.loginState)
       })
-    }
-  }
+    },
+  },
+  emits: ['login'],
 }
 </script>
-
-<style scoped>
-
-</style>

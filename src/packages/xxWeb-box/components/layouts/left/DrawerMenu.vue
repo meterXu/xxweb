@@ -1,11 +1,16 @@
 <template>
-  <Drawer :visible="visible"
-          direction="ltr"
-          :show-close="false"
-          custom-class="mobile-drawer"
-          :size="app.appConfig.config.sideMenu.width"
-          :before-close="handleClose">
-    <slot name="leftSide" :data="{isCollapse:false,permission:this.app.permission}">
+  <Drawer
+    :visible="visible"
+    direction="ltr"
+    :show-close="false"
+    custom-class="mobile-drawer"
+    :size="app.appConfig.config.sideMenu.width"
+    :before-close="handleClose"
+  >
+    <slot
+      name="leftSide"
+      :data="{ isCollapse: false, permission: this.app.permission }"
+    >
       <SideMenu :isCollapse="false" mode="vertical">
         <template v-slot:side-logo>
           <slot name="side-logo"></slot>
@@ -16,7 +21,7 @@
         <template v-slot:side-user-userName>
           <slot name="side-user-userName"></slot>
         </template>
-        <template v-slot:side-user-dropdownMenuItem="{menu}">
+        <template v-slot:side-user-dropdownMenuItem="{ menu }">
           <slot name="side-user-dropdownMenuItem" menu="{menu}"></slot>
         </template>
         <template v-slot:side-user-tag>
@@ -31,26 +36,24 @@
 </template>
 
 <script>
-import mixin from "../../../mixin/mixin";
+import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
+import mixin from '../../../mixin/mixin'
 import SideMenu from './SideMenu'
-import {Drawer} from 'element-ui'
+import { ElDrawer as Drawer } from 'element-plus'
 export default {
-  name: "DrawerMenu",
-  props:['visible'],
-  model:{
-    prop:'visible',
-    event:'change'
+  name: 'DrawerMenu',
+  props: ['visible'],
+  model: {
+    prop: 'visible',
+    event: 'change',
   },
-  mixins:[mixin],
-  components:{SideMenu,Drawer},
-  methods:{
-    handleClose(){
-      this.$emit('change',false)
-    }
-  }
+  mixins: [mixin],
+  components: { SideMenu, Drawer },
+  methods: {
+    handleClose() {
+      $emit(this, 'change', false)
+    },
+  },
+  emits: ['change'],
 }
 </script>
-
-<style scoped>
-
-</style>

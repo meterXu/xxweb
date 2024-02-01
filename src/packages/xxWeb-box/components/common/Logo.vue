@@ -1,36 +1,34 @@
 <template>
   <div class="logo" :style="maxWidth">
-    <img v-if="imgSrc" :src="imgSrc" alt="logo">
+    <img v-if="imgSrc" :src="imgSrc" alt="logo" />
     <transition name="title">
-      <h1 v-if="!isCollapse" class="title">{{title}}</h1>
+      <h1 v-if="!isCollapse" class="title">{{ title }}</h1>
     </transition>
   </div>
 </template>
 
 <script>
-import mixin from "../../mixin/mixin";
+import mixin from '../../mixin/mixin'
 export default {
-  name: "Logo",
-  mixins:[mixin],
-  props:['isCollapse'],
-  components:{
-  },
-  computed:{
-    imgSrc(){
+  name: 'Logo',
+  mixins: [mixin],
+  props: ['isCollapse'],
+  components: {},
+  computed: {
+    imgSrc() {
       return this.app.appConfig.config.logo
     },
-    title(){
+    title() {
       return this.app.appConfig.config.sideMenu.title
     },
-    maxWidth(){
+    maxWidth() {
       return {
-        maxWidth:`${parseInt(this.app.appConfig.config.sideMenu.width.replace('px',''))-50}px`
+        maxWidth: `${
+          parseInt(this.app.appConfig.config.sideMenu.width.replace('px', '')) -
+          50
+        }px`,
       }
-    }
-  }
+    },
+  },
 }
 </script>
-
-<style scoped>
-
-</style>

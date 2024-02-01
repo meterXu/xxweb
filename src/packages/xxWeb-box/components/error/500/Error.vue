@@ -1,15 +1,9 @@
 <template>
-  <div>
-    500
-  </div>
+  <div>500</div>
 </template>
 
 <script>
 export default {
-  name: "Error"
+  name: 'Error',
 }
 </script>
-
-<style scoped>
-
-</style>
