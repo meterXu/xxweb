@@ -21,7 +21,7 @@
     <el-row class="row-margin card-no-border" :gutter="16">
       <el-col :span="8">
         <el-card :body-style="{ padding: '0px' }">
-          <div style="width: 100%;height:264px;background: url('./static/imgs/bg-1.png') no-repeat center center;background-size: cover;"/>
+          <div style="width: 100%;height:264px;background: url('../../../public/static/imgs/bg-1.png') no-repeat center center;background-size: cover;"/>
           <div style="padding: 20px 30px 30px;">
             <h3 style="font-weight:500">22 March, 2022</h3>
             <h5 style="font-weight:500;font-size: 1.25rem;margin-top: 20px;margin-bottom: 8px">Super awesome, Vue 3 is there, Lets do this!</h5>

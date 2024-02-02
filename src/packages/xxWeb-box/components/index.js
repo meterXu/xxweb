@@ -1,8 +1,9 @@
 import XXWebBox from './XXWebBox'
+import {createApp} from "vue";
 
 XXWebBox.install = function (Vue) {
   let EventBus = {}
-  Object.defineProperties(window.app.config.globalProperties, {
+  Object.defineProperties(Vue.config.globalProperties, {
     $bus: {
       get: function () {
         return EventBus

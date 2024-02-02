@@ -223,7 +223,7 @@ export default {
     window.addEventListener('resize', this.resizeHandler)
   },
   beforeUnmount() {
-    this.$bus.$off()
+    $off(this.$bus)
     window.removeEventListener('resize', this.resizeHandler)
   },
   emits: ['dropdownMenuClick', 'collapseToggle', 'menuClick']
