@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import mixin from '../../../mixin/mixin'
 import { ElAutocomplete as Autocomplete } from 'element-plus'
 import DynamicIcon from '../../common/DynamicIcon'
@@ -47,7 +46,7 @@ export default {
       } else if (this.$route.path !== item.path) {
         this.$router.push({ path: item.path })
       }
-      $emit(this.$bus, 'searchMenuItemSelect', item.path)
+      this.$bus.$emit('searchMenuItemSelect', item.path)
     },
     treeDataFilter(data, queryString, results) {
       data.forEach(p => {
@@ -58,7 +57,6 @@ export default {
         }
       })
     }
-  },
-  emits: ['searchMenuItemSelect']
+  }
 }
 </script>

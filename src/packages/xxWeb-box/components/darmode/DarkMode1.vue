@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
 import '../../assets/css/darkmode/index.less'
 import {
   enable as enableDarkMode,
@@ -99,7 +98,7 @@ export default {
   },
   methods: {
     toggle() {
-      $emit(this, 'change', !this.dark)
+      this.$emit( 'change', !this.dark)
     },
   },
   emits: ['change'],

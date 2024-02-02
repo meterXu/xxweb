@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import '../../../assets/css/404/404.less'
 export default {
   name: 'NotFound',
@@ -55,7 +54,7 @@ export default {
   },
   methods: {
     goHome() {
-      $emit(this, 'goHome')
+      this.$emit( 'goHome')
       if (this.link.home) {
         window.location.href = this.link.home
       }

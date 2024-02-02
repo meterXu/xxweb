@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import { ElButton as Button } from 'element-plus'
 import '../../../assets/css/403/403-2.less'
 
@@ -65,7 +64,7 @@ export default {
   },
   methods: {
     goHome() {
-      $emit(this, 'goHome')
+      this.$emit( 'goHome')
       if (this.link.home) {
         window.location.href = this.link.home
       }

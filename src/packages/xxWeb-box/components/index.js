@@ -1,14 +1,20 @@
 import XXWebBox from './XXWebBox'
-import {createApp} from "vue";
+import { $on, $off, $once,$emit } from '../utils/gogocodeTransfer'
 
 XXWebBox.install = function (Vue) {
-  let EventBus = {}
+  debugger
+  let EventBus = {
+    $on,
+    $off,
+    $once,
+    $emit:$emit
+  }
   Object.defineProperties(Vue.config.globalProperties, {
     $bus: {
       get: function () {
         return EventBus
       },
-    },
+    }
   })
   window.app.component(XXWebBox.name, XXWebBox)
 }

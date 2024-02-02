@@ -173,7 +173,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
 import '../../assets/css/login/wdp-login.less'
 import {
   ElForm as Form,
@@ -280,24 +279,24 @@ export default {
     login() {
       this.$refs['loginForm-' + this.loginState.activeName].validate(
         (valid) => {
-          $emit(this, 'login', valid, this.loginState)
+          this.$emit( 'login', valid, this.loginState)
         }
       )
     },
     handleClick(tab, event) {
-      $emit(this, 'loginTypeChange', this.loginState.activeName)
+      this.$emit( 'loginTypeChange', this.loginState.activeName)
     },
     registry() {
-      $emit(this, 'registry')
+      this.$emit( 'registry')
     },
     enterpriseCertification() {
-      $emit(this, 'enterpriseCertification')
+      this.$emit( 'enterpriseCertification')
     },
     forgotPassword() {
-      $emit(this, 'forgotPassword')
+      this.$emit( 'forgotPassword')
     },
     wxLogin() {
-      $emit(this, 'wxLogin')
+      this.$emit( 'wxLogin')
     },
   },
   emits: [

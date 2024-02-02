@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
 import '../../assets/css/login/watermelon-login.less'
 import {
   ElForm as Form,
@@ -139,7 +138,7 @@ export default {
   methods: {
     login() {
       this.$refs.loginForm.validate((valid) => {
-        $emit(this, 'login', valid, this.loginState)
+        this.$emit( 'login', valid, this.loginState)
       })
     },
   },

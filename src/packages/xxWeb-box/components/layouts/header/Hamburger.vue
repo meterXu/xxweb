@@ -17,16 +17,14 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 export default {
   name: 'Hamburger',
   props: ['isCollapse'],
   methods: {
     toggleClick() {
-      $emit(this.$bus, 'collapseToggle')
+      this.$bus.$emit('collapseToggle')
     },
-  },
-  emits: ['collapseToggle'],
+  }
 }
 </script>
 

@@ -97,7 +97,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import {
   ElDropdown as Dropdown,
   ElDropdownMenu as DropdownMenu,
@@ -122,9 +121,8 @@ export default {
   mixins: [mixin],
   methods: {
     handleCommand(command) {
-      $emit(this.$bus, 'dropdownMenuClick', command)
+      this.$bus.$emit('dropdownMenuClick', command)
     },
-  },
-  emits: ['dropdownMenuClick'],
+  }
 }
 </script>

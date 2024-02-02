@@ -53,38 +53,36 @@ function getRegistry(instance) {
     }
     return events
 }
-export function $on(instance, event, fn) {
+export function $on(event, fn) {
     if (Array.isArray(event)) {
-        event.forEach((e) => $on(instance, e, fn))
+        event.forEach((e) => $on(e, fn))
     } else {
-        const events = getRegistry(instance)
+        const events = getRegistry(this)
         ;(events[event] || (events[event] = [])).push(fn)
     }
-    return instance
 }
-export function $once(instance, event, fn) {
+export function $once(event, fn) {
     const wrapped = (...args) => {
-        $off(instance, event, wrapped)
-        fn.call(instance, ...args)
+        $off(event, wrapped)
+        fn.call(this, ...args)
     }
     wrapped.fn = fn
-    $on(instance, event, wrapped)
-    return instance
+    $on(event, wrapped)
 }
-export function $off(instance, event, fn) {
-    const vm = instance
+export function $off(event, fn) {
+    const vm = this
     // all
     if (!event) {
-        eventRegistryMap.set(instance, Object.create(null))
+        eventRegistryMap.set(this, Object.create(null))
         return vm
     }
     // array of events
     if (Array.isArray(event)) {
-        event.forEach((e) => $off(instance, e, fn))
+        event.forEach((e) => $off(e, fn))
         return vm
     }
     // specific event
-    const events = getRegistry(instance)
+    const events = getRegistry(this)
     const cbs = events[event]
     if (!cbs) {
         return vm
@@ -96,11 +94,12 @@ export function $off(instance, event, fn) {
     events[event] = cbs.filter((cb) => !(cb === fn || cb.fn === fn))
     return vm
 }
-export function $emit(instance, event, ...args) {
-    instance && instance.$emit && instance.$emit(event, ...args)
-    const cbs = getRegistry(instance)[event]
+
+export function $emit(event, ...args) {
+    this && this.$emit && this.$emit(event, ...args)
+    const cbs = getRegistry(this)[event]
     if (cbs) {
-        cbs.map((cb) => cb.apply(instance, args))
+        cbs.map((cb) => cb.apply(this, args))
     }
-    return instance
+    return this
 }

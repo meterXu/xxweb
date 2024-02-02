@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import mixin from '../../../mixin/mixin'
 import SideMenu from './SideMenu'
 import { ElDrawer as Drawer } from 'element-plus'
@@ -51,7 +50,7 @@ export default {
   components: { SideMenu, Drawer },
   methods: {
     handleClose() {
-      $emit(this, 'change', false)
+      this.$emit( 'change', false)
     },
   },
   emits: ['change'],

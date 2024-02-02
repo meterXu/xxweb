@@ -108,7 +108,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import {
   ElDivider as Divider,
   ElHeader as Header,
@@ -163,9 +162,8 @@ export default {
   },
   methods: {
     toggle() {
-      $emit(this, 'collapseToggle')
+      this.$emit('collapseToggle')
     },
-  },
-  emits: ['collapseToggle'],
+  }
 }
 </script>

@@ -129,7 +129,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../utils/gogocodeTransfer'
 import 'element-plus/dist/index.css'
 import '../assets/css/index.less'
 import HeaderLayout from './layouts/header/HeaderLayout.vue'
@@ -202,20 +201,20 @@ export default {
   },
   mounted() {
     this.resizeHandler()
-    $on(this.$bus, 'dropdownMenuClick', command => {
-      $emit(this, 'dropdownMenuClick', command)
+    this.$bus.$on('dropdownMenuClick',(command) => {
+      this.$emit('dropdownMenuClick',command)
     })
-    $on(this.$bus, 'collapseToggle', () => {
+    this.$bus.$on('collapseToggle',() => {
       this.isCollapse = !this.isCollapse
-      $emit(this, 'collapseToggle', this.isCollapse)
+      this.$emit('collapseToggle',this.isCollapse)
     })
-    $on(this.$bus, 'menuClick', path => {
-      $emit(this, 'menuClick', path)
+    this.$bus.$on('menuClick',(path) => {
+      this.$emit('menuClick',path)
     })
-    $on(this.$bus, 'searchMenuItemSelect', activeIndex => {
+    this.$bus.$on('searchMenuItemSelect',(activeIndex) => {
       this.activeIndex = activeIndex
     })
-    $on(this.$bus, 'tabViewChange', activeIndex => {
+    this.$bus.$on('tabViewChange',(activeIndex) => {
       this.activeIndex = activeIndex
     })
   },
@@ -223,7 +222,7 @@ export default {
     window.addEventListener('resize', this.resizeHandler)
   },
   beforeUnmount() {
-    $off(this.$bus)
+    this.$bus.$off()
     window.removeEventListener('resize', this.resizeHandler)
   },
   emits: ['dropdownMenuClick', 'collapseToggle', 'menuClick']

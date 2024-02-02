@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import '../../../assets/css/404/404dark.less'
 export default {
   name: 'NotFoundDark',
@@ -65,13 +64,13 @@ export default {
   },
   methods: {
     goHome() {
-      $emit(this, 'goHome')
+      this.$emit('goHome')
       if (this.link.home) {
         window.location.href = this.link.home
       }
     },
     goHelp() {
-      $emit(this, 'goHelp')
+      this.$emit( 'goHelp')
       if (this.link.help) {
         window.location.href = this.link.help
       }

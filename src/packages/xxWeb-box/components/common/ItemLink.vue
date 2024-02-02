@@ -1,8 +1,6 @@
 <script lang="jsx">
 import {RouterLink} from "vue-router";
 import {isExternal} from "@/packages/xxWeb-box/utils";
-import {$emit} from "@/packages/xxWeb-box/utils/gogocodeTransfer";
-
 export default function render(_props, _context){
 
   const context = {
@@ -35,7 +33,7 @@ export default function render(_props, _context){
   }
   function handleClick() {
     if (this.mode === 'event') {
-      $emit(this.$bus, 'menuClick', this.to)
+      this.$bus.$emit('menuClick', this.to)
     }
   }
   return _render(to,mode)

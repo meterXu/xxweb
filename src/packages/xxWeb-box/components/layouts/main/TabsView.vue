@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { $on, $off, $once, $emit } from '../../../utils/gogocodeTransfer'
 import { ElTabs as Tabs, ElTabPane as TabPane } from 'element-plus'
 import mixin from '../../../mixin/mixin'
 import DynamicIcon from '../../common/DynamicIcon.vue'
@@ -53,7 +52,7 @@ export default {
     $route(to) {
       this.addVisitedViews(to)
       this.selectedPath = to.path
-      $emit(this.$bus, 'tabViewChange', to.path)
+      this.$bus.$emit('tabViewChange', to.path)
     }
   },
   methods: {
@@ -110,7 +109,7 @@ export default {
     },
     refreshSelectedTag() {
       if (this.selectedPath === this.contextMenuPath) {
-        $emit(this, 'refresh')
+        this.$emit( 'refresh')
       }
     },
     closeOthersTags() {
@@ -175,7 +174,6 @@ export default {
       this.addVisitedViews(this.$route)
     }
     this.selectedPath = this.$route.path
-  },
-  emits: ['tabViewChange', 'refresh']
+  }
 }
 </script>
