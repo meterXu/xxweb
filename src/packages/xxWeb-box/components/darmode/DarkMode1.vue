@@ -62,7 +62,7 @@ import {
   disable as disableDarkMode,
 } from 'darkreader'
 
-export default {
+export default  {
   name: 'DarkMode1',
   props: {
     dark: {
