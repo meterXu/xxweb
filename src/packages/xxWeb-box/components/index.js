@@ -2,7 +2,6 @@ import XXWebBox from './XXWebBox'
 import { $on, $off, $once,$emit } from '../utils/gogocodeTransfer'
 
 XXWebBox.install = function (Vue) {
-  debugger
   let EventBus = {
     $on,
     $off,

@@ -1,6 +1,6 @@
 <template>
   <div class="tags-view-container">
-    <Tabs class="xx-web-tab" v-model:value="selectedPath" @tab-click="tabClick" @tab-remove="removeTab" @contextmenu="openMenu($event.target)">
+    <Tabs class="xx-web-tab" v-model="selectedPath" @tab-click="tabClick" @tab-remove="removeTab" @contextmenu="openMenu($event.target)">
       <TabPane style="" v-for="item in visitedViews" :key="item.path" :name="item.path" :closable="item.meta && !item.meta.permanent">
         <template v-slot:label>
           <span class="tab-item-title" @contextmenu="openMenu($event.target.parentNode)">
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     tabClick(tab) {
-      this.visitRoute(tab.name)
+      this.visitRoute(tab.paneName)
     },
     removeTab(tabName) {
       let indexPath = this.app.appConfig.redirect.index

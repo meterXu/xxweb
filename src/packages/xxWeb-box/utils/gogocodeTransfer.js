@@ -96,7 +96,6 @@ export function $off(event, fn) {
 }
 
 export function $emit(event, ...args) {
-    this && this.$emit && this.$emit(event, ...args)
     const cbs = getRegistry(this)[event]
     if (cbs) {
         cbs.map((cb) => cb.apply(this, args))
