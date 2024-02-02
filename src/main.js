@@ -1,6 +1,7 @@
-import Vue from 'vue'
 import App from './App.vue'
-import XXWeb,{filter,util} from './packages/xxWeb-box'
+import { createApp } from 'vue'
+import {filter,util} from './packages/xxWeb-box/index'
+import XXWeb from './packages/xxWeb-box'
 import {JeecgLogin,
   PigLogin,
   TreeLogin,
@@ -17,14 +18,16 @@ import {JeecgLogin,
 } from './packages/xxWeb-box'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
-import elementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
-Vue.config.productionTip = false
-Vue.prototype.$project = window.project
-Vue.prototype.$ls = new util.ls(window.project)
-Vue.use(XXWeb)
-Vue.component(DemoBlock.name,DemoBlock)
-Vue.use(elementUI)
+import elementUI from 'element-plus'
+import 'element-plus/dist/index.css'
+const app = createApp(App)
+app.config.productionTip = false
+app.config.globalProperties.$project = window.project
+// filter(router,Vue.config.globalProperties.$project)
+app.config.globalProperties.$ls = new util.ls(window.project)
+app.use(XXWeb)
+app.component(DemoBlock.name,DemoBlock)
+app.use(elementUI)
 const components = [JeecgLogin,
   PigLogin,
   TreeLogin,
@@ -37,12 +40,10 @@ const components = [JeecgLogin,
   NoAuthority1,
   NoAuthority2,
   Error,
-  DarkMode1
+  DarkMode1,
 ]
 components.forEach(c=>{
-  Vue.use(c)
+  app.use(c)
 })
-window.vue = new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app')
+app.use(router)
+app.mount('#app')

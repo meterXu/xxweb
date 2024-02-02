@@ -14,7 +14,7 @@
 <script>
 
 import permission from "../permission";
-import {Tag} from 'element-ui'
+import {Tag} from 'element-plus'
 import {DarkMode1,types} from '../packages/xxWeb-box'
 export default {
   name: 'Index',

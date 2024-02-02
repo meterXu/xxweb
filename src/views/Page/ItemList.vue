@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import {Card,Button} from 'element-ui'
-import data from '@/assets/data'
+import {Card,Button} from 'element-plus'
+import data from '../../assets/data'
 export default {
   name: "XXWebBox",
   props:['type'],

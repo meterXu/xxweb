@@ -1,11 +1,19 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
-// https://vitejs.dev/config/
-export default defineConfig({
-    plugins: [vue(), '@vitejs/plugin-vue'],
-    resolve: {
-        // 忽略后缀名的配置选项, 添加 .vue 选项时要记得原本默认忽略的选项也要手动写入
-        extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
+const project = require("./src/project")
+const path = require('path')
+export default defineConfig(({command,mode})=>{
+    fs.writeFileSync("./project.js","window.project="+JSON.stringify(project(mode),null,2),{"flag":"w"})
+    return {
+        plugins: [vue(), '@vitejs/plugin-vue'],
+        server:{
+            host:'0.0.0.0'
+        },
+        resolve: {
+            extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+            }
+        }
     }
 })

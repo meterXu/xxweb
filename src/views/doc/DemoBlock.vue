@@ -38,7 +38,7 @@
   </div>
 </template>
 <script>
-import {Tooltip,Button } from 'element-ui';
+import {Tooltip,Button } from 'element-plus';
 export default {
   name:'DemoBlock',
   data() {
