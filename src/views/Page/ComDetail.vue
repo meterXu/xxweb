@@ -5,13 +5,13 @@
  </div>
 </template>
 
-<script>
+<script lang="jsx">
 import axios from 'axios'
-import Vue from "vue";
+import {nextTick} from "vue";
 import hljs from "highlight.js";
 import md_it from 'markdown-it'
 import containers from '../../md-loader/containers'
-import {stripScript,safeStringToObj} from '../../md-loader/util'
+import {stripScript,safeStringToObj} from '@/md-loader/util'
 const DynamicComponent={
   props:['template','js'],
   name:'DynamicComponent',
@@ -54,7 +54,7 @@ export default {
     axios.get(`./static/doc/${this.type}/${this.title}.md`).then(res=>{
       this.template = `<div>${md.render(res.data)}</div>`
       this.js = safeStringToObj(stripScript(res.data))
-      Vue.nextTick(() => {
+      nextTick(() => {
         const blocks = document.querySelectorAll('pre code:not(.hljs)');
         Array.prototype.forEach.call(blocks, hljs.highlightBlock);
       });

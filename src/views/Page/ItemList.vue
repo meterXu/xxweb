@@ -1,7 +1,7 @@
 <template>
   <ul class="box-list">
     <li v-for="(item,index) in itemList" :key="index">
-      <Card class="box-card">
+      <ElCard class="box-card">
         <div class="image" :style="{'backgroundImage':'url('+item.cover+')'} "/>
         <div class="box-item-text">
          <div>
@@ -9,23 +9,23 @@
            <div class="box-item-desc" v-html="item.desc"></div>
          </div>
           <div>
-            <Button type="primary" plain size="mini" @click="gotoCode(item)">
+            <ElButton type="primary" plain size="mini" @click="gotoCode(item)">
               <i class="el-icon-set-up" style="font-size: 18px"></i>
-            </Button>
+            </ElButton>
           </div>
         </div>
-      </Card>
+      </ElCard>
     </li>
   </ul>
 </template>
 
 <script>
-import {Card,Button} from 'element-plus'
+import {ElCard,ElButton} from 'element-plus'
 import data from '../../assets/data'
 export default {
   name: "XXWebBox",
   props:['type'],
-  components:{Card,Button},
+  components:{ElCard,ElButton},
   data(){
     return {
       itemList:data[this.type]

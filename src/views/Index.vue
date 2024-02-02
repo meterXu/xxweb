@@ -3,7 +3,7 @@
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
     <template v-slot:side-user-tag>
-      <Tag class="version" size="mini" effect="light">version:1.0</Tag>
+      <el-tag class="version" size="mini" effect="light">version:1.0</el-tag>
     </template>
     <template v-slot:head-expand-right-start>
       <DarkMode1 v-model="dark" style="margin-right: 12px"/>
@@ -14,7 +14,6 @@
 <script>
 
 import permission from "../permission";
-import {Tag} from 'element-plus'
 import {DarkMode1,types} from '../packages/xxWeb-box'
 export default {
   name: 'Index',
@@ -26,7 +25,6 @@ export default {
     }
   },
   components:{
-    Tag,
     DarkMode1
   },
   methods: {

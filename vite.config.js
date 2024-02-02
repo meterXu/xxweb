@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import viteCompression from "vite-plugin-compression";
+import vueJsx from "@vitejs/plugin-vue-jsx"
 const project = require("./src/project")
 const path = require('path')
+const fs = require("fs")
 export default defineConfig(({command,mode})=>{
     fs.writeFileSync("./project.js","window.project="+JSON.stringify(project(mode),null,2),{"flag":"w"})
     return {
-        plugins: [vue(), '@vitejs/plugin-vue'],
+        plugins: [vue(), viteCompression(), vueJsx()],
         server:{
             host:'0.0.0.0'
         },

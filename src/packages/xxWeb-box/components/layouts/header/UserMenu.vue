@@ -116,7 +116,7 @@ export default {
   props: ['type', 'isCollapse'],
   data() {
     return {
-      circleUrl: require('../../../assets/imgs/user.png'),
+      circleUrl: '../../../assets/imgs/user.png',
     }
   },
   mixins: [mixin],

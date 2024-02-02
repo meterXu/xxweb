@@ -35,6 +35,8 @@
         :mode="mode"
         :isCollapse="isCollapse"
         :defaultActive="activeIndex"
+        :permission="app.permission"
+        :appConfig="app.appConfig"
       >
       </DynamicMenu>
       <slot name="side-bottom"></slot>

@@ -38,7 +38,6 @@
   </div>
 </template>
 <script>
-import {Tooltip,Button } from 'element-plus';
 export default {
   name:'DemoBlock',
   data() {
@@ -50,7 +49,6 @@ export default {
       scrollParent: null
     };
   },
-  components:{Tooltip,Button},
   methods: {
     scrollHandler() {
       const { top, bottom, left } = this.$refs.meta.getBoundingClientRect();

@@ -21,6 +21,7 @@ import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-plus'
 import 'element-plus/dist/index.css'
 const app = createApp(App)
+window.app = app
 app.config.productionTip = false
 app.config.globalProperties.$project = window.project
 // filter(router,Vue.config.globalProperties.$project)
@@ -28,6 +29,7 @@ app.config.globalProperties.$ls = new util.ls(window.project)
 app.use(XXWeb)
 app.component(DemoBlock.name,DemoBlock)
 app.use(elementUI)
+app.use(router)
 const components = [JeecgLogin,
   PigLogin,
   TreeLogin,
@@ -43,7 +45,6 @@ const components = [JeecgLogin,
   DarkMode1,
 ]
 components.forEach(c=>{
-  app.use(c)
+  app.component(c.name,c)
 })
-app.use(router)
 app.mount('#app')

@@ -1,5 +1,4 @@
 <script lang="jsx">
-import * as Vue from 'vue'
 import {
   ElMenu as Menu,
   ElSubMenu as Submenu,
@@ -17,9 +16,7 @@ export default function render(_props, _context) {
     data: _context.attr,
     children: _context.slots,
   }
-  const { defaultActive, mode, isCollapse } = context.props
-  const permission = context.injections.app.permission
-  const appConfig = context.injections.app.appConfig
+  const { defaultActive, mode, isCollapse,permission,appConfig } = context.props
   // 回溯解决嵌套多层 bug
   function dfsMenu(m, sMenu) {
     if (m.children instanceof Array) {
