@@ -3,7 +3,7 @@
     <Tabs class="xx-web-tab" v-model:value="selectedPath" @tab-click="tabClick" @tab-remove="removeTab" @contextmenu="openMenu($event.target)">
       <TabPane style="" v-for="item in visitedViews" :key="item.path" :name="item.path" :closable="item.meta && !item.meta.permanent">
         <template v-slot:label>
-          <span @contextmenu="openMenu($event.target.parentNode)">
+          <span class="tab-item-title" @contextmenu="openMenu($event.target.parentNode)">
             <DynamicIcon v-if="app.appConfig.config.tabs.icon" type="tab" :meta="item.meta" />
             {{ myTitle(item) }}</span
           >

@@ -1,60 +1,43 @@
-<template>
-  <component v-bind="linkProps(to, mode)" @click="handleClick">
-    <slot />
-  </component>
-</template>
+<script lang="jsx">
+import {RouterLink} from "vue-router";
+import {isExternal} from "@/packages/xxWeb-box/utils";
+import {$emit} from "@/packages/xxWeb-box/utils/gogocodeTransfer";
 
-<script>
-import { $on, $off, $once, $emit } from '../../utils/gogocodeTransfer'
-import { isExternal } from '../../utils'
+export default function render(_props, _context){
 
-export default {
-  name: 'ItemLink',
-  props: {
-    to: {
-      type: String,
-      required: true,
-    },
-    mode: {
-      type: String,
-      default: 'router',
-    },
-  },
-  methods: {
-    linkProps(to, mode) {
-      switch (mode) {
-        case 'event': {
-          return {
-            is: 'a',
-            class: 'box-item-link',
-            href: 'javascript:;',
-          }
-          break
-        }
-        case 'router':
-        default: {
-          if (isExternal(to)) {
-            return {
-              is: 'a',
-              class: 'box-item-link',
-              href: to,
-              target: '_blank',
-            }
-          }
-          return {
-            is: 'router-link',
-            class: 'box-item-link',
-            to: to,
-          }
+  const context = {
+    ..._context,
+    props: _props,
+    data: _context.attr,
+    children: _context.slots,
+  }
+  const { to, mode } = context.props
+  function _render(to, mode) {
+    switch (mode) {
+      case 'event': {
+        return <a onClick={handleClick} class="box-item-link" href="javascript:;">
+          {(context.children.default())}
+        </a>
+      }
+      case 'router':
+      default: {
+        if (isExternal(to)) {
+          return <a onClick={handleClick} class="box-item-link" href={to} target="_blank">
+            {(context.children.default())}
+          </a>
+        }else{
+          return <RouterLink class="box-item-link" to={to}>
+            {(context.children.default())}
+          </RouterLink>
         }
       }
-    },
-    handleClick() {
-      if (this.mode === 'event') {
-        $emit(this.$bus, 'menuClick', this.to)
-      }
-    },
-  },
-  emits: ['menuClick'],
+    }
+  }
+  function handleClick() {
+    if (this.mode === 'event') {
+      $emit(this.$bus, 'menuClick', this.to)
+    }
+  }
+  return _render(to,mode)
 }
 </script>

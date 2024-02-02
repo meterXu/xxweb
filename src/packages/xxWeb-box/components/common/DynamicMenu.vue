@@ -28,13 +28,13 @@ export default function render(_props, _context) {
         sMenu.push(
           <Submenu
             index={m.path}
-            popper-class={'xxWeb-xxWebBox-' + appConfig.style.theme}
-          >
-            <template slot="title">
-              <DynamicIcon type="menu" meta={m.meta} />
-              <DyMenuTitle meta={m.meta} />
-            </template>
-            {vcs}
+            popper-class={'xxWeb-xxWebBox-' + appConfig.style.theme}>
+            {{
+              title:()=>[
+                  <DynamicIcon type="menu" meta={m.meta} />,
+                  <DyMenuTitle meta={m.meta} />],
+              default:()=>vcs
+            }}
           </Submenu>
         )
       }
@@ -44,9 +44,7 @@ export default function render(_props, _context) {
           <ItemLink to={m.path} mode={appConfig.config.menu.mode}>
             <MenuItem index={m.path}>
               <DynamicIcon type="menu" meta={m.meta} />
-              <template slot="title">
-                <DyMenuTitle meta={m.meta} />
-              </template>
+              <DyMenuTitle meta={m.meta} />
             </MenuItem>
           </ItemLink>
         )

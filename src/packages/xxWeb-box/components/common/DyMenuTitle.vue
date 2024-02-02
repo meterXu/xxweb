@@ -9,7 +9,7 @@ export default function render(_props, _context) {
   }
   const { meta } = context.props
   if (meta.title) {
-    return <span slot="title">{meta.title}</span>
+    return <span>{meta.title}</span>
   } else {
     return null
   }

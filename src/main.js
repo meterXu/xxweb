@@ -20,6 +20,8 @@ import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-plus'
 import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 const app = createApp(App)
 window.app = app
 app.config.productionTip = false
@@ -47,4 +49,7 @@ const components = [JeecgLogin,
 components.forEach(c=>{
   app.component(c.name,c)
 })
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 app.mount('#app')

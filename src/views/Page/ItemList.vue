@@ -9,8 +9,8 @@
            <div class="box-item-desc" v-html="item.desc"></div>
          </div>
           <div>
-            <ElButton type="primary" plain size="mini" @click="gotoCode(item)">
-              <i class="el-icon-set-up" style="font-size: 18px"></i>
+            <ElButton type="primary" plain size="small" @click="gotoCode(item)">
+              <el-icon :size="18"><SetUp /></el-icon>
             </ElButton>
           </div>
         </div>
