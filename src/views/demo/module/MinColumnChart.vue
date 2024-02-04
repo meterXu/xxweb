@@ -85,15 +85,15 @@ export default {
   },
   methods:{
     initChart(){
-      const chart = new ApexCharts(this.$refs.chart, this.options);
-      chart.render();
-      this.$on('hook:beforeDestroy',()=>{
-        chart.destroy()
-      })
+      this.chart = new ApexCharts(this.$refs.chart, this.options);
+      this.chart.render();
     }
   },
   mounted() {
     this.initChart()
+  },
+  unmounted() {
+    this.chart.destroy()
   }
 }
 </script>

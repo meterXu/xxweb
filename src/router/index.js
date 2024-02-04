@@ -84,12 +84,12 @@ const normalRoutes =  [
             },
             {
                 path:'/demo/pageList',
-                name:"Dashboard",
+                name:"PageList",
                 component:defineAsyncComponent(()=>import('../views/demo/PageList'))
             },
             {
                 path:'/demo/detail',
-                name:"Dashboard",
+                name:"Detail",
                 component:defineAsyncComponent(()=>import('../views/demo/Detail'))
             }
         ]

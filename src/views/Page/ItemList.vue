@@ -23,7 +23,7 @@
 import {ElCard,ElButton} from 'element-plus'
 import data from '../../assets/data'
 export default {
-  name: "XXWebBox",
+  name: "ItemList",
   props:['type'],
   components:{ElCard,ElButton},
   data(){
