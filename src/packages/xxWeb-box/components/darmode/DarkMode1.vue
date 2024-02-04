@@ -1,6 +1,6 @@
 <template>
   <div :class="['xxWeb-dark-mode', 'xxWeb-dark-mode1']">
-    <button :class="['dark-switch', dark ? 'dark' : '']" @click="toggle">
+    <button :class="['dark-switch', modelValue ? 'dark' : '']" @click="toggle">
       <span class="switch-check">
         <span class="switch-icon">
           <svg
@@ -65,17 +65,14 @@ import {
 export default  {
   name: 'DarkMode1',
   props: {
-    dark: {
+    modelValue: {
       type: Boolean,
       default() {
         return false
       },
     },
   },
-  model: {
-    prop: 'dark',
-    event: 'change',
-  },
+  emits:['update:modelValue'],
   components: {},
   watch: {
     dark: {
@@ -98,9 +95,8 @@ export default  {
   },
   methods: {
     toggle() {
-      this.$emit( 'change', !this.dark)
-    },
-  },
-  emits: ['change'],
+      this.$emit( 'update:modelValue', !this.dark)
+    }
+  }
 }
 </script>
