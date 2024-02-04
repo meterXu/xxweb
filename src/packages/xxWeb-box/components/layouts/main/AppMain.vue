@@ -2,9 +2,11 @@
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
       <div class="transition-container">
-        <keep-alive :include="cachedViews">
-          <router-view ref="pageView" :key="key" />
-        </keep-alive>
+        <router-view ref="pageView" :key="key" v-slot="{ Component }">
+          <keep-alive :include="cachedViews">
+            <component :is="Component" />
+          </keep-alive>
+        </router-view>
       </div>
     </transition>
   </section>
@@ -12,6 +14,7 @@
 
 <script>
 import mixin from '../../../mixin/mixin'
+
 export default {
   name: 'AppMain',
   data() {
