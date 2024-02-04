@@ -3,7 +3,7 @@
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
     <template v-slot:side-user-tag>
-      <el-tag class="version" size="mini" effect="light">version:1.0</el-tag>
+      <el-tag class="version" size="small" effect="light">version:1.0</el-tag>
     </template>
     <template v-slot:head-expand-right-start>
       <DarkMode1 v-model="dark" style="margin-right: 12px"/>

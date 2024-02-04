@@ -12,6 +12,7 @@ import hljs from "highlight.js";
 import md_it from 'markdown-it'
 import containers from '../../md-loader/containers'
 import {stripScript,safeStringToObj} from '@/md-loader/util'
+import {template} from "lodash";
 const DynamicComponent={
   props:['template','js'],
   name:'DynamicComponent',
