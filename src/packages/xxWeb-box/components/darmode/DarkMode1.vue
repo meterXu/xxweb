@@ -75,9 +75,8 @@ export default  {
   emits:['update:modelValue'],
   components: {},
   watch: {
-    dark: {
+    modelValue: {
       deep: true,
-
       handler(nv) {
         if (nv) {
           enableDarkMode({
@@ -95,7 +94,7 @@ export default  {
   },
   methods: {
     toggle() {
-      this.$emit( 'update:modelValue', !this.dark)
+      this.$emit( 'update:modelValue', !this.modelValue)
     }
   }
 }
