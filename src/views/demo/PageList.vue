@@ -15,7 +15,7 @@
       <!--  查询  -->
 
       <div style="padding: 5px;">
-        <el-button size="small" type="primary" icon="el-icon-plus" @click="handleAdd">新增</el-button>
+        <el-button size="small" type="primary" icon="Plus" @click="handleAdd">新增</el-button>
       </div>
       <!--  表格  -->
       <div>
@@ -60,10 +60,10 @@
               prop="isOpen"
               label="是否限流"
               align="center">
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <div slot="reference" class="name-wrapper">
-                <el-tag v-if="scope.row.isOpen===0" size="medium" type="danger">否</el-tag>
-                <el-tag v-else-if="scope.row.isOpen===1" size="medium" type="success">是</el-tag>
+                <el-tag v-if="scope.row.isOpen===0" size="small" type="danger">否</el-tag>
+                <el-tag v-else-if="scope.row.isOpen===1" size="small" type="success">是</el-tag>
               </div>
             </template>
           </el-table-column>
@@ -71,10 +71,10 @@
               prop="delFlag"
               label="是否生效"
               align="center">
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <div slot="reference" class="name-wrapper">
-                <el-tag v-if="scope.row.delFlag===0" size="medium" type="success">是</el-tag>
-                <el-tag v-else-if="scope.row.delFlag===1" size="medium" type="danger">否</el-tag>
+                <el-tag v-if="scope.row.delFlag===0" size="small" type="success">是</el-tag>
+                <el-tag v-else-if="scope.row.delFlag===1" size="small" type="danger">否</el-tag>
               </div>
             </template>
           </el-table-column>
@@ -83,7 +83,7 @@
               label="操作"
               align="center"
               width="240">
-            <template slot-scope="scope">
+            <template v-slot="scope">
               <el-button @click="handleEdit(scope.row)" type="text" icon="el-icon-edit" size="small">编辑</el-button>
               <el-popconfirm style="padding-left: 8px;"
                              title="确定删除吗？"
@@ -146,14 +146,14 @@ export default {
       let records= [
             {
               'id': 11062,
-              'routeId': 'sipsd-upms-biz',
+              'routeId': 'ups-biz',
               'routeName': '通用权限模块',
               'predicates': '/admin/**',
-              'filters': '[{"args":{"key-resolver":"#{@remoteAddrKeyResolver}","redis-rate-limiter.requestedTokens":"1","redis-rate-limiter.burstCapacity":"60","redis-rate-limiter.replenishRate":"60"},"name":"SipsdRequestRateLimiter"}]',
+              'filters': '[{"args":{"key-resolver":"#{@remoteAddrKeyResolver}","redis-rate-limiter.requestedTokens":"1","redis-rate-limiter.burstCapacity":"60","redis-rate-limiter.replenishRate":"60"},"name":"RequestRateLimiter"}]',
               'keyResolver': null,
               'isOpen': 0,
               'rateLimitString': null,
-              'uri': 'lb://sipsd-upms-biz',
+              'uri': 'lb://ups-biz',
               'sort': 0,
               'createTime': 1646587618000,
               'updateTime': null,
@@ -161,14 +161,14 @@ export default {
             },
             {
               'id': 11063,
-              'routeId': 'sipsd-auth-server',
+              'routeId': 'auth-server',
               'routeName': '认证中心',
               'predicates': '/auth/**',
               'filters': '[]',
               'keyResolver': null,
               'isOpen': 0,
               'rateLimitString': null,
-              'uri': 'lb://sipsd-auth-server',
+              'uri': 'lb://auth-server',
               'sort': 0,
               'createTime': 1646587618000,
               'updateTime': null,

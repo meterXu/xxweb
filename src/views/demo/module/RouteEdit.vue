@@ -1,7 +1,7 @@
 <template>
   <el-dialog
       :title="title"
-      :visible.sync="visible"
+      :model-value="modelValue"
       width="36%"
       @close="onCancel">
     <el-form :model="form" :rules="rules" ref="ruleForm" label-width="140px" class="demo-ruleForm">
@@ -35,8 +35,8 @@
       </el-form-item>
     </el-form>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="onCancel">取 消</el-button>
-      <el-button type="primary" @click="handleSuccess">确 定</el-button>
+      <el-button size="small" @click="onCancel">取 消</el-button>
+      <el-button size="small" type="primary" @click="handleSuccess">确 定</el-button>
     </span>
   </el-dialog>
 </template>
@@ -45,11 +45,8 @@
 
 export default {
   name: 'RouteEdit',
-  props:['visible','title','form'],
-  model:{
-    prop:'visible',
-    event:'change'
-  },
+  props:['modelValue','title','form'],
+  emits:['update:modelValue'],
   data() {
     return {
       rules: {
@@ -76,12 +73,12 @@ export default {
   methods: {
     onCancel() {
       this.$refs.ruleForm.resetFields()
-      this.$emit('change',false)
+      this.$emit('update:modelValue',false)
     },
     handleSuccess(){
       this.$refs.ruleForm.validate(valid=>{
         if(valid){
-          this.$emit('change',false)
+          this.$emit('update:modelValue',false)
         }
       })
     }
