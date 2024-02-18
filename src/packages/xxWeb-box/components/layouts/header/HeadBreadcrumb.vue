@@ -19,7 +19,7 @@ import {
   ElBreadcrumb as Breadcrumb,
   ElBreadcrumbItem as BreadcrumbItem,
 } from 'element-plus'
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
 export default {
   name: 'HeadBreadcrumb',
   components: { Breadcrumb, BreadcrumbItem },

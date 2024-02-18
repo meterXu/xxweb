@@ -1,7 +1,7 @@
 <template>
   <div class="menu-search-box" :style="{ width: expandSearch ? '180px' : '18px' }">
-    <i class="el-icon-search" @click="handleShowSearch"></i>
-    <Autocomplete class="menu-search" size="small" placeholder="请输入菜单" v-model:value="text" :fetch-suggestions="querySearch" @select="handleSelect" clearable>
+    <el-icon class="menu-search-icon"><Search @click="handleShowSearch" /></el-icon>
+    <Autocomplete class="menu-search" size="small" placeholder="请输入菜单" v-model="text" :fetch-suggestions="querySearch" @select="handleSelect" :clearable="true">
       <template v-slot="{ item }">
         <div>
           <DynamicIcon :meta="item" />
@@ -13,10 +13,10 @@
 </template>
 
 <script>
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
 import { ElAutocomplete as Autocomplete } from 'element-plus'
-import DynamicIcon from '../../common/DynamicIcon'
-import { isExternal } from '../../../utils'
+import DynamicIcon from '../../common/DynamicIcon.vue'
+import { isExternal } from '../../../utils/index.js'
 export default {
   components: {
     Autocomplete,

@@ -1,13 +1,12 @@
-import XXWebBox from './components/index'
-import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin,WDPLogin} from './components/login'
-import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error'
-import {DarkMode1} from './components/darmode'
+import XXWebBox from './components/index.js'
+import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin,WDPLogin} from './components/login/index.js'
+import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error/index.js'
 
-import filter from './utils/filter'
-import * as types from './utils/mutation-types'
-import * as util from './utils/util'
-import * as request from './utils/request'
-import * as validate from './utils/validate'
+import filter from './utils/filter.js'
+import * as types from './utils/mutation-types.js'
+import * as util from './utils/util.js'
+import * as request from './utils/request.js'
+import * as validate from './utils/validate.js'
 
 const install = function (Vue) {
     XXWebBox.install(Vue)
@@ -30,7 +29,6 @@ export {
     NoAuthority1,
     NoAuthority2,
     Error,
-    DarkMode1,
     filter,
     types,
     util,

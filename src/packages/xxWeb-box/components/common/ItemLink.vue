@@ -1,6 +1,6 @@
 <script lang="jsx">
 import {RouterLink} from "vue-router";
-import {isExternal} from "@/packages/xxWeb-box/utils";
+import {isExternal} from "../../utils/index.js";
 export default function render(_props, _context){
 
   const context = {

@@ -101,10 +101,11 @@ html,body{
         }
         box-sizing: content-box;
         text-align: left;
-        padding: 10px 20px 20px 20px;
+        padding: 10px 12px 20px 12px;
         height: 56px;
-        margin-bottom: 13px;
-        border-bottom: 1px solid #58626A;
+        margin: 0 8px 13px 8px;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
       }
       .user-wrapper-container{
         display: flex;
@@ -175,6 +176,9 @@ html,body{
       white-space: nowrap;
       transition: width .5s;
     }
+    .menu-search-icon{
+      cursor: pointer;
+    }
     .menu-search{
       width: 150px;
       margin-left: 12px;
@@ -197,8 +201,17 @@ html,body{
       height:52px;
       line-height: 52px;
     }
-    .topmenu+.topmenu{
+    .top-menu+.top-menu{
      margin-left: 15px;
+    }
+    .top-menu{
+      .user-wrapper{
+        line-height: 12px;
+      }
+      .flex-middle{
+        display: flex;
+        vertical-align: middle;
+      }
     }
     .el-icon-user{
       font-size: 16px
@@ -240,8 +253,7 @@ html,body{
       text-overflow: ellipsis;
       overflow: hidden;
       font-size: 18px;
-      margin: 0;
-      margin-left: 15px;
+      margin: 0 12px;
     }
     .title-enter,.title-leave-to{
       opacity: 0;

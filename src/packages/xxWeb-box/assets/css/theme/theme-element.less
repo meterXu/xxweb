@@ -65,7 +65,7 @@
       }
     }
     .dynamic-menu {
-      .el-submenu__title {
+      .el-sub-menu__title {
         color: @--topMenu-header-color;
         background:@--topMenu-header-bg-color;
         i {
@@ -76,8 +76,8 @@
           background-color: @--topMenu-header-bg-color;
         }
       }
-      .el-submenu.is-active {
-        .el-submenu__title {
+      .el-sub-menu.is-active {
+        .el-sub-menu__title {
           color: @--topMenu-header-color;
           background-color: @--topMenu-header-active-bg-color;
         }
@@ -103,25 +103,28 @@
   }
   .side-menu{
     background: @--main-bg-color;
+    .user-wrapper{
+      border-bottom: 1px solid @--border-color;
+    }
   }
   .dynamic-menu{
-    .el-menu-item,.el-submenu__title:focus,.el-menu-item:focus{
+    .el-menu-item,.el-sub-menu__title:focus,.el-menu-item:focus{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
-    .el-submenu__title{
+    .el-sub-menu__title{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
       i {
         color: #909399 !important;
       }
     }
-    .el-submenu.is-active{
-      .el-submenu__title{
+    .el-sub-menu.is-active{
+      .el-sub-menu__title{
         color:@--menu-item-active-text-color;
       }
     }
-    .el-submenu {
+    .el-sub-menu {
       .el-menu-item{
         background-color: @--submenu-item-bg-color;
         &:hover{
@@ -135,7 +138,7 @@
         color: @--active-color;
       }
     }
-    .el-submenu__title:hover,.el-menu-item:hover{
+    .el-sub-menu__title:hover,.el-menu-item:hover{
       color: @--menu-text-hover-color;
       background-color: @--menu-item-hover-bg-color;
     }
@@ -185,14 +188,14 @@
     background-color: @--main-bg-color;
   }
   .box-item-link{
-    .el-submenu__title,.el-menu-item{
+    .el-sub-menu__title,.el-menu-item{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
     .el-menu-item.is-active{
       color: @--active-color;
     }
-    .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
+    .el-sub-menu__title:hover,.el-sub-menu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
       //color: @--menu-item-text-color;
       background-color: @--menu-item-hover-bg-color;
     }

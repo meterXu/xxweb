@@ -1,4 +1,4 @@
-import {ACCESS_TOKEN,USER_INFO} from './mutation-types'
+import {ACCESS_TOKEN,USER_INFO} from './mutation-types.js'
 import CryptoJS from 'crypto-js'
 import moment from 'moment'
 

@@ -1,5 +1,5 @@
 <script lang="jsx">
-import { plantRenderPara } from '../../utils/gogocodeTransfer'
+import { plantRenderPara } from '../../utils/gogocodeTransfer.js'
 import * as Vue from 'vue'
 export default function render(_props, _context) {
   const context = {

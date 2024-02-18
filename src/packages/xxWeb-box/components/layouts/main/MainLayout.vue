@@ -25,7 +25,7 @@ import {
 } from 'element-plus'
 import TagsView from './TabsView.vue'
 import AppMain from './AppMain.vue'
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
 export default {
   name: 'TabLayout',
   mixins: [mixin],

@@ -21,7 +21,7 @@
 
 <script>
 import { ElTabs as Tabs, ElTabPane as TabPane } from 'element-plus'
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
 import DynamicIcon from '../../common/DynamicIcon.vue'
 
 export default {

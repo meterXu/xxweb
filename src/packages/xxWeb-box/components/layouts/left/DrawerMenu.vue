@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import mixin from '../../../mixin/mixin'
-import SideMenu from './SideMenu'
+import mixin from '../../../mixin/mixin.js'
+import SideMenu from './SideMenu.vue'
 import { ElDrawer as Drawer } from 'element-plus'
 export default {
   name: 'DrawerMenu',

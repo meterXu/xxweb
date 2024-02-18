@@ -2,7 +2,7 @@
   <div class="user-wrapper">
     <div class="user-wrapper-container">
       <div class="user-wrapper-avatar" v-if="type === 'avatar'">
-        <Dropdown v-if="isCollapse" @command="handleCommand">
+        <Dropdown v-if="isCollapse" @command="handleCommand" tabindex="">
           <div class="avatar-warp">
             <Avatar class="avatar-img" :size="50" :src="circleUrl"></Avatar>
             <slot name="user-wrapper-avatar-icon"></slot>
@@ -16,19 +16,19 @@
                 <DropdownItem
                   command="clearCache"
                   v-if="app.appConfig.config.head.user.menu.clearCache"
-                  icon="el-icon-delete"
+                  icon="delete"
                   >清除缓存</DropdownItem
                 >
                 <DropdownItem
                   command="changePwd"
                   v-if="app.appConfig.config.head.user.menu.changePwd"
-                  icon="el-icon-edit"
+                  icon="edit"
                   >修改密码</DropdownItem
                 >
                 <DropdownItem
                   command="exitSystem"
                   v-if="app.appConfig.config.head.user.menu.exitSystem"
-                  icon="el-icon-close"
+                  icon="close"
                   >退出系统</DropdownItem
                 >
               </slot>
@@ -41,16 +41,16 @@
         </div>
       </div>
       <div class="user-wrapper-username" v-if="!isCollapse">
-        <Dropdown @command="handleCommand">
+        <Dropdown @command="handleCommand" tabindex="">
           <span class="el-dropdown-link flex-middle">
-            <i v-if="type==='text'" class="el-icon-user"></i>
+            <el-icon v-if="type==='text'"><User/></el-icon>
             <span
               class="side-user-userName"
               v-if="app.appConfig.config.head.user.username"
             >
               <slot name="side-user-userName"> 管理员 </slot>
             </span>
-            <i style="line-height: 20px" class="el-icon-arrow-down el-icon--right"></i>
+            <el-icon style="line-height: 20px" class="el-icon--right"><ArrowDown /></el-icon>
           </span>
           <template v-slot:dropdown>
             <DropdownMenu v-if="app.appConfig.config.head.user.menu.show">
@@ -61,19 +61,19 @@
                 <DropdownItem
                   command="clearCache"
                   v-if="app.appConfig.config.head.user.menu.clearCache"
-                  icon="el-icon-delete"
+                  icon="delete"
                   >清除缓存</DropdownItem
                 >
                 <DropdownItem
                   command="changePwd"
                   v-if="app.appConfig.config.head.user.menu.changePwd"
-                  icon="el-icon-edit"
+                  icon="edit"
                   >修改密码</DropdownItem
                 >
                 <DropdownItem
                   command="exitSystem"
                   v-if="app.appConfig.config.head.user.menu.exitSystem"
-                  icon="el-icon-close"
+                  icon="close"
                   >退出系统</DropdownItem
                 >
               </slot>
@@ -103,7 +103,8 @@ import {
   ElDropdownItem as DropdownItem,
   ElAvatar as Avatar,
 } from 'element-plus'
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
+import UserImg from '../../../assets/imgs/user.png'
 export default {
   components: {
     Dropdown,
@@ -115,7 +116,7 @@ export default {
   props: ['type', 'isCollapse'],
   data() {
     return {
-      circleUrl: '../../../assets/imgs/user.png',
+      circleUrl: UserImg,
     }
   },
   mixins: [mixin],

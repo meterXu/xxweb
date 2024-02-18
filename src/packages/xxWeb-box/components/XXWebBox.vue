@@ -134,7 +134,7 @@ import '../assets/css/index.less'
 import HeaderLayout from './layouts/header/HeaderLayout.vue'
 import { ElContainer as Container, ElAside as Aside, ElMain as Main, ElFooter as Footer, ElHeader as Header } from 'element-plus'
 import SideMenu from './layouts/left/SideMenu.vue'
-import DrawerMenu from './layouts/left/DrawerMenu'
+import DrawerMenu from './layouts/left/DrawerMenu.vue'
 import MainLayout from './layouts/main/MainLayout.vue'
 
 export default {

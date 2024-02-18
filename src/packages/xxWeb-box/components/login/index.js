@@ -1,9 +1,9 @@
-import JeecgLogin from './JeecgLogin'
-import PigLogin from './PigLogin'
-import TreeLogin from './TreeLogin'
-import WatermelonLogin from './WatermelonLogin'
-import PhylumLogin from './PhylumLogin'
-import WDPLogin from './WDPLogin'
+import JeecgLogin from './JeecgLogin.vue'
+import PigLogin from './PigLogin.vue'
+import TreeLogin from './TreeLogin.vue'
+import WatermelonLogin from './WatermelonLogin.vue'
+import PhylumLogin from './PhylumLogin.vue'
+import WDPLogin from './WDPLogin.vue'
 
 let logins = [
   JeecgLogin,

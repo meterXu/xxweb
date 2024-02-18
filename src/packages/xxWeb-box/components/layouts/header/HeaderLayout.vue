@@ -24,7 +24,7 @@
                   direction="vertical"
                   v-if="!topmenu && hamburgerShow"
                 ></Divider>
-                <div :class="{ 'user-menu-item': true, topmenu: topmenu }">
+                <div :class="{ 'user-menu-item': true, 'top-menu': topmenu }">
                   <slot name="head-title">
                     <HeadTitle />
                   </slot>
@@ -35,20 +35,22 @@
                   direction="vertical"
                   v-if="!topmenu && hamburgerShow"
                 ></Divider>
-                <div :class="{ 'user-menu-item': true, topmenu: topmenu }">
+                <div :class="{ 'user-menu-item': true, 'top-menu': topmenu }">
                   <slot name="head-breadcrumb">
                     <HeadBreadcrumb />
                   </slot>
                 </div>
               </template>
               <div
-                :class="{ 'user-menu-item': true, topmenu: topmenu }"
+                :class="{ 'user-menu-item': true, 'top-menu': topmenu }"
                 v-if="topmenu"
               >
                 <DynamicMenu
                   :isCollapse="false"
                   mode="horizontal"
                   :defaultActive="defaultActive"
+                  :permission="app.permission"
+                  :appConfig="app.appConfig"
                 ></DynamicMenu>
               </div>
               <slot name="head-expand-left-end"></slot>
@@ -59,7 +61,7 @@
             <div class="right-con">
               <slot name="head-expand-right-start"></slot>
               <div
-                class="user-menu-item topmenu"
+                class="user-menu-item top-menu"
                 v-if="app.appConfig.config.head.searchMenu.show"
               >
                 <slot name="head-searchMenu">
@@ -67,7 +69,7 @@
                 </slot>
               </div>
               <div
-                class="user-menu-itemm topmenu"
+                class="user-menu-item top-menu"
                 v-if="app.appConfig.config.head.fullscreen.show"
               >
                 <slot name="head-fullScreen">
@@ -75,7 +77,7 @@
                 </slot>
               </div>
               <div
-                class="user-menu-item topmenu"
+                class="user-menu-item top-menu"
                 v-if="app.appConfig.config.head.user.show"
               >
                 <slot name="head-userMenu">
@@ -115,7 +117,7 @@ import {
   ElMenuItem as MenuItem,
   ElSubMenu as Submenu,
 } from 'element-plus'
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
 import Logo from '../../../components/common/Logo.vue'
 import Hamburger from './Hamburger.vue'
 import HeadTitle from './HeadTitle.vue'

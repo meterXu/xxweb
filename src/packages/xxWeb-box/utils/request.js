@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {ACCESS_TOKEN} from "./mutation-types"
-import {ls} from "./util"
+import {ACCESS_TOKEN} from "./mutation-types.js"
+import {ls} from "./util.js"
 function createService(project,withCredentials,baseApiKey,isToken,timeout){
     const _ls = new ls(project)
     let baseUrl = project.variable[baseApiKey];

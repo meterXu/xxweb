@@ -41,7 +41,7 @@
     .menu-search-box {
       color: @--menu-item-text-color;
     }
-    .topmenu {
+    .top-menu {
       color: @--menu-item-text-color;
     }
     .user-wrapper{
@@ -93,6 +93,9 @@
   }
   .side-menu{
     background: @--main-bg-color;
+    .user-wrapper{
+      border-bottom-color:@--border-color;
+    }
   }
   .side-scrollbar{
     background: @--main-bg-color;
@@ -112,11 +115,11 @@
     .el-menu {
       //border-radius: 50%;
     }
-    .el-submenu__title,.el-menu-item,.el-submenu__title:focus,.el-menu-item:focus{
+    .el-sub-menu__title,.el-menu-item,.el-sub-menu__title:focus,.el-menu-item:focus{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
-    .el-submenu {
+    .el-sub-menu {
       .el-menu-item{
         border-radius: 10px;
         margin: 5px 0;
@@ -126,13 +129,13 @@
         }
       }
     }
-    .el-submenu__title:hover,.el-menu-item:hover{
+    .el-sub-menu__title:hover,.el-menu-item:hover{
       border-radius: 10px;
       color: @--menu-text-hover-color;
       background-color: @--menu-item-hover-bg-color;
     }
-    .el-submenu.is-active{
-      .el-submenu__title{
+    .el-sub-menu.is-active{
+      .el-sub-menu__title{
         border-radius: 10px;
         border-bottom: 0 solid #fff;
         color:@--menu-item-active-text-color;
@@ -254,14 +257,14 @@
     background-color: @--main-bg-color;
   }
   .box-item-link{
-    .el-submenu__title,.el-menu-item{
+    .el-sub-menu__title,.el-menu-item{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
     .el-menu-item.is-active{
       color: @--active-color;
     }
-    .el-submenu__title:hover,.el-submenu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
+    .el-sub-menu__title:hover,.el-sub-menu__title:focus,.el-menu-item:focus,.el-menu-item:hover{
       color: @--active-color;
       background-color: @--menu-item-hover-bg-color;
     }

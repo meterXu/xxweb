@@ -1,5 +1,5 @@
-import XXWebBox from './XXWebBox'
-import { $on, $off, $once,$emit } from '../utils/gogocodeTransfer'
+import XXWebBox from './XXWebBox.vue'
+import { $on, $off, $once,$emit } from '../utils/gogocodeTransfer.js'
 
 XXWebBox.install = function (Vue) {
   let EventBus = {

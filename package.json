@@ -1,7 +1,8 @@
 {
   "name": "xxweb-box",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,7 +24,7 @@
     "markdown-it-container": "^3.0.0",
     "path-to-regexp": "^6.2.1",
     "resize-detector": "^0.1.9",
-    "screenfull": "^4.2.0",
+    "screenfull": "^6.0.2",
     "tiny-emitter": "^2.1.0",
     "vue": "^3.0.0",
     "vue-codemirror": "^4.0.6",

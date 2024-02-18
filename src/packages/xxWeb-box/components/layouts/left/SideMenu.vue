@@ -52,7 +52,7 @@ import {
   ElSubMenu as Submenu,
   ElScrollbar as Scrollbar
 } from 'element-plus'
-import mixin from '../../../mixin/mixin'
+import mixin from '../../../mixin/mixin.js'
 import DynamicMenu from '../../common/DynamicMenu.vue'
 import Logo from '../../common/Logo.vue'
 import UserMenu from '../header/UserMenu.vue'

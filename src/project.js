@@ -13,7 +13,7 @@ const project = function (mode){
             '403':'/error/5'
         },
         style: {
-            theme: 'element',
+            theme: 'wdp',
             color: '#1890FF',
             layout: 'sidemenu',
             multipage: true,
@@ -73,7 +73,7 @@ const project = function (mode){
                 },
                 hamburger:true,
                 user: {
-                    show: false,
+                    show: true,
                     username: true,
                     tag:true,
                     menu: {

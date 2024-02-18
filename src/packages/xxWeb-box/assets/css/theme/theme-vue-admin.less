@@ -19,6 +19,7 @@
   @--footer-bg-color:#fff;
   @--footer-text-color:#409EFF;
   @--app-main-bg-color:#fff;
+  @--border-color:#58626A;
   .header{
     color: @--sideMenu-header-color;
     background: @--sideMenu-header-bg-color;
@@ -71,13 +72,16 @@
   }
   .side-menu{
     background: @--main-bg-color;
+    .user-wrapper{
+      border-bottom-color:@--border-color;
+    }
   }
   .dynamic-menu{
     .el-submenu__title,.el-menu-item,.el-submenu__title:focus,.el-menu-item:focus{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
-    .el-submenu {
+    .el-sub-menu {
       .el-menu-item{
         background-color: @--submenu-item-bg-color;
         &:hover{
@@ -89,7 +93,7 @@
       color: @--menu-text-hover-color;
       background-color: @--menu-item-hover-bg-color;
     }
-    .el-submenu.is-active{
+    .el-sub-menu.is-active{
       .el-submenu__title{
         color:@--menu-item-active-text-color;
       }

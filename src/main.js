@@ -14,7 +14,6 @@ import {JeecgLogin,
   NoAuthority1,
   NoAuthority2,
   Error,
-  DarkMode1,
 } from './packages/xxWeb-box'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
@@ -44,7 +43,6 @@ const components = [JeecgLogin,
   NoAuthority1,
   NoAuthority2,
   Error,
-  DarkMode1,
 ]
 components.forEach(c=>{
   app.component(c.name,c)

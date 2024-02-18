@@ -1,7 +1,7 @@
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import {ACCESS_TOKEN, USER_INFO} from './mutation-types'
-import * as util from './util'
+import {ACCESS_TOKEN, USER_INFO} from './mutation-types.js'
+import * as util from './util.js'
 
 function filter(router, project) {
     let defaultLogin = project.redirect.login

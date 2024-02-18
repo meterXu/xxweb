@@ -5,16 +5,13 @@
     <template v-slot:side-user-tag>
       <el-tag class="version" size="small" effect="light">version:1.0</el-tag>
     </template>
-    <template v-slot:head-expand-right-start>
-      <DarkMode1 v-model="dark" style="margin-right: 12px"/>
-    </template>
   </XXWebBox>
 </template>
 
 <script>
 
 import permission from "../permission";
-import {DarkMode1,types} from '../packages/xxWeb-box'
+import {types} from '../packages/xxWeb-box'
 export default {
   name: 'Index',
   data() {
@@ -25,7 +22,6 @@ export default {
     }
   },
   components:{
-    DarkMode1
   },
   methods: {
     dropdownMenuClick(command) {

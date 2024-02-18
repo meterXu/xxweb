@@ -4,7 +4,7 @@ import {
   ElSubMenu as Submenu,
   ElMenuItem as MenuItem,
 } from 'element-plus'
-import mixin from '../../mixin/mixin'
+import mixin from '../../mixin/mixin.js'
 import DyMenuTitle from './DyMenuTitle.vue'
 import DynamicIcon from './DynamicIcon.vue'
 import ItemLink from './ItemLink.vue'
