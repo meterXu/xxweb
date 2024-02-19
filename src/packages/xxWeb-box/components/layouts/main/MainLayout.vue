@@ -1,5 +1,5 @@
 <template>
-  <Main
+  <main
     :class="{
       'layout-main': true,
       'tab-padding':
@@ -11,7 +11,7 @@
       @refresh="refresh"
     ></TagsView>
     <AppMain ref="appMain"></AppMain>
-  </Main>
+  </main>
 </template>
 
 <script>

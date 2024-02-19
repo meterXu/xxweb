@@ -1,6 +1,7 @@
 <script lang="jsx">
-import { plantRenderPara } from '../../utils/gogocodeTransfer.js'
-import * as Vue from 'vue'
+import {h} from 'vue'
+import {ElIcon} from "element-plus";
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 export default function render(_props, _context) {
   const context = {
     ..._context,
@@ -10,34 +11,13 @@ export default function render(_props, _context) {
   }
   const { type, meta } = context.props
   if (meta && meta.icon) {
-    if (typeof meta.icon === 'object') {
-      if (meta.icon.hasOwnProperty('render')) {
-        return Vue.h(
-          meta.icon,
-          plantRenderPara({
-            class: type === 'menu' ? 'el-icon-dog-icon' : '',
-          })
-        )
-      } else {
-        return Vue.h(
-          'DoIcon',
-          plantRenderPara({
-            props: {
-              icon: meta.icon.icon,
-              conf: Object.assign(
-                type === 'menu'
-                  ? { size: 18, fill: 'currentColor' }
-                  : { size: 14, fill: 'currentColor' },
-                meta.icon.conf
-              ),
-            },
-            class: type === 'menu' ? 'el-icon-dog-icon' : '',
-          })
-        )
-      }
+    if (typeof meta.icon === 'object'&& typeof meta.icon.render==='function') {
+      return meta.icon.render()
     } else if (typeof meta.icon === 'function') {
+      return meta.icon()
     } else {
-      return <i class={meta.icon} />
+      let metaIcon = Object.entries(ElementPlusIconsVue).find(c=>c[0]===meta.icon)
+      return metaIcon?h(ElIcon,()=>[h(metaIcon[1])]):''
     }
   } else {
     return null

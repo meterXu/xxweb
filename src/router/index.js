@@ -31,7 +31,7 @@ const normalRoutes =  [
             {
                 path: '/page/itemList/:type',
                 name: 'ItemList',
-                component:defineAsyncComponent(()=>import('../views/Page/ItemList')),
+                component:()=>import('../views/Page/ItemList'),
                 props: true
             },
             {

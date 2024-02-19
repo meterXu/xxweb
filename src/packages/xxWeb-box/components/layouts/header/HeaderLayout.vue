@@ -43,6 +43,7 @@
               </template>
               <div
                 :class="{ 'user-menu-item': true, 'top-menu': topmenu }"
+                style="flex: 1"
                 v-if="topmenu"
               >
                 <DynamicMenu
