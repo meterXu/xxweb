@@ -19,7 +19,7 @@
   @--footer-bg-color:#fff;
   @--footer-text-color:#409EFF;
   @--app-main-bg-color:#fff;
-  @--border-color:#58626A;
+  @--user-menu-bottom-border-color:#58626A24;
   .header{
     color: @--sideMenu-header-color;
     background: @--sideMenu-header-bg-color;
@@ -73,11 +73,11 @@
   .side-menu{
     background: @--main-bg-color;
     .user-wrapper{
-      border-bottom-color:@--border-color;
+      border-bottom-color:@--user-menu-bottom-border-color;
     }
   }
   .dynamic-menu{
-    .el-submenu__title,.el-menu-item,.el-submenu__title:focus,.el-menu-item:focus{
+    .el-sub-menu__title,.el-menu-item,.el-sub-menu__title:focus,.el-menu-item:focus{
       color: @--menu-item-text-color;
       background-color: @--main-bg-color;
     }
@@ -89,12 +89,12 @@
         }
       }
     }
-    .el-submenu__title:hover,.el-menu-item:hover{
+    .el-sub-menu__title:hover,.el-menu-item:hover{
       color: @--menu-text-hover-color;
       background-color: @--menu-item-hover-bg-color;
     }
     .el-sub-menu.is-active{
-      .el-submenu__title{
+      .el-sub-menu__title{
         color:@--menu-item-active-text-color;
       }
     }
