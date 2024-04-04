@@ -1,6 +1,6 @@
 {
   "name": "xxweb-box",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "可复用的前端页面",
   "main": "index.js",
   "scripts": {
