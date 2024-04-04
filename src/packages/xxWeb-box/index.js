@@ -1,7 +1,6 @@
 import XXWebBox from './components/index'
 import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin,WDPLogin} from './components/login'
 import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error'
-import {DarkMode1} from './components/darmode'
 
 import filter from './utils/filter'
 import * as types from './utils/mutation-types'
@@ -30,7 +29,6 @@ export {
     NoAuthority1,
     NoAuthority2,
     Error,
-    DarkMode1,
     filter,
     types,
     util,

@@ -13,7 +13,6 @@ import {JeecgLogin,
   NoAuthority1,
   NoAuthority2,
   Error,
-  DarkMode1,
 } from './packages/xxWeb-box'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
@@ -36,8 +35,7 @@ const components = [JeecgLogin,
   NotFound2,
   NoAuthority1,
   NoAuthority2,
-  Error,
-  DarkMode1
+  Error
 ]
 components.forEach(c=>{
   Vue.use(c)

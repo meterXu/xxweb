@@ -5,9 +5,6 @@
     <template v-slot:side-user-tag>
       <Tag class="version" size="mini" effect="light">version:1.0</Tag>
     </template>
-    <template v-slot:head-expand-right-start>
-      <DarkMode1 v-model="dark" style="margin-right: 12px"/>
-    </template>
     <template v-slot:head-user-userName>
       xxxx
     </template>
@@ -21,7 +18,6 @@
 
 import permission from "../permission";
 import {Tag} from 'element-ui'
-import {DarkMode1,types} from '../packages/xxWeb-box'
 export default {
   name: 'Index',
   data() {
@@ -33,7 +29,6 @@ export default {
   },
   components:{
     Tag,
-    DarkMode1
   },
   methods: {
     dropdownMenuClick(command) {
