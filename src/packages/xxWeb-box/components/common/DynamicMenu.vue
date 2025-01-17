@@ -43,8 +43,10 @@ export default function render(_props, _context) {
         sMenu.push(
           <ItemLink to={m.path} mode={appConfig.config.menu.mode}>
             <MenuItem index={m.path}>
-              <DynamicIcon type="menu" meta={m.meta} />
-              <DyMenuTitle meta={m.meta} />
+              {{
+                title:()=><DyMenuTitle meta={m.meta} />,
+                default:()=><DynamicIcon type="menu" meta={m.meta} />
+              }}
             </MenuItem>
           </ItemLink>
         )

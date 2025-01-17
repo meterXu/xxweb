@@ -15,7 +15,7 @@ const project = function (mode){
         style: {
             theme: 'element',
             color: '#1890FF',
-            layout: 'topmenu',
+            layout: 'sidemenu',
             multipage: true,
             fixSideMenu: false
         },
