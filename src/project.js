@@ -13,7 +13,7 @@ const project = function (mode){
             '403':'/error/5'
         },
         style: {
-            theme: 'element',
+            theme: 'nitro',
             color: '#1890FF',
             layout: 'sidemenu',
             multipage: true,
