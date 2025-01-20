@@ -1,6 +1,6 @@
 {
   "name": "xxweb-box",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "可复用的前端页面-vue3版",
   "main": "index.js",
   "scripts": {
