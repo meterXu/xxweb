@@ -2,13 +2,15 @@ const {loadEnv} = require("vite");
 const project = function (mode){
     const env = loadEnv(mode,process.cwd())
     return {
+        nameSpace:'helloWorld',
         variable: {
+            tokenKey:'Authorization',
             baseApi:env.VITE_APP_baseApi,
             ssoApi:env.VITE_APP_ssoApi
         },
         redirect: {
             index: '/page/itemList/xxWebBox',
-            login: '/login/1',
+            login: '/login/5',
             "404": '/error/1',
             '403':'/error/5'
         },

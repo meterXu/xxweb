@@ -1,32 +1,26 @@
 <template>
   <div style="height: 100%">
-    <jeecg-login v-if="type===1" :config="config" v-model="form" @login="login">
-    </jeecg-login>
-    <PigLogin v-if="type===2" :config="config" :rules="rules" v-model="form" @login="login">
+    <PigLogin v-if="type==='2'" :config="config" :rules="rules" v-model="form" @login="login">
     </PigLogin>
-    <TreeLogin v-if="type===3" :config="config" :rules="rules" v-model="form" @login="login">
+    <TreeLogin v-if="type==='3'" :config="config" :rules="rules" v-model="form" @login="login">
     </TreeLogin>
-    <WatermelonLogin v-if="type===4" :config="config" :rules="rules" v-model="form" @login="login">
+    <WatermelonLogin v-if="type==='4'" :config="config" :rules="rules" v-model="form" @login="login">
     </WatermelonLogin>
-    <PhylumLogin v-if="type===5" :config="config" :rules="rules" v-model="form" @login="login">
+    <PhylumLogin v-if="type==='5'" :config="config" :rules="rules" v-model="form" @login="login">
     </PhylumLogin>
-    <WDPLogin v-if="type===6" :config="config" @login="login">
-    </WDPLogin>
   </div>
 </template>
 
 <script>
-import {JeecgLogin,PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,WDPLogin,types} from '../packages/xxWeb-box/index'
+import {PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,types} from '../packages/xxWeb-box/index'
 export default {
   name: "Login",
   props:['type'],
   components:{
-    JeecgLogin,
     PigLogin,
     TreeLogin,
     WatermelonLogin,
-    PhylumLogin,
-    WDPLogin
+    PhylumLogin
   },
   data(){
     return {

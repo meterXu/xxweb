@@ -2,10 +2,10 @@
 
 ```vue
 <template>
-  <JeecgLogin :config="config" v-model="form" @login="login"></JeecgLogin>
+  <PhylumLogin :config="config" v-model="form" @login="login"></PhylumLogin>
 </template>
 <script>
-import {JeecgLogin} from 'xxweb-box'
+import {PhylumLogin} from 'xxweb-box'
 export default {
   data(){
     return {
@@ -43,7 +43,7 @@ export default {
     }
   },
   components:{
-    JeecgLogin
+    PhylumLogin
   },
   methods:{
     login(valid){
@@ -58,7 +58,6 @@ export default {
 ```
 
 ## 组件列表
-* JeecgLogin
 * PhylumLogin
 * PigLogin
 * TreeLogin

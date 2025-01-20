@@ -1,5 +1,5 @@
 import XXWebBox from './components/index.js'
-import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin,WDPLogin} from './components/login/index.js'
+import {PigLogin, TreeLogin, WatermelonLogin, PhylumLogin} from './components/login/index.js'
 import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error/index.js'
 
 import filter from './utils/filter.js'
@@ -17,12 +17,10 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 export {
     XXWebBox,
-    JeecgLogin,
     PigLogin,
     TreeLogin,
     WatermelonLogin,
     PhylumLogin,
-    WDPLogin,
     NotFound,
     NotFoundDark,
     NotFound2,

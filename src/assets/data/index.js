@@ -7,17 +7,14 @@ export const error = [
 ]
 
 export const login =[
-    {title:"JeecgLogin",cover:'./static/imgs/login/JeecgLogin.jpg',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/login/JeecgLogin'},
     {title:"PigLogin",cover:'./static/imgs/login/PigLogin.jpg',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/PigLogin'},
     {title:"TreeLogin",cover:'./static/imgs/login/TreeLogin.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/TreeLogin'},
     {title:"WatermelonLogin",cover:'./static/imgs/login/WatermelonLogin.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/WatermelonLogin'},
     {title:"PhylumLogin",cover:'./static/imgs/login/PhylumLogin.png',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/login/PhylumLogin'},
-    {title:"WDPLogin",cover:'./static/imgs/login/WDPLogin.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/login/WDPLogin'},
 ]
 
 export const xxWebBox=[
     {title:"element",cover:'./static/imgs/xxWebBox/element.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/xxWebBox/element'},
-    {title:"jeecg",cover:'./static/imgs/xxWebBox/jeecg.png',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/jeecg'},
     {title:"vue-admin",cover:'./static/imgs/xxWebBox/vue-admin.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/xxWebBox/vue-admin'},
     {title:"v2board",cover:'./static/imgs/xxWebBox/v2board.png',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/v2board'},
     {title:"thunder",cover:'./static/imgs/xxWebBox/thunder.png',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/xxWebBox/thunder'},
