@@ -1,8 +1,8 @@
 <template>
   <div class="xxWeb">
-    <div class="xxWeb-box" :theme="appConfig.style.theme">
+    <div class="xxWeb-box" :data-theme="appConfig.style.theme">
       <Container class="main-container">
-        <template v-if="appConfig.style.layout === 'sidemenu'">
+        <template v-if="appConfig.style.layout === 'sideMenu'">
           <template v-if="device === 'desktop'">
             <slot name="side" :data="{ isCollapse, permission }">
               <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex">
@@ -51,9 +51,6 @@
             </template>
             <template v-slot:side-user-tag-text>
               <slot name="side-user-tag-text"></slot>
-            </template>
-            <template v-slot:user-wrapper-avatar-icon>
-              <slot name="user-wrapper-avatar-icon"></slot>
             </template>
           </DrawerMenu>
         </template>
@@ -139,7 +136,20 @@ import MainLayout from './layouts/main/MainLayout.vue'
 
 export default {
   name: 'XXWebBox',
-  props: ['appConfig', 'permission', 'initCollapse'],
+  props: {
+    config:{
+      type:Object,
+      default:{}
+    },
+    permission:{
+      type:Array,
+      default:[]
+    },
+    initCollapse:{
+      type:Boolean,
+      default:false
+    }
+  },
   components: {
     MainLayout,
     SideMenu,
@@ -153,7 +163,7 @@ export default {
   },
   data() {
     return {
-      isCollapse: this.initCollapse ? true : false,
+      isCollapse: this.initCollapse,
       visitedViews: [],
       cachedViews: [],
       device: 'desktop',
@@ -184,7 +194,6 @@ export default {
     activeIndex: {
       deep: true,
       immediate: true,
-
       handler(nv) {
         if (this.device === 'mobile') {
           this.isCollapse = false
@@ -197,6 +206,103 @@ export default {
       return {
         width: `calc(100% - ${this.appConfig.config.sideMenu.width})`
       }
+    },
+    appConfig(){
+      return Object.assign({
+        namespace: "helloWorld",
+        redirect: {
+          index: '/',
+          login: '/login',
+          "404": '/404'
+        },
+        style: {
+          theme: 'vue-admin',
+          color: '#1890FF',
+          layout: 'sideMenu',
+          multiPage: true,
+          fixSideMenu: false,
+        },
+        config: {
+          logo: null,
+          title: "helloWorld",
+          login: {
+            title: "helloWorld",
+            desc: ""
+          },
+          menu:{
+            mode:'router'
+          },
+          head: {
+            hamburger:false,
+            logo:{
+              show: true,
+            },
+            title: {
+              show: false,
+              desktop: "",
+              mobile: ""
+            },
+            breadcrumb: {
+              show: true,
+            },
+            searchMenu: {
+              show: true
+            },
+            helper: {
+              show: false,
+              href: "javascript:;",
+              target: "_blank"
+            },
+            fullscreen: {
+              show: true,
+            },
+            user: {
+              show: true,
+              username: true,
+              menu: {
+                show: true,
+                clearCache: true,
+                changePwd: true,
+                exitSystem: true
+              }
+            }
+          },
+          sideMenu: {
+            title: "helloWorld",
+            width: '200px',
+            hamburger:true,
+            logo:{
+              show: true,
+            },
+            user: {
+              show: false,
+              username: true,
+              tag:true,
+              menu: {
+                show: true,
+                clearCache: true,
+                changePwd: true,
+                exitSystem: true
+              }
+            }
+          },
+          tabs: {
+            show:true,
+            icon: false,
+          },
+          footer: {
+            show: true,
+            links: [],
+            copyright: {
+              content: "xxweb-box",
+              year: new Date().getFullYear(),
+              href: "javascript:;",
+              target: "_blank"
+            }
+          },
+          plugins: {}
+        }
+      },this.config)
     }
   },
   mounted() {

@@ -1,35 +1,15 @@
-import {ACCESS_TOKEN,USER_INFO} from './mutation-types.js'
 import CryptoJS from 'crypto-js'
-import moment from 'moment'
+import Moment from 'moment'
 
 /**
- * 触发 window.resize
+ * 是否是外部地址
+ * @param path
+ * @return {boolean}
  */
-export function triggerWindowResizeEvent() {
-    let event = document.createEvent('HTMLEvents')
-    event.initEvent('resize', true, true)
-    event.eventType = 'message'
-    window.dispatchEvent(event)
+export function isExternal(path) {
+    return /^(https?:|mailto:|tel:)/.test(path);
 }
 
-/**
- * 过滤对象中为空的属性
- * @param obj
- * @returns {*}
- */
-export function filterObj(obj) {
-    if (!(typeof obj == 'object')) {
-        return;
-    }
-
-    for ( let key in obj) {
-        if (obj.hasOwnProperty(key)
-            && (obj[key] == null || obj[key] === undefined || obj[key] === '')) {
-            delete obj[key];
-        }
-    }
-    return obj;
-}
 
 /**
  * 深度克隆对象、数组
@@ -95,22 +75,11 @@ export function randomUUID() {
 }
 
 /**
- * 下划线转驼峰
- * @param string
- * @returns {*}
- */
-export function underLine2CamelCase(string){
-    return string.replace( new RegExp("_([a-z])",'g'), function( all, letter ) {
-        return letter.toUpperCase();
-    });
-}
-
-/**
- * 获取url中的参数
- * @param variable
+ * 获取url中的指定名称的参数
+ * @param name
  * @returns {String | null|string}
  */
-export function getQueryVariable(variable) {
+export function getQueryVariable(name) {
     let query = ''
     if (window.location.search) {
         query = window.location.search.substring(1)
@@ -122,15 +91,16 @@ export function getQueryVariable(variable) {
         let vars = query.split('&')
         for (let i = 0; i < vars.length; i++) {
             let pair = vars[i].split('=')
-            if (pair[0] === variable) { return decodeURIComponent(pair[1]) }
+            if (pair[0] === name) {
+                return decodeURIComponent(pair[1])
+            }
         }
     }
     return null
 }
 
-
 /**
- * 获取url中的参数
+ * 获取url中的所有参数
  * @returns {String | null|string}
  */
 export function getQuery() {
@@ -154,161 +124,368 @@ export function getQuery() {
 
 /**
  * 拼接url及参数
- * @param url
- * @param params
+ * @param {String} url
+ * @param {Object} params
  * @returns {String}
  */
-export function generateRealUrl(url,params){
-    let query="";
-    Object.keys(params).forEach((key)=>{
-        query+=`&${key}=${params[key]}`;
+export function generateRealUrl(url, params) {
+    let query = "";
+    Object.keys(params).forEach((key) => {
+        query += `&${key}=${params[key]}`;
     });
-    query = query.substring(1,query.length);
-    if(url.match(new RegExp("\/.*\\?"),"g")) {
-        return url+"&"+query
-    }else {
-        return url+"?"+query
+    query = query.substring(1, query.length);
+    if (new RegExp("\/.*\\?", "g").test(url)) {
+        return url + "&" + query
+    } else {
+        return url + "?" + query
     }
 }
 
 /**
  * 拼接sso退出登录地址
  * @param ssoBackUrl
- * @param query
  * @returns {String}
  */
-export function ssoLoginOutUrl(ssoBackUrl){
+export function ssoLoginOutUrl(ssoBackUrl) {
     let params = {
-        action:'logout',
-        redirect_url:encodeURIComponent(`${window.location.href}`)
+        action: 'logout',
+        redirect_url: encodeURIComponent(`${window.location.href}`)
     };
-    return generateRealUrl(ssoBackUrl,params);
+    return generateRealUrl(ssoBackUrl, params);
 }
 
 /**
  * 重定向至SSO登录地址
  * @param {String} ssoBackUrl
  */
-export function redirectSsoLogin(ssoBackUrl){
+export function redirectSsoLogin(ssoBackUrl) {
     const redirectUrl = ssoLoginOutUrl(ssoBackUrl)
-    window.open(redirectUrl,"_self")
+    window.open(redirectUrl, "_self")
 }
 
 /**
  * 通用退出登录
+ * @param {String} nameSpace
+ * @param {String} tokenLsKey
  * @param {function} callback
  */
-export function logOut(callback){
-    let _ls = new ls(project)
-    _ls.remove(ACCESS_TOKEN)
-    _ls.remove(USER_INFO)
-    callback&&callback()
+export function logOut(nameSpace, tokenLsKey, callback) {
+    let _ls = new Ls(nameSpace)
+    _ls.remove(tokenLsKey)
+    callback && callback()
 }
 
-export function isMobile (device) {
-    return device === 'mobile'
+/**
+ * 复制字符串
+ * @param {String} str
+ * @param {Function} success
+ * @param {Function} failed
+ */
+export function doCopy(str, success, failed) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(str).then(() => {
+                success && success()
+            },
+            err => {
+                failed && failed(err)
+            }
+        )
+    } else {
+        try {
+            const input = document.createElement('input')
+            input.value = str
+            document.body.appendChild(input)
+            input.select()
+            document.execCommand('copy')
+            document.body.removeChild(input)
+            success && success()
+        } catch (err) {
+            failed && failed(err)
+        }
+    }
 }
-export function isDesktop (device) {
-    return device === 'desktop'
+
+/**
+ * 获取设备类型
+ * @return {string}
+ */
+export function deviceType() {
+    const ua = window.navigator.userAgent.toLowerCase()
+    if (/miniprogram/i.test(ua)) {
+        return 'WxMini'
+    }
+    if (/micromessenger/i.test(ua)) {
+        return 'WeChat'
+    } else if (/android/i.test(ua)) {
+        return 'Android'
+    } else if (/iphone/i.test(ua)) {
+        return 'iPhone'
+    } else if (/ipad/i.test(ua)) {
+        return 'iPad'
+    } else if (/webos/i.test(ua)) {
+        return 'webOS'
+    } else if (/blackberry/i.test(ua)) {
+        return 'BlackBerry'
+    } else if (/iemobile/i.test(ua)) {
+        return 'IEMobile'
+    } else if (/opera mini/i.test(ua)) {
+        return 'Opera Mini'
+    } else {
+        return 'Others'
+    }
 }
-export function formatDate(datetime,format){
-    return new moment(datetime).format(format)
+
+/**
+ * 时间格式化
+ * @param {Date} datetime
+ * @param {String} format
+ * @return {String}
+ */
+export function formatDate(datetime, format) {
+    return new Moment(datetime).format(format)
 }
-// aes_cbc_128
-export function aes_encrypt_cbc_128(text) {
-    let key = CryptoJS.enc.Utf8.parse('[B@65330df71%@12')
-    let iv = CryptoJS.enc.Utf8.parse('1122334455667788')
-    const encrypted = CryptoJS.AES.encrypt(text, key, {
-        iv,
+
+/**
+ * aes_cbc_128加密
+ * @param {String} text
+ * @param {String} key
+ * @param {String} iv
+ * @return {string}
+ */
+export function aes_encrypt_cbc_128(text, key = '[B@65330df71%@12', iv = '1122334455667788') {
+    let _key = CryptoJS.enc.Utf8.parse(key)
+    let _iv = CryptoJS.enc.Utf8.parse(iv)
+    const encrypted = CryptoJS.AES.encrypt(text, _key, {
+        _iv,
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.CBC
+        mode: CryptoJS.mode.CBC
     });
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
 }
 
-
-export function aes_decrypt_cbc_128(base64) {
-    let  key = CryptoJS.enc.Utf8.parse('[B@65330df71%@12')
-    let iv = CryptoJS.enc.Utf8.parse('1122334455667788')
-    const decrypt = CryptoJS.AES.decrypt(base64, key, {
-        iv,
+/**
+ * aes_cbc_128解密
+ * @param base64
+ * @param key
+ * @param iv
+ * @return {string}
+ */
+export function aes_decrypt_cbc_128(base64, key = '[B@65330df71%@12', iv = '1122334455667788') {
+    let _key = CryptoJS.enc.Utf8.parse(key)
+    let _iv = CryptoJS.enc.Utf8.parse(iv)
+    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
+        _iv,
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.CBC
+        mode: CryptoJS.mode.CBC
     });
     return decrypt.toString(CryptoJS.enc.Utf8);
 }
 
-// aes_ecb_128
-export function aes_encrypt_ecb_128(text) {
+/**
+ * aes_ecb_128加密
+ * @param text
+ * @param key
+ * @return {string}
+ */
+export function aes_encrypt_ecb_128(text, key = '[B@65330df71%@12') {
     text = CryptoJS.enc.Utf8.parse(text);
-    let k = CryptoJS.enc.Utf8.parse('[B@65330df71%@12')
-    const encrypted = CryptoJS.AES.encrypt(text, k, {
+    let _key = CryptoJS.enc.Utf8.parse(key)
+    const encrypted = CryptoJS.AES.encrypt(text, _key, {
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.ECB
+        mode: CryptoJS.mode.ECB
     });
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
 }
 
-export function aes_decrypt_ecb_128(base64) {
-    let k = CryptoJS.enc.Utf8.parse('[B@65330df71%@12')
-    const decrypt = CryptoJS.AES.decrypt(base64, k, {
+/**
+ * aes_ecb_128解密
+ * @param base64
+ * @param key
+ * @return {string}
+ */
+export function aes_decrypt_ecb_128(base64, key = '[B@65330df71%@12') {
+    let _key = CryptoJS.enc.Utf8.parse(key)
+    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.ECB
+        mode: CryptoJS.mode.ECB
     });
     return decrypt.toString(CryptoJS.enc.Utf8);
 }
-// aes_cbc_256
-export function aes_encrypt_cbc_256(text) {
-    let key = CryptoJS.enc.Base64.parse('[B@65330df71%@12')
-    let iv = CryptoJS.enc.Base64.parse('1122334455667788')
-    const encrypted = CryptoJS.AES.encrypt(text, key, {
-        iv,
+
+/**
+ * aes_cbc_256加密
+ * @param text
+ * @param key
+ * @param iv
+ * @return {string}
+ */
+export function aes_encrypt_cbc_256(text, key = '[B@65330df71%@12', iv = '1122334455667788') {
+    let _key = CryptoJS.enc.Base64.parse(key)
+    let _iv = CryptoJS.enc.Base64.parse(iv)
+    const encrypted = CryptoJS.AES.encrypt(text, _key, {
+        _iv,
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.CBC
+        mode: CryptoJS.mode.CBC
     });
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
 }
 
-export function aes_decrypt_cbc_256(base64) {
-    let key = CryptoJS.enc.Base64.parse('[B@65330df71%@12')
-    let iv = CryptoJS.enc.Base64.parse('1122334455667788')
-    const decrypt = CryptoJS.AES.decrypt(base64, key, {
-        iv,
+/**
+ * aes_cbc_256解密
+ * @param base64
+ * @param key
+ * @param iv
+ * @return {string}
+ */
+export function aes_decrypt_cbc_256(base64, key = '[B@65330df71%@12', iv = '1122334455667788') {
+    let _key = CryptoJS.enc.Base64.parse(key)
+    let _iv = CryptoJS.enc.Base64.parse(iv)
+    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
+        _iv,
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.CBC
+        mode: CryptoJS.mode.CBC
     });
     return decrypt.toString(CryptoJS.enc.Utf8);
 }
-// aes_ecb_256
-export function aes_encrypt_ecb_256(text) {
-    let key = CryptoJS.enc.Base64.parse('[B@65330df71%@12');
-    const encrypted = CryptoJS.AES.encrypt(text, key, {
+
+/**
+ * aes_ecb_256加密
+ * @param text
+ * @param key
+ * @return {string}
+ */
+export function aes_encrypt_ecb_256(text, key = '[B@65330df71%@12') {
+    let _key = CryptoJS.enc.Base64.parse(key);
+    const encrypted = CryptoJS.AES.encrypt(text, _key, {
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.ECB
+        mode: CryptoJS.mode.ECB
     });
     return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
 }
 
-export function aes_decrypt_ecb_256(base64) {
-    let  key = CryptoJS.enc.Base64.parse('[B@65330df71%@12')
-    const decrypt = CryptoJS.AES.decrypt(base64, key, {
+/**
+ * aes_ecb_256解密
+ * @param base64
+ * @param key
+ * @return {string}
+ */
+export function aes_decrypt_ecb_256(base64, key = '[B@65330df71%@12') {
+    let _key = CryptoJS.enc.Base64.parse(key)
+    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
         padding: CryptoJS.pad.Pkcs7,
-        mode:CryptoJS.mode.ECB
+        mode: CryptoJS.mode.ECB
     });
     return decrypt.toString(CryptoJS.enc.Utf8);
 }
 
-export function ls(project){
-    this.project = project
-    this.get=function (key){
-        return localStorage.getItem(`${this.project.namespace}__`+key)
+/**
+ * localStorage处理
+ * @param {String} nameSpace
+ * @return {Object}
+ */
+export function Ls(nameSpace) {
+    this.get = function (key) {
+        return localStorage.getItem(`${nameSpace}__` + key)
     }
-
-    this.set=function (key,value){
-        localStorage.setItem(`${this.project.namespace}__`+key,value)
+    this.set = function (key, value) {
+        localStorage.setItem(`${nameSpace}__` + key, value)
     }
+    this.remove = function (key) {
+        localStorage.removeItem(`${nameSpace}__` + key)
+    }
+}
 
-    this.remove=function (key){
-        localStorage.removeItem(`${this.project.namespace}__`+key)
+/**
+ * Cookie的处理
+ * @param {String} path
+ * @return {Object}
+ */
+export function Cookie(path = '/') {
+    let supplyCookieStore = 'cookieStore' in window
+    this.get = function (name) {
+        if (supplyCookieStore) {
+            return window.cookieStore.get(name)
+        } else {
+            return new Promise((resolve, reject) => {
+                try{
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2){
+                        resolve(parts.pop().split(';').shift())
+                    } else{
+                        resolve(null)
+                    }
+                }catch (err){
+                    reject(err)
+                }
+            })
+        }
+    }
+    this.set = function (name, value, days) {
+        if (supplyCookieStore) {
+            return window.cookieStore.set({
+                name: name,
+                value: value,
+                expires: new Date(Date.now() + days*24*3600*1000),
+                path: path
+            })
+        } else {
+            return new Promise((resolve, reject) => {
+                try{
+                    let expires = "";
+                    if (days) {
+                        const date = new Date();
+                        date.setTime(date.getTime() + (days*24*3600*1000));
+                        expires = "; expires=" + date.toUTCString();
+                    }
+                    document.cookie = name + "=" + (value || "") + expires + `; path=${path}`;
+                    resolve()
+                }catch (err){
+                    reject(err)
+                }
+            })
+        }
+    }
+    this.remove = function (name) {
+        if (supplyCookieStore) {
+            return window.cookieStore.delete(name)
+        }else{
+            return new Promise((resolve, reject) => {
+                try {
+                    document.cookie = name + '=; Max-Age=-99999999;';
+                    resolve()
+                }catch (err){
+                    reject(err)
+                }
+            })
+        }
+
+    }
+}
+
+/**
+ * 下载资源
+ * @param {String} name
+ * @param {String} url
+ */
+export function downloadFileByUrl(name,url){
+    document.createElement('a')
+    a.href=url
+    a.download=name
+    document.body.appendChild(a)
+    a.click()
+}
+
+/**
+ * 下载资源
+ * @param {String} name
+ * @param {Blob} blob
+ */
+export function downloadFileByBlob(name,blob){
+    if (!(blob instanceof Blob)) {
+        console.error('blob is not instance of Blob')
+    }else{
+        const url = window.URL.createObjectURL(blob)
+        downloadFileByUrl(name,url)
     }
 }

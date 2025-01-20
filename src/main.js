@@ -1,7 +1,7 @@
 import App from './App.vue'
 import { createApp } from 'vue'
 import {filter,util} from './packages/xxWeb-box/index'
-import XXWeb from './packages/xxWeb-box'
+import XXWebBox from './packages/xxWeb-box'
 import {JeecgLogin,
   PigLogin,
   TreeLogin,
@@ -26,8 +26,8 @@ window.app = app
 app.config.productionTip = false
 app.config.globalProperties.$project = window.project
 // filter(router,Vue.config.globalProperties.$project)
-app.config.globalProperties.$ls = new util.ls(window.project)
-app.use(XXWeb)
+app.config.globalProperties.$ls = new util.Ls(window.project.namespace)
+app.use(XXWebBox)
 app.component(DemoBlock.name,DemoBlock)
 app.use(elementUI)
 app.use(router)

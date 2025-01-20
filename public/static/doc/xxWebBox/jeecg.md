@@ -29,8 +29,8 @@
                     style: {
                         theme: 'jeecg',
                         color: '#1890FF',
-                        layout: 'sidemenu',
-                        multipage: true,
+                        layout: 'sideMenu',
+                        multiPage: true,
                         fixSideMenu: false 
                     },
                     config: {

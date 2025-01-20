@@ -3,7 +3,7 @@ import {JeecgLogin, PigLogin, TreeLogin, WatermelonLogin, PhylumLogin,WDPLogin} 
 import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error/index.js'
 
 import filter from './utils/filter.js'
-import * as types from './utils/mutation-types.js'
+import * as types from './utils/types.js'
 import * as util from './utils/util.js'
 import * as request from './utils/request.js'
 import * as validate from './utils/validate.js'

@@ -14,18 +14,15 @@ const project = function (mode){
         },
         style: {
             theme: 'nitro',
-            color: '#1890FF',
-            layout: 'sidemenu',
-            multipage: true,
-            fixSideMenu: false
+            layout: 'sideMenu',
+            multiPage: true
         },
         config: {
-            logo: "./static/imgs/logo-white.png",
-            favicon: "./static/imgs/logo.png",
-            title: "xxWebBox",
+            logo: null,
+            title: "helloWorld",
             login: {
-                title: "xxWebBox",
-                desc: "请输入你的账号",
+                title: "helloWorld",
+                desc: ""
             },
             menu:{
                 mode:'router'
@@ -52,7 +49,7 @@ const project = function (mode){
                     target: "_blank"
                 },
                 fullscreen: {
-                    show: false,
+                    show: true,
                 },
                 user: {
                     show: true,
@@ -66,14 +63,14 @@ const project = function (mode){
                 }
             },
             sideMenu: {
-                title: "xxWebBox",
-                width: '250px',
+                title: "helloWorld",
+                width: '200px',
+                hamburger:true,
                 logo:{
                     show: true,
                 },
-                hamburger:true,
                 user: {
-                    show: true,
+                    show: false,
                     username: true,
                     tag:true,
                     menu: {
@@ -85,17 +82,17 @@ const project = function (mode){
                 }
             },
             tabs: {
-                show: true,
-                icon: true
+                show:true,
+                icon: false,
             },
             footer: {
                 show: true,
                 links: [],
                 copyright: {
-                    content: "xxWebBox",
+                    content: "xxweb-box",
                     year: new Date().getFullYear(),
                     href: "javascript:;",
-                    target: "_self"
+                    target: "_blank"
                 }
             },
             plugins: {}

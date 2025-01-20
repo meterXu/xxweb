@@ -1,17 +1,17 @@
 <template>
   <div>
     <slot name="header">
-      <Header :class="['header', topmenu && 'top-header']">
+      <Header :class="['header', topMenu && 'top-header']">
         <div class="header-content">
           <div class="row-head">
             <div class="left-con">
               <slot name="head-expand-left-start"></slot>
-              <div v-if="sidemenu" class="user-menu-item">
+              <div v-if="sideMenu" class="user-menu-item">
                 <slot name="head-hamburger" v-if="hamburgerShow">
                   <Hamburger :isCollapse="isCollapse" />
                 </slot>
               </div>
-              <div class="user-menu-item" v-if="topmenu">
+              <div class="user-menu-item" v-if="topMenu">
                 <slot
                   name="head-logo"
                   v-if="app.appConfig.config.head.logo.show"
@@ -22,9 +22,9 @@
               <template v-if="app.appConfig.config.head.title.show">
                 <Divider
                   direction="vertical"
-                  v-if="!topmenu && hamburgerShow"
+                  v-if="!topMenu && hamburgerShow"
                 ></Divider>
-                <div :class="{ 'user-menu-item': true, 'top-menu': topmenu }">
+                <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }">
                   <slot name="head-title">
                     <HeadTitle />
                   </slot>
@@ -33,18 +33,18 @@
               <template v-if="app.appConfig.config.head.breadcrumb.show">
                 <Divider
                   direction="vertical"
-                  v-if="!topmenu && hamburgerShow"
+                  v-if="!topMenu && hamburgerShow"
                 ></Divider>
-                <div :class="{ 'user-menu-item': true, 'top-menu': topmenu }">
+                <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }">
                   <slot name="head-breadcrumb">
                     <HeadBreadcrumb />
                   </slot>
                 </div>
               </template>
               <div
-                :class="{ 'user-menu-item': true, 'top-menu': topmenu }"
+                :class="{ 'user-menu-item': true, 'top-menu': topMenu }"
                 style="flex: 1"
-                v-if="topmenu"
+                v-if="topMenu"
               >
                 <DynamicMenu
                   :isCollapse="false"
@@ -147,11 +147,11 @@ export default {
     Submenu,
   },
   computed: {
-    sidemenu() {
-      return this.app.appConfig.style.layout === 'sidemenu'
+    sideMenu() {
+      return this.app.appConfig.style.layout === 'sideMenu'
     },
-    topmenu() {
-      return this.app.appConfig.style.layout === 'topmenu'
+    topMenu() {
+      return this.app.appConfig.style.layout === 'topMenu'
     },
     defaultActive() {
       return this.$route.path

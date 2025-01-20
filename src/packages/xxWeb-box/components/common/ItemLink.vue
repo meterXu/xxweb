@@ -1,6 +1,6 @@
 <script lang="jsx">
 import {RouterLink} from "vue-router";
-import {isExternal} from "../../utils/index.js";
+import {isExternal} from "../../utils/util.js";
 export default function render(_props, _context){
 
   const context = {

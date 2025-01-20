@@ -3,11 +3,11 @@
     :class="{
       'layout-main': true,
       'tab-padding':
-        app.appConfig.style.multipage && app.appConfig.config.tabs.show,
+        app.appConfig.style.multiPage && app.appConfig.config.tabs.show,
     }"
   >
     <TagsView
-      v-if="app.appConfig.style.multipage && app.appConfig.config.tabs.show"
+      v-if="app.appConfig.style.multiPage && app.appConfig.config.tabs.show"
       @refresh="refresh"
     ></TagsView>
     <AppMain ref="appMain"></AppMain>

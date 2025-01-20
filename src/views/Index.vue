@@ -1,5 +1,5 @@
 <template>
-  <XXWebBox :appConfig="project" :permission="permission"
+  <XXWebBox :config="project" :permission="permission"
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
     <template v-slot:side-user-tag>

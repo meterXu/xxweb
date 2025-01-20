@@ -22,7 +22,7 @@
           <slot name="side-user-userName"></slot>
         </template>
         <template v-slot:side-user-dropdownMenuItem="{ menu }">
-          <slot name="side-user-dropdownMenuItem" menu="{menu}"></slot>
+          <slot name="side-user-dropdownMenuItem" :menu="{menu}"></slot>
         </template>
         <template v-slot:side-user-tag>
           <slot name="side-user-tag"></slot>

@@ -1,42 +1,22 @@
 import axios from 'axios'
-import {ACCESS_TOKEN} from "./mutation-types.js"
-import {ls} from "./util.js"
-function createService(project,withCredentials,baseApiKey,isToken,timeout){
-    const _ls = new ls(project)
-    let baseUrl = project.variable[baseApiKey];
+function createService(baseUrl,tokeCallback,withCredentials=false,isToken=true,timeout=6000){
     const service = axios.create({
         baseURL: baseUrl,
-        timeout: timeout, // 请求超时时间
-        withCredentials:withCredentials||false
+        timeout: timeout,
+        withCredentials:withCredentials
     })
     service.interceptors.request.use(config => {
-        const token = _ls.get(ACCESS_TOKEN)
-        const tokenKey = project.variable.tokenKey || 'X-Access-Token'
-        if (token&&isToken) {
-            if(config.headers&&!config.headers[tokenKey]){
-                if(isToken) {
-                    config.headers[tokenKey] = token; // 让每个请求携带自定义 token 请根据实际情况自行修改
-                } else {
-                    config.headers[tokenKey] = null; // 让每个请求携带自定义 token 请根据实际情况自行修改
-                }
-            }
+        const {tokenKey,token} = tokeCallback&&tokeCallback()
+        let _headers = {}
+        if(tokenKey&&token&&isToken){
+            _headers[tokenKey]=token
         }
+        config.headers = Object.assign({},_headers,config.headers)
         return config
     })
 
     return service
 }
-
-export function getService(project,withCredentials=false,baseApiKey='baseApi',isToken=true,timeout=6000) {
-    return createService(project,withCredentials,baseApiKey,isToken,timeout)
-}
-export function getServiceSSO(project,withCredentials=false,baseApiKey='ssoApi',isToken=true,timeout=6000) {
-    return createService(project,withCredentials,baseApiKey,isToken,timeout)
-}
-export function getServiceLogin(project,withCredentials=false,baseApiKey='baseApi',isToken=false,timeout=6000) {
-    return createService(project,withCredentials,baseApiKey,isToken,timeout)
-}
-
 
 export function onResponseError(service,callback){
     service.interceptors.response.use((response) => {

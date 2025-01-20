@@ -1,12 +1,5 @@
 export default [
     {
-        path: '/page',
-        meta: {
-            title: '组件库',
-            icon: 'Menu'
-        }
-    },
-    {
     path: '/page',
     meta: {
         title: '组件库',

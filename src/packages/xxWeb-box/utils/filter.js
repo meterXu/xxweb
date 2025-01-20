@@ -1,88 +1,73 @@
-import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
-import {ACCESS_TOKEN, USER_INFO} from './mutation-types.js'
 import * as util from './util.js'
 
-function filter(router, project) {
-    let defaultLogin = project.redirect.login
-    const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
-    const _ls = new util.ls(project)
+function filter(router,
+                {loginPath,notFundPath,noPermissionsPath,nameSpace,tokenKey,tokenLsKey},
+                {beforeCallback,endCallback}) {
+    const whiteList = [loginPath, notFundPath,noPermissionsPath]
+    const _ls = new util.Ls(nameSpace)
 
     router.beforeEach((to, from, next) => {
-        NProgress.start()
+        beforeCallback&&beforeCallback()
         if (!to.matched.length) {
             next({
-                path: project.redirect['404']
+                path: notFundPath
             })
-            NProgress.done()
+            endCallback&&endCallback()
         }
         else if (whiteList.indexOf(to.path) >= 0) {
             next()
+            endCallback&&endCallback()
         } else if (!validatePermission(to.path,window.permission)){
             next({
-                path: project.redirect['403']||project.redirect['404']
+                path: noPermissionsPath||notFundPath
             })
-            NProgress.done()
+            endCallback&&endCallback()
         } else {
             if (to.query.action === 'logout') {
-                _ls.remove(ACCESS_TOKEN)
-                _ls.remove(USER_INFO)
+                _ls.remove(tokenLsKey)
             } else {
-                const accessToken = util.getQueryVariable(project.variable.tokenKey) || to.query[project.variable.tokenKey]
-                const realname = util.getQueryVariable('realname') || to.query['realname']
-                const username = util.getQueryVariable('username') || to.query['username']
-                const tenantId = util.getQueryVariable('tenantId') || to.query['tenantId']
+                const accessToken = util.getQueryVariable(tokenKey) || to.query[tokenKey]
                 if (accessToken) {
-                    _ls.set(ACCESS_TOKEN, accessToken)
-                }
-                if (realname) {
-                    _ls.set(USER_INFO, JSON.stringify({
-                        'realname': realname,
-                        'username': username,
-                        'tenantId': tenantId
-                    }))
+                    _ls.set(tokenLsKey, accessToken)
                 }
             }
-            let accessToken = _ls.get(ACCESS_TOKEN)
+            let accessToken = _ls.get(tokenLsKey)
             if (from.query.path!==to.path){
                 to.query.path = from.query.path
             }
-            if (to.meta.requireAuth === false || to.params.requireAuth == 0) {
+            if (to.meta.requireAuth === false) {
                 next()
+                endCallback&&endCallback()
             } else if (accessToken) {
                 next()
+                endCallback&&endCallback()
             } else {
                 next({
-                    path: defaultLogin,
+                    path: loginPath,
                     query: Object.assign({}, to.query, {path: to.path})
                 })
-                NProgress.done()
+                endCallback&&endCallback()
             }
         }
-    })
-
-    router.afterEach(() => {
-        NProgress.done()
     })
 }
 
 function validatePermission(path,permission){
-    // let res = false
-    // if(!permission){
-    //     res = true
-    // }else {
-    //     for (let i=0;i<permission.length;i++){
-    //         if(permission[i].children){
-    //             res = validatePermission(path,permission[i].children)
-    //             break
-    //         }else if(permission[i].path === path){
-    //             res = true
-    //             break
-    //         }
-    //     }
-    // }
-    // return res
-    return true
+    let res = false
+    if(!permission){
+        res = true
+    }else {
+        for (let i=0;i<permission.length;i++){
+            if(permission[i].children){
+                res = validatePermission(path,permission[i].children)
+                break
+            }else if(permission[i].path === path){
+                res = true
+                break
+            }
+        }
+    }
+    return res
 
 }
 

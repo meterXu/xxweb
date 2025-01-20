@@ -77,8 +77,8 @@ export default {
     style: {
         theme: 'vue-admin',
         color: '#1890FF',
-        layout: 'sidemenu',
-        multipage: true,
+        layout: 'sideMenu',
+        multiPage: true,
         fixSideMenu: false,
     },
     config: {
