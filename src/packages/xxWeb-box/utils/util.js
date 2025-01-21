@@ -1,7 +1,6 @@
-import CryptoJS from 'crypto-js'
 import Moment from 'moment'
-import lodash from 'lodash'
-import project from "../project";
+import {merge} from 'lodash-es'
+import project from "../project.js";
 
 /**
  * 是否是外部地址
@@ -277,7 +276,7 @@ export function formatDate(datetime, format) {
  * @returns {Object}
  */
 export function mergeObject(source,target){
-    return lodash.assignIn({},source,target)
+    return merge({},source,target)
 }
 
 /**
@@ -286,140 +285,7 @@ export function mergeObject(source,target){
  * @returns {Object}
  */
 export function expandFullProject(data){
-    return lodash.assignIn({},project,data)
-}
-
-/**
- * aes_cbc_128加密
- * @param {String} text
- * @param {String} key
- * @param {String} iv
- * @return {string}
- */
-export function aes_encrypt_cbc_128(text, key = '[B@65330df71%@12', iv = '1122334455667788') {
-    let _key = CryptoJS.enc.Utf8.parse(key)
-    let _iv = CryptoJS.enc.Utf8.parse(iv)
-    const encrypted = CryptoJS.AES.encrypt(text, _key, {
-        _iv,
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC
-    });
-    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-}
-
-/**
- * aes_cbc_128解密
- * @param base64
- * @param key
- * @param iv
- * @return {string}
- */
-export function aes_decrypt_cbc_128(base64, key = '[B@65330df71%@12', iv = '1122334455667788') {
-    let _key = CryptoJS.enc.Utf8.parse(key)
-    let _iv = CryptoJS.enc.Utf8.parse(iv)
-    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
-        _iv,
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC
-    });
-    return decrypt.toString(CryptoJS.enc.Utf8);
-}
-
-/**
- * aes_ecb_128加密
- * @param text
- * @param key
- * @return {string}
- */
-export function aes_encrypt_ecb_128(text, key = '[B@65330df71%@12') {
-    text = CryptoJS.enc.Utf8.parse(text);
-    let _key = CryptoJS.enc.Utf8.parse(key)
-    const encrypted = CryptoJS.AES.encrypt(text, _key, {
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.ECB
-    });
-    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-}
-
-/**
- * aes_ecb_128解密
- * @param base64
- * @param key
- * @return {string}
- */
-export function aes_decrypt_ecb_128(base64, key = '[B@65330df71%@12') {
-    let _key = CryptoJS.enc.Utf8.parse(key)
-    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.ECB
-    });
-    return decrypt.toString(CryptoJS.enc.Utf8);
-}
-
-/**
- * aes_cbc_256加密
- * @param text
- * @param key
- * @param iv
- * @return {string}
- */
-export function aes_encrypt_cbc_256(text, key = '[B@65330df71%@12', iv = '1122334455667788') {
-    let _key = CryptoJS.enc.Base64.parse(key)
-    let _iv = CryptoJS.enc.Base64.parse(iv)
-    const encrypted = CryptoJS.AES.encrypt(text, _key, {
-        _iv,
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC
-    });
-    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-}
-
-/**
- * aes_cbc_256解密
- * @param base64
- * @param key
- * @param iv
- * @return {string}
- */
-export function aes_decrypt_cbc_256(base64, key = '[B@65330df71%@12', iv = '1122334455667788') {
-    let _key = CryptoJS.enc.Base64.parse(key)
-    let _iv = CryptoJS.enc.Base64.parse(iv)
-    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
-        _iv,
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.CBC
-    });
-    return decrypt.toString(CryptoJS.enc.Utf8);
-}
-
-/**
- * aes_ecb_256加密
- * @param text
- * @param key
- * @return {string}
- */
-export function aes_encrypt_ecb_256(text, key = '[B@65330df71%@12') {
-    let _key = CryptoJS.enc.Base64.parse(key);
-    const encrypted = CryptoJS.AES.encrypt(text, _key, {
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.ECB
-    });
-    return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-}
-
-/**
- * aes_ecb_256解密
- * @param base64
- * @param key
- * @return {string}
- */
-export function aes_decrypt_ecb_256(base64, key = '[B@65330df71%@12') {
-    let _key = CryptoJS.enc.Base64.parse(key)
-    const decrypt = CryptoJS.AES.decrypt(base64, _key, {
-        padding: CryptoJS.pad.Pkcs7,
-        mode: CryptoJS.mode.ECB
-    });
-    return decrypt.toString(CryptoJS.enc.Utf8);
+    return lodash.merge({},project,data)
 }
 
 /**

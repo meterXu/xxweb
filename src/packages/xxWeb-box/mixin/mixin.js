@@ -1,6 +1,6 @@
 import {match} from 'path-to-regexp';
 export default {
-    inject: ['app','cachedViews','visitedViews'],
+    inject: ['app','cachedViews','visitedViews','$bus'],
     methods:{
         searchMenuByPath(data, path) {
             let res = null
@@ -30,8 +30,5 @@ export default {
             }
         }
     },
-    created(){
-        // this.$slots = this.slots
-        // this.$scopedSlots = this.scopedSlots
-    }
+    created(){}
 }

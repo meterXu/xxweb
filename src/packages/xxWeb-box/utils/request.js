@@ -1,5 +1,5 @@
 import axios from 'axios'
-function createService(baseUrl,tokeCallback,withCredentials=false,isToken=true,timeout=6000){
+export function createService(baseUrl,tokeCallback,withCredentials=false,isToken=true,timeout=6000){
     const service = axios.create({
         baseURL: baseUrl,
         timeout: timeout,

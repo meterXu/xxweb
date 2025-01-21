@@ -14,7 +14,15 @@ function filter(router, project,{beforeCallback,endCallback}) {
             })
             endCallback&&endCallback()
         }
-        else if (whiteList.indexOf(to.path) >= 0) {
+        if (to.query.action === 'logout') {
+            _ls.remove(ACCESS_TOKEN)
+        } else {
+            const accessToken = util.getQueryVariable(project.variable.tokenKey) || to.query[project.variable.tokenKey]
+            if (accessToken) {
+                _ls.set(ACCESS_TOKEN, accessToken)
+            }
+        }
+        if (whiteList.indexOf(to.path) >= 0) {
             next()
             endCallback&&endCallback()
         } else if (!validatePermission(to.path,window.permission)){
@@ -23,14 +31,6 @@ function filter(router, project,{beforeCallback,endCallback}) {
             })
             endCallback&&endCallback()
         } else {
-            if (to.query.action === 'logout') {
-                _ls.remove(ACCESS_TOKEN)
-            } else {
-                const accessToken = util.getQueryVariable(project.variable.tokenKey) || to.query[project.variable.tokenKey]
-                if (accessToken) {
-                    _ls.set(ACCESS_TOKEN, accessToken)
-                }
-            }
             let accessToken = _ls.get(ACCESS_TOKEN)
             if (from.query.path!==to.path){
                 to.query.path = from.query.path

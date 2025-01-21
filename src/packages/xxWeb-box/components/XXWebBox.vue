@@ -1,3 +1,115 @@
+<script setup>
+import 'element-plus/dist/index.css'
+import '../assets/css/index.less'
+import HeaderLayout from './layouts/header/HeaderLayout.vue'
+import { ElContainer as Container, ElAside as Aside, ElMain as Main, ElFooter as Footer, ElHeader as Header } from 'element-plus'
+import SideMenu from './layouts/left/SideMenu.vue'
+import DrawerMenu from './layouts/left/DrawerMenu.vue'
+import MainLayout from './layouts/main/MainLayout.vue'
+import project from "../project";
+import {mergeObject} from "../utils/util";
+import {defineProps,defineEmits,ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted,getCurrentInstance} from 'vue'
+import {useRoute} from 'vue-router'
+import {$emit, $off, $on, $once} from "../utils/gogocodeTransfer.js";
+
+const $bus = {
+  $on,
+  $off,
+  $once,
+  $emit:$emit
+}
+
+const props = defineProps({
+  config:{
+    type:Object,
+    default:{}
+  },
+  permission:{
+    type:Array,
+    default:[]
+  },
+  initCollapse:{
+    type:Boolean,
+    default:false
+  }
+})
+const emits = defineEmits(['dropdownMenuClick', 'collapseToggle', 'menuClick'])
+const route = useRoute()
+
+const isCollapse = ref(props.initCollapse)
+const visitedViews = ref([])
+const cachedViews = ref([])
+const device = ref('desktop')
+const activeIndex = ref(route.path)
+const width = ref(992)
+
+watch(()=>activeIndex,(nv)=>{
+  if (device.value === 'mobile') {
+    isCollapse.value = false
+  }
+},{
+  deep:true,
+  immediate: true
+})
+
+const appConfig = computed(()=>{
+  return mergeObject(project,props.config)
+})
+
+const contentWidth = computed(()=>{
+  return {
+    width: `calc(100% - ${appConfig.value.config.sideMenu.width})`
+  }
+})
+
+provide('cachedViews', cachedViews);
+provide('visitedViews', visitedViews);
+provide('app', {
+  appConfig:appConfig.value,
+  permission:props.permission
+});
+provide('$bus', $bus);
+
+function isMobile() {
+  const rect = document.body.getBoundingClientRect()
+  return rect.width - 1 < width.value
+}
+function resizeHandler() {
+  if (!document.hidden) {
+    device.value = isMobile() ? 'mobile' : 'desktop'
+  }
+}
+
+onBeforeMount(()=>{
+  window.addEventListener('resize', resizeHandler)
+})
+
+onBeforeUnmount(()=>{
+  $bus.$off()
+  window.removeEventListener('resize', resizeHandler)
+})
+
+onMounted(()=>{
+  resizeHandler()
+  $bus.$on('dropdownMenuClick',(command) => {
+    emits('dropdownMenuClick',command)
+  })
+  $bus.$on('collapseToggle',() => {
+    isCollapse.value = !isCollapse.value
+    emits('collapseToggle',isCollapse.value)
+  })
+  $bus.$on('menuClick',(path) => {
+    emits('menuClick',path)
+  })
+  $bus.$on('searchMenuItemSelect',(_activeIndex) => {
+    activeIndex.value = _activeIndex
+  })
+  $bus.$on('tabViewChange',(_activeIndex) => {
+    activeIndex.value = _activeIndex
+  })
+})
+</script>
+
 <template>
   <div class="xxWeb">
     <div class="xxWeb-box" :data-theme="appConfig.style.theme">
@@ -124,121 +236,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import 'element-plus/dist/index.css'
-import '../assets/css/index.less'
-import HeaderLayout from './layouts/header/HeaderLayout.vue'
-import { ElContainer as Container, ElAside as Aside, ElMain as Main, ElFooter as Footer, ElHeader as Header } from 'element-plus'
-import SideMenu from './layouts/left/SideMenu.vue'
-import DrawerMenu from './layouts/left/DrawerMenu.vue'
-import MainLayout from './layouts/main/MainLayout.vue'
-import project from "../project";
-import {mergeObject} from "../utils/util";
-
-export default {
-  name: 'XXWebBox',
-  props: {
-    config:{
-      type:Object,
-      default:{}
-    },
-    permission:{
-      type:Array,
-      default:[]
-    },
-    initCollapse:{
-      type:Boolean,
-      default:false
-    }
-  },
-  components: {
-    MainLayout,
-    SideMenu,
-    Container,
-    Aside,
-    Main,
-    Footer,
-    Header,
-    HeaderLayout,
-    DrawerMenu
-  },
-  data() {
-    return {
-      isCollapse: this.initCollapse,
-      visitedViews: [],
-      cachedViews: [],
-      device: 'desktop',
-      activeIndex: this.$route.path,
-      width: 992
-    }
-  },
-  provide() {
-    return {
-      app: this,
-      cachedViews: this.cachedViews,
-      visitedViews: this.visitedViews
-    }
-  },
-  methods: {
-    isMobile() {
-      const rect = document.body.getBoundingClientRect()
-      return rect.width - 1 < this.width
-    },
-    resizeHandler() {
-      if (!document.hidden) {
-        const isMobile = this.isMobile()
-        this.device = isMobile ? 'mobile' : 'desktop'
-      }
-    }
-  },
-  watch: {
-    activeIndex: {
-      deep: true,
-      immediate: true,
-      handler(nv) {
-        if (this.device === 'mobile') {
-          this.isCollapse = false
-        }
-      }
-    }
-  },
-  computed: {
-    contentWidth() {
-      return {
-        width: `calc(100% - ${this.appConfig.config.sideMenu.width})`
-      }
-    },
-    appConfig(){
-      return mergeObject(project,this.config)
-    }
-  },
-  mounted() {
-    this.resizeHandler()
-    this.$bus.$on('dropdownMenuClick',(command) => {
-      this.$emit('dropdownMenuClick',command)
-    })
-    this.$bus.$on('collapseToggle',() => {
-      this.isCollapse = !this.isCollapse
-      this.$emit('collapseToggle',this.isCollapse)
-    })
-    this.$bus.$on('menuClick',(path) => {
-      this.$emit('menuClick',path)
-    })
-    this.$bus.$on('searchMenuItemSelect',(activeIndex) => {
-      this.activeIndex = activeIndex
-    })
-    this.$bus.$on('tabViewChange',(activeIndex) => {
-      this.activeIndex = activeIndex
-    })
-  },
-  beforeMount() {
-    window.addEventListener('resize', this.resizeHandler)
-  },
-  beforeUnmount() {
-    this.$bus.$off()
-    window.removeEventListener('resize', this.resizeHandler)
-  },
-  emits: ['dropdownMenuClick', 'collapseToggle', 'menuClick']
-}
-</script>

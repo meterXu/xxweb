@@ -1,4 +1,4 @@
-import XXWebBox from './components/index.js'
+import XXWebBox from './components/XXWebBox.vue'
 import {PigLogin, TreeLogin, WatermelonLogin, PhylumLogin} from './components/login/index.js'
 import {NotFound, NotFoundDark, NoAuthority1,NoAuthority2, Error,NotFound2} from './components/error/index.js'
 
@@ -7,13 +7,6 @@ import * as types from './utils/types.js'
 import * as util from './utils/util.js'
 import * as request from './utils/request.js'
 import * as validate from './utils/validate.js'
-
-const install = function (Vue) {
-    XXWebBox.install(Vue)
-}
-if (typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue)
-}
 
 export {
     XXWebBox,
@@ -33,5 +26,4 @@ export {
     request,
     validate
 }
-export default install
 
