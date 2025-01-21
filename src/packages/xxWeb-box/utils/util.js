@@ -285,7 +285,7 @@ export function mergeObject(source,target){
  * @returns {Object}
  */
 export function expandFullProject(data){
-    return lodash.merge({},project,data)
+    return merge({},project,data)
 }
 
 /**
