@@ -1,16 +1,16 @@
 import * as util from './util.js'
+import {ACCESS_TOKEN} from "./types";
 
-function filter(router,
-                {loginPath,notFundPath,noPermissionsPath,nameSpace,tokenKey,tokenLsKey},
-                {beforeCallback,endCallback}) {
-    const whiteList = [loginPath, notFundPath,noPermissionsPath]
-    const _ls = new util.Ls(nameSpace)
+function filter(router, project,{beforeCallback,endCallback}) {
+    let defaultLogin = project.redirect.login
+    const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
+    const _ls = new util.Ls(project.nameSpace)
 
     router.beforeEach((to, from, next) => {
         beforeCallback&&beforeCallback()
         if (!to.matched.length) {
             next({
-                path: notFundPath
+                path: project.redirect['404']
             })
             endCallback&&endCallback()
         }
@@ -19,19 +19,19 @@ function filter(router,
             endCallback&&endCallback()
         } else if (!validatePermission(to.path,window.permission)){
             next({
-                path: noPermissionsPath||notFundPath
+                path: project.redirect['403']||project.redirect['404']
             })
             endCallback&&endCallback()
         } else {
             if (to.query.action === 'logout') {
-                _ls.remove(tokenLsKey)
+                _ls.remove(ACCESS_TOKEN)
             } else {
-                const accessToken = util.getQueryVariable(tokenKey) || to.query[tokenKey]
+                const accessToken = util.getQueryVariable(project.variable.tokenKey) || to.query[project.variable.tokenKey]
                 if (accessToken) {
-                    _ls.set(tokenLsKey, accessToken)
+                    _ls.set(ACCESS_TOKEN, accessToken)
                 }
             }
-            let accessToken = _ls.get(tokenLsKey)
+            let accessToken = _ls.get(ACCESS_TOKEN)
             if (from.query.path!==to.path){
                 to.query.path = from.query.path
             }
@@ -43,7 +43,7 @@ function filter(router,
                 endCallback&&endCallback()
             } else {
                 next({
-                    path: loginPath,
+                    path: defaultLogin,
                     query: Object.assign({}, to.query, {path: to.path})
                 })
                 endCallback&&endCallback()

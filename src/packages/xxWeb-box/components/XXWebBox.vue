@@ -133,6 +133,8 @@ import { ElContainer as Container, ElAside as Aside, ElMain as Main, ElFooter as
 import SideMenu from './layouts/left/SideMenu.vue'
 import DrawerMenu from './layouts/left/DrawerMenu.vue'
 import MainLayout from './layouts/main/MainLayout.vue'
+import project from "../project";
+import {mergeObject} from "../utils/util";
 
 export default {
   name: 'XXWebBox',
@@ -208,101 +210,7 @@ export default {
       }
     },
     appConfig(){
-      return Object.assign({
-        namespace: "helloWorld",
-        redirect: {
-          index: '/',
-          login: '/login',
-          "404": '/404'
-        },
-        style: {
-          theme: 'vue-admin',
-          color: '#1890FF',
-          layout: 'sideMenu',
-          multiPage: true,
-          fixSideMenu: false,
-        },
-        config: {
-          logo: null,
-          title: "helloWorld",
-          login: {
-            title: "helloWorld",
-            desc: ""
-          },
-          menu:{
-            mode:'router'
-          },
-          head: {
-            hamburger:false,
-            logo:{
-              show: true,
-            },
-            title: {
-              show: false,
-              desktop: "",
-              mobile: ""
-            },
-            breadcrumb: {
-              show: true,
-            },
-            searchMenu: {
-              show: true
-            },
-            helper: {
-              show: false,
-              href: "javascript:;",
-              target: "_blank"
-            },
-            fullscreen: {
-              show: true,
-            },
-            user: {
-              show: true,
-              username: true,
-              menu: {
-                show: true,
-                clearCache: true,
-                changePwd: true,
-                exitSystem: true
-              }
-            }
-          },
-          sideMenu: {
-            title: "helloWorld",
-            width: '200px',
-            hamburger:true,
-            logo:{
-              show: true,
-            },
-            user: {
-              show: false,
-              username: true,
-              tag:true,
-              menu: {
-                show: true,
-                clearCache: true,
-                changePwd: true,
-                exitSystem: true
-              }
-            }
-          },
-          tabs: {
-            show:true,
-            icon: false,
-          },
-          footer: {
-            show: true,
-            links: [],
-            copyright: {
-              content: "xxweb-box",
-              year: new Date().getFullYear(),
-              href: "javascript:;",
-              target: "_blank"
-            }
-          },
-          plugins: {}
-        }
-      },this.config)
+      return mergeObject(project,this.config)
     }
   },
   mounted() {

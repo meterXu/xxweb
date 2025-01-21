@@ -19,17 +19,18 @@
             </div>
             <Form
               ref="loginForm"
-              :model="form"
+              :model="modelValue"
               :rules="rules"
               class="login-form"
               status-icon
               label-width="0"
+
             >
               <slot name="form-item-prefix"></slot>
               <FormItem prop="username">
                 <Input
                   prefix-icon="el-icon-user"
-                  v-model="form.username"
+                  v-model="modelValue.username"
                   @keyup.enter="login"
                   :placeholder="placeholder.username"
                 />
@@ -38,14 +39,14 @@
                 <Input
                   type="password"
                   prefix-icon="el-icon-lock"
-                  v-model="form.password"
+                  v-model="modelValue.password"
                   @keyup.enter="login"
                   :placeholder="placeholder.password"
                 />
               </FormItem>
               <slot name="form-item-suffix"></slot>
               <FormItem v-if="remember">
-                <Checkbox v-model:value="form.remember">记住密码</Checkbox>
+                <Checkbox v-model="modelValue.remember">记住密码</Checkbox>
               </FormItem>
               <FormItem>
                 <slot name="form-login-btn">
@@ -53,7 +54,7 @@
                     :loading="loginState.loading"
                     :disabled="loginState.loading"
                     type="primary"
-                    size="normal"
+                    size="default"
                     class="login-submit login-btn"
                     @click="login"
                   >
@@ -126,23 +127,23 @@ export default {
         }
       },
     },
-    form: {
-      type: Object,
-      default() {
-        return {}
-      },
-    },
+    modelValue:{
+      type:Object,
+      default(){
+        return {
+          username:null,
+          password:null,
+          remember:false
+        }
+      }
+    }
   },
   data() {
     return {
       loginState: {
         loading: false,
-      },
+      }
     }
-  },
-  model: {
-    prop: 'form',
-    event: 'change',
   },
   components: {
     Form,
@@ -158,6 +159,6 @@ export default {
       })
     },
   },
-  emits: ['login'],
+  emits: ['login','update:modelValue']
 }
 </script>

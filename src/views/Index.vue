@@ -2,6 +2,9 @@
   <XXWebBox :config="project" :permission="permission"
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
+    <template v-slot:head-user-userName>
+      {{userInfo?.username}}
+    </template>
     <template v-slot:side-user-tag>
       <el-tag class="version" size="small" effect="light">version:1.0</el-tag>
     </template>
@@ -12,6 +15,8 @@
 
 import permission from "../permission";
 import {types} from '../packages/xxWeb-box'
+import {setLsValue} from "../packages/xxWeb-box/utils/util";
+
 export default {
   name: 'Index',
   data() {
@@ -21,26 +26,32 @@ export default {
       dark:false
     }
   },
-  components:{
+  computed:{
+    userInfo(){
+      return JSON.parse(this.$ls.get(types.USER_INFO))
+    }
   },
   methods: {
     dropdownMenuClick(command) {
       switch (command){
         case 'exitSystem':{
-          localStorage.setItem(types.ACCESS_TOKEN,null)
-          this.$router.replace({path:this.project.redirect.login})
-        }
+          this.$ls.set(types.ACCESS_TOKEN,setLsValue(null))
+          this.$ls.set(types.USER_INFO,setLsValue(null))
+          this.$router.push({path:this.project.redirect.login})
+        }break
+        case 'clearCache':{
+          this.$ls.set(types.ACCESS_TOKEN,setLsValue(null))
+          this.$ls.set(types.USER_INFO,setLsValue(null))
+          window.location.reload()
+        }break
+        case 'changePwd':{
+          this.$message.success('修改成功')
+        }break
       }
     },
-    collapseToggle(isCollapse){
-      console.log(isCollapse)
-    },
     menuClick(path){
-      console.log(path)
       this.$router.push({path:path})
     }
-  },
-  mounted() {
   },
   watch:{
     dark(nv){

@@ -1,5 +1,7 @@
 import CryptoJS from 'crypto-js'
 import Moment from 'moment'
+import lodash from 'lodash'
+import project from "../project";
 
 /**
  * 是否是外部地址
@@ -10,6 +12,41 @@ export function isExternal(path) {
     return /^(https?:|mailto:|tel:)/.test(path);
 }
 
+/**
+ * 判断是否为空
+ * @param {String} str
+ * @returns {boolean}
+ */
+export function isEmpty(str){
+    return str===null||str===undefined||str===''||str==='undefined'||str==='null'
+}
+
+/**
+ * 改变store值
+ * @param {String|Null} value
+ * @returns {String|Null}
+ */
+export function alterStoreValue(value){
+    return isEmpty(value)?null:value
+}
+
+/**
+ * 获取localStore值
+ * @param {String} value
+ * @returns {String|Object}
+ */
+export function getLsValue(value){
+    return isEmpty(value)?'':value.indexOf('{')>-1?JSON.parse(value):value
+}
+
+/**
+ * 设置localStore值
+ * @param {String|Object} value
+ * @returns {String}
+ */
+export function setLsValue(value){
+    return isEmpty(value)?'':typeof(value)==='object'?JSON.stringify(value):value
+}
 
 /**
  * 深度克隆对象、数组
@@ -164,18 +201,6 @@ export function redirectSsoLogin(ssoBackUrl) {
 }
 
 /**
- * 通用退出登录
- * @param {String} nameSpace
- * @param {String} tokenLsKey
- * @param {function} callback
- */
-export function logOut(nameSpace, tokenLsKey, callback) {
-    let _ls = new Ls(nameSpace)
-    _ls.remove(tokenLsKey)
-    callback && callback()
-}
-
-/**
  * 复制字符串
  * @param {String} str
  * @param {Function} success
@@ -243,6 +268,25 @@ export function deviceType() {
  */
 export function formatDate(datetime, format) {
     return new Moment(datetime).format(format)
+}
+
+/**
+ * 对象合并
+ * @param {Object} source
+ * @param {Object} target
+ * @returns {Object}
+ */
+export function mergeObject(source,target){
+    return lodash.assignIn({},source,target)
+}
+
+/**
+ * 展开整个project配置
+ * @param data
+ * @returns {Object}
+ */
+export function expandFullProject(data){
+    return lodash.assignIn({},project,data)
 }
 
 /**

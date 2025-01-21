@@ -13,6 +13,7 @@
 
 <script>
 import {PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,types} from '../packages/xxWeb-box/index'
+import {setLsValue} from "../packages/xxWeb-box/utils/util";
 export default {
   name: "Login",
   props:['type'],
@@ -43,9 +44,12 @@ export default {
   methods:{
     login(valid){
       if(valid){
-        console.log(this.form)
-        this.$ls.set(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
-        this.$router.replace({path:project.redirect.index})
+        this.$ls.set(types.ACCESS_TOKEN,setLsValue('xxxxxxxxxxxxxxxxxxxxxxxx'))
+        this.$ls.set(types.USER_INFO,setLsValue({
+          username:this.form.username,
+          nickname:this.form.nickname
+        }))
+        this.$router.push({path:project.redirect.index})
       }
     }
   }

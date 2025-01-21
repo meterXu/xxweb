@@ -68,7 +68,7 @@ export default [
 ```js
 // appConfig.js
 export default {
-    namespace: "helloWorld",
+    nameSpace: "helloWorld",
     redirect: {
         index: '/',
         login: '/login',
