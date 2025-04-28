@@ -399,3 +399,41 @@ export function downloadFileByBlob(name,blob){
         downloadFileByUrl(name,url)
     }
 }
+
+/**
+ * 全局对象重写
+ */
+export function GlobalOverride(){
+    Function.prototype.debounce=function (delay=500){
+        const originalFunction = this;
+        let timeoutId = window.debounceTimeoutId;
+        return function (...args) {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            return new Promise((resolve, reject) => {
+                window.debounceTimeoutId = setTimeout(async () => {
+                    try{
+                        let res = await originalFunction.apply(this, args);
+                        resolve(res);
+                    }catch (err){
+                        reject(err);
+                    }
+                }, delay);
+            })
+
+        };
+    }
+}
+
+/**
+ * 等待函数
+ * @param time 等待时长，默认1001x g * @returns {Promise<unknown>}
+ */
+export function sleep(time=100){
+    return new Promise(resolve => {
+        setTimeout(()=>{
+            resolve(time)
+        },time)
+    })
+}
