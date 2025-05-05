@@ -23,7 +23,7 @@
       </div>
       <div class="mark">
         <slot name="img">
-          <img src="../../../assets/imgs/mark.png" />
+          <img src="../../../assets/imgs/mark.webp" />
         </slot>
       </div>
     </div>

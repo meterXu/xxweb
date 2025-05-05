@@ -1,7 +1,4 @@
-import Moment from 'moment'
 import {merge} from 'lodash-es'
-import project from "../project.js";
-
 /**
  * 是否是外部地址
  * @param path
@@ -261,12 +258,13 @@ export function deviceType() {
 
 /**
  * 时间格式化
+ * @param {Object} moment
  * @param {Date} datetime
  * @param {String} format
  * @return {String}
  */
-export function formatDate(datetime, format) {
-    return new Moment(datetime).format(format)
+export function formatDate(moment,datetime, format) {
+    return new moment(datetime).format(format)
 }
 
 /**
@@ -285,6 +283,7 @@ export function mergeObject(source,target){
  * @returns {Object}
  */
 export function expandFullProject(data){
+    const project = async ()=>import("../project.js");
     return merge({},project,data)
 }
 

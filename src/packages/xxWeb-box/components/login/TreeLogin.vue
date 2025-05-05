@@ -74,7 +74,7 @@
           </slot>
         </div>
         <div class="img-box">
-          <img src="../../assets/imgs/longin1/bg1.png" alt="" />
+          <img src="../../assets/imgs/login1/bg1.webp" alt="" />
         </div>
       </div>
     </div>

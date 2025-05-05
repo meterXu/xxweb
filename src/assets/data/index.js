@@ -1,9 +1,9 @@
 export const error = [
     {title:"NotFound",cover:'./static/imgs/404/404.png',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/error/NotFound'},
     {title:"NotFoundDark",cover:'./static/imgs/404/404dark.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/error/NotFoundDark'},
-    {title:"NotFound2",cover:'./static/imgs/404/404-2.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/error/NotFound2'},
-    {title:"NoAuthority1",cover:'./static/imgs/403/403-1.png',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/error/NoAuthority1'},
-    {title:"NoAuthority2",cover:'./static/imgs/403/403-2.png',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/error/NoAuthority2'}
+    {title:"NotFound2",cover:'./static/imgs/404/404-2.webp',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/error/NotFound2'},
+    {title:"NoAuthority1",cover:'./static/imgs/403/403-1.webp',desc:'develop by <a href="javascript:;">hanjx</a>',path:'/page/comDetail/error/NoAuthority1'},
+    {title:"NoAuthority2",cover:'./static/imgs/403/403-2.webp',desc:'develop by <a href="javascript:;">xuhg</a>',path:'/page/comDetail/error/NoAuthority2'}
 ]
 
 export const login =[

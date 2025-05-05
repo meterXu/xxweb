@@ -1,10 +1,10 @@
-import * as util from './util.js'
+import {Ls,getQueryVariable} from './util.js'
 import {ACCESS_TOKEN} from "./types";
 
 function filter(router, project,{beforeCallback,endCallback}) {
     let defaultLogin = project.redirect.login
     const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
-    const _ls = new util.Ls(project.nameSpace)
+    const _ls = new Ls(project.nameSpace)
 
     router.beforeEach((to, from, next) => {
         beforeCallback&&beforeCallback()
@@ -17,7 +17,7 @@ function filter(router, project,{beforeCallback,endCallback}) {
         if (to.query.action === 'logout') {
             _ls.remove(ACCESS_TOKEN)
         } else {
-            const accessToken = util.getQueryVariable(project.variable.tokenKey) || to.query[project.variable.tokenKey]
+            const accessToken = getQueryVariable(project.variable.tokenKey) || to.query[project.variable.tokenKey]
             if (accessToken) {
                 _ls.set(ACCESS_TOKEN, accessToken)
             }

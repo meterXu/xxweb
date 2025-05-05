@@ -1,11 +1,11 @@
 {
   "name": "xxweb-box",
-  "version": "0.3.4",
-  "description": "可复用的前端页面-vue3版",
+  "version": "0.3.7",
+  "description": "封装了一些前端常用页面和函数",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vite build"
   },
   "keywords": [],
   "private": false,
@@ -13,22 +13,5 @@
   "contributors": [
     "isaac"
   ],
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^1.6.7",
-    "element-plus": "^2.4.4",
-    "less": "^3.11.1",
-    "lodash-es": "^4.17.21",
-    "moment": "2.29.1",
-    "nprogress": "^0.2.0",
-    "path-to-regexp": "^6.2.1",
-    "resize-detector": "^0.1.9",
-    "screenfull": "^6.0.2",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.8",
-    "vuedraggable": "^2.24.3"
-  },
-  "devDependencies": {
-    "less-loader": "^5.0.0"
-  }
+  "license": "MIT"
 }

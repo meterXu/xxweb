@@ -23,4 +23,4 @@ const project = function (mode){
     })
 }
 
-module.exports = project;
+export default project

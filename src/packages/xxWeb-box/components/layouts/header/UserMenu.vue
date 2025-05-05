@@ -104,7 +104,7 @@ import {
   ElAvatar as Avatar,
 } from 'element-plus'
 import mixin from '../../../mixin/mixin.js'
-import UserImg from '../../../assets/imgs/user.png'
+import UserImg from '../../../assets/imgs/user.webp'
 export default {
   components: {
     Dropdown,

@@ -10,7 +10,7 @@ import project from "../project";
 import {mergeObject} from "../utils/util";
 import {defineProps,defineEmits,ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted,getCurrentInstance} from 'vue'
 import {useRoute} from 'vue-router'
-import {$emit, $off, $on, $once} from "../utils/gogocodeTransfer.js";
+import {$emit, $off, $on, $once} from "../utils/bus.js";
 
 const $bus = {
   $on,

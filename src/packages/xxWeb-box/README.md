@@ -10,9 +10,10 @@
 
 ## 内置组件
 * 布局页(6种，含左右，上下布局)
-* 登录页(5种)
+* 登录页(4种)
 * 404页面(3种)
 * 403页面(2种)
+* 500页面(1种)
 
 ## 安装
 
@@ -247,7 +248,140 @@ export default {
 
 
 ## 登录页面
-[点我跳转](components/login/README.md)
+# 登录组件
+
+```vue
+<template>
+  <PhylumLogin :config="config" v-model="form" @login="login"></PhylumLogin>
+</template>
+<script>
+import {PhylumLogin} from 'xxweb-box'
+export default {
+  data(){
+    return {
+      config:{
+        logo: "./static/imgs/logo-white.png",
+        title: "xxWebBox",
+        login: {
+          title: "xxWebBox",
+          desc: "请输入你的账号",
+        },
+        footer: {
+          show: true,
+          links: [],
+          copyright: {
+            content: "xxWebBox",
+            year: "2022",
+            href: "http://www.baidu.con",
+            target: "_blank"
+          }
+        }
+      },
+      rules:{
+        username:[
+          { required: true, message: '用户名不能为空',trigger: 'blur'},
+        ],
+        password:[
+          { required: true, message: '密码不能为空',trigger: 'blur'},
+        ]
+      },
+      form:{
+        username:null,
+        password:null,
+        remember:false
+      }
+    }
+  },
+  components:{
+    PhylumLogin
+  },
+  methods:{
+    login(valid){
+      if(valid){
+        console.log(this.form)
+      }
+    }
+  }
+  
+}
+</script>
+```
+
+## 组件列表
+* PhylumLogin
+* PigLogin
+* TreeLogin
+* WatermelonLogin
+
+## 属性
+
+|prop| remark           |
+|---|------------------|
+|config| 配置               |
+|remember| 初始是显示记住密码，默认true |
+|placeholder| input描述，{username:'请输入用户名/邮箱/手机号',password:"请输入密码"}         |
+|rules| 验证规则             |
+|form| 表单               |
+
+## 事件
+|methodName| methodParams                | remark |
+|---|-----------------------------|------|
+|login| valid:Boolean,loginState:{loading:false} | 登录   |
+
+
+
+## 插槽
+
+| slotName | slotProps | remark   |
+|----------|-----------|----------|
+| default  | ---       | 整个登录内容区域 |
+| form-item-prefix  | ---       | 表单前置内容   |
+| form-item-suffix  |---| 表单后置内容   |
+|form-login-btn|---| 表单按钮内容   |
+|form-login-btn-other|---| 额外表单按钮   |
+
 
 ## 错误页面
-[点我跳转](components/error/README.md)
+# 错误处理
+
+```vue
+<template>
+  <NotFound :link="link"/>
+</template>
+<script>
+import {NotFound} from 'xxweb-box'
+export default {
+  name: 'MyNotFound',
+  data(){
+    return {
+      link:{
+        home:window.location.pathname
+      }
+    }
+  },
+  components:{
+    NotFound
+  }
+}
+</script>
+```
+
+## 组件列表
+* NotFound
+* NotFoundDark
+* NoAuthority1
+* NoAuthority2
+* NotFound2
+
+## 属性
+|prop| remark                  |
+|---|-------------------------|
+|code| 错误编码，403｜404            |
+|text| 错误文本，抱歉，你无权访问！          |
+|show| 控制返回首页按钮显示，{home: true} |
+|link| 设置返回首页的链接，{home: "javascript:;"}            |
+
+## 插槽
+| slotName          | slotProps | remark |
+|-------------------|-----------|--------|
+| default | ---       | 页面内容区域 |
