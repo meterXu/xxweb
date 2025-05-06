@@ -21,27 +21,28 @@
     "analyz": "set npm_config_report=true && npm run build"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "apexcharts": "^3.36.3",
+    "axios": "^1.8.4",
     "core-js": "^3.6.5",
     "crypto-js": "^4.1.1",
     "darkreader": "^4.9.58",
-    "apexcharts": "^3.36.3",
-    "markdown-it": "^13.0.1",
-    "markdown-it-container": "^3.0.0",
     "element-ui": "^2.15.8",
     "highlight.js": "^11.7.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
+    "markdown-it": "^13.0.1",
+    "markdown-it-container": "^3.0.0",
     "nprogress": "^0.2.0",
     "path-to-regexp": "^6.2.1",
     "resize-detector": "^0.1.9",
     "screenfull": "4.2.0",
-    "vue": "^2.6.11",
+    "vue": "^2.7.16",
     "vue-codemirror": "^4.0.6",
     "vue-echarts": "^4.0.1",
     "vue-router": "^3.5.4",
     "vuedraggable": "^2.24.3",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "xxweb-util": "^0.3.1"
   },
   "devDependencies": {
     "@types/crypto-js": "4.1.1",
@@ -56,7 +57,7 @@
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "moment": "2.29.1",
-    "vue-template-compiler": "^2.6.11",
+    "vue-template-compiler": "^2.7.16",
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "eslintConfig": {

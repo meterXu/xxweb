@@ -49,7 +49,6 @@
               </div>
               <div class="user-menu-itemm topmenu" v-if="app.appConfig.config.head.fullscreen.show">
                 <slot name="head-fullScreen">
-                  <FullScreen/>
                 </slot>
               </div>
               <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.user.show">
@@ -87,7 +86,6 @@ import Hamburger from "./Hamburger.vue";
 import HeadTitle from "./HeadTitle.vue";
 import HeadBreadcrumb from "./HeadBreadcrumb.vue";
 import SearchMenu from "./SearchMenu.vue";
-import FullScreen from "./FullScreen.vue";
 import UserMenu from "./UserMenu.vue";
 import DynamicMenu from '../../common/DynamicMenu.vue'
 export default {
@@ -100,7 +98,6 @@ export default {
     HeadTitle,
     HeadBreadcrumb,
     SearchMenu,
-    FullScreen,
     UserMenu,
     Header,
     DynamicMenu,

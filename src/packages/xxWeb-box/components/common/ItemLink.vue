@@ -6,8 +6,6 @@
 </template>
 
 <script>
-import { isExternal } from '../../utils/util';
-
 export default {
   name:'ItemLink',
   props: {
@@ -34,7 +32,7 @@ export default {
         case 'router':
         default:
           {
-          if (isExternal(to)) {
+          if (this.isExternal(to)) {
             return {
               is: 'a',
               class:"box-item-link",

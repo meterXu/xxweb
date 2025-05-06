@@ -22,7 +22,6 @@
 import mixin from "../../../mixin/mixin";
 import {Autocomplete} from 'element-ui'
 import DynamicIcon from '../../common/DynamicIcon'
-import {isExternal} from "../../../utils";
 export default {
   name: "SearchMenu",
   components:{
@@ -47,7 +46,7 @@ export default {
     },
     handleSelect(item){
       this.text = item.title
-      if(isExternal(item.path)){
+      if(this.isExternal(item.path)){
         window.open(item.path,'_blank')
       }else if(this.$route.path!==item.path){
         this.$router.push({path:item.path})
