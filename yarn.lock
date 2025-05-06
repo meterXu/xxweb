@@ -2079,7 +2079,7 @@ aws4@^1.8.0:
   resolved "https://registry.npmmirror.com/aws4/-/aws4-1.13.2.tgz#0aa167216965ac9474ccfa83892cfb6b3e1e52ef"
   integrity sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw==
 
-axios@^1.8.4:
+axios@^1.8.4, axios@^1.9.0:
   version "1.9.0"
   resolved "https://registry.npmmirror.com/axios/-/axios-1.9.0.tgz#25534e3b72b54540077d33046f77e3b8d7081901"
   integrity sha512-re4CqKTJaURpzbLHtIi6XpDv20/CnpXOtjRY5/CU32L8gU8ek9UIivcfvSWvmKEngmVbrUtPpdDwWDWL7DNHvg==
@@ -3376,6 +3376,11 @@ data-view-byte-offset@^1.0.1:
     call-bound "^1.0.2"
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
+
+dayjs@^1.11.3:
+  version "1.11.13"
+  resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.13.tgz#92430b0139055c3ebb60150aa13e860a4b5a366c"
+  integrity sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==
 
 de-indent@^1.0.2:
   version "1.0.2"
@@ -5978,6 +5983,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash-es@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash.debounce@^4.0.8:
   version "4.0.8"
@@ -9847,10 +9857,14 @@ xtend@^4.0.0, xtend@~4.0.1:
   resolved "https://registry.npmmirror.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
 
-xxweb-util@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmmirror.com/xxweb-util/-/xxweb-util-0.3.1.tgz#37ba39adbbc0fcd3c3ee4b348590756310053587"
-  integrity sha512-iHk1PtE1pPW2DV0SpDy8zL09nUHEXtg0cupFreCgU+07XRpD4Kbb/vhyxXLyUblwbxiswmXJ29j9v8NRZ1IoJg==
+xxweb-util@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmmirror.com/xxweb-util/-/xxweb-util-0.3.2.tgz#6cfef6a42af1d85e6a1c7cff0ee5e4f909dfd645"
+  integrity sha512-JyWUc0feyWmluBhaBSMZ4Ols1dyB2u73VSNReH/yCGz1xONaEfEun9WDmhlhCNfJl+x5emje6rbPD7hjvai6ew==
+  dependencies:
+    axios "^1.9.0"
+    dayjs "^1.11.3"
+    lodash-es "^4.17.21"
 
 y18n@^4.0.0:
   version "4.0.3"

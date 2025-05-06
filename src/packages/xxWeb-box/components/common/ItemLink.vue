@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import mixin from '../../mixin/mixin';
 export default {
   name:'ItemLink',
   props: {
@@ -18,6 +19,7 @@ export default {
       default:'router'
     }
   },
+  mixins:[mixin],
   methods: {
     linkProps(to,mode) {
       switch (mode){
@@ -27,7 +29,6 @@ export default {
             class:"box-item-link",
             href: 'javascript:;'
           };
-          break
         }
         case 'router':
         default:

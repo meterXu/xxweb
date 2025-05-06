@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import XXWebBox from './packages/xxWeb-box/index'
-import * as util from 'xxweb-util/utils/util'
+import * as util from 'xxweb-util/lib/util'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-ui'

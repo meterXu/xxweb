@@ -15,7 +15,7 @@
 </template>
 
 <script>
-
+import * as types from 'xxweb-util/lib/types'
 import permission from "../permission";
 import {Tag} from 'element-ui'
 export default {
