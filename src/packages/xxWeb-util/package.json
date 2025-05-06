@@ -3,6 +3,9 @@
   "version": "0.3.1",
   "description": "xxweb函数工具包",
   "type": "module",
+  "files": [
+    "lib"
+  ],
   "devDependencies": {
     "axios": "^1.9.0",
     "lodash-es": "^4.17.21",
