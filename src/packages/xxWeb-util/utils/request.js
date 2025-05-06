@@ -31,7 +31,6 @@ export function onResponseError(service,callback){
     })
 }
 
-
 export function getErrorText(status){
     switch (status) {
         case 403:

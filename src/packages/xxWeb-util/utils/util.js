@@ -1,4 +1,6 @@
 import {merge} from 'lodash-es'
+import dayjs from 'dayjs'
+import project from './project.js'
 /**
  * 是否是外部地址
  * @param path
@@ -258,13 +260,13 @@ export function deviceType() {
 
 /**
  * 时间格式化
- * @param {Object} moment
- * @param {Date} datetime
+ * @param {Date} date
  * @param {String} format
  * @return {String}
  */
-export function formatDate(moment,datetime, format) {
-    return new moment(datetime).format(format)
+export function formatDate(date, format) {
+    const _date = dayjs(date);
+    return _date.format('YYYY-MM-DD HH:mm:ss');
 }
 
 /**
@@ -275,7 +277,7 @@ export function formatDate(moment,datetime, format) {
  */
 export function mergeObject(source,target){
     return merge({},source,target)
-}
+}``
 
 /**
  * 展开整个project配置
@@ -283,7 +285,6 @@ export function mergeObject(source,target){
  * @returns {Object}
  */
 export function expandFullProject(data){
-    const project = async ()=>import("../project.js");
     return merge({},project,data)
 }
 
@@ -427,7 +428,7 @@ export function GlobalOverride(){
 
 /**
  * 等待函数
- * @param time 等待时长，默认1001x g * @returns {Promise<unknown>}
+ * @param time 等待时长，默认100ms
  */
 export function sleep(time=100){
     return new Promise(resolve => {

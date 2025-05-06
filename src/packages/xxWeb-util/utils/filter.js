@@ -1,11 +1,17 @@
 import {Ls,getQueryVariable} from './util.js'
 import {ACCESS_TOKEN} from "./types";
 
+/**
+ * 授权钩子
+ * @param router vue Router
+ * @param project Project
+ * @param beforeCallback 钩子执行之前
+ * @param endCallback 钩子执行之后
+ */
 function filter(router, project,{beforeCallback,endCallback}) {
     let defaultLogin = project.redirect.login
     const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
     const _ls = new Ls(project.nameSpace)
-
     router.beforeEach((to, from, next) => {
         beforeCallback&&beforeCallback()
         if (!to.matched.length) {
@@ -52,6 +58,12 @@ function filter(router, project,{beforeCallback,endCallback}) {
     })
 }
 
+/**
+ * 权限验证
+ * @param path 路径
+ * @param permission 权限树
+ * @return {boolean} true有权限，false无权限
+ */
 function validatePermission(path,permission){
     let res = false
     if(!permission){

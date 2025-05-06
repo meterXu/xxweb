@@ -102,3 +102,10 @@ export function $emit(event, ...args) {
     }
     return this
 }
+
+export default {
+    $on,
+    $off,
+    $once,
+    $emit
+}
