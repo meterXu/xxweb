@@ -124,7 +124,7 @@
 
 <script>
 import 'element-ui/lib/theme-chalk/index.css'
-import '../assets/css/index.less'
+import '../assets/css/xxweb-box.css'
 import HeaderLayout from "./layouts/header/HeaderLayout.vue";
 import {Container,Aside,Main,Footer,Header} from 'element-ui'
 import SideMenu from "./layouts/left/SideMenu.vue";
@@ -160,7 +160,8 @@ export default {
     return {
       app:this,
       cachedViews:this.cachedViews,
-      visitedViews:this.visitedViews
+      visitedViews:this.visitedViews,
+      device:this.device
     }
   },
   methods:{
@@ -210,12 +211,20 @@ export default {
     this.$bus.$on('tabViewChange',(activeIndex) => {
       this.activeIndex = activeIndex
     })
+    this.$bus.$on('fullScreen',(dom)=>{
+      this.$emit('fullScreen',dom)
+    })
   },
   beforeMount() {
     window.addEventListener('resize', this.resizeHandler);
   },
   beforeDestroy() {
-    this.$bus.$off()
+    this.$bus.$off('dropdownMenuClick')
+    this.$bus.$off('collapseToggle')
+    this.$bus.$off('menuClick')
+    this.$bus.$off('searchMenuItemSelect')
+    this.$bus.$off('tabViewChange')
+    this.$bus.$off('fullScreen')
     window.removeEventListener('resize', this.resizeHandler);
   }
 }

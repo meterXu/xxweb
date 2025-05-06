@@ -20,7 +20,7 @@
                 <Divider direction="vertical" v-if="!topmenu&&hamburgerShow"></Divider>
                 <div :class="{'user-menu-item':true,'topmenu':topmenu}">
                   <slot name="head-title">
-                    <HeadTitle/>
+                    <HeadTitle :title="headTitle"/>
                   </slot>
                 </div>
               </template>
@@ -49,11 +49,12 @@
               </div>
               <div class="user-menu-itemm topmenu" v-if="app.appConfig.config.head.fullscreen.show">
                 <slot name="head-fullScreen">
+                  <FullScreen/>
                 </slot>
               </div>
               <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.user.show">
                 <slot name="head-userMenu">
-                  <UserMenu type="text" :user="app.appConfig.config.head.user">
+                  <UserMenu type="text" :user="app.appConfig.config.head.user" @dropdownMenuClick="()=>this.$bus.$emit('dropdownMenuClick',command)">
                     <template v-slot:user-userName>
                       <slot name="head-user-userName"></slot>
                     </template>
@@ -88,11 +89,13 @@ import HeadBreadcrumb from "./HeadBreadcrumb.vue";
 import SearchMenu from "./SearchMenu.vue";
 import UserMenu from "./UserMenu.vue";
 import DynamicMenu from '../../common/DynamicMenu.vue'
+import FullScreen from "./FullScreen.vue";
 export default {
   name: "HeaderLayout",
   mixins: [mixin],
   props:['isCollapse'],
   components: {
+    FullScreen,
     Logo,
     Hamburger,
     HeadTitle,
@@ -118,6 +121,13 @@ export default {
     },
     hamburgerShow(){
       return !this.app.appConfig.style.fixSideMenu&&this.app.appConfig.config.head.hamburger
+    },
+    headTitle(){
+      if(this.device==='desktop'){
+        return this.app.appConfig.config.head.title.desktop
+      }else{
+        return this.app.appConfig.config.head.title.mobile
+      }
     }
   },
   methods: {

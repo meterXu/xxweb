@@ -53,7 +53,11 @@ import {Dropdown,DropdownMenu,DropdownItem,Avatar} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 export default {
   name: "UserMenu",
-  props:['type','isCollapse','user'],
+  props:{
+    type:String,
+    isCollapse:Boolean,
+    user:Object
+  },
   components:{
     Dropdown,
     DropdownMenu,
@@ -62,13 +66,13 @@ export default {
   },
   data(){
     return {
-      circleUrl:require('../../../assets/imgs/user.png')
+      circleUrl:require('../../../assets/imgs/user.webp')
     }
   },
   mixins:[mixin],
   methods:{
     handleCommand(command){
-      this.$bus.$emit('dropdownMenuClick',command)
+      this.$emit('dropdownMenuClick',command)
     }
   }
 }

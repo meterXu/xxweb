@@ -6,10 +6,10 @@
       <Tag class="version" size="mini" effect="light">version:1.0</Tag>
     </template>
     <template v-slot:head-user-userName>
-      xxxx
+      admin
     </template>
     <template v-slot:side-user-userName>
-      yyyyy
+      admin
     </template>
   </XXWebBox>
 </template>
@@ -24,7 +24,7 @@ export default {
     return {
       project: this.$project,
       permission: permission,
-      dark:false
+      dark:false,
     }
   },
   components:{

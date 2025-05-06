@@ -1,6 +1,6 @@
 import {match} from 'path-to-regexp';
 export default {
-    inject: ['app','cachedViews','visitedViews'],
+    inject: ['app','cachedViews','visitedViews','device'],
     methods:{
         isExternal(path){
             return /^(https?:|mailto:|tel:)/.test(path);
