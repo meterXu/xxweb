@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import XXWebBox from 'xxweb-box'
+import XXWebBox from './packages/xxWeb-box/index.js'
 import * as util from 'xxweb-util/lib/util'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
