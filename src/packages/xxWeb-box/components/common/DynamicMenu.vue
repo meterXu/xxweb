@@ -25,7 +25,7 @@ export default {
     function dfsMenu(m, sMenu) {
       if (m.children instanceof Array) {
         let vcs = []
-        m.children.forEach(c => {
+        m.children.filter(c=>!c.meta?.hide).forEach(c => {
           dfsMenu(c, vcs);
         })
         if (m.path) {
@@ -56,7 +56,7 @@ export default {
     }
     function renderSubMenu() {
       let sMenu = []
-      permission.forEach(m => {
+      permission.filter(c=>!c.meta?.hide).forEach(m => {
         dfsMenu(m, sMenu);
       })
       return sMenu

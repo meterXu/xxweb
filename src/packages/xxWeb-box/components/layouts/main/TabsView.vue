@@ -165,10 +165,10 @@ export default {
             view = route
           }
         }
-        if(Object.keys(view.meta).length>0){
+        if(Object.keys(view.meta||{}).length>0){
           view.meta = Object.assign(view.meta,{permanent})
         }
-        this.visitedViews.push(view)
+        !view.meta?.hide&&this.visitedViews.push(view)
         view.meta&&this.saveCachedView(view.meta.keepAlive,route.name||view.name)
       }
     },
