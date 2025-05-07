@@ -32,9 +32,13 @@
                   </slot>
                 </div>
               </template>
-              <div :class="{'user-menu-item':true,'topMenu':topmenu}" v-if="topmenu">
-                <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
-              </div>
+              <template v-if="topmenu">
+                <slot name="head-top-menu" :permission="app.permission">
+                  <div :class="{'user-menu-item':true,'topMenu':topmenu}">
+                    <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
+                  </div>
+                </slot>
+              </template>
               <slot name="head-expand-left-end"></slot>
             </div>
             <div class="center-con">
