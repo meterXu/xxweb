@@ -306,6 +306,23 @@ export function Ls(nameSpace) {
 }
 
 /**
+ * sessionStorage处理
+ * @param {String} nameSpace
+ * @return {Object}
+ */
+export function Ss(nameSpace) {
+    this.get = function (key) {
+        return sessionStorage.getItem(`${nameSpace}__` + key)
+    }
+    this.set = function (key, value) {
+        sessionStorage.setItem(`${nameSpace}__` + key, value)
+    }
+    this.remove = function (key) {
+        sessionStorage.removeItem(`${nameSpace}__` + key)
+    }
+}
+
+/**
  * Cookie的处理
  * @param {String} path
  * @return {Object}
