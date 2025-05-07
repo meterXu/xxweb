@@ -18,7 +18,7 @@
               </div>
               <template v-if="app.appConfig.config.head.title.show">
                 <Divider direction="vertical" v-if="!topmenu&&hamburgerShow"></Divider>
-                <div :class="{'user-menu-item':true,'topmenu':topmenu}">
+                <div :class="{'user-menu-item':true,'topMenu':topmenu}">
                   <slot name="head-title">
                     <HeadTitle :title="headTitle"/>
                   </slot>
@@ -26,13 +26,13 @@
               </template>
               <template v-if="app.appConfig.config.head.breadcrumb.show">
                 <Divider direction="vertical" v-if="!topmenu&&hamburgerShow"></Divider>
-                <div :class="{'user-menu-item':true,'topmenu':topmenu}">
+                <div :class="{'user-menu-item':true,'topMenu':topmenu}">
                   <slot name="head-breadcrumb">
                     <HeadBreadcrumb/>
                   </slot>
                 </div>
               </template>
-              <div :class="{'user-menu-item':true,'topmenu':topmenu}" v-if="topmenu">
+              <div :class="{'user-menu-item':true,'topMenu':topmenu}" v-if="topmenu">
                 <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
               </div>
               <slot name="head-expand-left-end"></slot>
@@ -111,10 +111,10 @@ export default {
 },
   computed:{
     sidemenu(){
-      return this.app.appConfig.style.layout==='sidemenu'
+      return this.app.appConfig.style.layout==='sideMenu'
     },
     topmenu(){
-      return this.app.appConfig.style.layout==='topmenu'
+      return this.app.appConfig.style.layout==='topMenu'
     },
     defaultActive(){
       return this.$route.path

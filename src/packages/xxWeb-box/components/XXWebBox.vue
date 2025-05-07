@@ -2,7 +2,7 @@
   <div class="xxWeb">
     <div class="xxWeb-box" :theme='appConfig.style.theme'>
       <Container class="main-container">
-        <template v-if="appConfig.style.layout==='sidemenu'">
+        <template v-if="appConfig.style.layout==='sideMenu'">
           <template v-if="device==='desktop'">
             <slot name="side" :data="{isCollapse,permission}">
               <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex">
