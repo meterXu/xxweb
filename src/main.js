@@ -13,7 +13,7 @@ Vue.prototype.$ls = new util.Ls(window.project.nameSpace)
 Vue.use(XXWebBox)
 Vue.component(DemoBlock.name,DemoBlock)
 Vue.use(elementUI)
-filter(router,window.project,{})
+filter(router,window.project,{permissionCallback(){return JSON.parse(Vue.prototype.$ls.get('permission'))}})
 window.vue = new Vue({
   router,
   render: h => h(App),

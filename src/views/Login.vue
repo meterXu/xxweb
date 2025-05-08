@@ -6,6 +6,7 @@
 
 <script>
 import * as types from 'xxweb-util/lib/types'
+import Vue from "vue";
 export default {
   name: "Login",
   props:['type'],
@@ -32,7 +33,7 @@ export default {
   methods:{
     async login(valid){
       if(valid){
-        window.permission = []
+        Vue.prototype.$ls.set('permission',JSON.stringify((await import('@/permission/1')).default))
         this.$ls.set(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
         this.$router.replace({path:project.redirect.index})
       }

@@ -24,6 +24,7 @@ import * as types from 'xxweb-util/lib/types'
 import * as util from "xxweb-util/lib/util";
 import permission from "../permission/1";
 import {Tag} from 'element-ui'
+import Vue from "vue";
 export default {
   name: 'Index',
   data() {
@@ -41,6 +42,7 @@ export default {
       switch (command){
         case 'exitSystem':{
           localStorage.setItem(types.ACCESS_TOKEN,null)
+          localStorage.setItem("permission",null)
           this.$router.replace({path:this.project.redirect.login})
         }
       }
@@ -54,7 +56,7 @@ export default {
     },
     async test(type){
       this.permission = (await import((`@/permission/${type}`))).default
-      window.permission = this.permission
+      Vue.prototype.$ls.set('permission',JSON.stringify(this.permission))
       switch (type){
         case 1:{
           this.project.redirect.index =  '/page/itemList/login'
@@ -80,7 +82,6 @@ export default {
   },
   created() {
     this.dark = eval(this.$ls.get('dark'))
-    window.permission = permission
   }
 }
 </script>

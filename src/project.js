@@ -1,4 +1,5 @@
 const project = {
+    nameSpace: 'xxweb',
     variable: {
         baseApi:process.env.VUE_APP_baseApi,
         ssoApi:process.env.VUE_APP_ssoApi
