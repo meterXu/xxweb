@@ -56,7 +56,7 @@ export default {
     }
     function renderSubMenu() {
       let sMenu = []
-      permission.filter(c=>!c.meta?.hide).forEach(m => {
+      permission&&permission.filter(c=>!c.meta?.hide).forEach(m => {
         dfsMenu(m, sMenu);
       })
       return sMenu

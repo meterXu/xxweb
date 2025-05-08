@@ -7,15 +7,17 @@ export default {
         },
         searchMenuByPath(data, path) {
             let res = null
-            for (let i = 0; i < data.length; i++) {
-                const fn = match(data[i].path);
-                if (data[i].path === path||fn(path)) {
-                    res = data[i]
-                    break
-                } else if (data[i].hasOwnProperty('children') && data[i].children instanceof Array) {
-                    res = this.searchMenuByPath(data[i].children, path)
-                    if (res) {
+            if(data){
+                for (let i = 0; i < data.length; i++) {
+                    const fn = match(data[i].path);
+                    if (data[i].path === path||fn(path)) {
+                        res = data[i]
                         break
+                    } else if (data[i].hasOwnProperty('children') && data[i].children instanceof Array) {
+                        res = this.searchMenuByPath(data[i].children, path)
+                        if (res) {
+                            break
+                        }
                     }
                 }
             }
