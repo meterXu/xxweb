@@ -1,5 +1,5 @@
 import {Ls,getQueryVariable} from './util.js'
-import {ACCESS_TOKEN} from "./types";
+import {ACCESS_TOKEN,PERMISSION} from "./types";
 
 /**
  * 授权钩子
@@ -19,6 +19,7 @@ function filter(router, project,{beforeCallback,endCallback}) {
                 path: project.redirect['404']
             })
             endCallback&&endCallback()
+            return false
         }
         if (to.query.action === 'logout') {
             _ls.remove(ACCESS_TOKEN)
@@ -31,7 +32,7 @@ function filter(router, project,{beforeCallback,endCallback}) {
         if (whiteList.indexOf(to.path) >= 0) {
             next()
             endCallback&&endCallback()
-        } else if (!validatePermission(to.path,window.permission)){
+        } else if (_ls.get(PERMISSION)&&!validatePermission(to.path,_ls.get(PERMISSION))){
             next({
                 path: project.redirect['403']||project.redirect['404']
             })
@@ -67,13 +68,19 @@ function filter(router, project,{beforeCallback,endCallback}) {
 function validatePermission(path,permission){
     let res = false
     if(!permission){
-        res = true
+        res = false
     }else {
-        for (let i=0;i<permission.length;i++){
-            if(permission[i].children){
-                res = validatePermission(path,permission[i].children)
-                break
-            }else if(permission[i].path === path){
+        let _permission = permission
+        if(typeof(permission)==='string'){
+            try{_permission = JSON.parse(permission)}catch (err){}
+        }
+        for (let i=0;i<_permission.length;i++){
+            if(_permission[i].children){
+                res = validatePermission(path,_permission[i].children)
+                if(res){
+                    break
+                }
+            }else if(_permission[i].path === path){
                 res = true
                 break
             }
