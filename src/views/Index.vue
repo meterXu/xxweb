@@ -11,18 +11,24 @@
     <template v-slot:side-user-userName>
       admin
     </template>
+    <template #head-top-menu>
+      <el-button @click="test(1)">test1</el-button>
+      <el-button @click="test(2)">test2</el-button>
+      <el-button @click="test(3)">test3</el-button>
+    </template>
   </XXWebBox>
 </template>
 
 <script>
 import * as types from 'xxweb-util/lib/types'
-import permission from "../permission";
+import * as util from "xxweb-util/lib/util";
+import permission from "../permission/1";
 import {Tag} from 'element-ui'
 export default {
   name: 'Index',
   data() {
     return {
-      project: this.$project,
+      project: util.mergeObject(this.$project),
       permission: permission,
       dark:false,
     }
@@ -45,6 +51,24 @@ export default {
     menuClick(path){
       console.log(path)
       this.$router.push({path:path})
+    },
+    async test(type){
+      this.permission = (await import((`@/permission/${type}`))).default
+      window.permission = this.permission
+      switch (type){
+        case 1:{
+          this.project.redirect.index =  '/page/itemList/login'
+          this.$router.push({path:'/page/itemList/login'})
+        }break
+        case 2:{
+          this.project.redirect.index =  '/demo/detail'
+          this.$router.push({path:'/demo/detail'})
+        }break;
+        case 3:{
+          this.project.redirect.index =  '/demo/pageList'
+          this.$router.push({path:'/demo/pageList'})
+        }break;
+      }
     }
   },
   mounted() {

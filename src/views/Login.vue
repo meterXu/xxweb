@@ -1,5 +1,6 @@
 <template>
   <div style="height: 100%">
+    <el-button @click="login">login</el-button>
   </div>
 </template>
 
@@ -29,9 +30,9 @@ export default {
     }
   },
   methods:{
-    login(valid){
+    async login(valid){
       if(valid){
-        console.log(this.form)
+        window.permission = []
         this.$ls.set(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
         this.$router.replace({path:project.redirect.index})
       }

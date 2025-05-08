@@ -1359,6 +1359,10 @@ body {
 .xxWeb .xxWeb-box .tags-view-container .el-tabs__header .el-tabs__item {
   user-select: none;
 }
+.xxWeb .xxWeb-box .tags-view-container .el-tabs__header .el-tabs__item:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
 .xxWeb .xxWeb-box .tags-view-container .el-tabs__content {
   display: none;
 }

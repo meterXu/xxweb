@@ -56,7 +56,7 @@ export default new Router({
 ```
 
 ```js
-// permission.js
+// 1.js
 export default [
     {
         path: '/',

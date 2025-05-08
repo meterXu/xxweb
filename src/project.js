@@ -10,7 +10,7 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'element',
+        theme: 'v2board',
         color: '#1890FF',
         layout: 'sideMenu',
         multiPage: true,
@@ -83,7 +83,7 @@ const project = {
         },
         tabs: {
             show: true,
-            icon: true
+            icon: false
         },
         footer: {
             show: true,

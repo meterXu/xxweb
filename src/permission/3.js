@@ -7,14 +7,6 @@ export default [
     },
     children: [
         {
-            path: '/page/itemList/xxWebBox',
-            meta: {
-                title: 'xxWebBox',
-                icon: 'el-icon-box',
-                hide:false
-            }
-        },
-        {
             path: '/page/itemList/login',
             meta: {
                 title: 'login',
@@ -38,13 +30,6 @@ export default [
         },
         children: [
             {
-                path: '/demo/dashboard',
-                meta: {
-                    title: '统计分析',
-                    icon: 'el-icon-data-analysis'
-                }
-            },
-            {
                 path: '/demo/pageList',
                 meta: {
                     title: '数据列表',
@@ -55,13 +40,6 @@ export default [
                 path: '/demo/detail',
                 meta: {
                     title: '详情页面',
-                    icon: 'el-icon-tickets'
-                }
-            },
-            {
-                path: '/demo/text-editor',
-                meta: {
-                    title: 'text-editor',
                     icon: 'el-icon-tickets'
                 }
             }

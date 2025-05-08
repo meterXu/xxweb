@@ -284,6 +284,10 @@ html,body{
         }
         .el-tabs__item{
           user-select: none;
+          &:focus-visible{
+            outline: none;
+            box-shadow: none;
+          }
         }
       }
       .el-tabs__content{

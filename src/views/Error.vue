@@ -1,5 +1,6 @@
 <template>
   <div style="height: 100%">
+    {{type==='5'?'403':'404'}}
   </div>
 </template>
 
