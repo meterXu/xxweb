@@ -58,7 +58,7 @@
               </div>
               <div class="user-menu-item topmenu" v-if="app.appConfig.config.head.user.show">
                 <slot name="head-userMenu">
-                  <UserMenu type="text" :user="app.appConfig.config.head.user" @dropdownMenuClick="()=>this.$bus.$emit('dropdownMenuClick',command)">
+                  <UserMenu type="text" :user="app.appConfig.config.head.user" @dropdownMenuClick="onDropdownMenuClick">
                     <template v-slot:user-userName>
                       <slot name="head-user-userName"></slot>
                     </template>
@@ -137,6 +137,9 @@ export default {
   methods: {
     toggle() {
       this.$emit('collapseToggle')
+    },
+    onDropdownMenuClick(command){
+      this.$bus.$emit('dropdownMenuClick',command)
     }
   }
 }
