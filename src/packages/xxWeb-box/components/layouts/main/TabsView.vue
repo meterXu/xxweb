@@ -33,7 +33,7 @@
 import {Tabs, TabPane} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 import DynamicIcon from "../../common/DynamicIcon.vue";
-
+import {cloneDeep} from 'lodash-es'
 export default {
   name: "TagsView",
   components: {
@@ -162,11 +162,11 @@ export default {
           if(!view){
             view = {name:'notfound', path:route.path, meta:{title:''}}
           }else{
-            view = route
+            view = cloneDeep(route)
           }
         }
-        if(Object.keys(view.meta||{}).length>0){
-          view.meta = Object.assign(view.meta,{permanent})
+        if(view?.meta){
+          Object.assign(view.meta,{permanent})
         }
         !view.meta?.hide&&this.visitedViews.push(view)
         view.meta&&this.saveCachedView(view.meta.keepAlive,route.name||view.name)
