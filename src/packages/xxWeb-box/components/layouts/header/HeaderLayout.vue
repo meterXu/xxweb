@@ -32,9 +32,9 @@
                   </slot>
                 </div>
               </template>
-              <template v-if="topmenu">
-                <slot name="head-top-menu" :permission="app.permission">
-                  <div :class="{'user-menu-item':true,'topMenu':topmenu}">
+              <template>
+                <slot name="head-top-menu" :app="app">
+                  <div v-if="topmenu" :class="{'user-menu-item':true,'topMenu':topmenu}">
                     <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
                   </div>
                 </slot>

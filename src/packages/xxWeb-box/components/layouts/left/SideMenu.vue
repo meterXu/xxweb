@@ -23,11 +23,13 @@
           </template>
         </UserMenu>
       </slot>
-      <DynamicMenu
-          :mode="mode"
-          :isCollapse="isCollapse"
-          :defaultActive="activeIndex">
-      </DynamicMenu>
+      <slot name="side-menu" :app="app">
+        <DynamicMenu
+            :mode="mode"
+            :isCollapse="isCollapse"
+            :defaultActive="activeIndex">
+        </DynamicMenu>
+      </slot>
       <slot name="side-bottom"></slot>
     </Aside>
   </Scrollbar>

@@ -27,6 +27,9 @@
                 <template v-slot:side-bottom>
                   <slot name="side-bottom"></slot>
                 </template>
+                <template v-slot:side-menu="{app}">
+                  <slot name="side-menu" :app="app"></slot>
+                </template>
               </SideMenu>
             </slot>
           </template>
@@ -56,8 +59,8 @@
             <template v-slot:header>
               <slot name="header"></slot>
             </template>
-            <template v-slot:head-top-menu="{permission}">
-              <slot name="head-top-menu" :permission="permission"></slot>
+            <template v-slot:head-top-menu="{app}">
+              <slot name="head-top-menu" :app="app"></slot>
             </template>
             <template v-slot:head-expand-left-start>
               <slot name="head-expand-left-start"></slot>
