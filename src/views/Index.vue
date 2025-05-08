@@ -22,7 +22,6 @@
 <script>
 import * as types from 'xxweb-util/lib/types'
 import * as util from "xxweb-util/lib/util";
-import permission from "../permission/1";
 import {Tag} from 'element-ui'
 import Vue from "vue";
 export default {
@@ -30,7 +29,7 @@ export default {
   data() {
     return {
       project: util.mergeObject(this.$project),
-      permission: permission,
+      permission: [],
       dark:false,
     }
   },
@@ -42,7 +41,7 @@ export default {
       switch (command){
         case 'exitSystem':{
           localStorage.setItem(types.ACCESS_TOKEN,null)
-          localStorage.setItem("permission",null)
+          localStorage.setItem(types.PERMISSION,null)
           this.$router.replace({path:this.project.redirect.login})
         }
       }
@@ -56,7 +55,7 @@ export default {
     },
     async test(type){
       this.permission = (await import((`@/permission/${type}`))).default
-      Vue.prototype.$ls.set('permission',JSON.stringify(this.permission))
+      Vue.prototype.$ls.set(types.PERMISSION,JSON.stringify(this.permission))
       switch (type){
         case 1:{
           this.project.redirect.index =  '/page/itemList/login'
@@ -74,6 +73,7 @@ export default {
     }
   },
   mounted() {
+    this.test(1)
   },
   watch:{
     dark(nv){

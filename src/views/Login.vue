@@ -33,7 +33,7 @@ export default {
   methods:{
     async login(valid){
       if(valid){
-        Vue.prototype.$ls.set('permission',JSON.stringify((await import('@/permission/1')).default))
+        Vue.prototype.$ls.set(types.PERMISSION,JSON.stringify((await import('@/permission/1')).default))
         this.$ls.set(types.ACCESS_TOKEN,'xxxxxxxxxxxxxxxxxxxxxxxx')
         this.$router.replace({path:project.redirect.index})
       }
