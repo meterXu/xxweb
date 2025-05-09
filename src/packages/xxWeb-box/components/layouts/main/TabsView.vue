@@ -33,7 +33,6 @@
 import {Tabs, TabPane} from 'element-ui'
 import mixin from "../../../mixin/mixin";
 import DynamicIcon from "../../common/DynamicIcon.vue";
-import {cloneDeep} from 'lodash-es'
 export default {
   name: "TagsView",
   components: {
@@ -63,6 +62,11 @@ export default {
       this.addVisitedViews(to)
       this.selectedPath = to.path;
       this.$bus.$emit('tabViewChange',to.path)
+    },
+    'app.permission':{
+      handler(){
+        this.initVisitedViews()
+      }
     }
   },
   methods: {
@@ -154,39 +158,41 @@ export default {
         if(view){
           let _meta= Object.assign({},view.meta)
           view = JSON.parse(JSON.stringify(view))
-          view.meta = Object.assign(_meta,route.meta, {
-            permanent
-          })
+          view.name = route.name
+          view.meta = Object.assign(_meta,route.meta, {permanent})
         }else{
           view = this.searchMenuByPath(this.$router.getRoutes(), route.path)
           if(!view){
-            view = {name:'notfound', path:route.path, meta:{title:''}}
+            view = {name:'未定义路由', path:route.path, meta:{title:'未定义路由',keepAlive:false,permanent}}
           }else{
-            view = cloneDeep(route)
+            view = {name:view.name,path:view.path,meta:Object.assign({permanent},view.meta)}
           }
         }
-        if(view?.meta){
-          Object.assign(view.meta,{permanent})
+        if(!view.meta.hide&&view.meta.title&&view.name!=='未定义路由'){
+          this.visitedViews.push(view)
         }
-        !view.meta?.hide&&this.visitedViews.push(view)
-        view.meta&&this.saveCachedView(view.meta.keepAlive,route.name||view.name)
+        this.saveCachedView(view.meta.keepAlive,route.name||view.name)
       }
     },
     saveCachedView(keepAlive,name){
       if(keepAlive&&!this.cachedViews.includes(name)){
         this.cachedViews.push(name)
       }
+    },
+    initVisitedViews(){
+      this.visitedViews.splice(0,this.visitedViews.length)
+      this.cachedViews.splice(0,this.cachedViews.length)
+      if (this.$route.path === this.app.appConfig.redirect.index) {
+        this.addVisitedViews(this.$route,true)
+      } else {
+        this.addVisitedViews({path:this.app.appConfig.redirect.index},true)
+        this.addVisitedViews(this.$route)
+      }
+      this.selectedPath = this.$route.path
     }
-  }
-  ,
+  },
   created() {
-    if (this.$route.path === this.app.appConfig.redirect.index) {
-      this.addVisitedViews(this.$route,true)
-    } else {
-      this.addVisitedViews({path:this.app.appConfig.redirect.index},true)
-      this.addVisitedViews(this.$route)
-    }
-    this.selectedPath = this.$route.path
+    this.initVisitedViews()
   }
 }
 </script>

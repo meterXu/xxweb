@@ -50,6 +50,7 @@
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "autoprefixer": "9.0.0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-component": "^1.1.1",
     "copy-webpack-plugin": "^6.1.0",
@@ -58,6 +59,9 @@
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "moment": "2.29.1",
+    "postcss": "^8.5.3",
+    "postcss-loader": "^6",
+    "postcss-pxtorem": "5.1.1",
     "vue-template-compiler": "^2.7.16",
     "webpack-bundle-analyzer": "^4.5.0"
   },

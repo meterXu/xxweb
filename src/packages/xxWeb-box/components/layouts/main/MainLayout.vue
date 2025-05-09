@@ -1,6 +1,6 @@
 <template>
   <Main :class="{'layout-main':true,'tab-padding':app.appConfig.style.multiPage&&app.appConfig.config.tabs.show}">
-    <TagsView v-if="app.appConfig.style.multiPage&&app.appConfig.config.tabs.show" @refresh="refresh"></TagsView>
+    <TagsView v-if="showTabs" @refresh="refresh"></TagsView>
     <AppMain ref="appMain"></AppMain>
   </Main>
 </template>
@@ -22,6 +22,14 @@ export default {
     Button,
     Row,
     Col
+  },
+  computed:{
+    showTabs(){
+      return this.app.appConfig.style.multiPage &&
+      this.app.appConfig.config.tabs.show &&
+      this.app.permission &&
+      this.app.permission.length>0
+    }
   },
   methods: {
     refresh(){

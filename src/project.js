@@ -11,7 +11,7 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'v2board',
+        theme: 'element',
         color: '#1890FF',
         layout: 'sideMenu',
         multiPage: true,
@@ -39,10 +39,10 @@ const project = {
                 mobile: ""
             },
             breadcrumb: {
-                show: true,
+                show: false,
             },
             searchMenu: {
-                show: true
+                show: false
             },
             helper: {
                 show: false,
@@ -69,7 +69,7 @@ const project = {
             logo:{
                 show: true,
             },
-            hamburger:true,
+            hamburger:false,
             user: {
                 show: false,
                 username: true,

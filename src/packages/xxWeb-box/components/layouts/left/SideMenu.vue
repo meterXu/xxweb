@@ -76,6 +76,14 @@ export default {
       }
     }
   },
+  watch:{
+    activeIndex:{
+      handler(nv){
+        console.log(nv)
+      },
+      immediate:true
+    }
+  },
   methods:{
   },
   created() {

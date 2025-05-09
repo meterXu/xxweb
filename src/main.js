@@ -7,6 +7,7 @@ import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import '@/assets/css/index.less'
 Vue.config.productionTip = false
 Vue.prototype.$project = window.project
 Vue.prototype.$ls = new util.Ls(window.project.nameSpace)

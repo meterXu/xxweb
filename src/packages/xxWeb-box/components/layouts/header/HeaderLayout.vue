@@ -34,7 +34,7 @@
               </template>
               <template>
                 <slot name="head-top-menu" :app="app">
-                  <div v-if="topmenu" :class="{'user-menu-item':true,'topMenu':topmenu}">
+                  <div v-if="topmenu && app.permission && app.permission.length>0" :class="{'user-menu-item':true,'topMenu':topmenu}">
                     <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
                   </div>
                 </slot>

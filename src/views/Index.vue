@@ -11,10 +11,15 @@
     <template v-slot:side-user-userName>
       admin
     </template>
-    <template #head-top-menu>
+    <template #head-expand-right-start>
       <el-button @click="test(1)">test1</el-button>
       <el-button @click="test(2)">test2</el-button>
       <el-button @click="test(3)">test3</el-button>
+    </template>
+    <template #side-logo>
+      <div class="my-side-logo">
+        my-side-logo
+      </div>
     </template>
   </XXWebBox>
 </template>
@@ -58,15 +63,15 @@ export default {
       Vue.prototype.$ls.set(types.PERMISSION,JSON.stringify(this.permission))
       switch (type){
         case 1:{
-          this.project.redirect.index =  '/page/itemList/login'
+          this.project.redirect.index = '/page/itemList/xxWebBox'
           this.$router.push({path:'/page/itemList/login'})
         }break
         case 2:{
-          this.project.redirect.index =  '/demo/detail'
+          this.project.redirect.index = '/demo/pageList'
           this.$router.push({path:'/demo/detail'})
         }break;
         case 3:{
-          this.project.redirect.index =  '/demo/pageList'
+          this.project.redirect.index = '/demo/pageList'
           this.$router.push({path:'/demo/pageList'})
         }break;
       }
@@ -90,5 +95,8 @@ export default {
 .version{
   background-color: transparent;
   border-color: #40A9FF;
+}
+.my-side-logo{
+  width: 100%;
 }
 </style>

@@ -10,8 +10,7 @@ export default [
             path: '/page/itemList/xxWebBox',
             meta: {
                 title: 'xxWebBox',
-                icon: 'el-icon-box',
-                hide:true
+                icon: 'el-icon-box'
             }
         },
         {
