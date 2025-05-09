@@ -15,10 +15,11 @@ function filter(router, project,{beforeCallback,endCallback,permission}) {
     const _ls = new Ls(project.nameSpace)
     router.beforeEach((to, from, next) => {
         beforeCallback&&beforeCallback()
-        validateNotFound(to,next,project,{endCallback})
-        dealWithQuery(to,_ls,project)
-        if(dealWithPerm(to,next,whiteList,_ls,permission,project,{endCallback})){
-            validateToken(to,from,next,_ls,defaultLogin,{endCallback})
+        if(validateNotFound(to,next,project,{endCallback})){
+            dealWithQuery(to,_ls,project)
+            if(dealWithPerm(to,next,whiteList,_ls,permission,project,{endCallback})){
+                return validateToken(to,from,next,_ls,defaultLogin,{endCallback})
+            }
         }
     })
 }
@@ -30,6 +31,7 @@ function validateNotFound(to,next,project,{endCallback}){
         endCallback&&endCallback()
         return false
     }
+    return true
 }
 function dealWithQuery(to,ls,project){
     if (to.query.action === 'logout') {
