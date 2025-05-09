@@ -17,8 +17,14 @@ function filter(router, project,{beforeCallback,endCallback,permission}) {
         beforeCallback&&beforeCallback()
         if(validateNotFound(to,next,project,{endCallback})){
             dealWithQuery(to,_ls,project)
-            if(dealWithPerm(to,next,whiteList,_ls,permission,project,{endCallback})){
-                return validateToken(to,from,next,_ls,defaultLogin,{endCallback})
+            if(isNotInWhiteList(to,next,whiteList,{endCallback})){
+                if(validateToken(to,from,next,_ls,defaultLogin,{endCallback})){
+                    if(dealWithPerm(to,next,whiteList,_ls,permission,project,{endCallback})){
+                        next()
+                        endCallback&&endCallback()
+                        return false
+                    }
+                }
             }
         }
     })
@@ -43,19 +49,25 @@ function dealWithQuery(to,ls,project){
         }
     }
 }
-function dealWithPerm(to,next,whiteList,ls,permission,project,{endCallback}){
+function isNotInWhiteList(to,next,whiteList,{endCallback}){
     if (whiteList.indexOf(to.path) >= 0) {
         next()
         endCallback&&endCallback()
         return false
-    } else if (permission&&!validatePermission(to.path,ls.get(PERMISSION))){
+    } else {
+        return true
+    }
+}
+function dealWithPerm(to,next,whiteList,ls,permission,project,{endCallback}){
+    if (permission&&!validatePermission(to.path,ls.get(PERMISSION))){
         next({
             path: project.redirect['403']||project.redirect['404']
         })
         endCallback&&endCallback()
         return false
+    }else{
+        return true
     }
-    return true
 }
 function validatePermission(path,permission){
     let res = false
@@ -79,20 +91,15 @@ function validatePermission(path,permission){
         }
     }
     return res
-
 }
 function validateToken(to,from,next,ls,defaultLogin,{endCallback}){
     if (from.query.path!==to.path){
         to.query.path = from.query.path
     }
     if (to.meta&&to.meta.requireAuth === false) {
-        next()
-        endCallback&&endCallback()
-        return false
+        return true
     } else if (ls.get(ACCESS_TOKEN)) {
-        next()
-        endCallback&&endCallback()
-        return false
+        return true
     } else {
         next({
             path: defaultLogin,
