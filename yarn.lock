@@ -9867,10 +9867,10 @@ xxweb-box@0.0.17:
     vue "^2.6.11"
     vue-router "^3.0.2"
 
-xxweb-util@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.npmmirror.com/xxweb-util/-/xxweb-util-0.3.2.tgz#6cfef6a42af1d85e6a1c7cff0ee5e4f909dfd645"
-  integrity sha512-JyWUc0feyWmluBhaBSMZ4Ols1dyB2u73VSNReH/yCGz1xONaEfEun9WDmhlhCNfJl+x5emje6rbPD7hjvai6ew==
+xxweb-util@0.3.5:
+  version "0.3.5"
+  resolved "https://registry.npmjs.org/xxweb-util/-/xxweb-util-0.3.5.tgz#8d7ba407efb5b78535297681921b1675d9b1f0f9"
+  integrity sha512-1zaSBpF7i+AjQ/ew3MCl1OP1Xwj6EcHkieXgZlMZXLJZFAHPPg8qzJo+yO3pnnCQ2W54I7z1VSnZuNJ3XU+4PA==
   dependencies:
     axios "^1.9.0"
     dayjs "^1.11.3"
