@@ -59,8 +59,11 @@
             <template v-slot:header>
               <slot name="header"></slot>
             </template>
-            <template v-slot:head-top-menu="{app}">
-              <slot name="head-top-menu" :app="app"></slot>
+            <template v-slot:head-top-menu-wrap="{app}">
+              <slot name="head-top-menu-wrap" :app="app"></slot>
+            </template>
+            <template v-slot:head-top-menu="{permission}">
+              <slot name="head-top-menu" :permission="permission"></slot>
             </template>
             <template v-slot:head-expand-left-start>
               <slot name="head-expand-left-start"></slot>

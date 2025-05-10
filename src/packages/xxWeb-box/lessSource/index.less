@@ -203,14 +203,27 @@ html,body{
     .el-dropdown-link{
       cursor: pointer;
     }
-    .side-scrollbar{
-      overflow-x: hidden;
-    }
     .side-menu{
       width: 100%;
+      height: 100%;
       text-align: left;
       transition: width ease .5s;
       overflow-x: hidden;
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+    .side-scrollbar{
+      overflow-x: hidden;
+      .el-scrollbar__view{
+        height: 100%;
+      }
+    }
+    .dynamic-menu-wrap{
+      flex: 1;
+      position: relative;
+      overflow-y: auto;
     }
     .dynamic-menu{
       overflow: hidden;

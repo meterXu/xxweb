@@ -33,9 +33,11 @@
                 </div>
               </template>
               <template>
-                <slot name="head-top-menu" :app="app">
+                <slot name="head-top-menu-wrap" :app="app">
                   <div v-if="topmenu && app.permission && app.permission.length>0" :class="{'user-menu-item':true,'topMenu':topmenu}">
-                    <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
+                    <slot name="head-top-menu" :permission="app.permission">
+                      <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive"></DynamicMenu>
+                    </slot>
                   </div>
                 </slot>
               </template>

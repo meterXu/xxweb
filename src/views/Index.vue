@@ -11,7 +11,7 @@
     <template v-slot:side-user-userName>
       admin
     </template>
-    <template #head-top-menu>
+    <template #head-top-menu-wrap>
       <el-button @click="test(1)">test1</el-button>
       <el-button @click="test(2)">test2</el-button>
       <el-button @click="test(3)">test3</el-button>
@@ -21,11 +21,11 @@
         my-top-logo
       </div>
     </template>
-    <template #side-logo>
-      <div class="my-side-logo">
-        my-side-logo
-      </div>
-    </template>
+<!--    <template #side-logo>-->
+<!--      <div class="my-side-logo">-->
+<!--        my-side-logo-->
+<!--      </div>-->
+<!--    </template>-->
   </XXWebBox>
 </template>
 
@@ -68,20 +68,18 @@ export default {
       Vue.prototype.$ls.set(types.PERMISSION,JSON.stringify(this.permission))
       switch (type){
         case 1:{
-          this.project.style.layout = 'topMenu'
+          this.project.style.layout = 'sideMenu'
           this.project.redirect.index = '/page/itemList/xxWebBox'
           this.$router.push({path:'/page/itemList/login'})
         }break
         case 2:{
-          // this.project.style.layout = 'sideMenu'
+          this.project.style.layout = 'sideMenu'
           this.project.redirect.index = '/demo/pageList'
           this.$router.push({path:'/demo/detail'})
         }break;
         case 3:{
-          this.permission = []
-          Vue.prototype.$ls.set(types.PERMISSION,JSON.stringify(this.permission))
-          this.project.style.layout = 'sideMenu'
-          // this.project.redirect.index = '/demo/pageList'
+          this.project.style.layout = 'topMenu'
+          this.project.redirect.index = '/demo/pageList'
           this.$router.push({path:'/demo/pageList'})
         }break;
       }
