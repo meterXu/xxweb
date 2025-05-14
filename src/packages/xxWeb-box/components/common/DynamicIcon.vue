@@ -8,11 +8,11 @@ export default {
     if (meta&&meta.icon) {
       if (typeof (meta.icon) === 'object'&&meta.icon.hasOwnProperty('render')){
         return h(meta.icon,{
-          class:type==='menu'?'el-icon-dog-icon':''
+          class:'xxweb-box-icon'
         })
       }
       else {
-        return (<i class={meta.icon} />)
+        return (<i class={[meta.icon,'xxweb-box-icon']} />)
       }
     }else{
       return null;

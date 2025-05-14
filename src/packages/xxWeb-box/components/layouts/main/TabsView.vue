@@ -12,8 +12,10 @@
           :name="item.path"
           :closable="item.meta&&!item.meta.permanent"
       >
-        <span slot="label" @contextmenu="openMenu($event.target.parentNode)">
-          <DynamicIcon v-if="app.appConfig.config.tabs.icon" type="tab" :meta="item.meta"/> {{myTitle(item)}}</span>
+        <span class="tabs-item-title-wrap" slot="label" @contextmenu="openMenu($event.target.parentNode)">
+          <DynamicIcon v-if="app.appConfig.config.tabs.icon" type="tab" :meta="item.meta"/>
+          <span class="title-text">{{myTitle(item)}}</span>
+        </span>
       </TabPane>
     </Tabs>
     <ul

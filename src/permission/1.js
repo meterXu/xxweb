@@ -1,3 +1,7 @@
+import {h} from 'vue'
+import IconParkOutlineAbdominal from '~icons/icon-park-outline/abdominal';
+import Vue from "vue";
+Vue.component('IconParkOutlineAbdominal',IconParkOutlineAbdominal)
 export default [
     {
     path: '/page',
@@ -10,7 +14,9 @@ export default [
             path: '/page/itemList/xxWebBox',
             meta: {
                 title: 'xxWebBox',
-                icon: 'el-icon-box'
+                icon: {
+                    render:()=>h('IconParkOutlineAbdominal')
+                }
             }
         },
         {
@@ -24,7 +30,9 @@ export default [
             path: '/page/itemList/error',
             meta: {
                 title: 'error',
-                icon: 'el-icon-circle-close'
+                icon:{
+                    render:()=>h('img',{attrs:{src:'http://localhost:8080/img/PigLogin.8455b49a.jpg'}})
+                }
             }
         }
     ]

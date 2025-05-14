@@ -1265,6 +1265,9 @@ body {
   height: 52px;
   line-height: 52px;
 }
+.xxWeb .xxWeb-box .el-submenu .xxweb-box-icon {
+  margin-right: 1.25rem;
+}
 .xxWeb .xxWeb-box .topmenu + .topmenu {
   margin-left: 15px;
 }
@@ -1382,6 +1385,13 @@ body {
 .xxWeb .xxWeb-box .tags-view-container .el-tabs {
   height: 100%;
 }
+.xxWeb .xxWeb-box .tags-view-container .tabs-item-title-wrap {
+  display: inline-flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  grid-gap: 4px;
+}
 .xxWeb .xxWeb-box .tags-view-container .contextmenu {
   margin: 0;
   z-index: 3000;
@@ -1467,6 +1477,16 @@ body {
   margin-right: 5px;
   font-size: 18px;
   vertical-align: middle;
+}
+.xxWeb .xxWeb-box .xxweb-box-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  object-fit: cover;
+}
+.xxWeb .xxWeb-box .xxweb-box-icon::after,
+.xxWeb .xxWeb-box .xxweb-box-icon::before {
+  font-size: 14px;
 }
 .box-item-link {
   text-decoration: none !important;

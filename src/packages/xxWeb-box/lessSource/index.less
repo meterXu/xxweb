@@ -194,6 +194,9 @@ html,body{
       height:52px;
       line-height: 52px;
     }
+    .el-submenu .xxweb-box-icon{
+      margin-right: 1.25rem;
+    }
     .topmenu+.topmenu{
      margin-left: 15px;
     }
@@ -309,6 +312,13 @@ html,body{
       .el-tabs{
         height: 100%;
       }
+      .tabs-item-title-wrap{
+        display: inline-flex;
+        flex-flow: row;
+        justify-content: flex-start;
+        align-items: center;
+        grid-gap: 4px;
+      }
       .contextmenu {
         margin: 0;
         z-index: 3000;
@@ -403,6 +413,15 @@ html,body{
       margin-right: 5px;
       font-size: 18px;
       vertical-align: middle
+    }
+    .xxweb-box-icon{
+      font-size: 14px;
+      width: 14px;
+      height: 14px;
+      object-fit: cover;
+      &::after,&::before{
+        font-size: 14px;
+      }
     }
   }
 }

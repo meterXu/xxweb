@@ -84,7 +84,7 @@ const project = {
         },
         tabs: {
             show: true,
-            icon: false
+            icon: true
         },
         footer: {
             show: true,
