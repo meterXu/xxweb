@@ -11,7 +11,14 @@
     <template v-slot:side-user-userName>
       admin
     </template>
-    <template #head-top-menu-wrap>
+    <template #head-expand-right-start>
+      <el-button @click="theme('element')">theme-element</el-button>
+      <el-button @click="theme('thunder')">theme-thunder</el-button>
+      <el-button @click="theme('wdp')">theme-wdp</el-button>
+      <el-button @click="theme('vue-admin')">vue-admin</el-button>
+      <el-button @click="theme('vue-nitro')">vue-nitro</el-button>
+      <el-button @click="theme('vue-v2board')">vue-v2board</el-button>
+
       <el-button @click="test(1)">test1</el-button>
       <el-button @click="test(2)">test2</el-button>
       <el-button @click="test(3)">test3</el-button>
@@ -83,6 +90,9 @@ export default {
           this.$router.push({path:'/demo/pageList'})
         }break;
       }
+    },
+    theme(type){
+      this.project.style.theme = type
     }
   },
   mounted() {

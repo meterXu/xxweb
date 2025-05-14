@@ -4,6 +4,15 @@ import Vue from "vue";
 Vue.component('IconParkOutlineAbdominal',IconParkOutlineAbdominal)
 export default [
     {
+        path: '/page/itemList/xxWebBox',
+        meta: {
+            title: 'xxWebBox',
+            // icon: {
+            //     render:()=>h('IconParkOutlineAbdominal')
+            // }
+        }
+    },
+    {
     path: '/page',
     meta: {
         title: '组件库',

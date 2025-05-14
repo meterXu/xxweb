@@ -41,7 +41,16 @@ export default [
                 meta: {
                     title: '详情页面',
                     icon: 'el-icon-tickets'
-                }
+                },
+                children:[
+                    {
+                        path: '/page/itemList/error',
+                        meta: {
+                            title: 'error',
+                            icon: 'el-icon-circle-close'
+                        }
+                    }
+                ]
             }
         ]
     }
