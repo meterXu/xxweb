@@ -16,8 +16,8 @@
       <el-button @click="theme('thunder')">theme-thunder</el-button>
       <el-button @click="theme('wdp')">theme-wdp</el-button>
       <el-button @click="theme('vue-admin')">vue-admin</el-button>
-      <el-button @click="theme('vue-nitro')">vue-nitro</el-button>
-      <el-button @click="theme('vue-v2board')">vue-v2board</el-button>
+      <el-button @click="theme('nitro')">vue-nitro</el-button>
+      <el-button @click="theme('v2board')">vue-v2board</el-button>
 
       <el-button @click="test(1)">test1</el-button>
       <el-button @click="test(2)">test2</el-button>
