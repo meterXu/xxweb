@@ -1,4 +1,4 @@
-import XXWebBox from "./XXWebBox";
+import XXWebBox from "./XXWebBox.vue";
 import Logo from "./common/Logo.vue";
 import DynamicMenu from "./common/DynamicMenu.vue";
 import ItemLink from "./common/ItemLink.vue";

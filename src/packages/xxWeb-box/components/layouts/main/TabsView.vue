@@ -64,11 +64,6 @@ export default {
       this.addVisitedViews(to)
       this.selectedPath = to.path;
       this.$bus.$emit('tabViewChange',to.path)
-    },
-    'app.permission':{
-      handler(){
-        this.initVisitedViews()
-      }
     }
   },
   methods: {
