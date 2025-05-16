@@ -1,5 +1,6 @@
 import {Ls,getQueryVariable} from './util.js'
-import {ACCESS_TOKEN,PERMISSION} from "./types";
+import {ACCESS_TOKEN,PERMISSION} from './types.js';
+import { match } from 'path-to-regexp';
 
 /**
  * 授权钩子
@@ -84,13 +85,17 @@ function validatePermission(path,permission){
                 if(res){
                     break
                 }
-            }else if(_permission[i].path === path){
+            }else if(testPath(_permission[i].path,path)){
                 res = true
                 break
             }
         }
     }
     return res
+}
+export function testPath(rule,path){
+    const matcher = match(rule, { decode: decodeURIComponent });
+    return matcher(path);
 }
 function validateToken(to,from,next,ls,defaultLogin,{endCallback}){
     if (from.query.path!==to.path){

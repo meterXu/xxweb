@@ -1,6 +1,6 @@
 {
   "name": "xxweb-util",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "xxweb函数工具包",
   "type": "module",
   "files": [
@@ -9,7 +9,8 @@
   "dependencies": {
     "axios": "^1.9.0",
     "lodash-es": "^4.17.21",
-    "dayjs": "^1.11.3"
+    "dayjs": "^1.11.3",
+    "path-to-regexp": "^6.2.1"
   },
   "author": "",
   "license": "ISC"
