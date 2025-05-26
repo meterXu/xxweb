@@ -266,7 +266,7 @@ export function deviceType() {
  */
 export function formatDate(date, format) {
     const _date = dayjs(date);
-    return _date.format('YYYY-MM-DD HH:mm:ss');
+    return _date.format(format||'YYYY-MM-DD HH:mm:ss');
 }
 
 /**
