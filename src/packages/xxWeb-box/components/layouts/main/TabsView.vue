@@ -8,8 +8,8 @@
       <TabPane
           style=""
           v-for="item in visitedViews"
-          :key="item.path"
-          :name="item.path"
+          :key="item.fullPath"
+          :name="item.fullPath"
           :closable="item.meta&&!item.meta.permanent"
       >
         <span class="tabs-item-title-wrap" slot="label" @contextmenu="openMenu($event.target.parentNode)">
@@ -62,7 +62,7 @@ export default {
     },
     '$route'(to){
       this.addVisitedViews(to)
-      this.selectedPath = to.path;
+      this.selectedPath = to.fullPath;
       this.$bus.$emit('tabViewChange',to.path)
     }
   },
@@ -79,28 +79,28 @@ export default {
       let activePath = this.selectedPath;
       if (activePath === tabName) {
         tabs.forEach((tab, index) => {
-          if (tab.path === tabName) {
+          if (tab.fullPath === tabName) {
             let nextTab = tabs[index + 1];
             let preTab = tabs[index - 1];
 
             if (nextTab) {
-              activePath = nextTab.path;
+              activePath = nextTab.fullPath;
             } else if (preTab) {
-              activePath = preTab.path;
+              activePath = preTab.fullPath;
             } else {
               activePath = indexPath;
             }
           }
         });
       }
-      let delViewIndex = tabs.findIndex(tab => tab.path === tabName)
+      let delViewIndex = tabs.findIndex(tab => tab.fullPath === tabName)
       delViewIndex>-1&&tabs.splice(delViewIndex,1)
       this.visitRoute(activePath)
     },
-    visitRoute(path){
-      if(this.$route.path!==path){
-        this.selectedPath = path;
-        this.$router.push({path: path});
+    visitRoute(fullPath){
+      if(this.$route.fullPath!==fullPath){
+        this.selectedPath = fullPath;
+        this.$router.push({path: fullPath});
       }
     },
     openMenu(tab) {
@@ -149,23 +149,24 @@ export default {
       this.visible = false
     },
     addVisitedViews(route,permanent=false){
-      let view = this.visitedViews.find(c=>c.path === route.path)
+      let view = this.visitedViews.find(c=>c.fullPath === route.fullPath)
       if(!view){
-        view = this.searchMenuByPath(this.app.permission, route.path)
+        view = this.searchMenuByPath(this.app.permission, route.path) //根据路由在权限中查询
         if(view){
           let _meta= Object.assign({},view.meta)
           view = JSON.parse(JSON.stringify(view))
           view.name = route.name
+          view.fullPath = route.fullPath
           view.meta = Object.assign(_meta,route.meta, {permanent})
         }else{
-          view = this.searchMenuByPath(this.$router.getRoutes(), route.path)
+          view = this.searchMenuByPath(this.$router.getRoutes(), route.path)//根据路由查询路由表
           if(!view){
-            view = {name:'未定义路由', path:route.path, meta:{title:'未定义路由',keepAlive:false,permanent}}
+            view = {name:'未定义路由',path:route.path,fullPath:route.fullPath, meta:{title:'未定义路由',keepAlive:false,permanent}}
           }else{
-            view = {name:view.name,path:view.path,meta:Object.assign({permanent},view.meta)}
+            view = {name:view.name,path:view.path,fullPath:route.fullPath,meta:Object.assign({permanent},view.meta)}
           }
         }
-        if(!view.meta.hide&&view.meta.title&&view.name!=='未定义路由'){
+        if(!view.meta.hideInTabs&&view.meta.title&&view.name!=='未定义路由'){
           this.visitedViews.push(view)
         }
         this.saveCachedView(view.meta.keepAlive,route.name||view.name)
@@ -179,13 +180,13 @@ export default {
     initVisitedViews(){
       this.visitedViews.splice(0,this.visitedViews.length)
       this.cachedViews.splice(0,this.cachedViews.length)
-      if (this.$route.path === this.app.appConfig.redirect.index) {
+      if (this.$route.fullPath === this.app.appConfig.redirect.index) {
         this.addVisitedViews(this.$route,true)
       } else {
-        this.addVisitedViews({path:this.app.appConfig.redirect.index},true)
+        this.addVisitedViews({path:this.app.appConfig.redirect.index,fullPath:this.app.appConfig.redirect.index},true)
         this.addVisitedViews(this.$route)
       }
-      this.selectedPath = this.$route.path
+      this.selectedPath = this.$route.fullPath
     }
   },
   created() {
@@ -193,7 +194,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

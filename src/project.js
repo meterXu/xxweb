@@ -84,7 +84,8 @@ const project = {
         },
         tabs: {
             show: true,
-            icon: true
+            icon: true,
+            sameMerge:true
         },
         footer: {
             show: true,
