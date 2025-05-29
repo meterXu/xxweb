@@ -161,7 +161,7 @@ export default {
       visitedViews:[],
       cachedViews:[],
       device:'desktop',
-      activeIndex:this.$route.path,
+      activeIndex:this.$route.fullPath,
       width:992
     }
   },

@@ -63,7 +63,7 @@ export default {
     '$route'(to){
       this.addVisitedViews(to)
       this.selectedPath = to.fullPath;
-      this.$bus.$emit('tabViewChange',to.path)
+      this.$bus.$emit('tabViewChange',to.fullPath)
     }
   },
   methods: {
