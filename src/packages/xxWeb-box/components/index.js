@@ -13,18 +13,6 @@ import SideMenu from "./layouts/left/SideMenu.vue";
 import AppMain from "./layouts/main/AppMain.vue";
 import TabsView from "./layouts/main/TabsView.vue";
 
-XXWebBox.install  = function (Vue){
-    let EventBus = new Vue();
-    Object.defineProperties(Vue.prototype, {
-        $bus: {
-            get: function () {
-                return EventBus
-            }
-        }
-    })
-    Vue.component(XXWebBox.name,XXWebBox)
-}
-
 export {
     XXWebBox,
     SideMenu,

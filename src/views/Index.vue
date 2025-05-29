@@ -51,7 +51,7 @@ export default {
     }
   },
   components:{
-    Tag,
+    Tag
   },
   methods: {
     dropdownMenuClick(command) {

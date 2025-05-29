@@ -15,11 +15,8 @@ import {
     TabsView
 } from './components/index'
 
-const install = function (Vue) {
-    XXWebBox.install(Vue)
-}
-if (typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue)
+XXWebBox.install = function (Vue) {
+    Vue.component(XXWebBox.name,XXWebBox)
 }
 
 export {
@@ -38,5 +35,6 @@ export {
     AppMain,
     TabsView
 }
-export default install
+
+export default XXWebBox
 

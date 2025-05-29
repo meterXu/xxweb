@@ -139,7 +139,7 @@ import {Container,Aside,Main,Footer,Header} from 'element-ui'
 import SideMenu from "./layouts/left/SideMenu.vue";
 import DrawerMenu from "./layouts/left/DrawerMenu"
 import MainLayout from "./layouts/main/MainLayout.vue";
-
+import bus from '../libs/bus'
 
 export default {
   name: "XXWebBox",
@@ -170,7 +170,8 @@ export default {
       app:this,
       cachedViews:this.cachedViews,
       visitedViews:this.visitedViews,
-      device:this.device
+      device:this.device,
+      $bus:bus
     }
   },
   methods:{
@@ -203,6 +204,7 @@ export default {
     }
   },
   mounted() {
+    this.$bus=bus
     this.resizeHandler()
     this.$bus.$on('dropdownMenuClick',(command) => {
       this.$emit('dropdownMenuClick',command)
@@ -227,7 +229,7 @@ export default {
   beforeMount() {
     window.addEventListener('resize', this.resizeHandler);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.$bus.$off('dropdownMenuClick')
     this.$bus.$off('collapseToggle')
     this.$bus.$off('menuClick')
