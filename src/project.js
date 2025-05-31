@@ -1,6 +1,6 @@
-const {loadEnv} = require("vite");
-import {expandFullProject} from './packages/xxWeb-box/utils/util.js'
-const project = function (mode){
+import {loadEnv} from "vite";
+import {expandFullProject} from './packages/xxWeb-util/lib/util.js'
+export default function (mode){
     const env = loadEnv(mode,process.cwd())
     return expandFullProject({
         nameSpace:'helloWorld',
@@ -22,5 +22,3 @@ const project = function (mode){
         }
     })
 }
-
-export default project

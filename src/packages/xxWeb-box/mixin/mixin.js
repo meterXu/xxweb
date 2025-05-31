@@ -2,6 +2,9 @@ import {match} from 'path-to-regexp';
 export default {
     inject: ['app','cachedViews','visitedViews','$bus'],
     methods:{
+        isExternal(path){
+            return /^(https?:|mailto:|tel:)/.test(path);
+        },
         searchMenuByPath(data, path) {
             let res = null
             for (let i = 0; i < data.length; i++) {

@@ -124,6 +124,7 @@ import HeadTitle from './HeadTitle.vue'
 import HeadBreadcrumb from './HeadBreadcrumb.vue'
 import SearchMenu from './SearchMenu.vue'
 import UserMenu from './UserMenu.vue'
+import FullScreen from './FullScreen.vue'
 import DynamicMenu from '../../common/DynamicMenu.vue'
 export default {
   name: 'HeaderLayout',

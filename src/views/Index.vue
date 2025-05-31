@@ -1,5 +1,5 @@
 <template>
-  <XXWebBox :config="project" :permission="permission"
+  <XXWebBox :appConfig="project" :permission="permission"
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
     <template v-slot:head-user-userName>
@@ -14,8 +14,8 @@
 <script>
 
 import permission from "../permission";
-import {types} from '../packages/xxWeb-box'
-import {setLsValue} from "../packages/xxWeb-box/utils/util";
+import * as types from '../packages/xxWeb-util/lib/types.js'
+import {setLsValue} from "../packages/xxWeb-util/lib/util";
 
 export default {
   name: 'Index',

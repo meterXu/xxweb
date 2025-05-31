@@ -3,14 +3,15 @@
 </template>
 
 <script>
-import screenfull from 'screenfull'
 
 export default {
   name: 'FullScreen',
   methods: {
     handleFullScreen() {
-      const element = document.querySelector('body')
-      if (element) screenfull.toggle(element)
+      const element = document.querySelector("body");
+      if (element) {
+        this.$bus.$emit('fullScreen',element)
+      }
     },
   },
 }

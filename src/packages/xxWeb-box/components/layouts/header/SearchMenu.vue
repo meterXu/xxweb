@@ -16,7 +16,6 @@
 import mixin from '../../../mixin/mixin.js'
 import { ElAutocomplete as Autocomplete } from 'element-plus'
 import DynamicIcon from '../../common/DynamicIcon.vue'
-import { isExternal } from '../../../utils/util.js'
 export default {
   components: {
     Autocomplete,

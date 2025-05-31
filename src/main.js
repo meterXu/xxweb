@@ -1,19 +1,8 @@
 import App from './App.vue'
 import { createApp } from 'vue'
-import {filter,util,types} from './packages/xxWeb-box/index'
+import filter from './packages/xxWeb-util/lib/filter.js'
 import XXWebBox from './packages/xxWeb-box'
-import {
-  PigLogin,
-  TreeLogin,
-  WatermelonLogin,
-  PhylumLogin,
-  NotFound,
-  NotFoundDark,
-  NotFound2,
-  NoAuthority1,
-  NoAuthority2,
-  Error,
-} from './packages/xxWeb-box'
+import * as util from './packages/xxWeb-util/lib/util.js'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-plus'
@@ -30,21 +19,6 @@ app.use(XXWebBox)
 app.component(DemoBlock.name,DemoBlock)
 app.use(elementUI)
 app.use(router)
-const components = [
-  PigLogin,
-  TreeLogin,
-  WatermelonLogin,
-  PhylumLogin,
-  NotFound,
-  NotFoundDark,
-  NotFound2,
-  NoAuthority1,
-  NoAuthority2,
-  Error,
-]
-components.forEach(c=>{
-  app.component(c.name,c)
-})
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

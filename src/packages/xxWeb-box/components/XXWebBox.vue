@@ -2,25 +2,23 @@
 import 'element-plus/dist/index.css'
 import '../assets/css/index.less'
 import HeaderLayout from './layouts/header/HeaderLayout.vue'
-import { ElContainer as Container, ElAside as Aside, ElMain as Main, ElFooter as Footer, ElHeader as Header } from 'element-plus'
+import { ElContainer as Container,ElFooter as Footer, ElHeader as Header } from 'element-plus'
 import SideMenu from './layouts/left/SideMenu.vue'
 import DrawerMenu from './layouts/left/DrawerMenu.vue'
 import MainLayout from './layouts/main/MainLayout.vue'
-import project from "../project";
-import {mergeObject} from "../utils/util";
-import {defineProps,defineEmits,ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted,getCurrentInstance} from 'vue'
+import {defineProps,defineEmits,ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted} from 'vue'
 import {useRoute} from 'vue-router'
-import {$emit, $off, $on, $once} from "../utils/bus.js";
+import {$emit, $off, $on, $once} from "../libs/bus.js";
 
 const $bus = {
   $on,
   $off,
   $once,
-  $emit:$emit
+  $emit
 }
 
 const props = defineProps({
-  config:{
+  appConfig:{
     type:Object,
     default:{}
   },
@@ -52,20 +50,16 @@ watch(()=>activeIndex,(nv)=>{
   immediate: true
 })
 
-const appConfig = computed(()=>{
-  return mergeObject(project,props.config)
-})
-
 const contentWidth = computed(()=>{
   return {
-    width: `calc(100% - ${appConfig.value.config.sideMenu.width})`
+    width: `calc(100% - ${props.appConfig.config.sideMenu.width})`
   }
 })
 
 provide('cachedViews', cachedViews);
 provide('visitedViews', visitedViews);
 provide('app', {
-  appConfig:appConfig.value,
+  appConfig:props.appConfig,
   permission:props.permission
 });
 provide('$bus', $bus);

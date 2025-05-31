@@ -1,27 +1,16 @@
 <template>
   <div style="height: 100%">
-    <PigLogin v-if="type==='2'" :config="config" :rules="rules" v-model="form" @login="login">
-    </PigLogin>
-    <TreeLogin v-if="type==='3'" :config="config" :rules="rules" v-model="form" @login="login">
-    </TreeLogin>
-    <WatermelonLogin v-if="type==='4'" :config="config" :rules="rules" v-model="form" @login="login">
-    </WatermelonLogin>
-    <PhylumLogin v-if="type==='5'" :config="config" :rules="rules" v-model="form" @login="login">
-    </PhylumLogin>
+    <el-button @click="login">login</el-button>
   </div>
 </template>
 
 <script>
-import {PigLogin,TreeLogin,WatermelonLogin,PhylumLogin,types} from '../packages/xxWeb-box/index'
-import {setLsValue} from "../packages/xxWeb-box/utils/util";
+import {setLsValue} from "../packages/xxWeb-util/lib/util";
+import * as types from '../packages/xxWeb-util/lib/types.js'
 export default {
   name: "Login",
   props:['type'],
   components:{
-    PigLogin,
-    TreeLogin,
-    WatermelonLogin,
-    PhylumLogin
   },
   data(){
     return {
