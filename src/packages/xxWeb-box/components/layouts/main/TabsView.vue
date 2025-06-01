@@ -135,7 +135,7 @@ export default {
         this.visitedViews.splice(0,this.visitedViews.length)
         indexMenu&&this.visitedViews.push(indexMenu)
       }else{
-        let menu = this.visitedViews.find(c=>c.path===this.contextMenuPath)
+        let menu = this.visitedViews.find(c=>c.fullPath===this.contextMenuPath)
         this.visitedViews.splice(0,this.visitedViews.length)
         indexMenu&&this.visitedViews.push(indexMenu)
         menu&&this.visitedViews.push(menu)
