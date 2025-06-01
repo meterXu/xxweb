@@ -41,19 +41,19 @@
                   </slot>
                 </div>
               </template>
-              <div
-                :class="{ 'user-menu-item': true, 'top-menu': topMenu }"
-                style="flex: 1"
-                v-if="topMenu"
-              >
-                <DynamicMenu
-                  :isCollapse="false"
-                  mode="horizontal"
-                  :defaultActive="defaultActive"
-                  :permission="app.permission"
-                  :appConfig="app.appConfig"
-                ></DynamicMenu>
-              </div>
+              <slot name="head-top-menu-wrap" :app="app">
+                <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }" v-if="topMenu">
+                  <slot name="head-top-menu" :permission="app.permission">
+                    <DynamicMenu
+                        :isCollapse="false"
+                        mode="horizontal"
+                        :defaultActive="defaultActive"
+                        :permission="app.permission"
+                        :appConfig="app.appConfig"
+                    ></DynamicMenu>
+                  </slot>
+                </div>
+              </slot>
               <slot name="head-expand-left-end"></slot>
             </div>
             <div class="center-con">
