@@ -1,6 +1,6 @@
 <script setup>
 import 'element-plus/dist/index.css'
-import '../assets/css/index.less'
+import '../assets/css/xxweb-box.css'
 import HeaderLayout from './layouts/header/HeaderLayout.vue'
 import { ElContainer as Container,ElFooter as Footer, ElHeader as Header } from 'element-plus'
 import SideMenu from './layouts/left/SideMenu.vue'

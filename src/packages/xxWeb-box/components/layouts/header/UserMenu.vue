@@ -85,7 +85,9 @@
           v-if="type === 'avatar' && app.appConfig.config.sideMenu.user.tag"
         >
           <slot name="side-user-tag">
-            <div class="user-vip-img">&nbsp;</div>
+            <div class="user-vip-img">
+              <img src="../../../assets/imgs/diamond.svg" alt="diamond">
+            </div>
             <div class="user-vip-text">
               <slot name="side-user-tag-text"> vip6 </slot>
             </div>

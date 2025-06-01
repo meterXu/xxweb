@@ -1,4 +1,4 @@
-<script>
+<script lang="jsx">
 import {
   ElMenu as Menu,
   ElSubMenu as Submenu,

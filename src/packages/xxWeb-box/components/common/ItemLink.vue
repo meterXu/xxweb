@@ -1,6 +1,6 @@
 <script lang="jsx">
 import {RouterLink} from "vue-router";
-import {isExternal} from "../../utils/util.js";
+import mixin from '../../mixin/mixin'
 export default function render(_props, _context){
 
   const context = {
@@ -19,7 +19,7 @@ export default function render(_props, _context){
       }
       case 'router':
       default: {
-        if (isExternal(to)) {
+        if (mixin.methods.isExternal(to)) {
           return <a onClick={handleClick} class="box-item-link" href={to} target="_blank">
             {(context.children.default())}
           </a>

@@ -1,5 +1,5 @@
 # xxweb-box
-> 可复用的web常用页面
+> 前端页面空壳
 
 ![xxweb-box](http://img.xdo.icu/xxwebbox-01.png)
 ![xxweb-box](https://img.xdo.icu/xxwebbox-02.png)

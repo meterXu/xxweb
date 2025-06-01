@@ -9,7 +9,8 @@ import fs from 'node:fs'
 export default defineConfig(({command,mode})=>{
     fs.writeFileSync("./project.js","window.project="+JSON.stringify(project(mode),null,2),{"flag":"w"})
     return {
-        plugins: [vue(),
+        plugins: [
+            vue(),
             viteCompression(),
             vueJsx(),
             copyPlugin([
