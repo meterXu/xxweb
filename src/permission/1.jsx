@@ -1,3 +1,5 @@
+import {Box,User,CircleClose,DataAnalysis} from '@element-plus/icons-vue'
+import {ElIcon} from "element-plus";
 export default [
     {
     path: '/page',
@@ -10,21 +12,21 @@ export default [
             path: '/page/itemList/xxWebBox',
             meta: {
                 title: 'xxWebBox',
-                icon:'Box'
+                icon:()=>(<ElIcon><Box/></ElIcon>)
             }
         },
         {
             path: '/page/itemList/login',
             meta: {
                 title: 'login',
-                icon: 'User'
+                icon:()=>(<ElIcon><User/></ElIcon>)
             }
         },
         {
             path: '/page/itemList/error',
             meta: {
                 title: 'error',
-                icon: 'CircleClose'
+                icon: ()=>(<ElIcon><CircleClose/></ElIcon>)
             }
         }
     ]
@@ -40,7 +42,7 @@ export default [
                 path: '/demo/dashboard',
                 meta: {
                     title: '统计分析',
-                    icon: 'DataAnalysis'
+                    icon: ()=>(<ElIcon><DataAnalysis/></ElIcon>)
                 }
             },
             {

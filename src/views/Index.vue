@@ -64,7 +64,7 @@ export default {
     },
     async test(type){
       this.permission.splice(0,this.permission.length)
-      this.permission.push(...(await import((`../permission/${type}`))).default)
+      this.permission.push(...(await import((`../permission/${type}.jsx`))).default)
       this.$ls.set(types.PERMISSION,JSON.stringify(this.permission))
       switch (type){
         case 1:{
