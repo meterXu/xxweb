@@ -58,5 +58,275 @@ export default [
                 }
             }
         ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
+    },
+    {
+        path:'/demo',
+        meta: {
+            title: '示例页面',
+            icon: 'Help'
+        },
+        children: [
+            {
+                path: '/demo/dashboard',
+                meta: {
+                    title: '统计分析',
+                    icon: 'DataAnalysis'
+                }
+            },
+            {
+                path: '/demo/pageList',
+                meta: {
+                    title: '数据列表',
+                    icon: 'Coin'
+                }
+            },
+            {
+                path: '/demo/detail',
+                meta: {
+                    title: '详情页面',
+                    icon: 'Tickets'
+                }
+            }
+        ]
     }
 ]

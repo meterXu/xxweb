@@ -95,12 +95,18 @@ export default {
     openMenu(tab) {
       event.stopPropagation()
       event.preventDefault()
-      if (tab && tab.id) {
-        this.contextMenuPath = tab.id.replace('tab-', '')
+      let _tab = null
+      if(tab.id){
+        _tab = tab
+      }else{
+        _tab = tab.parentElement
+      }
+      if(_tab.id){
+        this.contextMenuPath = _tab.id.replace('tab-', '')
         tab.blur()
-        this.left = tab.offsetLeft + 15 + event.offsetX
-        this.top = tab.offsetTop + event.offsetY
-        this.visible = true
+        this.left = _tab.offsetLeft + 15 + event.offsetX;
+        this.top = _tab.offsetTop + event.offsetY;
+        this.visible = true;
       }
     },
     isCanClose() {
