@@ -106,16 +106,22 @@ export default {
     openMenu(tab) {
       event.stopPropagation()
       event.preventDefault()
-      if(tab&&tab.id){
-        this.contextMenuPath = tab.id.replace('tab-', '')
+      let _tab = null
+      if(tab.id){
+        _tab = tab
+      }else{
+        _tab = tab.parentElement
+      }
+      if(_tab.id){
+        this.contextMenuPath = _tab.id.replace('tab-', '')
         tab.blur()
-        this.left = tab.offsetLeft + 15 + event.offsetX;
-        this.top = tab.offsetTop + event.offsetY;
+        this.left = _tab.offsetLeft + 15 + event.offsetX;
+        this.top = _tab.offsetTop + event.offsetY;
         this.visible = true;
       }
     },
     isCanClose() {
-      let menu = this.visitedViews.find(c=>c.path===this.contextMenuPath)
+      let menu = this.visitedViews.find(c=>c.fullPath===this.contextMenuPath)
       return  menu && menu.meta && menu.meta.permanent
     },
     refreshSelectedTag() {
@@ -124,7 +130,7 @@ export default {
       }
     },
     closeOthersTags() {
-      let indexMenu = this.visitedViews.find(c=>c.path===this.app.appConfig.redirect.index)
+      let indexMenu = this.visitedViews.find(c=>c.fullPath===this.app.appConfig.redirect.index)
       if(this.contextMenuPath===this.app.appConfig.redirect.index){
         this.visitedViews.splice(0,this.visitedViews.length)
         indexMenu&&this.visitedViews.push(indexMenu)
@@ -140,7 +146,7 @@ export default {
       this.removeTab(this.contextMenuPath)
     },
     closeAllTags() {
-      let indexMenu = this.visitedViews.find(c=>c.path===this.app.appConfig.redirect.index)
+      let indexMenu = this.visitedViews.find(c=>c.fullPath===this.app.appConfig.redirect.index)
       this.visitedViews.splice(0,this.visitedViews.length)
       indexMenu&&this.visitedViews.push(indexMenu)
       this.visitRoute(this.app.appConfig.redirect.index)
