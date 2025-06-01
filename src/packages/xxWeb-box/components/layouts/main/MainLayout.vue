@@ -7,7 +7,7 @@
     }"
   >
     <TagsView
-      v-if="app.appConfig.style.multiPage && app.appConfig.config.tabs.show"
+      v-if="showTabs"
       @refresh="refresh"
     ></TagsView>
     <AppMain ref="appMain"></AppMain>
@@ -38,6 +38,14 @@ export default {
     Button,
     Row,
     Col,
+  },
+  computed:{
+    showTabs(){
+      return this.app.appConfig.style.multiPage &&
+          this.app.appConfig.config.tabs.show &&
+          this.app.permission &&
+          this.app.permission.length>0
+    }
   },
   methods: {
     refresh() {

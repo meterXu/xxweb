@@ -26,7 +26,7 @@
                 ></Divider>
                 <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }">
                   <slot name="head-title">
-                    <HeadTitle />
+                    <HeadTitle :title="headTitle"/>
                   </slot>
                 </div>
               </template>
@@ -42,7 +42,7 @@
                 </div>
               </template>
               <slot name="head-top-menu-wrap" :app="app">
-                <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }" v-if="topMenu">
+                <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }" v-if="topMenu && app.permission && app.permission.length>0">
                   <slot name="head-top-menu" :permission="app.permission">
                     <DynamicMenu
                         :isCollapse="false"
@@ -161,6 +161,13 @@ export default {
         this.app.appConfig.config.head.hamburger
       )
     },
+    headTitle(){
+      if(this.device==='desktop'){
+        return this.app.appConfig.config.head.title.desktop
+      }else{
+        return this.app.appConfig.config.head.title.mobile
+      }
+    }
   },
   methods: {
     toggle() {

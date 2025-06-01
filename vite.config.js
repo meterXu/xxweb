@@ -4,7 +4,7 @@ import viteCompression from "vite-plugin-compression";
 import vueJsx from "@vitejs/plugin-vue-jsx"
 import project from "./src/project"
 import copyPlugin from 'vite-copy-plugin'
-import path from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 import fs from 'node:fs'
 export default defineConfig(({command,mode})=>{
     fs.writeFileSync("./project.js","window.project="+JSON.stringify(project(mode),null,2),{"flag":"w"})
@@ -22,7 +22,7 @@ export default defineConfig(({command,mode})=>{
         resolve: {
             extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
             alias: {
-                '@': path.resolve(__dirname, 'src'),
+                '@': fileURLToPath(new URL('./src', import.meta.url))
             }
         }
     }

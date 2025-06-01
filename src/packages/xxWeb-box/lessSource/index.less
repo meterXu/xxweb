@@ -221,14 +221,22 @@ html,body{
     .el-dropdown-link{
       cursor: pointer;
     }
-    .side-scrollbar{
-      overflow-x: hidden;
-    }
     .side-menu{
       width: 100%;
+      height: 100%;
       text-align: left;
       transition: width ease .5s;
       overflow-x: hidden;
+      display: flex;
+      flex-flow: column;
+      justify-content: flex-start;
+      align-content: flex-start;
+    }
+    .side-scrollbar{
+      overflow-x: hidden;
+      .el-scrollbar__view{
+        height: 100%;
+      }
     }
     .dynamic-menu{
       overflow: hidden;
@@ -280,7 +288,7 @@ html,body{
       padding-top: 52px;
     }
     .tags-view-container{
-      top: 0px;
+      top: 0;
       left: 0;
       position: absolute;
       background: #fff;
@@ -289,6 +297,7 @@ html,body{
       box-sizing: border-box;
       .el-tabs__header{
         margin: 0;
+        width: 100%;
         .el-tabs__nav{
           margin: 0 20px;
         }
@@ -311,6 +320,7 @@ html,body{
       }
       .el-tabs{
         height: 100%;
+        flex-flow: row;
       }
       .contextmenu {
         margin: 0;

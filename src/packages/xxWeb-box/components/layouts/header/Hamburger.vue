@@ -17,9 +17,12 @@
 </template>
 
 <script>
+import mixin from "../../../mixin/mixin";
+
 export default {
   name: 'Hamburger',
   props: ['isCollapse'],
+  mixins: [mixin],
   methods: {
     toggleClick() {
       this.$bus.$emit('collapseToggle')

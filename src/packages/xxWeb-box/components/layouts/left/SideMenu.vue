@@ -12,34 +12,36 @@
         </slot>
         <Hamburger v-if="hamburgerShow" :isCollapse="isCollapse" />
       </div>
-      <slot name="side-userMenu" v-if="app.appConfig.config.sideMenu.user.show">
-        <UserMenu type="avatar" :isCollapse="isCollapse">
-          <template v-slot:side-user-userName>
-            <slot name="side-user-userName"></slot>
-          </template>
-          <template v-slot:side-user-dropdownMenuItem="{ menu }">
-            <slot name="side-user-dropdownMenuItem" :menu="menu"></slot>
-          </template>
-          <template v-slot:side-user-tag>
-            <slot name="side-user-tag"></slot>
-          </template>
-          <template v-slot:side-user-tag-text>
-            <slot name="side-user-tag-text"></slot>
-          </template>
-          <template v-slot:user-wrapper-avatar-icon>
-            <slot name="user-wrapper-avatar-icon"></slot>
-          </template>
-        </UserMenu>
-      </slot>
-      <DynamicMenu
-        :mode="mode"
-        :isCollapse="isCollapse"
-        :defaultActive="activeIndex"
-        :permission="app.permission"
-        :appConfig="app.appConfig"
-      >
-      </DynamicMenu>
-      <slot name="side-bottom"></slot>
+      <Scrollbar wrap-class="side-scrollbar">
+        <slot name="side-userMenu" v-if="app.appConfig.config.sideMenu.user.show">
+          <UserMenu type="avatar" :isCollapse="isCollapse">
+            <template v-slot:side-user-userName>
+              <slot name="side-user-userName"></slot>
+            </template>
+            <template v-slot:side-user-dropdownMenuItem="{ menu }">
+              <slot name="side-user-dropdownMenuItem" :menu="menu"></slot>
+            </template>
+            <template v-slot:side-user-tag>
+              <slot name="side-user-tag"></slot>
+            </template>
+            <template v-slot:side-user-tag-text>
+              <slot name="side-user-tag-text"></slot>
+            </template>
+            <template v-slot:user-wrapper-avatar-icon>
+              <slot name="user-wrapper-avatar-icon"></slot>
+            </template>
+          </UserMenu>
+        </slot>
+        <DynamicMenu
+            :mode="mode"
+            :isCollapse="isCollapse"
+            :defaultActive="activeIndex"
+            :permission="app.permission"
+            :appConfig="app.appConfig"
+        >
+        </DynamicMenu>
+        <slot name="side-bottom"></slot>
+      </Scrollbar>
     </Aside>
   </Scrollbar>
 </template>

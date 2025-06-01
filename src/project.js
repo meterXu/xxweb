@@ -21,18 +21,10 @@ export default function (mode){
             multiPage: true
         },
         config:{
-            sideMenu:{
-                user: {
-                    show: true,
-                    username: true,
-                    tag:true,
-                    menu: {
-                        show: true,
-                        clearCache: true,
-                        changePwd: true,
-                        exitSystem: true
-                    }
-                }
+            tabs:{
+                show: true,
+                icon: true,
+                sameMerge:true
             }
         }
     })

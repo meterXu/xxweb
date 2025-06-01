@@ -38,7 +38,7 @@ const isCollapse = ref(props.initCollapse)
 const visitedViews = ref([])
 const cachedViews = ref([])
 const device = ref('desktop')
-const activeIndex = ref(route.path)
+const activeIndex = ref(route.fullPath)
 const width = ref(992)
 
 watch(()=>activeIndex,(nv)=>{
@@ -62,6 +62,7 @@ provide('app', {
   appConfig:props.appConfig,
   permission:props.permission
 });
+provide('device', device);
 provide('$bus', $bus);
 
 function isMobile() {
@@ -111,7 +112,7 @@ onMounted(()=>{
         <template v-if="appConfig.style.layout === 'sideMenu'">
           <template v-if="device === 'desktop'">
             <slot name="side" :data="{ isCollapse, permission }">
-              <SideMenu mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex">
+              <SideMenu v-if="permission&&permission.length>0" mode="vertical" :isCollapse="isCollapse" :activeIndex="activeIndex">
                 <template v-slot:side-logo>
                   <slot name="side-logo"></slot>
                 </template>
