@@ -11,7 +11,7 @@ const project = {
         '403':'/error/5'
     },
     style: {
-        theme: 'v2board',
+        theme: 'vue-admin',
         color: '#1890FF',
         layout: 'sideMenu',
         multiPage: true,

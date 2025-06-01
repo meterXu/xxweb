@@ -31,7 +31,7 @@ export default [
             meta: {
                 title: 'error',
                 icon:{
-                    render:()=>h('img',{attrs:{src:'http://localhost:8080/img/PigLogin.8455b49a.jpg'}})
+                    render:()=>h('img',{attrs:{src:require('@/assets/imgs/login/PigLogin.jpg')}})
                 }
             }
         }
