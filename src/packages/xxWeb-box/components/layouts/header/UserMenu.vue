@@ -9,28 +9,10 @@
           </div>
           <template v-slot:dropdown>
             <DropdownMenu v-if="app.appConfig.config.head.user.menu.show">
-              <slot
-                name="side-user-dropdownMenuItem"
-                :menu="app.appConfig.config.head.user.menu"
-              >
-                <DropdownItem
-                  command="clearCache"
-                  v-if="app.appConfig.config.head.user.menu.clearCache"
-                  icon="delete"
-                  >清除缓存</DropdownItem
-                >
-                <DropdownItem
-                  command="changePwd"
-                  v-if="app.appConfig.config.head.user.menu.changePwd"
-                  icon="edit"
-                  >修改密码</DropdownItem
-                >
-                <DropdownItem
-                  command="exitSystem"
-                  v-if="app.appConfig.config.head.user.menu.exitSystem"
-                  icon="close"
-                  >退出系统</DropdownItem
-                >
+              <slot name="side-user-dropdownMenuItem" :menu="app.appConfig.config.head.user.menu">
+                <DropdownItem command="clearCache" v-if="app.appConfig.config.head.user.menu.clearCache" icon="delete">清除缓存</DropdownItem>
+                <DropdownItem command="changePwd" v-if="app.appConfig.config.head.user.menu.changePwd" icon="edit">修改密码</DropdownItem>
+                <DropdownItem command="exitSystem" v-if="app.appConfig.config.head.user.menu.exitSystem" icon="close">退出系统</DropdownItem>
               </slot>
             </DropdownMenu>
           </template>
@@ -43,47 +25,23 @@
       <div class="user-wrapper-username" v-if="!isCollapse">
         <Dropdown @command="handleCommand" tabindex="">
           <span class="el-dropdown-link flex-middle">
-            <el-icon v-if="type==='text'"><User/></el-icon>
-            <span
-              class="side-user-userName"
-              v-if="app.appConfig.config.head.user.username"
-            >
+            <el-icon class="menu-search-icon user-icon" v-if="type==='text'"><User/></el-icon>
+            <span class="side-user-userName" v-if="app.appConfig.config.head.user.username">
               <slot name="side-user-userName"> 管理员 </slot>
             </span>
-            <el-icon style="line-height: 20px" class="el-icon--right"><ArrowDown /></el-icon>
+            <el-icon class="el-icon--right"><ArrowDown /></el-icon>
           </span>
           <template v-slot:dropdown>
             <DropdownMenu v-if="app.appConfig.config.head.user.menu.show">
-              <slot
-                name="side-user-dropdownMenuItem"
-                :menu="app.appConfig.config.head.user.menu"
-              >
-                <DropdownItem
-                  command="clearCache"
-                  v-if="app.appConfig.config.head.user.menu.clearCache"
-                  icon="delete"
-                  >清除缓存</DropdownItem
-                >
-                <DropdownItem
-                  command="changePwd"
-                  v-if="app.appConfig.config.head.user.menu.changePwd"
-                  icon="edit"
-                  >修改密码</DropdownItem
-                >
-                <DropdownItem
-                  command="exitSystem"
-                  v-if="app.appConfig.config.head.user.menu.exitSystem"
-                  icon="close"
-                  >退出系统</DropdownItem
-                >
+              <slot name="side-user-dropdownMenuItem" :menu="app.appConfig.config.head.user.menu">
+                <DropdownItem command="clearCache" v-if="app.appConfig.config.head.user.menu.clearCache" icon="delete">清除缓存</DropdownItem>
+                <DropdownItem command="changePwd" v-if="app.appConfig.config.head.user.menu.changePwd" icon="edit">修改密码</DropdownItem>
+                <DropdownItem command="exitSystem" v-if="app.appConfig.config.head.user.menu.exitSystem" icon="close">退出系统</DropdownItem>
               </slot>
             </DropdownMenu>
           </template>
         </Dropdown>
-        <div
-          class="user-vip"
-          v-if="type === 'avatar' && app.appConfig.config.sideMenu.user.tag"
-        >
+        <div class="user-vip" v-if="type === 'avatar' && app.appConfig.config.sideMenu.user.tag">
           <slot name="side-user-tag">
             <div class="user-vip-img">
               <img src="../../../assets/imgs/diamond.svg" alt="diamond">
@@ -105,6 +63,7 @@ import {
   ElDropdownItem as DropdownItem,
   ElAvatar as Avatar,
 } from 'element-plus'
+import {User,ArrowDown} from '@element-plus/icons-vue'
 import mixin from '../../../mixin/mixin.js'
 import UserImg from '../../../assets/imgs/user.webp'
 export default {
@@ -113,6 +72,8 @@ export default {
     DropdownMenu,
     DropdownItem,
     Avatar,
+    User,
+    ArrowDown
   },
   name: 'UserMenu',
   props: ['type', 'isCollapse'],

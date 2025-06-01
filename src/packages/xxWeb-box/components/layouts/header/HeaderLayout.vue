@@ -8,22 +8,16 @@
               <slot name="head-expand-left-start"></slot>
               <div v-if="sideMenu" class="user-menu-item">
                 <slot name="head-hamburger" v-if="hamburgerShow">
-                  <Hamburger :isCollapse="isCollapse" />
+                  <Hamburger :isCollapse="isCollapse"/>
                 </slot>
               </div>
               <div class="user-menu-item" v-if="topMenu">
-                <slot
-                  name="head-logo"
-                  v-if="app.appConfig.config.head.logo.show"
-                >
-                  <Logo :isCollapse="false" />
+                <slot name="head-logo" v-if="app.appConfig.config.head.logo.show">
+                  <Logo :isCollapse="false"/>
                 </slot>
               </div>
               <template v-if="app.appConfig.config.head.title.show">
-                <Divider
-                  direction="vertical"
-                  v-if="!topMenu && hamburgerShow"
-                ></Divider>
+                <Divider direction="vertical" v-if="!topMenu && hamburgerShow"></Divider>
                 <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }">
                   <slot name="head-title">
                     <HeadTitle :title="headTitle"/>
@@ -31,26 +25,17 @@
                 </div>
               </template>
               <template v-if="app.appConfig.config.head.breadcrumb.show">
-                <Divider
-                  direction="vertical"
-                  v-if="!topMenu && hamburgerShow"
-                ></Divider>
+                <Divider direction="vertical" v-if="!topMenu && hamburgerShow"></Divider>
                 <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }">
                   <slot name="head-breadcrumb">
-                    <HeadBreadcrumb />
+                    <HeadBreadcrumb/>
                   </slot>
                 </div>
               </template>
               <slot name="head-top-menu-wrap" :app="app">
                 <div :class="{ 'user-menu-item': true, 'top-menu': topMenu }" v-if="topMenu && app.permission && app.permission.length>0">
                   <slot name="head-top-menu" :permission="app.permission">
-                    <DynamicMenu
-                        :isCollapse="false"
-                        mode="horizontal"
-                        :defaultActive="defaultActive"
-                        :permission="app.permission"
-                        :appConfig="app.appConfig"
-                    ></DynamicMenu>
+                    <DynamicMenu :isCollapse="false" mode="horizontal" :defaultActive="defaultActive" :permission="app.permission" :appConfig="app.appConfig"></DynamicMenu>
                   </slot>
                 </div>
               </slot>
@@ -61,35 +46,24 @@
             </div>
             <div class="right-con">
               <slot name="head-expand-right-start"></slot>
-              <div
-                class="user-menu-item top-menu"
-                v-if="app.appConfig.config.head.searchMenu.show"
-              >
+              <div class="user-menu-item top-menu" v-if="app.appConfig.config.head.searchMenu.show">
                 <slot name="head-searchMenu">
-                  <SearchMenu />
+                  <SearchMenu/>
                 </slot>
               </div>
-              <div
-                class="user-menu-item top-menu"
-                v-if="app.appConfig.config.head.fullscreen.show"
-              >
+              <div class="user-menu-item top-menu" v-if="app.appConfig.config.head.fullscreen.show">
                 <slot name="head-fullScreen">
+                  <FullScreen/>
                 </slot>
               </div>
-              <div
-                class="user-menu-item top-menu"
-                v-if="app.appConfig.config.head.user.show"
-              >
+              <div class="user-menu-item top-menu" v-if="app.appConfig.config.head.user.show">
                 <slot name="head-userMenu">
                   <UserMenu type="text">
                     <template v-slot:side-user-userName>
                       <slot name="head-user-userName"></slot>
                     </template>
                     <template v-slot:side-user-dropdownMenuItem="{ menu }">
-                      <slot
-                        name="head-user-dropdownMenuItem"
-                        :menu="menu"
-                      ></slot>
+                      <slot name="head-user-dropdownMenuItem" :menu="menu"></slot>
                     </template>
                     <template v-slot:side-user-tag>
                       <slot name="head-user-tag"></slot>
@@ -126,6 +100,7 @@ import SearchMenu from './SearchMenu.vue'
 import UserMenu from './UserMenu.vue'
 import FullScreen from './FullScreen.vue'
 import DynamicMenu from '../../common/DynamicMenu.vue'
+
 export default {
   name: 'HeaderLayout',
   mixins: [mixin],
@@ -157,14 +132,14 @@ export default {
     },
     hamburgerShow() {
       return (
-        !this.app.appConfig.style.fixSideMenu &&
-        this.app.appConfig.config.head.hamburger
+          !this.app.appConfig.style.fixSideMenu &&
+          this.app.appConfig.config.head.hamburger
       )
     },
-    headTitle(){
-      if(this.device==='desktop'){
+    headTitle() {
+      if (this.device === 'desktop') {
         return this.app.appConfig.config.head.title.desktop
-      }else{
+      } else {
         return this.app.appConfig.config.head.title.mobile
       }
     }

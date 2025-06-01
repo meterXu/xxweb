@@ -16,10 +16,13 @@
 import mixin from '../../../mixin/mixin.js'
 import { ElAutocomplete as Autocomplete } from 'element-plus'
 import DynamicIcon from '../../common/DynamicIcon.vue'
+import {Search} from "@element-plus/icons-vue";
+
 export default {
   components: {
     Autocomplete,
-    DynamicIcon
+    DynamicIcon,
+    Search
   },
   name: 'SearchMenu',
   mixins: [mixin],

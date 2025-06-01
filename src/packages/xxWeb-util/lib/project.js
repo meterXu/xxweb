@@ -12,7 +12,7 @@ export default {
         fixSideMenu: false,
     },
     config: {
-        logo: null,
+        logo: './favicon.ico',
         title: "helloWorld",
         login: {
             title: "helloWorld",
@@ -22,7 +22,7 @@ export default {
             mode:'router'
         },
         head: {
-            hamburger:false,
+            hamburger:true,
             logo:{
                 show: true,
             },
@@ -32,10 +32,10 @@ export default {
                 mobile: ""
             },
             breadcrumb: {
-                show: true,
+                show: false,
             },
             searchMenu: {
-                show: true
+                show: false
             },
             helper: {
                 show: false,
@@ -43,7 +43,7 @@ export default {
                 target: "_blank"
             },
             fullscreen: {
-                show: true,
+                show: false,
             },
             user: {
                 show: true,
@@ -59,7 +59,7 @@ export default {
         sideMenu: {
             title: "helloWorld",
             width: '200px',
-            hamburger:true,
+            hamburger:false,
             logo:{
                 show: true,
             },

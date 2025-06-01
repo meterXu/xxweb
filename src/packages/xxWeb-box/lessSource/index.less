@@ -72,7 +72,19 @@ html,body{
     .right-con{
       display: inline-flex;
       justify-content: flex-end;
-      align-items: center
+      align-items: center;
+      .full-screen-icon{
+        display: flex;
+        align-items: center;
+      }
+      .user-wrapper-username{
+        .el-icon--right{
+          line-height: 20px
+        }
+      }
+      .user-icon{
+        color: currentColor;
+      }
     }
     .el-icon-full-screen{
       cursor: pointer;
@@ -177,10 +189,10 @@ html,body{
       overflow: hidden;
       white-space: nowrap;
       transition: width .5s;
-      color:var(--el-text-color-regular);
     }
     .menu-search-icon{
       cursor: pointer;
+      font-size: 16px;
     }
     .menu-search{
       width: 150px;

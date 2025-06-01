@@ -6,7 +6,7 @@ import { ElContainer as Container,ElFooter as Footer, ElHeader as Header } from 
 import SideMenu from './layouts/left/SideMenu.vue'
 import DrawerMenu from './layouts/left/DrawerMenu.vue'
 import MainLayout from './layouts/main/MainLayout.vue'
-import {defineProps,defineEmits,ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted} from 'vue'
+import {ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted} from 'vue'
 import {useRoute} from 'vue-router'
 import {$emit, $off, $on, $once} from "../libs/bus.js";
 
