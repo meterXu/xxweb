@@ -6,7 +6,7 @@ export function createService(baseUrl,tokeCallback,withCredentials=false,isToken
         withCredentials:withCredentials
     })
     service.interceptors.request.use(config => {
-        const {tokenKey,token} = tokeCallback&&tokeCallback()
+        const {tokenKey,token} = tokeCallback&&tokeCallback(config)
         let _headers = {}
         if(tokenKey&&token&&isToken){
             _headers[tokenKey]=token

@@ -277,7 +277,7 @@ export function formatDate(date, format) {
  */
 export function mergeObject(source,target){
     return merge({},source,target)
-}``
+}
 
 /**
  * 展开整个project配置
@@ -419,27 +419,30 @@ export function downloadFileByBlob(name,blob){
 
 /**
  * 全局对象重写
+ * @param {Array} type
  */
-export function GlobalOverride(){
-    Function.prototype.debounce=function (delay=500){
-        const originalFunction = this;
-        let timeoutId = window.debounceTimeoutId;
-        return function (...args) {
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-            }
-            return new Promise((resolve, reject) => {
-                window.debounceTimeoutId = setTimeout(async () => {
-                    try{
-                        let res = await originalFunction.apply(this, args);
-                        resolve(res);
-                    }catch (err){
-                        reject(err);
-                    }
-                }, delay);
-            })
+export function GlobalOverride(type=['debounce']){
+    if(type.includes('debounce')){
+        Function.prototype.debounce=function (delay=500){
+            const originalFunction = this;
+            let timeoutId = window.debounceTimeoutId;
+            return function (...args) {
+                if (timeoutId) {
+                    clearTimeout(timeoutId);
+                }
+                return new Promise((resolve, reject) => {
+                    window.debounceTimeoutId = setTimeout(async () => {
+                        try{
+                            let res = await originalFunction.apply(this, args);
+                            resolve(res);
+                        }catch (err){
+                            reject(err);
+                        }
+                    }, delay);
+                })
 
-        };
+            };
+        }
     }
 }
 
