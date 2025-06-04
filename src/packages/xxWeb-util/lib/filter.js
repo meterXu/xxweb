@@ -93,7 +93,7 @@ function validatePermission(path,permission){
     }
     return res
 }
-export function testPath(rule,path){
+function testPath(rule,path){
     const matcher = match(rule, { decode: decodeURIComponent });
     return matcher(path);
 }

@@ -1,51 +1,5 @@
-export function plantRenderPara(params) {
-    const transProps = {
-        staticClass: 'class',
-        staticStyle: 'style',
-        on: '',
-        domProps: '',
-        props: '',
-        attrs: '',
-    }
-    function obj2arr(obj) {
-        return typeof obj == 'string'
-            ? [obj]
-            : Object.keys(obj).map((pk, index) => {
-                return { [pk]: Object.values(obj)[index] }
-            })
-    }
-    let result = {}
-    for (let key in params) {
-        if (transProps[key] == null) {
-            if (typeof params[key] == 'object') {
-                result[key] = obj2arr(params[key])
-            } else {
-                result[key] = params[key]
-            }
-        }
-    }
-    for (let key in params) {
-        if (transProps[key] === '') {
-            if (typeof params[key] == 'object') {
-                for (let k in params[key]) {
-                    result[k] = params[key][k]
-                }
-            } else {
-                result[key] = params[key]
-            }
-        }
-    }
-    for (let key in params) {
-        if (transProps[key]) {
-            result[transProps[key]] = result[transProps[key]] || []
-            result[transProps[key]] = result[transProps[key]].concat(
-                obj2arr(params[key])
-            )
-        }
-    }
-    return result
-}
 const eventRegistryMap = new WeakMap()
+const globalObj = this || {}
 function getRegistry(instance) {
     let events = eventRegistryMap.get(instance)
     if (!events) {
@@ -53,27 +7,28 @@ function getRegistry(instance) {
     }
     return events
 }
+
 export function $on(event, fn) {
     if (Array.isArray(event)) {
         event.forEach((e) => $on(e, fn))
     } else {
-        const events = getRegistry(this)
-        ;(events[event] || (events[event] = [])).push(fn)
+        const events = getRegistry(globalObj);
+        (events[event] || (events[event] = [])).push(fn)
     }
 }
 export function $once(event, fn) {
-    const wrapped = (...args) => {
+    const wrapped = async (...args) => {
         $off(event, wrapped)
-        fn.call(this, ...args)
+        return await fn.call(globalObj, ...args)
     }
     wrapped.fn = fn
     $on(event, wrapped)
 }
 export function $off(event, fn) {
-    const vm = this
+    const vm = globalObj
     // all
     if (!event) {
-        eventRegistryMap.set(this, Object.create(null))
+        eventRegistryMap.set(globalObj, Object.create(null))
         return vm
     }
     // array of events
@@ -82,7 +37,7 @@ export function $off(event, fn) {
         return vm
     }
     // specific event
-    const events = getRegistry(this)
+    const events = getRegistry(globalObj)
     const cbs = events[event]
     if (!cbs) {
         return vm
@@ -94,13 +49,15 @@ export function $off(event, fn) {
     events[event] = cbs.filter((cb) => !(cb === fn || cb.fn === fn))
     return vm
 }
-
 export function $emit(event, ...args) {
-    const cbs = getRegistry(this)[event]
-    if (cbs) {
-        cbs.map((cb) => cb.apply(this, args))
+    const cbs = getRegistry(globalObj)[event]
+    if (cbs&&cbs.length>0) {
+        return cbs.length>1?
+        Promise.all(
+            cbs.map(async (cb) =>await cb.apply(globalObj, args))
+        ):Promise.resolve(cbs[0].apply(globalObj, args))
     }
-    return this
+    return Promise.resolve()
 }
 
 export default {

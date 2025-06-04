@@ -5,7 +5,8 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "webpack": "cd src/packages/xxWeb-box && npm run webpack",
+    "dev": "npm run webpack && vite",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -28,7 +29,8 @@
     "vue-codemirror": "^4.0.6",
     "vue-json-pretty": "1.9.3",
     "vue-router": "^4.0.8",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^2.24.3",
+    "path-to-regexp": "^6.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
