@@ -1,5 +1,5 @@
 # xxweb-box
-> 前端页面空壳
+> 前端页面空壳，vue3版
 
 ## 依赖组件
 * element-ui/element-plus
@@ -8,11 +8,11 @@
 ## 安装
 
 ```shell
-yarn add xxweb-box
+yarn add xxweb-box@0.3.x
 ```
 或者
 ```shell
-npm install xxweb-box
+npm install xxweb-box@0.3.x
 ```
 
 ## 使用
