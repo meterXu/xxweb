@@ -96,9 +96,7 @@ export default {
   mounted() {
     this.project.config.tabs.onBeforeMetaTitle = (view,route)=>{
       if(route.params&&route.params.hasOwnProperty('title')){
-        return view.meta.title+"-"+route.params.title
-      }else{
-        return view.meta.title
+        view.meta.title +="-"+route.params.title
       }
     }
     this.test(1);

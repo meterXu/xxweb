@@ -92,6 +92,26 @@ export default {
 |collapseToggle|isCollapse,boolean|收缩切换事件|
 |menuClick|path,string|菜单模式为event时的点击事件|
 
+## 钩子函数
+
+| path  | params                  | remark      |
+|-------|-------------------------|-------------|
+| appConfig.config.tabs.onBeforeMetaTitle | view:tab对象,route:当前路由对象 | 生成tab标签钩子函数 |
+
+示例
+```vue
+<script>
+  export default {
+    mounted(){
+      this.project.config.tabs.onBeforeMetaTitle=(view,route)=>{
+        if(route.params&&route.params.hasOwnProperty('title')){
+          view.meta.title += "-"+route.params.title
+        }
+      }
+    }
+  }
+</script>
+```
 
 ## 插槽
 
