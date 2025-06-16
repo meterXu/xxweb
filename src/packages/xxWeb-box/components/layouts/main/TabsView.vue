@@ -162,6 +162,9 @@ export default {
           }
         }
         if(!view.meta.hideInTabs&&view.meta.title&&view.name!=='未定义路由'){
+          if(this.app.appConfig.config.tabs.onBeforeMetaTitle){
+            view.meta.title = this.app.appConfig.config.tabs.onBeforeMetaTitle(view,route)
+          }
           this.visitedViews.push(view)
         }
         this.saveCachedView(view.meta.keepAlive,route.name||view.name)

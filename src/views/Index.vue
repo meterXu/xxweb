@@ -25,7 +25,7 @@
 
 <script>
 import * as types from '@/packages/xxWeb-util/lib/types.js'
-import {setLsValue} from "@/packages/xxWeb-util/lib/util";
+import {setLsValue,mergeObject} from "@/packages/xxWeb-util/lib/util";
 
 export default {
   name: 'Index',
@@ -94,7 +94,14 @@ export default {
     }
   },
   mounted() {
-    this.test(1)
+    this.project.config.tabs.onBeforeMetaTitle = (view,route)=>{
+      if(route.params.hasOwnProperty('title')){
+        return view.meta.title+"-"+route.params.title
+      }else{
+        return view.meta.title
+      }
+    }
+    this.test(1);
   },
   created() {
     this.dark = eval(this.$ls.get('dark'))
