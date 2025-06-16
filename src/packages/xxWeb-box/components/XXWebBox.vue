@@ -8,14 +8,9 @@ import DrawerMenu from './layouts/left/DrawerMenu.vue'
 import MainLayout from './layouts/main/MainLayout.vue'
 import {ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted} from 'vue'
 import {useRoute} from 'vue-router'
-import {$emit, $off, $on, $once} from "../libs/bus.js";
+import bus from "../libs/bus.js";
 
-const $bus = {
-  $on,
-  $off,
-  $once,
-  $emit
-}
+const $bus = bus
 
 const props = defineProps({
   appConfig:{
@@ -102,6 +97,17 @@ onMounted(()=>{
   $bus.$on('tabViewChange',(_activeIndex) => {
     activeIndex.value = _activeIndex
   })
+})
+
+function deleteTab(fullPath){
+  let _findViewIndex = visitedViews.value.findIndex(c=>c.fullPath === fullPath)
+  if(_findViewIndex>-1){
+    visitedViews.value.splice(_findViewIndex,1)
+  }
+}
+
+defineExpose({
+  deleteTab
 })
 </script>
 

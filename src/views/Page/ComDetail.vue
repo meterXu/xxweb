@@ -1,5 +1,10 @@
 <template>
  <div id="comDetail" class="comDetail">
+   <el-button @click="onBack" type="text">
+     <template #icon>
+       <el-icon><ArrowLeft/></el-icon>
+     </template>
+     返回</el-button>
    <DynamicComponent :template="template" :js="js"></DynamicComponent>
    <div v-html="attributes"></div>
  </div>
@@ -13,6 +18,8 @@ import md_it from 'markdown-it'
 import containers from '../../md-loader/containers'
 import {stripScript,safeStringToObj} from '@/md-loader/util'
 import {template} from "lodash";
+import {ArrowLeft} from "@element-plus/icons-vue"
+
 const DynamicComponent={
   props:['template','js'],
   name:'DynamicComponent',
@@ -40,6 +47,7 @@ export default {
   name: "ComDetail",
   props:['type','title'],
   components:{
+    ArrowLeft,
     DynamicComponent
   },
   data(){
@@ -47,6 +55,13 @@ export default {
       template:null,
       js:null,
       attributes:null
+    }
+  },
+  methods:{
+    onBack(){
+      debugger
+      this.$bus.$emit('deleteTab',this.$route.fullPath);
+      this.$router.back();
     }
   },
   created() {

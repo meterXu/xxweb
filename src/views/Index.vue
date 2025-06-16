@@ -1,5 +1,5 @@
 <template>
-  <XXWebBox :appConfig="project" :permission="permission"
+  <XXWebBox ref="xxwebbox" :appConfig="project" :permission="permission"
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
     <template v-slot:head-user-userName>
@@ -25,7 +25,7 @@
 
 <script>
 import * as types from '@/packages/xxWeb-util/lib/types.js'
-import {setLsValue,mergeObject} from "@/packages/xxWeb-util/lib/util";
+import {setLsValue} from "@/packages/xxWeb-util/lib/util";
 
 export default {
   name: 'Index',
@@ -95,13 +95,16 @@ export default {
   },
   mounted() {
     this.project.config.tabs.onBeforeMetaTitle = (view,route)=>{
-      if(route.params.hasOwnProperty('title')){
+      if(route.params&&route.params.hasOwnProperty('title')){
         return view.meta.title+"-"+route.params.title
       }else{
         return view.meta.title
       }
     }
     this.test(1);
+    this.$bus.$on('deleteTab', (fullPath)=>{
+      this.$refs.xxwebbox.deleteTab(fullPath)
+    })
   },
   created() {
     this.dark = eval(this.$ls.get('dark'))

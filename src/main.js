@@ -8,6 +8,7 @@ import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import bus from '@/packages/xxWeb-util/lib/bus.js'
 
 const app = createApp(App)
 window.app = app
@@ -15,6 +16,7 @@ app.config.productionTip = false
 app.config.globalProperties.$project = window.project
 filter(router,window.project,{})
 app.config.globalProperties.$ls = new util.Ls(window.project.nameSpace)
+app.config.globalProperties.$bus = bus
 app.use(XXWebBox)
 app.component(DemoBlock.name,DemoBlock)
 app.use(elementUI)
