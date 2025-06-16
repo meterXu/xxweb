@@ -1,5 +1,6 @@
 <template>
  <div id="comDetail" class="comDetail">
+   <el-button icon="el-icon-arrow-left" type="text" @click="onBack">返回</el-button>
    <DynamicComponent :template="template" :js="js"></DynamicComponent>
    <div v-html="attributes"></div>
  </div>
@@ -46,6 +47,12 @@ export default {
       template:null,
       js:null,
       attributes:null
+    }
+  },
+  methods:{
+    onBack(){
+      this.$bus.$emit('deleteTab',this.$route.fullPath)
+      this.$router.back()
     }
   },
   created() {

@@ -10054,14 +10054,15 @@ xxweb-box@0.0.17:
     vue "^2.6.11"
     vue-router "^3.0.2"
 
-xxweb-util@0.3.6:
-  version "0.3.6"
-  resolved "https://registry.npmjs.org/xxweb-util/-/xxweb-util-0.3.6.tgz#20a42352e8612cb0be97553e3f0079dedf1c336a"
-  integrity sha512-06hrOquUiSHlVVTUUWDgD9yLEKhh8BA5pamKAF3y3GdUrmhuifb81Q0Nv29SpaYWmMURYGZZxfL6irq8hom2sA==
+xxweb-util@^0.3.10:
+  version "0.3.10"
+  resolved "https://registry.npmjs.org/xxweb-util/-/xxweb-util-0.3.10.tgz#f84b3a01384be1a6c283f0f89e8e0a9cb8da06ab"
+  integrity sha512-Bh5HdVU/zRCBa3ysGj+FWJE9QdXfV5FzO8R2NCktCRZt2JVph5mpxYCWsAdiboE7D0NijXFpp13+uVkHJk5Wcg==
   dependencies:
     axios "^1.9.0"
     dayjs "^1.11.3"
     lodash-es "^4.17.21"
+    path-to-regexp "^6.2.1"
 
 y18n@^4.0.0:
   version "4.0.3"

@@ -1,5 +1,5 @@
 <template>
-  <XXWebBox :appConfig="project" :permission="permission"
+  <XXWebBox ref="xxwebbox" :appConfig="project" :permission="permission"
             @dropdownMenuClick="dropdownMenuClick"
             @menuClick="menuClick">
     <template v-slot:side-user-tag>
@@ -96,6 +96,14 @@ export default {
     }
   },
   mounted() {
+    this.$bus.$on('deleteTab',(fullPath)=>{
+      this.$refs.xxwebbox.deleteTab(fullPath)
+    })
+    this.project.config.tabs.onBeforeMetaTitle=(view,route)=>{
+      if(route.params&&route.params.hasOwnProperty('title')){
+        view.meta.title += "-"+route.params.title
+      }
+    }
     this.test(1)
   },
   watch:{

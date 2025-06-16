@@ -8,9 +8,11 @@ import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/css/index.less'
+import bus from 'xxweb-util/lib/bus'
 Vue.config.productionTip = false
 Vue.prototype.$project = window.project
 Vue.prototype.$ls = new util.Ls(window.project.nameSpace)
+Vue.prototype.$bus = bus
 Vue.use(XXWebBox)
 Vue.component(DemoBlock.name,DemoBlock)
 Vue.use(elementUI)

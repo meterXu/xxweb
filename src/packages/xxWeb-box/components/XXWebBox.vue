@@ -184,6 +184,12 @@ export default {
         const isMobile = this.isMobile();
         this.device = isMobile ? 'mobile' : 'desktop'
       }
+    },
+    deleteTab(fullPath){
+      let _findViewIndex = this.visitedViews.findIndex(c=>c.fullPath === fullPath)
+      if(_findViewIndex>-1){
+        this.visitedViews.splice(_findViewIndex,1)
+      }
     }
   },
   watch:{
