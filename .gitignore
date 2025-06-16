@@ -25,3 +25,4 @@ yarn-error.log*
 yarn-error.log
 src/packages/xxWeb-box/yarn.lock
 src/packages/xxWeb-utils/yarn.lock
+src/packages/xxWeb-box/assets/css/*
