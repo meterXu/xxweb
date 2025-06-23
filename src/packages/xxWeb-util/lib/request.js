@@ -23,11 +23,9 @@ export function onResponseError(service,callback){
         return response
     }, (error) => {
         if(callback){
-            const data = callback(error)
-            return Promise.reject(data)
-        }else{
-            return Promise.reject(error)
+            callback(error)
         }
+        return Promise.reject(error)
     })
 }
 
