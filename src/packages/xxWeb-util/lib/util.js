@@ -115,7 +115,7 @@ export function randomUUID() {
  * @returns {String | null|string}
  */
 export function getQueryVariable(name) {
-    let query = ''
+    let query
     if (window.location.search) {
         query = window.location.search.substring(1)
     } else {
@@ -139,7 +139,7 @@ export function getQueryVariable(name) {
  * @returns {String | null|string}
  */
 export function getQuery() {
-    let query = ''
+    let query
     let res = {}
     if (window.location.search) {
         query = window.location.search.substring(1)
@@ -396,7 +396,7 @@ export function Cookie(path = '/') {
  * @param {String} url
  */
 export function downloadFileByUrl(name,url){
-    document.createElement('a')
+    const a  = document.createElement('a')
     a.href=url
     a.download=name
     document.body.appendChild(a)
