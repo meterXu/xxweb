@@ -25,18 +25,22 @@
       <div class="user-wrapper-username" v-if="!isCollapse">
         <Dropdown @command="handleCommand" tabindex="">
           <span class="el-dropdown-link flex-middle">
-            <el-icon class="menu-search-icon user-icon" v-if="type==='text'"><User/></el-icon>
+            <ElIcon class="menu-search-icon user-icon" v-if="type==='text'"><User/></ElIcon>
             <span class="side-user-userName" v-if="app.appConfig.config.head.user.username">
               <slot name="side-user-userName"> 管理员 </slot>
             </span>
-            <el-icon class="el-icon--right"><ArrowDown /></el-icon>
+            <ElIcon class="el-icon--right"><ArrowDown /></ElIcon>
           </span>
           <template v-slot:dropdown>
             <DropdownMenu v-if="app.appConfig.config.head.user.menu.show">
               <slot name="side-user-dropdownMenuItem" :menu="app.appConfig.config.head.user.menu">
-                <DropdownItem command="clearCache" v-if="app.appConfig.config.head.user.menu.clearCache" icon="delete">清除缓存</DropdownItem>
-                <DropdownItem command="changePwd" v-if="app.appConfig.config.head.user.menu.changePwd" icon="edit">修改密码</DropdownItem>
-                <DropdownItem command="exitSystem" v-if="app.appConfig.config.head.user.menu.exitSystem" icon="close">退出系统</DropdownItem>
+                <DropdownItem command="clearCache" v-if="app.appConfig.config.head.user.menu.clearCache">
+                  <ElIcon><Delete/></ElIcon>清除缓存</DropdownItem>
+                <DropdownItem command="changePwd" v-if="app.appConfig.config.head.user.menu.changePwd">
+                  <ElIcon><Edit/></ElIcon>修改密码</DropdownItem>
+                <DropdownItem command="exitSystem" v-if="app.appConfig.config.head.user.menu.exitSystem">
+                  <ElIcon><Close/></ElIcon>退出系统
+                </DropdownItem>
               </slot>
             </DropdownMenu>
           </template>
@@ -62,18 +66,23 @@ import {
   ElDropdownMenu as DropdownMenu,
   ElDropdownItem as DropdownItem,
   ElAvatar as Avatar,
+  ElIcon,
 } from 'element-plus'
-import {User,ArrowDown} from '@element-plus/icons-vue'
+import {User,ArrowDown,Delete,Edit,Close} from '@element-plus/icons-vue'
 import mixin from '../../../mixin/mixin.js'
 import UserImg from '../../../assets/imgs/user.webp'
 export default {
   components: {
+    ElIcon,
     Dropdown,
     DropdownMenu,
     DropdownItem,
     Avatar,
     User,
-    ArrowDown
+    ArrowDown,
+    Delete,
+    Edit,
+    Close,
   },
   name: 'UserMenu',
   props: ['type', 'isCollapse'],
