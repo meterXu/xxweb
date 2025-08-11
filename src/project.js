@@ -25,6 +25,9 @@ export default function (mode){
                 show: true,
                 icon: true,
                 sameMerge:true
+            },
+            sideMenu:{
+                width: '250px',
             }
         }
     })

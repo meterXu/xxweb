@@ -1,9 +1,12 @@
+import {ElIcon} from "element-plus";
+import {Menu} from "@element-plus/icons-vue";
+
 export default [
     {
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'el-icon-s-help'
+            icon:()=>(<ElIcon><Menu/></ElIcon>)
         },
         children: [
             {

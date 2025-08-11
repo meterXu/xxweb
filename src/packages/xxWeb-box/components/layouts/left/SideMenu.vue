@@ -1,6 +1,8 @@
 <template>
-  <Scrollbar wrap-class="side-scrollbar" :class="isCollapse?'side-scrollbar side-scrollbar-expand':'side-scrollbar side-scrollbar-shrink'" :style="{width: width}">
-    <Aside class="side-menu" :width="width">
+  <Scrollbar wrap-class="side-scrollbar">
+    <Aside class="side-menu"
+           :style="{'--side-menu-width':app.appConfig.config.sideMenu.width}"
+           :class="isCollapse?'':'side-warp-expand'">
       <div
         :class="{
           'side-menu-header': true,
@@ -8,11 +10,11 @@
         }"
       >
         <slot name="side-logo" v-if="logoShow">
-          <Logo :isCollapse="isCollapse" />
+          <Logo :isCollapse="isCollapse" :class="isCollapse?'':'side-menu-logo-expand'"/>
         </slot>
         <Hamburger v-if="hamburgerShow" :isCollapse="isCollapse" />
       </div>
-      <Scrollbar wrap-class="side-scrollbar">
+      <Scrollbar>
         <slot name="side-userMenu" v-if="app.appConfig.config.sideMenu.user.show">
           <UserMenu type="avatar" :isCollapse="isCollapse">
             <template v-slot:side-user-userName>
@@ -76,10 +78,7 @@ export default {
   },
   computed: {
     width() {
-      let baseFontSize = window.getComputedStyle(document.documentElement).fontSize
-      baseFontSize = baseFontSize?parseInt(baseFontSize.replace('px','')):16
-      let collapseWidth = 65/baseFontSize
-      return this.isCollapse ? `${collapseWidth}rem` : this.app.appConfig.config.sideMenu.width
+      return this.isCollapse ? `unset` : this.app.appConfig.config.sideMenu.width
     },
     title() {
       return this.app.appConfig.config.sideMenu.title

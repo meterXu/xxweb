@@ -1,6 +1,6 @@
 <template>
   <Drawer
-    :visible="visible"
+    :model-value="modelValue"
     direction="ltr"
     :show-close="false"
     custom-class="mobile-drawer"
@@ -41,18 +41,14 @@ import SideMenu from './SideMenu.vue'
 import { ElDrawer as Drawer } from 'element-plus'
 export default {
   name: 'DrawerMenu',
-  props: ['visible'],
-  model: {
-    prop: 'visible',
-    event: 'change',
-  },
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
   mixins: [mixin],
   components: { SideMenu, Drawer },
   methods: {
     handleClose() {
-      this.$emit( 'change', false)
+      this.$emit( 'update:modelValue', false)
     },
-  },
-  emits: ['change'],
+  }
 }
 </script>

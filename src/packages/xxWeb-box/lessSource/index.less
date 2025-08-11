@@ -26,11 +26,11 @@ html,body{
     .main-container{
       height: 100%;
     }
-    .side-scrollbar-expand{
-      animation: side-scrollbar-expand .5s forwards;
+    .side-warp-expand{
+      animation: side-warp-expand .3s ease forwards;
     }
-    .side-scrollbar-shrink{
-      animation: side-scrollbar-shrink-expand .5s forwards;
+    .side-menu-logo-expand{
+      animation: side-menu-logo-expand .3s ease forwards;
     }
     .content-container{
       flex: 1;
@@ -431,6 +431,9 @@ html,body{
       .el-drawer__header{
         display: none;
       }
+      .el-drawer__body{
+        padding: 0;
+      }
     }
   }
 }
@@ -438,20 +441,20 @@ html,body{
   text-decoration: none !important;
 }
 
-@keyframes side-scrollbar-expand {
+@keyframes side-menu-logo-expand {
   0%{
-    width: 250px;
+    width: 0;
   }
   100%{
-    width: 65px;
+    width: 100%;
   }
 }
 
-@keyframes side-scrollbar-shrink {
+@keyframes side-warp-expand {
   0%{
-    width: 65px;
+    width: 64px;
   }
   100%{
-    width: 250px;
+    width: var(--side-menu-width);
   }
 }

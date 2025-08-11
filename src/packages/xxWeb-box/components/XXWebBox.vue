@@ -2,11 +2,11 @@
 import 'element-plus/dist/index.css'
 import '../assets/css/xxweb-box.css'
 import HeaderLayout from './layouts/header/HeaderLayout.vue'
-import { ElContainer as Container,ElFooter as Footer, ElHeader as Header } from 'element-plus'
+import { ElContainer as Container,ElFooter as Footer} from 'element-plus'
 import SideMenu from './layouts/left/SideMenu.vue'
 import DrawerMenu from './layouts/left/DrawerMenu.vue'
 import MainLayout from './layouts/main/MainLayout.vue'
-import {ref,provide,watch,computed,onBeforeMount,onBeforeUnmount,onMounted} from 'vue'
+import {ref,provide,watch,onBeforeMount,onBeforeUnmount,onMounted} from 'vue'
 import {useRoute} from 'vue-router'
 import bus from "../libs/bus.js";
 
@@ -140,7 +140,7 @@ defineExpose({
               </SideMenu>
             </slot>
           </template>
-          <DrawerMenu v-else v-model:value="isCollapse">
+          <DrawerMenu v-else v-model="isCollapse">
             <template v-slot:side-logo>
               <slot name="side-logo"></slot>
             </template>
