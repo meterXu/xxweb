@@ -1,5 +1,5 @@
 <template>
-  <Scrollbar wrap-class="side-scrollbar">
+  <Scrollbar wrap-class="side-scrollbar" :class="isCollapse?'side-scrollbar side-scrollbar-expand':'side-scrollbar side-scrollbar-shrink'" :style="{width: width}">
     <Aside class="side-menu" :width="width">
       <div
         :class="{
@@ -76,7 +76,10 @@ export default {
   },
   computed: {
     width() {
-      return this.isCollapse ? '65px' : this.app.appConfig.config.sideMenu.width
+      let baseFontSize = window.getComputedStyle(document.documentElement).fontSize
+      baseFontSize = baseFontSize?parseInt(baseFontSize.replace('px','')):16
+      let collapseWidth = 65/baseFontSize
+      return this.isCollapse ? `${collapseWidth}rem` : this.app.appConfig.config.sideMenu.width
     },
     title() {
       return this.app.appConfig.config.sideMenu.title

@@ -45,12 +45,6 @@ watch(()=>activeIndex,(nv)=>{
   immediate: true
 })
 
-const contentWidth = computed(()=>{
-  return {
-    width: `calc(100% - ${props.appConfig.config.sideMenu.width})`
-  }
-})
-
 provide('cachedViews', cachedViews);
 provide('visitedViews', visitedViews);
 provide('app', {
@@ -167,7 +161,7 @@ defineExpose({
             </template>
           </DrawerMenu>
         </template>
-        <Container class="content-container" :style="contentWidth">
+        <Container class="content-container">
           <HeaderLayout :isCollapse="isCollapse">
             <template v-slot:header>
               <slot name="header"> </slot>

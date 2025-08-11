@@ -26,7 +26,14 @@ html,body{
     .main-container{
       height: 100%;
     }
+    .side-scrollbar-expand{
+      animation: side-scrollbar-expand .5s forwards;
+    }
+    .side-scrollbar-shrink{
+      animation: side-scrollbar-shrink-expand .5s forwards;
+    }
     .content-container{
+      flex: 1;
       overflow: hidden;
       display: inline-flex;
       flex-direction: column;
@@ -429,4 +436,22 @@ html,body{
 }
 .box-item-link{
   text-decoration: none !important;
+}
+
+@keyframes side-scrollbar-expand {
+  0%{
+    width: 250px;
+  }
+  100%{
+    width: 65px;
+  }
+}
+
+@keyframes side-scrollbar-shrink {
+  0%{
+    width: 65px;
+  }
+  100%{
+    width: 250px;
+  }
 }

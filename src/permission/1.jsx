@@ -1,11 +1,11 @@
-import {Box,User,CircleClose,DataAnalysis} from '@element-plus/icons-vue'
+import {Help,Menu,Box,User,CircleClose,DataAnalysis} from '@element-plus/icons-vue'
 import {ElIcon} from "element-plus";
 export default [
     {
     path: '/page',
     meta: {
         title: '组件库',
-        icon: 'Menu'
+        icon:()=>(<ElIcon><Menu/></ElIcon>)
     },
     children: [
         {
@@ -35,7 +35,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -65,7 +65,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -95,7 +95,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -125,7 +125,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -155,7 +155,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -185,7 +185,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -215,7 +215,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -245,7 +245,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -275,7 +275,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
@@ -305,7 +305,7 @@ export default [
         path:'/demo',
         meta: {
             title: '示例页面',
-            icon: 'Help'
+            icon:()=>(<ElIcon><Help/></ElIcon>)
         },
         children: [
             {
