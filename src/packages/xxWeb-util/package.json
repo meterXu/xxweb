@@ -1,10 +1,10 @@
 {
   "name": "xxweb-util",
-  "version": "0.3.16",
+  "version": "0.3.18",
   "description": "XXWeb函数工具包",
   "type": "module",
   "files": [
-    "lib"
+    "lib/**/*"
   ],
   "scripts": {
     "build": "tsc",
