@@ -3,7 +3,7 @@
     :model-value="modelValue"
     direction="ltr"
     :show-close="false"
-    custom-class="mobile-drawer"
+    class="mobile-drawer"
     :size="app.appConfig.config.sideMenu.width"
     :before-close="handleClose"
   >

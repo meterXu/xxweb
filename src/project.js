@@ -1,5 +1,5 @@
 import {loadEnv} from "vite";
-import {expandFullProject} from './packages/xxWeb-util/lib/util.js'
+import {expandFullProject} from './packages/xxWeb-util/dist/util.js'
 export default function (mode){
     const env = loadEnv(mode,process.cwd())
     return expandFullProject({

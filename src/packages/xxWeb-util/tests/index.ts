@@ -1,5 +1,5 @@
-import {mergeObject, formatDate, expandFullProject} from '../lib/util.js'
-import {$on, $emit, $once, $off} from "../lib/bus.js";
+import {mergeObject, formatDate, expandFullProject} from '../src/util'
+import {$on, $emit, $once, $off} from "../src/bus";
 
 console.log(mergeObject({a: {c:1,d:2},b:2},{a:{e:3,f:4}}))
 console.log(formatDate(new Date,'yyyy-MM-dd HH:mm:ss'))
