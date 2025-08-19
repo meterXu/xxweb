@@ -9,7 +9,7 @@ npm i xxweb-util
 ## 使用
 推荐使用动态引入的方式进行使用，例如：
 ```
-import {Ls} from 'xxweb-util/lib/util.js'
+import {Ls} from 'xxweb-util/dist/util.js'
 const ls = new Ls('test');
 ls.set('tokenKey','<tokenValue>')
 ```
@@ -45,7 +45,7 @@ ls.set('tokenKey','<tokenValue>')
 **示例**
 store中属性赋值
 ```javascript
-import {Ls} from 'xxweb-util/lib/util.js'
+import {Ls} from 'xxweb-util/dist/util.js'
 const ls = new Ls(nameSpace)
 setUserInfo:(state,value)=>{
     _userInfo.value = value;
@@ -54,7 +54,7 @@ setUserInfo:(state,value)=>{
 ```
 获取store中的用户信息
 ```javascript
-import {Ls} from 'xxweb-util/lib/util.js'
+import {Ls} from 'xxweb-util/dist/util.js'
 const ls = new Ls(nameSpace)
 const userInfo = computed(()=>{
     if(ls.get('userInfo')){
@@ -65,13 +65,13 @@ const userInfo = computed(()=>{
 ```
 时间格式化
 ```javascript
-import {formatDate} from 'xxweb-util/lib/util.js'
+import {formatDate} from 'xxweb-util/dist/util.js'
 return formatDate(new Date(),'yyyy-MM-dd')
 ```
 设置xxweb-box的project
 ```vue
 <script setup>
-  import {expandFullProject} from 'xxweb-util/lib/util.js'
+  import {expandFullProject} from 'xxweb-util/dist/util.js'
   const project = expandFullProject({
     nameSpace:'test',
     variable: {
@@ -93,12 +93,12 @@ return formatDate(new Date(),'yyyy-MM-dd')
 ```
 给所有的函数增加防抖机制
 ```javascript
-import {GlobalOverride} from 'xxweb-util/lib/util.js'
+import {GlobalOverride} from 'xxweb-util/dist/util.js'
 GlobalOverride(['debounce'])
 ```
 等待3s执行
 ```javascript
-import {sleep} from 'xxweb-util/lib/util.js'
+import {sleep} from 'xxweb-util/dist/util.js'
 sleep(3000)
 console.log('等待3s执行')
 ```
@@ -113,7 +113,7 @@ console.log('等待3s执行')
 
 **示例**
 ```javascript
-import {ACCESS_TOKEN,USER_INFO,PERMISSION} from "xxweb-util/lib/types.js";
+import {ACCESS_TOKEN,USER_INFO,PERMISSION} from "xxweb-util/dist/types.js";
 console.log(ACCESS_TOKEN,USER_INFO,PERMISSION)
 ```
 
@@ -128,7 +128,7 @@ console.log(ACCESS_TOKEN,USER_INFO,PERMISSION)
 **示例**
 创建axios对象
 ```javascript
-import {createService} from "xxweb-util/lib/request.js";
+import {createService} from "xxweb-util/dist/request.js";
 import store from '@/store'
 
 // 创建axios并设置baseUrl和token
@@ -148,7 +148,7 @@ export function getAction(path,params){
 处理请求错误
 ```javascript
 import { dealWithError } from './dealwithError.js';
-import {onResponseError} from 'xxweb-util/lib/request.js'
+import {onResponseError} from 'xxweb-util/dist/request.js'
 onResponseError(axios,(error:any) => dealWithError(error))
 ```
 ```javascript
@@ -170,7 +170,7 @@ export function dealWithError(error) {
 **示例**
 给项目安装授权过滤器
 ```javascript
-import filter from 'xxweb-uitl/lib/filter.js';
+import filter from 'xxweb-uitl/dist/filter.js';
 filter(router,window.project,{}) // 只开启鉴权，不开启权限验证
 // filter(router,window.project,{permission:true}) // 开启鉴权和权限验证
 ```
@@ -186,7 +186,7 @@ filter(router,window.project,{}) // 只开启鉴权，不开启权限验证
 **示例**
 调用异步的bus
 ```javascript
-import {$on} from 'xxweb-uitl/lib/bus.js';
+import {$on} from 'xxweb-uitl/dist/bus.js';
 $on('test',()=>{
     return new Promise((resolve,reject)=>{
         setTimeout(()=>{
@@ -197,7 +197,7 @@ $on('test',()=>{
 
 ```
 ```javascript
-import {$emit} from 'xxweb-uitl/lib/bus.js';
+import {$emit} from 'xxweb-uitl/dist/bus.js';
 $emit('test').then(res=>{
     console.log(res) // 1
 })
