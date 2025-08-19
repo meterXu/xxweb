@@ -1,14 +1,14 @@
 import App from './App.vue'
 import { createApp } from 'vue'
-import filter from './packages/xxWeb-util/dist/filter.js'
+import filter from './packages/xxWeb-util/lib/filter.js'
 import XXWebBox from './packages/xxWeb-box'
-import * as util from './packages/xxWeb-util/dist/util.js'
+import * as util from './packages/xxWeb-util/lib/util.js'
 import router from './router';
 import DemoBlock from "./views/doc/DemoBlock";
 import elementUI from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import bus from '@/packages/xxWeb-util/dist/bus.js'
+import bus from '@/packages/xxWeb-util/lib/bus.js'
 
 const app = createApp(App)
 window.app = app

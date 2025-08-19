@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import {setLsValue} from "../packages/xxWeb-util/dist/util";
-import * as types from '../packages/xxWeb-util/dist/types.js'
+import {setLsValue} from "../packages/xxWeb-util/lib/util";
+import * as types from '../packages/xxWeb-util/lib/types.js'
 export default {
   name: "Login",
   props:['type'],
