@@ -1,6 +1,6 @@
 {
   "name": "xxweb-util",
-  "version": "0.3.14",
+  "version": "0.3.15",
   "description": "XXWeb函数工具包",
   "type": "module",
   "files": [

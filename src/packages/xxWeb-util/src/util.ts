@@ -11,28 +11,29 @@ export function isExternal(path:string) {
 /**
  * 判断是否为空
  */
-export function isEmpty(str:string|null|undefined){
+export function isEmpty(str?:any):boolean{
     return str===null||str===undefined||str===''||str==='undefined'||str==='null'
 }
 
 /**
  * 改变store值
  */
-export function alterStoreValue(value:string|null){
+export function alterStoreValue(value?:any){
     return isEmpty(value)?null:value
 }
 
 /**
  * 获取localStore值
  */
-export function getLsValue(value:string|null|undefined){
+export function getLsValue(value?:string|null){
+    //@ts-ignore
     return isEmpty(value)?'':value.indexOf('{')>-1?JSON.parse(value):value
 }
 
 /**
  * 设置localStore值
  */
-export function setLsValue(value:string){
+export function setLsValue(value?:string|object){
     return isEmpty(value)?'':typeof(value)==='object'?JSON.stringify(value):value
 }
 
