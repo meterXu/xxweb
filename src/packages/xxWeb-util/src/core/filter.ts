@@ -2,10 +2,17 @@ import {Ls,getQueryVariable} from './util.js'
 import {ACCESS_TOKEN,PERMISSION} from './types.js';
 import { match } from 'path-to-regexp';
 
+import {Project} from "./project";
+export type FilterCallbacks={
+    beforeCallback?: () => void; // 可选的回调函数
+    endCallback?: () => void;     // 可选的回调函数
+    permission: false;           // 权限标志
+}
+
 /**
  * 授权钩子
  */
-function filter(router:object, project:ProjectType,callbacks:FilterCallbacks) {
+export function filter(router:object, project:Project,callbacks:FilterCallbacks) {
     let defaultLogin = project.redirect.login
     const whiteList = [defaultLogin, project.redirect['404'],project.redirect['403']]
     const _ls = new Ls(project.nameSpace)
@@ -26,7 +33,7 @@ function filter(router:object, project:ProjectType,callbacks:FilterCallbacks) {
         }
     })
 }
-function validateNotFound(to:any,next:any,project:ProjectType,endCallback?:() => void){
+function validateNotFound(to:any,next:any,project:Project,endCallback?:() => void){
     if (!to.matched.length) {
         next({
             path: project.redirect['404']
@@ -36,7 +43,7 @@ function validateNotFound(to:any,next:any,project:ProjectType,endCallback?:() =>
     }
     return true
 }
-function dealWithQuery(to:any,ls:any,project:ProjectType){
+function dealWithQuery(to:any,ls:any,project:Project){
     if (to.query.action === 'logout') {
         ls.remove(ACCESS_TOKEN)
     } else {
@@ -55,7 +62,7 @@ function isNotInWhiteList(to:any,next:any,whiteList:string[],endCallback?:()=>vo
         return true
     }
 }
-function dealWithPerm(to:any,next:any,whiteList:string[],ls:any,permission:any,project:ProjectType,endCallback?:()=>void){
+function dealWithPerm(to:any,next:any,whiteList:string[],ls:any,permission:any,project:Project,endCallback?:()=>void){
     if (permission&&!validatePermission(to.path,ls.get(PERMISSION))){
         next({
             path: project.redirect['403']||project.redirect['404']
@@ -110,4 +117,3 @@ function validateToken(to:any,from:any,next:any,ls:any,defaultLogin:string,endCa
         return false
     }
 }
-export default filter

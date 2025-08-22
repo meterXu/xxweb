@@ -1,6 +1,6 @@
 import {merge} from 'lodash-es'
 import dayjs from 'dayjs'
-import project from './project.js'
+import {project,type Project} from './project.js'
 /**
  * 是否是外部地址
  */
@@ -241,7 +241,7 @@ export function mergeObject(source:object,target:object){
 /**
  * 展开整个project配置
  */
-export function expandFullProject(data:object){
+export function expandFullProject(data:object):Project{
     return merge({},project,data)
 }
 

@@ -60,10 +60,3 @@ export function $emit(event:string, ...args:any[]) {
     }
     return Promise.resolve()
 }
-
-export default {
-    $on,
-    $off,
-    $once,
-    $emit
-}

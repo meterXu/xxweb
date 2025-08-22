@@ -4,5 +4,4 @@ declare global {
         debounceTimeoutId:number
     }
 }
-
-export {};
+export {}

@@ -1,10 +1,15 @@
-export default {
+export const project = {
     nameSpace: "helloWorld",
     redirect: {
         index: '/',
         login: '/login',
+        '403':'/403',
         "404": '/404'
     },
+    variable:{
+        tokenKey:'Authorization',
+        baseApi:''
+    } as {[key:string]:any},
     style: {
         theme: 'vue-admin',
         layout: 'sideMenu',
@@ -18,12 +23,12 @@ export default {
             title: "helloWorld",
             desc: ""
         },
-        menu:{
-            mode:'router'
+        menu: {
+            mode: 'router'
         },
         head: {
-            hamburger:true,
-            logo:{
+            hamburger: true,
+            logo: {
                 show: true,
             },
             title: {
@@ -59,14 +64,14 @@ export default {
         sideMenu: {
             title: "helloWorld",
             width: '200px',
-            hamburger:false,
-            logo:{
+            hamburger: false,
+            logo: {
                 show: true,
             },
             user: {
                 show: false,
                 username: true,
-                tag:true,
+                tag: true,
                 menu: {
                     show: true,
                     clearCache: true,
@@ -76,7 +81,7 @@ export default {
             }
         },
         tabs: {
-            show:true,
+            show: true,
             icon: false,
         },
         footer: {
@@ -91,4 +96,6 @@ export default {
         },
         plugins: {}
     }
-} as unknown as ProjectType
+}
+export type Project = typeof project
+

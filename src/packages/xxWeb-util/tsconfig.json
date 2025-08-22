@@ -4,6 +4,7 @@
     "module": "ESNext",
     "declaration": true,
     "outDir": "./lib",
+    "declarationDir": "./lib/types",
     "strict": true,
     "lib": [
       "es2016",

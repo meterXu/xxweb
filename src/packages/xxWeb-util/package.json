@@ -1,11 +1,28 @@
 {
   "name": "xxweb-util",
-  "version": "0.3.18",
+  "version": "0.3.17",
   "description": "XXWeb函数工具包",
   "type": "module",
+  "module": "./lib/index.js",
   "files": [
-    "lib/**/*"
+    "lib"
   ],
+  "types": "./lib/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/index.js"
+    },
+    "./*": "./*"
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./*",
+        "./lib/types/*"
+      ]
+    }
+  },
   "scripts": {
     "build": "tsc",
     "test": "tsc tests/index.ts"
@@ -20,6 +37,6 @@
     "@types/lodash-es": "^4.17.12",
     "typescript": "~5.8.3"
   },
-  "author": "",
+  "author": "isaac",
   "license": "ISC"
 }
