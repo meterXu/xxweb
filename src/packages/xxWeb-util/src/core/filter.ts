@@ -6,7 +6,7 @@ import {Project} from "./project";
 export type FilterCallbacks={
     beforeCallback?: () => void; // 可选的回调函数
     endCallback?: () => void;     // 可选的回调函数
-    permission: false;           // 权限标志
+    permission: boolean;           // 权限标志
 }
 
 /**

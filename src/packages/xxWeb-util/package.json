@@ -1,6 +1,6 @@
 {
   "name": "xxweb-util",
-  "version": "0.3.19",
+  "version": "0.3.20",
   "description": "XXWeb函数工具包",
   "type": "module",
   "module": "./lib/index.js",
