@@ -530,12 +530,11 @@ export function sleep(time=100){
 export function resizeFontSize(designWidth:number,documentFontSize:number=16,delay:number=100,limitWidthHook?:(width:number)=>number):Promise<number> {
     return new Promise((resolve,reject) => {
         try {
-            const baseFontSize = Math.round(designWidth*10000/documentFontSize)/10000
             window.pageSizeTimer&&clearTimeout(window.pageSizeTimer);
             window.pageSizeTimer = setTimeout(() => {
                 let width = document.body.clientWidth;
                 width=limitWidthHook?limitWidthHook(width):width;
-                const widthNum = width / baseFontSize;
+                const widthNum = Math.round(width*documentFontSize*100 / designWidth)/100;
                 document.documentElement.style.fontSize = widthNum + 'px';
                 resolve(widthNum);
             }, delay);
