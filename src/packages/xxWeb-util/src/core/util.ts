@@ -33,7 +33,7 @@ export function alterStoreValue(value?:any){
  * @param value 字符串或序列化后的对象
  * @returns 字符串或者对象
  */
-export function getLsValue(value?:string|null){
+export function getLsValue(value?:string|null|undefined){
     //@ts-ignore
     return isEmpty(value)?'':value.indexOf('{')>-1?JSON.parse(value):value
 }
@@ -42,7 +42,7 @@ export function getLsValue(value?:string|null){
  * 设置localStore值
  * @param value 可以是字符串也可以是对象，对象会进行序列号
  */
-export function setLsValue(value?:string|object){
+export function setLsValue(value?:string|object|undefined){
     return isEmpty(value)?'':typeof(value)==='object'?JSON.stringify(value):value
 }
 
