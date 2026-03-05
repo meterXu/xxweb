@@ -35,7 +35,7 @@ export function alterStoreValue(value?:any){
  */
 export function getLsValue(value?:string|null|undefined){
     //@ts-ignore
-    return isEmpty(value)?'':value.indexOf('{')>-1?JSON.parse(value):value
+    return isEmpty(value)?'':/^\{|\[/g.test(value)?JSON.parse(value):value
 }
 
 /**
